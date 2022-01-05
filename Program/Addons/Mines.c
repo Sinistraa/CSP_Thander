@@ -1,15 +1,15 @@
 /* Рудники, их развитие и повседневные дела */
-#define ORE_GOLD				2.7
-#define ORE_SILVER 				3.9
-#define ORE_IRON 				5.1
+#define ORE_GOLD 2.7
+#define ORE_SILVER 3.9
+#define ORE_IRON 5.1
 
-#define AUTO_SELL_MINES_MAX 			500
-#define AUTO_SELL_GOLD 				250
-#define AUTO_SELL_SILVER 			110
-#define AUTO_SELL_IRON 				55
+#define AUTO_SELL_MINES_MAX 500
+#define AUTO_SELL_GOLD 250
+#define AUTO_SELL_SILVER 110
+#define AUTO_SELL_IRON 55
 
-#define MINES_FOOD_DELIT			50
-#define MINES_MEDICAMENT_DELIT			50
+#define MINES_FOOD_DELIT 50
+#define MINES_MEDICAMENT_DELIT 50
 
 void InitMines()
 {
@@ -76,7 +76,7 @@ void UptadeLivedInMines()
 
 void MinesCheckSlavesEpidemy()
 {
-	if(rand(100) > 10)
+	if (rand(100) > 10)
 	{
 		return;
 	}
@@ -84,7 +84,7 @@ void MinesCheckSlavesEpidemy()
 	int iSlaves = sti(PChar.Mines.SlavesQuantity);
 	int iMedicament = sti(PChar.Mines.MedicamentQuantity);
 
-	if(iSlaves < 10)
+	if (iSlaves < 10)
 	{
 		return;
 	}
@@ -93,7 +93,7 @@ void MinesCheckSlavesEpidemy()
 
 	int iDead = 0;
 	int iMedicamentNeed = 0;
-	if(iMedicament >= iSlaves)
+	if (iMedicament >= iSlaves)
 	{
 		iDead = rand(10) + 10;
 		iMedicamentNeed = iSlaves - iDead;
@@ -106,9 +106,12 @@ void MinesCheckSlavesEpidemy()
 	else
 	{
 		iDead = iSlaves - iMedicament;
-		if(iDead) { iDead = 0; }
+		if (iDead)
+		{
+			iDead = 0;
+		}
 
-		if(iDead > 0)
+		if (iDead > 0)
 		{
 			ChangeMinesMainGoods(iDead, "Medicament", false);
 			ChangeMinesSlaves(iDead, false);
@@ -128,11 +131,14 @@ void MinesFoodUptade()
 	int iDead = 0;
 	int iSlaves = sti(PChar.Mines.SlavesQuantity);
 
-	if(iSlaves < 1) { return; }
+	if (iSlaves < 1)
+	{
+		return;
+	}
 
 	float fCoff = 0.0;
 	int iFoodDiff = iSlaves / MINES_FOOD_DELIT;
-	if(iFoodDiff < 1)
+	if (iFoodDiff < 1)
 	{
 		iFoodDiff = 1;
 	}
@@ -141,7 +147,7 @@ void MinesFoodUptade()
 	int iFoodNeed = iFoodDiff * 14;
 	fCoff = iFoodDiff / iSlaves;
 
-	if(iFood >= iFoodNeed)
+	if (iFood >= iFoodNeed)
 	{
 		ChangeMinesMainGoods(-iFoodNeed, "Food", false);
 	}
@@ -151,7 +157,7 @@ void MinesFoodUptade()
 		iDead /= 14;
 		iDead /= fCoff;
 
-		if(iDead > iSlaves)
+		if (iDead > iSlaves)
 		{
 			iDead = iSlaves;
 		}
@@ -163,11 +169,14 @@ void MinesFoodUptade()
 	}
 
 	int iSoldiers = sti(PChar.Mines.GuardiansQuantity);
-	if(iSoldiers < 1) { return; }
+	if (iSoldiers < 1)
+	{
+		return;
+	}
 
 	fCoff = 0.0;
 	iFoodDiff = iSoldiers / MINES_FOOD_DELIT;
-	if(iFoodDiff < 1)
+	if (iFoodDiff < 1)
 	{
 		iFoodDiff = 1;
 	}
@@ -176,7 +185,7 @@ void MinesFoodUptade()
 	iFoodNeed = iFoodDiff * 14;
 	fCoff = iFoodDiff / iSoldiers;
 
-	if(iFood >= iFoodNeed)
+	if (iFood >= iFoodNeed)
 	{
 		ChangeMinesMainGoods(-iFoodNeed, "Food", false);
 	}
@@ -186,7 +195,7 @@ void MinesFoodUptade()
 		iDead /= 14;
 		iDead /= fCoff;
 
-		if(iDead > iSoldiers)
+		if (iDead > iSoldiers)
 		{
 			iDead = iSoldiers;
 		}
@@ -203,10 +212,13 @@ void MinesMedicamentUptade()
 	int iDead = 0;
 	int iSlaves = sti(PChar.Mines.SlavesQuantity);
 
-	if(iSlaves < 1) { return; }
+	if (iSlaves < 1)
+	{
+		return;
+	}
 
 	int iMedicamentDiff = iSlaves / MINES_MEDICAMENT_DELIT;
-	if(iMedicamentDiff < 1)
+	if (iMedicamentDiff < 1)
 	{
 		iMedicamentDiff = 1;
 	}
@@ -216,7 +228,7 @@ void MinesMedicamentUptade()
 	int iMedicamentNeed = iMedicamentDiff * 14;
 	fCoff = iMedicamentDiff / iSlaves;
 
-	if(iMedicament >= iMedicamentNeed)
+	if (iMedicament >= iMedicamentNeed)
 	{
 		ChangeMinesMainGoods(-iMedicamentNeed, "Medicament", false);
 	}
@@ -226,7 +238,7 @@ void MinesMedicamentUptade()
 		iDead /= 14;
 		iDead /= fCoff;
 
-		if(iDead > iSlaves)
+		if (iDead > iSlaves)
 		{
 			iDead = iSlaves;
 		}
@@ -240,7 +252,7 @@ void MinesMedicamentUptade()
 
 void MinesOreUptade()
 {
-	if(PChar.Mines.Commander == "")
+	if (PChar.Mines.Commander == "")
 	{
 		Log_InfoS("Ваши рудники не имеют управляющего. Добыча не производится.");
 		return;
@@ -248,7 +260,7 @@ void MinesOreUptade()
 
 	int iSlaves = sti(PChar.Mines.SlavesQuantity);
 
-	if(iSlaves < 1)
+	if (iSlaves < 1)
 	{
 		return;
 	}
@@ -261,22 +273,34 @@ void MinesOreUptade()
 	string sMine = "";
 	string sText = "";
 
-	for(int i=0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		switch(i)
+		switch (i)
 		{
-			case 0: sType = "Gold"; c = ORE_GOLD; sText = "золотой"; break;
-			case 1: sType = "Silver"; c = ORE_SILVER; sText = "серебрянной"; break;
-			case 2: sType = "Iron"; c = ORE_IRON; sText = "железной"; break;
+		case 0:
+			sType = "Gold";
+			c = ORE_GOLD;
+			sText = "золотой";
+			break;
+		case 1:
+			sType = "Silver";
+			c = ORE_SILVER;
+			sText = "серебрянной";
+			break;
+		case 2:
+			sType = "Iron";
+			c = ORE_IRON;
+			sText = "железной";
+			break;
 		}
 
 		sMine = sType + "Mine";
-		if(PChar.Mines.(sMine) == false)
+		if (PChar.Mines.(sMine) == false)
 		{
 			continue;
 		}
 
-		if(PChar.ColonyBuilding.(sMine).Resize.BuildingTime == true)
+		if (PChar.ColonyBuilding.(sMine).Resize.BuildingTime == true)
 		{
 			Log_InfoS("В связи с расширением рудника, добыча " + sText + " руды приостановлена.");
 			continue;
@@ -293,19 +317,19 @@ void MinesOreUptade()
 void MinesCheckAttack()
 {
 	bool bDisable = GetDisableAllColonyEvent();
-	if(PChar.Mines.Defence.Block == true || bDisable)
+	if (PChar.Mines.Defence.Block == true || bDisable)
 	{
 		Log_TestInfo("Нападения на рудники не будет, т.к. стоит запрет.");
 		return;
 	}
 
 	int iRand = rand(10);
-	if(iRand < 3)
+	if (iRand < 3)
 	{
 		return;
 	}
 
-	if(iRand >= 3 && iRand < 8)
+	if (iRand >= 3 && iRand < 8)
 	{
 		GenerateMinesLandAttack();
 		return;
@@ -327,17 +351,23 @@ void GenerateMinesMutiny()
 	int iSlaves = sti(PChar.Mines.SlavesQuantity);
 	int iGuardians = sti(PChar.Mines.GuardiansQuantity);
 
-	if(iSlaves < 1)	{ iSlaves = 1; }
-	if(iGuardians < 1) { iGuardians = 1; }
+	if (iSlaves < 1)
+	{
+		iSlaves = 1;
+	}
+	if (iGuardians < 1)
+	{
+		iGuardians = 1;
+	}
 
-	if(iSlaves < 50)
+	if (iSlaves < 50)
 	{
 		Log_TestInfo("Мятежа на рудниках не будет, т.к. рабов слишком мало.");
 		return;
 	}
 
 	int iDifference = iGuardians / iSlaves;
-	if(iDifference >= 2 || rand(4) > 2)
+	if (iDifference >= 2 || rand(4) > 2)
 	{
 		Log_TestInfo("Мятежа на рудниках не будет, т.к. рабов слишком мало по отношению к охране.");
 		return;
@@ -353,30 +383,34 @@ void GenerateMinesMutiny()
 
 	int iRebels = iSlaves / 20;
 
-	if(iRebels < 2) iRebels = 2;
-	if(iRebels > 20) iRebels = 20;
+	if (iRebels < 2)
+		iRebels = 2;
+	if (iRebels > 20)
+		iRebels = 20;
 
-	ChangeMinesSlaves(-(iRebels*10), false);
+	ChangeMinesSlaves(-(iRebels * 10), false);
 
 	int iSoldiersQuantity = iGuardians / 25;
 
 	PChar.Mines.Defence.Nation = PIRATE;
 	PChar.Mines.Defence.EnemyQuantity = iRebels;
 
-	if(iSoldiersQuantity < 1)
+	if (iSoldiersQuantity < 1)
 	{
 		InstantColonyDefendLoose("Mines", "Mutiny");
 		return;
 	}
 
-	if(iSoldiersQuantity < 2) iSoldiersQuantity = 2;
-	if(iSoldiersQuantity > 20) iSoldiersQuantity = 20;
+	if (iSoldiersQuantity < 2)
+		iSoldiersQuantity = 2;
+	if (iSoldiersQuantity > 20)
+		iSoldiersQuantity = 20;
 
 	PChar.Mines.Defence.Soldiers = iSoldiersQuantity;
 	PChar.Mines.Defence.Soldiers.Delete = rand(1) + 4;
 
 	int iRandMinus = 3;
-	if(iRebels > iSoldiersQuantity)
+	if (iRebels > iSoldiersQuantity)
 	{
 		iRandMinus -= (iRebels - iSoldiersQuantity);
 	}
@@ -385,7 +419,7 @@ void GenerateMinesMutiny()
 		iRandMinus += (iSoldiersQuantity - iRebels);
 	}
 
-	if(iRandMinus < -6)
+	if (iRandMinus < -6)
 	{
 		InstantColonyDefendLoose("Mines", "Mutiny");
 		return;
@@ -394,7 +428,14 @@ void GenerateMinesMutiny()
 	int iRand = iRandMinus - rand(4);
 
 	int iEnd = 0;
-	if(iRand > 0) { iEnd = 1; }else{ iEnd = 0; }
+	if (iRand > 0)
+	{
+		iEnd = 1;
+	}
+	else
+	{
+		iEnd = 0;
+	}
 
 	PChar.Mines.Defence.End = iEnd;
 
@@ -448,9 +489,9 @@ void BattleMutinyMines(string _tmp)
 	string sModel = "";
 	string sLocator = "";
 
-	for(i=1; i <= iRebels; i++)
+	for (i = 1; i <= iRebels; i++)
 	{
-		sModel = "Slave" + (rand(3)+1);
+		sModel = "Slave" + (rand(3) + 1);
 		sLocator = "aloc" + i;
 
 		chr = GetCharacter(NPC_GeneratePhantomCharacter("officer_1", PIRATE, 1, 0));
@@ -461,7 +502,7 @@ void BattleMutinyMines(string _tmp)
 		chr.model.animation = "man";
 		chr.NotRemoved = true;
 		SetNewModelToChar(chr);
-    		FaceMaker(chr);
+		FaceMaker(chr);
 		LAi_NoRebirthEnable(chr);
 		LAi_SetWarriorType(chr);
 		LAi_group_MoveCharacter(chr, "EnemyFight");
@@ -475,29 +516,44 @@ void BattleMutinyMines(string _tmp)
 
 	int iMusketeers = FightInColonyGetMusketeerQty(iSoldiers);
 	bool bMusketeer = false;
-	for(i=1; i <= iSoldiers; i++)
+	for (i = 1; i <= iSoldiers; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iSoldiers - i < iMusketeers) { bMusketeer = true; }
+		if (iSoldiers - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
-		if(PChar.ColonyBuilding.SoldiersType == "officer")
+		if (PChar.ColonyBuilding.SoldiersType == "officer")
 		{
 			sModel = "officer_" + (rand(63) + 1);
-			if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = "officer_" + (rand(63) + 1) + "_mush";
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
-			if(PChar.ColonyBuilding.SoldiersType == "pirate")
+			if (PChar.ColonyBuilding.SoldiersType == "pirate")
 			{
 				sModel = "pirate_" + (rand(24) + 1);
-				if(bMusketeer) { sModel = GetPirateMushketerModel(); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = GetPirateMushketerModel();
+					sAni = "mushketer";
+				}
 			}
 			else
 			{
 				sModel = "sold_" + sNation + "_" + (rand(7) + 1);
-				if(bMusketeer) { sModel = sNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = sNation + "_mush_" + (rand(2) + 1);
+					sAni = "mushketer";
+				}
 			}
 		}
 
@@ -523,7 +579,7 @@ void BattleMutinyMines(string _tmp)
 	LAi_SetFightMode(PChar, true);
 
 	string cnd, rbl;
-	for(i=1; i<=iRebels; i++)
+	for (i = 1; i <= iRebels; i++)
 	{
 		cnd = "l" + i;
 		rbl = "My Mines Mutiny Rebel " + i;
@@ -547,7 +603,7 @@ void BattleMutinyMinesWinner(string _tmp)
 	LAi_grp_alarmactive = false;
 
 	LAi_LockFightMode(PChar, false);
-        LAi_SetFightMode(PChar, false);
+	LAi_SetFightMode(PChar, false);
 
 	AddQuestRecord("MY_COLONY", "2");
 
@@ -555,10 +611,10 @@ void BattleMutinyMinesWinner(string _tmp)
 	int iDead = 0;
 
 	string sDefender = "";
-	for(int i=1; i<=iSoldiers; i++)
+	for (int i = 1; i <= iSoldiers; i++)
 	{
 		sDefender = "My Mines Mutiny Defender " + i;
-		if(LAi_IsDead(CharacterFromID(sDefender)))
+		if (LAi_IsDead(CharacterFromID(sDefender)))
 		{
 			iDead++;
 		}
@@ -596,7 +652,7 @@ void ClearMutinyMines(string qName)
 	int iEnd = sti(PChar.Mines.Defence.End);
 
 	int iSoldiers = sti(PChar.Mines.Defence.Soldiers);
-	if(iSoldiers > 0)
+	if (iSoldiers > 0)
 	{
 		iSoldiers /= sti(PChar.Mines.Defence.Soldiers.Delete);
 	}
@@ -604,7 +660,7 @@ void ClearMutinyMines(string qName)
 
 	int iRebels = sti(PChar.Mines.Defence.EnemyQuantity);
 
-	if(iEnd == 1)
+	if (iEnd == 1)
 	{
 		Log_Info("Вести с рудников, принадлежащих колонии " + PChar.ColonyBuilding.ColonyName + "!");
 		AddQuestRecord("MY_COLONY", "2");
@@ -644,13 +700,13 @@ void ClearMutinyMines(string qName)
 // ВТОРОЙ ВАРИАНТ - НАПАДЕНИЕ С СУШИ
 void GenerateMinesLandAttack()
 {
-	if(rand(100) < 10)
+	if (rand(100) < 10)
 	{
 		Log_TestInfo("Нападения с суши не будет, так как повезло.");
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Fort == true && rand(100) < 30)
+	if (PChar.ColonyBuilding.Fort == true && rand(100) < 30)
 	{
 		Log_TestInfo("Нападения с суши не будет, так как охранная база отпугнула вражину.");
 		return;
@@ -662,7 +718,7 @@ void GenerateMinesLandAttack()
 
 	int iBaseNation = GetBaseHeroNation();
 	int iNation = FindEnemyNation2Nation(iBaseNation); //FindEnemyNation2Character(nMainCharacterIndex);
-	if(iNation == -1)
+	if (iNation == -1)
 	{
 		iNation = PIRATE;
 	}
@@ -677,8 +733,10 @@ void GenerateMinesLandAttack()
 	int iSoldiersQuantity = iGuardians / 20;
 	int iEnemy = 7 + rand(4) + rand(6) + rand(3) + 3;
 
-	if(iEnemy < 2) iEnemy = 2;
-	if(iEnemy > 20) iEnemy = 20;
+	if (iEnemy < 2)
+		iEnemy = 2;
+	if (iEnemy > 20)
+		iEnemy = 20;
 
 	Log_TestInfo("Команда противника: " + iEnemy);
 
@@ -688,30 +746,44 @@ void GenerateMinesLandAttack()
 	int iIronMinus = iOreMinus * ORE_IRON;
 	int iSlavesMinus = sti(PChar.Mines.SlavesQuantity) / 2 + rand(10);
 
-	if(iGoldMinus > sti(PChar.Mines.GoldQuantity)) { iGoldMinus = sti(PChar.Mines.GoldQuantity); }
-	if(iSilverMinus > sti(PChar.Mines.SilverQuantity)) { iSilverMinus = sti(PChar.Mines.SilverQuantity); }
-	if(iIronMinus > sti(PChar.Mines.IronQuantity)) { iIronMinus = sti(PChar.Mines.IronQuantity); }
-	if(iSlavesMinus > sti(PChar.Mines.SlavesQuantity)) { iSlavesMinus = sti(PChar.Mines.SlavesQuantity); }
+	if (iGoldMinus > sti(PChar.Mines.GoldQuantity))
+	{
+		iGoldMinus = sti(PChar.Mines.GoldQuantity);
+	}
+	if (iSilverMinus > sti(PChar.Mines.SilverQuantity))
+	{
+		iSilverMinus = sti(PChar.Mines.SilverQuantity);
+	}
+	if (iIronMinus > sti(PChar.Mines.IronQuantity))
+	{
+		iIronMinus = sti(PChar.Mines.IronQuantity);
+	}
+	if (iSlavesMinus > sti(PChar.Mines.SlavesQuantity))
+	{
+		iSlavesMinus = sti(PChar.Mines.SlavesQuantity);
+	}
 
 	PChar.Mines.Defence.Minus.Gold = iGoldMinus;
 	PChar.Mines.Defence.Minus.Silver = iSilverMinus;
 	PChar.Mines.Defence.Minus.Iron = iIronMinus;
 	PChar.Mines.Defence.Minus.Slaves = iSlavesMinus;
 
-	if(iSoldiersQuantity < 1)
+	if (iSoldiersQuantity < 1)
 	{
 		InstantColonyDefendLoose("Mines", "BattleLand");
 		return;
 	}
 
-	if(iSoldiersQuantity < 2) iSoldiersQuantity = 2;
-	if(iSoldiersQuantity > 23) iSoldiersQuantity = 23;
+	if (iSoldiersQuantity < 2)
+		iSoldiersQuantity = 2;
+	if (iSoldiersQuantity > 23)
+		iSoldiersQuantity = 23;
 
-	if(PChar.ColonyBuilding.Fort == true)
+	if (PChar.ColonyBuilding.Fort == true)
 	{
 		iEnemy -= (sti(PChar.ColonyBuilding.Soldiers) / 10) / iEnemy;
 
-		if(iEnemy < 5)
+		if (iEnemy < 5)
 		{
 			iEnemy = 5;
 		}
@@ -724,7 +796,7 @@ void GenerateMinesLandAttack()
 	PChar.Mines.Defence.EnemyQuantity = iEnemy;
 
 	int iRandMinus = -5;
-	if(iEnemy > iSoldiersQuantity)
+	if (iEnemy > iSoldiersQuantity)
 	{
 		iRandMinus -= (iEnemy - iSoldiersQuantity);
 	}
@@ -733,7 +805,7 @@ void GenerateMinesLandAttack()
 		iRandMinus += (iSoldiersQuantity - iEnemy);
 	}
 
-	if(iRandMinus < -10)
+	if (iRandMinus < -10)
 	{
 		InstantColonyDefendLoose("Mines", "BattleLand");
 		return;
@@ -742,7 +814,14 @@ void GenerateMinesLandAttack()
 	int iRand = iRandMinus - rand(3);
 
 	int iEnd = 0;
-	if(iRand > 0) { iEnd = 1; }else{ iEnd = 0; }
+	if (iRand > 0)
+	{
+		iEnd = 1;
+	}
+	else
+	{
+		iEnd = 0;
+	}
 	PChar.Mines.Defence.End = iEnd;
 
 	int iTime = 4 + rand(10) + iRandMinus;
@@ -801,27 +880,38 @@ void BattleLandDefenceMines(string _tmp)
 	int iMusketeers = FightInColonyGetMusketeerQty(iEnemy);
 	bool bMusketeer = false;
 
-    	arrayNPCModelHow = 0;
+	arrayNPCModelHow = 0;
 	int iEnemyNation = sti(PChar.Mines.Defence.Nation);
 	string sEnemyNation = NationShortName(iEnemyNation);
-	for(i=1; i <= iEnemy; i++)
+	for (i = 1; i <= iEnemy; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iEnemy - i < iMusketeers) { bMusketeer = true; }
+		if (iEnemy - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
 		sLocator = "reload2_back";
 
-		if(iEnemyNation == PIRATE)
+		if (iEnemyNation == PIRATE)
 		{
 			sModel = "pirate_" + (rand(24) + 1);
-			if(bMusketeer) { sModel = GetPirateMushketerModel(); sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = GetPirateMushketerModel();
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
 			sModel = "sold_" + sEnemyNation + "_" + (rand(7) + 1);
-			if(bMusketeer) { sModel = sEnemyNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = sEnemyNation + "_mush_" + (rand(2) + 1);
+				sAni = "mushketer";
+			}
 		}
 
 		chr = GetCharacter(NPC_GeneratePhantomCharacter("soldier", iEnemyNation, 1, 0));
@@ -832,7 +922,7 @@ void BattleLandDefenceMines(string _tmp)
 		chr.model.animation = sAni;
 		chr.NotRemoved = true;
 		SetNewModelToChar(chr);
-    		FaceMaker(chr);
+		FaceMaker(chr);
 		LAi_NoRebirthEnable(chr);
 		LAi_SetWarriorType(chr);
 		LAi_group_MoveCharacter(chr, "EnemyFight");
@@ -843,42 +933,61 @@ void BattleLandDefenceMines(string _tmp)
 	string sNation = NationShortName(iNation);
 
 	iMusketeers = FightInColonyGetMusketeerQty(iSoldiers);
-	for(i=1; i <= iSoldiers; i++)
+	for (i = 1; i <= iSoldiers; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iSoldiers - i < iMusketeers) { bMusketeer = true; }
+		if (iSoldiers - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
-		if(PChar.ColonyBuilding.SoldiersType == "officer" || PChar.ColonyBuilding.SoldiersType == "pirate")
+		if (PChar.ColonyBuilding.SoldiersType == "officer" || PChar.ColonyBuilding.SoldiersType == "pirate")
 		{
 			sModel = "officer_" + (rand(63) + 1);
-			if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = "officer_" + (rand(63) + 1) + "_mush";
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
 
-			if(PChar.ColonyBuilding.SoldiersType == "pirate")
+			if (PChar.ColonyBuilding.SoldiersType == "pirate")
 			{
 				sAni = "man";
 				sModel = "pirate_" + (rand(24) + 1);
 
-				if(iEnemyNation == PIRATE)
+				if (iEnemyNation == PIRATE)
 				{
 					sModel = "officer_" + (rand(63) + 1);
 				}
 
-				if(bMusketeer) { sModel = "Mushketer_" + (rand(4)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = "Mushketer_" + (rand(4) + 1);
+					sAni = "mushketer";
+				}
 			}
 			else
 			{
 				sModel = "sold_" + sNation + "_" + (rand(7) + 1);
-				if(bMusketeer) { sModel = sNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = sNation + "_mush_" + (rand(2) + 1);
+					sAni = "mushketer";
+				}
 
-				if(iNation == iEnemyNation)
+				if (iNation == iEnemyNation)
 				{
 					sModel = "officer_" + (rand(63) + 1);
-					if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+					if (bMusketeer)
+					{
+						sModel = "officer_" + (rand(63) + 1) + "_mush";
+						sAni = "mushketer";
+					}
 				}
 			}
 		}
@@ -904,7 +1013,7 @@ void BattleLandDefenceMines(string _tmp)
 	LAi_SetFightMode(PChar, true);
 
 	string cnd, enm;
-	for(i=1; i<=iEnemy; i++)
+	for (i = 1; i <= iEnemy; i++)
 	{
 		cnd = "l" + i;
 		enm = "My Mines Land Defence Pirate " + i;
@@ -926,7 +1035,7 @@ void BattleLandDefenceMinesWinner(string _tmp)
 	LAi_grp_alarmactive = false;
 
 	LAi_LockFightMode(PChar, false);
-        LAi_SetFightMode(PChar, false);
+	LAi_SetFightMode(PChar, false);
 
 	AddQuestRecord("MY_COLONY", "5");
 
@@ -934,10 +1043,10 @@ void BattleLandDefenceMinesWinner(string _tmp)
 	int iDead = 0;
 
 	string sDefender = "";
-	for(int i=1; i<=iSoldiers; i++)
+	for (int i = 1; i <= iSoldiers; i++)
 	{
 		sDefender = "My Mines Land Defender " + i;
-		if(LAi_IsDead(CharacterFromID(sDefender)))
+		if (LAi_IsDead(CharacterFromID(sDefender)))
 		{
 			iDead++;
 		}
@@ -963,7 +1072,7 @@ void ClearLandDefenceMines(string qName)
 	int iEnd = sti(PChar.Mines.Defence.End);
 
 	int iSoldiers = sti(PChar.Mines.Defence.Soldiers);
-	if(iSoldiers > 0)
+	if (iSoldiers > 0)
 	{
 		iSoldiers /= sti(PChar.Mines.Defence.Soldiers.Delete);
 	}
@@ -971,7 +1080,7 @@ void ClearLandDefenceMines(string qName)
 
 	SetTimerCondition("MinesUptade5", 0, 0, 30, false);
 
-	if(iEnd == 1)
+	if (iEnd == 1)
 	{
 		Log_Info("Вести из колонии " + PChar.ColonyBuilding.ColonyName + "!");
 		AddQuestRecord("MY_COLONY", "21");
@@ -1008,8 +1117,8 @@ void ClearLandDefenceMines(string qName)
 
 void MinesLandDefenceOnMap()
 {
-	ref  sld;
-	int  i;
+	ref sld;
+	int i;
 
 	string sCapId = "Follower0";
 	string sGroup = "Sea_" + sCapId + "1";
@@ -1019,7 +1128,7 @@ void MinesLandDefenceOnMap()
 
 	int iDifferent = GetCompanionQuantity(PChar) - 1;
 
-	if(iDifferent < 1)
+	if (iDifferent < 1)
 	{
 		iDifferent = 1;
 	}
@@ -1059,7 +1168,7 @@ void MinesLandDefenceOnMap()
 		SetCharacterGoods(sld, GOOD_SLAVES, iSlaves);
 	}
 
-	Group_SetGroupCommander(sGroup, sCapId+ "1");
+	Group_SetGroupCommander(sGroup, sCapId + "1");
 	//Group_SetTaskAttackInMap(sGroup, PLAYER_GROUP);
 	Group_LockTask(sGroup);
 	//Map_CreateWarrior("", sCapId + "1", 8);
@@ -1071,7 +1180,7 @@ void MinesLandDefenceOnMap()
 ////////////////////////////////////////////////////////////////////////////////////////
 void ChangeMinesSlaves(int iQty, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Mines.SlavesQuantity = iQty;
 	}
@@ -1081,15 +1190,21 @@ void ChangeMinesSlaves(int iQty, bool bSet)
 	}
 
 	int iMax = sti(PChar.Mines.MaxSlavesQuantity);
-	if(sti(PChar.Mines.SlavesQuantity) > iMax) { PChar.Mines.SlavesQuantity = iMax; }
-	if(sti(PChar.Mines.SlavesQuantity) < 0) { PChar.Mines.SlavesQuantity = 0; }
+	if (sti(PChar.Mines.SlavesQuantity) > iMax)
+	{
+		PChar.Mines.SlavesQuantity = iMax;
+	}
+	if (sti(PChar.Mines.SlavesQuantity) < 0)
+	{
+		PChar.Mines.SlavesQuantity = 0;
+	}
 }
 
 void ChangeMinesOre(int iQty, string sType, bool bSet)
 {
 	string sOre = sType + "Quantity";
 
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Mines.(sOre) = iQty;
 	}
@@ -1099,13 +1214,19 @@ void ChangeMinesOre(int iQty, string sType, bool bSet)
 	}
 
 	int iMax = sti(PChar.Mines.(sOre).Max);
-	if(sti(PChar.Mines.(sOre)) > iMax) { PChar.Mines.(sOre) = iMax; }
-	if(sti(PChar.Mines.(sOre)) < 0) { PChar.Mines.(sOre) = 0; }
+	if (sti(PChar.Mines.(sOre)) > iMax)
+	{
+		PChar.Mines.(sOre) = iMax;
+	}
+	if (sti(PChar.Mines.(sOre)) < 0)
+	{
+		PChar.Mines.(sOre) = 0;
+	}
 }
 
 void ChangeMinesSoldiers(int iQty, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Mines.GuardiansQuantity = iQty;
 	}
@@ -1115,15 +1236,21 @@ void ChangeMinesSoldiers(int iQty, bool bSet)
 	}
 
 	int iMax = sti(PChar.Mines.MaxGuardiansQuantity);
-	if(sti(PChar.Mines.GuardiansQuantity) > iMax) { PChar.Mines.GuardiansQuantity = iMax; }
-	if(sti(PChar.Mines.GuardiansQuantity) < 0) { PChar.Mines.GuardiansQuantity = 0; }
+	if (sti(PChar.Mines.GuardiansQuantity) > iMax)
+	{
+		PChar.Mines.GuardiansQuantity = iMax;
+	}
+	if (sti(PChar.Mines.GuardiansQuantity) < 0)
+	{
+		PChar.Mines.GuardiansQuantity = 0;
+	}
 }
 
 void ChangeMinesMainGoods(int iQty, string sType, bool bSet)
 {
 	string sGood = sType + "Quantity";
 
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Mines.(sGood) = iQty;
 	}
@@ -1133,8 +1260,14 @@ void ChangeMinesMainGoods(int iQty, string sType, bool bSet)
 	}
 
 	int iMax = sti(PChar.Mines.(sGood).Max);
-	if(sti(PChar.Mines.(sGood)) > iMax) { PChar.Mines.(sGood) = iMax; }
-	if(sti(PChar.Mines.(sGood)) < 0) { PChar.Mines.(sGood) = 0; }
+	if (sti(PChar.Mines.(sGood)) > iMax)
+	{
+		PChar.Mines.(sGood) = iMax;
+	}
+	if (sti(PChar.Mines.(sGood)) < 0)
+	{
+		PChar.Mines.(sGood) = 0;
+	}
 }
 
 int GetMinesFoodDays()
@@ -1145,14 +1278,23 @@ int GetMinesFoodDays()
 	int iDay = (iSlaves / MINES_FOOD_DELIT) + (iSoldiers / MINES_FOOD_DELIT);
 	int iGood = sti(PChar.Mines.FoodQuantity);
 
-	if(iSlaves + iSoldiers <= 0) { return iGood; }
-	if(iGood <= 0) { return 0; }
-	if(iDay <= 0) { return iGood; }
+	if (iSlaves + iSoldiers <= 0)
+	{
+		return iGood;
+	}
+	if (iGood <= 0)
+	{
+		return 0;
+	}
+	if (iDay <= 0)
+	{
+		return iGood;
+	}
 
 	iDay *= 42;
 	iDays = iGood / iDay;
 
-	if(iDays < 0)
+	if (iDays < 0)
 	{
 		iDays = 0;
 	}
@@ -1167,13 +1309,19 @@ int GetMinesMedicamentDays()
 	int iDay = iSlaves / MINES_MEDICAMENT_DELIT;
 	int iGood = sti(PChar.Mines.MedicamentQuantity);
 
-	if(iSlaves <= 0) { return iGood; }
-	if(iGood <= 0) { return 0; }
+	if (iSlaves <= 0)
+	{
+		return iGood;
+	}
+	if (iGood <= 0)
+	{
+		return 0;
+	}
 
 	iDay *= 42;
 	iDays = iGood / iDay;
 
-	if(iDays < 0)
+	if (iDays < 0)
 	{
 		iDays = 0;
 	}
@@ -1187,12 +1335,12 @@ int GetMinesMedicamentDays()
 void MinesExtractGoodsAutoSell()
 {
 	bool bCan = sti(PChar.ColonyBuilding.Mines.AutoSell);
-	if(!bCan)
+	if (!bCan)
 	{
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Store == false)
+	if (PChar.ColonyBuilding.Store == false)
 	{
 		return;
 	}
@@ -1207,17 +1355,26 @@ void MinesExtractGoodsAutoSell()
 	string sMine = "GoldMine";
 
 	int iMoney = 0;
-	for(int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		switch(i)
+		switch (i)
 		{
-			case 0: sType = "Gold"; iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_GOLD); break;
-			case 1: sType = "Silver"; iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_SILVER); break;
-			case 2: sType = "Iron"; iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_IRON); break;
+		case 0:
+			sType = "Gold";
+			iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_GOLD);
+			break;
+		case 1:
+			sType = "Silver";
+			iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_SILVER);
+			break;
+		case 2:
+			sType = "Iron";
+			iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_IRON);
+			break;
 		}
 
 		sMine = sType + "Mine";
-		if(PChar.Mines.(sMine) == false)
+		if (PChar.Mines.(sMine) == false)
 		{
 			continue;
 		}
@@ -1230,22 +1387,25 @@ void MinesExtractGoodsAutoSell()
 		sMine = sType + "Quantity";
 		iGoodQty = sti(PChar.Mines.(sMine));
 
-		if(iGoodQty <= 0)
+		if (iGoodQty <= 0)
 		{
 			continue;
 		}
 
-		if(iGoodQty > AUTO_SELL_MINES_MAX)
+		if (iGoodQty > AUTO_SELL_MINES_MAX)
 		{
 			iGoodQty = AUTO_SELL_MINES_MAX;
 		}
 
-		if(iGoodQty > iSellQty)
+		if (iGoodQty > iSellQty)
 		{
 			iGoodQty = iSellQty;
 		}
 
-		if(!bSell) { PlayStereoSound("new_round"); }
+		if (!bSell)
+		{
+			PlayStereoSound("new_round");
+		}
 		bSell = true;
 
 		iCost = iGoodQty * iCoff;
@@ -1261,7 +1421,7 @@ void MinesExtractGoodsAutoSell()
 		AddQuestUserData("MY_COLONY", "sOreCost", iCost);*/
 	}
 
-	if(bSell)
+	if (bSell)
 	{
 		string sColonyName = PChar.ColonyBuilding.ColonyName;
 		AddQuestRecord("MY_COLONY", "33");

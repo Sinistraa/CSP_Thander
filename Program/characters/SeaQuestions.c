@@ -1,6 +1,6 @@
 void SeaQuestionsInit()
 {
-    NullCharacter.SeaQuestions = 84;
+	NullCharacter.SeaQuestions = 84;
 
 	NullCharacter.SeaQuestions.q0 = "Как называется группа тросов, закрепленных в просверленном переднем крае марсовой площадки и проходящих через специальный блок на штаге? Подсказка: нужна для того, чтобы избежать перетирания марселей о штаги и зацепления за марсы.";
 	NullCharacter.SeaQuestions.a0 = "анапуть";

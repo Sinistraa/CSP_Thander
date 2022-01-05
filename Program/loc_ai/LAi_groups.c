@@ -16,7 +16,8 @@ bool LAi_group_Init()
 	LAi_grp_playeralarm = 0;
 	LAi_grp_alarmactive = false;
 	//Создаём объект групп и загружаем параметры
-	if(CreateEntity(&LAi_grp_relations, "CharactersGroups") == 0) return false;
+	if (CreateEntity(&LAi_grp_relations, "CharactersGroups") == 0)
+		return false;
 	//Инициализация стандартной группы персонажей
 	LAi_group_Register(LAI_DEFAULT_GROUP);
 	//Группа игрока
@@ -126,7 +127,7 @@ bool LAi_group_Init()
 	//Востановим отношения
 	SendMessage(&LAi_grp_relations, "s", "LoadDataRelations");
 	//Учтём прошедшее время
-	if(LAi_restoreStates)
+	if (LAi_restoreStates)
 	{
 		SendMessage(&LAi_grp_relations, "s", "RestoreStates");
 	}
@@ -167,7 +168,6 @@ void LAi_group_Delete(string groupName)
 	SendMessage(&LAi_grp_relations, "ss", "ReleaseGroup", groupName);
 }
 
-
 //Установить для группы радиус видимости
 void LAi_group_SetLookRadius(string groupName, float radius)
 {
@@ -204,7 +204,6 @@ void LAi_group_SetAlarmDown(string group1, string group2, float down)
 	SendMessage(&LAi_grp_relations, "sssf", "SetAlarmDown", group1, group2, down);
 }
 
-
 //------------------------------------------------------------------------------------------
 //Перемещение персонажа в группы
 //------------------------------------------------------------------------------------------
@@ -232,8 +231,8 @@ void LAi_group_SetRelation(string group1, string group2, string curRelation)
 //Установить отношения между группами при активации тревоги и после
 void LAi_group_SetAlarmReaction(string group1, string group2, string actRelation, string relRelation)
 {
-    if (group1 != group2) // boal fix
-    {
+	if (group1 != group2) // boal fix
+	{
 		SendMessage(&LAi_grp_relations, "sssss", "SetAlarmReaction", group1, group2, actRelation, relRelation);
 	}
 }
@@ -241,8 +240,8 @@ void LAi_group_SetAlarmReaction(string group1, string group2, string actRelation
 //Натравить друг на друга 2 группы
 void LAi_group_FightGroups(string group1, string group2, bool asignWarriarType)
 {
-    if (group1 != group2) // boal fix
-    {
+	if (group1 != group2) // boal fix
+	{
 		LAi_group_FightGroupsEx(group1, group2, asignWarriarType, -1, -1, true, false);
 	}
 }
@@ -250,59 +249,67 @@ void LAi_group_FightGroups(string group1, string group2, bool asignWarriarType)
 //Натравить друг на друга 2 группы, с возможной установкой командиров
 void LAi_group_FightGroupsEx(string group1, string group2, bool asignWarriarType, int commander1, int commander2, bool isStay, bool isDialog)
 {
-    if (group1 == group2) // boal fix
-    {
-        return;
-    }
+	if (group1 == group2) // boal fix
+	{
+		return;
+	}
 	//Укажем что обновление надо провести немедленно
 	SendMessage(&LAi_grp_relations, "s", "ResetWaveTime");
 	//Установим войнов типы персонажем
-	if(asignWarriarType)
+	if (asignWarriarType)
 	{
-		for(int i = 0; i < LAi_numloginedcharacters; i++)
+		for (int i = 0; i < LAi_numloginedcharacters; i++)
 		{
 			int idx = LAi_loginedcharacters[i];
-			if(idx >= 0)
+			if (idx >= 0)
 			{
 				//Пропустим главного персонажа или офицера
-				if(idx == nMainCharacterIndex) continue;
-				for(int j = 1; j <=MAX_NUM_FIGHTERS; j++)
+				if (idx == nMainCharacterIndex)
+					continue;
+				for (int j = 1; j <= MAX_NUM_FIGHTERS; j++)
 				{
-					if(GetOfficersIndex(pchar, j) == idx) break;
+					if (GetOfficersIndex(pchar, j) == idx)
+						break;
 				}
-				if(j <= MAX_NUM_FIGHTERS) continue;
+				if (j <= MAX_NUM_FIGHTERS)
+					continue;
 				//Проверяем попадание персонажа в группу
 				ref chr = &Characters[idx];
-				if (!CheckAttribute(chr,"equip")) continue;
-				if(CheckAttribute(chr, "chr_ai.group"))
+				if (!CheckAttribute(chr, "equip"))
+					continue;
+				if (CheckAttribute(chr, "chr_ai.group"))
 				{
 					bool selected = false;
 					bool isOne;
-					if(chr.chr_ai.group == group1)
+					if (chr.chr_ai.group == group1)
 					{
 						selected = true;
 						isOne = true;
-					}else{
-						if(chr.chr_ai.group == group2)
+					}
+					else
+					{
+						if (chr.chr_ai.group == group2)
 						{
 							selected = true;
 							isOne = false;
 						}
 					}
-					if(selected)
+					if (selected)
 					{
 						LAi_SetWarriorTypeNoGroup(chr);
 						LAi_warrior_SetStay(chr, isStay);
 						LAi_warrior_DialogEnable(chr, isDialog);
-						if(isOne)
+						if (isOne)
 						{
-							if(commander1 >= 0)
+							if (commander1 >= 0)
 							{
 								LAi_warrior_SetCommander(chr, &Characters[commander1]);
 							}
 							LAi_group_MoveCharacter(chr, group1);
-						}else{
-							if(commander2 >= 0)
+						}
+						else
+						{
+							if (commander2 >= 0)
 							{
 								LAi_warrior_SetCommander(chr, &Characters[commander2]);
 							}
@@ -337,15 +344,15 @@ void LAi_group_NotFightPlayerVSGroup(string group2)
 int LAi_group_GetTarget(aref chr)
 {
 	int index = -1;
-	if(SendMessage(&LAi_grp_relations, "sie", "GetTrg", chr, &index) == 0)
+	if (SendMessage(&LAi_grp_relations, "sie", "GetTrg", chr, &index) == 0)
 	{
 		index = -1;
 	}
 	else
 	{
-	    if (!LAi_group_IsEnemy(chr, &characters[index]))  // boal fix 19.08.06 ищет любых вооруженных НПС,  а нужно врагов
+		if (!LAi_group_IsEnemy(chr, &characters[index])) // boal fix 19.08.06 ищет любых вооруженных НПС,  а нужно врагов
 		{
-		    index = -1;
+			index = -1;
 		}
 	}
 	/*        // to_do del
@@ -382,7 +389,7 @@ bool LAi_group_IsEnemy(aref chr, aref trg)
 //Реакция групп на атаку attack->hit
 bool LAi_group_Attack(aref attack, aref hit)
 {
-	if(attack.chr_ai.group == hit.chr_ai.group)
+	if (attack.chr_ai.group == hit.chr_ai.group)
 	{
 		//Своих игнорируем
 		return false;
@@ -437,10 +444,11 @@ void LAi_group_SetCheck(string groupName, string quest)
 	makearef(quests, LAi_grp_relations.quests);
 	int num = GetAttributesNum(quests);
 	string atr = "q";
-	for(int i = 0; i < num + 10; i++)
+	for (int i = 0; i < num + 10; i++)
 	{
 		atr = "q" + i;
-		if(!CheckAttribute(quests, atr)) break;
+		if (!CheckAttribute(quests, atr))
+			break;
 	}
 	//Заполним
 	quests.(atr).group = groupName;
@@ -456,10 +464,11 @@ void LAi_group_SetCheckFunction(String _groupName, String _function)
 	int num = GetAttributesNum(quests);
 	String atr = "q";
 
-	for(int i = 0; i < num + 10; i++)
+	for (int i = 0; i < num + 10; i++)
 	{
 		atr = "q" + i;
-		if(!CheckAttribute(quests, atr)) break;
+		if (!CheckAttribute(quests, atr))
+			break;
 	}
 
 	//Заполним
@@ -474,15 +483,15 @@ void LAi_group_SetCheckEvent(string groupName)
 	makearef(quests, LAi_grp_relations.quests);
 	int num = GetAttributesNum(quests);
 	string atr = "q";
-	for(int i = 0; i < num + 10; i++)
+	for (int i = 0; i < num + 10; i++)
 	{
 		atr = "q" + i;
-		if(!CheckAttribute(quests, atr)) break;
+		if (!CheckAttribute(quests, atr))
+			break;
 	}
 	//Заполним
 	quests.(atr).group = groupName;
 }
-
 
 //Убрать квест на убивание группы
 void LAi_group_RemoveCheck(string groupName)
@@ -491,10 +500,10 @@ void LAi_group_RemoveCheck(string groupName)
 	aref quests;
 	makearef(quests, LAi_grp_relations.quests);
 	int num = GetAttributesNum(quests);
-	for(int i = 0; i < num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		aref atr = GetAttributeN(&quests, i);
-		if(atr.group == groupName)
+		if (atr.group == groupName)
 		{
 			//Удалим
 			DeleteAttribute(&quests, GetAttributeName(GetAttributeN(&quests, i)));
@@ -512,25 +521,27 @@ void LAi_group_CheckGroupQuest(aref chr)
 	makearef(quests, LAi_grp_relations.quests);
 	int num = GetAttributesNum(&quests);
 	String function;
-	if(num <= 0) return;
+	if (num <= 0)
+		return;
 	//Проверим остальных персонажей в данной группе
-	if(!CheckAttribute(chr, "chr_ai.group"))
+	if (!CheckAttribute(chr, "chr_ai.group"))
 	{
 		Trace("CheckGroupQuest: Character <" + chr.id + "> can't have field chr_ai.group");
 		return;
 	}
 	string group = chr.chr_ai.group;
 	int chridx = sti(chr.index);
-	for(int i = 0; i < LAi_numloginedcharacters; i++)
+	for (int i = 0; i < LAi_numloginedcharacters; i++)
 	{
 		int idx = LAi_loginedcharacters[i];
-		if(idx >= 0)
+		if (idx >= 0)
 		{
-			if(idx != chridx)
+			if (idx != chridx)
 			{
 				ref ch = &Characters[idx];
-				if(!CheckAttribute(ch, "chr_ai.group")) ch.chr_ai.group = LAI_DEFAULT_GROUP;
-				if(group == ch.chr_ai.group)
+				if (!CheckAttribute(ch, "chr_ai.group"))
+					ch.chr_ai.group = LAI_DEFAULT_GROUP;
+				if (group == ch.chr_ai.group)
 				{
 					//Есть ещё живые в этой группе
 					return;
@@ -539,22 +550,22 @@ void LAi_group_CheckGroupQuest(aref chr)
 		}
 	}
 	//Последний из магикан...
-	for(i = 0; i < num; i++)
+	for (i = 0; i < num; i++)
 	{
 		aref atr = GetAttributeN(&quests, i);
-		if(atr.group == group)
+		if (atr.group == group)
 		{
 			//Нашли квест, запустим его на исполнение
-			if(CheckAttribute(atr, "quest"))
+			if (CheckAttribute(atr, "quest"))
 			{
-			    //#20190804-01
-			    pchar.tmpKillGroup = group;
+				//#20190804-01
+				pchar.tmpKillGroup = group;
 				LAi_QuestDelay(atr.quest, 0.000001);
 			}
 			else
 			{
 				// Warship 18.08.09 Вызов функции
-				if(CheckAttribute(atr, "function"))
+				if (CheckAttribute(atr, "function"))
 				{
 					function = atr.function;
 					call function(function); // В параметре - название самой функции
@@ -572,7 +583,6 @@ void LAi_group_CheckGroupQuest(aref chr)
 		}
 	}
 }
-
 
 //------------------------------------------------------------------------------------------
 //Ответная реакция на запросы
@@ -599,14 +609,15 @@ void LAi_group_UpdateAlarm()
 //#20190717-01
 void resetGroupRel()
 {
-    aref aGrp, qGrp;
+	aref aGrp, qGrp;
 	makearef(aGrp, LAi_grp_relations.savedata);
 	int num = GetAttributesNum(aGrp);
-	for(int i = 0; i < num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		aref atr = GetAttributeN(&aGrp, i);
-		if(sti(atr.curState) != LAI_GROUP_ENEMY_INT) continue;
-		if(sti(atr.isactive) == 0)
-            atr.curState = LAI_GROUP_NEITRAL_INT;
+		if (sti(atr.curState) != LAI_GROUP_ENEMY_INT)
+			continue;
+		if (sti(atr.isactive) == 0)
+			atr.curState = LAI_GROUP_NEITRAL_INT;
 	}
 }

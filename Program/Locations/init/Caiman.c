@@ -59,7 +59,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l2.emerge = "reload_1";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_Jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Caiman";
@@ -110,7 +110,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "1";
 	locations[n].reload.l2.label = "Shore16";
-    locations[n].locators_radius.reload.reload2_back = 2;
+	locations[n].locators_radius.reload.reload2_back = 2;
 
 	locations[n].reload.l3.name = "reload3_back";
 	locations[n].reload.l3.go = "Caiman_CaveEntrance";
@@ -173,7 +173,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,7 +181,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Caiman";
@@ -234,7 +234,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_Grot";
 	locations[n].id.label = "Grot";
-    locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
 	locations[n].islandId = "Caiman";
@@ -253,7 +253,7 @@ int LocationInitCaiman(int n)
 
 	Locations[n].models.always.rays = "grotto1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -278,7 +278,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_ExitTown";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	//Sound
@@ -327,7 +327,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l2.label = "Shore17";
 	locations[n].locators_radius.reload.reload1_back = 2.0;
 
-    	Locations[n].reload.l3.name = "reload3";
+	Locations[n].reload.l3.name = "reload3";
 	Locations[n].reload.l3.go = "Caiman_town";
 	Locations[n].reload.l3.emerge = "reload1";
 	Locations[n].reload.l3.autoreload = "0";
@@ -457,15 +457,16 @@ int LocationInitCaiman(int n)
 	locations[n].reload.gate.emerge = "reload3";
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
-    	n = n + 1;
+	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Таверна Кайман
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 	locations[n].id = "Caiman_tavern";
+	locations[n].id = "Caiman_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern04\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 0;
 	//Town sack
 	locations[n].townsack = "Caiman";
@@ -473,7 +474,7 @@ int LocationInitCaiman(int n)
 	//Sound
 	locations[n].type = "tavern";
 	locations[n].fastreload = "Caiman";
- 	locations[n].islandId = "Caiman";
+	locations[n].islandId = "Caiman";
 	locations[n].DisableExtortion = true;
 	//Models
 	//Always
@@ -495,7 +496,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.go = "Caiman_town";
 	locations[n].reload.l1.emerge = "reload5";
 	locations[n].reload.l1.autoreload = "0";
-    	locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2_back";
 	locations[n].reload.l2.go = "Caiman_tavern_upstairs";
@@ -552,7 +553,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_store";
 	locations[n].id.label = "Store";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	locations[n].lockWeather = "Inside";
@@ -563,7 +564,8 @@ int LocationInitCaiman(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\StoreSmall\";
-	locations[n].models.always.locators = "StoreSmall_locators";
+									locations[n]
+										.models.always.locators = "StoreSmall_locators";
 	locations[n].models.always.store = "StoreSmall";
 	locations[n].models.always.window = "StoreSmall_window";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -582,7 +584,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.go = "Caiman_town";
 	locations[n].reload.l1.emerge = "reload8";
 	locations[n].reload.l1.autoreload = "0";
-    	locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	/*locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonRoom_MH10";
@@ -597,7 +599,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_StoreHouse";
 	locations[n].id.label = "packhouse";
-	locations[n].image = "loading\inside\Storage_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\Storage_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	locations[n].lockWeather = "Inside";
@@ -644,7 +646,7 @@ int LocationInitCaiman(int n)
 	//Sound
 	locations[n].type = "residence";
 	locations[n].fastreload = "Caiman";
- 	locations[n].islandId = "Caiman";
+	locations[n].islandId = "Caiman";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\SmallResidence";
@@ -673,13 +675,14 @@ int LocationInitCaiman(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РОСТОВЩИК
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	locations[n].lockWeather = "Inside";
@@ -709,7 +712,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.go = "Caiman_town";
 	locations[n].reload.l1.emerge = "reload8";
 	locations[n].reload.l1.autoreload = "0";
-    	locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	/*locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonResidence_5";
@@ -719,20 +722,21 @@ int LocationInitCaiman(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard03\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shipyard";
 	locations[n].fastreload = "Caiman";
-  	locations[n].islandId = "Caiman";
+	locations[n].islandId = "Caiman";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Shipyard03_locators";
@@ -804,11 +808,11 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.go = "Caiman_town";
 	locations[n].reload.l1.emerge = "reload7";
 	locations[n].reload.l1.autoreload = "0";
-    	locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_PortOffice";
@@ -846,7 +850,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.go = "Caiman_town";
 	locations[n].reload.l1.emerge = "reload10";
 	locations[n].reload.l1.autoreload = "0";
-    	locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
@@ -878,7 +882,7 @@ int LocationInitCaiman(int n)
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
 	Locations[n].models.always.Waterfall = "waterfall";
 	Locations[n].models.always.Waterfall.uvslide.v0 = 0.3;
-    	Locations[n].models.always.Waterfall.uvslide.v1 = 0.0;
+	Locations[n].models.always.Waterfall.uvslide.v1 = 0.0;
 	Locations[n].models.always.Waterfall.tech = "LocationWaterFall";
 	Locations[n].models.always.Waterfall.level = 99949;
 	locations[n].models.always.plan1 = "plan1";
@@ -947,9 +951,9 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l7.autoreload = false;
 	locations[n].reload.l7.label = "house";
 	Locations[n].reload.l7.close_for_night = 1;
-    	locations[n].locators_radius.quest.detector1 = 1.0;
+	locations[n].locators_radius.quest.detector1 = 1.0;
 
-    	n = n + 1;
+	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "CaimanPlantationOffice";
@@ -975,7 +979,7 @@ int LocationInitCaiman(int n)
 
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
-    	//Day
+	//Day
 	locations[n].models.day.charactersPatch = "StoneHouse_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "StoneHouse_patch";
@@ -988,7 +992,7 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.emerge = "houseSp1";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Caiman Plantation";
-    	LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1090,7 +1094,7 @@ int LocationInitCaiman(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse05rand= "mediumhouse05_rand";
+	Locations[n].models.day.mediumhouse05rand = "mediumhouse05_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse05_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse05_patch";
@@ -1130,7 +1134,7 @@ int LocationInitCaiman(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse09rand= "mediumhouse09_rand";
+	Locations[n].models.day.mediumhouse09rand = "mediumhouse09_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse09_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse09_patch";
@@ -1186,16 +1190,17 @@ int LocationInitCaiman(int n)
 	locations[n].reload.l1.emerge = "reload3_back";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Caiman Mines";
-    	LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РУДНИКИ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Locations[n].id = "Caiman_Mines";
-    	locations[n].id.label = "Caiman Mines";
+	locations[n].id.label = "Caiman Mines";
 	locations[n].filespath.models = "locations\Outside\mine\";
-	locations[n].image = "loading\outside\Mines.tga";
+									locations[n]
+										.image = "loading\outside\Mines.tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].townsack = "Caiman";
@@ -1220,23 +1225,23 @@ int LocationInitCaiman(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
 
-    	LAi_LocationFightDisable(&Locations[n], false);
+	LAi_LocationFightDisable(&Locations[n], false);
 
-    	Locations[n].reload.l1.name = "reload1_back";
+	Locations[n].reload.l1.name = "reload1_back";
 	Locations[n].reload.l1.go = "Caiman_ExitMines";
 	Locations[n].reload.l1.emerge = "reload3";
 	locations[n].reload.l1.autoreload = "0";
 	Locations[n].reload.l1.label = "Caiman Mines Exit";
 	locations[n].locators_radius.reload.reload1_back = 1.5;
 
-    	Locations[n].reload.l2.name = "reload2_back";
+	Locations[n].reload.l2.name = "reload2_back";
 	Locations[n].reload.l2.go = "Caiman_Mines_CaveEntrance";
 	Locations[n].reload.l2.emerge = "reload2";
 	locations[n].reload.l2.autoreload = "1";
 	Locations[n].reload.l2.label = "Jungle";
 	locations[n].locators_radius.reload.reload2_back = 5.0;
 
-    	Locations[n].reload.l3.name = "reload3_back";
+	Locations[n].reload.l3.name = "reload3_back";
 	Locations[n].reload.l3.go = "Caiman_Mines_Comendant_House";
 	Locations[n].reload.l3.emerge = "reload1";
 	locations[n].reload.l3.autoreload = "0";
@@ -1246,9 +1251,9 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Выход из рудников
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    	locations[n].id = "Caiman_ExitMines";
+	locations[n].id = "Caiman_ExitMines";
 	locations[n].id.label = "Caiman Mines Exit";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caiman";
 	locations[n].DisableEncounters = true;
@@ -1256,7 +1261,7 @@ int LocationInitCaiman(int n)
 	locations[n].type = "jungle";
 	locations[n].islandId = "Caiman";
 	locations[n].fastreload = "Caiman";
-    	//Models
+	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\TownExitY";
 	Locations[n].models.always.townExit = "townExitY";
@@ -1312,7 +1317,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_Mines_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Caiman";
@@ -1361,7 +1366,7 @@ int LocationInitCaiman(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caiman_Mines_Grot";
 	locations[n].id.label = "Grot";
-    	locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
 	locations[n].islandId = "Caiman";
@@ -1379,7 +1384,7 @@ int LocationInitCaiman(int n)
 
 	Locations[n].models.always.rays = "grotto2_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -1540,20 +1545,20 @@ int LocationInitCaiman(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse02rand= "mediumhouse02_rand";
+	Locations[n].models.day.mediumhouse02rand = "mediumhouse02_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse02_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse02_patch";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
-    	//Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "LandGuardingPort";
 	locations[n].reload.l1.emerge = "home";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Land Guarding Port";
-    	LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 	n = n + 1;
 
 	return n;

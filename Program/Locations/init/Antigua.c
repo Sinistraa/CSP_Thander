@@ -21,7 +21,8 @@ int LocationInitAntigua(int n)
 	locations[n].islandId = "Antigua";
 
 	locations[n].filespath.models = "locations\Town_Antigua\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -46,7 +47,7 @@ int LocationInitAntigua(int n)
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.3;
@@ -63,7 +64,7 @@ int LocationInitAntigua(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкаљ фиксациљ на 10 номеров.
+	// --> Типовые городские локации, четкаљ фиксациљ на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Antigua";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -145,8 +146,8 @@ int LocationInitAntigua(int n)
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
 
-    // --> Квестовые локации, четкая фиксация на 9 едениц, откр/закр только по квестам, обычно всегда открыты.
-	locations[n].reload.l11.name = "houseF3";  //Дом с входом подземелье под городом.
+	// --> Квестовые локации, четкая фиксация на 9 едениц, откр/закр только по квестам, обычно всегда открыты.
+	locations[n].reload.l11.name = "houseF3"; //Дом с входом подземелье под городом.
 	locations[n].reload.l11.go = "SentJons_HouseF3";
 	locations[n].reload.l11.emerge = "reload1";
 	locations[n].reload.l11.autoreload = "0";
@@ -159,7 +160,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l12.autoreload = "0";
 	locations[n].reload.l12.label = "Dungeon";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseF2";
 	locations[n].reload.l20.go = "CommonRoom_MH2";
 	locations[n].reload.l20.emerge = "reload1";
@@ -239,7 +240,8 @@ int LocationInitAntigua(int n)
 	locations[n].id = "SentJons_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\tavern02\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "SentJons";
@@ -279,7 +281,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l2.label = "Tavern upstairs";
 	locations[n].reload.l2.disable = 1; // закроем, но свљзку сделаем длљ квестовых нужд.
 
-    ////////////////////////==> подсобка таверны
+	////////////////////////==> подсобка таверны
 	locations[n].reload.l3.name = "reload3";
 	locations[n].reload.l3.go = "CommonRoom_MH3";
 	locations[n].reload.l3.emerge = "reload1";
@@ -335,13 +337,14 @@ int LocationInitAntigua(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SentJons_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store03\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "SentJons";
 	locations[n].lockWeather = "Inside";
@@ -373,7 +376,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	locations[n].locators_radius.camdetector.camera1 = 5;
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -382,13 +385,14 @@ int LocationInitAntigua(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SentJons_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard02\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "SentJons";
 	locations[n].lockWeather = "Inside";
@@ -418,7 +422,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l1.go = "SentJons_town";
 	locations[n].reload.l1.emerge = "reload5";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_2";
@@ -428,7 +432,7 @@ int LocationInitAntigua(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SentJons_townhall";
@@ -464,7 +468,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l1.go = "SentJons_town";
 	locations[n].reload.l1.emerge = "reload3";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2"; //комната со спальней налево от входа
 	locations[n].reload.l2.go = "CommonResidence_2";
@@ -520,7 +524,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l1.go = "SentJons_town";
 	locations[n].reload.l1.emerge = "reload7";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
@@ -530,7 +534,8 @@ int LocationInitAntigua(int n)
 	locations[n].id = "SentJons_bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "SentJons";
 	locations[n].lockWeather = "Inside";
@@ -570,7 +575,7 @@ int LocationInitAntigua(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SentJons_PortOffice";
@@ -608,7 +613,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l1.go = "SentJons_town";
 	locations[n].reload.l1.emerge = "reload10";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
@@ -650,7 +655,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l1.go = "SentJons_town";
 	locations[n].reload.l1.emerge = "houseF3";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload3";
 	locations[n].reload.l2.go = "CommonRoom_MH3";
@@ -691,7 +696,7 @@ int LocationInitAntigua(int n)
 
 	Locations[n].models.always.rays = "DungeonDuffer1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -704,7 +709,7 @@ int LocationInitAntigua(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
- 	//Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "SentJons_HouseF3";
 	locations[n].reload.l1.emerge = "reload2";
@@ -718,17 +723,17 @@ int LocationInitAntigua(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Выход из города
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "SentJons_ExitTown";
+	locations[n].id = "SentJons_ExitTown";
 	locations[n].fastreload = "Villemstad";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "SentJons";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].fastreload = "SentJons";
 	locations[n].islandId = "Antigua";
-    //Models
+	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\TownExitY";
 	Locations[n].models.always.townExit = "townExitY";
@@ -784,7 +789,7 @@ int LocationInitAntigua(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Antigua_Jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Antigua";
@@ -839,7 +844,7 @@ int LocationInitAntigua(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Antigua_jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Antigua";
@@ -894,7 +899,7 @@ int LocationInitAntigua(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Antigua_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Antigua";
@@ -942,7 +947,7 @@ int LocationInitAntigua(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Antigua_Grot";
 	locations[n].id.label = "Grot";
-    locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
 	locations[n].islandId = "Antigua";
@@ -960,7 +965,7 @@ int LocationInitAntigua(int n)
 
 	Locations[n].models.always.rays = "grotto1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -1030,7 +1035,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1083,7 +1088,7 @@ int LocationInitAntigua(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	return n;

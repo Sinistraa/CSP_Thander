@@ -6,12 +6,12 @@ int CreateTrinidadCharacters(int n)
 	///////////////////////////////////////////////////////////////////////////////
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "PortSpein_Mayor";
-	ch.model	= "huber_eng";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "PortSpein_Mayor";
+	ch.model = "huber_eng";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_townhall";
+	ch.location = "PortSpein_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -21,7 +21,7 @@ int CreateTrinidadCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -29,13 +29,13 @@ int CreateTrinidadCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "PortSpein_Priest";
-	ch.model	= "priest_3";
-	ch.model.animation	= "man";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "PortSpein_Priest";
+	ch.model = "priest_3";
+	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_church";
+	ch.location = "PortSpein_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -47,12 +47,12 @@ int CreateTrinidadCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "PortSpein_waitress";
-	ch.model	= "girl_3";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "PortSpein_waitress";
+	ch.model = "girl_3";
 	ch.sex = "woman";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_tavern";
+	ch.location = "PortSpein_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -64,13 +64,13 @@ int CreateTrinidadCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "PortSpein_tavernkeeper";
-	ch.model	= "barmen_15";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "PortSpein_tavernkeeper";
+	ch.model = "barmen_15";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_Tavern";
+	ch.location = "PortSpein_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -82,14 +82,13 @@ int CreateTrinidadCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
-	ch.id		= "PortSpein_trader";
-	ch.model	= "trader_15";
+	makeref(ch, Characters[n]); //Торговец
+	ch.id = "PortSpein_trader";
+	ch.model = "trader_15";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_Store";
+	ch.location = "PortSpein_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -101,12 +100,12 @@ int CreateTrinidadCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
-	ch.id		= "PortSpein_shipyarder";
-	ch.model	= "shipowner_15";
+	makeref(ch, Characters[n]); //Корабел
+	ch.id = "PortSpein_shipyarder";
+	ch.model = "shipowner_15";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_Shipyard";
+	ch.location = "PortSpein_Shipyard";
 	ch.greeting = "Gr_shipyarder";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
@@ -116,7 +115,7 @@ int CreateTrinidadCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -124,12 +123,12 @@ int CreateTrinidadCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "PortSpein_usurer";
-	ch.model	= "usurer_2";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "PortSpein_usurer";
+	ch.model = "usurer_2";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_Bank";
+	ch.location = "PortSpein_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -142,12 +141,12 @@ int CreateTrinidadCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "PortSpein_PortMan";
-	ch.model	= "usurer_5";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "PortSpein_PortMan";
+	ch.model = "usurer_5";
 	ch.sex = "man";
 	ch.City = "PortSpein";
-	ch.location	= "PortSpein_PortOffice";
+	ch.location = "PortSpein_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -159,12 +158,12 @@ int CreateTrinidadCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "PortSpein_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "PortSpein_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

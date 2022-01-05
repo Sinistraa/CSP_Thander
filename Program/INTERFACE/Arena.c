@@ -12,9 +12,9 @@ void InitInterface_B(string iniName, bool bTournamentResult)
 {
 	GameInterface.title = "titleArena";
 
-    	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
-	if(!bTournamentResult)
+	if (!bTournamentResult)
 	{
 		SetNodeUsing("FRAME2", false);
 		SetNodeUsing("BORDERS_3", false);
@@ -29,11 +29,11 @@ void InitInterface_B(string iniName, bool bTournamentResult)
 		SetTournamentResultInfo();
 	}
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0);
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("DuelOddTemp","DuelOddTemp",0);
-	SetEventHandler("OddsOddTemp","OddsOddTemp",0);
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0);
+	SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("DuelOddTemp", "DuelOddTemp", 0);
+	SetEventHandler("OddsOddTemp", "OddsOddTemp", 0);
 }
 
 void ProcessBreakExit()
@@ -48,20 +48,20 @@ void ProcessCancelExit()
 
 void IDoExit(int exitCode)
 {
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("DuelOddTemp","DuelOddTemp");
-	DelEventHandler("OddsOddTemp","OddsOddTemp");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("DuelOddTemp", "DuelOddTemp");
+	DelEventHandler("OddsOddTemp", "OddsOddTemp");
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
 
-	if(CheckAttribute(PChar, "Arena.Tournament.InterfacePause"))
+	if (CheckAttribute(PChar, "Arena.Tournament.InterfacePause"))
 	{
-		if(PChar.Arena.Tournament.InterfacePause == true)
+		if (PChar.Arena.Tournament.InterfacePause == true)
 		{
-			if(PChar.Arena.Tournament.Temp.InterfaceStage == "1_4")
+			if (PChar.Arena.Tournament.Temp.InterfaceStage == "1_4")
 			{
 				PChar.Arena.Tournament.Temp.Stage = 1;
 				PChar.Arena.Tournament.Temp.StageTemp = 1;
@@ -69,7 +69,7 @@ void IDoExit(int exitCode)
 				ArenaTournamentStartNewBattle();
 			}
 
-			if(PChar.Arena.Tournament.Temp.InterfaceStage == "1_2")
+			if (PChar.Arena.Tournament.Temp.InterfaceStage == "1_2")
 			{
 				PChar.Arena.Tournament.Temp.Stage = 2;
 				PChar.Arena.Tournament.Temp.StageTemp = 1;
@@ -77,7 +77,7 @@ void IDoExit(int exitCode)
 				ArenaTournamentStartNewBattle();
 			}
 
-			if(PChar.Arena.Tournament.Temp.InterfaceStage == "final")
+			if (PChar.Arena.Tournament.Temp.InterfaceStage == "final")
 			{
 				PChar.Arena.Tournament.Temp.Stage = 3;
 				PChar.Arena.Tournament.Temp.StageTemp = 1;
@@ -96,111 +96,109 @@ void ProcCommand()
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	if(nodName == "ETAP_1_YES" || nodName == "ETAP_2_YES" || nodName == "ETAP_3_YES" || nodName == "ETAP_4_YES" || nodName == "ETAP_5_YES"
-	|| nodName == "ETAP_1_NO" || nodName == "ETAP_2_NO" || nodName == "ETAP_3_NO" || nodName == "ETAP_4_NO" || nodName == "ETAP_5_NO")
+	if (nodName == "ETAP_1_YES" || nodName == "ETAP_2_YES" || nodName == "ETAP_3_YES" || nodName == "ETAP_4_YES" || nodName == "ETAP_5_YES" || nodName == "ETAP_1_NO" || nodName == "ETAP_2_NO" || nodName == "ETAP_3_NO" || nodName == "ETAP_4_NO" || nodName == "ETAP_5_NO")
 	{
 		CheckEnableEtap(nodName);
 		return;
 	}
 
-	if(nodName == "ODDS_CHAR_1_YES" || nodName == "ODDS_CHAR_2_YES")
+	if (nodName == "ODDS_CHAR_1_YES" || nodName == "ODDS_CHAR_2_YES")
 	{
 		CheckEnableOddCharacter(nodName);
 		return;
 	}
 
-	switch(nodName)
+	switch (nodName)
 	{
-		case "BATTLE_SABER_TYPE_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				CheckBattleSaberType(true);
-			}
+	case "BATTLE_SABER_TYPE_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			CheckBattleSaberType(true);
+		}
 		break;
 
-		case "BATTLE_SABER_TYPE_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				CheckBattleSaberType(false);
-			}
+	case "BATTLE_SABER_TYPE_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			CheckBattleSaberType(false);
+		}
 		break;
 
-		case "BATTLE_TYPE_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				CheckBattleType(true);
-			}
+	case "BATTLE_TYPE_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			CheckBattleType(true);
+		}
 		break;
 
-		case "BATTLE_TYPE_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				CheckBattleType(false);
-			}
+	case "BATTLE_TYPE_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			CheckBattleType(false);
+		}
 		break;
 
-		case "ODDS_PAIRS_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				CheckOddsPairs(true);
-			}
+	case "ODDS_PAIRS_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			CheckOddsPairs(true);
+		}
 		break;
 
-		case "ODDS_PAIRS_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				CheckOddsPairs(false);
-			}
+	case "ODDS_PAIRS_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			CheckOddsPairs(false);
+		}
 		break;
 
-		case "DUEL_ODD_YES":
-			if(comName=="activate" || comName=="click")
-			{
-				AcceptOdd("Duel");
-			}
+	case "DUEL_ODD_YES":
+		if (comName == "activate" || comName == "click")
+		{
+			AcceptOdd("Duel");
+		}
 		break;
 
-		case "DUEL_ODD_NO":
-			if(comName=="activate" || comName=="click")
-			{
-				ResetOdd("Duel");
-			}
+	case "DUEL_ODD_NO":
+		if (comName == "activate" || comName == "click")
+		{
+			ResetOdd("Duel");
+		}
 		break;
 
-
-		case "ODDS_ODD_YES":
-			if(comName=="activate" || comName=="click")
-			{
-				AcceptOdd("Odds");
-			}
+	case "ODDS_ODD_YES":
+		if (comName == "activate" || comName == "click")
+		{
+			AcceptOdd("Odds");
+		}
 		break;
 
-		case "ODDS_ODD_NO":
-			if(comName=="activate" || comName=="click")
-			{
-				ResetOdd("Odds");
-			}
+	case "ODDS_ODD_NO":
+		if (comName == "activate" || comName == "click")
+		{
+			ResetOdd("Odds");
+		}
 		break;
 
-		case "RESET_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				ResetAllOperations();
-			}
+	case "RESET_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			ResetAllOperations();
+		}
 		break;
 
-		case "OK":
-			if(comName=="activate" || comName=="click")
-			{
-				StartArenaOperation();
-			}
+	case "OK":
+		if (comName == "activate" || comName == "click")
+		{
+			StartArenaOperation();
+		}
 		break;
 	}
 }
 
 void CheckBattleType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckBattleType--;
 	}
@@ -209,12 +207,12 @@ void CheckBattleType(bool bLeft)
 		iCheckBattleType++;
 	}
 
-	if(iCheckBattleType > 3)
+	if (iCheckBattleType > 3)
 	{
 		iCheckBattleType = 0;
 	}
 
-	if(iCheckBattleType < 0)
+	if (iCheckBattleType < 0)
 	{
 		iCheckBattleType = 3;
 	}
@@ -224,7 +222,7 @@ void CheckBattleType(bool bLeft)
 
 void CheckOddsPairs(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckOddsPairs--;
 	}
@@ -233,12 +231,12 @@ void CheckOddsPairs(bool bLeft)
 		iCheckOddsPairs++;
 	}
 
-	if(iCheckOddsPairs > 3)
+	if (iCheckOddsPairs > 3)
 	{
 		iCheckOddsPairs = 1;
 	}
 
-	if(iCheckOddsPairs < 1)
+	if (iCheckOddsPairs < 1)
 	{
 		iCheckOddsPairs = 3;
 	}
@@ -251,7 +249,7 @@ void CheckBattleSaberType(bool bLeft)
 {
 	if (iCheckBattleType == 2)
 	{
-		if(bLeft)
+		if (bLeft)
 		{
 			iCheckSaberTypeCount--;
 		}
@@ -260,19 +258,19 @@ void CheckBattleSaberType(bool bLeft)
 			iCheckSaberTypeCount++;
 		}
 
-		if(iCheckSaberTypeCount < 1)
+		if (iCheckSaberTypeCount < 1)
 		{
 			iCheckSaberTypeCount = 9;
 		}
 
-		if(iCheckSaberTypeCount > 9)
+		if (iCheckSaberTypeCount > 9)
 		{
 			iCheckSaberTypeCount = 1;
 		}
 	}
 	else
 	{
-		if(bLeft)
+		if (bLeft)
 		{
 			iCheckBattleSaberType--;
 		}
@@ -281,12 +279,12 @@ void CheckBattleSaberType(bool bLeft)
 			iCheckBattleSaberType++;
 		}
 
-		if(iCheckBattleSaberType > 2)
+		if (iCheckBattleSaberType > 2)
 		{
 			iCheckBattleSaberType = 0;
 		}
 
-		if(iCheckBattleSaberType < 0)
+		if (iCheckBattleSaberType < 0)
 		{
 			iCheckBattleSaberType = 2;
 		}
@@ -300,7 +298,7 @@ void CheckBattleSaberType(bool bLeft)
 
 void SetBattleTypeInformation()
 {
-	CreateString(true,"BattleTypeHeader", "Тип состязаний", FONT_CAPTION, COLOR_NORMAL, 390,42,SCRIPT_ALIGN_CENTER,1.2);
+	CreateString(true, "BattleTypeHeader", "Тип состязаний", FONT_CAPTION, COLOR_NORMAL, 390, 42, SCRIPT_ALIGN_CENTER, 1.2);
 
 	string sBattleType = GetBattleType();
 	SetFormatedText("BATTLE_TYPE_TEXT", sBattleType);
@@ -345,12 +343,12 @@ void SetDuelInfo()
 
 void SetTableInformation(ref chr)
 {
-    	SetEnergyToCharacter(chr);
+	SetEnergyToCharacter(chr);
 
 	string sRow;
-	for(int t=0; t < 5; t++)
+	for (int t = 0; t < 5; t++)
 	{
-		if(t == 0)
+		if (t == 0)
 		{
 			sRow = "hr";
 		}
@@ -360,19 +358,19 @@ void SetTableInformation(ref chr)
 		}
 
 		GameInterface.TABLE_DUEL_CHARACTER.(sRow).td1.icon.width = 32;
-	    GameInterface.TABLE_DUEL_CHARACTER.(sRow).td1.icon.height = 32;
-	    GameInterface.TABLE_DUEL_CHARACTER.(sRow).td1.icon.offset = "0, 0";
-	    GameInterface.TABLE_DUEL_CHARACTER.(sRow).td2.scale = 0.9;
-		GameInterface.TABLE_DUEL_CHARACTER.(sRow).td2.color = argb(255,255,255,255);
+		GameInterface.TABLE_DUEL_CHARACTER.(sRow).td1.icon.height = 32;
+		GameInterface.TABLE_DUEL_CHARACTER.(sRow).td1.icon.offset = "0, 0";
+		GameInterface.TABLE_DUEL_CHARACTER.(sRow).td2.scale = 0.9;
+		GameInterface.TABLE_DUEL_CHARACTER.(sRow).td2.color = argb(255, 255, 255, 255);
 	}
 
 	GameInterface.TABLE_DUEL_CHARACTER.hr.UserData.ID = "Duel_LeaderShip";
 	GameInterface.TABLE_DUEL_CHARACTER.hr.td1.icon.group = "ICONS_SPEC";
-    GameInterface.TABLE_DUEL_CHARACTER.hr.td1.icon.image = "leadership skill icon";
+	GameInterface.TABLE_DUEL_CHARACTER.hr.td1.icon.image = "leadership skill icon";
 	GameInterface.TABLE_DUEL_CHARACTER.hr.td1.icon.offset = "0, 2";
-    GameInterface.TABLE_DUEL_CHARACTER.hr.td2.str = XI_ConvertString("LeaderShip");
-    GameInterface.TABLE_DUEL_CHARACTER.hr.td3.str = sti(chr.skill.LeaderShip);
-	GameInterface.TABLE_DUEL_CHARACTER.hr.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_DUEL_CHARACTER.hr.td2.str = XI_ConvertString("LeaderShip");
+	GameInterface.TABLE_DUEL_CHARACTER.hr.td3.str = sti(chr.skill.LeaderShip);
+	GameInterface.TABLE_DUEL_CHARACTER.hr.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_DUEL_CHARACTER.hr.td3.scale = 0.90;
 	GameInterface.TABLE_DUEL_CHARACTER.hr.td3.fontidx = 1;
 	GameInterface.TABLE_DUEL_CHARACTER.hr.td3.textoffset = "-15,0";
@@ -380,45 +378,45 @@ void SetTableInformation(ref chr)
 	string sSkill = GetSkillForEnemyFromSaber();
 	GameInterface.TABLE_DUEL_CHARACTER.tr1.UserData.ID = "Duel_Skill";
 	GameInterface.TABLE_DUEL_CHARACTER.tr1.td1.icon.group = "ICONS_SPEC";
-    GameInterface.TABLE_DUEL_CHARACTER.tr1.td1.icon.image = sSkill + " skill icon";
-    GameInterface.TABLE_DUEL_CHARACTER.tr1.td2.str = XI_ConvertString(sSkill);
-    GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.str = sti(chr.skill.(sSkill));
-	GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_DUEL_CHARACTER.tr1.td1.icon.image = sSkill + " skill icon";
+	GameInterface.TABLE_DUEL_CHARACTER.tr1.td2.str = XI_ConvertString(sSkill);
+	GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.str = sti(chr.skill.(sSkill));
+	GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.scale = 0.90;
 	GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.fontidx = 1;
 	GameInterface.TABLE_DUEL_CHARACTER.tr1.td3.textoffset = "-15,0";
 	//-----------------------------------------------------------------------------
 	GameInterface.TABLE_DUEL_CHARACTER.tr2.UserData.ID = "Duel_HP";
 	GameInterface.TABLE_DUEL_CHARACTER.tr2.td1.icon.group = "ICONS_CHAR";
-    GameInterface.TABLE_DUEL_CHARACTER.tr2.td1.icon.image = "Life";
-    GameInterface.TABLE_DUEL_CHARACTER.tr2.td2.str = XI_ConvertString("Life");
-    GameInterface.TABLE_DUEL_CHARACTER.tr2.td1.icon.offset = "0, 2";
+	GameInterface.TABLE_DUEL_CHARACTER.tr2.td1.icon.image = "Life";
+	GameInterface.TABLE_DUEL_CHARACTER.tr2.td2.str = XI_ConvertString("Life");
+	GameInterface.TABLE_DUEL_CHARACTER.tr2.td1.icon.offset = "0, 2";
 	GameInterface.TABLE_DUEL_CHARACTER.tr2.td3.str = MakeInt(LAi_GetCharacterHP(chr)) + " / " + MakeInt(LAi_GetCharacterMaxHP(chr));
-	GameInterface.TABLE_DUEL_CHARACTER.tr2.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_DUEL_CHARACTER.tr2.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_DUEL_CHARACTER.tr2.td3.scale = 1.0;
 	GameInterface.TABLE_DUEL_CHARACTER.tr2.td3.fontidx = 2;
 	GameInterface.TABLE_DUEL_CHARACTER.tr2.td3.textoffset = "-5,0";
 	//-----------------------------------------------------------------------------
 	GameInterface.TABLE_DUEL_CHARACTER.tr3.UserData.ID = "Duel_Energy";
 	GameInterface.TABLE_DUEL_CHARACTER.tr3.td1.icon.group = "ICONS_CHAR";
-    GameInterface.TABLE_DUEL_CHARACTER.tr3.td1.icon.image = "Energy";
-    GameInterface.TABLE_DUEL_CHARACTER.tr3.td2.str = XI_ConvertString("Energy");
-    GameInterface.TABLE_DUEL_CHARACTER.tr3.td1.icon.offset = "0, 2";
+	GameInterface.TABLE_DUEL_CHARACTER.tr3.td1.icon.image = "Energy";
+	GameInterface.TABLE_DUEL_CHARACTER.tr3.td2.str = XI_ConvertString("Energy");
+	GameInterface.TABLE_DUEL_CHARACTER.tr3.td1.icon.offset = "0, 2";
 	GameInterface.TABLE_DUEL_CHARACTER.tr3.td3.str = sti(Lai_CharacterGetEnergy(chr)) + " / " + sti(LAi_GetCharacterMaxEnergy(chr));
-	GameInterface.TABLE_DUEL_CHARACTER.tr3.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_DUEL_CHARACTER.tr3.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_DUEL_CHARACTER.tr3.td3.scale = 1.0;
 	GameInterface.TABLE_DUEL_CHARACTER.tr3.td3.fontidx = 2;
 	GameInterface.TABLE_DUEL_CHARACTER.tr3.td3.textoffset = "-5,0";
 	//-----------------------------------------------------------------------------
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.UserData.ID = "Duel_Odd";
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.group = "ICONS_SPEC";
-    GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.image = "trade button";
+	GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.image = "trade button";
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.width = 50;
-    GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.height = 50;
-    GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.offset = "-8, -8";
-    GameInterface.TABLE_DUEL_CHARACTER.tr4.td2.str = "Ставка";
+	GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.height = 50;
+	GameInterface.TABLE_DUEL_CHARACTER.tr4.td1.icon.offset = "-8, -8";
+	GameInterface.TABLE_DUEL_CHARACTER.tr4.td2.str = "Ставка";
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.td3.str = sti(chr.Odd);
-	GameInterface.TABLE_DUEL_CHARACTER.tr4.td3.color = argb(255,255,255,128);
+	GameInterface.TABLE_DUEL_CHARACTER.tr4.td3.color = argb(255, 255, 255, 128);
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.td3.scale = 1.0;
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.td3.fontidx = 2;
 	GameInterface.TABLE_DUEL_CHARACTER.tr4.td3.textoffset = "-5,0";
@@ -427,11 +425,11 @@ void SetTableInformation(ref chr)
 void SetEtapsInfo()
 {
 	SetNodeUsing("FRAME_CHARACTER_PICTURE", false);
-	CreateString(true,"Etaps_No_1", "1", FONT_CAPTION, argb(255,255,255,128), 190,130,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_No_2", "2", FONT_CAPTION, argb(255,255,255,128), 340,130,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_No_3", "3", FONT_CAPTION, argb(255,255,255,128), 490,130,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_No_4", "4", FONT_CAPTION, argb(255,255,255,128), 260,249,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_No_5", "5", FONT_CAPTION, argb(255,255,255,128), 410,249,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "Etaps_No_1", "1", FONT_CAPTION, argb(255, 255, 255, 128), 190, 130, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_No_2", "2", FONT_CAPTION, argb(255, 255, 255, 128), 340, 130, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_No_3", "3", FONT_CAPTION, argb(255, 255, 255, 128), 490, 130, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_No_4", "4", FONT_CAPTION, argb(255, 255, 255, 128), 260, 249, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_No_5", "5", FONT_CAPTION, argb(255, 255, 255, 128), 410, 249, SCRIPT_ALIGN_LEFT, 1.0);
 
 	int iGold = 0;
 	int iWinGold = 0;
@@ -465,28 +463,28 @@ void SetEtapsInfo()
 	SetNewGroupPicture("ETAPS_PICTURE_4", "ARENA_ETAPS", sEtapType_4);
 	SetNewGroupPicture("ETAPS_PICTURE_5", "ARENA_ETAPS", sEtapType_5);
 
-	CreateString(true,"Etaps_Money_1", iEtapMoney_1, FONT_CAPTION, argb(255,255,255,128), 305,205,SCRIPT_ALIGN_RIGHT,1.0);
-	CreateString(true,"Etaps_Money_2", iEtapMoney_2, FONT_CAPTION, argb(255,255,255,128), 456,205,SCRIPT_ALIGN_RIGHT,1.0);
-	CreateString(true,"Etaps_Money_3", iEtapMoney_3, FONT_CAPTION, argb(255,255,255,128), 604,205,SCRIPT_ALIGN_RIGHT,1.0);
-	CreateString(true,"Etaps_Money_4", iEtapMoney_4, FONT_CAPTION, argb(255,255,255,128), 375,324,SCRIPT_ALIGN_RIGHT,1.0);
-	CreateString(true,"Etaps_Money_5", iEtapMoney_5, FONT_CAPTION, argb(255,255,255,128), 525,324,SCRIPT_ALIGN_RIGHT,1.0);
+	CreateString(true, "Etaps_Money_1", iEtapMoney_1, FONT_CAPTION, argb(255, 255, 255, 128), 305, 205, SCRIPT_ALIGN_RIGHT, 1.0);
+	CreateString(true, "Etaps_Money_2", iEtapMoney_2, FONT_CAPTION, argb(255, 255, 255, 128), 456, 205, SCRIPT_ALIGN_RIGHT, 1.0);
+	CreateString(true, "Etaps_Money_3", iEtapMoney_3, FONT_CAPTION, argb(255, 255, 255, 128), 604, 205, SCRIPT_ALIGN_RIGHT, 1.0);
+	CreateString(true, "Etaps_Money_4", iEtapMoney_4, FONT_CAPTION, argb(255, 255, 255, 128), 375, 324, SCRIPT_ALIGN_RIGHT, 1.0);
+	CreateString(true, "Etaps_Money_5", iEtapMoney_5, FONT_CAPTION, argb(255, 255, 255, 128), 525, 324, SCRIPT_ALIGN_RIGHT, 1.0);
 
-	CreateString(true,"Etaps_Quantity_1", iEtapQuantity_1, FONT_CAPTION, argb(255,255,128,128), 190,205,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_Quantity_2", iEtapQuantity_2, FONT_CAPTION, argb(255,255,128,128), 340,205,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_Quantity_3", iEtapQuantity_3, FONT_CAPTION, argb(255,255,128,128), 490,205,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_Quantity_4", iEtapQuantity_4, FONT_CAPTION, argb(255,255,128,128), 260,324,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Etaps_Quantity_5", iEtapQuantity_5, FONT_CAPTION, argb(255,255,128,128), 410,324,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "Etaps_Quantity_1", iEtapQuantity_1, FONT_CAPTION, argb(255, 255, 128, 128), 190, 205, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_Quantity_2", iEtapQuantity_2, FONT_CAPTION, argb(255, 255, 128, 128), 340, 205, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_Quantity_3", iEtapQuantity_3, FONT_CAPTION, argb(255, 255, 128, 128), 490, 205, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_Quantity_4", iEtapQuantity_4, FONT_CAPTION, argb(255, 255, 128, 128), 260, 324, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Etaps_Quantity_5", iEtapQuantity_5, FONT_CAPTION, argb(255, 255, 128, 128), 410, 324, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"Etaps_Payment_1", "Взнос за участие: ", FONT_NORMAL, COLOR_NORMAL, 545,250,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"Etaps_Payment_2", iGold, FONT_BOLD_NUMBERS, argb(255,255,255,128), 590,335,SCRIPT_ALIGN_CENTER,0.75);
+	CreateString(true, "Etaps_Payment_1", "Взнос за участие: ", FONT_NORMAL, COLOR_NORMAL, 545, 250, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "Etaps_Payment_2", iGold, FONT_BOLD_NUMBERS, argb(255, 255, 255, 128), 590, 335, SCRIPT_ALIGN_CENTER, 0.75);
 
-	CreateString(true,"Etaps_HeroMoney_1", "Ваше золото: ", FONT_NORMAL, COLOR_NORMAL, 165,250,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"Etaps_HeroMoney_2", sti(PChar.money), FONT_BOLD_NUMBERS, argb(255,255,255,128), 200,335,SCRIPT_ALIGN_CENTER,0.75);
+	CreateString(true, "Etaps_HeroMoney_1", "Ваше золото: ", FONT_NORMAL, COLOR_NORMAL, 165, 250, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "Etaps_HeroMoney_2", sti(PChar.money), FONT_BOLD_NUMBERS, argb(255, 255, 255, 128), 200, 335, SCRIPT_ALIGN_CENTER, 0.75);
 
-	CreateString(true,"Etaps_Win_Gold_1", "Предпологаемый выигрыш: ", FONT_NORMAL, COLOR_NORMAL, 265,355,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"Etaps_Win_Gold_2", sti(PChar.Arena.Etaps.Prize) + " пиастров", FONT_NORMAL, argb(255,255,255,128), 420,355,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "Etaps_Win_Gold_1", "Предпологаемый выигрыш: ", FONT_NORMAL, COLOR_NORMAL, 265, 355, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "Etaps_Win_Gold_2", sti(PChar.Arena.Etaps.Prize) + " пиастров", FONT_NORMAL, argb(255, 255, 255, 128), 420, 355, SCRIPT_ALIGN_LEFT, 1.0);
 
-	for(int e=1; e<=5; e++)
+	for (int e = 1; e <= 5; e++)
 	{
 		CheckEnableEtap("ETAP_" + e + "_NO");
 	}
@@ -494,37 +492,36 @@ void SetEtapsInfo()
 
 void SetTournamentInfo()
 {
-	CreateString(true,"Tournament_1_4_1", "1/4", FONT_CAPTION, argb(255,255,255,128), 220,90,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Tournament_1_4_2", "1/4", FONT_CAPTION, argb(255,255,255,128), 550,90,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "Tournament_1_4_1", "1/4", FONT_CAPTION, argb(255, 255, 255, 128), 220, 90, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Tournament_1_4_2", "1/4", FONT_CAPTION, argb(255, 255, 255, 128), 550, 90, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"Tournament_1_2_1", "1/2", FONT_CAPTION, argb(255,255,255,128), 330,165,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"Tournament_1_2_2", "1/2", FONT_CAPTION, argb(255,255,255,128), 450,165,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "Tournament_1_2_1", "1/2", FONT_CAPTION, argb(255, 255, 255, 128), 330, 165, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "Tournament_1_2_2", "1/2", FONT_CAPTION, argb(255, 255, 255, 128), 450, 165, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"Tournament_final", "Финал", FONT_CAPTION, argb(255,255,255,128), 380,235,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "Tournament_final", "Финал", FONT_CAPTION, argb(255, 255, 255, 128), 380, 235, SCRIPT_ALIGN_LEFT, 1.0);
 
-	if(GetCharacterIndex("Arena_Tournament_Character_1") == -1)
+	if (GetCharacterIndex("Arena_Tournament_Character_1") == -1)
 	{
-		CreateString(true,"Tournament_NotGen", "Турниров пока не проводится.", FONT_NORMAL, argb(255,255,128,128), 305,125,SCRIPT_ALIGN_LEFT,1.0);
+		CreateString(true, "Tournament_NotGen", "Турниров пока не проводится.", FONT_NORMAL, argb(255, 255, 128, 128), 305, 125, SCRIPT_ALIGN_LEFT, 1.0);
 		SetSelectable("OK", false);
 		return;
 	}
 
 	int iMoney = sti(PChar.Arena.Tournament.Money);
-	CreateString(true,"Tournament_Win_Gold_1", "Призовой фонд: ", FONT_NORMAL, COLOR_NORMAL, 330,330,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"Tournament_Win_Gold_2", iMoney, FONT_NORMAL, argb(255,255,255,128), 430,330,SCRIPT_ALIGN_LEFT,0.9);
+	CreateString(true, "Tournament_Win_Gold_1", "Призовой фонд: ", FONT_NORMAL, COLOR_NORMAL, 330, 330, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "Tournament_Win_Gold_2", iMoney, FONT_NORMAL, argb(255, 255, 255, 128), 430, 330, SCRIPT_ALIGN_LEFT, 0.9);
 
-	CreateString(true,"Tournament_Cost_1", "Взнос за участие: ", FONT_NORMAL, COLOR_NORMAL, 330,345,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"Tournament_Cost_2", (iMoney / 8), FONT_NORMAL, argb(255,255,255,128), 430,345,SCRIPT_ALIGN_LEFT,0.9);
+	CreateString(true, "Tournament_Cost_1", "Взнос за участие: ", FONT_NORMAL, COLOR_NORMAL, 330, 345, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "Tournament_Cost_2", (iMoney / 8), FONT_NORMAL, argb(255, 255, 255, 128), 430, 345, SCRIPT_ALIGN_LEFT, 0.9);
 
-	CreateString(true,"Tournament_Money_1", "Ваши деньги: ", FONT_NORMAL, COLOR_NORMAL, 330,360,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"Tournament_Money_2", sti(PChar.money), FONT_NORMAL, argb(255,255,255,128), 430,360,SCRIPT_ALIGN_LEFT,0.9);
-
+	CreateString(true, "Tournament_Money_1", "Ваши деньги: ", FONT_NORMAL, COLOR_NORMAL, 330, 360, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "Tournament_Money_2", sti(PChar.money), FONT_NORMAL, argb(255, 255, 255, 128), 430, 360, SCRIPT_ALIGN_LEFT, 0.9);
 
 	string sName, sChar, str;
-	int p=1;
-	for(int n=1; n<=8; n++)
+	int p = 1;
+	for (int n = 1; n <= 8; n++)
 	{
-		if(n == 8)
+		if (n == 8)
 		{
 			sChar = "Blaze";
 		}
@@ -542,7 +539,7 @@ void SetTournamentInfo()
 
 	SetNodeUsing("BORDERS_2", true);
 
-	if(sti(PChar.money) >= (iMoney / 8))
+	if (sti(PChar.money) >= (iMoney / 8))
 	{
 		SetSelectable("OK", true);
 	}
@@ -550,7 +547,6 @@ void SetTournamentInfo()
 	{
 		SetSelectable("OK", false);
 	}
-
 }
 
 void SetOddsInfo()
@@ -597,13 +593,12 @@ void SetOddsInfo()
     	CheckEnableOddCharacter("ODDS_CHAR_2_YES");
 }
 
-
 void SetOddsTableInformation(ref attack, ref enemy)
 {
 	string sRow;
-	for(int t=0; t < 4; t++)
+	for (int t = 0; t < 4; t++)
 	{
-		if(t == 0)
+		if (t == 0)
 		{
 			sRow = "hr";
 		}
@@ -613,10 +608,10 @@ void SetOddsTableInformation(ref attack, ref enemy)
 		}
 
 		GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td2.icon.width = 32;
-	    GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td2.icon.height = 32;
-	    GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td2.icon.offset = "0, 0";
-	    GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td3.scale = 0.9;
-		GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td3.color = argb(255,255,255,255);
+		GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td2.icon.height = 32;
+		GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td2.icon.offset = "0, 0";
+		GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td3.scale = 0.9;
+		GameInterface.TABLE_ODDS_CHARACTERS.(sRow).td3.color = argb(255, 255, 255, 255);
 	}
 
 	//-----------------------------------------------------------------------------
@@ -624,31 +619,31 @@ void SetOddsTableInformation(ref attack, ref enemy)
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.UserData.ID = "Odds_Skill_1";
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td2.icon.group = "ICONS_SPEC";
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td2.icon.image = sSkill + " skill icon";
-    GameInterface.TABLE_ODDS_CHARACTERS.hr.td2.icon.offset = "-2, 0";
-    GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.str = sti(attack.skill.(sSkill));
-	GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.color = argb(255,255,255,255);
+	GameInterface.TABLE_ODDS_CHARACTERS.hr.td2.icon.offset = "-2, 0";
+	GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.str = sti(attack.skill.(sSkill));
+	GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.scale = 0.90;
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.fontidx = 1;
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td1.textoffset = "-15,0";
 
-    GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.str = XI_ConvertString(sSkill);
-    GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.str = sti(enemy.skill.(sSkill));
-	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.str = XI_ConvertString(sSkill);
+	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.str = sti(enemy.skill.(sSkill));
+	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.scale = 0.90;
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.fontidx = 1;
 	GameInterface.TABLE_ODDS_CHARACTERS.hr.td3.textoffset = "-15,0";
 	//-----------------------------------------------------------------------------
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.UserData.ID = "Odds_HP";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td2.icon.group = "ICONS_CHAR";
-    GameInterface.TABLE_ODDS_CHARACTERS.tr1.td2.icon.image = "Life";
-    GameInterface.TABLE_ODDS_CHARACTERS.tr1.td2.icon.offset = "-2, 2";
+	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td2.icon.image = "Life";
+	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td2.icon.offset = "-2, 2";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td1.str = MakeInt(LAi_GetCharacterHP(attack)) + "/" + MakeInt(LAi_GetCharacterMaxHP(attack));
-	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td1.color = argb(255,255,255,255);
+	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td1.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td1.scale = 1.0;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td1.fontidx = 2;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td1.textoffset = "-5,0";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td3.str = MakeInt(LAi_GetCharacterHP(enemy)) + "/" + MakeInt(LAi_GetCharacterMaxHP(enemy));
-	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td3.scale = 1.0;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td3.fontidx = 2;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr1.td3.textoffset = "-5,0";
@@ -656,40 +651,39 @@ void SetOddsTableInformation(ref attack, ref enemy)
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.UserData.ID = "Odds_Energy";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td2.icon.group = "ICONS_CHAR";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td2.icon.image = "Energy";
-    GameInterface.TABLE_ODDS_CHARACTERS.tr2.td2.icon.offset = "-2, 2";
+	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td2.icon.offset = "-2, 2";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td1.str = sti(Lai_CharacterGetEnergy(attack)) + "/" + sti(LAi_GetCharacterMaxEnergy(attack));
-	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td1.color = argb(255,255,255,255);
+	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td1.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td1.scale = 1.0;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td1.fontidx = 2;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td1.textoffset = "-5,0";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td3.str = sti(Lai_CharacterGetEnergy(enemy)) + "/" + sti(LAi_GetCharacterMaxEnergy(enemy));
-	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td3.color = argb(255,255,255,255);
+	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td3.color = argb(255, 255, 255, 255);
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td3.scale = 1.0;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td3.fontidx = 2;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr2.td3.textoffset = "-5,0";
 	//-----------------------------------------------------------------------------
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.UserData.ID = "Odds_Rate";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.group = "ICONS_SPEC";
-    GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.image = "trade button";
+	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.image = "trade button";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.width = 50;
-    GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.height = 50;
-    GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.offset = "-10, -7";
+	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.height = 50;
+	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td2.icon.offset = "-10, -7";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td1.str = FloatToString(stf(attack.Arena.Odds.Rate), 2);
-	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td1.color = argb(255,255,255,128);
+	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td1.color = argb(255, 255, 255, 128);
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td1.scale = 1.0;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td1.fontidx = 2;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td1.textoffset = "-5,0";
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td3.str = FloatToString(stf(enemy.Arena.Odds.Rate), 2);
-	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td3.color = argb(255,255,255,128);
+	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td3.color = argb(255, 255, 255, 128);
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td3.scale = 1.0;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td3.fontidx = 2;
 	GameInterface.TABLE_ODDS_CHARACTERS.tr3.td3.textoffset = "-5,0";
 }
 
-
 void SetEquipmentInformation()
 {
-	CreateString(true,"EquipmentHeader", "Экипировка", FONT_CAPTION, COLOR_NORMAL, 390,382,SCRIPT_ALIGN_CENTER,1.2);
+	CreateString(true, "EquipmentHeader", "Экипировка", FONT_CAPTION, COLOR_NORMAL, 390, 382, SCRIPT_ALIGN_CENTER, 1.2);
 
 	//--------------------------------------------------------
 	idLngFile = LanguageOpenFile("ItemsDescribe.txt");
@@ -734,43 +728,41 @@ void SetTournamentResultInfo()
 	SetNodeUsing("BATTLE_SABER_TYPE_LEFT", false);
 	SetNodeUsing("BATTLE_SABER_TYPE_RIGHT", false);
 
-	CreateString(true,"TournamentResultHeader", "Турнир", FONT_CAPTION, COLOR_NORMAL, 390,105,SCRIPT_ALIGN_CENTER,1.0);
+	CreateString(true, "TournamentResultHeader", "Турнир", FONT_CAPTION, COLOR_NORMAL, 390, 105, SCRIPT_ALIGN_CENTER, 1.0);
 
+	CreateString(true, "TournamentRes_1_4_1", "1/4", FONT_CAPTION, argb(255, 255, 255, 128), 110, 145, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "TournamentRes_1_4_2", "1/4", FONT_CAPTION, argb(255, 255, 255, 128), 650, 145, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"TournamentRes_1_4_1", "1/4", FONT_CAPTION, argb(255,255,255,128), 110,145,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"TournamentRes_1_4_2", "1/4", FONT_CAPTION, argb(255,255,255,128), 650,145,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "TournamentRes_1_2_1", "1/2", FONT_CAPTION, argb(255, 255, 255, 128), 250, 145, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "TournamentRes_1_2_2", "1/2", FONT_CAPTION, argb(255, 255, 255, 128), 515, 145, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"TournamentRes_1_2_1", "1/2", FONT_CAPTION, argb(255,255,255,128), 250,145,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"TournamentRes_1_2_2", "1/2", FONT_CAPTION, argb(255,255,255,128), 515,145,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "TournamentRes_final", "Финал", FONT_CAPTION, argb(255, 255, 255, 128), 370, 145, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"TournamentRes_final", "Финал", FONT_CAPTION, argb(255,255,255,128), 370,145,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "TournamentRes_1_4_Name_1", "", FONT_CAPTION, COLOR_NORMAL, 60, 180, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_2", "", FONT_CAPTION, COLOR_NORMAL, 60, 255, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_3", "", FONT_CAPTION, COLOR_NORMAL, 60, 310, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_4", "", FONT_CAPTION, COLOR_NORMAL, 60, 385, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_5", "", FONT_CAPTION, COLOR_NORMAL, 730, 180, SCRIPT_ALIGN_RIGHT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_6", "", FONT_CAPTION, COLOR_NORMAL, 730, 255, SCRIPT_ALIGN_RIGHT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_7", "", FONT_CAPTION, COLOR_NORMAL, 730, 310, SCRIPT_ALIGN_RIGHT, 0.9);
+	CreateString(true, "TournamentRes_1_4_Name_8", "", FONT_CAPTION, COLOR_NORMAL, 730, 385, SCRIPT_ALIGN_RIGHT, 0.9);
 
-	CreateString(true,"TournamentRes_1_4_Name_1", "", FONT_CAPTION, COLOR_NORMAL, 60,180,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_2", "", FONT_CAPTION, COLOR_NORMAL, 60,255,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_3", "", FONT_CAPTION, COLOR_NORMAL, 60,310,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_4", "", FONT_CAPTION, COLOR_NORMAL, 60,385,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_5", "", FONT_CAPTION, COLOR_NORMAL, 730,180,SCRIPT_ALIGN_RIGHT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_6", "", FONT_CAPTION, COLOR_NORMAL, 730,255,SCRIPT_ALIGN_RIGHT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_7", "", FONT_CAPTION, COLOR_NORMAL, 730,310,SCRIPT_ALIGN_RIGHT,0.9);
-	CreateString(true,"TournamentRes_1_4_Name_8", "", FONT_CAPTION, COLOR_NORMAL, 730,385,SCRIPT_ALIGN_RIGHT,0.9);
+	CreateString(true, "TournamentRes_1_2_Name_1", "", FONT_CAPTION, COLOR_NORMAL, 205, 220, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_1_2_Name_2", "", FONT_CAPTION, COLOR_NORMAL, 205, 350, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_1_2_Name_3", "", FONT_CAPTION, COLOR_NORMAL, 585, 220, SCRIPT_ALIGN_RIGHT, 0.9);
+	CreateString(true, "TournamentRes_1_2_Name_4", "", FONT_CAPTION, COLOR_NORMAL, 590, 350, SCRIPT_ALIGN_RIGHT, 0.9);
 
-	CreateString(true,"TournamentRes_1_2_Name_1", "", FONT_CAPTION, COLOR_NORMAL, 205,220,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_1_2_Name_2", "", FONT_CAPTION, COLOR_NORMAL, 205,350,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_1_2_Name_3", "", FONT_CAPTION, COLOR_NORMAL, 585,220,SCRIPT_ALIGN_RIGHT,0.9);
-	CreateString(true,"TournamentRes_1_2_Name_4", "", FONT_CAPTION, COLOR_NORMAL, 590,350,SCRIPT_ALIGN_RIGHT,0.9);
-
-	CreateString(true,"TournamentRes_Final_Name_1", "", FONT_CAPTION, COLOR_NORMAL, 335,280,SCRIPT_ALIGN_LEFT,0.9);
-	CreateString(true,"TournamentRes_Final_Name_2", "", FONT_CAPTION, COLOR_NORMAL, 335,320,SCRIPT_ALIGN_LEFT,0.9);
-
+	CreateString(true, "TournamentRes_Final_Name_1", "", FONT_CAPTION, COLOR_NORMAL, 335, 280, SCRIPT_ALIGN_LEFT, 0.9);
+	CreateString(true, "TournamentRes_Final_Name_2", "", FONT_CAPTION, COLOR_NORMAL, 335, 320, SCRIPT_ALIGN_LEFT, 0.9);
 
 	string sName, sChar, str;
-	int p=1;
+	int p = 1;
 
-	if(PChar.Arena.Tournament.Temp.InterfaceStage == "1_4")
+	if (PChar.Arena.Tournament.Temp.InterfaceStage == "1_4")
 	{
-		for(int n=1; n<=8; n++)
+		for (int n = 1; n <= 8; n++)
 		{
-			if(n == 8)
+			if (n == 8)
 			{
 				sChar = "Blaze";
 			}
@@ -785,19 +777,18 @@ void SetTournamentResultInfo()
 			sName = Characters[GetCharacterIndex(sChar)].name + " " + Characters[GetCharacterIndex(sChar)].lastname;
 			GameInterface.strings.(str) = sName;
 
-			if(n == 8)
+			if (n == 8)
 			{
-				ChangeStringColor(str, argb(255,255,255,128));
+				ChangeStringColor(str, argb(255, 255, 255, 128));
 			}
-
 		}
 	}
 
-	if(PChar.Arena.Tournament.Temp.InterfaceStage == "1_2")
+	if (PChar.Arena.Tournament.Temp.InterfaceStage == "1_2")
 	{
-		for(n=1; n<=8; n++)
+		for (n = 1; n <= 8; n++)
 		{
-			if(n == 8)
+			if (n == 8)
 			{
 				sChar = "Blaze";
 			}
@@ -812,24 +803,24 @@ void SetTournamentResultInfo()
 			sName = Characters[GetCharacterIndex(sChar)].name + " " + Characters[GetCharacterIndex(sChar)].lastname;
 			GameInterface.strings.(str) = sName;
 
-			if(n == 8)
+			if (n == 8)
 			{
-				ChangeStringColor(str, argb(255,255,255,128));
+				ChangeStringColor(str, argb(255, 255, 255, 128));
 			}
 
-			if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_4"))
+			if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_4"))
 			{
-				ChangeStringColor(str, argb(255,255,128,128));
+				ChangeStringColor(str, argb(255, 255, 128, 128));
 			}
 			else
 			{
-				ChangeStringColor(str, argb(255,128,255,128));
+				ChangeStringColor(str, argb(255, 128, 255, 128));
 			}
 		}
 
-		for(n=1; n<=8; n++)
+		for (n = 1; n <= 8; n++)
 		{
-			if(n == 8)
+			if (n == 8)
 			{
 				sChar = "Blaze";
 			}
@@ -838,7 +829,7 @@ void SetTournamentResultInfo()
 				sChar = "Arena_Tournament_Character_" + n;
 			}
 
-			if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser"))
+			if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser"))
 			{
 				continue;
 			}
@@ -849,18 +840,18 @@ void SetTournamentResultInfo()
 			sName = Characters[GetCharacterIndex(sChar)].name + " " + Characters[GetCharacterIndex(sChar)].lastname;
 			GameInterface.strings.(str) = sName;
 
-			if(GetCharacterIndex(sChar) == nMainCharacterIndex)
+			if (GetCharacterIndex(sChar) == nMainCharacterIndex)
 			{
-				ChangeStringColor(str, argb(255,255,255,128));
+				ChangeStringColor(str, argb(255, 255, 255, 128));
 			}
 		}
 	}
 
-	if(PChar.Arena.Tournament.Temp.InterfaceStage == "final")
+	if (PChar.Arena.Tournament.Temp.InterfaceStage == "final")
 	{
-		for(n=1; n<=8; n++)
+		for (n = 1; n <= 8; n++)
 		{
-			if(n == 8)
+			if (n == 8)
 			{
 				sChar = "Blaze";
 			}
@@ -875,24 +866,24 @@ void SetTournamentResultInfo()
 			sName = Characters[GetCharacterIndex(sChar)].name + " " + Characters[GetCharacterIndex(sChar)].lastname;
 			GameInterface.strings.(str) = sName;
 
-			if(n == 8)
+			if (n == 8)
 			{
-				ChangeStringColor(str, argb(255,255,255,128));
+				ChangeStringColor(str, argb(255, 255, 255, 128));
 			}
 
-			if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_4"))
+			if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_4"))
 			{
-				ChangeStringColor(str, argb(255,255,128,128));
+				ChangeStringColor(str, argb(255, 255, 128, 128));
 			}
 			else
 			{
-				ChangeStringColor(str, argb(255,128,255,128));
+				ChangeStringColor(str, argb(255, 128, 255, 128));
 			}
 		}
 
-		for(n=1; n<=8; n++)
+		for (n = 1; n <= 8; n++)
 		{
-			if(n == 8)
+			if (n == 8)
 			{
 				sChar = "Blaze";
 			}
@@ -901,7 +892,7 @@ void SetTournamentResultInfo()
 				sChar = "Arena_Tournament_Character_" + n;
 			}
 
-			if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_4"))
+			if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_4"))
 			{
 				continue;
 			}
@@ -912,19 +903,19 @@ void SetTournamentResultInfo()
 			sName = Characters[GetCharacterIndex(sChar)].name + " " + Characters[GetCharacterIndex(sChar)].lastname;
 			GameInterface.strings.(str) = sName;
 
-			if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_2"))
+			if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser.1_2"))
 			{
-				ChangeStringColor(str, argb(255,255,128,128));
+				ChangeStringColor(str, argb(255, 255, 128, 128));
 			}
 			else
 			{
-				ChangeStringColor(str, argb(255,128,255,128));
+				ChangeStringColor(str, argb(255, 128, 255, 128));
 			}
 		}
 
-		for(n=1; n<=8; n++)
+		for (n = 1; n <= 8; n++)
 		{
-			if(n == 8)
+			if (n == 8)
 			{
 				sChar = "Blaze";
 			}
@@ -933,7 +924,7 @@ void SetTournamentResultInfo()
 				sChar = "Arena_Tournament_Character_" + n;
 			}
 
-			if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser"))
+			if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser"))
 			{
 				continue;
 			}
@@ -944,9 +935,9 @@ void SetTournamentResultInfo()
 			sName = Characters[GetCharacterIndex(sChar)].name + " " + Characters[GetCharacterIndex(sChar)].lastname;
 			GameInterface.strings.(str) = sName;
 
-			if(GetCharacterIndex(sChar) == nMainCharacterIndex)
+			if (GetCharacterIndex(sChar) == nMainCharacterIndex)
 			{
-				ChangeStringColor(str, argb(255,255,255,128));
+				ChangeStringColor(str, argb(255, 255, 255, 128));
 			}
 		}
 	}
@@ -954,27 +945,27 @@ void SetTournamentResultInfo()
 
 int GetTournamentPosition(string sChar, string sType)
 {
-	switch(sType)
+	switch (sType)
 	{
-		case "1_4":
-			if(CheckAttribute(PChar, "Arena.Tournament." + sChar + ".Position"))
-			{
-				return sti(PChar.Arena.Tournament.(sChar).Position);
-			}
+	case "1_4":
+		if (CheckAttribute(PChar, "Arena.Tournament." + sChar + ".Position"))
+		{
+			return sti(PChar.Arena.Tournament.(sChar).Position);
+		}
 		break;
 
-		case "1_2":
-			if(CheckAttribute(PChar, "Arena.Tournament." + sChar + ".Position.1_2"))
-			{
-				return sti(PChar.Arena.Tournament.(sChar).Position.1_2);
-			}
+	case "1_2":
+		if (CheckAttribute(PChar, "Arena.Tournament." + sChar + ".Position.1_2"))
+		{
+			return sti(PChar.Arena.Tournament.(sChar).Position .1_2);
+		}
 		break;
 
-		case "final":
-			if(CheckAttribute(PChar, "Arena.Tournament." + sChar + ".Position.final"))
-			{
-				return sti(PChar.Arena.Tournament.(sChar).Position.final);
-			}
+	case "final":
+		if (CheckAttribute(PChar, "Arena.Tournament." + sChar + ".Position.final"))
+		{
+			return sti(PChar.Arena.Tournament.(sChar).Position.final);
+		}
 		break;
 	}
 
@@ -986,12 +977,20 @@ int GetTournamentPosition(string sChar, string sType)
 ////////////////////////////////////////////////////////////////////////////////////
 string GetBattleType()
 {
-	switch(iCheckBattleType)
+	switch (iCheckBattleType)
 	{
-		case 0: return "Участие в дуэли"; break;
-		case 1: return "Участие в этапах"; break;
-		case 2: return "Участие в турнире"; break;
-		case 3: return "Участие в ставках"; break;
+	case 0:
+		return "Участие в дуэли";
+		break;
+	case 1:
+		return "Участие в этапах";
+		break;
+	case 2:
+		return "Участие в турнире";
+		break;
+	case 3:
+		return "Участие в ставках";
+		break;
 	}
 
 	return "none battle type";
@@ -999,11 +998,17 @@ string GetBattleType()
 
 string GetOddsPairs()
 {
-	switch(iCheckOddsPairs)
+	switch (iCheckOddsPairs)
 	{
-		case 1: return "Первый поединок"; break;
-		case 2: return "Второй поединок"; break;
-		case 3: return "Третий поединок"; break;
+	case 1:
+		return "Первый поединок";
+		break;
+	case 2:
+		return "Второй поединок";
+		break;
+	case 3:
+		return "Третий поединок";
+		break;
 	}
 
 	return "none pairs number";
@@ -1014,7 +1019,7 @@ string GetSkillForEnemyFromSaber()
 	string sSaber = GetSaberName();
 	ref Saber;
 
-	if(GetItemIndex(sSaber) != -1)
+	if (GetItemIndex(sSaber) != -1)
 	{
 		Saber = &Items[FindItem(sSaber)];
 	}
@@ -1023,7 +1028,7 @@ string GetSkillForEnemyFromSaber()
 		Saber = &Items[FindItem("blade1")];
 	}
 
-	if(CheckAttribute(Saber, "FencingType"))
+	if (CheckAttribute(Saber, "FencingType"))
 	{
 		return Saber.FencingType;
 	}
@@ -1035,64 +1040,100 @@ string GetSaberName()
 {
 	string sSaber = "";
 
-	switch(iCheckBattleType)
+	switch (iCheckBattleType)
 	{
-		case 0:
-			if(CheckAttribute(PChar, "Arena.Duel.Saber"))
+	case 0:
+		if (CheckAttribute(PChar, "Arena.Duel.Saber"))
+		{
+			switch (iCheckBattleSaberType)
 			{
-				switch(iCheckBattleSaberType)
-				{
-					case 0: sSaber = PChar.Arena.Duel.Saber.Light; break;
-					case 1: sSaber = PChar.Arena.Duel.Saber.Saber; break;
-					case 2: sSaber = PChar.Arena.Duel.Saber.Heavy; break;
-				}
-				return sSaber;
+			case 0:
+				sSaber = PChar.Arena.Duel.Saber.Light;
+				break;
+			case 1:
+				sSaber = PChar.Arena.Duel.Saber.Saber;
+				break;
+			case 2:
+				sSaber = PChar.Arena.Duel.Saber.Heavy;
+				break;
 			}
+			return sSaber;
+		}
 		break;
 
-		case 1:
-			if(CheckAttribute(PChar, "Arena.Etaps.Saber"))
+	case 1:
+		if (CheckAttribute(PChar, "Arena.Etaps.Saber"))
+		{
+			switch (iCheckBattleSaberType)
 			{
-				switch(iCheckBattleSaberType)
-				{
-					case 0: sSaber = PChar.Arena.Etaps.Saber.Light; break;
-					case 1: sSaber = PChar.Arena.Etaps.Saber.Saber; break;
-					case 2: sSaber = PChar.Arena.Etaps.Saber.Heavy; break;
-				}
-				return sSaber;
+			case 0:
+				sSaber = PChar.Arena.Etaps.Saber.Light;
+				break;
+			case 1:
+				sSaber = PChar.Arena.Etaps.Saber.Saber;
+				break;
+			case 2:
+				sSaber = PChar.Arena.Etaps.Saber.Heavy;
+				break;
 			}
+			return sSaber;
+		}
 		break;
 
-		case 2:
-			if(CheckAttribute(PChar, "Arena.Tournament.Saber"))
+	case 2:
+		if (CheckAttribute(PChar, "Arena.Tournament.Saber"))
+		{
+			switch (iCheckSaberTypeCount)
 			{
-				switch(iCheckSaberTypeCount)
-				{
-					case 1: return PChar.Arena.Tournament.Saber.Light1; break;
-					case 2: return PChar.Arena.Tournament.Saber.Light2; break;
-					case 3: return PChar.Arena.Tournament.Saber.Light3; break;
-					case 4: return PChar.Arena.Tournament.Saber.Saber1; break;
-					case 5: return PChar.Arena.Tournament.Saber.Saber2; break;
-					case 6: return PChar.Arena.Tournament.Saber.Saber3; break;
-					case 7: return PChar.Arena.Tournament.Saber.Heavy1; break;
-					case 8: return PChar.Arena.Tournament.Saber.Heavy2; break;
-					case 9: return PChar.Arena.Tournament.Saber.Heavy3; break;
-				}
-				return sSaber;
+			case 1:
+				return PChar.Arena.Tournament.Saber.Light1;
+				break;
+			case 2:
+				return PChar.Arena.Tournament.Saber.Light2;
+				break;
+			case 3:
+				return PChar.Arena.Tournament.Saber.Light3;
+				break;
+			case 4:
+				return PChar.Arena.Tournament.Saber.Saber1;
+				break;
+			case 5:
+				return PChar.Arena.Tournament.Saber.Saber2;
+				break;
+			case 6:
+				return PChar.Arena.Tournament.Saber.Saber3;
+				break;
+			case 7:
+				return PChar.Arena.Tournament.Saber.Heavy1;
+				break;
+			case 8:
+				return PChar.Arena.Tournament.Saber.Heavy2;
+				break;
+			case 9:
+				return PChar.Arena.Tournament.Saber.Heavy3;
+				break;
 			}
+			return sSaber;
+		}
 		break;
 
-		case 3:
-			if(CheckAttribute(PChar, "Arena.Odds.Saber"))
+	case 3:
+		if (CheckAttribute(PChar, "Arena.Odds.Saber"))
+		{
+			switch (iCheckOddsPairs)
 			{
-				switch(iCheckOddsPairs)
-				{
-					case 1: sSaber = PChar.Arena.Odds.Saber.Light; break;
-					case 2: sSaber = PChar.Arena.Odds.Saber.Saber; break;
-					case 3: sSaber = PChar.Arena.Odds.Saber.Heavy; break;
-				}
-				return sSaber;
+			case 1:
+				sSaber = PChar.Arena.Odds.Saber.Light;
+				break;
+			case 2:
+				sSaber = PChar.Arena.Odds.Saber.Saber;
+				break;
+			case 3:
+				sSaber = PChar.Arena.Odds.Saber.Heavy;
+				break;
 			}
+			return sSaber;
+		}
 		break;
 	}
 	return "blade1";
@@ -1100,7 +1141,7 @@ string GetSaberName()
 
 int GetDuelCharacter()
 {
-	if(CheckAttribute(PChar, "Arena.Duel.Character"))
+	if (CheckAttribute(PChar, "Arena.Duel.Character"))
 	{
 		return sti(PChar.Arena.Duel.Character);
 	}
@@ -1115,7 +1156,7 @@ int GetArenaOddsCharacter(int iCount, int iCharacter)
 
 	string sCharacter = "Arena_Odds_Duel_" + iCount + "_Character_" + iCharacter;
 
-	if(CheckAttribute(PChar, "Arena.Odds." + sFight))
+	if (CheckAttribute(PChar, "Arena.Odds." + sFight))
 	{
 		sCharacter = PChar.Arena.Odds.(sFight).(sFightChar);
 	}
@@ -1125,17 +1166,97 @@ int GetArenaOddsCharacter(int iCount, int iCharacter)
 
 void CheckEnableEtap(string sNode)
 {
-	if(sNode == "ETAP_1_YES") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_1_NO", true); SetSelectable("ETAP_1_NO", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_2_YES") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_2_NO", true); SetSelectable("ETAP_2_NO", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_3_YES") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_3_NO", true); SetSelectable("ETAP_3_NO", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_4_YES") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_4_NO", true); SetSelectable("ETAP_4_NO", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_5_YES") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_5_NO", true); SetSelectable("ETAP_5_NO", true); CheckEtapsEnable(); return; }
+	if (sNode == "ETAP_1_YES")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_1_NO", true);
+		SetSelectable("ETAP_1_NO", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_2_YES")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_2_NO", true);
+		SetSelectable("ETAP_2_NO", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_3_YES")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_3_NO", true);
+		SetSelectable("ETAP_3_NO", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_4_YES")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_4_NO", true);
+		SetSelectable("ETAP_4_NO", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_5_YES")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_5_NO", true);
+		SetSelectable("ETAP_5_NO", true);
+		CheckEtapsEnable();
+		return;
+	}
 
-	if(sNode == "ETAP_1_NO") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_1_YES", true); SetSelectable("ETAP_1_YES", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_2_NO") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_2_YES", true); SetSelectable("ETAP_2_YES", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_3_NO") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_3_YES", true); SetSelectable("ETAP_3_YES", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_4_NO") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_4_YES", true); SetSelectable("ETAP_4_YES", true); CheckEtapsEnable(); return; }
-	if(sNode == "ETAP_5_NO") { SetSelectable(sNode, false); SetNodeUsing(sNode, false); SetNodeUsing("ETAP_5_YES", true); SetSelectable("ETAP_5_YES", true); CheckEtapsEnable(); return; }
+	if (sNode == "ETAP_1_NO")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_1_YES", true);
+		SetSelectable("ETAP_1_YES", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_2_NO")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_2_YES", true);
+		SetSelectable("ETAP_2_YES", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_3_NO")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_3_YES", true);
+		SetSelectable("ETAP_3_YES", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_4_NO")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_4_YES", true);
+		SetSelectable("ETAP_4_YES", true);
+		CheckEtapsEnable();
+		return;
+	}
+	if (sNode == "ETAP_5_NO")
+	{
+		SetSelectable(sNode, false);
+		SetNodeUsing(sNode, false);
+		SetNodeUsing("ETAP_5_YES", true);
+		SetSelectable("ETAP_5_YES", true);
+		CheckEtapsEnable();
+		return;
+	}
 }
 
 void CheckEtapsEnable()
@@ -1153,11 +1274,26 @@ void CheckEtapsEnable()
 	int iEtapMoney_5 = 0;
 	int iEtapsMoney = 0;
 
-	if(bEtapYes_1) { iEtapMoney_1 = sti(PChar.Arena.Etaps.Etap_1.Cost); }
-	if(bEtapYes_2) { iEtapMoney_2 = sti(PChar.Arena.Etaps.Etap_2.Cost); }
-	if(bEtapYes_3) { iEtapMoney_3 = sti(PChar.Arena.Etaps.Etap_3.Cost); }
-	if(bEtapYes_4) { iEtapMoney_4 = sti(PChar.Arena.Etaps.Etap_4.Cost); }
-	if(bEtapYes_5) { iEtapMoney_5 = sti(PChar.Arena.Etaps.Etap_5.Cost); }
+	if (bEtapYes_1)
+	{
+		iEtapMoney_1 = sti(PChar.Arena.Etaps.Etap_1.Cost);
+	}
+	if (bEtapYes_2)
+	{
+		iEtapMoney_2 = sti(PChar.Arena.Etaps.Etap_2.Cost);
+	}
+	if (bEtapYes_3)
+	{
+		iEtapMoney_3 = sti(PChar.Arena.Etaps.Etap_3.Cost);
+	}
+	if (bEtapYes_4)
+	{
+		iEtapMoney_4 = sti(PChar.Arena.Etaps.Etap_4.Cost);
+	}
+	if (bEtapYes_5)
+	{
+		iEtapMoney_5 = sti(PChar.Arena.Etaps.Etap_5.Cost);
+	}
 
 	iEtapsMoney = iEtapMoney_1 + iEtapMoney_2 + iEtapMoney_3 + iEtapMoney_4 + iEtapMoney_5;
 	PChar.Arena.Etaps.Prize = iEtapsMoney;
@@ -1165,20 +1301,20 @@ void CheckEtapsEnable()
 	GameInterface.strings.Etaps_Payment_2 = sti(iEtapsMoney / 5);
 	GameInterface.strings.Etaps_Win_Gold_2 = sti(PChar.Arena.Etaps.Prize) + " пиастров";
 
-	if(!bEtapYes_5)
+	if (!bEtapYes_5)
 	{
 		SetSelectable("OK", false);
 		return;
 	}
 
-	if(!bEtapYes_1 && !bEtapYes_2 && !bEtapYes_3 && !bEtapYes_4)
+	if (!bEtapYes_1 && !bEtapYes_2 && !bEtapYes_3 && !bEtapYes_4)
 	{
 		SetSelectable("OK", false);
 		return;
 	}
 	else
 	{
-		if(sti(PChar.money) >= sti(iEtapsMoney / 5))
+		if (sti(PChar.money) >= sti(iEtapsMoney / 5))
 		{
 			SetSelectable("OK", true);
 		}
@@ -1194,13 +1330,13 @@ void CheckEnableOddCharacter(string sNode)
 	SetNodeUsing(sNode, false);
 	SetSelectable(sNode, false);
 
-	if(sNode == "ODDS_CHAR_1_YES")
+	if (sNode == "ODDS_CHAR_1_YES")
 	{
 		SetNodeUsing("ODDS_CHAR_2_YES", true);
 		SetSelectable("ODDS_CHAR_2_YES", true);
 	}
 
-	if(sNode == "ODDS_CHAR_2_YES")
+	if (sNode == "ODDS_CHAR_2_YES")
 	{
 		SetNodeUsing("ODDS_CHAR_1_YES", true);
 		SetSelectable("ODDS_CHAR_1_YES", true);
@@ -1213,7 +1349,7 @@ void CheckEnableOddsCharacter()
 {
 	int iOdd = sti(PChar.Arena.Odds.Odd);
 
-	if(sti(PChar.money) >= iOdd)
+	if (sti(PChar.money) >= iOdd)
 	{
 		SetSelectable("OK", true);
 	}
@@ -1223,58 +1359,57 @@ void CheckEnableOddsCharacter()
 	}
 }
 
-
 void CheckBattleInformation()
 {
-	switch(iCheckBattleType)
+	switch (iCheckBattleType)
 	{
-		case 0:
-			DisableDuelInfo(true);
-			//-----------------------------------------------------
-			DisableEtapsInfo(false);
-			//-----------------------------------------------------
-			DisableTournamentInfo(false);
-			//-----------------------------------------------------
-			DisableOddsInfo(false);
-			//-----------------------------------------------------
-			SetDuelInfo();
+	case 0:
+		DisableDuelInfo(true);
+		//-----------------------------------------------------
+		DisableEtapsInfo(false);
+		//-----------------------------------------------------
+		DisableTournamentInfo(false);
+		//-----------------------------------------------------
+		DisableOddsInfo(false);
+		//-----------------------------------------------------
+		SetDuelInfo();
 		break;
 
-		case 1:
-			DisableEtapsInfo(true);
-			//-----------------------------------------------------
-			DisableDuelInfo(false);
-			//-----------------------------------------------------
-			DisableTournamentInfo(false);
-			//-----------------------------------------------------
-			DisableOddsInfo(false);
-			//-----------------------------------------------------
-			SetEtapsInfo();
+	case 1:
+		DisableEtapsInfo(true);
+		//-----------------------------------------------------
+		DisableDuelInfo(false);
+		//-----------------------------------------------------
+		DisableTournamentInfo(false);
+		//-----------------------------------------------------
+		DisableOddsInfo(false);
+		//-----------------------------------------------------
+		SetEtapsInfo();
 		break;
 
-		case 2:
-			DisableTournamentInfo(true);
-			//-----------------------------------------------------
-			DisableDuelInfo(false);
-			//-----------------------------------------------------
-			DisableEtapsInfo(false);
-			//-----------------------------------------------------
-			DisableOddsInfo(false);
-			//-----------------------------------------------------
-			SetTournamentInfo();
+	case 2:
+		DisableTournamentInfo(true);
+		//-----------------------------------------------------
+		DisableDuelInfo(false);
+		//-----------------------------------------------------
+		DisableEtapsInfo(false);
+		//-----------------------------------------------------
+		DisableOddsInfo(false);
+		//-----------------------------------------------------
+		SetTournamentInfo();
 		break;
 
-		case 3:
-			//-----------------------------------------------------
-			DisableDuelInfo(false);
-			//-----------------------------------------------------
-			DisableEtapsInfo(false);
-			//-----------------------------------------------------
-			DisableTournamentInfo(false);
-			//-----------------------------------------------------
-			DisableOddsInfo(true);
-			//-----------------------------------------------------
-			SetOddsInfo();
+	case 3:
+		//-----------------------------------------------------
+		DisableDuelInfo(false);
+		//-----------------------------------------------------
+		DisableEtapsInfo(false);
+		//-----------------------------------------------------
+		DisableTournamentInfo(false);
+		//-----------------------------------------------------
+		DisableOddsInfo(true);
+		//-----------------------------------------------------
+		SetOddsInfo();
 		break;
 	}
 }
@@ -1298,12 +1433,11 @@ void DisableDuelInfo(bool bEnable)
 	GameInterface.strings.Duel_Odd_1 = "";
 	GameInterface.strings.Duel_Odd_2 = "";
 	GameInterface.strings.Duel_Odd_Install = "";
-
 }
 
 void DisableEtapsInfo(bool bEnable)
 {
-	for(int s=1; s<=5; s++)
+	for (int s = 1; s <= 5; s++)
 	{
 		SetNodeUsing("ETAPS_PICTURE_" + s, bEnable);
 		SetNodeUsing("ETAPS_BORDER_" + s, bEnable);
@@ -1341,7 +1475,10 @@ void DisableTournamentInfo(bool bEnable)
 {
 	SetNodeUsing("BORDERS_2", bEnable);
 
-	for(int s=1; s<=8; s++) { SetNodeUsing("TOURNAMENT_NAME_" + s, bEnable); }
+	for (int s = 1; s <= 8; s++)
+	{
+		SetNodeUsing("TOURNAMENT_NAME_" + s, bEnable);
+	}
 
 	GameInterface.strings.Tournament_1_4_1 = "";
 	GameInterface.strings.Tournament_1_4_2 = "";
@@ -1377,7 +1514,7 @@ void DisableOddsInfo(bool bEnable)
 	SetNodeUsing("ODDS_CHAR_1_YES", bEnable);
 	SetNodeUsing("ODDS_CHAR_2_YES", bEnable);
 
-	if(!bEnable)
+	if (!bEnable)
 	{
 		SetNodeUsing("BATTLE_SABER_TYPE_LEFT", true);
 		SetNodeUsing("BATTLE_SABER_TYPE_RIGHT", true);
@@ -1402,12 +1539,12 @@ void DuelOddTemp()
 	int iMinOdd = sti(PChar.Arena.Duel.MinOdd);
 	int iMaxOdd = sti(PChar.Arena.Duel.MaxOdd);
 
-	if(sti(GameInterface.DUEL_ODD.str) > iMaxOdd)
+	if (sti(GameInterface.DUEL_ODD.str) > iMaxOdd)
 	{
 		GameInterface.DUEL_ODD.str = iMaxOdd;
 	}
 
-	if(sti(GameInterface.DUEL_ODD.str) < iMinOdd)
+	if (sti(GameInterface.DUEL_ODD.str) < iMinOdd)
 	{
 		GameInterface.DUEL_ODD.str = iMinOdd;
 	}
@@ -1418,12 +1555,12 @@ void OddsOddTemp()
 	int iMinOdd = sti(PChar.Arena.Odds.MinOdd);
 	int iMaxOdd = sti(PChar.Arena.Odds.MaxOdd);
 
-	if(sti(GameInterface.ODDS_ODD.str) > iMaxOdd)
+	if (sti(GameInterface.ODDS_ODD.str) > iMaxOdd)
 	{
 		GameInterface.ODDS_ODD.str = iMaxOdd;
 	}
 
-	if(sti(GameInterface.ODDS_ODD.str) < iMinOdd)
+	if (sti(GameInterface.ODDS_ODD.str) < iMinOdd)
 	{
 		GameInterface.ODDS_ODD.str = iMinOdd;
 	}
@@ -1437,12 +1574,12 @@ void AcceptOdd(string sType)
 	string sString = sType + "_Odd_2";
 	string sNode = sType + "_ODD";
 
-	if(sti(GameInterface.(sNode).str) > iMaxOdd)
+	if (sti(GameInterface.(sNode).str) > iMaxOdd)
 	{
 		GameInterface.(sNode).str = iMaxOdd;
 	}
 
-	if(sti(GameInterface.(sNode).str) < iMinOdd)
+	if (sti(GameInterface.(sNode).str) < iMinOdd)
 	{
 		GameInterface.(sNode).str = iMinOdd;
 	}
@@ -1484,12 +1621,20 @@ void StartArenaOperation()
 	Locations[FindLocation("FencingTown_ExitTown")].reload.l2.disable = 1;
 	Locations[FindLocation("FencingTown_ExitTown")].reload.l3.disable = 1;
 	Locations[FindLocation("FencingTown_ExitTown")].reload.l4.disable = 1;
-	switch(iCheckBattleType)
+	switch (iCheckBattleType)
 	{
-		case 0: ArenaStartDuel(); break;
-		case 1: ArenaStartEtaps(); break;
-		case 2: ArenaStartTournament(); break;
-		case 3: ArenaStartOdds(); break;
+	case 0:
+		ArenaStartDuel();
+		break;
+	case 1:
+		ArenaStartEtaps();
+		break;
+	case 2:
+		ArenaStartTournament();
+		break;
+	case 3:
+		ArenaStartOdds();
+		break;
 	}
 }
 
@@ -1523,11 +1668,46 @@ void ArenaStartEtaps()
 	bool bEtapYes_4 = GetSelectable("ETAP_4_YES");
 	bool bEtapYes_5 = GetSelectable("ETAP_5_YES");
 
-	if(bEtapYes_1) { PChar.Arena.Etaps.Etap_1 = "YES"; }else{ PChar.Arena.Etaps.Etap_1 = "NO"; }
-	if(bEtapYes_2) { PChar.Arena.Etaps.Etap_2 = "YES"; }else{ PChar.Arena.Etaps.Etap_2 = "NO"; }
-	if(bEtapYes_3) { PChar.Arena.Etaps.Etap_3 = "YES"; }else{ PChar.Arena.Etaps.Etap_3 = "NO"; }
-	if(bEtapYes_4) { PChar.Arena.Etaps.Etap_4 = "YES"; }else{ PChar.Arena.Etaps.Etap_4 = "NO"; }
-	if(bEtapYes_5) { PChar.Arena.Etaps.Etap_5 = "YES"; }else{ PChar.Arena.Etaps.Etap_5 = "NO"; }
+	if (bEtapYes_1)
+	{
+		PChar.Arena.Etaps.Etap_1 = "YES";
+	}
+	else
+	{
+		PChar.Arena.Etaps.Etap_1 = "NO";
+	}
+	if (bEtapYes_2)
+	{
+		PChar.Arena.Etaps.Etap_2 = "YES";
+	}
+	else
+	{
+		PChar.Arena.Etaps.Etap_2 = "NO";
+	}
+	if (bEtapYes_3)
+	{
+		PChar.Arena.Etaps.Etap_3 = "YES";
+	}
+	else
+	{
+		PChar.Arena.Etaps.Etap_3 = "NO";
+	}
+	if (bEtapYes_4)
+	{
+		PChar.Arena.Etaps.Etap_4 = "YES";
+	}
+	else
+	{
+		PChar.Arena.Etaps.Etap_4 = "NO";
+	}
+	if (bEtapYes_5)
+	{
+		PChar.Arena.Etaps.Etap_5 = "YES";
+	}
+	else
+	{
+		PChar.Arena.Etaps.Etap_5 = "NO";
+	}
 
 	PChar.Arena.Etaps.Saber = GetSaberName();
 
@@ -1544,7 +1724,7 @@ void ArenaStartTournament()
 	pchar.Arena.TournamentWeapon = GetSaberName();
 	ref rSaber = &Items[FindItem(pchar.Arena.TournamentWeapon)];
 	string sSaberName = LanguageConvertString(idLngFile, rSaber.name);
-	log_info("Выбранное для турнира оружие: "+sSaberName);
+	log_info("Выбранное для турнира оружие: " + sSaberName);
 	LanguageCloseFile(idLngFile);
 
 	PrepareArenaTournament();
@@ -1559,11 +1739,11 @@ void ArenaStartOdds()
 	bool bChar_2 = GetSelectable("ODDS_CHAR_2_YES");
 
 	int iCharacter = 0;
-	if(bChar_1)
+	if (bChar_1)
 	{
 		iCharacter = GetArenaOddsCharacter(iCheckOddsPairs, 1);
 	}
-	if(bChar_2)
+	if (bChar_2)
 	{
 		iCharacter = GetArenaOddsCharacter(iCheckOddsPairs, 2);
 	}

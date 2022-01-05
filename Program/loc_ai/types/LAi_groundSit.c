@@ -7,10 +7,7 @@
 		ani
 */
 
-
-
-#define LAI_TYPE_GROUNDSIT		"groundSit"
-
+#define LAI_TYPE_GROUNDSIT "groundSit"
 
 //Инициализация
 void LAi_type_GroundSit_Init(aref chr)
@@ -30,36 +27,41 @@ void LAi_type_GroundSit_CharacterUpdate(aref chr, float dltTime)
 {
 	int num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.001, false, true);
 	int idx;
-	if(num > 0)
+	if (num > 0)
 	{
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) break;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				break;
 		}
-		if(i < num)
+		if (i < num)
 		{
-			if(chr.chr_ai.tmpl != LAI_TMPL_ANI)
+			if (chr.chr_ai.tmpl != LAI_TMPL_ANI)
 			{
 				LAi_tmpl_ani_PlayAnimation(chr, "afraid", -1.0);
 				LAi_SetAfraidDead(chr);
 			}
-		}else{
-			if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
+		}
+		else
+		{
+			if (chr.chr_ai.tmpl != LAI_TMPL_STAY)
 			{
 				LAi_tmpl_stay_InitTemplate(chr);
 				LAi_SetDefaultDead(chr);
 			}
 		}
-	}else{
-		if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+	}
+	else
+	{
+		if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 		{
-			if(rand(500) == 123)
+			if (rand(500) == 123)
 			{
 				LAi_CharacterPlaySound(chr, "poorman");
 			}
 		}
-		if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
+		if (chr.chr_ai.tmpl != LAI_TMPL_STAY)
 		{
 			LAi_tmpl_stay_InitTemplate(chr);
 			LAi_SetDefaultDead(chr);
@@ -93,7 +95,8 @@ void LAi_type_GroundSit_NeedDialog(aref chr, aref by)
 bool LAi_type_GroundSit_CanDialog(aref chr, aref by)
 {
 	//Если уже говорим, то откажем
-	if(chr.chr_ai.tmpl == LAI_TMPL_STAY) return true;
+	if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
+		return true;
 	//Согласимся на диалог
 	return false;
 }
@@ -116,10 +119,7 @@ void LAi_type_GroundSit_Fire(aref attack, aref enemy, float kDist, bool isFinded
 {
 }
 
-
 //Персонаж атакован
 void LAi_type_GroundSit_Attacked(aref chr, aref by)
 {
-
 }
-

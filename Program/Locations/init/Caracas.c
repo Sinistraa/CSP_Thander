@@ -14,7 +14,8 @@ int LocationInitCaracas(int n)
 	locations[n].islandId = "Mein";
 
 	locations[n].filespath.models = "locations\Town_Caracas\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -36,20 +37,20 @@ int LocationInitCaracas(int n)
 	//Fontain
 	locations[n].models.always.Waterfall1 = "fontain1";
 	locations[n].models.always.Waterfall1.uvslide.v0 = 0.5;
-    locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall1.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall1.level = 50;
 
 	locations[n].models.always.Waterfall2 = "fontain2";
 	locations[n].models.always.Waterfall2.uvslide.v0 = 0.2;
-    locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall2.level = 49;
 
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.15;
@@ -66,7 +67,7 @@ int LocationInitCaracas(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Т’иповые городские локации, четкая фиксация на 10 номеров.
+	// --> Т’иповые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Caracas";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -141,7 +142,7 @@ int LocationInitCaracas(int n)
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
 
-    // --> КЉомоны, загрушки. Номера с начинаются с 20.
+	// --> КЉомоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp2";
 	locations[n].reload.l20.go = "CommonPirateHouse";
 	locations[n].reload.l20.emerge = "reload1";
@@ -204,7 +205,8 @@ int LocationInitCaracas(int n)
 	locations[n].id = "Caracas_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\tavern02\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "Caracas";
@@ -244,7 +246,7 @@ int LocationInitCaracas(int n)
 	locations[n].reload.l2.label = "Tavern upstairs";
 	locations[n].reload.l2.disable = 1; // закроем, но связку сделаем для квестовых нужд.
 
-    ////////////////////////==> подсобка таверны
+	////////////////////////==> подсобка таверны
 	locations[n].reload.l3.name = "reload3";
 	locations[n].reload.l3.go = "CommonRoom_MH3";
 	locations[n].reload.l3.emerge = "reload1";
@@ -300,13 +302,14 @@ int LocationInitCaracas(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store02\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caracas";
 	locations[n].lockWeather = "Inside";
@@ -338,7 +341,7 @@ int LocationInitCaracas(int n)
 	locations[n].reload.l1.emerge = "reload6";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -347,13 +350,14 @@ int LocationInitCaracas(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard01\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caracas";
 	locations[n].lockWeather = "Inside";
@@ -393,7 +397,7 @@ int LocationInitCaracas(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_townhall";
@@ -489,7 +493,8 @@ int LocationInitCaracas(int n)
 	locations[n].id = "Caracas_Bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank02\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caracas";
 	locations[n].lockWeather = "Inside";
@@ -528,7 +533,7 @@ int LocationInitCaracas(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_PortOffice";
@@ -576,7 +581,7 @@ int LocationInitCaracas(int n)
 	locations[n].id = "Caracas_ExitTown";
 	locations[n].fastreload = "Caracas";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "Caracas";
 	//Sound
@@ -639,7 +644,7 @@ int LocationInitCaracas(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_Jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -741,7 +746,7 @@ int LocationInitCaracas(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -749,7 +754,7 @@ int LocationInitCaracas(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -797,7 +802,7 @@ int LocationInitCaracas(int n)
 	// Грот
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Caracas_Grot";
-	locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	locations[n].id.label = "Grot";
 	//Sound
 	locations[n].type = "Cave";
@@ -817,7 +822,7 @@ int LocationInitCaracas(int n)
 
 	Locations[n].models.always.rays = "grotto1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -828,7 +833,7 @@ int LocationInitCaracas(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 	locations[n].environment.weather.rain = false;
- 	//Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Caracas_CaveEntrance";
 	locations[n].reload.l1.emerge = "reload1";

@@ -11,10 +11,11 @@ int LocationInitBermudes(int n)
 
 	locations[n].townsack = "Pirates";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 
 	locations[n].filespath.models = "locations\Town_IslaMona\Town\";
-	locations[n].image = "loading\towns\pearl1.tga";
+									locations[n]
+										.image = "loading\towns\pearl1.tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 
@@ -36,13 +37,13 @@ int LocationInitBermudes(int n)
 	//River
 	locations[n].models.always.Waterfall1 = "Islamona_river1";
 	locations[n].models.always.Waterfall1.uvslide.v0 = 0.2;
-    locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall1.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall1.level = 50;
 
 	locations[n].models.always.Waterfall2 = "Islamona_river2";
 	locations[n].models.always.Waterfall2.uvslide.v0 = -0.3;
-    locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall2.level = 49;
 
@@ -58,7 +59,7 @@ int LocationInitBermudes(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Bermudes";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -132,7 +133,8 @@ int LocationInitBermudes(int n)
 	locations[n].id = "Pirates_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern08\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "Pirates";
@@ -140,7 +142,7 @@ int LocationInitBermudes(int n)
 	//Sound
 	locations[n].type = "tavern";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "Tavern08";
@@ -186,7 +188,7 @@ int LocationInitBermudes(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\Tavern_room";
@@ -215,20 +217,21 @@ int LocationInitBermudes(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pirates_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store02\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Pirates";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Store02_locators";
@@ -255,20 +258,21 @@ int LocationInitBermudes(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pirates_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\ShipyardPirates\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "Pirates";
 	//locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shipyard";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].models.always.locators = "ShipyardPirates_locators";
@@ -298,11 +302,11 @@ int LocationInitBermudes(int n)
 	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "";
-    Locations[n].reload.l2.disable = 1;
+	Locations[n].reload.l2.disable = 1;
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pirates_townhall";
@@ -315,7 +319,7 @@ int LocationInitBermudes(int n)
 	//Sound
 	locations[n].type = "residence";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Residence05_locators";
@@ -408,7 +412,7 @@ int LocationInitBermudes(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\mediumhouse01";
@@ -424,7 +428,7 @@ int LocationInitBermudes(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.always.mediumhouse01rand= "mediumhouse01_rand";
+	Locations[n].models.always.mediumhouse01rand = "mediumhouse01_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse01_patch";
@@ -434,7 +438,7 @@ int LocationInitBermudes(int n)
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "Pirates_town";
 	locations[n].reload.l1.emerge = "houseF1";
@@ -454,7 +458,7 @@ int LocationInitBermudes(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Pirates";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\largehouse01";
@@ -469,7 +473,7 @@ int LocationInitBermudes(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.largehouse01rand= "largehouse01_rand";
+	Locations[n].models.day.largehouse01rand = "largehouse01_rand";
 	locations[n].models.day.charactersPatch = "largehouse01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "largehouse01_patch";
@@ -495,7 +499,7 @@ int LocationInitBermudes(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Bermudes_Dungeon";
 	locations[n].id.label = "Dungeon";
-	locations[n].image = "loading\inside\Vault_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Vault_" + rand(2) + ".tga";
 	//Town sack
 	locations[n].townsack = "Pirates";
 	//Sound
@@ -512,7 +516,7 @@ int LocationInitBermudes(int n)
 
 	Locations[n].models.always.rays = "DungeonVault1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -548,7 +552,7 @@ int LocationInitBermudes(int n)
 	locations[n].image = "loading\outside\harbor_" + rand(14) + ".tga";
 	//Sound
 	locations[n].type = "seashore";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Shores\Shore04";
@@ -589,7 +593,7 @@ int LocationInitBermudes(int n)
 	locations[n].reload.l2.emerge = "reload2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Dungeon";
-    locations[n].locators_radius.reload.reload2_back = 1.5;
+	locations[n].locators_radius.reload.reload2_back = 1.5;
 
 	locations[n].reload.l3.name = "boat";
 	locations[n].reload.l3.go = "Bermudes";
@@ -602,16 +606,17 @@ int LocationInitBermudes(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "Bermudes_jungle_01";
+	locations[n].id = "Bermudes_jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle8\";
-	Locations[n].models.always.jungle = "jungle8";
+									Locations[n]
+										.models.always.jungle = "jungle8";
 	Locations[n].models.always.locators = "jungle8_locators";
 	Locations[n].models.always.grassPatch = "jungle8_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -652,10 +657,10 @@ int LocationInitBermudes(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Bermudes_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\CaveEnt1";
@@ -704,7 +709,7 @@ int LocationInitBermudes(int n)
 	locations[n].image = "loading\inside\Cave_0.tga";
 	//Sound
 	locations[n].type = "cave";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\cavernLow1";
@@ -723,7 +728,7 @@ int LocationInitBermudes(int n)
 
 	locations[n].models.always.Cfall = "cfall";
 	locations[n].models.always.Cfall.uvslide.v0 = 0.3;
-    	locations[n].models.always.Cfall.uvslide.v1 = 0.0;
+	locations[n].models.always.Cfall.uvslide.v1 = 0.0;
 	locations[n].models.always.Cfall.tech = "LocationWaterFall";
 	locations[n].models.always.Cfall.level = 50;
 
@@ -733,7 +738,7 @@ int LocationInitBermudes(int n)
 
 	Locations[n].models.always.rays = "cavernLow1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 
@@ -768,9 +773,9 @@ int LocationInitBermudes(int n)
 	locations[n].id.label = "Shore_ship1";
 	locations[n].image = "loading\outside\harbor_" + rand(14) + ".tga";
 	locations[n].worldmap = "Shore_ship1";
-    //Sound
+	//Sound
 	locations[n].type = "seashore";
- 	locations[n].islandId = "Bermudes";
+	locations[n].islandId = "Bermudes";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Shores\ShoreShip1";

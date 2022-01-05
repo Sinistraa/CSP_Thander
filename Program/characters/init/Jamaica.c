@@ -7,12 +7,12 @@ int CreateJamaicaCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "PortRoyal_Mayor";
-	ch.model	= "huber_spa";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "PortRoyal_Mayor";
+	ch.model = "huber_spa";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_townhall";
+	ch.location = "PortRoyal_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -22,7 +22,7 @@ int CreateJamaicaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -30,13 +30,13 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "PortRoyal_Priest";
-	ch.model	= "priest_1";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "PortRoyal_Priest";
+	ch.model = "priest_1";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_church";
+	ch.location = "PortRoyal_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -48,12 +48,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "PortRoyal_waitress";
-	ch.model	= "girl_1";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "PortRoyal_waitress";
+	ch.model = "girl_1";
 	ch.sex = "woman";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_tavern";
+	ch.location = "PortRoyal_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -65,13 +65,13 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "PortRoyal_tavernkeeper";
-	ch.model	= "barmen_13";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "PortRoyal_tavernkeeper";
+	ch.model = "barmen_13";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_Tavern";
+	ch.location = "PortRoyal_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -83,13 +83,13 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Торговец
-	ch.id		= "PortRoyal_trader";
-	ch.model	= "trader_13";
+	makeref(ch, Characters[n]); //Торговец
+	ch.id = "PortRoyal_trader";
+	ch.model = "trader_13";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_Store";
+	ch.location = "PortRoyal_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -101,13 +101,13 @@ int CreateJamaicaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
-	ch.id		= "PortRoyal_shipyarder";
-	ch.model	= "shipowner_13";
+	makeref(ch, Characters[n]); //Корабел
+	ch.id = "PortRoyal_shipyarder";
+	ch.model = "shipowner_13";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_Shipyard";
+	ch.location = "PortRoyal_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -116,7 +116,7 @@ int CreateJamaicaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -124,12 +124,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "PortRoyal_usurer";
-	ch.model	= "usurer_3";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "PortRoyal_usurer";
+	ch.model = "usurer_3";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_Bank";
+	ch.location = "PortRoyal_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -142,12 +142,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "PortRoyal_PortMan";
-	ch.model	= "usurer_7";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "PortRoyal_PortMan";
+	ch.model = "usurer_7";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_PortOffice";
+	ch.location = "PortRoyal_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -159,14 +159,14 @@ int CreateJamaicaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Хозяйка борделя
-	ch.id		= "PortRoyal_Hostess";
-	ch.name		= "Литисия";
+	makeref(ch, Characters[n]); //Хозяйка борделя
+	ch.id = "PortRoyal_Hostess";
+	ch.name = "Литисия";
 	ch.lastname = "";
-	ch.model	= "lady03";
+	ch.model = "lady03";
 	ch.sex = "woman";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_SecBrRoom";
+	ch.location = "PortRoyal_SecBrRoom";
 	ch.location.group = "goto";
 	ch.location.locator = "goto8";
 	ch.Dialog.Filename = "Common_Brothel.c";
@@ -177,12 +177,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_group_MoveCharacter(ch, "ENGLAND_CITIZENS");
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "PortRoyal_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "PortRoyal_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);
@@ -194,14 +194,14 @@ int CreateJamaicaCharacters(int n)
 	ch.greeting = "Gr_Smuggler Agent";
 	n = n + 1;
 
-   //=============== форт Оранж ===============
+	//=============== форт Оранж ===============
 
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "FortOrange_Mayor";
-	ch.model	= "huber_spa";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "FortOrange_Mayor";
+	ch.model = "huber_spa";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_townhall";
+	ch.location = "FortOrange_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -211,7 +211,7 @@ int CreateJamaicaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -219,13 +219,13 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "FortOrange_Priest";
-	ch.model	= "priest_4";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "FortOrange_Priest";
+	ch.model = "priest_4";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_church";
+	ch.location = "FortOrange_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -237,12 +237,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "FortOrange_waitress";
-	ch.model	= "girl_1";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "FortOrange_waitress";
+	ch.model = "girl_1";
 	ch.sex = "woman";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_tavern";
+	ch.location = "FortOrange_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -254,13 +254,13 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "FortOrange_tavernkeeper";
-	ch.model	= "barmen_13";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "FortOrange_tavernkeeper";
+	ch.model = "barmen_13";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_Tavern";
+	ch.location = "FortOrange_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -272,13 +272,13 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Торговец
-	ch.id		= "FortOrange_trader";
-	ch.model	= "trader_13";
+	makeref(ch, Characters[n]); //Торговец
+	ch.id = "FortOrange_trader";
+	ch.model = "trader_13";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_Store";
+	ch.location = "FortOrange_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -290,13 +290,13 @@ int CreateJamaicaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
-	ch.id		= "FortOrange_shipyarder";
-	ch.model	= "shipowner_2";
+	makeref(ch, Characters[n]); //Корабел
+	ch.id = "FortOrange_shipyarder";
+	ch.model = "shipowner_2";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_Shipyard";
+	ch.location = "FortOrange_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -305,7 +305,7 @@ int CreateJamaicaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_SetLoginTime(ch, 6.0, 21.99);
@@ -313,12 +313,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "FortOrange_PortMan";
-	ch.model	= "usurer_5";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "FortOrange_PortMan";
+	ch.model = "usurer_5";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_PortOffice";
+	ch.location = "FortOrange_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -330,12 +330,12 @@ int CreateJamaicaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "FortOrange_usurer";
-	ch.model	= "usurer_3";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "FortOrange_usurer";
+	ch.model = "usurer_3";
 	ch.sex = "man";
 	ch.City = "FortOrange";
-	ch.location	= "FortOrange_Bank";
+	ch.location = "FortOrange_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -348,12 +348,12 @@ int CreateJamaicaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "FortOrange_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "FortOrange_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);
@@ -365,14 +365,14 @@ int CreateJamaicaCharacters(int n)
 	ch.greeting = "Gr_Smuggler Agent";
 	n = n + 1;
 
-		makeref(ch,Characters[n]);			// Архитектор
-	ch.id		= "Builder";
-	ch.name	= "Альбрехт";
-	ch.lastname	= "Цальпфер";
-	ch.model	= "Mechanic";
+	makeref(ch, Characters[n]); // Архитектор
+	ch.id = "Builder";
+	ch.name = "Альбрехт";
+	ch.lastname = "Цальпфер";
+	ch.model = "Mechanic";
 	ch.sex = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "BuilderHouse";
+	ch.location = "BuilderHouse";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Builder.c";
@@ -387,9 +387,9 @@ int CreateJamaicaCharacters(int n)
 	ch.equip.blade = "topor4";
 	ch.equip.gun = GUN_COMMON;
 	SetRandSPECIAL(ch);
-    	SetSelfSkill(ch, 30, 30, 70, 50, 30);
-    	SetShipSkill(ch, 30, 50, 30, 30, 40, 70, 30, 25, 70)
-	ch.standUp = true; //вставать и нападать на врага
+	SetSelfSkill(ch, 30, 30, 70, 50, 30);
+	SetShipSkill(ch, 30, 50, 30, 30, 40, 70, 30, 25, 70)
+		ch.standUp = true; //вставать и нападать на врага
 	ch.NotCitizenBlade = true;
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -398,22 +398,22 @@ int CreateJamaicaCharacters(int n)
 	n = n + 1;
 
 	//смотритель кладбища
-	makeref(ch,Characters[n]);
-	ch.name 	= "Роберт";
+	makeref(ch, Characters[n]);
+	ch.name = "Роберт";
 	ch.lastname = "Ван Дер Декен";
-	ch.id		= "PortRoyal_Graveyard_Watcher";
-	ch.model    = "LeoMaskett";
-	ch.sex      = "man";
+	ch.id = "PortRoyal_Graveyard_Watcher";
+	ch.model = "LeoMaskett";
+	ch.sex = "man";
 	ch.model.animation = "man";
 	ch.City = "PortRoyal";
-	ch.location	= "PortRoyal_KeepersHouse";
+	ch.location = "PortRoyal_KeepersHouse";
 	ch.location.group = "goto";
 	ch.location.locator = "goto2";
 	ch.watchBoxes = true;
 	ch.NotRemoved = true;
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = ENGLAND;
-	FantomMakeCoolFighter(ch,30,60,60,BLADE_LONG, "pistol3",60);
+	FantomMakeCoolFighter(ch, 30, 60, 60, BLADE_LONG, "pistol3", 60);
 	ch.Dialog.Filename = "Graveyard_Watcher_dialog.c";
 	LAi_SetOwnerType(ch);
 	LAi_group_MoveCharacter(ch, "ENGLAND_CITIZENS");

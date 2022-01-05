@@ -7,16 +7,16 @@ bool wdmLockReload = false;
 void wdmReloadToSea()
 {
 	//Если запрещена перегрузка, ничего не делаем
-	if(wdmLockReload)
+	if (wdmLockReload)
 	{
 		return;
 	}
 	// расчеты ВМЛ -->
 	//#20200408-01
-    bAbordageStarted = false;
+	bAbordageStarted = false;
 	Sea.AbordageMode = false;
 	EmptyAllFantomCharacter();
-	Siege_DailyUpdate();//homo осады 05/11/06
+	Siege_DailyUpdate();										//homo осады 05/11/06
 	SaveCurrentQuestDateParam("WordMapEncounters_DailyUpdate"); //homo карта 25/03/07
 	// расчеты <--
 
@@ -45,26 +45,28 @@ void wdmReloadToSea()
 	SetEventHandler("FaderEvent_EndFade", "WdmEndFade", 0);
 	wdm_fader.thisWorldMapFader = "";
 	CreateEntity(&wdm_fader, "fader");
-	if(IsEntity(wdm_fader) == 0) Trace("Fader not created!!!");
+	if (IsEntity(wdm_fader) == 0)
+		Trace("Fader not created!!!");
 	float fadeOutTime = 0.5;
 	SendMessage(&wdm_fader, "lfl", FADER_OUT, fadeOutTime, true);
 	SendMessage(&wdm_fader, "l", FADER_STARTFRAME);
 	//Установим картинку для фейдера
 	string imageName = "loading\sea_" + rand(31) + ".tga";
-	if(isShipEncounterType)
+	if (isShipEncounterType)
 	{
 		imageName = "loading\battle_" + rand(24) + ".tga";
 	}
-	if(MakeInt(wdmLoginToSea.storm) != 0)
+	if (MakeInt(wdmLoginToSea.storm) != 0)
 	{
 		imageName = "loading\Storm_" + rand(7) + ".tga";
 		/*if(MakeInt(wdmLoginToSea.tornado) != 0)
 		{
 			imageName = "loading\Twister.tga";
-		}*/ // boal пусть будет одна
+		}*/
+		// boal пусть будет одна
 	}
 	wdmLoginToSea.imageName = imageName;
-	SendMessage(&wdm_fader, "ls",FADER_PICTURE, imageName);
+	SendMessage(&wdm_fader, "ls", FADER_PICTURE, imageName);
 }
 
 void WdmStartFade()
@@ -100,7 +102,8 @@ void QuitFromWorldMap()
 	SetEventHandler("FaderEvent_EndFade", "WdmEndFadeA", 0);
 	wdm_fader.thisWorldMapFader = "";
 	CreateEntity(&wdm_fader, "fader");
-	if(IsEntity(wdm_fader) == 0) Trace("Fader not created!!!");
+	if (IsEntity(wdm_fader) == 0)
+		Trace("Fader not created!!!");
 	float fadeOutTime = 0.5;
 	SendMessage(&wdm_fader, "lfl", FADER_OUT, fadeOutTime, true);
 	SendMessage(&wdm_fader, "l", FADER_STARTFRAME);
@@ -112,7 +115,6 @@ void WdmEndFadeA()
 	DelEventHandler("FaderEvent_EndFade", "WdmEndFadeA");
 	//Switch to sea
 	Event("QuitFromWorldMap");
-
 }
 
 // VANO function: return sea coordinates
@@ -122,25 +124,25 @@ void WdmPrepareMapForAbordage(aref arPos)
 	float psX = MakeFloat(worldMap.playerShipX);
 	float psZ = MakeFloat(worldMap.playerShipZ);
 	//Учитываем остров
-	if(worldMap.island != WDM_NONE_ISLAND)
+	if (worldMap.island != WDM_NONE_ISLAND)
 	{
 		//Island
 		wdmLoginToSea.island = worldMap.island;
 		float ix = MakeFloat(worldMap.island.x);
 		float iz = MakeFloat(worldMap.island.z);
 		int scale = WDM_MAP_TO_SEA_SCALE;
-		if (worldMap.island == "Cuba1" || worldMap.island == "Cuba2" || worldMap.island == "Beliz" || worldMap.island == "SantaCatalina"
-			|| worldMap.island == "PortoBello" || worldMap.island == "Cartahena" || worldMap.island == "Maracaibo"
-			|| worldMap.island == "Caracas" || worldMap.island == "Cumana")
+		if (worldMap.island == "Cuba1" || worldMap.island == "Cuba2" || worldMap.island == "Beliz" || worldMap.island == "SantaCatalina" || worldMap.island == "PortoBello" || worldMap.island == "Cartahena" || worldMap.island == "Maracaibo" || worldMap.island == "Caracas" || worldMap.island == "Cumana")
 		{
 			scale = 25;
 		}
-		arPos.x = (psX - ix)*scale;
-		arPos.z = (psZ - iz)*scale;
+		arPos.x = (psX - ix) * scale;
+		arPos.z = (psZ - iz) * scale;
 		arPos.y = worldMap.playerShipAY;
 		worldMap.zeroX = ix;
 		worldMap.zeroZ = iz;
-	}else{
+	}
+	else
+	{
 		//no Island
 		wdmLoginToSea.island = "";
 		//Player ship
@@ -158,25 +160,25 @@ void WdmAddPlayerGroup()
 	float psX = MakeFloat(worldMap.playerShipX);
 	float psZ = MakeFloat(worldMap.playerShipZ);
 	//Учитываем остров
-	if(worldMap.island != WDM_NONE_ISLAND)
+	if (worldMap.island != WDM_NONE_ISLAND)
 	{
 		//Island
 		wdmLoginToSea.island = worldMap.island;
 		float ix = MakeFloat(worldMap.island.x);
 		float iz = MakeFloat(worldMap.island.z);
 		int scale = WDM_MAP_TO_SEA_SCALE;
-		if (worldMap.island == "Cuba1" || worldMap.island == "Cuba2" || worldMap.island == "Beliz" || worldMap.island == "SantaCatalina"
-			|| worldMap.island == "PortoBello" || worldMap.island == "Cartahena" || worldMap.island == "Maracaibo"
-			|| worldMap.island == "Caracas" || worldMap.island == "Cumana")
+		if (worldMap.island == "Cuba1" || worldMap.island == "Cuba2" || worldMap.island == "Beliz" || worldMap.island == "SantaCatalina" || worldMap.island == "PortoBello" || worldMap.island == "Cartahena" || worldMap.island == "Maracaibo" || worldMap.island == "Caracas" || worldMap.island == "Cumana")
 		{
 			scale = 25;
 		}
-		wdmLoginToSea.playerGroup.x = (psX - ix)*scale;
-		wdmLoginToSea.playerGroup.z = (psZ - iz)*scale;
+		wdmLoginToSea.playerGroup.x = (psX - ix) * scale;
+		wdmLoginToSea.playerGroup.z = (psZ - iz) * scale;
 		wdmLoginToSea.playerGroup.ay = worldMap.playerShipAY;
 		worldMap.zeroX = ix;
 		worldMap.zeroZ = iz;
-	}else{
+	}
+	else
+	{
 		//no Island
 		wdmLoginToSea.island = "";
 		//Player ship
@@ -202,20 +204,24 @@ bool WdmAddEncountersData()
 	float wpsX = MakeFloat(wdmLoginToSea.playerGroup.x);
 	float wpsZ = MakeFloat(wdmLoginToSea.playerGroup.z);
 	//Перебираем все энкоунтеры карты
-	for(int i = 0; i < numEncounters; i++)
+	for (int i = 0; i < numEncounters; i++)
 	{
 		//Получим информацию о данном энкоунтере
-		if(wdmSetCurrentShipData(i))
+		if (wdmSetCurrentShipData(i))
 		{
 			//Если не активен, то пропустим его
-			if(MakeInt(worldMap.encounter.select) == 0) continue;
+			if (MakeInt(worldMap.encounter.select) == 0)
+				continue;
 			//Добавляем информацию об морских энкоунтере
 			string encStringID = worldMap.encounter.id;
-			if(encStringID == "") continue;
+			if (encStringID == "")
+				continue;
 			encStringID = "encounters." + encStringID + ".encdata";
-			if(CheckAttribute(&worldMap, encStringID) == 0) continue;
+			if (CheckAttribute(&worldMap, encStringID) == 0)
+				continue;
 			int mapEncSlot = FindFreeMapEncounterSlot();
-			if(mapEncSlot < 0) continue;
+			if (mapEncSlot < 0)
+				continue;
 			ref mapEncSlotRef = GetMapEncounterRef(mapEncSlot);
 			aref encDataForSlot;
 			makearef(encDataForSlot, worldMap.(encStringID));
@@ -223,18 +229,19 @@ bool WdmAddEncountersData()
 			//Отмечаем свершение корабельного энкоунтера
 			isShipEncounter = true;
 			//Описываем его параметры
-			string grp; grp = "group" + i;
+			string grp;
+			grp = "group" + i;
 			float encX = MakeFloat(worldMap.encounter.x);
 			float encZ = MakeFloat(worldMap.encounter.z);
-			wdmLoginToSea.encounters.(grp).x = wpsX + (encX - mpsX)*WDM_MAP_ENCOUNTERS_TO_SEA_SCALE;//WDM_MAP_TO_SEA_SCALE;
-			wdmLoginToSea.encounters.(grp).z = wpsZ + (encZ - mpsZ)*WDM_MAP_ENCOUNTERS_TO_SEA_SCALE;//WDM_MAP_TO_SEA_SCALE;
+			wdmLoginToSea.encounters.(grp).x = wpsX + (encX - mpsX) * WDM_MAP_ENCOUNTERS_TO_SEA_SCALE; //WDM_MAP_TO_SEA_SCALE;
+			wdmLoginToSea.encounters.(grp).z = wpsZ + (encZ - mpsZ) * WDM_MAP_ENCOUNTERS_TO_SEA_SCALE; //WDM_MAP_TO_SEA_SCALE;
 			wdmLoginToSea.encounters.(grp).ay = worldMap.encounter.ay;
 			wdmLoginToSea.encounters.(grp).type = mapEncSlot;
 			wdmLoginToSea.encounters.(grp).id = worldMap.encounter.id;
 			//Помечаем энкоунтера на удаление
 			encStringID = worldMap.encounter.id;
 			encStringID = "encounters." + encStringID;
-			if(CheckAttribute(&worldMap, encStringID + ".quest") == 0)
+			if (CheckAttribute(&worldMap, encStringID + ".quest") == 0)
 			{
 				worldMap.(encStringID).needDelete = "Reload delete non quest encounter";
 			}
@@ -246,18 +253,20 @@ bool WdmAddEncountersData()
 void WdmStormEncounter()
 {
 	wdmLoginToSea.storm = worldMap.playerInStorm;
-	if(MakeInt(wdmLoginToSea.storm) != 0)
+	if (MakeInt(wdmLoginToSea.storm) != 0)
 	{
 		wdmLoginToSea.tornado = worldMap.stormWhithTornado;
-	}else{
+	}
+	else
+	{
 		wdmLoginToSea.tornado = "0";
 	}
 
 	//wdmLoginToSea.tornado = "1";
 
-	if(CheckAttribute(&worldMap, "stormId") != 0)
+	if (CheckAttribute(&worldMap, "stormId") != 0)
 	{
-		if(worldMap.stormId != "")
+		if (worldMap.stormId != "")
 		{
 			string encStringID = worldMap.stormId;
 			encStringID = "encounters." + encStringID;

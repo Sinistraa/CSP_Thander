@@ -25,7 +25,10 @@ void CreateMessageBox(string sCaptionID, string sMessageID, string sIconID, stri
 */
 void KillMessageBox()
 {
-	if (!bMessageBoxActive) { return; }
+	if (!bMessageBoxActive)
+	{
+		return;
+	}
 	bMessageBoxActive = false;
 
 	DelEventHandler("MB_BTN_Ok", "MB_BTN_Ok");
@@ -36,17 +39,26 @@ void KillMessageBox()
 void MB_BTN_Ok()
 {
 	KillMessageBox();
-	if (strlen(sMBOkFunc)) { call sMBOkFunc(); }
+	if (strlen(sMBOkFunc))
+	{
+		call sMBOkFunc();
+	}
 }
 
 void MB_BTN_Cancel()
 {
 	KillMessageBox();
-	if (strlen(sMBCancelFunc)) { call sMBCancelFunc(); }
+	if (strlen(sMBCancelFunc))
+	{
+		call sMBCancelFunc();
+	}
 }
 
 void MB_BTN_Retry()
 {
 	KillMessageBox();
-	if (strlen(sMBRetry)) { call sMBRetry(); }
+	if (strlen(sMBRetry))
+	{
+		call sMBRetry();
+	}
 }

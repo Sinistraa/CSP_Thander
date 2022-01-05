@@ -35,7 +35,8 @@ string Island_FindNearestLocator(string group, float x, float z)
 
 	makearef(arGroup, Islands[iIslandID].(group));
 	iNum = GetAttributesNum(arGroup);
-	if (iNum < 1) return retStr;
+	if (iNum < 1)
+		return retStr;
 
 	for (i = 0; i < iNum; i++)
 	{

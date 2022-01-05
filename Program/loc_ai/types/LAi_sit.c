@@ -6,10 +6,7 @@
 		dialog
 */
 
-
-
-#define LAI_TYPE_SIT		"sit"
-
+#define LAI_TYPE_SIT "sit"
 
 //Инициализация
 void LAi_type_sit_Init(aref chr)
@@ -21,11 +18,12 @@ void LAi_type_sit_Init(aref chr)
 	LAi_tmpl_stay_InitTemplate(chr);
 	//дадим предметы для использования в таверне
 	//#20171126-01 Females in church mod
-	if(!CheckAttribute(chr, "TiedItems")) {
-        chr.TiedItems.itm1.model = "HandsItems\meet";
-        chr.TiedItems.itm1.locator = "Saber_hand";
-        chr.TiedItems.itm2.model = "HandsItems\cup";
-        chr.TiedItems.itm2.locator = "Saber_hand";
+	if (!CheckAttribute(chr, "TiedItems"))
+	{
+		chr.TiedItems.itm1.model = "HandsItems\meet";
+		chr.TiedItems.itm1.locator = "Saber_hand";
+		chr.TiedItems.itm2.model = "HandsItems\cup";
+		chr.TiedItems.itm2.locator = "Saber_hand";
 	}
 	//Установим анимацию персонажу
 	LAi_SetDefaultSitAnimation(chr);
@@ -45,56 +43,58 @@ void LAi_type_sit_CharacterUpdate(aref chr, float dltTime)
 		aref tmpl;
 		float xAng = 0;
 		float zAng = 0;
-		float   locx, locy, locz;
-		if(CheckAttribute(chr,"sex"))
+		float locx, locy, locz;
+		if (CheckAttribute(chr, "sex"))
 		{
-			if(chr.sex == "woman")
+			if (chr.sex == "woman")
 			{
 				snd = "female-sit";
 			}
 		}
-		if(rand(300) == 123)
+		if (rand(300) == 123)
 		{
 			LAi_CharacterPlaySound(chr, snd);
 		}
-		if(InterfaceStates.EnabledQuestsMarks)
+		if (InterfaceStates.EnabledQuestsMarks)
 		{
-			if (CheckAttribute(chr,"dialog.filename") && chr.dialog.filename == "Enc_Treasure_dialog.c")
+			if (CheckAttribute(chr, "dialog.filename") && chr.dialog.filename == "Enc_Treasure_dialog.c")
 			{
 				chr.quest.questflag.model = "exclamationmarkG";
 				chr.quest.questflag.technique = "RandItem";
 			}
-
 		}
 		else
 		{
 			chr.quest.questflag.model = "";
 			chr.quest.questflag.technique = "";
 		}
-		if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG && !CheckAttribute(chr, "nonTable"))
+		if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG && !CheckAttribute(chr, "nonTable"))
 		{
 			time = 20;
 			int num = FindNearCharacters(chr, 2.3, -1.0, 0.0, 0.0, false, true);
-			for(i = 0; i < num; i++)
+			for (i = 0; i < num; i++)
 			{
 				iTemp = chrFindNearCharacters[i].index;
 				chrTarget = &characters[iTemp];
-				if(chrTarget.chr_ai.type == LAI_TYPE_SIT && chrFindNearCharacters[i].index != nMainCharacterIndex)
+				if (chrTarget.chr_ai.type == LAI_TYPE_SIT && chrFindNearCharacters[i].index != nMainCharacterIndex)
 				{
 					GetCharacterAy(chr, &fAng);
 					//xAng = stf(chrFindNearCharacters[i].dx) * cos(fAng) - stf(chrFindNearCharacters[i].dz) * sin(fAng);
 					zAng = stf(chrFindNearCharacters[i].dz) * cos(fAng) + stf(chrFindNearCharacters[i].dx) * sin(fAng);
 					if (zAng > -0.9 && zAng < 0.9)
 					{
-						if(LAi_Character_CanDialog(chr, chrTarget) && rand(1))
+						if (LAi_Character_CanDialog(chr, chrTarget) && rand(1))
 						{
-							if (!LAi_tmpl_SetDialog(chr, chrTarget, 50.0)) return;
-							if (!LAi_tmpl_SetDialog(chrTarget, chr, 50.0)) return;
+							if (!LAi_tmpl_SetDialog(chr, chrTarget, 50.0))
+								return;
+							if (!LAi_tmpl_SetDialog(chrTarget, chr, 50.0))
+								return;
 							time = 60.0;
 							LAi_CharacterPlaySound(chr, snd + "-who");
 							break;
 						}
-						else time = 30.0;
+						else
+							time = 30.0;
 					}
 				}
 			}
@@ -115,9 +115,9 @@ void LAi_type_sit_CharacterUpdate(aref chr, float dltTime)
 			if (CheckAttribute(chr, "watchBoxes") && chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 			{
 				num = FindNearCharacters(chr, 10.0, -1.0, 180.0, 0.01, true, true);
-				for(i = 0; i < num; i++)
+				for (i = 0; i < num; i++)
 				{
-					if(nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
+					if (nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
 					{
 						//нашли ГГ, проверяем, не в сундуке ли.
 						if (bMainCharacterInBox)
@@ -162,12 +162,14 @@ void LAi_type_sit_NeedDialog(aref chr, aref by)
 //Запрос на диалог, если возвратить true то в этот момент можно начать диалог
 bool LAi_type_sit_CanDialog(aref chr, aref by)
 {
-	if(sti(by.index) == nMainCharacterIndex && chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+	if (sti(by.index) == nMainCharacterIndex && chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
 	{
-		if(LAi_tmpl_dialog_StopNPC(chr)) return true;
+		if (LAi_tmpl_dialog_StopNPC(chr))
+			return true;
 	}
 	//Если уже говорим, то откажем
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG) return false;
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+		return false;
 	//Согласимся на диалог
 	return true;
 }
@@ -188,37 +190,37 @@ void LAi_type_sit_EndDialog(aref chr, aref by)
 	chr.chr_ai.type.wait = 15;
 }
 
-
 //Персонаж выстрелил
 void LAi_type_sit_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
 }
 
-
 //Персонаж атакован
 void LAi_type_sit_Attacked(aref chr, aref by)
 {
-
 }
 
 int LAi_type_sit_FindEnemy(aref chr, int num)
 {
-	if(num <= 0) return -1;
+	if (num <= 0)
+		return -1;
 	int i, idx;
-	if(LAi_grp_playeralarm > 0)
+	if (LAi_grp_playeralarm > 0)
 	{
-		for(i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) return idx;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				return idx;
 		}
 	}
 	else
 	{
-		for(i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_CheckFightMode(&Characters[idx])) return idx;
+			if (LAi_CheckFightMode(&Characters[idx]))
+				return idx;
 		}
 	}
 	return -1;

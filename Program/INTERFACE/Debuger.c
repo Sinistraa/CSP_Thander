@@ -8,67 +8,65 @@ int remInt = 0;
 
 void InitInterface(string iniName)
 {
- 	StartAboveForm(true);
- 	//SetTimeScale(0.0);
+	StartAboveForm(true);
+	//SetTimeScale(0.0);
 	//locCameraSleep(true);
 
 	//EngineLayersOffOn(true);
 
 	GameInterface.title = "titleBoal_Debug";
 
-	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
 	CalculateInfoData();
 
 	CalculateCheatsInfo(); // Warship. Статистика - сколько читов юзали
 
-	SetFormatedText("INFO_TEXT",totalInfo);//"Информация отладчика");
-	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE,"INFO_TEXT",5);
+	SetFormatedText("INFO_TEXT", totalInfo); //"Информация отладчика");
+	SendMessage(&GameInterface, "lsl", MSG_INTERFACE_MSG_TO_NODE, "INFO_TEXT", 5);
 
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0);
+	SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("evntDoPostExit", "DoPostExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("SetScrollerPos", "SetScrollerPos", 0);
+	SetEventHandler("ScrollPosChange", "ProcScrollPosChange", 0);
+	SetEventHandler("ScrollTopChange", "ProcScrollChange", 0);
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0);
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("evntDoPostExit","DoPostExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("SetScrollerPos","SetScrollerPos",0);
-	SetEventHandler("ScrollPosChange","ProcScrollPosChange",0);
-	SetEventHandler("ScrollTopChange","ProcScrollChange",0);
-
-    GameInterface.reload_edit.str = "Pirates_Shipyard, reload, reload1";//"Pearl_town_1, reload, reload1";
+	GameInterface.reload_edit.str = "Pirates_Shipyard, reload, reload1"; //"Pearl_town_1, reload, reload1";
 }
 
 void ProcessBreakExit()
 {
-	IDoExit( RC_INTERFACE_QUICK_SAVE );
+	IDoExit(RC_INTERFACE_QUICK_SAVE);
 }
 
 void ProcessCancelExit()
 {
-	IDoExit( RC_INTERFACE_QUICK_SAVE );
+	IDoExit(RC_INTERFACE_QUICK_SAVE);
 }
 
 void IDoExit(int exitCode)
 {
-    EndAboveForm(true);
-    //SetTimeScale(1.0);
+	EndAboveForm(true);
+	//SetTimeScale(1.0);
 	//locCameraSleep(false);
 
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("evntDoPostExit","DoPostExit");
-	DelEventHandler("ievnt_command","ProcCommand");
- 	DelEventHandler("SetScrollerPos","SetScrollerPos");
-	DelEventHandler("ScrollPosChange","ProcScrollPosChange");
-	DelEventHandler("ScrollTopChange","ProcScrollChange");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("evntDoPostExit", "DoPostExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("SetScrollerPos", "SetScrollerPos");
+	DelEventHandler("ScrollPosChange", "ProcScrollPosChange");
+	DelEventHandler("ScrollTopChange", "ProcScrollChange");
 
-	if(bSeaActive)
-    {
-        RefreshBattleInterface();
-    }
+	if (bSeaActive)
+	{
+		RefreshBattleInterface();
+	}
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
 }
-
 
 void DoPostExit()
 {
@@ -79,677 +77,677 @@ void DoPostExit()
 void CalculateInfoData()
 {
 	// тут высчитываем нужную информацию и выводим в totalInfo - Инициализация -->
-	totalInfo = "Это отладчик. Позволяет выполнять заданные скриптологом функции. Кнопки: "+NewStr();
+	totalInfo = "Это отладчик. Позволяет выполнять заданные скриптологом функции. Кнопки: " + NewStr();
 	totalInfo = totalInfo + "1 - " + descF1 + NewStr() +
-	                        "2 - " + descF2 + NewStr() +
-	                        "3 - " + descF3 + NewStr() +
-	                        "4 - " + descF4 + NewStr() +
-	                        "5 - " + descF5 + NewStr() +
-	                        "6 - " + descF6 + NewStr() +
-	                        "7 - " + descF7 + NewStr() +
-	                        "8 - " + descF8 + NewStr() +
-	                        "9 - " + descF9 + NewStr() +
-	                        "10 - " + descF10 + NewStr() +
-	                        "11 - " + descF11 + NewStr() +
-	                        "12 - " + descF12 + NewStr() +
-	                        "13 - " + descF13 + NewStr() +
-	                        "14 - " + descF14 + NewStr() +
-	                        "15 - " + descF15 + NewStr() +
-	                        "16 - " + descF16 + NewStr() +
-	                        "17 - " + descF17 + NewStr() +
-	                        "18 - " + descF18 + NewStr() +
-                            "19 - " + descF19 + NewStr() +
-                            "20 - " + descF20 + NewStr() +
-                            "21 - " + descF21 + NewStr() +
-                            "22 - " + descF22 + NewStr() +
-                            "23 - " + descF23 + NewStr() +
-	                        "24 - " + descF24 + NewStr() +
-	                        "25 - " + descF25 + NewStr() +
-	                        "26 - " + descF26 + NewStr() +
-	                        "27 - " + descF27 + NewStr() +
-	                        "28 - " + descF28 + NewStr() +
-	                        "29 - " + descF29 + NewStr() +
-	                        "30 - " + descF30 + NewStr() +
-							"31 - " + descF31 + NewStr() +
-	                        "32 - " + descF32 + NewStr() +
-							"33 - " + descF33 + NewStr() +
-	                        "34 - " + descF34 + NewStr() +
-							"35 - " + descF35 + NewStr() +
-	                        "36 - " + descF36 + NewStr() +
-	                        "37 - " + descF37 + NewStr() +
-	                        "38 - " + descF38 + NewStr() +
-	                        "39 - " + descF39 + NewStr() +
-	                        "40 - " + descF40 + NewStr() +
-                            "41 - " + descF41 + NewStr() +
-                            "42 - " + descF42 + NewStr() +
-                            "43 - " + descF43 + NewStr() +
-	                        "44 - " + descF44 + NewStr() +
-	                        "45 - " + descF45 + NewStr() +
-	                        "46 - " + descF46 + NewStr() +
-	                        "47 - " + descF47 + NewStr() +
-							"48 - " + descF48 + NewStr() +
-							"49 - " + descF49 + NewStr() +
-							"50 - " + descF50 + NewStr() +
-							"51 - " + descF51 + NewStr() +
-							"52 - " + descF52 + NewStr() +
-							"53 - " + descF53 + NewStr() +
-							"54 - " + descF54 + NewStr() +
-							"55 - " + descF55 + NewStr() +
-							"56 - " + descF56 + NewStr() +
-							"57 - " + descF57 + NewStr() +
-							"58 - " + descF58 + NewStr() +
-							"59 - " + descF59 + NewStr() +
-							"60 - " + descF60 + NewStr() +
-							"61 - " + descF61 + NewStr() +
-							"62 - " + descF62 + NewStr() +
-							"63 - " + descF63 + NewStr() +
-							"64 - " + descF64 + NewStr() +
-							"65 - " + descF65 + NewStr() +
-							"66 - " + descF66 + NewStr() +
-							"67 - " + descF67 + NewStr() +
-							"68 - " + descF68 + NewStr() +
-							"69 - " + descF69 + NewStr() +
-							"70 - " + descF70 + NewStr() +
-							"71 - " + descF71 + NewStr() +
-							"72 - " + descF72 + NewStr() +
-							"73 - " + descF73 + NewStr() +
-							"74 - " + descF74 + NewStr() +
-							"75 - " + descF75 + NewStr() +
-							"76 - " + descF76 + NewStr() +
-							"77 - " + descF77 + NewStr() +
-							"78 - " + descF78 + NewStr() +
-							"79 - " + descF79 + NewStr() +
-							"80 - " + descF80 + NewStr() +
-							"81 - " + descF81 + NewStr() +
-							"82 - " + descF82 + NewStr() +
-							"83 - " + descF83 + NewStr() +
-							"84 - " + descF84 + NewStr() +
-							"85 - " + descF85 + NewStr() +
-							"86 - " + descF86 + NewStr() +
-							"87 - " + descF87 + NewStr() +
-							"88 - " + descF88;
+				"2 - " + descF2 + NewStr() +
+				"3 - " + descF3 + NewStr() +
+				"4 - " + descF4 + NewStr() +
+				"5 - " + descF5 + NewStr() +
+				"6 - " + descF6 + NewStr() +
+				"7 - " + descF7 + NewStr() +
+				"8 - " + descF8 + NewStr() +
+				"9 - " + descF9 + NewStr() +
+				"10 - " + descF10 + NewStr() +
+				"11 - " + descF11 + NewStr() +
+				"12 - " + descF12 + NewStr() +
+				"13 - " + descF13 + NewStr() +
+				"14 - " + descF14 + NewStr() +
+				"15 - " + descF15 + NewStr() +
+				"16 - " + descF16 + NewStr() +
+				"17 - " + descF17 + NewStr() +
+				"18 - " + descF18 + NewStr() +
+				"19 - " + descF19 + NewStr() +
+				"20 - " + descF20 + NewStr() +
+				"21 - " + descF21 + NewStr() +
+				"22 - " + descF22 + NewStr() +
+				"23 - " + descF23 + NewStr() +
+				"24 - " + descF24 + NewStr() +
+				"25 - " + descF25 + NewStr() +
+				"26 - " + descF26 + NewStr() +
+				"27 - " + descF27 + NewStr() +
+				"28 - " + descF28 + NewStr() +
+				"29 - " + descF29 + NewStr() +
+				"30 - " + descF30 + NewStr() +
+				"31 - " + descF31 + NewStr() +
+				"32 - " + descF32 + NewStr() +
+				"33 - " + descF33 + NewStr() +
+				"34 - " + descF34 + NewStr() +
+				"35 - " + descF35 + NewStr() +
+				"36 - " + descF36 + NewStr() +
+				"37 - " + descF37 + NewStr() +
+				"38 - " + descF38 + NewStr() +
+				"39 - " + descF39 + NewStr() +
+				"40 - " + descF40 + NewStr() +
+				"41 - " + descF41 + NewStr() +
+				"42 - " + descF42 + NewStr() +
+				"43 - " + descF43 + NewStr() +
+				"44 - " + descF44 + NewStr() +
+				"45 - " + descF45 + NewStr() +
+				"46 - " + descF46 + NewStr() +
+				"47 - " + descF47 + NewStr() +
+				"48 - " + descF48 + NewStr() +
+				"49 - " + descF49 + NewStr() +
+				"50 - " + descF50 + NewStr() +
+				"51 - " + descF51 + NewStr() +
+				"52 - " + descF52 + NewStr() +
+				"53 - " + descF53 + NewStr() +
+				"54 - " + descF54 + NewStr() +
+				"55 - " + descF55 + NewStr() +
+				"56 - " + descF56 + NewStr() +
+				"57 - " + descF57 + NewStr() +
+				"58 - " + descF58 + NewStr() +
+				"59 - " + descF59 + NewStr() +
+				"60 - " + descF60 + NewStr() +
+				"61 - " + descF61 + NewStr() +
+				"62 - " + descF62 + NewStr() +
+				"63 - " + descF63 + NewStr() +
+				"64 - " + descF64 + NewStr() +
+				"65 - " + descF65 + NewStr() +
+				"66 - " + descF66 + NewStr() +
+				"67 - " + descF67 + NewStr() +
+				"68 - " + descF68 + NewStr() +
+				"69 - " + descF69 + NewStr() +
+				"70 - " + descF70 + NewStr() +
+				"71 - " + descF71 + NewStr() +
+				"72 - " + descF72 + NewStr() +
+				"73 - " + descF73 + NewStr() +
+				"74 - " + descF74 + NewStr() +
+				"75 - " + descF75 + NewStr() +
+				"76 - " + descF76 + NewStr() +
+				"77 - " + descF77 + NewStr() +
+				"78 - " + descF78 + NewStr() +
+				"79 - " + descF79 + NewStr() +
+				"80 - " + descF80 + NewStr() +
+				"81 - " + descF81 + NewStr() +
+				"82 - " + descF82 + NewStr() +
+				"83 - " + descF83 + NewStr() +
+				"84 - " + descF84 + NewStr() +
+				"85 - " + descF85 + NewStr() +
+				"86 - " + descF86 + NewStr() +
+				"87 - " + descF87 + NewStr() +
+				"88 - " + descF88;
 	// перевод строки (по другому у меня не вышло) +LanguageConvertString(idLngFile,"new_string");
-    // тут высчитываем нужную информацию и выводим в totalInfo <--
+	// тут высчитываем нужную информацию и выводим в totalInfo <--
 }
 void ProcCommand()
 {
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	switch(nodName)
+	switch (nodName)
 	{
-	    case "B_F1":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF1();
-		  }
-	    break;
-	    case "B_F2":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF2();
-		  }
-	    break;
-	    case "B_F3":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF3();
-		  }
-	    break;
-	    case "B_F4":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF4();
-		  }
-	    break;
-	    case "B_F5":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF5();
-		  }
-	    break;
+	case "B_F1":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF1();
+		}
+		break;
+	case "B_F2":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF2();
+		}
+		break;
+	case "B_F3":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF3();
+		}
+		break;
+	case "B_F4":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF4();
+		}
+		break;
+	case "B_F5":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF5();
+		}
+		break;
 
-	    case "B_F6":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF6();
-		  }
-	    break;
+	case "B_F6":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF6();
+		}
+		break;
 
-	    case "B_F7":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF7();
-		  }
-	    break;
+	case "B_F7":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF7();
+		}
+		break;
 
-	    case "B_F8":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF8();
-		  }
-	    break;
+	case "B_F8":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF8();
+		}
+		break;
 
-	    case "B_F9":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF9();
-		  }
-	    break;
+	case "B_F9":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF9();
+		}
+		break;
 
-	    case "B_F10":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF10();
-		  }
-	    break;
+	case "B_F10":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF10();
+		}
+		break;
 
-	    case "B_F11":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF11();
-		  }
-	    break;
+	case "B_F11":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF11();
+		}
+		break;
 
-	    case "B_F12":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF12();
-		  }
-	    break;
+	case "B_F12":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF12();
+		}
+		break;
 
-	    case "B_F13":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF13();
-		  }
-	    break;
+	case "B_F13":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF13();
+		}
+		break;
 
-	    case "B_F14":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF14();
-		  }
-	    break;
+	case "B_F14":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF14();
+		}
+		break;
 
-	    case "B_F15":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF15();
-		  }
-	    break;
+	case "B_F15":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF15();
+		}
+		break;
 
-	    case "B_F16":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF16();
-		  }
-	    break;
+	case "B_F16":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF16();
+		}
+		break;
 
-	    case "B_F17":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF17();
-		  }
-	    break;
+	case "B_F17":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF17();
+		}
+		break;
 
-	    case "B_F18":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF18();
-		  }
-	    break;
+	case "B_F18":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF18();
+		}
+		break;
 
-	    case "B_F19":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF19();
-		  }
-	    break;
+	case "B_F19":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF19();
+		}
+		break;
 
-        case "B_F20":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF20();
-		  }
-	    break;
+	case "B_F20":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF20();
+		}
+		break;
 
-	    case "B_F21":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF21();
-		  }
-	    break;
-	    case "B_F22":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF22();
-		  }
-	    break;
-	    case "B_F23":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF23();
-		  }
-	    break;
-	    case "B_F24":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF24();
-		  }
-	    break;
-	    case "B_F25":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF25();
-		  }
-	    break;
-	    case "B_F26":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF26();
-		  }
-	    break;
-	    case "B_F27":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF27();
-		  }
-	    break;
-	    case "B_F28":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF28();
-		  }
-	    break;
-	    case "B_F29":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF29();
-		  }
-	    break;
-	    case "B_F30":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF30();
-		  }
-	    break;
-	    case "B_F31":
-		if(comName=="activate" || comName=="click")
+	case "B_F21":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF21();
+		}
+		break;
+	case "B_F22":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF22();
+		}
+		break;
+	case "B_F23":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF23();
+		}
+		break;
+	case "B_F24":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF24();
+		}
+		break;
+	case "B_F25":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF25();
+		}
+		break;
+	case "B_F26":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF26();
+		}
+		break;
+	case "B_F27":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF27();
+		}
+		break;
+	case "B_F28":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF28();
+		}
+		break;
+	case "B_F29":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF29();
+		}
+		break;
+	case "B_F30":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF30();
+		}
+		break;
+	case "B_F31":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF31();
 		}
-	    break;
-	    case "B_F32":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F32":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF32();
 		}
-	    break;
-		case "B_F33":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F33":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF33();
 		}
-	    break;
-		case "B_F34":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F34":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF34();
 		}
-	    break;
-		case "B_F35":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F35":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF35();
 		}
-	    break;
-		case "B_F36":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F36":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF36();
 		}
-	    break;
-		case "B_F37":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F37":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF37();
 		}
-	    break;
-		case "B_F38":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F38":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF38();
 		}
-	    break;
-		case "B_F39":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F39":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF39();
 		}
-	    break;
-		case "B_F40":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F40":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF40();
 		}
-	    break;
-		case "B_F41":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F41":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF41();
 		}
-	    break;
-		case "B_F42":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F42":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF42();
 		}
-	    break;
-		case "B_F43":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F43":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF43();
 		}
-	    break;
-		case "B_F44":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F44":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF44();
 		}
-	    break;
-	    case "B_F45":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF45();
-		  }
-	    break;
-	    case "B_F46":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF46();
-		  }
-	    break;
-	    case "B_F47":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF47();
-		  }
-	    break;
-	    case "B_F48":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF48();
-		  }
-	    break;
-	    case "B_F49":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF49();
-		  }
-	    break;
+		break;
+	case "B_F45":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF45();
+		}
+		break;
+	case "B_F46":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF46();
+		}
+		break;
+	case "B_F47":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF47();
+		}
+		break;
+	case "B_F48":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF48();
+		}
+		break;
+	case "B_F49":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF49();
+		}
+		break;
 
-	    case "B_F50":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF50();
-		  }
-	    break;
+	case "B_F50":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF50();
+		}
+		break;
 
-	    case "B_F51":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF51();
-		  }
-	    break;
+	case "B_F51":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF51();
+		}
+		break;
 
-	    case "B_F52":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF52();
-		  }
-	    break;
+	case "B_F52":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF52();
+		}
+		break;
 
-	    case "B_F53":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF53();
-		  }
-	    break;
+	case "B_F53":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF53();
+		}
+		break;
 
-	    case "B_F54":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF54();
-		  }
-	    break;
+	case "B_F54":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF54();
+		}
+		break;
 
-	    case "B_F55":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF55();
-		  }
-	    break;
+	case "B_F55":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF55();
+		}
+		break;
 
-	    case "B_F56":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF56();
-		  }
-	    break;
+	case "B_F56":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF56();
+		}
+		break;
 
-	    case "B_F57":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF57();
-		  }
-	    break;
+	case "B_F57":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF57();
+		}
+		break;
 
-	    case "B_F58":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF58();
-		  }
-	    break;
+	case "B_F58":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF58();
+		}
+		break;
 
-	    case "B_F59":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF59();
-		  }
-	    break;
+	case "B_F59":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF59();
+		}
+		break;
 
-	    case "B_F60":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF60();
-		  }
-	    break;
+	case "B_F60":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF60();
+		}
+		break;
 
-	    case "B_F61":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF61();
-		  }
-	    break;
+	case "B_F61":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF61();
+		}
+		break;
 
-	    case "B_F62":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF62();
-		  }
-	    break;
+	case "B_F62":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF62();
+		}
+		break;
 
-	    case "B_F63":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF63();
-		  }
-	    break;
+	case "B_F63":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF63();
+		}
+		break;
 
-        case "B_F64":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF64();
-		  }
-	    break;
+	case "B_F64":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF64();
+		}
+		break;
 
-	    case "B_F65":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF65();
-		  }
-	    break;
-	    case "B_F66":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF66();
-		  }
-	    break;
-	    case "B_F67":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF67();
-		  }
-	    break;
-	    case "B_F68":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF68();
-		  }
-	    break;
-	    case "B_F69":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF69();
-		  }
-	    break;
-	    case "B_F70":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF70();
-		  }
-	    break;
-	    case "B_F71":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF71();
-		  }
-	    break;
-	    case "B_F72":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF72();
-		  }
-	    break;
-	    case "B_F73":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF73();
-		  }
-	    break;
-	    case "B_F74":
-		  if(comName=="activate" || comName=="click")
-		  {
-		      CalculateInfoDataF74();
-		  }
-	    break;
-	    case "B_F75":
-		if(comName=="activate" || comName=="click")
+	case "B_F65":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF65();
+		}
+		break;
+	case "B_F66":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF66();
+		}
+		break;
+	case "B_F67":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF67();
+		}
+		break;
+	case "B_F68":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF68();
+		}
+		break;
+	case "B_F69":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF69();
+		}
+		break;
+	case "B_F70":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF70();
+		}
+		break;
+	case "B_F71":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF71();
+		}
+		break;
+	case "B_F72":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF72();
+		}
+		break;
+	case "B_F73":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF73();
+		}
+		break;
+	case "B_F74":
+		if (comName == "activate" || comName == "click")
+		{
+			CalculateInfoDataF74();
+		}
+		break;
+	case "B_F75":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF75();
 		}
-	    break;
-	    case "B_F76":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F76":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF76();
 		}
-	    break;
-		case "B_F77":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F77":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF77();
 		}
-	    break;
-		case "B_F78":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F78":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF78();
 		}
-	    break;
-		case "B_F79":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F79":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF79();
 		}
-	    break;
-		case "B_F80":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F80":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF80();
 		}
-	    break;
-		case "B_F81":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F81":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF81();
 		}
-	    break;
-		case "B_F82":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F82":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF82();
 		}
-	    break;
-		case "B_F83":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F83":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF83();
 		}
-	    break;
-		case "B_F84":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F84":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF84();
 		}
-	    break;
-		case "B_F85":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F85":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF85();
 		}
-	    break;
-		case "B_F86":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F86":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF86();
 		}
-	    break;
-		case "B_F87":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F87":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF87();
 		}
-	    break;
-		case "B_F88":
-		if(comName=="activate" || comName=="click")
+		break;
+	case "B_F88":
+		if (comName == "activate" || comName == "click")
 		{
 			CalculateInfoDataF88();
 		}
-	    break;
-	    case "B_BETA":
-		  if(comName=="activate" || comName=="click")
-		  {
-              IDoExit(RC_INTERFACE_DO_BOAL_BETA);
-		  }
-	    break;
-	    case "B_RELOAD":
-		  if(comName=="activate" || comName=="click")
-		  {
-              ReloadByStr();
-		  }
-	    break;
+		break;
+	case "B_BETA":
+		if (comName == "activate" || comName == "click")
+		{
+			IDoExit(RC_INTERFACE_DO_BOAL_BETA);
+		}
+		break;
+	case "B_RELOAD":
+		if (comName == "activate" || comName == "click")
+		{
+			ReloadByStr();
+		}
+		break;
 	}
 
 	CalculateCheatsInfo(); // Статистика по читам
@@ -762,10 +760,10 @@ void CalculateInfoDataF1()
 {
 	totalInfo = descF1;
 	Pchar.money = sti(Pchar.money) + 500000;
-	totalInfo = totalInfo + GetAssembledString(" Денег у #sName#а теперь #dmoney#",	Pchar);
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	totalInfo = totalInfo + GetAssembledString(" Денег у #sName#а теперь #dmoney#", Pchar);
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	Statistic_AddValue(PChar, "Cheats.F1", 1);
 }
@@ -779,10 +777,10 @@ void CalculateInfoDataF2()
 	totalInfo = descF2;
 	//TraderHunterOnMap();
 	CreateSiege("");
-    // <
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	ProcessCancelExit();
 	// Статистика по читам
@@ -801,69 +799,67 @@ void CalculateInfoDataF3()
 	float locx, locy, locz, locay;
 	if (bSeaActive && !bAbordageStarted)
 	{
-	    if (CheckAttribute(mc, "Ship.pos.x"))
+		if (CheckAttribute(mc, "Ship.pos.x"))
 		{
-		    totalInfo = totalInfo + NewStr() + mc.location + "     ship(x,z)= "+mc.Ship.pos.x +", "+mc.Ship.pos.z;
+			totalInfo = totalInfo + NewStr() + mc.location + "     ship(x,z)= " + mc.Ship.pos.x + ", " + mc.Ship.pos.z;
 			totalInfo = totalInfo + NewStr() + " Sea_Coord.X " + Sea_GetRealCoordX(makefloat(mc.Ship.pos.x)) + " Sea_Coord.Z " + Sea_GetRealCoordZ(makefloat(mc.Ship.pos.z));
-		    if (false)//CheckAttribute(mc, "WMShip.Pos.x") && worldMap.island != "")
-	        {
-	            string sTemp = mc.curIslandId;
-	            float r1 = stf(worldMap.islands.(sTemp).GoMapRadius);
+			if (false) //CheckAttribute(mc, "WMShip.Pos.x") && worldMap.island != "")
+			{
+				string sTemp = mc.curIslandId;
+				float r1 = stf(worldMap.islands.(sTemp).GoMapRadius);
 
 				r1 *= WDM_MAP_TO_SEA_SCALE;
-	            float d2 = GetDistance2D(stf(mc.Ship.Pos.x),
-	                              stf(mc.Ship.Pos.z),
-	                              stf(worldMap.islands.(sTemp).position.rx),
-	                              stf(worldMap.islands.(sTemp).position.rz));
+				float d2 = GetDistance2D(stf(mc.Ship.Pos.x),
+										 stf(mc.Ship.Pos.z),
+										 stf(worldMap.islands.(sTemp).position.rx),
+										 stf(worldMap.islands.(sTemp).position.rz));
 
-	            totalInfo = totalInfo + "         Координаты для карты radius= " + r1 + "   GetDistance2D= " + d2 + "      ";
-	        }
+				totalInfo = totalInfo + "         Координаты для карты radius= " + r1 + "   GetDistance2D= " + d2 + "      ";
+			}
 		}
 	}
 	else
 	{
-  		if (IsEntity(loadedLocation))
-  		{
-  		    float xx,zz,xz,zx;
+		if (IsEntity(loadedLocation))
+		{
+			float xx, zz, xz, zx;
 
 			GetCharacterPos(GetMainCharacter(), &locx, &locy, &locz);
 			GetCharacterAy(GetMainCharacter(), &locay);
 			xx = -sin(locay - PId2);
-            zz = xx;
-            xz = -cos(locay - PId2);
-            zx = -xz;
-			totalInfo = totalInfo + "id = " + mc.location + " (x,y,z, xx,zz)= "+locx + ", " +locy + ", "+locz + ", "+xx + ", "+xz;
+			zz = xx;
+			xz = -cos(locay - PId2);
+			zx = -xz;
+			totalInfo = totalInfo + "id = " + mc.location + " (x,y,z, xx,zz)= " + locx + ", " + locy + ", " + locz + ", " + xx + ", " + xz;
 			totalInfo = totalInfo + NewStr() + "filespath.models = " + loadedLocation.filespath.models;
 			totalInfo = totalInfo + NewStr() + "image = " + loadedLocation.image;
 			totalInfo = totalInfo + NewStr() + "models.locators = " + loadedLocation.models.always.locators;
 
-
-
-			if(CheckAttribute(LoadedLocation, "islandId"))
+			if (CheckAttribute(LoadedLocation, "islandId"))
 			{
 				totalInfo = totalInfo + NewStr() + "islandId = " + LoadedLocation.islandId;
 			}
 
-			if(CheckAttribute(LoadedLocation, "townsack"))
+			if (CheckAttribute(LoadedLocation, "townsack"))
 			{
 				totalInfo = totalInfo + NewStr() + "townsack = " + LoadedLocation.townsack;
 			}
 		}
 	}
-/*
+	/*
 	aref rootItems;
     makearef(rootItems, worldMap);  //Islands[0]
 	DumpAttributes(rootItems);
 */
-	totalInfo = totalInfo + NewStr() + " MapShipX " +	worldMap.playerShipX + " MapShipZ " + worldMap.playerShipZ + " X " + worldMap.island.x + " Z " + worldMap.island.z;
+	totalInfo = totalInfo + NewStr() + " MapShipX " + worldMap.playerShipX + " MapShipZ " + worldMap.playerShipZ + " X " + worldMap.island.x + " Z " + worldMap.island.z;
 
 	totalInfo = totalInfo + NewStr() + " Map_Coord.X " + Map_GetRealCoordX(makefloat(worldMap.playerShipX)) + " Map_Coord.Z " + Map_GetRealCoordZ(makefloat(worldMap.playerShipZ));
 
 	totalInfo = totalInfo + NewStr() + " Zero_Point_X " + makefloat(worldMap.zeroX) + " Zero_Point_Z " + makefloat(worldMap.zeroZ);
-    // <
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	GetRealCoordsObjects();
 
@@ -881,7 +877,7 @@ void CalculateInfoDataF4()
 	///mc.model.animation = "man";
 	//mc.model = "napitan";
 	//SetNewModelToChar(mc);
-    ChangeCrewExp(pchar, "Sailors", 10);
+	ChangeCrewExp(pchar, "Sailors", 10);
 	ChangeCrewExp(pchar, "Cannoners", 10);
 	ChangeCrewExp(pchar, "Soldiers", 10);
 
@@ -889,10 +885,10 @@ void CalculateInfoDataF4()
 	//LAi_SetHP(mc,mhp,mhp);
 	//totalInfo = totalInfo+ " iNumShips="+iNumShips+" iNumFantoms="+iNumFantoms;
 	//ddCharacterExp(mc, 3000);
-    // <
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F4", 1);
 }
@@ -904,15 +900,15 @@ void CalculateInfoDataF5()
 	idLngFile = LanguageOpenFile("ItemsDescribe.txt");
 	// -->
 	totalInfo = descF5;
-    /*  pchar.PatentNation = "eng";
+	/*  pchar.PatentNation = "eng";
       GiveItem2Character(pchar, "patent_" + pchar.PatentNation);
       EquipCharacterbyItem(pchar, "patent_" + pchar.PatentNation);
       */
-    pchar.Skill.FreeSkill = sti(pchar.Skill.FreeSkill) + 1000;
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	pchar.Skill.FreeSkill = sti(pchar.Skill.FreeSkill) + 1000;
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F5", 1);
 }
@@ -1090,9 +1086,9 @@ void CalculateInfoDataF6()
 
 	SetBaseShipData(mc);
 	ref VeryRealShip = GetRealShip(sti(PChar.Ship.Type));
-    DeleteAttribute(VeryRealShip,"EmblemedSails");
-    DeleteAttribute(VeryRealShip,"shipsails");
-    VeryRealShip.ship.upgrades.sails = 3;
+	DeleteAttribute(VeryRealShip, "EmblemedSails");
+	DeleteAttribute(VeryRealShip, "shipsails");
+	VeryRealShip.ship.upgrades.sails = 3;
 
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS8;
 	// mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
@@ -1109,7 +1105,8 @@ void CalculateInfoDataF6()
 	SetCharacterGoods(mc, GOOD_BALLS, 2000);
 	SetCharacterGoods(mc, GOOD_GRAPES, 2000);
 	SetCharacterGoods(mc, GOOD_KNIPPELS, 2000);
-	SetCharacterGoods(mc, GOOD_BOMBS, 2000);;
+	SetCharacterGoods(mc, GOOD_BOMBS, 2000);
+	;
 	//SetCharacterGoods(mc, GOOD_FOOD, 2000);
 	SetCharacterGoods(mc, GOOD_FOOD, 10000);
 	SetCharacterGoods(mc, GOOD_MEDICAMENT, 1000);
@@ -1136,18 +1133,18 @@ void CalculateInfoDataF6()
 	// sEquipItem = GetGeneratedItem("toporAZ"); 				// Макуауитль		(ТО)
 	// sEquipItem = GetGeneratedItem("topor_viking"); 			// Топор викинга	(ТО)
 	// sEquipItem = GetGeneratedItem("blade28");				// Танат			(ТО)
-	sEquipItem = GetGeneratedItem("blackbeard_sword_baron");	// Меч Тритона		(СО)
+	sEquipItem = GetGeneratedItem("blackbeard_sword_baron"); // Меч Тритона		(СО)
 	AddItems(mc, sEquipItem, 1);
 
 	AddItems(mc, "cirass5", 1);
 
 	EquipCharacterbyItem(mc, "spyglass4");
 	EquipCharacterbyItem(mc, "pistol7");
-	GiveGunAmmunition(mc,"pistol7");
- 	EquipCharacterbyItem(mc, sEquipItem);
- 	EquipCharacterbyItem(mc, "cirass5");
+	GiveGunAmmunition(mc, "pistol7");
+	EquipCharacterbyItem(mc, sEquipItem);
+	EquipCharacterbyItem(mc, "cirass5");
 
- 	SetHalfPerksToChar(mc, false);
+	SetHalfPerksToChar(mc, false);
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -1167,10 +1164,10 @@ void CalculateInfoDataF7()
 
 	SetRandSelfSkill(PChar, 1, 1);
 
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F7", 1);
@@ -1186,37 +1183,38 @@ void CalculateInfoDataF8()
 	ref mc, ch;
 	int n, idx;
 	mc = GetMainCharacter();
-    idx = GetCharIDXByParam("TavernMan", "location", mc.location);
-    bool ok = true;
-    while (ok)
-    {
-        for(n=0; n<MAX_CHARACTERS; n++)
-    	{
-    		makeref(ch,Characters[n]);
-    		if (CheckAttribute(ch, "TavernMan"))
-    		{
-                if (ch.location == "none") continue; // фикс для новых, невидимых до поры островов
-                if (n > idx)
-                {
-                    ok = false;
-                    if (GetCityFrom_Sea(ch.City) != "")
-                    {
+	idx = GetCharIDXByParam("TavernMan", "location", mc.location);
+	bool ok = true;
+	while (ok)
+	{
+		for (n = 0; n < MAX_CHARACTERS; n++)
+		{
+			makeref(ch, Characters[n]);
+			if (CheckAttribute(ch, "TavernMan"))
+			{
+				if (ch.location == "none")
+					continue; // фикс для новых, невидимых до поры островов
+				if (n > idx)
+				{
+					ok = false;
+					if (GetCityFrom_Sea(ch.City) != "")
+					{
 						setCharacterShipLocation(mc, GetCityFrom_Sea(ch.City));
-                        setWDMPointXZ(GetCityFrom_Sea(ch.City));
-                    }
-                    DoQuestReloadToLocation(ch.location,"reload","reload1", "");
-                    Log_Info(ch.location);
-                    break;
-                }
-    		}
-        }
-        idx = -1;
-    }
+						setWDMPointXZ(GetCityFrom_Sea(ch.City));
+					}
+					DoQuestReloadToLocation(ch.location, "reload", "reload1", "");
+					Log_Info(ch.location);
+					break;
+				}
+			}
+		}
+		idx = -1;
+	}
 	// <
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F8", 1);
 }
@@ -1227,7 +1225,8 @@ void CalculateInfoDataF9()
 	SetCharacterGoods(pchar, GOOD_BALLS, 2000);
 	SetCharacterGoods(pchar, GOOD_GRAPES, 2000);
 	SetCharacterGoods(pchar, GOOD_KNIPPELS, 2000);
-	SetCharacterGoods(pchar, GOOD_BOMBS, 2000);;
+	SetCharacterGoods(pchar, GOOD_BOMBS, 2000);
+	;
 	SetCharacterGoods(pchar, GOOD_FOOD, 6000);
 	SetCharacterGoods(pchar, GOOD_POWDER, 3000);
 	SetCharacterGoods(pchar, GOOD_SLAVES, 3000);
@@ -1239,8 +1238,8 @@ void CalculateInfoDataF9()
 	SetCharacterGoods(pchar, GOOD_MEDICAMENT, 10000);
 
 	totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F19", 1);
@@ -1256,19 +1255,21 @@ void CalculateInfoDataF10()
 	totalInfo = descF10;
 	ref mc;
 	mc = GetMainCharacter();
-			if(LAi_IsImmortal(mc))
-			{
-				LAi_SetImmortal(mc, false);
-				Log_SetStringToLog("God mode OFF");
-			}else{
-				LAi_SetImmortal(mc, true);
-				Log_SetStringToLog("God mode ON");
-			}
-    // <--
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	if (LAi_IsImmortal(mc))
+	{
+		LAi_SetImmortal(mc, false);
+		Log_SetStringToLog("God mode OFF");
+	}
+	else
+	{
+		LAi_SetImmortal(mc, true);
+		Log_SetStringToLog("God mode ON");
+	}
+	// <--
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F10", 1);
 }
@@ -1282,42 +1283,42 @@ void CalculateInfoDataF11()
 	totalInfo = descF11;
 	// -->
 
-    int i, cn;
-    ref mc;
+	int i, cn;
+	ref mc;
 	mc = GetMainCharacter();
 
-    if ( sti(mc.reputation) < REPUTATION_MAX)
+	if (sti(mc.reputation) < REPUTATION_MAX)
 	{
-	   mc.reputation = sti(mc.reputation) + 10;
-	   if (sti(mc.reputation) > REPUTATION_MAX)
-	   {
-	       mc.reputation = REPUTATION_MAX;
-	   }
+		mc.reputation = sti(mc.reputation) + 10;
+		if (sti(mc.reputation) > REPUTATION_MAX)
+		{
+			mc.reputation = REPUTATION_MAX;
+		}
 	}
-    // <
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F11", 1);
 }
 ////////////////////////////////////////////////////////////////////////
-string descF12 = "НЗГ у всех наций +50";//Заменить текущий корабль на ЧА";  //"LaunchMunityCapture";;
+string descF12 = "НЗГ у всех наций +50"; //Заменить текущий корабль на ЧА";  //"LaunchMunityCapture";;
 
 void CalculateInfoDataF12()
 {
 	idLngFile = LanguageOpenFile("ItemsDescribe.txt");
 	// -->
 	totalInfo = descF12;
-    for (int j=0; j< MAX_NATIONS; j++)
+	for (int j = 0; j < MAX_NATIONS; j++)
 	{
-        ChangeCharacterNationReputation(pchar, j, -50);
-    }
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно! ";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+		ChangeCharacterNationReputation(pchar, j, -50);
+	}
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно! ";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F12", 1);
@@ -1331,16 +1332,16 @@ void CalculateInfoDataF13()
 	// -->
 	totalInfo = descF13;
 
-    ref mc;
+	ref mc;
 	mc = GetMainCharacter();
-    if(CheckAttribute(mc,"worldmapencountersoff") == 0)
+	if (CheckAttribute(mc, "worldmapencountersoff") == 0)
 	{
 		mc.worldmapencountersoff = "1";
 		Log_SetStringToLog("Worldmap encounters OFF");
 	}
 	else
 	{
-		if(mc.worldmapencountersoff == "1")
+		if (mc.worldmapencountersoff == "1")
 		{
 			mc.worldmapencountersoff = "0";
 			Log_SetStringToLog("Worldmap encounters ON");
@@ -1351,11 +1352,11 @@ void CalculateInfoDataF13()
 			Log_SetStringToLog("Worldmap encounters OFF");
 		}
 	}
-    // <--
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <--
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F13", 1);
 }
@@ -1367,19 +1368,21 @@ void CalculateInfoDataF14()
 	idLngFile = LanguageOpenFile("ItemsDescribe.txt");
 	// -->
 	totalInfo = descF14;
-    if(globalSGMode != false)
+	if (globalSGMode != false)
 	{
 		globalSGMode = false;
 		Log_SetStringToLog("Shotgun mode OFF");
-	}else{
+	}
+	else
+	{
 		globalSGMode = true;
 		Log_SetStringToLog("Shotgun mode ON");
 	}
-    // <
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно! Qfreze=";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно! Qfreze=";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F14", 1);
@@ -1393,13 +1396,13 @@ void CalculateInfoDataF15()
 	// -->
 	totalInfo = descF15;
 
-    DoQuestCheckDelay("Nation_Legend_Map", 2.0);
-    // <
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
-    ProcessCancelExit();
+	DoQuestCheckDelay("Nation_Legend_Map", 2.0);
+	// <
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
+	ProcessCancelExit();
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F15", 1);
 }
@@ -1412,16 +1415,16 @@ void CalculateInfoDataF16()
 	// -->
 	totalInfo = descF16;
 
-    LAi_Fade("", "");
-    for (int i = 1; i<=5; i++)
-    {
+	LAi_Fade("", "");
+	for (int i = 1; i <= 5; i++)
+	{
 		AddDataToCurrent(0, 0, 1);
 	}
-    // <
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F16", 1);
@@ -1435,8 +1438,8 @@ void CalculateInfoDataF17()
 	// -->
 	totalInfo = descF17;
 
-    aref  curItem;
-	aref  arItem;
+	aref curItem;
+	aref arItem;
 	aref rootItems;
 	int i, j, n;
 	string attributeName;
@@ -1444,18 +1447,18 @@ void CalculateInfoDataF17()
 
 	//makeref(ch,Characters[GetCharacterIndex("Oxbay Commander")]);
 	//makearef(rootItems,ch.Ship);
-    //makearef(rootItems,Characters[GetMainCharacterIndex()].Items);
-    //makearef(rootItems,ShipsTypes[Characters[GetMainCharacterIndex()].Ship.Type].Cannons.Borts.cannonl);
+	//makearef(rootItems,Characters[GetMainCharacterIndex()].Items);
+	//makearef(rootItems,ShipsTypes[Characters[GetMainCharacterIndex()].Ship.Type].Cannons.Borts.cannonl);
 
-    makearef(rootItems, pchar.quest);
+	makearef(rootItems, pchar.quest);
 
-    //aref qst = makearef(qst, pchar.quest);
+	//aref qst = makearef(qst, pchar.quest);
 
-    trace("=================================================");
-    DumpAttributes(rootItems);//&GameInterface);
-    trace("=================================================");
-    Log_Info("DumpAttributes");
-    /*for(i=0; i<GetAttributesNum(rootItems); i++)
+	trace("=================================================");
+	DumpAttributes(rootItems); //&GameInterface);
+	trace("=================================================");
+	Log_Info("DumpAttributes");
+	/*for(i=0; i<GetAttributesNum(rootItems); i++)
     {
 		curItem = GetAttributeN(rootItems, i);
 		j = sti(GetAttributeValue(curItem));
@@ -1471,32 +1474,33 @@ void CalculateInfoDataF17()
         }
 
     }*/
-    remInt++;
-    totalInfo = totalInfo + " page " + remInt;
-    for(i=0; i<GetAttributesNum(rootItems); i++)
-    {
-        if (i > remInt*60 || i < (remInt-1)*60) continue;
+	remInt++;
+	totalInfo = totalInfo + " page " + remInt;
+	for (i = 0; i < GetAttributesNum(rootItems); i++)
+	{
+		if (i > remInt * 60 || i < (remInt - 1) * 60)
+			continue;
 
-        curItem = GetAttributeN(rootItems, i);
+		curItem = GetAttributeN(rootItems, i);
 		j = sti(GetAttributeValue(curItem));
-		totalInfo = totalInfo+"   "+i+"= "+//LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                    GetAttributeName(curItem);// + " : " + GetAttributeValue(curItem);
+		totalInfo = totalInfo + "   " + i + "= " + //LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
+					GetAttributeName(curItem);	   // + " : " + GetAttributeValue(curItem);
 
-        /*for(n=0; n<GetAttributesNum(curItem); n++)
+		/*for(n=0; n<GetAttributesNum(curItem); n++)
         {
                  arItem = GetAttributeN(curItem,n);
 		         j = sti(GetAttributeValue(arItem));
 		         totalInfo = totalInfo+//LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
                     "   --> "+n+"= "+GetAttributeName(arItem)+" value="+j;
         } */
-
-    }
-    if (i <= remInt*60) remInt = 0;
-    // <
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	}
+	if (i <= remInt * 60)
+		remInt = 0;
+	// <
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F17", 1);
 }
@@ -1509,19 +1513,19 @@ void CalculateInfoDataF18()
 	// -->
 	totalInfo = descF18;
 
-    //LandEncTemplate[4].enc1.chance = 1.0;
-    //LandEncTemplate[4].enc2.chance = 1.0;
-    //
-    /*if (bSeaActive)
+	//LandEncTemplate[4].enc1.chance = 1.0;
+	//LandEncTemplate[4].enc2.chance = 1.0;
+	//
+	/*if (bSeaActive)
     {
         Weathers[iCurWeatherNum].Wind.Speed.Min = 9.9;
     	Weathers[iCurWeatherNum].Wind.Speed.Max = 10.1;
 	} */
 	//ChangeShowIntarface();
-    //
-	for(i=1; i<11; i++)
-    {
-		ref sld = GetCharacter(NPC_GenerateCharacter("DebugOfficer_"+i, "officer_"+i, "man", "man", 30, PIRATE, -1, true));
+	//
+	for (i = 1; i < 11; i++)
+	{
+		ref sld = GetCharacter(NPC_GenerateCharacter("DebugOfficer_" + i, "officer_" + i, "man", "man", 30, PIRATE, -1, true));
 		sld.greeting = "Gr_questOfficer";
 		sld.Dialog.Filename = "Enc_Officer_dialog.c";
 		sld.quest.meeting = true;
@@ -1545,7 +1549,7 @@ void CalculateInfoDataF18()
 		SetCharacterPerk(sld, "SailsMan");
 		SetCharacterPerk(sld, "Doctor1");
 		SetCharacterPerk(sld, "Doctor2");
-		sld.quest.OfficerPrice = sti(pchar.rank)*100;
+		sld.quest.OfficerPrice = sti(pchar.rank) * 100;
 		Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
 		sld.OfficerWantToGo.DontGo = true; //не пытаться уйти
 		sld.loyality = MAX_LOYALITY;
@@ -1556,12 +1560,12 @@ void CalculateInfoDataF18()
 		sld.DontClearDead = true;
 		DeleteAttribute(Pchar, "questTemp.HiringOfficerIDX");
 		DeleteAttribute(sld, "LifeDay")
-		SaveCurrentNpcQuestDateParam(sld, "HiredDate"); // дата найма
+			SaveCurrentNpcQuestDateParam(sld, "HiredDate"); // дата найма
 	}
-    totalInfo = totalInfo + LanguageConvertString(idLngFile,"new_string") + LanguageConvertString(idLngFile,"new_string") +
-                "Команда отработала успешно!";
-    LanguageCloseFile(idLngFile);
-    SetFormatedText("INFO_TEXT",totalInfo);
+	totalInfo = totalInfo + LanguageConvertString(idLngFile, "new_string") + LanguageConvertString(idLngFile, "new_string") +
+				"Команда отработала успешно!";
+	LanguageCloseFile(idLngFile);
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F18", 1);
 }
@@ -1569,22 +1573,22 @@ void CalculateInfoDataF18()
 string descF19 = "Офицеру-шкиперу +1 ранг (35 очков скилов)";
 void CalculateInfoDataF19()
 {
-    totalInfo = descF19;
+	totalInfo = descF19;
 	// -->
-    if (sti(pchar.Fellows.Passengers.navigator) != -1)
+	if (sti(pchar.Fellows.Passengers.navigator) != -1)
 	{
-	    ref chr = GetCharacter(sti(pchar.Fellows.Passengers.navigator));
+		ref chr = GetCharacter(sti(pchar.Fellows.Passengers.navigator));
 
-    	chr.Skill.FreeSkill  = sti(chr.Skill.FreeSkill) + 35;
-    }
-    else
-    {
-        totalInfo = "Нет офицера";
-    }
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+		chr.Skill.FreeSkill = sti(chr.Skill.FreeSkill) + 35;
+	}
+	else
+	{
+		totalInfo = "Нет офицера";
+	}
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F19", 1);
@@ -1593,16 +1597,16 @@ void CalculateInfoDataF19()
 string descF20 = "Обновление света на маяках";
 void CalculateInfoDataF20()
 {
-    totalInfo = descF20;
+	totalInfo = descF20;
 	// -->
 	Sea_CreateLighthouse("Jamaica");
 	Sea_CreateLighthouse("Cuba1");
 	Sea_CreateLighthouse("Cuba2");
-	SendMessage(&lighthouseLightModel, "lffffffffffff", MSG_MODEL_SET_POSITION,-116.0, 55.0, -1568.5, 1, 0, 0, 0, 1, 0, 0, 0, 1);
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	SendMessage(&lighthouseLightModel, "lffffffffffff", MSG_MODEL_SET_POSITION, -116.0, 55.0, -1568.5, 1, 0, 0, 0, 1, 0, 0, 0, 1);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F20", 1);
@@ -1612,7 +1616,7 @@ void CalculateInfoDataF20()
 string descF21 = "Медленный подъём камеры на 35 по Y относительно ГГ";
 void CalculateInfoDataF21()
 {
-    totalInfo = descF21;
+	totalInfo = descF21;
 	// -->
 	//locCameraRotateAroundHero(0.0, 3.0, 0.0, 0.03, 0.0, 3.0, 0.0, 200);
 	//locCameraRotateAroundHero(0.0, 1.0, 0.0, 0.0, 0.01, 5.0, 0.0, 150);
@@ -1621,10 +1625,10 @@ void CalculateInfoDataF21()
 	// locCameraFlyToPosition(stf(Camera.pos.x), stf(Camera.pos.y), stf(Camera.pos.z), stf(Camera.pos.x), stf(Camera.pos.y) + 35, stf(Camera.pos.z), 0.05, -1);
 	locCameraLockNearHero(-5.0, 2.0, -5.0, 200, true);
 
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F21", 1);
@@ -1633,27 +1637,27 @@ void CalculateInfoDataF21()
 string descF22 = "Аскольд инфо";
 void CalculateInfoDataF22()
 {
-    totalInfo = descF22;
+	totalInfo = descF22;
 	// -->
-    {
+	{
 		totalInfo = "Рендомный хозяин магаза: " + pchar.questTemp.Ascold.TraderId + NewStr() +
 					"Рендомный мерчант(колония): " + pchar.questTemp.Ascold.MerchantColony + NewStr() +
-					"Рендомный верфист: " + pchar.questTemp.Ascold.ShipyarderId + NewStr()+
-					"Скрижали локация: " + Items[GetItemIndex("Rock_letter")].startLocation + NewStr()+
+					"Рендомный верфист: " + pchar.questTemp.Ascold.ShipyarderId + NewStr() +
+					"Скрижали локация: " + Items[GetItemIndex("Rock_letter")].startLocation + NewStr() +
 					"Скрижали локатор: " + Items[GetItemIndex("Rock_letter")].startLocator;
-					if (pchar.questTemp.BlueBird.City != "")
-					{
-						totalInfo = totalInfo + NewStr()+ "Где будут слухи по флейту торговца: " + pchar.questTemp.BlueBird.City;
-					}
-					else
-					{
-						totalInfo = totalInfo + NewStr()+ "Слухи по флейтам торговцев еще не активированы.";
-					}
-    }
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+		if (pchar.questTemp.BlueBird.City != "")
+		{
+			totalInfo = totalInfo + NewStr() + "Где будут слухи по флейту торговца: " + pchar.questTemp.BlueBird.City;
+		}
+		else
+		{
+			totalInfo = totalInfo + NewStr() + "Слухи по флейтам торговцев еще не активированы.";
+		}
+	}
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F22", 1);
 }
@@ -1661,19 +1665,19 @@ void CalculateInfoDataF22()
 string descF23 = "Дамп аттрибутов камеры";
 void CalculateInfoDataF23()
 {
-    totalInfo = descF23;
+	totalInfo = descF23;
 	// -->
-    DumpAttributes(&Camera);
+	DumpAttributes(&Camera);
 	totalInfo += "\n\nCamera.pos.x == " + Camera.pos.x +
-		"\nCamera.pos.y = " + Camera.pos.y +
-		"\nCamera.pos.z == " + Camera.pos.z +
-		"\n\nCamera.ang.z == " + Camera.ang.y +
-		"\nCamera.ang.y == " + Camera.ang.z +
-		"\nCamera.ang.x == " + Camera.ang.y + "\n\n";
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+				 "\nCamera.pos.y = " + Camera.pos.y +
+				 "\nCamera.pos.z == " + Camera.pos.z +
+				 "\n\nCamera.ang.z == " + Camera.ang.y +
+				 "\nCamera.ang.y == " + Camera.ang.z +
+				 "\nCamera.ang.x == " + Camera.ang.y + "\n\n";
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F23", 1);
@@ -1682,13 +1686,13 @@ void CalculateInfoDataF23()
 string descF24 = "Лицензия";
 void CalculateInfoDataF24()
 {
-    totalInfo = descF24;
+	totalInfo = descF24;
 	// -->
-    GiveNationLicence(sti(pchar.nation), 30);
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	GiveNationLicence(sti(pchar.nation), 30);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F24", 1);
 }
@@ -1696,21 +1700,21 @@ void CalculateInfoDataF24()
 string descF25 = "Перегруз локации - для КОЛОВ";
 void CalculateInfoDataF25()
 {
-    totalInfo = descF25;
+	totalInfo = descF25;
 	// -->
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
-    ProcessCancelExit();
-    if( bSeaActive && !bAbordageStarted )
-    {
-    	Sea_ReloadStart();
+	ProcessCancelExit();
+	if (bSeaActive && !bAbordageStarted)
+	{
+		Sea_ReloadStart();
 	}
 	else
 	{
-	    DoQuestReloadToLocation(pchar.location, pchar.location.group, pchar.location.locator, "");
+		DoQuestReloadToLocation(pchar.location, pchar.location.group, pchar.location.locator, "");
 	}
 
 	// Статистика по читам
@@ -1722,7 +1726,7 @@ void CalculateInfoDataF26()
 {
 	totalInfo = descF26;
 	// -->
-    ref characterRef = GetMainCharacter();
+	ref characterRef = GetMainCharacter();
 
 	trace("==================== " + characterRef.ID + " ====================");
 	DumpAttributes(characterRef);
@@ -1731,7 +1735,7 @@ void CalculateInfoDataF26()
 	ref realShip;
 	int shipType = sti(characterRef.Ship.Type);
 
-	if(shipType != SHIP_NOTUSED) // Есть ли корабль вообще
+	if (shipType != SHIP_NOTUSED) // Есть ли корабль вообще
 	{
 		realShip = GetRealShip(shipType);
 		DumpAttributes(realShip);
@@ -1740,8 +1744,8 @@ void CalculateInfoDataF26()
 	Log_Info("Дамп аттрибутов ГГ");
 	// <--
 	totalInfo = totalInfo + NewStr() + NewStr() +
-		"Команда отработала успешно!";
-	SetFormatedText("INFO_TEXT",totalInfo);
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.26", 1);
@@ -1750,20 +1754,20 @@ void CalculateInfoDataF26()
 string descF27 = "Репутация ГГ в минус";
 void CalculateInfoDataF27()
 {
-    totalInfo = descF27;
+	totalInfo = descF27;
 	// -->
-	if ( sti(pchar.reputation) > 1)
+	if (sti(pchar.reputation) > 1)
 	{
-	   pchar.reputation = sti(pchar.reputation) - 10;
-	   if (sti(pchar.reputation) < 1)
-	   {
-	       pchar.reputation = 1;
-	   }
+		pchar.reputation = sti(pchar.reputation) - 10;
+		if (sti(pchar.reputation) < 1)
+		{
+			pchar.reputation = 1;
+		}
 	}
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F27", 1);
@@ -1772,13 +1776,13 @@ void CalculateInfoDataF27()
 string descF28 = "Пустить ЛГ на карте";
 void CalculateInfoDataF28()
 {
-    totalInfo = descF28;
+	totalInfo = descF28;
 	// -->
 	GhostShipOnMap();
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F28", 1);
@@ -1787,16 +1791,16 @@ void CalculateInfoDataF28()
 string descF29 = "НЗГ у всех наций -50";
 void CalculateInfoDataF29()
 {
-    totalInfo = descF29;
+	totalInfo = descF29;
 	// -->
-	for (int j=0; j< MAX_NATIONS; j++)
+	for (int j = 0; j < MAX_NATIONS; j++)
 	{
-        ChangeCharacterNationReputation(pchar, j, 50);
-    }
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+		ChangeCharacterNationReputation(pchar, j, 50);
+	}
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F29", 1);
@@ -1805,14 +1809,14 @@ void CalculateInfoDataF29()
 string descF30 = "+20 дней";
 void CalculateInfoDataF30()
 {
-    totalInfo = descF30;
+	totalInfo = descF30;
 	// -->
 	LAi_Fade("", "");
 	AddDataToCurrent(0, 0, 20);
-    // <--
-    totalInfo = totalInfo + NewStr() + NewStr() +
-                "Команда отработала успешно!";
-    SetFormatedText("INFO_TEXT",totalInfo);
+	// <--
+	totalInfo = totalInfo + NewStr() + NewStr() +
+				"Команда отработала успешно!";
+	SetFormatedText("INFO_TEXT", totalInfo);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F30", 1);
@@ -1829,13 +1833,13 @@ void CalculateInfoDataF31()
 	SetRandShipSkill(mc, 100, 100);
 	LAi_SetHP(mc, 380.0, 380.0);
 	mc.rank = 25;
-//	mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
+	//	mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
 	mc.Ship.Type = GenerateShipExt(SHIP_ARABELLA, true, mc);
-//	mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
+	//	mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
 	SetBaseShipData(mc);
 	int iShip = pchar.ship.type;
 	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
-//	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
+	//	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
 	SetCrewQuantityFull(mc);
 	AddCrewMorale(mc, 100);
 	ChangeCrewExp(mc, "Sailors", 100);
@@ -1845,7 +1849,8 @@ void CalculateInfoDataF31()
 	SetCharacterGoods(mc, GOOD_BALLS, 1000);
 	SetCharacterGoods(mc, GOOD_GRAPES, 1000);
 	SetCharacterGoods(mc, GOOD_KNIPPELS, 1000);
-	SetCharacterGoods(mc, GOOD_BOMBS, 1000);;
+	SetCharacterGoods(mc, GOOD_BOMBS, 1000);
+	;
 	SetCharacterGoods(mc, GOOD_FOOD, 6000);
 	SetCharacterGoods(mc, GOOD_MEDICAMENT, 1000);
 	SetCharacterGoods(mc, GOOD_POWDER, 4000);
@@ -1889,11 +1894,11 @@ void CalculateInfoDataF31()
 
 	EquipCharacterbyItem(mc, "spyglass5");
 	EquipCharacterbyItem(mc, "pistol5");
- 	EquipCharacterbyItem(mc, sEquipItem);
- 	EquipCharacterbyItem(mc, "cirass5");
+	EquipCharacterbyItem(mc, sEquipItem);
+	EquipCharacterbyItem(mc, "cirass5");
 	EquipCharacterbyItem(mc, "BackPack5");
 
- 	SelAllPerksToChar(mc, false);
+	SelAllPerksToChar(mc, false);
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -1913,7 +1918,7 @@ void CalculateInfoDataF32()
 	SetRandSelfSkill(mc, 40, 75);
 	SetRandShipSkill(mc, 40, 75);
 	mc.rank = 10;
-//	mc.Ship.Type = GenerateShipExt(SHIP_XebekVML, true, mc);
+	//	mc.Ship.Type = GenerateShipExt(SHIP_XebekVML, true, mc);
 	mc.Ship.Type = GenerateShipExt(SHIP_BRIGSW, true, mc);
 	SetBaseShipData(mc);
 	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
@@ -1926,7 +1931,8 @@ void CalculateInfoDataF32()
 	SetCharacterGoods(mc, GOOD_BALLS, 700);
 	SetCharacterGoods(mc, GOOD_GRAPES, 700);
 	SetCharacterGoods(mc, GOOD_KNIPPELS, 700);
-	SetCharacterGoods(mc, GOOD_BOMBS, 700);;
+	SetCharacterGoods(mc, GOOD_BOMBS, 700);
+	;
 	SetCharacterGoods(mc, GOOD_FOOD, 3000);
 	SetCharacterGoods(mc, GOOD_MEDICAMENT, 500);
 	SetCharacterGoods(mc, GOOD_POWDER, 2000);
@@ -1961,10 +1967,10 @@ void CalculateInfoDataF32()
 
 	EquipCharacterbyItem(mc, "spyglass3");
 	EquipCharacterbyItem(mc, "pistol5");
- 	EquipCharacterbyItem(mc, sEquipItem);
- 	EquipCharacterbyItem(mc, "cirass4");
+	EquipCharacterbyItem(mc, sEquipItem);
+	EquipCharacterbyItem(mc, "cirass4");
 
- 	SetHalfPerksToChar(mc, false);
+	SetHalfPerksToChar(mc, false);
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -1977,10 +1983,10 @@ void CalculateInfoDataF32()
 string descF33 = "Личное умение +1";
 void CalculateInfoDataF33()
 {
- 	ref mc;
+	ref mc;
 	totalInfo = descF33;
 	mc = GetMainCharacter();
- 	mc.perks.FreePoints_self = sti(mc.perks.FreePoints_self) + 1;
+	mc.perks.FreePoints_self = sti(mc.perks.FreePoints_self) + 1;
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -1993,10 +1999,10 @@ void CalculateInfoDataF33()
 string descF34 = "Корабельное умение +1";
 void CalculateInfoDataF34()
 {
- 	ref mc;
+	ref mc;
 	totalInfo = descF34;
 	mc = GetMainCharacter();
- 	mc.perks.FreePoints_ship = sti(mc.perks.FreePoints_ship) + 1;
+	mc.perks.FreePoints_ship = sti(mc.perks.FreePoints_ship) + 1;
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -2009,10 +2015,10 @@ void CalculateInfoDataF34()
 string descF35 = "Симуляция уровень +1";
 void CalculateInfoDataF35()
 {
- 	ref mc;
+	ref mc;
 	totalInfo = descF35;
 	mc = GetMainCharacter();
- 	mc.rank_exp = 99;
+	mc.rank_exp = 99;
 	ApplayNewSkill(mc, "", 1);
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
@@ -2027,7 +2033,7 @@ string descF36 = "Создать тушку для битья";
 void CalculateInfoDataF36()
 {
 	totalInfo = descF36;
- 	LoginDummy();
+	LoginDummy();
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
 	SetFormatedText("INFO_TEXT", totalInfo);
@@ -2051,7 +2057,7 @@ void CalculateInfoDataF37()
 	PChar.quest.ColonyBuilding_2_1.win_condition.l1.location = "Shore17";
 	PChar.quest.ColonyBuilding_2_1.win_condition = "ColonyBuilding_2_1";
 
-	DoQuestReloadToLocation("Shore17","reload","reload1", "");
+	DoQuestReloadToLocation("Shore17", "reload", "reload1", "");
 	setCharacterShipLocation(pchar, "Shore17");
 	setWDMPointXZ("Shore17");
 
@@ -2080,7 +2086,7 @@ void CalculateInfoDataF38()
 	CreateModificyColonyCaiman();
 	LAi_QuestDelay("LiveOfTheColonyUptade_1", 0.5);
 	LAi_QuestDelay("CheckDefenceColonyUptade_1", 0.5);
-	DoQuestReloadToLocation("Caiman_town","reload","reload1", "");
+	DoQuestReloadToLocation("Caiman_town", "reload", "reload1", "");
 	setCharacterShipLocation(pchar, "Caiman_town");
 	setWDMPointXZ("Caiman_town");
 
@@ -2164,7 +2170,7 @@ void CalculateInfoDataF39()
 	CreateModificyColonyCaiman();
 	LAi_QuestDelay("LiveOfTheColonyUptade_1", 0.5);
 	LAi_QuestDelay("CheckDefenceColonyUptade_1", 0.5);
-	DoQuestReloadToLocation("LandGuardingPort","reload","reload1", "");
+	DoQuestReloadToLocation("LandGuardingPort", "reload", "reload1", "");
 	setCharacterShipLocation(pchar, "Caiman_town");
 	setWDMPointXZ("Caiman_town");
 
@@ -2241,11 +2247,11 @@ string descF40 = "Выдать сверхбыстрый корабль";
 void CalculateInfoDataF40()
 {
 	totalInfo = descF40;
- 	ref mc;
+	ref mc;
 	mc = GetMainCharacter();
-//	mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
+	//	mc.Ship.Type = GenerateShipExt(SHIP_CORVETTE_QUEST, true, mc);
 	mc.Ship.Type = GenerateShipExt(SHIP_XebekVML, true, mc);
-//	mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
+	//	mc.Ship.Type = GenerateShipExt(SHIP_FRIGATEQUEEN, true, mc);
 	SetBaseShipData(mc);
 	int iShip = pchar.ship.type;
 	mc.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
@@ -2258,7 +2264,8 @@ void CalculateInfoDataF40()
 	SetCharacterGoods(mc, GOOD_BALLS, 1000);
 	SetCharacterGoods(mc, GOOD_GRAPES, 1000);
 	SetCharacterGoods(mc, GOOD_KNIPPELS, 1000);
-	SetCharacterGoods(mc, GOOD_BOMBS, 1000);;
+	SetCharacterGoods(mc, GOOD_BOMBS, 1000);
+	;
 	SetCharacterGoods(mc, GOOD_FOOD, 2000);
 	SetCharacterGoods(mc, GOOD_MEDICAMENT, 1000);
 	SetCharacterGoods(mc, GOOD_POWDER, 2000);
@@ -2285,20 +2292,21 @@ void CalculateInfoDataF41()
 	string sColony;
 
 	int i;
-	float x, y, z;  // boal
+	float x, y, z; // boal
 
-	for (i=0; i<MAX_COLONIES; i++)
+	for (i = 0; i < MAX_COLONIES; i++)
 	{
-		if (colonies[i].nation == "none") continue; // необитайки
+		if (colonies[i].nation == "none")
+			continue; // необитайки
 		// зададим базовых мэров городов
 		iChar = GetCharacterIndex(colonies[i].id + "_Mayor");
 		if (iChar != -1)
-		{   // мэр есть
-        	Log_Info("M: " + characters[iChar].id + " L:" + characters[iChar].location +
-        	" " + characters[iChar].City + "  " + characters[iChar].nation);
-        	trace("M: " + characters[iChar].id + " L:" + characters[iChar].location +
-        	" " + characters[iChar].City + "  " + characters[iChar].nation);
-        }
+		{ // мэр есть
+			Log_Info("M: " + characters[iChar].id + " L:" + characters[iChar].location +
+					 " " + characters[iChar].City + "  " + characters[iChar].nation);
+			trace("M: " + characters[iChar].id + " L:" + characters[iChar].location +
+				  " " + characters[iChar].City + "  " + characters[iChar].nation);
+		}
 
 		// добавить проверку на пиратов, у них нет фортов, нафиг им коммандер?
 		if (CheckAttribute(&colonies[i], "HasNoFort"))
@@ -2307,9 +2315,9 @@ void CalculateInfoDataF41()
 		}
 		iChar = GetCharacterIndex(colonies[i].id + " Fort Commander");
 		Log_Info("F: " + characters[iChar].id + " L:" + characters[iChar].location + " g " + characters[iChar].location.group + " r " + characters[iChar].location.locator +
-  		" " + characters[iChar].City + "  " + characters[iChar].nation);
-  		trace("F: " + characters[iChar].id + " L:" + characters[iChar].location + " g " + characters[iChar].location.group + " r " + characters[iChar].location.locator +
-  		" " + characters[iChar].City + "  " + characters[iChar].nation);
+				 " " + characters[iChar].City + "  " + characters[iChar].nation);
+		trace("F: " + characters[iChar].id + " L:" + characters[iChar].location + " g " + characters[iChar].location.group + " r " + characters[iChar].location.locator +
+			  " " + characters[iChar].City + "  " + characters[iChar].nation);
 	}
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
@@ -2324,22 +2332,22 @@ void CalculateInfoDataF42()
 	int i, j, idx;
 	float fMaxCost;
 
-	for (i = 0; i< GOODS_QUANTITY; i++)
+	for (i = 0; i < GOODS_QUANTITY; i++)
 	{
 		SetCharacterGoods(pchar, i, sti(Goods[i].Units));
 	}
 	trace("======= TestGoodsLiquidity ======== start ");
-	for (j = 0; j< GOODS_QUANTITY; j++)
+	for (j = 0; j < GOODS_QUANTITY; j++)
 	{
 		fMaxCost = 0;
 		idx = -1;
-		for (i = 0; i< GOODS_QUANTITY; i++)
+		for (i = 0; i < GOODS_QUANTITY; i++)
 		{
 			if (GetCargoGoods(pchar, i) > 0)
 			{
-				if (fMaxCost < stf(Goods[i].Cost)/stf(Goods[i].Weight))
+				if (fMaxCost < stf(Goods[i].Cost) / stf(Goods[i].Weight))
 				{
-					fMaxCost = stf(Goods[i].Cost)/stf(Goods[i].Weight);
+					fMaxCost = stf(Goods[i].Cost) / stf(Goods[i].Weight);
 					idx = i;
 				}
 			}
@@ -2364,11 +2372,11 @@ void CalculateInfoDataF43()
 	totalInfo = descF43;
 
 	Log_TestInfo("start GoldFleet");
-	AddTemplRumour("Start_GoldFleet", id_counter+1);
+	AddTemplRumour("Start_GoldFleet", id_counter + 1);
 	string sQuest = "EndOfGoldFleet";
 	SetTimerCondition(sQuest, 0, 0, 29, false);
 	pchar.quest.(sQuest).win_condition = "EndOfGoldFleet";
-	pchar.quest.(sQuest).function= "EndOfGoldFleet";
+	pchar.quest.(sQuest).function = "EndOfGoldFleet";
 	GoldFleet();
 	int pbx = worldMap.islands.PortoBello.PortoBello_town.position.x;
 	int pbz = worldMap.islands.PortoBello.PortoBello_town.position.z;
@@ -2387,11 +2395,11 @@ void CalculateInfoDataF44()
 {
 	totalInfo = descF44;
 
-	totalInfo = totalInfo + NewStr() +  + "pchar.Ship.Ang.y _ " + stf(pchar.Ship.Ang.y) + NewStr() + "pchar.Ship.Pos.x _ " + stf(pchar.Ship.Pos.x) + NewStr() + "pchar.Ship.Pos.z _ " + stf(pchar.Ship.Pos.z) + NewStr() + "Команда отработала успешно!";
+	totalInfo = totalInfo + NewStr() + +"pchar.Ship.Ang.y _ " + stf(pchar.Ship.Ang.y) + NewStr() + "pchar.Ship.Pos.x _ " + stf(pchar.Ship.Pos.x) + NewStr() + "pchar.Ship.Pos.z _ " + stf(pchar.Ship.Pos.z) + NewStr() + "Команда отработала успешно!";
 
 	SetFormatedText("INFO_TEXT", totalInfo);
 
-	trace("reload,reload_fort1," + cos(-stf(pchar.Ship.Ang.y)) + ",0,"	+ sin(-stf(pchar.Ship.Ang.y)) + ",0,1,0," + sin(stf(pchar.Ship.Ang.y)) + ",0," + cos(stf(pchar.Ship.Ang.y)) + "," + stf(pchar.Ship.Pos.x) + ",1.364242E-12," + stf(pchar.Ship.Pos.z) + ",1,0,0,0,0,0,0,0,0");
+	trace("reload,reload_fort1," + cos(-stf(pchar.Ship.Ang.y)) + ",0," + sin(-stf(pchar.Ship.Ang.y)) + ",0,1,0," + sin(stf(pchar.Ship.Ang.y)) + ",0," + cos(stf(pchar.Ship.Ang.y)) + "," + stf(pchar.Ship.Pos.x) + ",1.364242E-12," + stf(pchar.Ship.Pos.z) + ",1,0,0,0,0,0,0,0,0");
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F44", 1);
@@ -2402,13 +2410,13 @@ void CalculateInfoDataF45()
 {
 	totalInfo = descF45;
 
-    InitItems();
-    initGoods();
-    ShipsInit();
-    IslandsInit();
-    LocationInit();
-    ColoniesInit();
-    CreateColonyCommanders();
+	InitItems();
+	initGoods();
+	ShipsInit();
+	IslandsInit();
+	LocationInit();
+	ColoniesInit();
+	CreateColonyCommanders();
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
@@ -2427,7 +2435,7 @@ void CalculateInfoDataF46()
 
 	totalInfo = descF46;
 
- 	totalInfo = totalInfo + "locX: " + locx0 + " | locY: " + locy0 + " | locZ: " + locz0 + " | locAy: " + locAy0 + "Команда отработала успешно!";
+	totalInfo = totalInfo + "locX: " + locx0 + " | locY: " + locy0 + " | locZ: " + locz0 + " | locAy: " + locAy0 + "Команда отработала успешно!";
 
 	trace("reload,reload1," + cos(-stf(locAy0)) + ",0," + sin(-stf(locAy0)) + ",0,1,0," + sin(stf(locAy0)) + ",0," + cos(stf(locAy0)) + "," + locx0 + "," + locy0 + "," + locz0 + ",1,0,0,0,0,0,0,0,0,");
 	SetFormatedText("INFO_TEXT", totalInfo);
@@ -2465,19 +2473,18 @@ void CalculateInfoDataF48()
 	float locx, locy, locz;
 	aref aroot, arcur;
 	string attrname;
-	makearef(aroot,loadedLocation.reload);
+	makearef(aroot, loadedLocation.reload);
 	int num = GetAttributesNum(aroot);
-	for(int i=0; i<num; i++)
+	for (int i = 0; i < num; i++)
 	{
-		arcur = GetAttributeN(aroot,i);
+		arcur = GetAttributeN(aroot, i);
 		attrname = GetAttributeName(arcur);
 		//Log_info(attrname);
-		DeleteAttribute(loadedLocation, "reload."+attrname+".disable");
+		DeleteAttribute(loadedLocation, "reload." + attrname + ".disable");
 	}
 
 	chrDisableReloadToLocation = false;
-	InterfaceStates.DisFastTravel = false
-	bDisableCharacterMenu = false;
+	InterfaceStates.DisFastTravel = false bDisableCharacterMenu = false;
 
 	SetFormatedText("INFO_TEXT", totalInfo);
 
@@ -2497,7 +2504,7 @@ void CalculateInfoDataF49()
 	pchar.MalteseOrderOnHold = true;
 	pchar.MalteseOrder = true;
 	BuildMalteseOrder("");
-	DoQuestReloadToLocation("Reefs_Chapter","reload","reload1","");
+	DoQuestReloadToLocation("Reefs_Chapter", "reload", "reload1", "");
 
 	SetFormatedText("INFO_TEXT", totalInfo);
 
@@ -2510,7 +2517,7 @@ void CalculateInfoDataF50()
 {
 	totalInfo = descF50;
 
-	SetArraySize(&rand_arr,5); //должно быть равно самой большой цифре индекса массива + 1
+	SetArraySize(&rand_arr, 5); //должно быть равно самой большой цифре индекса массива + 1
 	rand_arr[0] = "Выпала стринга от значения массива под индеком 0";
 	rand_arr[1] = "Выпала стринга от значения массива под индеком 1";
 	rand_arr[2] = "Выпала стринга от значения массива под индеком 2";
@@ -2520,7 +2527,7 @@ void CalculateInfoDataF50()
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 
-	SetFormatedText("INFO_TEXT", totalInfo+"\n"+result);
+	SetFormatedText("INFO_TEXT", totalInfo + "\n" + result);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F50", 1);
@@ -2532,7 +2539,7 @@ void CalculateInfoDataF51()
 	totalInfo = descF51;
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
 	int ass = 0;
-	for (i=0; i<TOTAL_CHARACTERS; i++)
+	for (i = 0; i < TOTAL_CHARACTERS; i++)
 	{
 		ref chref;
 		makeref(chref, Characters[i]);
@@ -2543,7 +2550,7 @@ void CalculateInfoDataF51()
 		}
 	}
 
-	SetFormatedText("INFO_TEXT", totalInfo+"\nКоличество персонажей в локации: "+ass);
+	SetFormatedText("INFO_TEXT", totalInfo + "\nКоличество персонажей в локации: " + ass);
 
 	// Статистика по читам
 	Statistic_AddValue(PChar, "Cheats.F51", 1);
@@ -2555,7 +2562,7 @@ void CalculateInfoDataF52()
 	totalInfo = descF52;
 
 	totalInfo = totalInfo + NewStr() + NewStr() + "Команда отработала успешно!";
-	SetArraySize(&Characters,2000);
+	SetArraySize(&Characters, 2000);
 	for (int z = 1000; z <= 1999; z++)
 	{
 		InitCharacter(&Characters[z], z);
@@ -3046,17 +3053,17 @@ void LoginDummy()
 	sld.lastname = "Костлявый";
 	ChangeCharacterAddressGroup(sld, pchar.location, "reload", "reload1");
 	//вооружение
-    // FantomMakeCoolFighter(sld, 100, 100, 100, "blade27", "pistol5", 99999); 	// Моргана 		(ЛО)
+	// FantomMakeCoolFighter(sld, 100, 100, 100, "blade27", "pistol5", 99999); 	// Моргана 		(ЛО)
 
-    // FantomMakeCoolFighter(sld, 100, 100, 100, "blade27", "", 99999); 	// Моргана 		(ЛО)
-    // FantomMakeCoolFighter(sld, 100, 100, 100, "blade32", "", 99999); 	// Фламберж		(ЛО)
-    // FantomMakeCoolFighter(sld, 100, 100, 100, "katar", 	"", 99999); 	// Катар		(СО)
-    // FantomMakeCoolFighter(sld, 100, 100, 100, "toporAZ", "", 99999); 	// Макуауитль	(ТО)
-    FantomMakeCoolFighter(sld, 100, 100, 100, "blade28", "", 99999); 		// Танат		(ТО)
+	// FantomMakeCoolFighter(sld, 100, 100, 100, "blade27", "", 99999); 	// Моргана 		(ЛО)
+	// FantomMakeCoolFighter(sld, 100, 100, 100, "blade32", "", 99999); 	// Фламберж		(ЛО)
+	// FantomMakeCoolFighter(sld, 100, 100, 100, "katar", 	"", 99999); 	// Катар		(СО)
+	// FantomMakeCoolFighter(sld, 100, 100, 100, "toporAZ", "", 99999); 	// Макуауитль	(ТО)
+	FantomMakeCoolFighter(sld, 100, 100, 100, "blade28", "", 99999); // Танат		(ТО)
 	//установить SPECIAL
-	SetSPECIAL(sld, 10,10,10,10,10,10,10); // SPECIAL (Сила, Восприятие, Выносливость, Лидерство, Обучаемость, Реакция, Удача)
+	SetSPECIAL(sld, 10, 10, 10, 10, 10, 10, 10); // SPECIAL (Сила, Восприятие, Выносливость, Лидерство, Обучаемость, Реакция, Удача)
 	//установить хп
-	LAi_SetHP(sld,9999,9999);
+	LAi_SetHP(sld, 9999, 9999);
 
 	//установить агр
 	LAi_SetWarriorType(sld);
@@ -3125,7 +3132,7 @@ void LoginDummy()
 	sld.perks.list.ByWorker2 = "1";
 
 	//установить ЛУ и КУ
-	SetSelfSkill(sld, 100, 100, 100, 100, 100); //лёгкое, среднее, тяжёлое, пистолет, удача
+	SetSelfSkill(sld, 100, 100, 100, 100, 100);						//лёгкое, среднее, тяжёлое, пистолет, удача
 	SetShipSkill(sld, 100, 100, 100, 100, 100, 100, 100, 100, 100); // лидерство, торговля, точность, пушки, навигация, ремонт, абордаж, защита, скрытность
 }
 
@@ -3136,17 +3143,19 @@ void ReloadByStr()
 	string grp = stripblank(GetSubStringByNum(GameInterface.reload_edit.str, 1));
 	string ltr = stripblank(GetSubStringByNum(GameInterface.reload_edit.str, 2));
 
-	if (loc=="Товар")
+	if (loc == "Товар")
 	{
 		grp = GetSubStringByNum(GameInterface.reload_edit.str, 1);
-		for(int j = 0; j < GOODS_QUANTITY; j++)
+		for (int j = 0; j < GOODS_QUANTITY; j++)
 		{
 			if (grp == XI_ConvertString(Goods[j].name))
 			{
 				string good = Goods[j].name;
-				if (sti(ltr)>-1 && sti(ltr) < 999999) pchar.Ship.Cargo.Goods.(good) = sti(ltr);
-				else break;
-				Log_info("Товар "+XI_ConvertString(good)+" получен в количестве "+ltr);
+				if (sti(ltr) > -1 && sti(ltr) < 999999)
+					pchar.Ship.Cargo.Goods.(good) = sti(ltr);
+				else
+					break;
+				Log_info("Товар " + XI_ConvertString(good) + " получен в количестве " + ltr);
 				break;
 			}
 		}
@@ -3159,45 +3168,45 @@ void ReloadByStr()
 			{
 				Environment.date.month = sti(loc);
 				Environment.date.day = sti(grp);
-				SetCurrentTime(sti(ltr),0);
+				SetCurrentTime(sti(ltr), 0);
 				DoQuestReloadToLocation(loadedLocation.id, "reload", "reload1", "");
 				return;
 			}
 		}
 	}
-    int i = FindLocation(loc);
-    if (i != -1)
-    {
-        if(CheckAttribute(&locations[i],"fastreload"))
-        {
+	int i = FindLocation(loc);
+	if (i != -1)
+	{
+		if (CheckAttribute(&locations[i], "fastreload"))
+		{
 			if (GetCityFrom_Sea(locations[i].fastreload) != "")
-		    {
-		        setCharacterShipLocation(pchar, GetCityFrom_Sea(locations[i].fastreload));
-		        setWDMPointXZ(GetCityFrom_Sea(locations[i].fastreload));
-		    }
-	    }
-	    else
-	    {
-	        if (locations[i].type == "seashore" || locations[i].type == "mayak")
-	        {
-	            setCharacterShipLocation(pchar, loc));
-		        setWDMPointXZ(loc);
-	        }
-	    }
-	    DoQuestReloadToLocation(loc, grp, ltr, "");
-	    Log_Info(loc);
+			{
+				setCharacterShipLocation(pchar, GetCityFrom_Sea(locations[i].fastreload));
+				setWDMPointXZ(GetCityFrom_Sea(locations[i].fastreload));
+			}
+		}
+		else
+		{
+			if (locations[i].type == "seashore" || locations[i].type == "mayak")
+			{
+				setCharacterShipLocation(pchar, loc));
+				setWDMPointXZ(loc);
+			}
+		}
+		DoQuestReloadToLocation(loc, grp, ltr, "");
+		Log_Info(loc);
 		// Статистика по читам
 		Statistic_AddValue(PChar, "Cheats.ReloadByStr", 1);
-    }
-    else
-    {
-        Log_Info("Нет локации");
-    }
+	}
+	else
+	{
+		Log_Info("Нет локации");
+	}
 }
 
 void XI_SetScroller(float pos)
 {
-	SendMessage(&GameInterface,"lsf",MSG_INTERFACE_SET_SCROLLER,"QUESTSCROLL",pos);
+	SendMessage(&GameInterface, "lsf", MSG_INTERFACE_SET_SCROLLER, "QUESTSCROLL", pos);
 }
 
 void SetScrollerPos()
@@ -3210,22 +3219,27 @@ void SetScrollerPos()
 void ProcScrollPosChange()
 {
 	float newPos = GetEventData();
-    SendMessage(&GameInterface,"lslf",MSG_INTERFACE_MSG_TO_NODE,"INFO_TEXT",2, newPos);
+	SendMessage(&GameInterface, "lslf", MSG_INTERFACE_MSG_TO_NODE, "INFO_TEXT", 2, newPos);
 }
 
 void ProcScrollChange()
 {
 	int changeNum = GetEventData();
-	if(changeNum==0) return;
+	if (changeNum == 0)
+		return;
 	string controlNode = "";
-	if( GetSelectable("INFO_TEXT") ) controlNode = "INFO_TEXT";
+	if (GetSelectable("INFO_TEXT"))
+		controlNode = "INFO_TEXT";
 
-	if(controlNode!="")
+	if (controlNode != "")
 	{
-		if(changeNum>0) {
-			SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,controlNode,-1, 0,ACTION_DOWNSTEP);
-		} else {
-			SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,controlNode,-1, 0,ACTION_UPSTEP);
+		if (changeNum > 0)
+		{
+			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, controlNode, -1, 0, ACTION_DOWNSTEP);
+		}
+		else
+		{
+			SendMessage(&GameInterface, "lslll", MSG_INTERFACE_MSG_TO_NODE, controlNode, -1, 0, ACTION_UPSTEP);
 		}
 	}
 }

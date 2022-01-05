@@ -9,5 +9,8 @@ void CreateIconSelector(ref rObject, int iIconSizeX, int iIconSizeY, string sOkF
 
 void KillIconSelector()
 {
-	if (!bIconSelectorActive) { return; }
+	if (!bIconSelectorActive)
+	{
+		return;
+	}
 }

@@ -7,12 +7,12 @@ int CreateMaracaiboCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "Maracaibo_Mayor";
-	ch.model	= "huber_eng";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "Maracaibo_Mayor";
+	ch.model = "huber_eng";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_townhall";
+	ch.location = "Maracaibo_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -22,7 +22,7 @@ int CreateMaracaiboCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -30,13 +30,13 @@ int CreateMaracaiboCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "Maracaibo_Priest";
-	ch.model	= "priest_3";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "Maracaibo_Priest";
+	ch.model = "priest_3";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_church";
+	ch.location = "Maracaibo_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -48,12 +48,12 @@ int CreateMaracaiboCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "Maracaibo_waitress";
-	ch.model	= "girl_3";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "Maracaibo_waitress";
+	ch.model = "girl_3";
 	ch.sex = "woman";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_tavern";
+	ch.location = "Maracaibo_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -65,13 +65,13 @@ int CreateMaracaiboCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "Maracaibo_tavernkeeper";
-	ch.model	= "barmen_15";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "Maracaibo_tavernkeeper";
+	ch.model = "barmen_15";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_Tavern";
+	ch.location = "Maracaibo_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -83,14 +83,13 @@ int CreateMaracaiboCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
-	ch.id		= "Maracaibo_trader";
-	ch.model	= "trader_15";
+	makeref(ch, Characters[n]); //Торговец
+	ch.id = "Maracaibo_trader";
+	ch.model = "trader_15";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_Store";
+	ch.location = "Maracaibo_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -102,12 +101,12 @@ int CreateMaracaiboCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
-	ch.id		= "Maracaibo_shipyarder";
-	ch.model	= "shipowner_15";
+	makeref(ch, Characters[n]); //Корабел
+	ch.id = "Maracaibo_shipyarder";
+	ch.model = "shipowner_15";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_Shipyard";
+	ch.location = "Maracaibo_Shipyard";
 	ch.greeting = "Gr_shipyarder";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
@@ -117,7 +116,7 @@ int CreateMaracaiboCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -125,12 +124,12 @@ int CreateMaracaiboCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "Maracaibo_usurer";
-	ch.model	= "usurer_6";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "Maracaibo_usurer";
+	ch.model = "usurer_6";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_Bank";
+	ch.location = "Maracaibo_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -143,12 +142,12 @@ int CreateMaracaiboCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "Maracaibo_PortMan";
-	ch.model	= "usurer_5";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "Maracaibo_PortMan";
+	ch.model = "usurer_5";
 	ch.sex = "man";
 	ch.City = "Maracaibo";
-	ch.location	= "Maracaibo_PortOffice";
+	ch.location = "Maracaibo_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -160,12 +159,12 @@ int CreateMaracaiboCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "Maracaibo_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "Maracaibo_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

@@ -11,11 +11,12 @@ int LocationInitNevis(int n)
 
 	locations[n].townsack = "Charles";
 	locations[n].fastreload = "Charles";
- 	locations[n].islandId = "Nevis";
+	locations[n].islandId = "Nevis";
 
 	locations[n].filespath.models = "locations\Town_Nevis\Town\";
 
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -38,7 +39,7 @@ int LocationInitNevis(int n)
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.3;
@@ -63,7 +64,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.l1.label = "Sea";
 	locations[n].locators_radius.reload.reload1_back = 1.8;
 
-    locations[n].reload.l3.name = "reload3_back";
+	locations[n].reload.l3.name = "reload3_back";
 	locations[n].reload.l3.go = "Charles_townhall";
 	locations[n].reload.l3.emerge = "reload1";
 	locations[n].reload.l3.autoreload = "0";
@@ -124,7 +125,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.gate.label = "ExitTown";
 	locations[n].locators_radius.reload.gate_back = 2.0;
 
-    // --> Квестовые локации, резерв девять номеров.
+	// --> Квестовые локации, резерв девять номеров.
 	locations[n].reload.l11.name = "housePirate";
 	locations[n].reload.l11.go = "Charles_PirateHouse";
 	locations[n].reload.l11.emerge = "reload1";
@@ -132,7 +133,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.l11.label = "PirateHouse";
 	locations[n].reload.l11.disable = true;
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS3";
 	locations[n].reload.l20.go = "CommonDoubleflourHouse_1";
 	locations[n].reload.l20.emerge = "reload1";
@@ -200,7 +201,8 @@ int LocationInitNevis(int n)
 	locations[n].id = "Charles_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\tavern04\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "Charles";
@@ -254,7 +256,7 @@ int LocationInitNevis(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Charles";
- 	locations[n].islandId = "Nevis";
+	locations[n].islandId = "Nevis";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\Tavern_room";
@@ -283,13 +285,14 @@ int LocationInitNevis(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store02\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Charles";
 	locations[n].lockWeather = "Inside";
@@ -321,7 +324,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	locations[n].locators_radius.camdetector.camera1 = 5;
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -330,13 +333,14 @@ int LocationInitNevis(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РОСТОВЩИК
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank02\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Charles";
 	locations[n].lockWeather = "Inside";
@@ -375,13 +379,14 @@ int LocationInitNevis(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard01\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "Charles";
 	locations[n].lockWeather = "Inside";
@@ -421,7 +426,7 @@ int LocationInitNevis(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_townhall";
@@ -469,7 +474,8 @@ int LocationInitNevis(int n)
 	locations[n].id = "Charles_Brothel";
 	locations[n].id.label = "Brothel";
 	locations[n].filespath.models = "locations\inside\Brothel\";
-	locations[n].image = "loading\inside\brothell_hall_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\brothell_hall_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Charles";
 	locations[n].lockWeather = "Inside";
@@ -506,7 +512,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Brothel Room";
-	locations[n].reload.l2.disable = 1;  //закроем, но связка пусть будет для квестов.
+	locations[n].reload.l2.disable = 1; //закроем, но связка пусть будет для квестов.
 
 	locations[n].reload.l3.name = "reload3";
 	locations[n].reload.l3.go = "Charles_SecBrRoom";
@@ -522,7 +528,8 @@ int LocationInitNevis(int n)
 	locations[n].id = "Charles_Brothel_room";
 	locations[n].id.label = "Brothel Room";
 	locations[n].filespath.models = "locations\inside\Brothel_room\";
-	locations[n].image = "loading\inside\brothell_room_0.tga";
+									locations[n]
+										.image = "loading\inside\brothell_room_0.tga";
 	//Town sack
 	locations[n].townsack = "Charles";
 	locations[n].lockWeather = "Inside";
@@ -560,7 +567,7 @@ int LocationInitNevis(int n)
 	locations[n].id = "Charles_SecBrRoom"; // вторая комната борделя
 	locations[n].id.label = "Room";
 	locations[n].image = "loading\inside\CommonResidence_3.tga";
- 	//Town sack
+	//Town sack
 	locations[n].townsack = "Charles";
 	locations[n].lockWeather = "Inside";
 	//Sound
@@ -571,7 +578,8 @@ int LocationInitNevis(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\BigHouse03\";
-	locations[n].models.always.house = "BigHouse03";
+									locations[n]
+										.models.always.house = "BigHouse03";
 	locations[n].models.always.house.level = 65538;
 	locations[n].models.always.window = "BigHouse03_windows";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -610,7 +618,7 @@ int LocationInitNevis(int n)
 	//Sound
 	locations[n].type = "church";
 	locations[n].fastreload = "Charles";
- 	locations[n].islandId = "Nevis";
+	locations[n].islandId = "Nevis";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Church01_locators";
@@ -637,7 +645,7 @@ int LocationInitNevis(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_PortOffice";
@@ -679,7 +687,7 @@ int LocationInitNevis(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПИРАТСКИЙ ДОМ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_PirateHouse";
@@ -725,13 +733,13 @@ int LocationInitNevis(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Выход из Невиса
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_ExitTown";
 	locations[n].fastreload = "Charles";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Town sack
 	locations[n].townsack = "Charles";
 	//Sound
@@ -786,10 +794,10 @@ int LocationInitNevis(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "Charles_Jungle_05";
+	locations[n].id = "Charles_Jungle_05";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Nevis";
 	//Models
@@ -844,7 +852,7 @@ int LocationInitNevis(int n)
 	locations[n].id = "Mayak5";
 	locations[n].id.label = "Mayak5";
 	locations[n].worldmap = "Mayak5";
-	locations[n].image = "loading\outside\lighthouse_"+rand(1)+".tga";
+	locations[n].image = "loading\outside\lighthouse_" + rand(1) + ".tga";
 	//Sound
 	locations[n].type = "mayak";
 	locations[n].islandId = "Nevis";
@@ -886,7 +894,7 @@ int LocationInitNevis(int n)
 	Locations[n].models.day.glassonday.tech = "LocationWindows";
 	locations[n].models.day.glassonday.level = 66532;
 	//Night
-	locations[n].models.night.volumeLight= "lighthouse_volumeLight";
+	locations[n].models.night.volumeLight = "lighthouse_volumeLight";
 	locations[n].models.night.volumeLight.tech = "LighthouseLight";
 	locations[n].models.night.volumeLight.level = 66529;
 
@@ -929,7 +937,7 @@ int LocationInitNevis(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_Jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Nevis";
@@ -1029,7 +1037,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1037,7 +1045,7 @@ int LocationInitNevis(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_Jungle_03";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Nevis";
@@ -1077,7 +1085,7 @@ int LocationInitNevis(int n)
 	locations[n].reload.l2.emerge = "reload2";
 	locations[n].reload.l2.autoreload = "1";
 	locations[n].reload.l2.label = "Jungle";
-    locations[n].locators_radius.reload.reload2_back = 2;
+	locations[n].locators_radius.reload.reload2_back = 2;
 
 	locations[n].reload.l3.name = "reload3_back";
 	locations[n].reload.l3.go = "Charles_Jungle_02";
@@ -1092,7 +1100,7 @@ int LocationInitNevis(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Nevis";
@@ -1143,7 +1151,7 @@ int LocationInitNevis(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Charles_Grot";
 	locations[n].id.label = "Grot";
-    locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
 	locations[n].islandId = "Nevis";
@@ -1161,7 +1169,7 @@ int LocationInitNevis(int n)
 
 	Locations[n].models.always.rays = "grotto2_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -1184,16 +1192,17 @@ int LocationInitNevis(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "Charles_jungle_04";
+	locations[n].id = "Charles_jungle_04";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Nevis";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle8\";
-	Locations[n].models.always.jungle = "jungle8";
+									Locations[n]
+										.models.always.jungle = "jungle8";
 	Locations[n].models.always.locators = "jungle8_locators";
 	Locations[n].models.always.grassPatch = "jungle8_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -1277,9 +1286,9 @@ int LocationInitNevis(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ДОМ DOZOR
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "HouseDozor";
@@ -1309,7 +1318,7 @@ int LocationInitNevis(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse07rand= "mediumhouse07_rand";
+	Locations[n].models.day.mediumhouse07rand = "mediumhouse07_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse07_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse07_patch";

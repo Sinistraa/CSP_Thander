@@ -10,7 +10,7 @@ void InitInterface(string iniName)
 {
 	GameInterface.title = "titleAcademyLand";
 
-    	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
 	GameInterface.SET_RANK.str = 1;
 	GameInterface.SET_SKILL.str = 50;
@@ -21,15 +21,15 @@ void InitInterface(string iniName)
 	SetEquipmentInformation();
 	SetEnemyDetailsInformation();
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0);
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("PlayerCrewQuantityTempUptade","PlayerCrewQuantityTempUptade",0);
-	SetEventHandler("EnemyCrewQuantityTempUptade","EnemyCrewQuantityTempUptade",0);
-	SetEventHandler("RankUptade","RankUptade",0);
-	SetEventHandler("SkillUptade","SkillUptade",0);
-	SetEventHandler("HpUptade","HpUptade",0);
-	SetEventHandler("EnergyUptade","EnergyUptade",0);
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0);
+	SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("PlayerCrewQuantityTempUptade", "PlayerCrewQuantityTempUptade", 0);
+	SetEventHandler("EnemyCrewQuantityTempUptade", "EnemyCrewQuantityTempUptade", 0);
+	SetEventHandler("RankUptade", "RankUptade", 0);
+	SetEventHandler("SkillUptade", "SkillUptade", 0);
+	SetEventHandler("HpUptade", "HpUptade", 0);
+	SetEventHandler("EnergyUptade", "EnergyUptade", 0);
 }
 
 void ProcessBreakExit()
@@ -44,15 +44,15 @@ void ProcessCancelExit()
 
 void IDoExit(int exitCode)
 {
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("PlayerCrewQuantityTempUptade","PlayerCrewQuantityTempUptade");
-	DelEventHandler("EnemyCrewQuantityTempUptade","EnemyCrewQuantityTempUptade");
-	DelEventHandler("RankUptade","RankUptade");
-	DelEventHandler("SkillUptade","SkillUptade");
-	DelEventHandler("HpUptade","HpUptade");
-	DelEventHandler("EnergyUptade","EnergyUptade");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("PlayerCrewQuantityTempUptade", "PlayerCrewQuantityTempUptade");
+	DelEventHandler("EnemyCrewQuantityTempUptade", "EnemyCrewQuantityTempUptade");
+	DelEventHandler("RankUptade", "RankUptade");
+	DelEventHandler("SkillUptade", "SkillUptade");
+	DelEventHandler("HpUptade", "HpUptade");
+	DelEventHandler("EnergyUptade", "EnergyUptade");
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
@@ -66,104 +66,104 @@ void ProcCommand()
 	RankUptade();
 	HpUptade();
 
-	switch(nodName)
+	switch (nodName)
 	{
-		case "BATTLE_TYPE_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeBattleType(true);
-			}
+	case "BATTLE_TYPE_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeBattleType(true);
+		}
 		break;
 
-		case "BATTLE_TYPE_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeBattleType(false);
-			}
+	case "BATTLE_TYPE_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeBattleType(false);
+		}
 		break;
 
-		case "BATTLE_DEFENCE_TYPE_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeDefenceType(true);
-			}
+	case "BATTLE_DEFENCE_TYPE_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeDefenceType(true);
+		}
 		break;
 
-		case "BATTLE_DEFENCE_TYPE_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeDefenceType(false);
-			}
+	case "BATTLE_DEFENCE_TYPE_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeDefenceType(false);
+		}
 		break;
 
-		case "BATTLE_SABER_TYPE_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeSaberType(true);
-			}
+	case "BATTLE_SABER_TYPE_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeSaberType(true);
+		}
 		break;
 
-		case "BATTLE_SABER_TYPE_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeSaberType(false);
-			}
+	case "BATTLE_SABER_TYPE_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeSaberType(false);
+		}
 		break;
 
-		case "ENEMY_LEVEL_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeEnemyLevelType(true);
-			}
+	case "ENEMY_LEVEL_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeEnemyLevelType(true);
+		}
 		break;
 
-		case "ENEMY_LEVEL_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeEnemyLevelType(false);
-			}
+	case "ENEMY_LEVEL_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeEnemyLevelType(false);
+		}
 		break;
 
-		case "ENABLE_POTION_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeEnablePotionType(true);
-			}
+	case "ENABLE_POTION_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeEnablePotionType(true);
+		}
 		break;
 
-		case "ENABLE_POTION_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeEnablePotionType(false);
-			}
+	case "ENABLE_POTION_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeEnablePotionType(false);
+		}
 		break;
 
-		case "ENABLE_FOOD_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeEnableFoodType(true);
-			}
+	case "ENABLE_FOOD_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeEnableFoodType(true);
+		}
 		break;
 
-		case "ENABLE_FOOD_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeEnableFoodType(false);
-			}
+	case "ENABLE_FOOD_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeEnableFoodType(false);
+		}
 		break;
 
-		case "RESET_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				ResetAll();
-			}
+	case "RESET_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			ResetAll();
+		}
 		break;
 
-		case "OK":
-			if(comName=="activate" || comName=="click")
-			{
-				AcademyLandDone();
-			}
+	case "OK":
+		if (comName == "activate" || comName == "click")
+		{
+			AcademyLandDone();
+		}
 		break;
 	}
 }
@@ -171,7 +171,7 @@ void ProcCommand()
 //---------------------------------------------------------------------
 void ChangeBattleType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckTypeCount--;
 	}
@@ -180,12 +180,12 @@ void ChangeBattleType(bool bLeft)
 		iCheckTypeCount++;
 	}
 
-	if(iCheckTypeCount < 0)
+	if (iCheckTypeCount < 0)
 	{
 		iCheckTypeCount = 2;
 	}
 
-	if(iCheckTypeCount > 2)
+	if (iCheckTypeCount > 2)
 	{
 		iCheckTypeCount = 0;
 	}
@@ -195,7 +195,7 @@ void ChangeBattleType(bool bLeft)
 
 void ChangeDefenceType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckDefenceTypeCount--;
 	}
@@ -204,12 +204,12 @@ void ChangeDefenceType(bool bLeft)
 		iCheckDefenceTypeCount++;
 	}
 
-	if(iCheckDefenceTypeCount < 0)
+	if (iCheckDefenceTypeCount < 0)
 	{
 		iCheckDefenceTypeCount = 1;
 	}
 
-	if(iCheckDefenceTypeCount > 1)
+	if (iCheckDefenceTypeCount > 1)
 	{
 		iCheckDefenceTypeCount = 0;
 	}
@@ -219,7 +219,7 @@ void ChangeDefenceType(bool bLeft)
 
 void ChangeSaberType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckSaberTypeCount--;
 	}
@@ -228,12 +228,12 @@ void ChangeSaberType(bool bLeft)
 		iCheckSaberTypeCount++;
 	}
 
-	if(iCheckSaberTypeCount < 1)
+	if (iCheckSaberTypeCount < 1)
 	{
 		iCheckSaberTypeCount = 15;
 	}
 
-	if(iCheckSaberTypeCount > 15)
+	if (iCheckSaberTypeCount > 15)
 	{
 		iCheckSaberTypeCount = 1;
 	}
@@ -244,7 +244,7 @@ void ChangeSaberType(bool bLeft)
 
 void ChangeEnemyLevelType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckEnemyLevelCount--;
 	}
@@ -253,12 +253,12 @@ void ChangeEnemyLevelType(bool bLeft)
 		iCheckEnemyLevelCount++;
 	}
 
-	if(iCheckEnemyLevelCount < 0)
+	if (iCheckEnemyLevelCount < 0)
 	{
 		iCheckEnemyLevelCount = 2;
 	}
 
-	if(iCheckEnemyLevelCount > 2)
+	if (iCheckEnemyLevelCount > 2)
 	{
 		iCheckEnemyLevelCount = 0;
 	}
@@ -268,7 +268,7 @@ void ChangeEnemyLevelType(bool bLeft)
 
 void ChangeEnablePotionType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckEnablePotionCount--;
 	}
@@ -277,12 +277,12 @@ void ChangeEnablePotionType(bool bLeft)
 		iCheckEnablePotionCount++;
 	}
 
-	if(iCheckEnablePotionCount < 0)
+	if (iCheckEnablePotionCount < 0)
 	{
 		iCheckEnablePotionCount = 1;
 	}
 
-	if(iCheckEnablePotionCount > 1)
+	if (iCheckEnablePotionCount > 1)
 	{
 		iCheckEnablePotionCount = 0;
 	}
@@ -292,7 +292,7 @@ void ChangeEnablePotionType(bool bLeft)
 
 void ChangeEnableFoodType(bool bLeft)
 {
-	if(bLeft)
+	if (bLeft)
 	{
 		iCheckEnableFoodCount--;
 	}
@@ -301,12 +301,12 @@ void ChangeEnableFoodType(bool bLeft)
 		iCheckEnableFoodCount++;
 	}
 
-	if(iCheckEnableFoodCount < 0)
+	if (iCheckEnableFoodCount < 0)
 	{
 		iCheckEnableFoodCount = 1;
 	}
 
-	if(iCheckEnableFoodCount > 1)
+	if (iCheckEnableFoodCount > 1)
 	{
 		iCheckEnableFoodCount = 0;
 	}
@@ -318,30 +318,45 @@ void ChangeEnableFoodType(bool bLeft)
 
 void SetBattleTypeInformation()
 {
-	CreateString(true,"BattleTypeHeader", "Тип тренировки", FONT_CAPTION, COLOR_NORMAL, 390,42,SCRIPT_ALIGN_CENTER,1.2);
+	CreateString(true, "BattleTypeHeader", "Тип тренировки", FONT_CAPTION, COLOR_NORMAL, 390, 42, SCRIPT_ALIGN_CENTER, 1.2);
 
 	string sType = "";
 
-	switch(iCheckTypeCount)
+	switch (iCheckTypeCount)
 	{
-		case 0: sType = "Захват форта с суши"; break;
-		case 1: sType = "Стенка на стенку"; break;
-		case 2: sType = "Один на один"; break;
+	case 0:
+		sType = "Захват форта с суши";
+		break;
+	case 1:
+		sType = "Стенка на стенку";
+		break;
+	case 2:
+		sType = "Один на один";
+		break;
 	}
 
 	SetFormatedText("BATTLE_TYPE_TEXT", sType);
 
-	CreateString(true,"PlayerCrewQuantity", "Кол-во союзников: ", FONT_CAPTION, COLOR_NORMAL, 400,95,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"EnemyCrewQuantity", "Кол-во противников: ", FONT_CAPTION, COLOR_NORMAL, 400,132,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "PlayerCrewQuantity", "Кол-во союзников: ", FONT_CAPTION, COLOR_NORMAL, 400, 95, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "EnemyCrewQuantity", "Кол-во противников: ", FONT_CAPTION, COLOR_NORMAL, 400, 132, SCRIPT_ALIGN_LEFT, 1.0);
 
 	int iPlayerCrew = 0;
 	int iEnemyCrew = 0;
 
-	switch(iCheckTypeCount)
+	switch (iCheckTypeCount)
 	{
-		case 0: iPlayerCrew = 29; iEnemyCrew = 30; break;
-		case 1: iPlayerCrew = 9; iEnemyCrew = 10; break;
-		case 2: iPlayerCrew = 0; iEnemyCrew = 1; break;
+	case 0:
+		iPlayerCrew = 29;
+		iEnemyCrew = 30;
+		break;
+	case 1:
+		iPlayerCrew = 9;
+		iEnemyCrew = 10;
+		break;
+	case 2:
+		iPlayerCrew = 0;
+		iEnemyCrew = 1;
+		break;
 	}
 
 	GameInterface.PLAYER_CREW_QUANTITY.str = iPlayerCrew;
@@ -350,10 +365,20 @@ void SetBattleTypeInformation()
 	//--------------------------------------------------------
 
 	string sDefenceType = "";
-	switch(iCheckDefenceTypeCount)
+	switch (iCheckDefenceTypeCount)
 	{
-		case 0: if(iCheckTypeCount == 0) sDefenceType = "Нападающая сторона"; else sDefenceType = "На разбитом здании"; break;
-		case 1: if(iCheckTypeCount == 0) sDefenceType = "Защищающая сторона"; else sDefenceType = "Около разбитого здания"; break;
+	case 0:
+		if (iCheckTypeCount == 0)
+			sDefenceType = "Нападающая сторона";
+		else
+			sDefenceType = "На разбитом здании";
+		break;
+	case 1:
+		if (iCheckTypeCount == 0)
+			sDefenceType = "Защищающая сторона";
+		else
+			sDefenceType = "Около разбитого здания";
+		break;
 	}
 
 	SetFormatedText("BATTLE_DEFENCE_TYPE_TEXT", sDefenceType);
@@ -362,7 +387,7 @@ void SetBattleTypeInformation()
 
 void SetEquipmentInformation()
 {
-	CreateString(true,"EquipmentHeader", "Экипировка", FONT_CAPTION, COLOR_NORMAL, 390,173,SCRIPT_ALIGN_CENTER,1.2);
+	CreateString(true, "EquipmentHeader", "Экипировка", FONT_CAPTION, COLOR_NORMAL, 390, 173, SCRIPT_ALIGN_CENTER, 1.2);
 
 	//--------------------------------------------------------
 	idLngFile = LanguageOpenFile("ItemsDescribe.txt");
@@ -385,7 +410,7 @@ void SetEquipmentInformation()
 
 void SetEnemyDetailsInformation()
 {
-	CreateString(true,"EnemyDetailsHeader", "Параметры соперника", FONT_CAPTION, COLOR_NORMAL, 390,347,SCRIPT_ALIGN_CENTER,1.2);
+	CreateString(true, "EnemyDetailsHeader", "Параметры соперника", FONT_CAPTION, COLOR_NORMAL, 390, 347, SCRIPT_ALIGN_CENTER, 1.2);
 
 	string sEnemyLevel = GetEnemyLevel();
 	SetFormatedText("ENEMY_LEVEL_TEXT", sEnemyLevel);
@@ -400,10 +425,10 @@ void SetEnemyDetailsInformation()
 
 	string sSkill = XI_ConvertString(GetSkillForEnemyFromSaber());
 
-	CreateString(true,"EnemyRank", "Ранг: ", FONT_CAPTION, COLOR_NORMAL, 395,390,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"EnemySkill", sSkill + ": ", FONT_CAPTION, COLOR_NORMAL, 395,425,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"EnemyHP", "Примерное кол-во жизни: ", FONT_CAPTION, COLOR_NORMAL, 395,460,SCRIPT_ALIGN_LEFT,1.0);
-	CreateString(true,"EnemyEnergy", "Примерное кол-во энергии: ", FONT_CAPTION, COLOR_NORMAL, 395,495,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "EnemyRank", "Ранг: ", FONT_CAPTION, COLOR_NORMAL, 395, 390, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "EnemySkill", sSkill + ": ", FONT_CAPTION, COLOR_NORMAL, 395, 425, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "EnemyHP", "Примерное кол-во жизни: ", FONT_CAPTION, COLOR_NORMAL, 395, 460, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "EnemyEnergy", "Примерное кол-во энергии: ", FONT_CAPTION, COLOR_NORMAL, 395, 495, SCRIPT_ALIGN_LEFT, 1.0);
 
 	GetEnemyDetails();
 	SetCostInfo();
@@ -412,9 +437,9 @@ void SetEnemyDetailsInformation()
 void SetCostInfo()
 {
 	int iMoney = GetCost();
-	CreateString(true,"AcademyLandCost", "Цена: " + iMoney, FONT_NORMAL, argb(255,255,255,128), 360,528,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "AcademyLandCost", "Цена: " + iMoney, FONT_NORMAL, argb(255, 255, 255, 128), 360, 528, SCRIPT_ALIGN_LEFT, 1.0);
 
-	if(sti(PChar.Money) >= iMoney)
+	if (sti(PChar.Money) >= iMoney)
 	{
 		SetSelectable("OK", true);
 	}
@@ -431,11 +456,17 @@ int GetCost()
 {
 	int iSaberCost = 0;
 	string sSaberType = GetSaberNameFromCount();
-	switch(Items[FindItem(sSaberType)].FencingType)
+	switch (Items[FindItem(sSaberType)].FencingType)
 	{
-		case "FencingLight": iSaberCost = 15; break;
-		case "Fencing": iSaberCost = 30; break;
-		case "FencingHeavy": iSaberCost = 50; break;
+	case "FencingLight":
+		iSaberCost = 15;
+		break;
+	case "Fencing":
+		iSaberCost = 30;
+		break;
+	case "FencingHeavy":
+		iSaberCost = 50;
+		break;
 	}
 
 	int iRank = GetRank(PChar, 0) * 250;
@@ -450,88 +481,132 @@ int GetCost()
 
 string GetSaberNameFromCount()
 {
-	switch(iCheckSaberTypeCount)
+	switch (iCheckSaberTypeCount)
 	{
-		case 1: return "blade1"; break;
-		case 2: return "blade4"; break;
-		case 3: return "blade6"; break;
-		case 4: return "blade7"; break;
-		case 5: return "blade9"; break;
-		case 6: return "blade11"; break;
-		case 7: return "blade12"; break;
-		case 8: return "blade16"; break;
-		case 9: return "blade18"; break;
-		case 10: return "blade22"; break;
-		case 11: return "blade23"; break;
-		case 12: return "blade25"; break;
-		case 13: return "blade35"; break;
-		case 14: return "topor3"; break;
-		case 15: return "topor1"; break;
+	case 1:
+		return "blade1";
+		break;
+	case 2:
+		return "blade4";
+		break;
+	case 3:
+		return "blade6";
+		break;
+	case 4:
+		return "blade7";
+		break;
+	case 5:
+		return "blade9";
+		break;
+	case 6:
+		return "blade11";
+		break;
+	case 7:
+		return "blade12";
+		break;
+	case 8:
+		return "blade16";
+		break;
+	case 9:
+		return "blade18";
+		break;
+	case 10:
+		return "blade22";
+		break;
+	case 11:
+		return "blade23";
+		break;
+	case 12:
+		return "blade25";
+		break;
+	case 13:
+		return "blade35";
+		break;
+	case 14:
+		return "topor3";
+		break;
+	case 15:
+		return "topor1";
+		break;
 	}
 }
 
 string GetEnemyLevel()
 {
-	switch(iCheckEnemyLevelCount)
+	switch (iCheckEnemyLevelCount)
 	{
-		case 0: return "Слабый соперник"; break;
-		case 1: return "Равный соперник"; break;
-		case 2: return "Сильный соперник"; break;
+	case 0:
+		return "Слабый соперник";
+		break;
+	case 1:
+		return "Равный соперник";
+		break;
+	case 2:
+		return "Сильный соперник";
+		break;
 	}
 }
 
 string GetEnablePotion()
 {
-	switch(iCheckEnablePotionCount)
+	switch (iCheckEnablePotionCount)
 	{
-		case 0: return "Запретить эликсиры"; break;
-		case 1: return "Разрешить эликсиры"; break;
+	case 0:
+		return "Запретить эликсиры";
+		break;
+	case 1:
+		return "Разрешить эликсиры";
+		break;
 	}
 }
 
 string GetEnableFood()
 {
-	switch(iCheckEnableFoodCount)
+	switch (iCheckEnableFoodCount)
 	{
-		case 0: return "Запретить еду"; break;
-		case 1: return "Разрешить еду"; break;
+	case 0:
+		return "Запретить еду";
+		break;
+	case 1:
+		return "Разрешить еду";
+		break;
 	}
 }
 
 void PlayerCrewQuantityTempUptade()
 {
-	if(iCheckTypeCount == 0)
+	if (iCheckTypeCount == 0)
 	{
-		if(sti(GameInterface.PLAYER_CREW_QUANTITY.str) > 29)
+		if (sti(GameInterface.PLAYER_CREW_QUANTITY.str) > 29)
 		{
 			GameInterface.PLAYER_CREW_QUANTITY.str = 29;
 		}
 
-		if(sti(GameInterface.PLAYER_CREW_QUANTITY.str) < 0)
+		if (sti(GameInterface.PLAYER_CREW_QUANTITY.str) < 0)
 		{
 			GameInterface.PLAYER_CREW_QUANTITY.str = 0;
 		}
 	}
 	else
 	{
-		if(iCheckTypeCount == 1)
+		if (iCheckTypeCount == 1)
 		{
-			if(iCheckDefenceTypeCount == 0)
+			if (iCheckDefenceTypeCount == 0)
 			{
-				if(sti(GameInterface.PLAYER_CREW_QUANTITY.str) > 9)
+				if (sti(GameInterface.PLAYER_CREW_QUANTITY.str) > 9)
 				{
 					GameInterface.PLAYER_CREW_QUANTITY.str = 9;
 				}
 			}
 			else
 			{
-				if(sti(GameInterface.PLAYER_CREW_QUANTITY.str) > 14)
+				if (sti(GameInterface.PLAYER_CREW_QUANTITY.str) > 14)
 				{
 					GameInterface.PLAYER_CREW_QUANTITY.str = 14;
 				}
 			}
 
-			if(sti(GameInterface.PLAYER_CREW_QUANTITY.str) < 0)
+			if (sti(GameInterface.PLAYER_CREW_QUANTITY.str) < 0)
 			{
 				GameInterface.PLAYER_CREW_QUANTITY.str = 0;
 			}
@@ -545,38 +620,38 @@ void PlayerCrewQuantityTempUptade()
 
 void EnemyCrewQuantityTempUptade()
 {
-	if(iCheckTypeCount == 0)
+	if (iCheckTypeCount == 0)
 	{
-		if(sti(GameInterface.ENEMY_CREW_QUANTITY.str) > 30)
+		if (sti(GameInterface.ENEMY_CREW_QUANTITY.str) > 30)
 		{
 			GameInterface.ENEMY_CREW_QUANTITY.str = 30;
 		}
 
-		if(sti(GameInterface.ENEMY_CREW_QUANTITY.str) <= 0)
+		if (sti(GameInterface.ENEMY_CREW_QUANTITY.str) <= 0)
 		{
 			GameInterface.ENEMY_CREW_QUANTITY.str = 1;
 		}
 	}
 	else
 	{
-		if(iCheckTypeCount == 1)
+		if (iCheckTypeCount == 1)
 		{
-			if(iCheckDefenceTypeCount == 0)
+			if (iCheckDefenceTypeCount == 0)
 			{
-				if(sti(GameInterface.ENEMY_CREW_QUANTITY.str) > 10)
+				if (sti(GameInterface.ENEMY_CREW_QUANTITY.str) > 10)
 				{
 					GameInterface.ENEMY_CREW_QUANTITY.str = 10;
 				}
 			}
 			else
 			{
-				if(sti(GameInterface.ENEMY_CREW_QUANTITY.str) > 15)
+				if (sti(GameInterface.ENEMY_CREW_QUANTITY.str) > 15)
 				{
 					GameInterface.ENEMY_CREW_QUANTITY.str = 15;
 				}
 			}
 
-			if(sti(GameInterface.ENEMY_CREW_QUANTITY.str) <= 0)
+			if (sti(GameInterface.ENEMY_CREW_QUANTITY.str) <= 0)
 			{
 				GameInterface.ENEMY_CREW_QUANTITY.str = 1;
 			}
@@ -610,17 +685,29 @@ void ResetAll()
 bool CheckEnableCrewQuantity()
 {
 	int iPlayerCrew, iEnemyCrew;
-	switch(iCheckTypeCount)
+	switch (iCheckTypeCount)
 	{
-		case 0: iPlayerCrew = 29; iEnemyCrew = 30; break;
-		case 1: if(iCheckDefenceTypeCount == 0) iPlayerCrew = 9; iEnemyCrew = 10; else iPlayerCrew = 14; iEnemyCrew = 15; break;
-		case 2: iPlayerCrew = 0; iEnemyCrew = 1; break;
+	case 0:
+		iPlayerCrew = 29;
+		iEnemyCrew = 30;
+		break;
+	case 1:
+		if (iCheckDefenceTypeCount == 0)
+			iPlayerCrew = 9;
+		iEnemyCrew = 10;
+		else iPlayerCrew = 14;
+		iEnemyCrew = 15;
+		break;
+	case 2:
+		iPlayerCrew = 0;
+		iEnemyCrew = 1;
+		break;
 	}
 
 	int iPlayerCrewQuantityInString = sti(GameInterface.PLAYER_CREW_QUANTITY.str);
 	int iEnemyCrewQuantityInString = sti(GameInterface.ENEMY_CREW_QUANTITY.str);
 
-	if(iPlayerCrewQuantityInString > iPlayerCrew || iEnemyCrewQuantityInString > iEnemyCrew)
+	if (iPlayerCrewQuantityInString > iPlayerCrew || iEnemyCrewQuantityInString > iEnemyCrew)
 	{
 		return false;
 	}
@@ -633,7 +720,7 @@ string GetSkillForEnemyFromSaber()
 	string sSaber = GetSaberNameFromCount();
 	ref Saber = &Items[FindItem(sSaber)];
 
-	if(CheckAttribute(Saber, "FencingType"))
+	if (CheckAttribute(Saber, "FencingType"))
 	{
 		return Saber.FencingType;
 	}
@@ -654,27 +741,27 @@ void GetEnemyDetails()
 	int iHpBonus = 0;
 	int iEnergyBonus = 0;
 
-	switch(iCheckEnemyLevelCount)
+	switch (iCheckEnemyLevelCount)
 	{
-		case 0:
-			iSkillBonus = -25;
-			iRankBonus = -3;
-			iHpBonus = -10;
-			iEnergyBonus = -10;
+	case 0:
+		iSkillBonus = -25;
+		iRankBonus = -3;
+		iHpBonus = -10;
+		iEnergyBonus = -10;
 		break;
 
-		case 1:
-			iSkillBonus = 25;
-			iRankBonus = 3;
-			iHpBonus = 10;
-			iEnergyBonus = 10;
+	case 1:
+		iSkillBonus = 25;
+		iRankBonus = 3;
+		iHpBonus = 10;
+		iEnergyBonus = 10;
 		break;
 
-		case 2:
-			iSkillBonus = 50;
-			iRankBonus = 5;
-			iHpBonus = 20;
-			iEnergyBonus = 30;
+	case 2:
+		iSkillBonus = 50;
+		iRankBonus = 5;
+		iHpBonus = 20;
+		iEnergyBonus = 30;
 		break;
 	}
 
@@ -683,17 +770,41 @@ void GetEnemyDetails()
 	iHp += iHpBonus;
 	iEnergy += iEnergyBonus;
 
-	if(iSkill > 100) { iSkill = 100; }
-	if(iSkill < 20) { iSkill = 20; }
+	if (iSkill > 100)
+	{
+		iSkill = 100;
+	}
+	if (iSkill < 20)
+	{
+		iSkill = 20;
+	}
 
-	if(iRank > sti(pchar.rank)+10) { iRank = sti(pchar.rank)+10; }
-	if(iRank < 5) { iRank = 5; }
+	if (iRank > sti(pchar.rank) + 10)
+	{
+		iRank = sti(pchar.rank) + 10;
+	}
+	if (iRank < 5)
+	{
+		iRank = 5;
+	}
 
-	if(iHp > 500) { iHp = 500; }
-	if(iHp < 30) { iHp = 30; }
+	if (iHp > 500)
+	{
+		iHp = 500;
+	}
+	if (iHp < 30)
+	{
+		iHp = 30;
+	}
 
-	if(iEnergy > 300) { iEnergy = 300; }
-	if(iEnergy < 40) { iEnergy = 40; }
+	if (iEnergy > 300)
+	{
+		iEnergy = 300;
+	}
+	if (iEnergy < 40)
+	{
+		iEnergy = 40;
+	}
 
 	GameInterface.SET_SKILL.str = iSkill;
 	GameInterface.SET_RANK.str = iRank;
@@ -705,8 +816,14 @@ void RankUptade()
 {
 	int iString = sti(GameInterface.SET_RANK.str);
 
-	if(iString > sti(pchar.rank)+10) { iString = sti(pchar.rank)+10; }
-	if(iString < 5) { iString = 5; }
+	if (iString > sti(pchar.rank) + 10)
+	{
+		iString = sti(pchar.rank) + 10;
+	}
+	if (iString < 5)
+	{
+		iString = 5;
+	}
 
 	GameInterface.SET_RANK.str = iString;
 }
@@ -715,8 +832,14 @@ void SkillUptade()
 {
 	int iString = sti(GameInterface.SET_SKILL.str);
 
-	if(iString > 100) { iString = 100; }
-	if(iString < 20) { iString = 20; }
+	if (iString > 100)
+	{
+		iString = 100;
+	}
+	if (iString < 20)
+	{
+		iString = 20;
+	}
 
 	GameInterface.SET_SKILL.str = iString;
 }
@@ -725,8 +848,14 @@ void HpUptade()
 {
 	int iString = sti(GameInterface.SET_HP.str);
 
-	if(iString > 500) { iString = 500; }
-	if(iString < 30) { iString = 30; }
+	if (iString > 500)
+	{
+		iString = 500;
+	}
+	if (iString < 30)
+	{
+		iString = 30;
+	}
 
 	GameInterface.SET_HP.str = iString;
 }
@@ -735,8 +864,14 @@ void EnergyUptade()
 {
 	int iString = sti(GameInterface.SET_ENERGY.str);
 
-	if(iString > 300) { iString = 300; }
-	if(iString < 40) { iString = 40; }
+	if (iString > 300)
+	{
+		iString = 300;
+	}
+	if (iString < 40)
+	{
+		iString = 40;
+	}
 
 	GameInterface.SET_ENERGY.str = iString;
 }
@@ -751,7 +886,7 @@ void AcademyLandDone()
 	HpUptade();
 	EnergyUptade();
 
-	if(!CheckEnableCrewQuantity())
+	if (!CheckEnableCrewQuantity())
 	{
 		PlayerCrewQuantityTempUptade();
 		EnemyCrewQuantityTempUptade();
@@ -759,7 +894,7 @@ void AcademyLandDone()
 	}
 
 	int iMoney = GetCost();
-	if(sti(PChar.Money) < iMoney)
+	if (sti(PChar.Money) < iMoney)
 	{
 		return;
 	}

@@ -14,21 +14,21 @@ void ProcessDialogEvent()
     case "Exit":
         NextDiag.CurrentNode = NextDiag.TempNode;
         DialogExit();
-    break;
-	case "CitizenNotBlade":
-		if (loadedLocation.type == "town")
-		{
-			dialog.text = NPCharSexPhrase(NPChar, "Послушайте, я, как гражданин этого города, прошу вас не ходить у нас с обнаженным клинком.", "Знаете, я, как гражданка этого города, прошу вас не ходить у нас с обнаженным клинком.");
-			link.l1 = LinkRandPhrase("Хорошо.", "Ладно.", "Как скажете...");
-		}
-		else
-		{
-			dialog.text = NPCharSexPhrase(NPChar, "Осторожнее на поворотах, "+ GetSexPhrase("приятель","подруга") +", когда бежишь с оружием в руках. Я ведь могу и занервничать...", "Мне не нравится, когда "+ GetSexPhrase("мужчины","всякие тут") +" ходят передо мной с оружием наизготовку. Это меня пугает...");
-			link.l1 = RandPhraseSimple("Понял"+ GetSexPhrase("","а") +".", "Убираю.");
-		}
-		Link.l1.go = "exit";
-		NextDiag.TempNode = "First Time";
-	break;
+        break;
+    case "CitizenNotBlade":
+        if (loadedLocation.type == "town")
+        {
+            dialog.text = NPCharSexPhrase(NPChar, "Послушайте, я, как гражданин этого города, прошу вас не ходить у нас с обнаженным клинком.", "Знаете, я, как гражданка этого города, прошу вас не ходить у нас с обнаженным клинком.");
+            link.l1 = LinkRandPhrase("Хорошо.", "Ладно.", "Как скажете...");
+        }
+        else
+        {
+            dialog.text = NPCharSexPhrase(NPChar, "Осторожнее на поворотах, " + GetSexPhrase("приятель", "подруга") + ", когда бежишь с оружием в руках. Я ведь могу и занервничать...", "Мне не нравится, когда " + GetSexPhrase("мужчины", "всякие тут") + " ходят передо мной с оружием наизготовку. Это меня пугает...");
+            link.l1 = RandPhraseSimple("Понял" + GetSexPhrase("", "а") + ".", "Убираю.");
+        }
+        Link.l1.go = "exit";
+        NextDiag.TempNode = "First Time";
+        break;
     case "First Time":
         if (!isMainCharacterPatented())
         {
@@ -44,35 +44,35 @@ void ProcessDialogEvent()
             link.l1.go = "StartQuest_1";
             AddBonusEnergyToCharacter(NPChar, 50);
         }
-    break;
+        break;
     case "StartQuest_1":
         dialog.text = "Да это же я, Люк! Мы с тобой ходили под флагом Барта Португальца.";
         link.l1 = "Твою бизань! Люк! Как ты изменился, старина!";
         link.l2 = "Хмм... Все ещё нет. Ты бы отвалил от меня, приятель, по добру, по здорову";
         link.l1.go = "StartQuest_3";
         link.l2.go = "exit";
-    break;
+        break;
     case "StartQuest_3":
         dialog.text = "Хех! А я уж думал, совсем с ума сошёл, и это не ты. Пойдем в таверну, посидим, поболтаем!";
         link.l1 = "Ха! С радостью!";
-		DeleteAttribute(NPChar, "quest");
+        DeleteAttribute(NPChar, "quest");
         AddDialogExitQuest("Taverna");
-    break;
+        break;
     case "StartQuest_4":
         dialog.text = GetFullName(Pchar) + ", как ты, " + GetSexPhrase("приятель", "подруга") + "? Расскажи, как тебя сюда занесло?";
         link.l1 = "Я своего рода путешественни" + GetSexPhrase("к", "ца") + ", то на один остров поплыву, то на другой, а может и на Мейн захочу.";
         link.l1.go = "StartQuest_6";
-    break;
+        break;
     case "StartQuest_6":
         dialog.text = "Вот оно как. Помню я наше последнее путешествие, когда мы шли грабить к Гвинее за рабами. Нас тогда чуть не перебили. Поселение, которое мы решили захватить, было очень хорошо защищено. Да... Не всем удалось уйти... Давай выпьем за то, что мы остались живы!";
         link.l1 = "Эх, да уж, много наших тогда полегло. А ведь могли все уйти, если бы не жадность нашего командира! Выпьем!";
         link.l1.go = "StartQuest_7";
-    break;
+        break;
     case "StartQuest_7":
         dialog.text = "Я смотрю у тебя и корабль свой есть, и звание... Слушай, мне не удобно тебя просить, столько времени не виделись, и так сразу...";
         link.l1 = "Не юли, выкладывай, помогу, если смогу.";
         link.l1.go = "GiveQuest";
-    break;
+        break;
     case "GiveQuest":
         string spawn_max;
         int Gorod;
@@ -98,7 +98,7 @@ void ProcessDialogEvent()
                     GiveItem2Character(Pchar, "Lukes_letter");
                     PlaySound("Interface\important_item.wav");
                     SpawnMaks(spawn_max);
-                break;
+                    break;
                 }
                 if (Gorod == 1)
                 {
@@ -116,7 +116,7 @@ void ProcessDialogEvent()
                     GiveItem2Character(Pchar, "Lukes_letter");
                     PlaySound("Interface\important_item.wav");
                     SpawnMaks(spawn_max);
-                break;
+                    break;
                 }
                 if (Gorod == 2)
                 {
@@ -134,7 +134,7 @@ void ProcessDialogEvent()
                     GiveItem2Character(Pchar, "Lukes_letter");
                     PlaySound("Interface\important_item.wav");
                     SpawnMaks(spawn_max);
-                break;
+                    break;
                 }
                 if (Gorod == 3)
                 {
@@ -152,7 +152,7 @@ void ProcessDialogEvent()
                     GiveItem2Character(Pchar, "Lukes_letter");
                     PlaySound("Interface\important_item.wav");
                     SpawnMaks(spawn_max);
-                break;
+                    break;
                 }
                 if (Gorod == 4)
                 {
@@ -170,7 +170,7 @@ void ProcessDialogEvent()
                     GiveItem2Character(Pchar, "Lukes_letter");
                     PlaySound("Interface\important_item.wav");
                     SpawnMaks(spawn_max);
-                break;
+                    break;
                 }
             }
         }
@@ -197,7 +197,7 @@ void ProcessDialogEvent()
                         GiveItem2Character(Pchar, "Lukes_letter");
                         PlaySound("Interface\important_item.wav");
                         SpawnMaks(spawn_max);
-                    break;
+                        break;
                     }
                     if (Gorod == 1)
                     {
@@ -215,7 +215,7 @@ void ProcessDialogEvent()
                         GiveItem2Character(Pchar, "Lukes_letter");
                         PlaySound("Interface\important_item.wav");
                         SpawnMaks(spawn_max);
-                    break;
+                        break;
                     }
                     if (Gorod == 2)
                     {
@@ -233,7 +233,7 @@ void ProcessDialogEvent()
                         GiveItem2Character(Pchar, "Lukes_letter");
                         PlaySound("Interface\important_item.wav");
                         SpawnMaks(spawn_max);
-                    break;
+                        break;
                     }
                 }
             }
@@ -260,7 +260,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 1)
                         {
@@ -278,7 +278,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 2)
                         {
@@ -296,7 +296,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 3)
                         {
@@ -314,7 +314,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                     }
                 }
@@ -339,7 +339,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 1)
                         {
@@ -357,7 +357,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 2)
                         {
@@ -375,7 +375,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 3)
                         {
@@ -393,7 +393,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 4)
                         {
@@ -411,7 +411,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 5)
                         {
@@ -429,7 +429,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 6)
                         {
@@ -447,7 +447,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 7)
                         {
@@ -465,7 +465,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 8)
                         {
@@ -475,7 +475,7 @@ void ProcessDialogEvent()
                             link.l1.go = "StartQuest_8";
                             SetQuestHeader("Silence_Price");
                             AddQuestRecord("Silence_Price", "1")
-                            AddQuestUserData("Silence_Price", "sSex", GetSexPhrase("", "а"));
+                                AddQuestUserData("Silence_Price", "sSex", GetSexPhrase("", "а"));
                             AddQuestUserData("Silence_Price", "sCity2", "Сан Хуан");
                             AddQuestUserData("Silence_Price", "FriendName", NPChar.name + "a " + NPChar.lastname + "а");
                             AddDialogExitQuest("AfterDialog");
@@ -483,7 +483,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                         if (Gorod == 9)
                         {
@@ -501,7 +501,7 @@ void ProcessDialogEvent()
                             GiveItem2Character(Pchar, "Lukes_letter");
                             PlaySound("Interface\important_item.wav");
                             SpawnMaks(spawn_max);
-                        break;
+                            break;
                         }
                     }
                 }
@@ -513,62 +513,62 @@ void ProcessDialogEvent()
         link.l1 = "Выпьем!";
         NextDiag.TempNode = "Story1";
         link.l1.go = "Exit";
-		Pchar.Luke.SpawnMaks = "1";
-    break;
+        Pchar.Luke.SpawnMaks = "1";
+        break;
     case "Story1":
-		dialog.text = "Что же ты ждешь? Тебе пора в путь!";
-		link.l1="Постой, Люк. Как тебе удалось тогда выбраться? Я помню, что я уш"+GetSexPhrase("ел","ла")+" од"+GetSexPhrase("ин","на")+". Расскажи, что тогда случилось?";
-		link.l1.go="Story2";
-	break;
-	case "Story2":
-		dialog.text = "Хм, я знал что ты спросишь. Ну, слушай. Тогда, после того как мы бросились в бегство, мушкетер попал мне прямо в бедро и я упал среди мертвых тел. Когда пальба утихла, меня нашли живым вражеские солдаты. Они не стали меня убивать, но взяли в плен... ";
-		link.l1="Что же было дальше?";
-		link.l1.go="Story3";
-	break;
-	case "Story3":
-		dialog.text = "Вот слушай. Они не пытали меня, а наоборот помогли с моим ранением и поставили на ноги. Научили меня военному и морскому исскуству и за обещание отпустили на свободу.";
-		link.l1="Что же за обещание ты дал им?";
-		link.l1.go="Story4";
-	break;
-	case "Story4":
-		dialog.text = "Хм, я обещаю, что расскажу об этом, когда ты вернешься от Максимилиана. Сейчас не время для этого разговора.";
-		link.l1="Хорошо, Люк, надеюсь ты сдержишь свое обещание";
-		link.l1.go="exit";
-		AddQuestRecord("Silence_Price","3");
-		AddQuestUserData("Silence_Price","sSex",GetSexPhrase("","а"));
-		NextDiag.TempNode="Pause";
-	break;
+        dialog.text = "Что же ты ждешь? Тебе пора в путь!";
+        link.l1 = "Постой, Люк. Как тебе удалось тогда выбраться? Я помню, что я уш" + GetSexPhrase("ел", "ла") + " од" + GetSexPhrase("ин", "на") + ". Расскажи, что тогда случилось?";
+        link.l1.go = "Story2";
+        break;
+    case "Story2":
+        dialog.text = "Хм, я знал что ты спросишь. Ну, слушай. Тогда, после того как мы бросились в бегство, мушкетер попал мне прямо в бедро и я упал среди мертвых тел. Когда пальба утихла, меня нашли живым вражеские солдаты. Они не стали меня убивать, но взяли в плен... ";
+        link.l1 = "Что же было дальше?";
+        link.l1.go = "Story3";
+        break;
+    case "Story3":
+        dialog.text = "Вот слушай. Они не пытали меня, а наоборот помогли с моим ранением и поставили на ноги. Научили меня военному и морскому исскуству и за обещание отпустили на свободу.";
+        link.l1 = "Что же за обещание ты дал им?";
+        link.l1.go = "Story4";
+        break;
+    case "Story4":
+        dialog.text = "Хм, я обещаю, что расскажу об этом, когда ты вернешься от Максимилиана. Сейчас не время для этого разговора.";
+        link.l1 = "Хорошо, Люк, надеюсь ты сдержишь свое обещание";
+        link.l1.go = "exit";
+        AddQuestRecord("Silence_Price", "3");
+        AddQuestUserData("Silence_Price", "sSex", GetSexPhrase("", "а"));
+        NextDiag.TempNode = "Pause";
+        break;
     case "Pause":
         dialog.text = "О, кого я вижу! Присаживайся, выпьем.";
         link.l1 = "Да, это я. Нет, спасибо, у меня дела.";
         link.l1.go = "exit";
-    break;
-	case "SecondQuest_1":
-		dialog.text = Pchar.name +"?! Что ты тут делаешь?! Как... Как ты наш" + GetSexPhrase("ел","ла") + " меня? Это... Это невозможно!";
-		link.l1="Что же ты, Люк. В чем смысл твоих игр? Ты хочешь избавиться от меня? Насолить мне? В чем твоя цель, ублюдок?";
-		link.l1.go="SecondQuest_2";
-	break;
-	case "SecondQuest_2":
-		dialog.text = "Тебе не понять... У меня было всё, всё что мне было нужно. Я был счастлив. Но после того злополучного похода, будь он проклят, моя жизнь пошла под откос. Я хочу отомстить всем, кто виновен в этом.";
-		link.l1 = "Постой, Люк, но в чем заключается моя вина?";
-		link.l1.go = "SecondQuest_3";
-	break;
-	case "SecondQuest_3":
-		dialog.text = Pchar.Name + ", я же говорил, не поймешь. Homo homini lupus est. Невиновных не бывает. Есть только разные степени ответственности. И сейчас ты почувствуешь ответственность за всё, что тогда случилось.";
-		link.l1 = "Как скажешь. Сейчас я положу конец твоей актерской карьере, ублюдок!";
-		link.l1.go = "exit";
-		AddDialogExitQuest("LukeFight");
-	break;
-	case "SecondQuest_4":
-		dialog.text = Pchar.Name + ", постой, я сдаюсь... Ты победил" + GetSexPhrase(".","а.");
-		link.l1 = "Что?! Вот так просто?!";
-		link.l1.go = "SecondQuest_5";
-	break;
-	case "SecondQuest_5":
-		dialog.text = "Конечно нет! Макс, ко мне! " + Pchar.Name + ", лови!";
-		link.l1 = "Кха, кха кха... Что это такое?!");
-		link.l1.go = "exit";
-		AddDialogExitQuest("LukeOut");
-	break;
-	}
+        break;
+    case "SecondQuest_1":
+        dialog.text = Pchar.name + "?! Что ты тут делаешь?! Как... Как ты наш" + GetSexPhrase("ел", "ла") + " меня? Это... Это невозможно!";
+        link.l1 = "Что же ты, Люк. В чем смысл твоих игр? Ты хочешь избавиться от меня? Насолить мне? В чем твоя цель, ублюдок?";
+        link.l1.go = "SecondQuest_2";
+        break;
+    case "SecondQuest_2":
+        dialog.text = "Тебе не понять... У меня было всё, всё что мне было нужно. Я был счастлив. Но после того злополучного похода, будь он проклят, моя жизнь пошла под откос. Я хочу отомстить всем, кто виновен в этом.";
+        link.l1 = "Постой, Люк, но в чем заключается моя вина?";
+        link.l1.go = "SecondQuest_3";
+        break;
+    case "SecondQuest_3":
+        dialog.text = Pchar.Name + ", я же говорил, не поймешь. Homo homini lupus est. Невиновных не бывает. Есть только разные степени ответственности. И сейчас ты почувствуешь ответственность за всё, что тогда случилось.";
+        link.l1 = "Как скажешь. Сейчас я положу конец твоей актерской карьере, ублюдок!";
+        link.l1.go = "exit";
+        AddDialogExitQuest("LukeFight");
+        break;
+    case "SecondQuest_4":
+        dialog.text = Pchar.Name + ", постой, я сдаюсь... Ты победил" + GetSexPhrase(".", "а.");
+        link.l1 = "Что?! Вот так просто?!";
+        link.l1.go = "SecondQuest_5";
+        break;
+    case "SecondQuest_5":
+        dialog.text = "Конечно нет! Макс, ко мне! " + Pchar.Name + ", лови!";
+        link.l1 = "Кха, кха кха... Что это такое?!");
+        link.l1.go = "exit";
+        AddDialogExitQuest("LukeOut");
+        break;
+    }
 }

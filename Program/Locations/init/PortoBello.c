@@ -14,7 +14,8 @@ int LocationInitPortoBello(int n)
 	locations[n].islandId = "Mein";
 
 	locations[n].filespath.models = "locations\Town_PortoBello\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -39,7 +40,7 @@ int LocationInitPortoBello(int n)
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.22;
@@ -56,7 +57,7 @@ int LocationInitPortoBello(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortoBello";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -145,7 +146,7 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
 
-    // --> Квестовые локации.
+	// --> Квестовые локации.
 	locations[n].reload.l11.name = "houseF2";
 	locations[n].reload.l11.go = "PortoBello_houseF2";
 	locations[n].reload.l11.emerge = "reload1";
@@ -153,7 +154,7 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l11.label = "House";
 
 	// --> Комоны, загрушки. Номера с начинаются с 20.
- 	locations[n].reload.l20.name = "houseH4";
+	locations[n].reload.l20.name = "houseH4";
 	locations[n].reload.l20.go = "CommonRoom_MH10";
 	locations[n].reload.l20.emerge = "reload1";
 	locations[n].reload.l20.autoreload = "0";
@@ -189,7 +190,7 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l26.autoreload = "0";
 	locations[n].reload.l26.label = "House";
 
- 	locations[n].reload.l27.name = "houseH3";
+	locations[n].reload.l27.name = "houseH3";
 	locations[n].reload.l27.go = "CommonRoom_MH7";
 	locations[n].reload.l27.emerge = "reload1";
 	locations[n].reload.l27.autoreload = "0";
@@ -207,25 +208,25 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l29.autoreload = "0";
 	locations[n].reload.l29.label = "House";
 
- 	locations[n].reload.l30.name = "houseS3";
+	locations[n].reload.l30.name = "houseS3";
 	locations[n].reload.l30.go = "CommonFlamHouse";
 	locations[n].reload.l30.emerge = "reload1";
 	locations[n].reload.l30.autoreload = "0";
 	locations[n].reload.l30.label = "House";
 
- 	locations[n].reload.l31.name = "houseS4";
+	locations[n].reload.l31.name = "houseS4";
 	locations[n].reload.l31.go = "CommonPirateHouse";
 	locations[n].reload.l31.emerge = "reload1";
 	locations[n].reload.l31.autoreload = "0";
 	locations[n].reload.l31.label = "House";
 
- 	locations[n].reload.l32.name = "houseSp1";
+	locations[n].reload.l32.name = "houseSp1";
 	locations[n].reload.l32.go = "CommonDoubleflourHouse_1";
 	locations[n].reload.l32.emerge = "reload1";
 	locations[n].reload.l32.autoreload = "0";
 	locations[n].reload.l32.label = "House";
 
- 	locations[n].reload.l33.name = "houseS5";
+	locations[n].reload.l33.name = "houseS5";
 	locations[n].reload.l33.go = "CommonCobHouse";
 	locations[n].reload.l33.emerge = "reload1";
 	locations[n].reload.l33.autoreload = "0";
@@ -238,7 +239,8 @@ int LocationInitPortoBello(int n)
 	locations[n].id = "PortoBello_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern08\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "PortoBello";
@@ -278,7 +280,7 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l2.label = "Tavern upstairs";
 	locations[n].reload.l2.disable = 1; // закроем, но связку сделаем для квестовых нужд.
 
-    ////////////////////////==> подсобка таверны
+	////////////////////////==> подсобка таверны
 	locations[n].reload.l3.name = "reload3";
 	locations[n].reload.l3.go = "CommonRoom_MH3";
 	locations[n].reload.l3.emerge = "reload1";
@@ -334,13 +336,14 @@ int LocationInitPortoBello(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store04\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortoBello";
 	locations[n].lockWeather = "Inside";
@@ -373,20 +376,21 @@ int LocationInitPortoBello(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РОСТОВЩИК
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortoBello";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "PortoBello";
- 	locations[n].islandId = "Mein";
+	locations[n].islandId = "Mein";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Bank01_locators";
@@ -419,20 +423,21 @@ int LocationInitPortoBello(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard03\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortoBello";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shipyard";
 	locations[n].fastreload = "PortoBello";
- 	locations[n].islandId = "Mein";
+	locations[n].islandId = "Mein";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Shipyard03_locators";
@@ -447,7 +452,7 @@ int LocationInitPortoBello(int n)
 	locations[n].models.day.charactersPatch = "Shipyard03_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "Shipyard03_patch";
-    //Environment
+	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
 	//Reload map
@@ -465,7 +470,7 @@ int LocationInitPortoBello(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_townhall";
@@ -523,7 +528,7 @@ int LocationInitPortoBello(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortoBello";
- 	locations[n].islandId = "Mein";
+	locations[n].islandId = "Mein";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\BigHouse01_2Door";
@@ -572,7 +577,7 @@ int LocationInitPortoBello(int n)
 	//Sound
 	locations[n].type = "church";
 	locations[n].fastreload = "PortoBello";
- 	locations[n].islandId = "Mein";
+	locations[n].islandId = "Mein";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Church01_locators";
@@ -605,7 +610,7 @@ int LocationInitPortoBello(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_PortOffice";
@@ -617,7 +622,7 @@ int LocationInitPortoBello(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortoBello";
- 	locations[n].islandId = "Mein";
+	locations[n].islandId = "Mein";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\PortOffice";
@@ -659,7 +664,7 @@ int LocationInitPortoBello(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortoBello";
- 	locations[n].islandId = "Mein";
+	locations[n].islandId = "Mein";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\mediumhouse02";
@@ -675,14 +680,14 @@ int LocationInitPortoBello(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.always.mediumhouse02rand= "mediumhouse02_rand";
+	Locations[n].models.always.mediumhouse02rand = "mediumhouse02_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse02_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse02_patch";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "PortoBello_town";
 	locations[n].reload.l1.emerge = "houseF2";
@@ -696,7 +701,7 @@ int LocationInitPortoBello(int n)
 	locations[n].id = "PortoBello_ExitTown";
 	locations[n].fastreload = "PortoBello";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortoBello";
 	//Sound
@@ -754,12 +759,12 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l3.label = "PortoBello";
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_Jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -813,10 +818,10 @@ int LocationInitPortoBello(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "PortoBello_Jungle_02";
+	locations[n].id = "PortoBello_Jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
 	locations[n].islandIdAreal = "PortoBello";
@@ -871,7 +876,7 @@ int LocationInitPortoBello(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -920,7 +925,7 @@ int LocationInitPortoBello(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortoBello_Cave";
 	locations[n].id.label = "Cave";
-    locations[n].image = "loading\inside\Dange_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Dange_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
 	locations[n].islandId = "Mein";
@@ -935,7 +940,7 @@ int LocationInitPortoBello(int n)
 
 	Locations[n].models.always.rays = "DungeonDuffer2_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -1007,10 +1012,10 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Дарьенский залив
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Shore48";
@@ -1061,10 +1066,10 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l2.emerge = "reload_4";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// лагуна Чирики (с заглушкой джунглей)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Shore46";
@@ -1079,7 +1084,7 @@ int LocationInitPortoBello(int n)
 	locations[n].deadlocked = true;
 	//Models
 	//Always
-	locations[n].filespath.models = "locations\Outside\Shores\Shore03";//бухту не менять, по вопросным квестам она нужна
+	locations[n].filespath.models = "locations\Outside\Shores\Shore03"; //бухту не менять, по вопросным квестам она нужна
 	Locations[n].models.always.shore03 = "shore03";
 	locations[n].models.always.shore03.sea_reflection = 1;
 	Locations[n].models.always.shore03seabed = "shore03_sb";
@@ -1117,7 +1122,7 @@ int LocationInitPortoBello(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	return n;

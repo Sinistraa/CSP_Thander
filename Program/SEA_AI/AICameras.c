@@ -1,8 +1,8 @@
-object	SeaCameras;
-aref	Crosshair;
-object	SeaShipCamera,SeaFreeCamera,SeaDeckCamera;
-ref		SeaShipCharacterForCamera;
-bool	bCanSwitchCameras = true;
+object SeaCameras;
+aref Crosshair;
+object SeaShipCamera, SeaFreeCamera, SeaDeckCamera;
+ref SeaShipCharacterForCamera;
+bool bCanSwitchCameras = true;
 
 //#20171223-01 Camera perspective option
 #define DEFAULT_CAM_PERSP 1.285
@@ -21,19 +21,19 @@ void DeleteSeaCamerasEnvironment()
 //#20171223-01 Camera perspective option
 void SetPerspectiveSettings()
 {
-    float fCamPersp = CalcSeaPerspective();
+	float fCamPersp = CalcSeaPerspective();
 
-    SeaFreeCamera.Perspective = fCamPersp;
+	SeaFreeCamera.Perspective = fCamPersp;
 	SeaShipCamera.Perspective = fCamPersp;
 }
 //#20171223-01 Camera perspective option
 float CalcSeaPerspective()
 {
-    float fCamPerspAdj = 0.0;
-    if(CheckAttribute(&InterfaceStates, "PerspDetails"))
-       fCamPerspAdj = stf(InterfaceStates.PerspDetails) / DEFAULT_CAM_PERSP_DEN;
+	float fCamPerspAdj = 0.0;
+	if (CheckAttribute(&InterfaceStates, "PerspDetails"))
+		fCamPerspAdj = stf(InterfaceStates.PerspDetails) / DEFAULT_CAM_PERSP_DEN;
 
-    return (DEFAULT_CAM_PERSP + fCamPerspAdj);
+	return (DEFAULT_CAM_PERSP + fCamPerspAdj);
 }
 
 void CreateSeaCamerasEnvironment()
@@ -49,8 +49,8 @@ void CreateSeaCamerasEnvironment()
 	LayerAddObject(SEA_EXECUTE, &SeaShipCamera, iShipPriorityExecute + 5);
 	LayerAddObject(SEA_EXECUTE, &SeaFreeCamera, 1);
 	LayerAddObject(SEA_EXECUTE, &SeaDeckCamera, iShipPriorityExecute + 5);
-    //#20171223-01 Camera perspective option
-    SetPerspectiveSettings();
+	//#20171223-01 Camera perspective option
+	SetPerspectiveSettings();
 	//SeaFreeCamera.Perspective = 1.285;
 
 	// Ship camera parameters
@@ -85,7 +85,7 @@ void CreateSeaCamerasEnvironment()
 	SeaDeckCamera.RockingX = 0.5;
 	SeaDeckCamera.RockingZ = 0.5;
 
-	makearef(Crosshair,SeaCameras.Crosshair);
+	makearef(Crosshair, SeaCameras.Crosshair);
 
 	if (!bSeaLoad)
 	{
@@ -132,7 +132,8 @@ void SeaCameras_TelescopeActive()
 
 void SeaCameras_Switch()
 {
-	if (!bCanSwitchCameras) return;
+	if (!bCanSwitchCameras)
+		return;
 
 	int bSwitch = false;
 	// Коммент - выбираем состояние, ИЗ КОТОРОГО ПЕРЕКЛЮЧАЕМСЯ
@@ -140,52 +141,53 @@ void SeaCameras_Switch()
 	// если Sailors.IsOnDeck == 1, значит, мы на палубе, и матросов бегающих мы не увидем
 	switch (SeaCameras.Camera)
 	{
-		case "SeaFreeCamera":
-			SeaCameras.Camera = "SeaShipCamera";
-			Crosshair.OutsideCamera = true;
+	case "SeaFreeCamera":
+		SeaCameras.Camera = "SeaShipCamera";
+		Crosshair.OutsideCamera = true;
+		Sailors.IsOnDeck = 0;
+		bSwitch = true;
+		break;
+	case "SeaShipCamera":
+		if (!LAi_IsDead(&Characters[nMainCharacterIndex]))
+		{
+			SeaCameras.Camera = "SeaDeckCamera";
+			Crosshair.OutsideCamera = false;
+			//Sailors.IsOnDeck = 1;
+			//Boyer change...show sailors when on deck first person
 			Sailors.IsOnDeck = 0;
 			bSwitch = true;
+		}
 		break;
-		case "SeaShipCamera":
-			if (!LAi_IsDead(&Characters[nMainCharacterIndex]))
-			{
-				SeaCameras.Camera = "SeaDeckCamera";
-				Crosshair.OutsideCamera = false;
-				//Sailors.IsOnDeck = 1;
-				//Boyer change...show sailors when on deck first person
-				Sailors.IsOnDeck = 0;
-				bSwitch = true;
-			}
-		break;
-		case "SeaDeckCamera":
-			//SeaCameras.Camera = "SeaFreeCamera"; break;		// Debug : SeaFreeCamera, release : SeaShipCamera
-			SeaCameras.Camera = "SeaShipCamera";
-			// boal -->
-			if (locCameraEnableFree)
-            {
-			    SeaCameras.Camera = "SeaFreeCamera";
-			}
-			// boal <--
-			Crosshair.OutsideCamera = true;
-			Sailors.IsOnDeck = 0;
-			bSwitch = true;
+	case "SeaDeckCamera":
+		//SeaCameras.Camera = "SeaFreeCamera"; break;		// Debug : SeaFreeCamera, release : SeaShipCamera
+		SeaCameras.Camera = "SeaShipCamera";
+		// boal -->
+		if (locCameraEnableFree)
+		{
+			SeaCameras.Camera = "SeaFreeCamera";
+		}
+		// boal <--
+		Crosshair.OutsideCamera = true;
+		Sailors.IsOnDeck = 0;
+		bSwitch = true;
 		break;
 	}
-	if (bSwitch) SeaCameras_UpdateCamera();
+	if (bSwitch)
+		SeaCameras_UpdateCamera();
 }
 
 void SeaCameras_UpdateCamera()
 {
 	switch (SeaCameras.Camera)
 	{
-		case "SeaShipCamera":
-			SendMessage(&SeaCameras, "lia", AI_CAMERAS_SET_CAMERA, &SeaShipCamera, &SeaShipCharacterForCamera);
+	case "SeaShipCamera":
+		SendMessage(&SeaCameras, "lia", AI_CAMERAS_SET_CAMERA, &SeaShipCamera, &SeaShipCharacterForCamera);
 		break;
-		case "SeaFreeCamera":
-			SendMessage(&SeaCameras, "lia", AI_CAMERAS_SET_CAMERA, &SeaFreeCamera, &SeaShipCharacterForCamera);
+	case "SeaFreeCamera":
+		SendMessage(&SeaCameras, "lia", AI_CAMERAS_SET_CAMERA, &SeaFreeCamera, &SeaShipCharacterForCamera);
 		break;
-		case "SeaDeckCamera":
-			SendMessage(&SeaCameras, "lia", AI_CAMERAS_SET_CAMERA, &SeaDeckCamera, &SeaShipCharacterForCamera);
+	case "SeaDeckCamera":
+		SendMessage(&SeaCameras, "lia", AI_CAMERAS_SET_CAMERA, &SeaDeckCamera, &SeaShipCharacterForCamera);
 		break;
 	}
 }
@@ -200,15 +202,18 @@ void SeaCameras_SetDieCamera()
 		Sailors.IsOnDeck = 0;
 		DeleteClass(&Telescope);
 		SeaCameras_UpdateCamera();
-		SendMessage(&objISpyGlass, "ll", MSG_TELESCOPE_REQUEST,0); // выключить телескоп
+		SendMessage(&objISpyGlass, "ll", MSG_TELESCOPE_REQUEST, 0); // выключить телескоп
 	}
 }
 
 bool SeaCameras_isCameraOutside()
 {
-	if (SeaCameras.Camera == "SeaShipCamera") return true;
-	if (SeaCameras.Camera == "SeaFreeCamera") return true;
-	if (SeaCameras.Camera == "SeaDeckCamera") return false;
+	if (SeaCameras.Camera == "SeaShipCamera")
+		return true;
+	if (SeaCameras.Camera == "SeaFreeCamera")
+		return true;
+	if (SeaCameras.Camera == "SeaDeckCamera")
+		return false;
 	return false;
 }
 

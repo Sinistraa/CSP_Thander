@@ -58,10 +58,10 @@ void LAi_SetPlayerType(aref chr)
 	//Шаблон специальный
 	LAi_type_player_Init(chr);
 	LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER);
-	if (CheckAttribute(chr,"previousanim")) //мушкеты в тавернах - Gregg
+	if (CheckAttribute(chr, "previousanim")) //мушкеты в тавернах - Gregg
 	{
 		SetMainCharacterToMushketer(pchar.mushket, true);
-		DeleteAttribute(chr,"previousanim");
+		DeleteAttribute(chr, "previousanim");
 	}
 }
 
@@ -116,7 +116,7 @@ void LAi_SetGuardianType(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_type_guardian_Init(chr);
 	LAi_group_MoveCharacter(chr, LAI_GROUP_GUARDS);
-// boal	if (!IsOfficer(chr))
+	// boal	if (!IsOfficer(chr))
 	//{
 	//	LAi_SetAdjustFencingSkill(chr, -4.0, 2.0);
 	//}
@@ -139,10 +139,10 @@ void LAi_SetPatrolType(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_SetPatrolTypeNoGroup(chr);
 	LAi_group_MoveCharacter(chr, LAI_GROUP_GUARDS);
-// boal	if (!IsOfficer(chr))
-//	{
-//		LAi_SetAdjustFencingSkill(chr, -4.0, 2.0);
-//	}
+	// boal	if (!IsOfficer(chr))
+	//	{
+	//		LAi_SetAdjustFencingSkill(chr, -4.0, 2.0);
+	//	}
 }
 
 //Установить персонажу тип патруля, без перемещения в группу
@@ -162,14 +162,14 @@ void LAi_SetWarriorType(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_type_warrior_Init(chr);
 	LAi_group_MoveCharacter(chr, LAI_GROUP_GUARDS);
-	if(chr.model == "monkey")
+	if (chr.model == "monkey")
 	{
 		LAi_SetMonkeyTypeNoGroup(chr);
 	}
-//	if (!IsOfficer(chr))
-//	{
-//		LAi_SetAdjustFencingSkill(chr, -4.0, 2.0);
-//	}
+	//	if (!IsOfficer(chr))
+	//	{
+	//		LAi_SetAdjustFencingSkill(chr, -4.0, 2.0);
+	//	}
 }
 
 //Установить персонажу тип война, без перемещения в группу
@@ -177,12 +177,11 @@ void LAi_SetWarriorTypeNoGroup(aref chr)
 {
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_type_warrior_Init(chr);
-	if(chr.model == "monkey")
+	if (chr.model == "monkey")
 	{
 		LAi_SetMonkeyTypeNoGroup(chr);
 	}
 }
-
 
 //------------------------------------------------------------------------------------------
 //Merchant
@@ -231,7 +230,7 @@ void LAi_SetSitType(aref chr)
 {
 	if (IsMainCharacter(chr))
 	{
-		if (CheckAttribute(pchar,"ismushketer")) //мушкеты в тавернах - Gregg
+		if (CheckAttribute(pchar, "ismushketer")) //мушкеты в тавернах - Gregg
 		{
 			SetMainCharacterToMushketer("", false);
 			pchar.previousanim = true;
@@ -248,7 +247,6 @@ void LAi_SetSitTypeNoGroup(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_type_sit_Init(chr);
 }
-
 
 //------------------------------------------------------------------------------------------
 //Barmen
@@ -287,7 +285,6 @@ void LAi_SetWaitressTypeNoGroup(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_type_waitress_Init(chr);
 }
-
 
 //------------------------------------------------------------------------------------------
 //Poor
@@ -364,7 +361,6 @@ void LAi_SetPriestTypeNoGroup(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAi_type_priest_Init(chr);
 }
-
 
 //------------------------------------------------------------------------------------------
 //Actor
@@ -460,7 +456,6 @@ void LAi_SetGroundSitTypeNoGroup(aref chr)
 	chr.chr_ai.type = LAI_DEFAULT_TYPE;
 	LAI_type_GroundSit_Init(chr);
 }
-
 
 //------------------------------------------------------------------------------------------
 // Stunned

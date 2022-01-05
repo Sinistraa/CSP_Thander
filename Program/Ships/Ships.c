@@ -4,7 +4,7 @@ extern void InitShips();
 extern void InitSailsColors();
 extern void InitRandomShipsNames();
 
-string	sRndShpSpName[22], sRndShpEnName[21], sRndShpFrName[12], sRndShpPiName[9], sRndShpHoName[10];
+string sRndShpSpName[22], sRndShpEnName[21], sRndShpFrName[12], sRndShpPiName[9], sRndShpHoName[10];
 
 void ShipsInit()
 {
@@ -25,29 +25,39 @@ void ShipsInit()
 void SetRandomNameToShip(ref rCharacter)
 {
 	ref rMassiveOfNames;
-	if(!CheckAttribute(rCharacter, "nation"))
+	if (!CheckAttribute(rCharacter, "nation"))
 	{
 		rCharacter.nation = PIRATE;
 	}
-	if(sti(rCharacter.nation) == -1)
+	if (sti(rCharacter.nation) == -1)
 	{
 		rCharacter.nation = PIRATE;
 	}
 
 	switch (sti(rCharacter.nation))
 	{
-		case ENGLAND:	makeref(rMassiveOfNames, sRndShpEnName); break;
-		case FRANCE:	makeref(rMassiveOfNames, sRndShpFrName); break;
-		case SPAIN:		makeref(rMassiveOfNames, sRndShpSpName); break;
-		case PIRATE:	makeref(rMassiveOfNames, sRndShpPiName); break;
-		case HOLLAND:	makeref(rMassiveOfNames, sRndShpHoName); break;
+	case ENGLAND:
+		makeref(rMassiveOfNames, sRndShpEnName);
+		break;
+	case FRANCE:
+		makeref(rMassiveOfNames, sRndShpFrName);
+		break;
+	case SPAIN:
+		makeref(rMassiveOfNames, sRndShpSpName);
+		break;
+	case PIRATE:
+		makeref(rMassiveOfNames, sRndShpPiName);
+		break;
+	case HOLLAND:
+		makeref(rMassiveOfNames, sRndShpHoName);
+		break;
 		makeref(rMassiveOfNames, sRndShpPiName);
 	}
 	int iMassiveOfNamesSize = GetArraySize(rMassiveOfNames);
-    int nRand = rand(iMassiveOfNamesSize-1);
-    if (nRand < 0)
-        nRand = 0;
-    rCharacter.Ship.Name = GetRandSubString(rMassiveOfNames[nRand]);
+	int nRand = rand(iMassiveOfNamesSize - 1);
+	if (nRand < 0)
+		nRand = 0;
+	rCharacter.Ship.Name = GetRandSubString(rMassiveOfNames[nRand]);
 }
 
 string generateRandomNameToShip(int iNation)
@@ -55,42 +65,52 @@ string generateRandomNameToShip(int iNation)
 	ref rMassiveOfNames;
 	switch (iNation)
 	{
-		case ENGLAND:	makeref(rMassiveOfNames, sRndShpEnName); break;
-		case FRANCE:	makeref(rMassiveOfNames, sRndShpFrName); break;
-		case SPAIN:		makeref(rMassiveOfNames, sRndShpSpName); break;
-		case PIRATE:	makeref(rMassiveOfNames, sRndShpPiName); break;
-		case HOLLAND:	makeref(rMassiveOfNames, sRndShpHoName); break;
+	case ENGLAND:
+		makeref(rMassiveOfNames, sRndShpEnName);
+		break;
+	case FRANCE:
+		makeref(rMassiveOfNames, sRndShpFrName);
+		break;
+	case SPAIN:
+		makeref(rMassiveOfNames, sRndShpSpName);
+		break;
+	case PIRATE:
+		makeref(rMassiveOfNames, sRndShpPiName);
+		break;
+	case HOLLAND:
+		makeref(rMassiveOfNames, sRndShpHoName);
+		break;
 		makeref(rMassiveOfNames, sRndShpPiName);
 	}
 	int iMassiveOfNamesSize = GetArraySize(rMassiveOfNames);
-    int nRand = rand(iMassiveOfNamesSize-1);
-    if (nRand < 0)
-        nRand = 0;
-    string sName = GetRandSubString(rMassiveOfNames[nRand]);
+	int nRand = rand(iMassiveOfNamesSize - 1);
+	if (nRand < 0)
+		nRand = 0;
+	string sName = GetRandSubString(rMassiveOfNames[nRand]);
 
-    return sName;
+	return sName;
 }
 
 string GetShipLocationID(ref chref)
 {
-	if(!CheckAttribute(chref,"ship.type"))
+	if (!CheckAttribute(chref, "ship.type"))
 	{
 		return "";
 	}
 	int st = sti(chref.ship.type);
-	if(st==SHIP_NOTUSED)
+	if (st == SHIP_NOTUSED)
 	{
 		return "";
 	}
 
 	int iShipType = sti(RealShips[st].basetype);
-	if(ShipsTypes[iShipType].name == "Fort")
+	if (ShipsTypes[iShipType].name == "Fort")
 	{
-		aref ar_FindLoc = FindIslandReloadLocator(chref.location,chref.location.locator);
-		if( CheckAttribute(ar_FindLoc,"go") )
+		aref ar_FindLoc = FindIslandReloadLocator(chref.location, chref.location.locator);
+		if (CheckAttribute(ar_FindLoc, "go"))
 		{
 			MakeCloneFortBoarding(ar_FindLoc.go); // инитим локацию из разных городов
-            return "BOARDING_FORT"; // всегда клоновая локация
+			return "BOARDING_FORT";				  // всегда клоновая локация
 		}
 		return "";
 	}
@@ -109,27 +129,45 @@ string GetShipLocationID(ref chref)
 	//Log_SetStringToLog("My deck type: " + RealShips[sti(pchar.ship.type)].DeckType);
 	//Log_SetStringToLog("Enemy deck type: " + ShipsTypes[iShipType].DeckType);
 
-	if (bBig1 || bLineship1 || bFrigate1) {
-		if (bBig2 || bLineship2 || bFrigate2) {
+	if (bBig1 || bLineship1 || bFrigate1)
+	{
+		if (bBig2 || bLineship2 || bFrigate2)
+		{
 			return "BOARDING_LNSHP_FRGT_DECK"; // Big VS Big
-		} else {
-			if (bMed2) {
+		}
+		else
+		{
+			if (bMed2)
+			{
 				return "BOARDING_BIG_DECK"; // Big VS Medium
-			} else {
+			}
+			else
+			{
 				return "BOARDING_MEDIUM_DECK"; // Big VS Small
 			}
 		}
-	} else {
-		if (bMed1) {
-			if (bMed2 || bBig2 || bLineship2 || bFrigate2) {
+	}
+	else
+	{
+		if (bMed1)
+		{
+			if (bMed2 || bBig2 || bLineship2 || bFrigate2)
+			{
 				return "BOARDING_BIG_DECK"; // Medium VS Big & Medium
-			} else {
+			}
+			else
+			{
 				return "BOARDING_SMALL_DECK"; // Medium VS Small
 			}
-		} else {
-			if (bBig2 || bLineship2 || bFrigate2) {
+		}
+		else
+		{
+			if (bBig2 || bLineship2 || bFrigate2)
+			{
 				return "BOARDING_MEDIUM_DECK"; // Small VS Big
-			} else {
+			}
+			else
+			{
 				return "BOARDING_SMALL_DECK"; // Small VS Medium & Small
 			}
 		}
@@ -139,24 +177,24 @@ string GetShipLocationID(ref chref)
 string GetShipCabinID(ref chref)
 {
 
-	if(!CheckAttribute(chref,"ship.type"))
+	if (!CheckAttribute(chref, "ship.type"))
 	{
 		return "";
 	}
 	int st = sti(chref.ship.type);
-	if(st==SHIP_NOTUSED)
+	if (st == SHIP_NOTUSED)
 	{
 		return "";
 	}
 
 	int iShipType = sti(RealShips[st].basetype);
-	if(ShipsTypes[iShipType].name == "Fort")
+	if (ShipsTypes[iShipType].name == "Fort")
 	{
 		return "";
 	}
-	if(!CheckAttribute(&RealShips[st],"CabinType"))
+	if (!CheckAttribute(&RealShips[st], "CabinType"))
 	{
-		trace("WARNING!!! Ship ("+st+") " + ShipsTypes[st].name + " hav`t attribute CabinType");
+		trace("WARNING!!! Ship (" + st + ") " + ShipsTypes[st].name + " hav`t attribute CabinType");
 		return "";
 	}
 	return RealShips[st].CabinType;

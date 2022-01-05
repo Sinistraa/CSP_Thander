@@ -54,7 +54,7 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].reload.l2.emerge = "reload_4";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].id = "PuertoPrincipe_ExitTown";
 	locations[n].fastreload = "PuertoPrincipe";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "PuertoPrincipe";
 	//Sound
@@ -110,7 +110,7 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].reload.l2.label = "PuertoPrincipe Port";
 	locations[n].locators_radius.reload.reload1_back = 2.0;
 
-    Locations[n].reload.l3.name = "reload3";
+	Locations[n].reload.l3.name = "reload3";
 	Locations[n].reload.l3.go = "PuertoPrincipe_town";
 	Locations[n].reload.l3.emerge = "reload1";
 	Locations[n].reload.l3.autoreload = "0";
@@ -132,7 +132,7 @@ int LocationInitPuertoPrincipe(int n)
 	//Sound
 	locations[n].type = "town";
 	locations[n].fastreload = "PuertoPrincipe";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	Locations[n].filespath.models = "locations\Outside\smugglerLairTown";
@@ -205,15 +205,16 @@ int LocationInitPuertoPrincipe(int n)
 	Locations[n].reload.l8.close_for_night = 1;
 	locations[n].locators_radius.item.item1 = 1.0;
 	locations[n].locators_radius.item.button01 = 1.0;
-    n = n + 1;
+	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Таверна Пуэрто-Принсипе
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 	locations[n].id = "PuertoPrincipe_tavern";
+	locations[n].id = "PuertoPrincipe_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern09\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "PuertoPrincipe";
@@ -242,7 +243,7 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].reload.l1.go = "PuertoPrincipe_town";
 	locations[n].reload.l1.emerge = "reload5";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2_back";
 	locations[n].reload.l2.go = "PuertoPrincipe_tavern_upstairs";
@@ -300,7 +301,8 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].id = "PuertoPrincipe_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store01\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "PuertoPrincipe";
 	locations[n].lockWeather = "Inside";
@@ -311,7 +313,8 @@ int LocationInitPuertoPrincipe(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\StoreSmall\";
-	locations[n].models.always.locators = "StoreSmall_locators";
+									locations[n]
+										.models.always.locators = "StoreSmall_locators";
 	locations[n].models.always.store = "StoreSmall";
 	locations[n].models.always.window = "StoreSmall_window";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -330,9 +333,9 @@ int LocationInitPuertoPrincipe(int n)
 	locations[n].reload.l1.go = "PuertoPrincipe_town";
 	locations[n].reload.l1.emerge = "reload8";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonRoom_MH10";
 	locations[n].reload.l2.emerge = "reload1";
@@ -353,8 +356,8 @@ int LocationInitPuertoPrincipe(int n)
 	//Sound
 	locations[n].type = "residence";
 	locations[n].fastreload = "PuertoPrincipe";
- 	locations[n].islandId = "Cuba";
- 	// стража
+	locations[n].islandId = "Cuba";
+	// стража
 	locations[n].soldiers = true;
 	LAi_LocationFantomsGen(&locations[n], true);
 	//Models

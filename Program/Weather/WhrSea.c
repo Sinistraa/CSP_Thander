@@ -1,29 +1,36 @@
 
 void WhrDeleteSeaEnvironment()
 {
-	DeleteAttribute(&Sea,"");
+	DeleteAttribute(&Sea, "");
 }
 
 void WhrCreateSeaEnvironment()
 {
-	aref	aCurWeather = GetCurrentWeather();
-	aref	aSea; makearef(aSea,aCurWeather.Sea);
-	aref	aSea2; makearef(aSea2, aCurWeather.Sea2);
-	aref	aCommon; makearef(aCommon, WhrCommonParams.Sea);
-	int   i;
+	aref aCurWeather = GetCurrentWeather();
+	aref aSea;
+	makearef(aSea, aCurWeather.Sea);
+	aref aSea2;
+	makearef(aSea2, aCurWeather.Sea2);
+	aref aCommon;
+	makearef(aCommon, WhrCommonParams.Sea);
+	int i;
 	float fMaxSeaHeight;
 
-	if (CheckAttribute(&Sea,"MaxSeaHeight")) { fMaxSeaHeight = stf(Sea.MaxSeaHeight); }
+	if (CheckAttribute(&Sea, "MaxSeaHeight"))
+	{
+		fMaxSeaHeight = stf(Sea.MaxSeaHeight);
+	}
 	//#20190613-01
-	if(fMaxSeaHeight < 0.0) return;
-	DeleteAttribute(&Sea,"");
+	if (fMaxSeaHeight < 0.0)
+		return;
+	DeleteAttribute(&Sea, "");
 
 	Sea.Clear = "";
 
-	Sea.Transparency = Whr_GetFloat(aSea,"Transparency");
-	Sea.FrenelCoefficient = Whr_GetFloat(aSea,"FrenelCoefficient");
-	Sea.WaterReflection = Whr_GetFloat(aSea,"WaterReflection");
-	Sea.WaterAttenuation = Whr_GetFloat(aSea,"WaterAttenuation");
+	Sea.Transparency = Whr_GetFloat(aSea, "Transparency");
+	Sea.FrenelCoefficient = Whr_GetFloat(aSea, "FrenelCoefficient");
+	Sea.WaterReflection = Whr_GetFloat(aSea, "WaterReflection");
+	Sea.WaterAttenuation = Whr_GetFloat(aSea, "WaterAttenuation");
 
 	Sea.Sea2.BumpScale = Whr_GetFloat(aSea2, "BumpScale");
 
@@ -37,28 +44,28 @@ void WhrCreateSeaEnvironment()
 	{
 		/*if(CheckAttribute(&locations[FindLocation(sLocation)], "fastreload"))
 		{*/
-			Sea.LodScale = 0.5;
-			Sea.MaxVertices = 32000;
-			Sea.MaxIndices = 33200;
-			Sea.MaxWaveDistance = 10.0;
-			Sea.MaxDim = 65536;
-			Sea.MinDim = 128;
-			Sea.GridStep = 0.07;//GridStepPC*5.0;
-			if (CheckAttribute(aCurWeather, "Storm") && sti(aCurWeather.Storm) == true)
-			{
-				fMaxSeaHeight = 2.0;
-			}
-			else
-            {
-				fMaxSeaHeight = 0.5;
-			}
-			/*FogDensity = 20.0;
+		Sea.LodScale = 0.5;
+		Sea.MaxVertices = 32000;
+		Sea.MaxIndices = 33200;
+		Sea.MaxWaveDistance = 10.0;
+		Sea.MaxDim = 65536;
+		Sea.MinDim = 128;
+		Sea.GridStep = 0.07; //GridStepPC*5.0;
+		if (CheckAttribute(aCurWeather, "Storm") && sti(aCurWeather.Storm) == true)
+		{
+			fMaxSeaHeight = 2.0;
+		}
+		else
+		{
+			fMaxSeaHeight = 0.5;
+		}
+		/*FogDensity = 20.0;
 			FogSeaDensity = 20.0;*/
 
-			Sea.Sea2.LodScale = 0.5;
-			Sea.Sea2.GridStep = 0.07;
-			Sea.Sea2.BumpScale = 0.3;
-            //SetSeaSettings();
+		Sea.Sea2.LodScale = 0.5;
+		Sea.Sea2.GridStep = 0.07;
+		Sea.Sea2.BumpScale = 0.3;
+		//SetSeaSettings();
 		/*}
 		else
 		{
@@ -77,16 +84,16 @@ void WhrCreateSeaEnvironment()
 	}
 	else
 	{
-        if (CheckAttribute(aCurWeather, "Storm") && sti(aCurWeather.Storm) == true)
+		if (CheckAttribute(aCurWeather, "Storm") && sti(aCurWeather.Storm) == true)
 		{
-		    SetSeaSettings();
+			SetSeaSettings();
 			fMaxSeaHeight = 200.0;
 			Log_TestInfo("Шторм включен, волны по Мах разрешены");
 		}
 		else
 		{
 			i = FindIsland(sLocation);
-			if ( i != -1)
+			if (i != -1)
 			{
 				/* Sea.LodScale = 4.0;
 				Sea.MaxVertices = 4000;
@@ -110,11 +117,11 @@ void WhrCreateSeaEnvironment()
 	}
 	Sea.Lights = aCurWeather.Lights;
 
-	Sea.Water.Color = Whr_GetColor(aSea,"Water.Color");
+	Sea.Water.Color = Whr_GetColor(aSea, "Water.Color");
 
-	Sea.Sun.Color = Whr_GetColor(aCurWeather,"Sun.Color");
-	Sea.Sun.HeightAngle = Whr_GetFloat(aCurWeather,"Sun.HeightAngle");
-	Sea.Sun.AzimuthAngle = Whr_GetFloat(aCurWeather,"Sun.AzimuthAngle");
+	Sea.Sun.Color = Whr_GetColor(aCurWeather, "Sun.Color");
+	Sea.Sun.HeightAngle = Whr_GetFloat(aCurWeather, "Sun.HeightAngle");
+	Sea.Sun.AzimuthAngle = Whr_GetFloat(aCurWeather, "Sun.AzimuthAngle");
 
 	string sCurFog = Whr_GetCurrentFog();
 	Sea.Fog.Color = Whr_GetColor(aCurWeather, sCurFog + ".Color");
@@ -123,7 +130,7 @@ void WhrCreateSeaEnvironment()
 	Sea.Fog.Density = Whr_GetFloat(aCurWeather, sCurFog + ".Density") * FogDensity;
 	Sea.Fog.SeaDensity = Whr_GetFloat(aCurWeather, sCurFog + ".SeaDensity") * FogSeaDensity;
 
-	Sea.Pena.Color = Whr_GetColor(aSea,"Pena.Color");
+	Sea.Pena.Color = Whr_GetColor(aSea, "Pena.Color");
 	Sea.Pena.DepthSmall = 20.0;
 	Sea.Pena.DepthBig = 20.0;
 	Sea.Pena.BigIslandMultiply = Whr_GetFloat(aCommon, "Pena.BigIslandMultiply");
@@ -181,7 +188,7 @@ void WhrCreateSeaEnvironment()
 	//}
 
 	string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-    WhrSetSeaPreset(iCurWeatherNum, sPreset);
+	WhrSetSeaPreset(iCurWeatherNum, sPreset);
 	// Advanced Sea initialize
 	Sea.Sea2.WaterColor = Whr_GetColor(aSea2, "WaterColor");
 	Sea.Sea2.SkyColor = Whr_GetColor(aSea2, "SkyColor");
@@ -240,15 +247,18 @@ void SetSeaSettings()
 
 void SetSeaGridStep(float SeaDetails)
 {
-	if (!IsEntity(&Sea)) { return; }
+	if (!IsEntity(&Sea))
+	{
+		return;
+	}
 
 	ref mchr = GetMainCharacter();
 	string sLocation = mchr.location;
 
 	// if current location is land - return
-	if(FindLocation(sLocation) != -1)
+	if (FindLocation(sLocation) != -1)
 	{
-		if(CheckAttribute(&locations[FindLocation(sLocation)], "fastreload"))
+		if (CheckAttribute(&locations[FindLocation(sLocation)], "fastreload"))
 		{
 			return;
 		}
@@ -273,7 +283,10 @@ float GetScaleSeaHeight()
 	*/
 	float fMaxSeaHeight = 0.0;
 
-	if (CheckAttribute(&Sea, "MaxSeaHeight")) { fMaxSeaHeight = stf(Sea.MaxSeaHeight); }
+	if (CheckAttribute(&Sea, "MaxSeaHeight"))
+	{
+		fMaxSeaHeight = stf(Sea.MaxSeaHeight);
+	}
 
 	aref arWeath = GetCurrentWeather();
 	float fAmp1, fAmp2;

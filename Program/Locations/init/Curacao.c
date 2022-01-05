@@ -14,7 +14,8 @@ int LocationInitCuracao(int n)
 	locations[n].islandId = "Curacao";
 
 	locations[n].filespath.models = "locations\Town_Curacao\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -36,20 +37,20 @@ int LocationInitCuracao(int n)
 	//River
 	locations[n].models.always.Waterfall1 = "river1";
 	locations[n].models.always.Waterfall1.uvslide.v0 = 0.2;
-    locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall1.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall1.level = 50;
 
 	locations[n].models.always.Waterfall2 = "river2";
 	locations[n].models.always.Waterfall2.uvslide.v0 = 0.4;
-    locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall2.level = 49;
 
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.3;
@@ -66,7 +67,7 @@ int LocationInitCuracao(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Curacao";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -142,7 +143,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
 
-    // --> Квестовые локации, 9 номеров.
+	// --> Квестовые локации, 9 номеров.
 	locations[n].reload.l11.name = "houseS3";
 	locations[n].reload.l11.go = "Villemstad_houseS3";
 	locations[n].reload.l11.emerge = "reload1";
@@ -156,7 +157,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l12.autoreload = "0";
 	locations[n].reload.l12.label = "House";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp1";
 	locations[n].reload.l20.go = "CommonDoubleflourHouse_2";
 	locations[n].reload.l20.emerge = "reload1";
@@ -242,7 +243,8 @@ int LocationInitCuracao(int n)
 	locations[n].id = "Villemstad_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern07\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "Villemstad";
@@ -273,7 +275,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload4";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2_back";
 	locations[n].reload.l2.go = "Villemstad_tavern_upstairs";
@@ -325,13 +327,14 @@ int LocationInitCuracao(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Villemstad_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\Store04\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Villemstad";
 	locations[n].lockWeather = "Inside";
@@ -360,9 +363,9 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload6";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	locations[n].locators_radius.camdetector.camera1 = 5;
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -371,13 +374,14 @@ int LocationInitCuracao(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Villemstad_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard03\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "Villemstad";
 	locations[n].lockWeather = "Inside";
@@ -407,7 +411,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload5";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_2";
@@ -417,7 +421,7 @@ int LocationInitCuracao(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Villemstad_townhall";
@@ -456,7 +460,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload3";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "Villemstad_TownhallRoom";
@@ -535,7 +539,7 @@ int LocationInitCuracao(int n)
 	//Sound
 	locations[n].type = "church";
 	locations[n].fastreload = "Villemstad";
- 	locations[n].islandId = "Curacao";
+	locations[n].islandId = "Curacao";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Church01_locators";
@@ -558,7 +562,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload7";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
@@ -568,7 +572,8 @@ int LocationInitCuracao(int n)
 	locations[n].id = "Villemstad_bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Villemstad";
 	locations[n].lockWeather = "Inside";
@@ -598,7 +603,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload8";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "GWIK";
@@ -608,14 +613,14 @@ int LocationInitCuracao(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
-
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПРЕДСТАВИТЕЛЬСТВО ГОЛЛАНДСКОЙ ВЕСТ-ИНДСКОЙ КОМПАНИИ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "GWIK";
 	locations[n].id.label = "GWIKshort";
 	locations[n].filespath.models = "locations\Inside\BigHouse05\";
-	locations[n].image = "loading\inside\CommonResidence_5.tga";
+									locations[n]
+										.image = "loading\inside\CommonResidence_5.tga";
 	//Town sack
 	locations[n].townsack = "Villemstad";
 	locations[n].lockWeather = "Inside";
@@ -648,7 +653,7 @@ int LocationInitCuracao(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Villemstad_PortOffice";
@@ -660,7 +665,7 @@ int LocationInitCuracao(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Villemstad";
- 	locations[n].islandId = "Curacao";
+	locations[n].islandId = "Curacao";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\PortOffice";
@@ -686,7 +691,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l1.go = "Villemstad_town";
 	locations[n].reload.l1.emerge = "reload10";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
@@ -703,7 +708,7 @@ int LocationInitCuracao(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Villemstad";
- 	locations[n].islandId = "Curacao";
+	locations[n].islandId = "Curacao";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "CobHouse";
@@ -750,7 +755,7 @@ int LocationInitCuracao(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Villemstad";
- 	locations[n].islandId = "Curacao";
+	locations[n].islandId = "Curacao";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\TwoFloorHouse";
@@ -765,7 +770,7 @@ int LocationInitCuracao(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.TwoFloorHouseRand= "TwoFloorHouse_rand";
+	Locations[n].models.day.TwoFloorHouseRand = "TwoFloorHouse_rand";
 	locations[n].models.day.charactersPatch = "TwoFloorHouse_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "TwoFloorHouse_patch";
@@ -873,7 +878,8 @@ int LocationInitCuracao(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\SmallHouse_inside\";
-    locations[n].models.always.SmallHouse = "SmallHouse_inside";
+									locations[n]
+										.models.always.SmallHouse = "SmallHouse_inside";
 	//locations[n].models.always.SmallHouse.level = 65538;
 	Locations[n].models.always.windows = "SmallHouse_inside_windows";
 	Locations[n].models.always.windows.tech = "LocationWindows";
@@ -910,8 +916,9 @@ int LocationInitCuracao(int n)
 	locations[n].islandId = "Curacao";
 	//Models
 	locations[n].filespath.models = "locations\inside\church_IM\";
-	//Always
-	locations[n].models.always.church = "church_IM";
+									//Always
+									locations[n]
+										.models.always.church = "church_IM";
 	locations[n].models.always.locators = "church_IM_locators";
 	locations[n].models.always.window = "church_IM_window";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -949,7 +956,8 @@ int LocationInitCuracao(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\crypt_2_1_inside\";
-	locations[n].models.always.cryptbig = "crypt_2_1_inside";
+									locations[n]
+										.models.always.cryptbig = "crypt_2_1_inside";
 	locations[n].models.always.back = "..\inside_back";
 	//Day
 	locations[n].models.day.charactersPatch = "crypt_2_1_inside_patch";
@@ -987,7 +995,7 @@ int LocationInitCuracao(int n)
 	locations[n].id = "Villemstad_ExitTown";
 	locations[n].fastreload = "Villemstad";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "Villemstad";
 	//Sound
@@ -1101,7 +1109,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l2.emerge = "reload_4";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1109,7 +1117,7 @@ int LocationInitCuracao(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Curacao_jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Curacao";
@@ -1164,7 +1172,7 @@ int LocationInitCuracao(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Curacao_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Curacao";
@@ -1214,7 +1222,7 @@ int LocationInitCuracao(int n)
 	// Пещера
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Curacao_Cave";
-	locations[n].image = "loading\inside\Cave_"+(rand(1)+1)+".tga";
+	locations[n].image = "loading\inside\Cave_" + (rand(1) + 1) + ".tga";
 	locations[n].id.label = "Cave";
 	//Sound
 	locations[n].type = "cave";
@@ -1230,7 +1238,7 @@ int LocationInitCuracao(int n)
 
 	Locations[n].models.always.rays = "cavernMedium2_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -1243,7 +1251,7 @@ int LocationInitCuracao(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
- 	//Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Curacao_CaveEntrance";
 	locations[n].reload.l1.emerge = "reload1";
@@ -1259,16 +1267,17 @@ int LocationInitCuracao(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "Curacao_jungle_02";
+	locations[n].id = "Curacao_jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Curacao";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle8\";
-	Locations[n].models.always.jungle = "jungle8";
+									Locations[n]
+										.models.always.jungle = "jungle8";
 	Locations[n].models.always.locators = "jungle8_locators";
 	Locations[n].models.always.grassPatch = "jungle8_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -1309,7 +1318,7 @@ int LocationInitCuracao(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Curacao_jungle_03";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Curacao";
@@ -1332,7 +1341,7 @@ int LocationInitCuracao(int n)
 
 	locations[n].models.always.well_small = "well_small";
 	Locations[n].models.always.well_small.locator.group = "reload";
-	Locations[n].models.always.well_small.locator.name ="reloadW_back";
+	Locations[n].models.always.well_small.locator.name = "reloadW_back";
 	Locations[n].models.always.well_small.tech = "DLightModel";
 	//Day
 	locations[n].models.day.charactersPatch = "jungle6_pCuracao03";
@@ -1354,7 +1363,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "1";
 	locations[n].reload.l2.label = "Shore22";
-    locations[n].locators_radius.reload.reload2_back = 2;
+	locations[n].locators_radius.reload.reload2_back = 2;
 
 	locations[n].reload.l3.name = "reload3_back";
 	locations[n].reload.l3.go = "Shore23";
@@ -1421,7 +1430,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1474,7 +1483,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	locations[n].locators_radius.quest.detector1 = 7.0; //увеличиваем радиус детектора.
 	n = n + 1;
 

@@ -11,10 +11,11 @@ int LocationInitLostShipsCity(int n)
 
 	locations[n].townsack = "LostShipsCity";
 	locations[n].fastreload = "LostShipsCity";
- 	locations[n].islandId = "LostShipsCity";
+	locations[n].islandId = "LostShipsCity";
 
 	locations[n].filespath.models = "locations\LostShipsCity\";
-	locations[n].image = "loading\OutsideLSC.tga";
+									locations[n]
+										.image = "loading\OutsideLSC.tga";
 	//Sound
 	locations[n].type = "LostShipsCity";
 	//locations[n].houseEnc = true; //для энкаунтеров в домах
@@ -57,12 +58,12 @@ int LocationInitLostShipsCity(int n)
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-	locations[n].alwaysStorm = true; //живем в штормах
+	locations[n].alwaysStorm = true;		   //живем в штормах
 	locations[n].alwaysStorm.WaveHeigh = true; //поднять уровень воды до 2.5 для низкого волнения
 	locations[n].storm = true;
 	locations[n].tornado = true;
 	//Reload map
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "LostShipsCity";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -193,7 +194,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].reload.l18.emerge = "reload2";
 	locations[n].reload.l18.autoreload = "0";
 	locations[n].reload.l18.label = "EsmeraldaStoreBig cabin";
-	locations[n].reload.l18.disable = 1;  //закроем для квестовых нужд
+	locations[n].reload.l18.disable = 1; //закроем для квестовых нужд
 
 	locations[n].reload.l19.name = "reload46";
 	locations[n].reload.l19.go = "EsmeraldaStoreBig";
@@ -468,7 +469,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].reload.l57.emerge = "reload1";
 	locations[n].reload.l57.autoreload = "0";
 	locations[n].reload.l57.label = "SanGabrielMechanic cabin";
-	locations[n].reload.l57.disable = true;  //закрыто до уничтожения касперов, можно только выйти из Сан Габриэля
+	locations[n].reload.l57.disable = true; //закрыто до уничтожения касперов, можно только выйти из Сан Габриэля
 
 	locations[n].reload.l58.name = "reload56";
 	locations[n].reload.l58.go = "SanGabrielMechanic";
@@ -578,11 +579,11 @@ int LocationInitLostShipsCity(int n)
 	locations[n].reload.l74.go = "ExternalRingInside";
 	locations[n].reload.l74.emerge = "reload1";
 	locations[n].reload.l74.autoreload = "0";
-	locations[n].reload.l74.disable = 1;  //закрыто до поры
+	locations[n].reload.l74.disable = 1; //закрыто до поры
 	locations[n].locators_radius.reload.reload_ring = 2.5;
 
 	//ключи для сундуков и предметы внутри
-	locations[n].private1.key = "key3";		//внутри резиденции в трюме
+	locations[n].private1.key = "key3"; //внутри резиденции в трюме
 	locations[n].private1.items.indian1 = 1;
 	locations[n].private1.items.indian2 = 2;
 	locations[n].private1.items.indian3 = 3;
@@ -666,7 +667,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private9.items.bullet = 20;
 	locations[n].private9.items.GunPowder = 20;
 
-	locations[n].private10.key = "keyPanama";	//у скелета
+	locations[n].private10.key = "keyPanama"; //у скелета
 	locations[n].private10.money = 353002;
 	locations[n].private10.items.indian10 = 1;
 	locations[n].private10.items.indian11 = 2;
@@ -795,7 +796,8 @@ int LocationInitLostShipsCity(int n)
 	locations[n].private1.items.jewelry1 = 2;
 	locations[n].private1.items.jewelry2 = 1
 
-	locations[n].private2.key = "key1";
+										   locations[n]
+											   .private2.key = "key1";
 	locations[n].private2.items.Mineral5 = 8;
 	locations[n].private2.items.Mineral6 = 5;
 	locations[n].private2.items.rabble = 1;
@@ -2023,7 +2025,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].reload.l2.emerge = "reload56";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "LSC Town";
-	locations[n].reload.l2.disable = true;  //здесь вход в механику
+	locations[n].reload.l2.disable = true; //здесь вход в механику
 
 	locations[n].reload.l3.name = "reload3";
 	locations[n].reload.l3.go = "LostShipsCity_town";
@@ -2538,10 +2540,11 @@ int LocationInitLostShipsCity(int n)
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//  вестова¤ каюта на корабле внешнего кольца - каюта Ћv
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
-  	Locations[n].id = "ExternalRingCabin1";
-    locations[n].id.label = "cabine";
+	Locations[n].id = "ExternalRingCabin1";
+	locations[n].id.label = "cabine";
 	locations[n].filespath.models = "locations\inside\cabinFDM\";
-	locations[n].image = "loading\SantaLuci\ExternalRingCabin1.tga";
+									locations[n]
+										.image = "loading\SantaLuci\ExternalRingCabin1.tga";
 	//Sound
 	locations[n].type = "LSC_inside";
 	locations[n].islandId = "LostShipsCity";
@@ -2562,7 +2565,7 @@ int LocationInitLostShipsCity(int n)
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "ExternalRingDeck";
 	Locations[n].reload.l1.emerge = "reload2";
 	Locations[n].reload.l1.label = "Boarding deck";
@@ -2577,7 +2580,8 @@ int LocationInitLostShipsCity(int n)
 
 	locations[n].private3.items.totem_8 = 1;
 	locations[n].private3.items.potionwine = 2;
-	locations[n].private3.items.potion1 = 6;;
+	locations[n].private3.items.potion1 = 6;
+	;
 
 	locations[n].private4.items.pistol6 = 1;
 	locations[n].private4.items.bullet = 10;

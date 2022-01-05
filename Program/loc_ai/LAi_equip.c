@@ -1,12 +1,12 @@
-#define PERK_TEMPLATE_SHIPDEFENCE	0	// 3 perks
-#define PERK_TEMPLATE_REPAIR		1	// 2 perks
-#define PERK_TEMPLATE_CANNONS		2	// 8 perks
-#define PERK_TEMPLATE_COMMERCE		3	// 5 perks
-#define PERK_TEMPLATE_SAILING		4	// 5 perks
-#define PERK_TEMPLATE_GRAPPLING		5	// 3 perks
-#define PERK_TEMPLATE_MELEE		    6	// 9 perks
-#define PERK_TEMPLATE_PERSONAL		7	// 6 perks
-#define PERK_TEMPLATE_LAST          8
+#define PERK_TEMPLATE_SHIPDEFENCE 0 // 3 perks
+#define PERK_TEMPLATE_REPAIR 1		// 2 perks
+#define PERK_TEMPLATE_CANNONS 2		// 8 perks
+#define PERK_TEMPLATE_COMMERCE 3	// 5 perks
+#define PERK_TEMPLATE_SAILING 4		// 5 perks
+#define PERK_TEMPLATE_GRAPPLING 5	// 3 perks
+#define PERK_TEMPLATE_MELEE 6		// 9 perks
+#define PERK_TEMPLATE_PERSONAL 7	// 6 perks
+#define PERK_TEMPLATE_LAST 8
 
 //Экипировать NPC оружием и перками (переделал полнсотью 11/11/04 boal)
 void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
@@ -17,7 +17,7 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 
 	DeleteAttribute(chr, "equip");
 	DeleteAttribute(chr, "perks.list"); // FIX 101104 убрать накопивщиеся умения
-	DelBakSkillAttr(chr); // fix
+	DelBakSkillAttr(chr);				// fix
 
 	if (chr.model.animation == "mushketer")
 	{
@@ -36,21 +36,24 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 	}
 
 	//Подберём саблю
-	if(isWeapons)
+	if (isWeapons)
 	{
 		string blade;
 		if (CheckAttribute(chr, "CityType") && chr.CityType == "soldier")
-		{   // у солдат в городе свои сабли
+		{ // у солдат в городе свои сабли
 			blade = LAi_Soldier_EquipBlade(sti(chr.rank));
 		}
 		else
 		{
-			if (CheckAttribute(chr,"officerequip"))
+			if (CheckAttribute(chr, "officerequip"))
 			{
-				if (sti(pchar.rank) >= 25) blade = LAi_NPC_EquipBladeSelection(15);
-				else blade = LAi_NPC_EquipBladeSelection(4);
+				if (sti(pchar.rank) >= 25)
+					blade = LAi_NPC_EquipBladeSelection(15);
+				else
+					blade = LAi_NPC_EquipBladeSelection(4);
 			}
-            else blade = LAi_NPC_EquipBladeSelection(sti(chr.rank));
+			else
+				blade = LAi_NPC_EquipBladeSelection(sti(chr.rank));
 		}
 
 		DeleteAttribute(chr, "items"); // это можно не делать, но так наверняка (идет проверка на колво предметов, и сабель может стать вагон)
@@ -63,82 +66,85 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 		GiveItem2Character(chr, blade);
 		EquipCharacterByItem(chr, blade);
 		// boal -->
-		if(rand(1500) < MOD_SKILL_ENEMY_RATE*100)
-        {
-		   TakeNItems(chr, "potion1", rand(makeint(rank/(11-MOD_SKILL_ENEMY_RATE) +0.5))); // даю меньше
+		if (rand(1500) < MOD_SKILL_ENEMY_RATE * 100)
+		{
+			TakeNItems(chr, "potion1", rand(makeint(rank / (11 - MOD_SKILL_ENEMY_RATE) + 0.5))); // даю меньше
 		}
 		// boal <--
 	}
-    else
-    {
+	else
+	{
 		isGun = false;
 	}
 	// boal выдаем пистоль -->
-	if(isGun)
+	if (isGun)
 	{
-		if(rand(1000) < MOD_SKILL_ENEMY_RATE * sti(chr.rank) * 8)
+		if (rand(1000) < MOD_SKILL_ENEMY_RATE * sti(chr.rank) * 8)
 		{
 			int iRnd = rand(1);
-			if(sti(chr.rank) > 10) iRnd = rand(2);
-			if(sti(chr.rank) > 15) iRnd = rand(2) + 1;
-			if(sti(chr.rank) > 20) iRnd = rand(3) + 2;
+			if (sti(chr.rank) > 10)
+				iRnd = rand(2);
+			if (sti(chr.rank) > 15)
+				iRnd = rand(2) + 1;
+			if (sti(chr.rank) > 20)
+				iRnd = rand(3) + 2;
 
-			switch(iRnd)
+			switch (iRnd)
 			{
-				case 0:
-					if(rand(100) < 70)
-					{
-						GiveItem2Character(chr, "pistol1"); // Пистоль
-						EquipCharacterByItem(chr, "pistol1"); // Пистоль
-					}
+			case 0:
+				if (rand(100) < 70)
+				{
+					GiveItem2Character(chr, "pistol1");	  // Пистоль
+					EquipCharacterByItem(chr, "pistol1"); // Пистоль
+				}
 				break;
 
-				case 1:
-					if(rand(100) < 75)
-					{
-						GiveItem2Character(chr, "pistol2"); // Колониальный пистолет
-						EquipCharacterByItem(chr, "pistol2"); // Колониальный пистолет
-					}
+			case 1:
+				if (rand(100) < 75)
+				{
+					GiveItem2Character(chr, "pistol2");	  // Колониальный пистолет
+					EquipCharacterByItem(chr, "pistol2"); // Колониальный пистолет
+				}
 				break;
 
-				case 2:
-					if(rand(100) < 80)
-					{
-						GiveItem2Character(chr, "pistol3"); // Тромбон
-						EquipCharacterByItem(chr, "pistol3"); // Тромбон
-						sBullet = "grapeshot";
-					}
+			case 2:
+				if (rand(100) < 80)
+				{
+					GiveItem2Character(chr, "pistol3");	  // Тромбон
+					EquipCharacterByItem(chr, "pistol3"); // Тромбон
+					sBullet = "grapeshot";
+				}
 				break;
 
-				case 3:
-					if(rand(100) < 85)
-					{
-						GiveItem2Character(chr, "pistol6"); // Бок-пистолет
-						EquipCharacterByItem(chr, "pistol6"); // Бок-пистолет
-					}
+			case 3:
+				if (rand(100) < 85)
+				{
+					GiveItem2Character(chr, "pistol6");	  // Бок-пистолет
+					EquipCharacterByItem(chr, "pistol6"); // Бок-пистолет
+				}
 				break;
 
-				case 4:
-					if(rand(100) < 90)
-					{
-						GiveItem2Character(chr, "pistol5"); // Бретерский пистолет
-						EquipCharacterByItem(chr, "pistol5"); // Бретерский пистолет
-					}
+			case 4:
+				if (rand(100) < 90)
+				{
+					GiveItem2Character(chr, "pistol5");	  // Бретерский пистолет
+					EquipCharacterByItem(chr, "pistol5"); // Бретерский пистолет
+				}
 				break;
 
-				case 5:
-					if(rand(100) < 95)
-					{
-						GiveItem2Character(chr, "pistol4"); // Четырёхствольный пистолет
-						EquipCharacterByItem(chr, "pistol4"); // Четырёхствольный пистолет
-					}
+			case 5:
+				if (rand(100) < 95)
+				{
+					GiveItem2Character(chr, "pistol4");	  // Четырёхствольный пистолет
+					EquipCharacterByItem(chr, "pistol4"); // Четырёхствольный пистолет
+				}
 				break;
 			}
 
-			TakeNItems(chr, sBullet, 5 + rand(10));// boal gun bullet
+			TakeNItems(chr, sBullet, 5 + rand(10)); // boal gun bullet
 			LAi_SetCharacterUseBullet(chr, sBullet);
 			sGunPowder = LAi_GetCharacterGunpowderType(chr);
-			if(sGunPowder != "")
+			if (sGunPowder != "")
 			{
 				AddItems(chr, sGunPowder, 5 + rand(10)); // Warship. Порох
 			}
@@ -149,47 +155,54 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 
 void LAi_NPC_MushketerEquip(ref chr)
 {
-	string sMush 	= "mushket";
+	string sMush = "mushket";
 
 	while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
-    {
-        TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
-    }
-    while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
-    {
-        TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
-    }
+	{
+		TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
+	}
+	while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
+	{
+		TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
+	}
 	GiveItem2Character(chr, "unarmed");
 	EquipCharacterbyItem(chr, "unarmed");
 
-	if(CheckAttribute(chr, "MushketType")) 			sMush 	= chr.MushketType;
+	if (CheckAttribute(chr, "MushketType"))
+		sMush = chr.MushketType;
 	else
 	{
-		if(CheckAttribute(chr, "model"))
+		if (CheckAttribute(chr, "model"))
 		{
-			if(HasSubStr(chr.model, "eng_mush_")) sMush = GetEnglishMushketName();
-			if(HasSubStr(chr.model, "hol_mush_")) sMush = GetHollandMushketName();
-			if(HasSubStr(chr.model, "fra_mush_")) sMush = GetFranceMushketName();
-		    if(HasSubStr(chr.model, "spa_mush_")) sMush = GetSpanishMushketName();
-		    if(HasSubStr(chr.model, "mushketer_")) sMush = GetPirateMushketName();
+			if (HasSubStr(chr.model, "eng_mush_"))
+				sMush = GetEnglishMushketName();
+			if (HasSubStr(chr.model, "hol_mush_"))
+				sMush = GetHollandMushketName();
+			if (HasSubStr(chr.model, "fra_mush_"))
+				sMush = GetFranceMushketName();
+			if (HasSubStr(chr.model, "spa_mush_"))
+				sMush = GetSpanishMushketName();
+			if (HasSubStr(chr.model, "mushketer_"))
+				sMush = GetPirateMushketName();
 		}
 	}
 
 	GiveItem2Character(chr, sMush);
 	EquipCharacterbyItem(chr, sMush);
 
-	AddItems(chr, "bullet", 	100);
-	AddItems(chr, "gunpowder", 	100);
+	AddItems(chr, "bullet", 100);
+	AddItems(chr, "gunpowder", 100);
 
 	chr.isMusketer = true;
 	chr.isMusketer.weapon = true; // Jason: а пули с порохом кто удалять будет? И вообще, что за муть - менять мушкет при каждой установке типа?
-	if (!CheckAttribute(chr, "MusketerDistance")) chr.MusketerDistance = 10.0 + frand(10.0);
+	if (!CheckAttribute(chr, "MusketerDistance"))
+		chr.MusketerDistance = 10.0 + frand(10.0);
 }
 
 string LAi_NPC_EquipBladeSelection(int rank)
 {
 	int prank = sti(pchar.rank);
-	int max,min;
+	int max, min;
 	if (prank < 4) // ранг ГГ <5 (ржавое)
 	{
 		min = 0;
@@ -213,144 +226,144 @@ string LAi_NPC_EquipBladeSelection(int rank)
 
 	int sel = rand(max - min) + min;
 	string blade = GetGeneratedItem("blade7");
-	switch(sel)
+	switch (sel)
 	{
-		// "Ржавое" оружие
-		case 0:
-			blade = GetGeneratedItem("topor1"); // Боевой топор
+	// "Ржавое" оружие
+	case 0:
+		blade = GetGeneratedItem("topor1"); // Боевой топор
 		break;
-		case 1:
-			blade = GetGeneratedItem("topor3"); // Клевец
+	case 1:
+		blade = GetGeneratedItem("topor3"); // Клевец
 		break;
-		case 2:
-			blade = GetGeneratedItem("blade1"); // Канонирский тесак
+	case 2:
+		blade = GetGeneratedItem("blade1"); // Канонирский тесак
 		break;
-	    case 3:
-			blade = GetGeneratedItem("Blade2"); // Венецианская шпага
+	case 3:
+		blade = GetGeneratedItem("Blade2"); // Венецианская шпага
 		break;
-		case 4:
-			blade = GetGeneratedItem("Blade3"); // Кайман
+	case 4:
+		blade = GetGeneratedItem("Blade3"); // Кайман
 		break;
-		case 5:
-			blade = GetGeneratedItem("Blade4"); // Пехотная сабля
+	case 5:
+		blade = GetGeneratedItem("Blade4"); // Пехотная сабля
 		break;
-		case 6:
-			blade = GetGeneratedItem("Blade5"); // Дага
+	case 6:
+		blade = GetGeneratedItem("Blade5"); // Дага
 		break;
-		case 7:
-			blade = GetGeneratedItem("Blade10"); // Строевой фальшион
+	case 7:
+		blade = GetGeneratedItem("Blade10"); // Строевой фальшион
 		break;
-		case 8:
-			blade = GetGeneratedItem("blade17"); // Клеймор
+	case 8:
+		blade = GetGeneratedItem("blade17"); // Клеймор
 		break;
-		case 9:
-			blade = GetGeneratedItem("Blade35"); // Кортелач
-		break;
-
-		// "Обычное" оружие
-		case 10:
-			blade = GetGeneratedItem("blade6"); // Скорпион
-		break;
-		case 11:
-			blade = GetGeneratedItem("Blade7"); // Бильбо
-		break;
-		case 12:
-			blade = GetGeneratedItem("Blade8"); // Госсемесер
-		break;
-		case 13:
-			blade = GetGeneratedItem("Blade9"); // Сарагоса
-		break;
-		case 14:
-			blade = GetGeneratedItem("blade11"); // Риттершверт
-		break;
-		case 15:
-			blade = GetGeneratedItem("blade12"); // Катцбальгер
-		break;
-		case 16:
-			blade = GetGeneratedItem("blade16"); // Рейтарский палаш
-		break;
-	    case 17:
-			blade = GetGeneratedItem("blade18"); // Висельник
+	case 9:
+		blade = GetGeneratedItem("Blade35"); // Кортелач
 		break;
 
-		// "Редкое" оружие
-		case 18:
-			blade = GetGeneratedItem("topor2"); // Рейтарский чекан
+	// "Обычное" оружие
+	case 10:
+		blade = GetGeneratedItem("blade6"); // Скорпион
 		break;
-		case 19:
-			blade = GetGeneratedItem("Blade15"); // Сторта
+	case 11:
+		blade = GetGeneratedItem("Blade7"); // Бильбо
 		break;
-		case 20:
-			blade = GetGeneratedItem("blade19"); // Маринера
+	case 12:
+		blade = GetGeneratedItem("Blade8"); // Госсемесер
 		break;
-		case 21:
-			blade = GetGeneratedItem("blade21"); // Бастард
+	case 13:
+		blade = GetGeneratedItem("Blade9"); // Сарагоса
 		break;
-		case 22:
-			blade = GetGeneratedItem("blade22"); // Испанская рапира
+	case 14:
+		blade = GetGeneratedItem("blade11"); // Риттершверт
 		break;
-		case 23:
-			blade = GetGeneratedItem("blade31"); // Шамшир
+	case 15:
+		blade = GetGeneratedItem("blade12"); // Катцбальгер
 		break;
-		case 24:
-			blade = GetGeneratedItem("blade34"); // Скаллоп
+	case 16:
+		blade = GetGeneratedItem("blade16"); // Рейтарский палаш
 		break;
-		case 25:
-			blade = GetGeneratedItem("blade36"); // Саксенфедер
-		break;
-		case 26:
-			blade = GetGeneratedItem("blade37"); // Персидская сабля
-		break;
-		case 27:
-			blade = GetGeneratedItem("blade39"); // Скимитар
-		break;
-		case 28:
-			blade = GetGeneratedItem("blade40"); // Мадонна
-		break;
-		case 29:
-			blade = GetGeneratedItem("blade42"); // Кханда
-		break;
-		case 30:
-			blade = GetGeneratedItem("blade46"); // Офицерский клеванг
-		break;
-		case 31:
-			blade = GetGeneratedItem("blade202"); // Цвайхандер
+	case 17:
+		blade = GetGeneratedItem("blade18"); // Висельник
 		break;
 
-		// "Уникальное" оружие
-	    case 32:
-			blade = GetGeneratedItem("blade13"); // Кракемарт
+	// "Редкое" оружие
+	case 18:
+		blade = GetGeneratedItem("topor2"); // Рейтарский чекан
 		break;
-		case 33:
-			blade = GetGeneratedItem("blade20"); // Клейбэг
+	case 19:
+		blade = GetGeneratedItem("Blade15"); // Сторта
 		break;
-		case 34:
-			blade = GetGeneratedItem("blade23"); // Бретта
+	case 20:
+		blade = GetGeneratedItem("blade19"); // Маринера
 		break;
-	    case 35:
-			blade = GetGeneratedItem("blade24"); // Чиавона
+	case 21:
+		blade = GetGeneratedItem("blade21"); // Бастард
 		break;
-		case 36:
-			blade = GetGeneratedItem("blade25"); // Карабела
+	case 22:
+		blade = GetGeneratedItem("blade22"); // Испанская рапира
 		break;
-		case 37:
-			blade = GetGeneratedItem("blade26"); // Паппенхаймер
+	case 23:
+		blade = GetGeneratedItem("blade31"); // Шамшир
 		break;
-		case 38:
-			blade = GetGeneratedItem("blade30"); // Нобиль
+	case 24:
+		blade = GetGeneratedItem("blade34"); // Скаллоп
 		break;
-		case 39:
-			blade = GetGeneratedItem("blade33"); // Валлонская шпага
+	case 25:
+		blade = GetGeneratedItem("blade36"); // Саксенфедер
+		break;
+	case 26:
+		blade = GetGeneratedItem("blade37"); // Персидская сабля
+		break;
+	case 27:
+		blade = GetGeneratedItem("blade39"); // Скимитар
+		break;
+	case 28:
+		blade = GetGeneratedItem("blade40"); // Мадонна
+		break;
+	case 29:
+		blade = GetGeneratedItem("blade42"); // Кханда
+		break;
+	case 30:
+		blade = GetGeneratedItem("blade46"); // Офицерский клеванг
+		break;
+	case 31:
+		blade = GetGeneratedItem("blade202"); // Цвайхандер
 		break;
 
-		case 40:
-			blade = GetGeneratedItem("blade14"); // Катана
+	// "Уникальное" оружие
+	case 32:
+		blade = GetGeneratedItem("blade13"); // Кракемарт
 		break;
-		case 41:
-			blade = GetGeneratedItem("blade28"); // Танат
+	case 33:
+		blade = GetGeneratedItem("blade20"); // Клейбэг
 		break;
-		case 42:
-			blade = GetGeneratedItem("blade32"); // Фламберж
+	case 34:
+		blade = GetGeneratedItem("blade23"); // Бретта
+		break;
+	case 35:
+		blade = GetGeneratedItem("blade24"); // Чиавона
+		break;
+	case 36:
+		blade = GetGeneratedItem("blade25"); // Карабела
+		break;
+	case 37:
+		blade = GetGeneratedItem("blade26"); // Паппенхаймер
+		break;
+	case 38:
+		blade = GetGeneratedItem("blade30"); // Нобиль
+		break;
+	case 39:
+		blade = GetGeneratedItem("blade33"); // Валлонская шпага
+		break;
+
+	case 40:
+		blade = GetGeneratedItem("blade14"); // Катана
+		break;
+	case 41:
+		blade = GetGeneratedItem("blade28"); // Танат
+		break;
+	case 42:
+		blade = GetGeneratedItem("blade32"); // Фламберж
 		break;
 	}
 	return blade;
@@ -359,7 +372,7 @@ string LAi_NPC_EquipBladeSelection(int rank)
 string LAi_Soldier_EquipBlade(int rank)
 {
 	int prank = sti(pchar.rank);
-	int max,min;
+	int max, min;
 	if (prank < 4) // ранг ГГ <5 (ржавое)
 	{
 		min = 0;
@@ -383,144 +396,144 @@ string LAi_Soldier_EquipBlade(int rank)
 
 	int sel = rand(max - min) + min;
 	string blade = GetGeneratedItem("blade7");
-	switch(sel)
+	switch (sel)
 	{
-		// "Ржавое" оружие
-		case 0:
-			blade = GetGeneratedItem("topor1"); // Боевой топор
+	// "Ржавое" оружие
+	case 0:
+		blade = GetGeneratedItem("topor1"); // Боевой топор
 		break;
-		case 1:
-			blade = GetGeneratedItem("topor3"); // Клевец
+	case 1:
+		blade = GetGeneratedItem("topor3"); // Клевец
 		break;
-		case 2:
-			blade = GetGeneratedItem("blade1"); // Канонирский тесак
+	case 2:
+		blade = GetGeneratedItem("blade1"); // Канонирский тесак
 		break;
-	    case 3:
-			blade = GetGeneratedItem("Blade2"); // Венецианская шпага
+	case 3:
+		blade = GetGeneratedItem("Blade2"); // Венецианская шпага
 		break;
-		case 4:
-			blade = GetGeneratedItem("Blade3"); // Кайман
+	case 4:
+		blade = GetGeneratedItem("Blade3"); // Кайман
 		break;
-		case 5:
-			blade = GetGeneratedItem("Blade4"); // Пехотная сабля
+	case 5:
+		blade = GetGeneratedItem("Blade4"); // Пехотная сабля
 		break;
-		case 6:
-			blade = GetGeneratedItem("Blade5"); // Дага
+	case 6:
+		blade = GetGeneratedItem("Blade5"); // Дага
 		break;
-		case 7:
-			blade = GetGeneratedItem("Blade10"); // Строевой фальшион
+	case 7:
+		blade = GetGeneratedItem("Blade10"); // Строевой фальшион
 		break;
-		case 8:
-			blade = GetGeneratedItem("blade17"); // Клеймор
+	case 8:
+		blade = GetGeneratedItem("blade17"); // Клеймор
 		break;
-		case 9:
-			blade = GetGeneratedItem("Blade35"); // Кортелач
-		break;
-
-		// "Обычное" оружие
-		case 10:
-			blade = GetGeneratedItem("blade6"); // Скорпион
-		break;
-		case 11:
-			blade = GetGeneratedItem("Blade7"); // Бильбо
-		break;
-		case 12:
-			blade = GetGeneratedItem("Blade8"); // Госсемесер
-		break;
-		case 13:
-			blade = GetGeneratedItem("Blade9"); // Сарагоса
-		break;
-		case 14:
-			blade = GetGeneratedItem("blade11"); // Риттершверт
-		break;
-		case 15:
-			blade = GetGeneratedItem("blade12"); // Катцбальгер
-		break;
-		case 16:
-			blade = GetGeneratedItem("blade16"); // Рейтарский палаш
-		break;
-	    case 17:
-			blade = GetGeneratedItem("blade18"); // Висельник
+	case 9:
+		blade = GetGeneratedItem("Blade35"); // Кортелач
 		break;
 
-		// "Редкое" оружие
-		case 18:
-			blade = GetGeneratedItem("topor2"); // Рейтарский чекан
+	// "Обычное" оружие
+	case 10:
+		blade = GetGeneratedItem("blade6"); // Скорпион
 		break;
-		case 19:
-			blade = GetGeneratedItem("Blade15"); // Сторта
+	case 11:
+		blade = GetGeneratedItem("Blade7"); // Бильбо
 		break;
-		case 20:
-			blade = GetGeneratedItem("blade19"); // Маринера
+	case 12:
+		blade = GetGeneratedItem("Blade8"); // Госсемесер
 		break;
-		case 21:
-			blade = GetGeneratedItem("blade21"); // Бастард
+	case 13:
+		blade = GetGeneratedItem("Blade9"); // Сарагоса
 		break;
-		case 22:
-			blade = GetGeneratedItem("blade22"); // Испанская рапира
+	case 14:
+		blade = GetGeneratedItem("blade11"); // Риттершверт
 		break;
-		case 23:
-			blade = GetGeneratedItem("blade31"); // Шамшир
+	case 15:
+		blade = GetGeneratedItem("blade12"); // Катцбальгер
 		break;
-		case 24:
-			blade = GetGeneratedItem("blade34"); // Скаллоп
+	case 16:
+		blade = GetGeneratedItem("blade16"); // Рейтарский палаш
 		break;
-		case 25:
-			blade = GetGeneratedItem("blade36"); // Саксенфедер
-		break;
-		case 26:
-			blade = GetGeneratedItem("blade37"); // Персидская сабля
-		break;
-		case 27:
-			blade = GetGeneratedItem("blade39"); // Скимитар
-		break;
-		case 28:
-			blade = GetGeneratedItem("blade40"); // Мадонна
-		break;
-		case 29:
-			blade = GetGeneratedItem("blade42"); // Кханда
-		break;
-		case 30:
-			blade = GetGeneratedItem("blade46"); // Офицерский клеванг
-		break;
-		case 31:
-			blade = GetGeneratedItem("blade202"); // Цвайхандер
+	case 17:
+		blade = GetGeneratedItem("blade18"); // Висельник
 		break;
 
-		// "Уникальное" оружие
-	    case 32:
-			blade = GetGeneratedItem("blade13"); // Кракемарт
+	// "Редкое" оружие
+	case 18:
+		blade = GetGeneratedItem("topor2"); // Рейтарский чекан
 		break;
-		case 33:
-			blade = GetGeneratedItem("blade20"); // Клейбэг
+	case 19:
+		blade = GetGeneratedItem("Blade15"); // Сторта
 		break;
-		case 34:
-			blade = GetGeneratedItem("blade23"); // Бретта
+	case 20:
+		blade = GetGeneratedItem("blade19"); // Маринера
 		break;
-	    case 35:
-			blade = GetGeneratedItem("blade24"); // Чиавона
+	case 21:
+		blade = GetGeneratedItem("blade21"); // Бастард
 		break;
-		case 36:
-			blade = GetGeneratedItem("blade25"); // Карабела
+	case 22:
+		blade = GetGeneratedItem("blade22"); // Испанская рапира
 		break;
-		case 37:
-			blade = GetGeneratedItem("blade26"); // Паппенхаймер
+	case 23:
+		blade = GetGeneratedItem("blade31"); // Шамшир
 		break;
-		case 38:
-			blade = GetGeneratedItem("blade30"); // Нобиль
+	case 24:
+		blade = GetGeneratedItem("blade34"); // Скаллоп
 		break;
-		case 39:
-			blade = GetGeneratedItem("blade33"); // Валлонская шпага
+	case 25:
+		blade = GetGeneratedItem("blade36"); // Саксенфедер
+		break;
+	case 26:
+		blade = GetGeneratedItem("blade37"); // Персидская сабля
+		break;
+	case 27:
+		blade = GetGeneratedItem("blade39"); // Скимитар
+		break;
+	case 28:
+		blade = GetGeneratedItem("blade40"); // Мадонна
+		break;
+	case 29:
+		blade = GetGeneratedItem("blade42"); // Кханда
+		break;
+	case 30:
+		blade = GetGeneratedItem("blade46"); // Офицерский клеванг
+		break;
+	case 31:
+		blade = GetGeneratedItem("blade202"); // Цвайхандер
 		break;
 
-		case 40:
-			blade = GetGeneratedItem("blade14"); // Катана
+	// "Уникальное" оружие
+	case 32:
+		blade = GetGeneratedItem("blade13"); // Кракемарт
 		break;
-		case 41:
-			blade = GetGeneratedItem("blade28"); // Танат
+	case 33:
+		blade = GetGeneratedItem("blade20"); // Клейбэг
 		break;
-		case 42:
-			blade = GetGeneratedItem("blade32"); // Фламберж
+	case 34:
+		blade = GetGeneratedItem("blade23"); // Бретта
+		break;
+	case 35:
+		blade = GetGeneratedItem("blade24"); // Чиавона
+		break;
+	case 36:
+		blade = GetGeneratedItem("blade25"); // Карабела
+		break;
+	case 37:
+		blade = GetGeneratedItem("blade26"); // Паппенхаймер
+		break;
+	case 38:
+		blade = GetGeneratedItem("blade30"); // Нобиль
+		break;
+	case 39:
+		blade = GetGeneratedItem("blade33"); // Валлонская шпага
+		break;
+
+	case 40:
+		blade = GetGeneratedItem("blade14"); // Катана
+		break;
+	case 41:
+		blade = GetGeneratedItem("blade28"); // Танат
+		break;
+	case 42:
+		blade = GetGeneratedItem("blade32"); // Фламберж
 		break;
 	}
 	return blade;
@@ -529,66 +542,66 @@ string LAi_Soldier_EquipBlade(int rank)
 // new perks generator, more specialized (Gray 12.11.2004)
 void LAi_NPC_EquipPerk(ref chr, string kind)
 {
-	int  i;
-    int  rest;
-    int  PerkTemplates[PERK_TEMPLATE_LAST];
-    int  NumPerks[PERK_TEMPLATE_LAST];
-    int  rank = sti(chr.rank);
-    bool ok;
+	int i;
+	int rest;
+	int PerkTemplates[PERK_TEMPLATE_LAST];
+	int NumPerks[PERK_TEMPLATE_LAST];
+	int rank = sti(chr.rank);
+	bool ok;
 
 	for (i = 0; i < PERK_TEMPLATE_LAST; i++)
 	{
 		PerkTemplates[i] = 0;
 	}
 
-	switch (kind)        // to_do
+	switch (kind) // to_do
 	{
-		 case "boatswain" :
-			PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0 + 1);
-			PerkTemplates[PERK_TEMPLATE_GRAPPLING]   = makeint((rank + rand(3)) / 6.0);
-			PerkTemplates[PERK_TEMPLATE_MELEE]       = makeint((rank + rand(3)) / 5.0);
+	case "boatswain":
+		PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0 + 1);
+		PerkTemplates[PERK_TEMPLATE_GRAPPLING] = makeint((rank + rand(3)) / 6.0);
+		PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(3)) / 5.0);
 		break;
 
-		case "cannoner" :
-			PerkTemplates[PERK_TEMPLATE_CANNONS] = makeint((rank + rand(2)) / 3.0 + 1);
-			PerkTemplates[PERK_TEMPLATE_MELEE]   = makeint((rank + rand(3)) / 6.0);
+	case "cannoner":
+		PerkTemplates[PERK_TEMPLATE_CANNONS] = makeint((rank + rand(2)) / 3.0 + 1);
+		PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(3)) / 6.0);
 		break;
 
-		case "treasurer" :
-			PerkTemplates[PERK_TEMPLATE_COMMERCE] = makeint((rank + rand(1)) / 5.0 + 1);
-			PerkTemplates[PERK_TEMPLATE_REPAIR]   = makeint((rank + rand(3)) / 5.0);
-			PerkTemplates[PERK_TEMPLATE_MELEE]    = makeint((rank + rand(3)) / 6.0);
-			PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0 + 1);
+	case "treasurer":
+		PerkTemplates[PERK_TEMPLATE_COMMERCE] = makeint((rank + rand(1)) / 5.0 + 1);
+		PerkTemplates[PERK_TEMPLATE_REPAIR] = makeint((rank + rand(3)) / 5.0);
+		PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(3)) / 6.0);
+		PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0 + 1);
 		break;
 
-		case "navigator" :
-			PerkTemplates[PERK_TEMPLATE_SAILING]     = makeint((rank + rand(2)) / 4.0 + 1);
-			PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(3)) / 6.0);
-			PerkTemplates[PERK_TEMPLATE_MELEE]       = makeint((rank + rand(3)) / 6.0);
+	case "navigator":
+		PerkTemplates[PERK_TEMPLATE_SAILING] = makeint((rank + rand(2)) / 4.0 + 1);
+		PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(3)) / 6.0);
+		PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(3)) / 6.0);
 		break;
 
-		case "fighter" :
-			PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(1)) / 2.0 + 1);
+	case "fighter":
+		PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(1)) / 2.0 + 1);
 		break;
 
-		case "fantom" :
-			PerkTemplates[PERK_TEMPLATE_MELEE]       = makeint((rank + rand(4)) / 4.0);
-			PerkTemplates[PERK_TEMPLATE_SAILING]     = makeint((rank + rand(5)) / 8.0);
-			PerkTemplates[PERK_TEMPLATE_GRAPPLING]   = makeint((rank + rand(7)) / 9.0);
-			PerkTemplates[PERK_TEMPLATE_REPAIR]      = makeint((rank + rand(10)) / 15.0);
-			PerkTemplates[PERK_TEMPLATE_CANNONS]     = makeint((rank + rand(2)) / 5.0);
-			PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0);
+	case "fantom":
+		PerkTemplates[PERK_TEMPLATE_MELEE] = makeint((rank + rand(4)) / 4.0);
+		PerkTemplates[PERK_TEMPLATE_SAILING] = makeint((rank + rand(5)) / 8.0);
+		PerkTemplates[PERK_TEMPLATE_GRAPPLING] = makeint((rank + rand(7)) / 9.0);
+		PerkTemplates[PERK_TEMPLATE_REPAIR] = makeint((rank + rand(10)) / 15.0);
+		PerkTemplates[PERK_TEMPLATE_CANNONS] = makeint((rank + rand(2)) / 5.0);
+		PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0);
 		break;
-    }
+	}
 
 	NumPerks[PERK_TEMPLATE_SHIPDEFENCE] = 4;
-	NumPerks[PERK_TEMPLATE_REPAIR]      = 4;
-	NumPerks[PERK_TEMPLATE_CANNONS]     = 8;
-	NumPerks[PERK_TEMPLATE_COMMERCE]    = 2;
-	NumPerks[PERK_TEMPLATE_SAILING]     = 8;
-	NumPerks[PERK_TEMPLATE_GRAPPLING]   = 5;
-	NumPerks[PERK_TEMPLATE_MELEE]       = 12;
-	NumPerks[PERK_TEMPLATE_PERSONAL]    = 4;
+	NumPerks[PERK_TEMPLATE_REPAIR] = 4;
+	NumPerks[PERK_TEMPLATE_CANNONS] = 8;
+	NumPerks[PERK_TEMPLATE_COMMERCE] = 2;
+	NumPerks[PERK_TEMPLATE_SAILING] = 8;
+	NumPerks[PERK_TEMPLATE_GRAPPLING] = 5;
+	NumPerks[PERK_TEMPLATE_MELEE] = 12;
+	NumPerks[PERK_TEMPLATE_PERSONAL] = 4;
 
 	rest = 0;
 	for (i = 0; i < PERK_TEMPLATE_LAST; i++)
@@ -619,7 +632,6 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 			rest--;
 		}
 	}
-
 
 	if (PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] >= 1)
 	{
@@ -756,34 +768,34 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 		}
 	}
 
-    ok = true;
+	ok = true;
 	if (PerkTemplates[PERK_TEMPLATE_GRAPPLING] >= 1)
 	{
 		chr.perks.list.LongRangeGrappling = "1";
 		if (PerkTemplates[PERK_TEMPLATE_GRAPPLING] >= 2)
 		{
-            if (rand(3) == 1)
-            {
-                chr.perks.list.MusketsShoot = "1";
-                ok = false;
-            }
-            else
-            {
-                chr.perks.list.GrapplingProfessional = "1";
-            }
+			if (rand(3) == 1)
+			{
+				chr.perks.list.MusketsShoot = "1";
+				ok = false;
+			}
+			else
+			{
+				chr.perks.list.GrapplingProfessional = "1";
+			}
 			if (PerkTemplates[PERK_TEMPLATE_GRAPPLING] >= 3)
 			{
-                if (ok)
-                {
-                    if (rand(2) == 1)
-                    {
-                        chr.perks.list.MusketsShoot = "1";
-                    }
-                }
-                else
-                {
-                    chr.perks.list.GrapplingProfessional = "1";
-                }
+				if (ok)
+				{
+					if (rand(2) == 1)
+					{
+						chr.perks.list.MusketsShoot = "1";
+					}
+				}
+				else
+				{
+					chr.perks.list.GrapplingProfessional = "1";
+				}
 			}
 		}
 		if (PerkTemplates[PERK_TEMPLATE_GRAPPLING] >= 4)
@@ -867,14 +879,26 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 string GetEnglishMushketName()
 {
 	string gun = "mushket";
-	switch(rand(2))
+	switch (rand(2))
 	{
-		case 0: gun = "mushket"; break;
-		case 1: gun = "mushket_SeaCarbine"; break;
-		case 2: gun = "mushket_english"; break;
-		case 3: gun = "mushket"; break;
-		case 4: gun = "mushket_SeaCarbine"; break;
-		case 5: gun = "mushket_english"; break;
+	case 0:
+		gun = "mushket";
+		break;
+	case 1:
+		gun = "mushket_SeaCarbine";
+		break;
+	case 2:
+		gun = "mushket_english";
+		break;
+	case 3:
+		gun = "mushket";
+		break;
+	case 4:
+		gun = "mushket_SeaCarbine";
+		break;
+	case 5:
+		gun = "mushket_english";
+		break;
 	}
 
 	return gun;
@@ -883,14 +907,26 @@ string GetEnglishMushketName()
 string GetFranceMushketName()
 {
 	string gun = "mushket";
-	switch(rand(2))
+	switch (rand(2))
 	{
-		case 0: gun = "mushket"; break;
-		case 1: gun = "mushket2"; break;
-		case 2: gun = "mushket_france"; break;
-		case 3: gun = "mushket"; break;
-		case 4: gun = "mushket2"; break;
-		case 5: gun = "mushket_france"; break;
+	case 0:
+		gun = "mushket";
+		break;
+	case 1:
+		gun = "mushket2";
+		break;
+	case 2:
+		gun = "mushket_france";
+		break;
+	case 3:
+		gun = "mushket";
+		break;
+	case 4:
+		gun = "mushket2";
+		break;
+	case 5:
+		gun = "mushket_france";
+		break;
 	}
 
 	return gun;
@@ -899,14 +935,26 @@ string GetFranceMushketName()
 string GetHollandMushketName()
 {
 	string gun = "mushket";
-	switch(rand(2))
+	switch (rand(2))
 	{
-		case 0: gun = "mushket"; break;
-		case 1: gun = "mushket2"; break;
-		case 2: gun = "mushket_holland"; break;
-		case 3: gun = "mushket"; break;
-		case 4: gun = "mushket2"; break;
-		case 5: gun = "mushket_holland"; break;
+	case 0:
+		gun = "mushket";
+		break;
+	case 1:
+		gun = "mushket2";
+		break;
+	case 2:
+		gun = "mushket_holland";
+		break;
+	case 3:
+		gun = "mushket";
+		break;
+	case 4:
+		gun = "mushket2";
+		break;
+	case 5:
+		gun = "mushket_holland";
+		break;
 	}
 
 	return gun;
@@ -915,14 +963,26 @@ string GetHollandMushketName()
 string GetSpanishMushketName()
 {
 	string gun = "mushket";
-	switch(rand(2))
+	switch (rand(2))
 	{
-		case 0: gun = "mushket"; break;
-		case 1: gun = "mushket2"; break;
-		case 2: gun = "mushket_spanish"; break;
-		case 3: gun = "mushket"; break;
-		case 4: gun = "mushket2"; break;
-		case 5: gun = "mushket_spanish"; break;
+	case 0:
+		gun = "mushket";
+		break;
+	case 1:
+		gun = "mushket2";
+		break;
+	case 2:
+		gun = "mushket_spanish";
+		break;
+	case 3:
+		gun = "mushket";
+		break;
+	case 4:
+		gun = "mushket2";
+		break;
+	case 5:
+		gun = "mushket_spanish";
+		break;
 	}
 
 	return gun;
@@ -931,14 +991,26 @@ string GetSpanishMushketName()
 string GetPirateMushketName()
 {
 	string gun = "mushket";
-	switch(rand(2))
+	switch (rand(2))
 	{
-		case 0: gun = "mushket"; break;
-		case 1: gun = "mushket2"; break;
-		case 2: gun = "mushket_drob"; break;
-		case 3: gun = "mushket"; break;
-		case 4: gun = "mushket2"; break;
-		case 5: gun = "mushket_drob"; break;
+	case 0:
+		gun = "mushket";
+		break;
+	case 1:
+		gun = "mushket2";
+		break;
+	case 2:
+		gun = "mushket_drob";
+		break;
+	case 3:
+		gun = "mushket";
+		break;
+	case 4:
+		gun = "mushket2";
+		break;
+	case 5:
+		gun = "mushket_drob";
+		break;
 	}
 
 	return gun;
@@ -946,20 +1018,44 @@ string GetPirateMushketName()
 
 bool isMushket(string name)
 {
-	switch(name)
+	switch (name)
 	{
-		case "mushket": return true; break;
-		case "mushket2": return true; break;
-		case "mushket_SeaCarbine": return true; break;
-		case "mushket_drob": return true; break;
-		case "mushket_holland": return true; break;
-		case "mushket_france": return true; break;
-		case "mushket_english": return true; break;
-		case "mushket_spanish": return true; break;
-		case "mushket_Shtuzer": return true; break;
-		case "grape_mushket": return true; break;
-		case "mushket6": return true; break;
-		case "mushket_seadevil": return true; break;
+	case "mushket":
+		return true;
+		break;
+	case "mushket2":
+		return true;
+		break;
+	case "mushket_SeaCarbine":
+		return true;
+		break;
+	case "mushket_drob":
+		return true;
+		break;
+	case "mushket_holland":
+		return true;
+		break;
+	case "mushket_france":
+		return true;
+		break;
+	case "mushket_english":
+		return true;
+		break;
+	case "mushket_spanish":
+		return true;
+		break;
+	case "mushket_Shtuzer":
+		return true;
+		break;
+	case "grape_mushket":
+		return true;
+		break;
+	case "mushket6":
+		return true;
+		break;
+	case "mushket_seadevil":
+		return true;
+		break;
 	}
 	return false;
 }

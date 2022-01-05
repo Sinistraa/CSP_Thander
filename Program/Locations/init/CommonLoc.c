@@ -122,8 +122,8 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.window = "StoneHouse_window";
 	locations[n].models.always.window.tech = "LocationWindows";
 	locations[n].models.always.window.level = 65539;
-    locations[n].models.day.locators = "StoneHouse_lPrivate"; // homo for CapBloodLine
-    locations[n].models.night.locators = "StoneHouse_lPrivateN";
+	locations[n].models.day.locators = "StoneHouse_lPrivate"; // homo for CapBloodLine
+	locations[n].models.night.locators = "StoneHouse_lPrivateN";
 
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
@@ -146,7 +146,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Room";
-    locations[n].locators_radius.box.box2 = 1.6;
+	locations[n].locators_radius.box.box2 = 1.6;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse01rand= "mediumhouse01_rand";
+	Locations[n].models.day.mediumhouse01rand = "mediumhouse01_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse01_patch";
@@ -225,7 +225,7 @@ int LocationInitCommonLoc(int n)
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "none";
 	locations[n].reload.l1.emerge = "none";
@@ -259,14 +259,14 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse02rand= "mediumhouse02_rand";
+	Locations[n].models.day.mediumhouse02rand = "mediumhouse02_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse02_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse02_patch";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "none";
 	locations[n].reload.l1.emerge = "none";
@@ -300,7 +300,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse03rand= "mediumhouse03_rand";
+	Locations[n].models.day.mediumhouse03rand = "mediumhouse03_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse03_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse03_patch";
@@ -341,7 +341,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse04rand= "mediumhouse04_rand";
+	Locations[n].models.day.mediumhouse04rand = "mediumhouse04_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse04_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse04_patch";
@@ -382,7 +382,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse05rand= "mediumhouse05_rand";
+	Locations[n].models.day.mediumhouse05rand = "mediumhouse05_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse05_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse05_patch";
@@ -426,7 +426,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse07rand= "mediumhouse07_rand";
+	Locations[n].models.day.mediumhouse07rand = "mediumhouse07_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse07_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse07_patch";
@@ -467,7 +467,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse09rand= "mediumhouse09_rand";
+	Locations[n].models.day.mediumhouse09rand = "mediumhouse09_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse09_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse09_patch";
@@ -508,7 +508,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.mediumhouse10rand= "mediumhouse10_rand";
+	Locations[n].models.day.mediumhouse10rand = "mediumhouse10_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse10_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse10_patch";
@@ -551,7 +551,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.largehouse01rand= "largehouse01_rand";
+	Locations[n].models.day.largehouse01rand = "largehouse01_rand";
 	locations[n].models.day.charactersPatch = "largehouse01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "largehouse01_patch";
@@ -598,7 +598,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.largehouse01rand= "largehouse01_rand";
+	Locations[n].models.day.largehouse01rand = "largehouse01_rand";
 	locations[n].models.day.charactersPatch = "largehouse01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "largehouse01_patch";
@@ -619,7 +619,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].reload.l2.label = "Room";
 	n = n + 1;
 
-    //////////////////////////  бывшая комната наверху таверны из ПКМ.
+	//////////////////////////  бывшая комната наверху таверны из ПКМ.
 	locations[n].id = "CommonDoubleflourRoom";
 	locations[n].id.label = "Room";
 	locations[n].image = "loading\inside\CommonDoubleflourRoom.tga";
@@ -645,7 +645,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.largehouse02rand= "largehouse02_rand";
+	Locations[n].models.day.largehouse02rand = "largehouse02_rand";
 	locations[n].models.day.charactersPatch = "largehouse02_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "largehouse02_patch";
@@ -728,7 +728,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.day.TwoFloorHouseRand= "TwoFloorHouse_rand";
+	Locations[n].models.day.TwoFloorHouseRand = "TwoFloorHouse_rand";
 	locations[n].models.day.charactersPatch = "TwoFloorHouse_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "TwoFloorHouse_patch";
@@ -747,7 +747,7 @@ int LocationInitCommonLoc(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "CommonPackhouse_1";
 	locations[n].id.label = "packhouse";
-	locations[n].image = "loading\inside\Storage_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\Storage_" + rand(3) + ".tga";
 	locations[n].MustSetReloadBack = true;
 	locations[n].packhouse = true;
 	//Town sack
@@ -786,7 +786,7 @@ int LocationInitCommonLoc(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "CommonPackhouse_2";
 	locations[n].id.label = "packhouse";
-	locations[n].image = "loading\inside\Storage_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\Storage_" + rand(3) + ".tga";
 	locations[n].MustSetReloadBack = true;
 	locations[n].packhouse = true;
 	//Town sack
@@ -825,7 +825,7 @@ int LocationInitCommonLoc(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "CommonPackhouse_3";
 	locations[n].id.label = "packhouse";
-	locations[n].image = "loading\inside\Storage_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\Storage_" + rand(3) + ".tga";
 	locations[n].MustSetReloadBack = true;
 	locations[n].packhouse = true;
 	//Town sack
@@ -864,7 +864,7 @@ int LocationInitCommonLoc(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "CommonPackhouse_4";
 	locations[n].id.label = "packhouse";
-	locations[n].image = "loading\inside\Storage_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\Storage_" + rand(3) + ".tga";
 	locations[n].MustSetReloadBack = true;
 	locations[n].packhouse = true;
 	//Town sack
@@ -948,7 +948,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].image = "loading\inside\CommonResidence_2.tga";
 	locations[n].MustSetReloadBack = true;
 	locations[n].Office = true;
- 	//Town sack
+	//Town sack
 	locations[n].townsack = "";
 	locations[n].lockWeather = "Inside";
 	//Sound
@@ -957,7 +957,8 @@ int LocationInitCommonLoc(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\BigHouse02\";
-	locations[n].models.always.models = "BigHouse02";
+									locations[n]
+										.models.always.models = "BigHouse02";
 	locations[n].models.always.models.level = 65538;
 	locations[n].models.always.boxes = "BigHouse02_boxes";
 	locations[n].models.always.boxes.level = 65539;
@@ -995,7 +996,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].id.label = "Room";
 	locations[n].image = "loading\inside\CommonResidence_3.tga";
 	locations[n].MustSetReloadBack = true;
- 	//Town sack
+	//Town sack
 	locations[n].townsack = "";
 	locations[n].lockWeather = "Inside";
 	//Sound
@@ -1004,7 +1005,8 @@ int LocationInitCommonLoc(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\BigHouse03\";
-	locations[n].models.always.house = "BigHouse03";
+									locations[n]
+										.models.always.house = "BigHouse03";
 	locations[n].models.always.house.level = 65538;
 	locations[n].models.always.window = "BigHouse03_windows";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -1111,7 +1113,7 @@ int LocationInitCommonLoc(int n)
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	locations[n].id = "CommonResidence_BackHall";  //со спальней на втором этаже и пиратской резиденц. на первом
+	locations[n].id = "CommonResidence_BackHall"; //со спальней на втором этаже и пиратской резиденц. на первом
 	locations[n].id.label = "Room";
 	locations[n].image = "loading\inside\BigHouseBack.tga";
 	locations[n].MustSetReloadBack = true;
@@ -1161,7 +1163,7 @@ int LocationInitCommonLoc(int n)
 	locations[n].reload.l3.label = "Room";
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Bedroom
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "CommonBedroom";
@@ -1207,7 +1209,7 @@ int LocationInitCommonLoc(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Common_jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	locations[n].MustSetReloadBack = true;
 	//Sound
 	locations[n].type = "jungle";
@@ -1259,7 +1261,8 @@ int LocationInitCommonLoc(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\crypt_2_2_inside\";
-	locations[n].models.always.cryptbig = "crypt_2_2_inside";
+									locations[n]
+										.models.always.cryptbig = "crypt_2_2_inside";
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.locators = "crypt_2_2_inside_locators";
 	//Day
@@ -1295,7 +1298,8 @@ int LocationInitCommonLoc(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\crypt_inside\";
-	locations[n].models.always.crypt = "crypt_inside";
+									locations[n]
+										.models.always.crypt = "crypt_inside";
 	locations[n].models.always.locators = "crypt_inside_locators";
 
 	locations[n].models.always.back = "..\inside_back";

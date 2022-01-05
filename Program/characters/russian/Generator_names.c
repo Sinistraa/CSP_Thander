@@ -1,8 +1,8 @@
 void InitGeneratorNames()
 {
-	int		n;
-// English
-// man names - 5
+	int n;
+	// English
+	// man names - 5
 	n = 0;
 	n = AddStr2Array(&sEnManGenNames, n, "Эндрю,Эдди,Бартоломью,Фродо,Эшли,Арчи,Вудро,Блэйки,Равли,Леви,Лео,Бруно,Дегри,Ундо,Ундино,Ундито,Корбэ");
 	n = AddStr2Array(&sEnManGenNames, n, "Малки,Эдуардо,Бартоломео,Генри,Хенри,Бриджи,Бэрти");
@@ -10,7 +10,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sEnManGenNames, n, "Герри,Хью,Барри,Хьюго,Малки,Уилки,Гарри");
 	n = AddStr2Array(&sEnManGenNames, n, "Джеффри,Грегори,Бинкси,Джимми,Терри,Умберто,Ури");
 
-// women names -5
+	// women names -5
 	n = 0;
 	n = AddStr2Array(&sEnWomenGenNames, n, "Элис,Эми,Астрид,Эдри,Эвис,Пэгги,Штэффи,Бризи");
 	n = AddStr2Array(&sEnWomenGenNames, n, "Клэр,Джейн,Джоан,Алоиз,Эмили,Пэтти,Мишель,Кони");
@@ -18,7 +18,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sEnWomenGenNames, n, "Мэри,Мэрри,Мери,Надин,Надинн,Бриджид,Ракель,Мэйбл");
 	n = AddStr2Array(&sEnWomenGenNames, n, "Милдред,Мирабель,Вивьен,Ивонн,Пэрис,Бриджис,Уитни");
 
-// families - 29
+	// families - 29
 	n = 0;
 	n = AddStr2Array(&sEnGenFamilies, n, "Агню,Агнью,Боуди,Читоро,Черри,Чикроу,Коу,Кардроу,Бэрри,Кэллоу,Бэрроу,Барри,Каллоу,Биггроу,Биггси,Байву,Бирди");
 	n = AddStr2Array(&sEnGenFamilies, n, "Ардоу,Бастардо,Коннери,Криббе,Криспи,Дашверти,Брэдли,Бойли,Аттэйди,Эттоу,Боди,Камли,Канни,Кут,Беррели,Буссоу");
@@ -50,8 +50,8 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sEnGenFamilies, n, "Хиллоу,Мидоу,Мигере,Мейки,Маттерби,Моуффи,Карди,Хоурди,Лоу,Бузи,Этоу,Оули,Айли,Бэйли,Кэйви,Буни,Дэйконэ,Кордроу");
 	n = AddStr2Array(&sEnGenFamilies, n, "Белджи,Беллами,Чэрити,Кэртри,Катберри,Дэйли,Баньи,Тэйкеро,Таккероу,Орпетти,Фиттердоу,Грильстоу,Реннерти,Спайзероу");
 
-// Holland
-// man names - 16
+	// Holland
+	// man names - 16
 	n = 0;
 	n = AddStr2Array(&sHoManGenNames, n, "Ханзе,Адриае,Айлеуи,Айерки,Алеуи,Алеуйи,Андре,Йурге,Байе,Кости");
 	n = AddStr2Array(&sHoManGenNames, n, "Хейнри,Ариа,Айри,Аре,Арне,Айренде,Аерне,Бартье,Бартои");
@@ -70,7 +70,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sHoManGenNames, n, "Санде,Сега,Симке,Смиаа,Стефо,Стеуе,Сторм,Тоффе,Туу,Ури");
 	n = AddStr2Array(&sHoManGenNames, n, "Вулри,Вайелро,Варне,Васмо,Тони,Вилле,Виссе,Витте,Улри,Волфо,Воуте,Циммо");
 
-// women names - 13
+	// women names - 13
 	n = 0;
 	n = AddStr2Array(&sHoWomenGenNames, n, "Эчет,Алтье,Агнеес,Агнес,Агнес,Алиден,Алиид,Франсже");
 	n = AddStr2Array(&sHoWomenGenNames, n, "Ане,Аннатье,Анне,Аннеке,Аннекен,Аннен,Йэнниеке");
@@ -86,7 +86,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sHoWomenGenNames, n, "Тиетже,Тилетже,Тинеке,Тйаатйе,Трийн,Труде,Яаен");
 	n = AddStr2Array(&sHoWomenGenNames, n, "Иде,Йолент,Цоете,Лизбет,Алийт,Аннетие,Цойтинк");
 
-// families - 27
+	// families - 27
 	n = 0;
 	n = AddStr2Array(&sHoGenFamilies, n, "Аартсе,Бант,Агее,Аге,Алиее,Алйе,Алиеа,Банта,Андрие,Арбау,Арендце,Ате");
 	n = AddStr2Array(&sHoGenFamilies, n, "Аюке,Бахе,Бади,Баре,Батиу,Эгге,Бехни,Беллье,Бенда,Бенсноу,Берде,Берензоу");
@@ -116,8 +116,8 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sHoGenFamilies, n, "Вонго,Вриесде,Врийе,Уакели,Уассе,Уебе,Уэйме,Уенне");
 	n = AddStr2Array(&sHoGenFamilies, n, "Уидлоу,Уиткрее,Уейзе,Уилки,Уинтеро,Уитчи,Уолпе,Уустге,Йерге,Зенден,Зи");
 
-// French
-// man names - 11
+	// French
+	// man names - 11
 	n = 0;
 	n = AddStr2Array(&sFrManGenNames, n, "Адема,Адрие,Амаде,Аймери,Альби,Алью,Алею,Амадео,Амедее");
 	n = AddStr2Array(&sFrManGenNames, n, "Амьо,Анаде,Андре,Антуа,Арибэ,Арландо,Арно,Арнольдо");
@@ -131,7 +131,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sFrManGenNames, n, "Пьер,Понсе,Праде,Проспэ,Рабелье,Раймондэ,Реги,Рише,Робэ,Роме,Сержио,Севери,Силве,Сюльпи,Тьерри");
 	n = AddStr2Array(&sFrManGenNames, n, "Турпи,Винсе,Вита,Вагье");
 
-// women names - 8
+	// women names - 8
 	n = 0;
 	n = AddStr2Array(&sFrWomenGenNames, n, "Аализ,Адализ,Аделин,Аднетт,Аелис,Алис,Алазе,Альбан,Ализ,Амалон,Ами,Амиди,Амелин,Армо,Андре");
 	n = AddStr2Array(&sFrWomenGenNames, n, "Анне,Ансере,Арнод,Оде,Орели,Аксель,Айе,Белль,Бибиен,Бланше,Блонде,Блютт,Брюне");
@@ -142,7 +142,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sFrWomenGenNames, n, "Полин,Рачель,Режин,Рене,Роэзе,Роиз,Ромэн,Розали,Роз,Руссе,Руби,Сабинн,Саломе");
 	n = AddStr2Array(&sFrWomenGenNames, n, "Сидони,Симоне,Соллен,Сюзанн,Сибилль,Сильви,Валери");
 
-// families - 86
+	// families - 86
 	n = 0;
 	n = AddStr2Array(&sFrGenFamilies, n, "Абьельи,Або,Акре,Ажера,Агилье,Англома,Аленсо,Лечу,Алларо,Аллути,Альфандэ,Альтье,Амабльи,Амбре");
 	n = AddStr2Array(&sFrGenFamilies, n, "Амье,Амье,Амио,Амодри,Ампэ,Ансельи,Анжио,Андрю,Анелька");
@@ -232,8 +232,8 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sFrGenFamilies, n, "Вине,Винойе,Вьолле,Вьози,Вируа,Вирзи,Виссе,Вильто,Вивантье,Вуази");
 	n = AddStr2Array(&sFrGenFamilies, n, "Волардьи,Войсье,Вуитто,Валлемье,Вануа,Ватто,Вавелле,Вильма,Ксавье,Заббелье");
 
-// Spain
-// man names - 21
+	// Spain
+	// man names - 21
 	n = 0;
 	n = AddStr2Array(&sSpManGenNames, n, "Адайюти,Алонсо,Адольфо,Абозо,Агано,Ажило,Айларо,Аларио,Альберто,Альбето,Альбинозо,Альфонсо,Альфонсо,Альфредо,Алонсо");
 	n = AddStr2Array(&sSpManGenNames, n, "Альтульфо,Агидо,Альваро,Альваро,Амаро,Амбрино,Амброзо,Андемио,Андросо,Антонино,Ансури,Антолино,Антонио,Антонио");
@@ -258,7 +258,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sSpManGenNames, n, "Уеласко,Сальгадо,Эрмундо,Вальдадо,Уидо,Уйтале,Уйи,Вальдео,Валерио,Вермундо,Висенте,Вито,Ксабе,Ксаме");
 	n = AddStr2Array(&sSpManGenNames, n, "Ксавье,Ксемено,Зайдо,Зайте,Зайто,Заламми,Заниту,Зарино,Зеццоне,Зонидо");
 
-// women names - 9
+	// women names - 9
 	n = 0;
 	n = AddStr2Array(&sSpWomenGenNames, n, "Абриль,Адонис,Алете,Алиси,Альме,Амада,Ангел,Аник");
 	n = AddStr2Array(&sSpWomenGenNames, n, "Аргильо,Аури,Ауро,Беатрис,Бебе,Белен,Белис,Бертин,Бонит,Бригид,Брис,Кайл,Карин,Карисс");
@@ -270,7 +270,7 @@ void InitGeneratorNames()
 	n = AddStr2Array(&sSpWomenGenNames, n, "Розит,Морис,Меник,Нели,Нешо,Неве,Терез,Паули,Паз,Пепит,Пилар,Сьюзен,Куэт,Рамон");
 	n = AddStr2Array(&sSpWomenGenNames, n, "Росанн,Росит,Сюзанн,Санси,Сцемен,Сендин,Сесильди,Розан,Сьюзи,Суэл,Сэсанн,Таси,Теод,Луц");
 
-// families - 54
+	// families - 54
 	n = 0;
 	n = AddStr2Array(&sSpGenFamilies, n, "Абарка,Акосто,Агассизо,Агуерро,Агуильи,Агиларди,Агирре,Айкедо,Аламадо,Алази,Альбано,Альбо,Альдамадо,Альдейо,Алегри");
 	n = AddStr2Array(&sSpGenFamilies, n, "Алеманье,Алемао,Алькортезо,Альенде,Альмагро,Альмейде,Алонсо,Альварозо,Альваро");

@@ -1,13 +1,13 @@
 /* Плантация, её развитие и повседневные дела */
-#define EXTRACT_SUGAR 			3.9
-#define EXTRACT_COFFEE 			2.1
+#define EXTRACT_SUGAR 3.9
+#define EXTRACT_COFFEE 2.1
 
-#define AUTO_SELL_PLANTATION_MAX 	2000
-#define AUTO_SELL_SUGAR 		10
-#define AUTO_SELL_COFFEE 		46
+#define AUTO_SELL_PLANTATION_MAX 2000
+#define AUTO_SELL_SUGAR 10
+#define AUTO_SELL_COFFEE 46
 
-#define PLANTATION_FOOD_DELIT		50
-#define PLANTATION_MEDICAMENT_DELIT	50
+#define PLANTATION_FOOD_DELIT 50
+#define PLANTATION_MEDICAMENT_DELIT 50
 
 void InitPlantation()
 {
@@ -72,7 +72,7 @@ void UptadeLivedInPlantation()
 	ColonyGuardingAutoCrewHire("Plantation");
 	PlantationSlavesUptade();
 
-	if(PChar.Plantation.Size.Resize.BuildingTime != true)
+	if (PChar.Plantation.Size.Resize.BuildingTime != true)
 	{
 		PlantationCheckSlavesEpidemy();
 		PlantationExtractUptade();
@@ -87,7 +87,7 @@ void UptadeLivedInPlantation()
 
 void PlantationCheckSlavesEpidemy()
 {
-	if(rand(100) > 10)
+	if (rand(100) > 10)
 	{
 		return;
 	}
@@ -95,7 +95,7 @@ void PlantationCheckSlavesEpidemy()
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
 	int iMedicament = sti(PChar.Plantation.Medicament.Quantity);
 
-	if(iSlaves < 10)
+	if (iSlaves < 10)
 	{
 		return;
 	}
@@ -104,7 +104,7 @@ void PlantationCheckSlavesEpidemy()
 
 	int iDead = 0;
 	int iMedicamentNeed = 0;
-	if(iMedicament >= iSlaves)
+	if (iMedicament >= iSlaves)
 	{
 		iDead = rand(10) + 10;
 		iMedicamentNeed = iSlaves - iDead;
@@ -117,9 +117,12 @@ void PlantationCheckSlavesEpidemy()
 	else
 	{
 		iDead = iSlaves - iMedicament;
-		if(iDead) { iDead = 0; }
+		if (iDead)
+		{
+			iDead = 0;
+		}
 
-		if(iDead > 0)
+		if (iDead > 0)
 		{
 			ChangePlantationGoods(-iDead, "Medicament", false);
 			ChangePlantationSlaves(-iDead, false);
@@ -134,18 +137,18 @@ void PlantationSlavesUptade()
 	PlantationMedicamentUptade();
 
 	int iTools = sti(PChar.Plantation.Items.Quantity) / 100 + rand(2);
-	if(rand(100) > 75 && sti(PChar.Plantation.Slaves.Quantity) != 0)
+	if (rand(100) > 75 && sti(PChar.Plantation.Slaves.Quantity) != 0)
 	{
 		ChangePlantationGoods(-iTools, "Items", false);
 		Log_Info("На вашей плантации инструменты в количестве " + iTools + " шт. пришли в негодность.");
 	}
 
-	if(sti(PChar.Plantation.Items.Quantity) < 10 && sti(PChar.Plantation.Items.Quantity) > 0)
+	if (sti(PChar.Plantation.Items.Quantity) < 10 && sti(PChar.Plantation.Items.Quantity) > 0)
 	{
 		Log_Info("На вашей плантации осталось мало инструментов.");
 	}
 
-	if(sti(PChar.Plantation.Items.Quantity) <= 0)
+	if (sti(PChar.Plantation.Items.Quantity) <= 0)
 	{
 		Log_Info("На вашей плантации нет инструментов.");
 		Log_Info("Необходимо срочно доставить новые инструменты, иначе скорость добычи упадёт в несколько раз.");
@@ -153,9 +156,9 @@ void PlantationSlavesUptade()
 
 	bool bDisable = GetDisableAllColonyEvent();
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
-	if(iSlaves > 100)
+	if (iSlaves > 100)
 	{
-		if(rand(100) > 75 && PChar.Plantation.Defence.Block == false && !bDisable)
+		if (rand(100) > 75 && PChar.Plantation.Defence.Block == false && !bDisable)
 		{
 			PlantationMutiny();
 		}
@@ -167,11 +170,14 @@ void PlantationFoodUptade()
 	int iDead = 0;
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
 
-	if(iSlaves < 1) { return; }
+	if (iSlaves < 1)
+	{
+		return;
+	}
 
 	float fCoff = 0.0;
 	int iFoodDiff = iSlaves / PLANTATION_FOOD_DELIT;
-	if(iFoodDiff < 1)
+	if (iFoodDiff < 1)
 	{
 		iFoodDiff = 1;
 	}
@@ -180,7 +186,7 @@ void PlantationFoodUptade()
 	int iFoodNeed = iFoodDiff * 14;
 	fCoff = iFoodDiff / iSlaves;
 
-	if(iFood >= iFoodNeed)
+	if (iFood >= iFoodNeed)
 	{
 		ChangePlantationGoods(-iFoodNeed, "Food", false);
 	}
@@ -190,7 +196,7 @@ void PlantationFoodUptade()
 		iDead /= 14;
 		iDead /= fCoff;
 
-		if(iDead > iSlaves)
+		if (iDead > iSlaves)
 		{
 			iDead = iSlaves;
 		}
@@ -202,11 +208,14 @@ void PlantationFoodUptade()
 	}
 
 	int iSoldiers = sti(PChar.Plantation.Guardians.Quantity);
-	if(iSoldiers < 1) { return; }
+	if (iSoldiers < 1)
+	{
+		return;
+	}
 
 	fCoff = 0.0;
 	iFoodDiff = iSoldiers / PLANTATION_FOOD_DELIT;
-	if(iFoodDiff < 1)
+	if (iFoodDiff < 1)
 	{
 		iFoodDiff = 1;
 	}
@@ -215,7 +224,7 @@ void PlantationFoodUptade()
 	iFoodNeed = iFoodDiff * 14;
 	fCoff = iFoodDiff / iSoldiers;
 
-	if(iFood >= iFoodNeed)
+	if (iFood >= iFoodNeed)
 	{
 		ChangePlantationGoods(-iFoodNeed, "Food", false);
 	}
@@ -225,7 +234,7 @@ void PlantationFoodUptade()
 		iDead /= 14;
 		iDead /= fCoff;
 
-		if(iDead > iSoldiers)
+		if (iDead > iSoldiers)
 		{
 			iDead = iSoldiers;
 		}
@@ -242,11 +251,14 @@ void PlantationMedicamentUptade()
 	int iDead = 0;
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
 
-	if(iSlaves < 1) { return; }
+	if (iSlaves < 1)
+	{
+		return;
+	}
 
 	float fCoff = 0.0;
 	int iMedicamentDiff = iSlaves / PLANTATION_MEDICAMENT_DELIT;
-	if(iMedicamentDiff < 1)
+	if (iMedicamentDiff < 1)
 	{
 		iMedicamentDiff = 1;
 	}
@@ -255,7 +267,7 @@ void PlantationMedicamentUptade()
 	int iMedicamentNeed = iMedicamentDiff * 14;
 	fCoff = iMedicamentDiff / iSlaves;
 
-	if(iMedicament >= iMedicamentNeed)
+	if (iMedicament >= iMedicamentNeed)
 	{
 		ChangePlantationGoods(-iMedicamentNeed, "Medicament", false);
 	}
@@ -265,7 +277,7 @@ void PlantationMedicamentUptade()
 		iDead /= 14;
 		iDead /= fCoff;
 
-		if(iDead > iSlaves)
+		if (iDead > iSlaves)
 		{
 			iDead = iSlaves;
 		}
@@ -279,7 +291,7 @@ void PlantationMedicamentUptade()
 
 void PlantationExtractUptade()
 {
-	if(PChar.Plantation.Commander == "")
+	if (PChar.Plantation.Commander == "")
 	{
 		Log_InfoS("Ваша плантация не имеет управляющего. Добыча не производится.");
 		return;
@@ -287,7 +299,7 @@ void PlantationExtractUptade()
 
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
 
-	if(iSlaves < 1)
+	if (iSlaves < 1)
 	{
 		return;
 	}
@@ -301,12 +313,18 @@ void PlantationExtractUptade()
 	int iSize = sti(PChar.Plantation.Size);
 	float fSpeed = PlantationGetExtractSpeed();
 
-	for(int i=1; i <= iSize; i++)
+	for (int i = 1; i <= iSize; i++)
 	{
-		switch(i)
+		switch (i)
 		{
-			case 1: sType = "Sugar"; c = EXTRACT_SUGAR; break;
-			case 2: sType = "Coffee"; c = EXTRACT_COFFEE; break;
+		case 1:
+			sType = "Sugar";
+			c = EXTRACT_SUGAR;
+			break;
+		case 2:
+			sType = "Coffee";
+			c = EXTRACT_COFFEE;
+			break;
 		}
 
 		iQty = iSlaves * (c * fSpeed);
@@ -322,15 +340,15 @@ float PlantationGetExtractSpeed()
 	int iTools = sti(PChar.Plantation.Items.Quantity);
 	float fDifferent = 0.0;
 
-	if(iTools >= iSlaves)
+	if (iTools >= iSlaves)
 	{
 		fSpeed += 5.0;
 	}
 	else
 	{
-		if(iTools < iSlaves)
+		if (iTools < iSlaves)
 		{
-			if(iTools < 1)
+			if (iTools < 1)
 			{
 				iTools = 1;
 			}
@@ -340,12 +358,12 @@ float PlantationGetExtractSpeed()
 		}
 	}
 
-	if(fSpeed > 10.0)
+	if (fSpeed > 10.0)
 	{
 		fSpeed = 10.0;
 	}
 
-	if(fSpeed < 1.0)
+	if (fSpeed < 1.0)
 	{
 		fSpeed = 1.0;
 	}
@@ -363,11 +381,17 @@ void PlantationMutiny()
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
 	int iGuardians = sti(PChar.Plantation.Guardians.Quantity);
 
-	if(iSlaves < 1)	{ iSlaves = 1; }
-	if(iGuardians < 1) { iGuardians = 1; }
+	if (iSlaves < 1)
+	{
+		iSlaves = 1;
+	}
+	if (iGuardians < 1)
+	{
+		iGuardians = 1;
+	}
 
 	int iDifference = iGuardians / iSlaves;
-	if(iDifference >= 2 || rand(4) > 2)
+	if (iDifference >= 2 || rand(4) > 2)
 	{
 		Log_TestInfo("Мятежа на рудниках не будет, т.к. рабов слишком мало по отношению к охране.");
 		return;
@@ -382,25 +406,29 @@ void PlantationMutiny()
 	PChar.Plantation.Defence.Type = "Mutiny";
 
 	int iRebels = iSlaves / 20;
-	if(iRebels < 2) iRebels = 2;
-	if(iRebels > 20) iRebels = 20;
+	if (iRebels < 2)
+		iRebels = 2;
+	if (iRebels > 20)
+		iRebels = 20;
 
 	PChar.Plantation.Defence.EnemyQuantity = iRebels;
 
-	ChangePlantationSlaves(-(iRebels*10), false);
+	ChangePlantationSlaves(-(iRebels * 10), false);
 
 	int iSoldiersQuantity = iGuardians / 25;
-	if(iSoldiersQuantity < 1)
+	if (iSoldiersQuantity < 1)
 	{
 		InstantColonyDefendLoose("Plantation", "Mutiny");
 		return;
 	}
 
-	if(iSoldiersQuantity < 2) iSoldiersQuantity = 2;
-	if(iSoldiersQuantity > 20) iSoldiersQuantity = 20;
+	if (iSoldiersQuantity < 2)
+		iSoldiersQuantity = 2;
+	if (iSoldiersQuantity > 20)
+		iSoldiersQuantity = 20;
 
 	int iRandMinus = 3;
-	if(iRebels > iSoldiersQuantity)
+	if (iRebels > iSoldiersQuantity)
 	{
 		iRandMinus -= (iRebels - iSoldiersQuantity);
 	}
@@ -409,7 +437,7 @@ void PlantationMutiny()
 		iRandMinus += (iSoldiersQuantity - iRebels);
 	}
 
-	if(iRandMinus < -4)
+	if (iRandMinus < -4)
 	{
 		InstantColonyDefendLoose("Plantation", "Mutiny");
 		return;
@@ -418,7 +446,14 @@ void PlantationMutiny()
 	int iRand = iRandMinus - rand(4);
 
 	int iEnd = 0;
-	if(iRand > 0) { iEnd = 1; }else{ iEnd = 0; }
+	if (iRand > 0)
+	{
+		iEnd = 1;
+	}
+	else
+	{
+		iEnd = 0;
+	}
 
 	PChar.Plantation.Defence.Nation = PIRATE;
 	PChar.Plantation.Defence.Soldiers = iSoldiersQuantity;
@@ -480,35 +515,35 @@ void BattleMutinyPlantation(string _tmp)
 	string sAni = "man";
 
 	model[0] = "prizon_1";
-    model[1] = "prizon_2";
-    model[2] = "prizon_3";
-    model[3] = "prizon_4";
-    model[4] = "prizon_5";
-    model[5] = "prizon_6";
-    model[6] = "prizon_7";
+	model[1] = "prizon_2";
+	model[2] = "prizon_3";
+	model[3] = "prizon_4";
+	model[4] = "prizon_5";
+	model[5] = "prizon_6";
+	model[6] = "prizon_7";
 	model[7] = "prizon_8";
-    model[8] = "pirate_1";
-    model[9] = "prison_5";
-    model[10] = "pirate_1";
-    model[11] = "pirate_11";
-    model[12] = "pirate_12";
-    model[13] = "pirate_13";
-    model[14] = "pirate_14";
-    model[15] = "pirate_15";
-    model[16] = "pirate_16";
-    model[17] = "pirate_21";
-    model[18] = "pirate_25";
-    model[19] = "PKM_rab_1";
-    model[20] = "PKM_rab_2";
-    model[21] = "PKM_rab_3";
-    model[22] = "PKM_rab_4";
+	model[8] = "pirate_1";
+	model[9] = "prison_5";
+	model[10] = "pirate_1";
+	model[11] = "pirate_11";
+	model[12] = "pirate_12";
+	model[13] = "pirate_13";
+	model[14] = "pirate_14";
+	model[15] = "pirate_15";
+	model[16] = "pirate_16";
+	model[17] = "pirate_21";
+	model[18] = "pirate_25";
+	model[19] = "PKM_rab_1";
+	model[20] = "PKM_rab_2";
+	model[21] = "PKM_rab_3";
+	model[22] = "PKM_rab_4";
 
-	for(i=1; i <= iRebels; i++)
+	for (i = 1; i <= iRebels; i++)
 	{
 		iMassive = rand(22);
 
-    	sAni = "man";
-    	/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
+		sAni = "man";
+		/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
 
 		sModel = model[iMassive];
 		sLocator = "aloc" + i;
@@ -521,7 +556,7 @@ void BattleMutinyPlantation(string _tmp)
 		chr.model.animation = sAni;
 		chr.NotRemoved = true;
 		SetNewModelToChar(chr);
-    	//FaceMaker(chr);
+		//FaceMaker(chr);
 		LAi_NoRebirthEnable(chr);
 		LAi_SetWarriorType(chr);
 		LAi_group_MoveCharacter(chr, "EnemyFight");
@@ -534,29 +569,44 @@ void BattleMutinyPlantation(string _tmp)
 	int iMusketeers = FightInColonyGetMusketeerQty(iSoldiers);
 	bool bMusketeer = false;
 
-	for(i=1; i <= iSoldiers; i++)
+	for (i = 1; i <= iSoldiers; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iSoldiers - i < iMusketeers) { bMusketeer = true; }
+		if (iSoldiers - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
-		if(PChar.ColonyBuilding.SoldiersType == "officer")
+		if (PChar.ColonyBuilding.SoldiersType == "officer")
 		{
 			sModel = "officer_" + (rand(63) + 1);
-			if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = "officer_" + (rand(63) + 1) + "_mush";
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
-			if(PChar.ColonyBuilding.SoldiersType == "pirate")
+			if (PChar.ColonyBuilding.SoldiersType == "pirate")
 			{
 				sModel = "pirate_" + (rand(24) + 1);
-				if(bMusketeer) { sModel = GetPirateMushketerModel(); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = GetPirateMushketerModel();
+					sAni = "mushketer";
+				}
 			}
 			else
 			{
 				sModel = "sold_" + sNation + "_" + (rand(7) + 1);
-				if(bMusketeer) { sModel = sNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = sNation + "_mush_" + (rand(2) + 1);
+					sAni = "mushketer";
+				}
 			}
 		}
 
@@ -582,7 +632,7 @@ void BattleMutinyPlantation(string _tmp)
 	LAi_SetFightMode(PChar, true);
 
 	string cnd, rbl;
-	for(i=1; i<=iRebels; i++)
+	for (i = 1; i <= iRebels; i++)
 	{
 		cnd = "l" + i;
 		rbl = "My Plantation Mutiny Rebel " + i;
@@ -606,7 +656,7 @@ void BattleMutinyPlantationWinner(string _tmp)
 	LAi_grp_alarmactive = false;
 
 	LAi_LockFightMode(PChar, false);
-        LAi_SetFightMode(PChar, false);
+	LAi_SetFightMode(PChar, false);
 
 	AddQuestRecord("MY_COLONY", "2");
 
@@ -614,10 +664,10 @@ void BattleMutinyPlantationWinner(string _tmp)
 	int iDead = 0;
 
 	string sDefender = "";
-	for(int i=1; i<=iSoldiers; i++)
+	for (int i = 1; i <= iSoldiers; i++)
 	{
 		sDefender = "My Mines Plantation Defender " + i;
-		if(LAi_IsDead(CharacterFromID(sDefender)))
+		if (LAi_IsDead(CharacterFromID(sDefender)))
 		{
 			iDead++;
 		}
@@ -656,13 +706,13 @@ void ClearMutinyPlantation(string qName)
 	int iSoldiers = sti(PChar.Plantation.Defence.Soldiers);
 	int iRebels = sti(PChar.Plantation.Defence.EnemyQuantity);
 
-	if(iSoldiers > 0)
+	if (iSoldiers > 0)
 	{
 		iSoldiers /= sti(PChar.Plantation.Defence.Soldiers.Delete);
 	}
 	int iSoldiersDead = iSoldiers * 25;
 
-	if(iEnd == 1)
+	if (iEnd == 1)
 	{
 		Log_Info("Вести c плантации, принадлежащей колонии " + PChar.ColonyBuilding.ColonyName + "!");
 		AddQuestRecord("MY_COLONY", "2");
@@ -702,7 +752,7 @@ void ClearMutinyPlantation(string qName)
 /////////////////////////////////////////////////////////////////////////////////////////////////
 void ChangePlantationSlaves(int iQty, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Plantation.Slaves.Quantity = iQty;
 	}
@@ -712,13 +762,19 @@ void ChangePlantationSlaves(int iQty, bool bSet)
 	}
 
 	int iMax = sti(PChar.Plantation.Slaves.MaxQuantity);
-	if(sti(PChar.Plantation.Slaves.Quantity) > iMax) { PChar.Plantation.Slaves.Quantity = iMax; }
-	if(sti(PChar.Plantation.Slaves.Quantity) < 0) { PChar.Plantation.Slaves.Quantity = 0; }
+	if (sti(PChar.Plantation.Slaves.Quantity) > iMax)
+	{
+		PChar.Plantation.Slaves.Quantity = iMax;
+	}
+	if (sti(PChar.Plantation.Slaves.Quantity) < 0)
+	{
+		PChar.Plantation.Slaves.Quantity = 0;
+	}
 }
 
 void ChangePlantationExtract(int iQty, string sType, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Plantation.(sType).Quantity = iQty;
 	}
@@ -728,13 +784,19 @@ void ChangePlantationExtract(int iQty, string sType, bool bSet)
 	}
 
 	int iMax = sti(PChar.Plantation.(sType).MaxQuantity);
-	if(sti(PChar.Plantation.(sType).Quantity) > iMax) { PChar.Plantation.(sType).Quantity = iMax; }
-	if(sti(PChar.Plantation.(sType).Quantity) < 0) { PChar.Plantation.(sType).Quantity = 0; }
+	if (sti(PChar.Plantation.(sType).Quantity) > iMax)
+	{
+		PChar.Plantation.(sType).Quantity = iMax;
+	}
+	if (sti(PChar.Plantation.(sType).Quantity) < 0)
+	{
+		PChar.Plantation.(sType).Quantity = 0;
+	}
 }
 
 void ChangePlantationSoldiers(int iQty, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Plantation.Guardians.Quantity = iQty;
 	}
@@ -744,13 +806,19 @@ void ChangePlantationSoldiers(int iQty, bool bSet)
 	}
 
 	int iMax = sti(PChar.Plantation.Guardians.MaxQuantity);
-	if(sti(PChar.Plantation.Guardians.Quantity) > iMax) { PChar.Plantation.Guardians.Quantity = iMax; }
-	if(sti(PChar.Plantation.Guardians.Quantity) < 0) { PChar.Plantation.Guardians.Quantity = 0; }
+	if (sti(PChar.Plantation.Guardians.Quantity) > iMax)
+	{
+		PChar.Plantation.Guardians.Quantity = iMax;
+	}
+	if (sti(PChar.Plantation.Guardians.Quantity) < 0)
+	{
+		PChar.Plantation.Guardians.Quantity = 0;
+	}
 }
 
 void ChangePlantationGoods(int iQty, string sType, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.Plantation.(sType).Quantity = iQty;
 	}
@@ -760,8 +828,14 @@ void ChangePlantationGoods(int iQty, string sType, bool bSet)
 	}
 
 	int iMax = sti(PChar.Plantation.(sType).MaxQuantity);
-	if(sti(PChar.Plantation.(sType).Quantity) > iMax) { PChar.Plantation.(sType).Quantity = iMax; }
-	if(sti(PChar.Plantation.(sType).Quantity) < 0) { PChar.Plantation.(sType).Quantity = 0; }
+	if (sti(PChar.Plantation.(sType).Quantity) > iMax)
+	{
+		PChar.Plantation.(sType).Quantity = iMax;
+	}
+	if (sti(PChar.Plantation.(sType).Quantity) < 0)
+	{
+		PChar.Plantation.(sType).Quantity = 0;
+	}
 }
 
 int GetPlantationFoodDays()
@@ -772,14 +846,23 @@ int GetPlantationFoodDays()
 	int iDay = (iSlaves / PLANTATION_FOOD_DELIT) + (iSoldiers / PLANTATION_FOOD_DELIT);
 	int iGood = sti(PChar.Plantation.Food.Quantity);
 
-	if(iSlaves + iSoldiers <= 0) { return iGood; }
-	if(iDay <= 0) { return iGood; }
-	if(iGood <= 0) { return 0; }
+	if (iSlaves + iSoldiers <= 0)
+	{
+		return iGood;
+	}
+	if (iDay <= 0)
+	{
+		return iGood;
+	}
+	if (iGood <= 0)
+	{
+		return 0;
+	}
 
 	iDay *= 42;
 	iDays = iGood / iDay;
 
-	if(iDays < 0)
+	if (iDays < 0)
 	{
 		iDays = 0;
 	}
@@ -794,13 +877,19 @@ int GetPlantationMedicamentDays()
 	int iDay = iSlaves / PLANTATION_MEDICAMENT_DELIT;
 	int iGood = sti(PChar.Plantation.Medicament.Quantity);
 
-	if(iSlaves <= 0) { return iGood; }
-	if(iGood <= 0) { return 0; }
+	if (iSlaves <= 0)
+	{
+		return iGood;
+	}
+	if (iGood <= 0)
+	{
+		return 0;
+	}
 
 	iDay *= 42;
 	iDays = iGood / iDay;
 
-	if(iDays < 0)
+	if (iDays < 0)
 	{
 		iDays = 0;
 	}
@@ -814,12 +903,12 @@ int GetPlantationMedicamentDays()
 void PlantationExtractGoodsAutoSell()
 {
 	bool bCan = sti(PChar.ColonyBuilding.Plantation.AutoSell);
-	if(!bCan)
+	if (!bCan)
 	{
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Store == false)
+	if (PChar.ColonyBuilding.Store == false)
 	{
 		return;
 	}
@@ -837,35 +926,40 @@ void PlantationExtractGoodsAutoSell()
 
 	bool bSell = false;
 	int iMoney = 0;
-	for(int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		switch(i)
+		switch (i)
 		{
-			case 0: sType = "Sugar"; iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_SUGAR); break;
-			case 1: sType = "Coffee"; iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_COFFEE); break;
+		case 0:
+			sType = "Sugar";
+			iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_SUGAR);
+			break;
+		case 1:
+			sType = "Coffee";
+			iCoff = GetCurrentGoodBaseCostForAutoSell(GOOD_COFFEE);
+			break;
 		}
 
-		if(sType == "Coffee" && sti(PChar.Plantation.Size) != 2)
+		if (sType == "Coffee" && sti(PChar.Plantation.Size) != 2)
 		{
 			continue;
 		}
 
 		iGoodQty = sti(PChar.Plantation.(sType).Quantity);
-		if(iGoodQty <= 0)
+		if (iGoodQty <= 0)
 		{
 			continue;
 		}
 
-		if(iGoodQty > AUTO_SELL_PLANTATION_MAX)
+		if (iGoodQty > AUTO_SELL_PLANTATION_MAX)
 		{
 			iGoodQty = AUTO_SELL_PLANTATION_MAX;
 		}
 
-		if(iGoodQty > iSellQty)
+		if (iGoodQty > iSellQty)
 		{
 			iGoodQty = iSellQty;
 		}
-
 
 		iCost = iGoodQty * iCoff;
 		ChangeColonyMoney(iCost, false);
@@ -874,7 +968,10 @@ void PlantationExtractGoodsAutoSell()
 		iMoney += iCost;
 
 		bSell = true;
-		if(!bSell) { PlayStereoSound("new_round"); }
+		if (!bSell)
+		{
+			PlayStereoSound("new_round");
+		}
 		Log_Info("Товар ''" + XI_ConvertString(sType) + "'' в количестве " + iGoodQty + " был продан за " + iCost + " золотых.");
 
 		/*AddQuestRecord("MY_COLONY", "36");
@@ -883,7 +980,7 @@ void PlantationExtractGoodsAutoSell()
 		AddQuestUserData("MY_COLONY", "sGoodCost", iCost);*/
 	}
 
-	if(bSell)
+	if (bSell)
 	{
 		string sColonyName = PChar.ColonyBuilding.ColonyName;
 		AddQuestRecord("MY_COLONY", "35");

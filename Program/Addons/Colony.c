@@ -1,12 +1,12 @@
 
-#define		COLONY_AUTO_PURCHASE_FOOD		50
-#define		COLONY_AUTO_PURCHASE_MEDICAMENT		60
-#define		COLONY_AUTO_PURCHASE_TOOLS		45
-#define		COLONY_MIN_MORALE_DOWN			3
+#define COLONY_AUTO_PURCHASE_FOOD 50
+#define COLONY_AUTO_PURCHASE_MEDICAMENT 60
+#define COLONY_AUTO_PURCHASE_TOOLS 45
+#define COLONY_MIN_MORALE_DOWN 3
 
-#define 	COLONY_FOOD_POPULATION_DELIT		25
-#define 	COLONY_FOOD_SOLDIERS_DELIT		50
-#define 	COLONY_MEDICAMENT_DELIT			50
+#define COLONY_FOOD_POPULATION_DELIT 25
+#define COLONY_FOOD_SOLDIERS_DELIT 50
+#define COLONY_MEDICAMENT_DELIT 50
 
 /////////////////////////////////////////////////////////////////////////////////
 // COLONY
@@ -80,22 +80,22 @@ void GenerateColonyVariable()
 	PChar.ColonyBuilding.SilverMine.Resize.BuildingTime = false;
 	PChar.ColonyBuilding.IronMine.Resize.BuildingTime = false;
 
-	PChar.ColonyBuilding.Expidition.Cost 		= (5000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.Plantation.Cost		= (70000 * MOD_SKILL_ENEMY_RATE) + (rand(5000) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.StoreHouse.Cost 		= (10000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.StoreHouse.ResizeCost 	= (5000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.GoldMine.Cost 			= (30000 * MOD_SKILL_ENEMY_RATE) + (rand(10000) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.SilverMine.Cost 		= (25000 * MOD_SKILL_ENEMY_RATE) + (rand(5000) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.IronMine.Cost 			= (20000 * MOD_SKILL_ENEMY_RATE) + (rand(1500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.GoldMine.ResizeCost 	= (15000 * MOD_SKILL_ENEMY_RATE) + (rand(5000) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.SilverMine.ResizeCost 	= (10000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.IronMine.ResizeCost 	= (8500 * MOD_SKILL_ENEMY_RATE) + (rand(2000) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.Store.Cost 			= (15000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.Shipyard.Cost 			= (17500 * MOD_SKILL_ENEMY_RATE) + (rand(2850) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.Tavern.Cost 			= (15000 * MOD_SKILL_ENEMY_RATE) + (rand(500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.Church.Cost 			= (20000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.Bank.Cost 				= (20000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
-	PChar.ColonyBuilding.HeadPort.Cost 			= (12500 * MOD_SKILL_ENEMY_RATE) + (rand(2550) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Expidition.Cost = (5000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Plantation.Cost = (70000 * MOD_SKILL_ENEMY_RATE) + (rand(5000) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.StoreHouse.Cost = (10000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.StoreHouse.ResizeCost = (5000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.GoldMine.Cost = (30000 * MOD_SKILL_ENEMY_RATE) + (rand(10000) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.SilverMine.Cost = (25000 * MOD_SKILL_ENEMY_RATE) + (rand(5000) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.IronMine.Cost = (20000 * MOD_SKILL_ENEMY_RATE) + (rand(1500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.GoldMine.ResizeCost = (15000 * MOD_SKILL_ENEMY_RATE) + (rand(5000) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.SilverMine.ResizeCost = (10000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.IronMine.ResizeCost = (8500 * MOD_SKILL_ENEMY_RATE) + (rand(2000) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Store.Cost = (15000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Shipyard.Cost = (17500 * MOD_SKILL_ENEMY_RATE) + (rand(2850) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Tavern.Cost = (15000 * MOD_SKILL_ENEMY_RATE) + (rand(500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Church.Cost = (20000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.Bank.Cost = (20000 * MOD_SKILL_ENEMY_RATE) + (rand(2500) * MOD_SKILL_ENEMY_RATE);
+	PChar.ColonyBuilding.HeadPort.Cost = (12500 * MOD_SKILL_ENEMY_RATE) + (rand(2550) * MOD_SKILL_ENEMY_RATE);
 
 	PChar.BuildingColony.Blocks = 1000;
 	PChar.BuildingColony.Planks = 1000;
@@ -143,31 +143,31 @@ void GenerateColonyVariable()
 	PChar.ColonyBuilding.Architecture.Bank = 1;
 	PChar.ColonyBuilding.Architecture.Townhall = 1;
 
-	PChar.ColonyBuilding.Architecture.Town.Cost.Type_1 		= 100000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Town.Cost.Type_2 		= 200000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Town.Cost.Type_3 		= 150000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Town.Cost.Type_1 = 100000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Town.Cost.Type_2 = 200000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Town.Cost.Type_3 = 150000 * MOD_SKILL_ENEMY_RATE;
 
-	PChar.ColonyBuilding.Architecture.Store.Cost.Type_1 	= 10000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Store.Cost.Type_2 	= 15000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Store.Cost.Type_3 	= 20000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Store.Cost.Type_4 	= 17500 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Store.Cost.Type_1 = 10000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Store.Cost.Type_2 = 15000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Store.Cost.Type_3 = 20000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Store.Cost.Type_4 = 17500 * MOD_SKILL_ENEMY_RATE;
 
-	PChar.ColonyBuilding.Architecture.Shipyard.Cost.Type_1 	= 10000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Shipyard.Cost.Type_2 	= 15000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Shipyard.Cost.Type_3 	= 20000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Shipyard.Cost.Type_1 = 10000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Shipyard.Cost.Type_2 = 15000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Shipyard.Cost.Type_3 = 20000 * MOD_SKILL_ENEMY_RATE;
 
-	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_1 	= 12500 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_2 	= 15000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_3 	= 20000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_4 	= 10000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_1 = 12500 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_2 = 15000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_3 = 20000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Tavern.Cost.Type_4 = 10000 * MOD_SKILL_ENEMY_RATE;
 
-	PChar.ColonyBuilding.Architecture.Bank.Cost.Type_1 		= 20000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Bank.Cost.Type_2 		= 25000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Bank.Cost.Type_1 = 20000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Bank.Cost.Type_2 = 25000 * MOD_SKILL_ENEMY_RATE;
 
-	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_1 	= 30000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_2 	= 20000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_3 	= 35000 * MOD_SKILL_ENEMY_RATE;
-	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_4 	= 25000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_1 = 30000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_2 = 20000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_3 = 35000 * MOD_SKILL_ENEMY_RATE;
+	PChar.ColonyBuilding.Architecture.Townhall.Cost.Type_4 = 25000 * MOD_SKILL_ENEMY_RATE;
 
 	SetColonyMessageInfo("", "", "", PIRATE, 0, true, false);
 	InitMines();
@@ -178,7 +178,7 @@ bool GetDisableAllColonyEvent()
 {
 	bool bEnable = PChar.ColonyBuilding.EventBlock;
 
-	if(bEnable)
+	if (bEnable)
 	{
 		return true;
 	}
@@ -206,53 +206,113 @@ void LiveOfTheColonyUptade()
 	int iQuantityResize = 0;
 	int iMoraleMinus = COLONY_MIN_MORALE_DOWN;
 
-	if(iPopulationQuantity > iPopulationQuantityOpt) { iMoraleMinus = 7; }
-	switch(iNalog) { case 1: iMoraleMinus += 3; break; case 2: iMoraleMinus += 17; break; case 3: iMoraleMinus += 24; break; }
+	if (iPopulationQuantity > iPopulationQuantityOpt)
+	{
+		iMoraleMinus = 7;
+	}
+	switch (iNalog)
+	{
+	case 1:
+		iMoraleMinus += 3;
+		break;
+	case 2:
+		iMoraleMinus += 17;
+		break;
+	case 3:
+		iMoraleMinus += 24;
+		break;
+	}
 
 	// Влияние зданий на мораль
 	//------------>>>>>>>>>>>>>>
 	bool temp = false;
 	temp = sti(PChar.ColonyBuilding.Store);
-	if(!temp) { iMoraleMinus += 2; }else{ iMoraleMinus -= 1; }
+	if (!temp)
+	{
+		iMoraleMinus += 2;
+	}
+	else
+	{
+		iMoraleMinus -= 1;
+	}
 
 	temp = sti(PChar.ColonyBuilding.Tavern);
-	if(!temp) { iMoraleMinus += 4; }else{ iMoraleMinus -= 2; }
+	if (!temp)
+	{
+		iMoraleMinus += 4;
+	}
+	else
+	{
+		iMoraleMinus -= 2;
+	}
 
-	if(PChar.ColonyBuilding.Stage == "2" || PChar.ColonyBuilding.Stage == "3")
+	if (PChar.ColonyBuilding.Stage == "2" || PChar.ColonyBuilding.Stage == "3")
 	{
 		temp = sti(PChar.ColonyBuilding.Shipyard);
-		if(!temp) { iMoraleMinus += 3; }else{ iMoraleMinus -= 2; }
+		if (!temp)
+		{
+			iMoraleMinus += 3;
+		}
+		else
+		{
+			iMoraleMinus -= 2;
+		}
 
 		temp = sti(PChar.ColonyBuilding.Church);
-		if(!temp) { iMoraleMinus += 7; }else{ iMoraleMinus -= 5; }
+		if (!temp)
+		{
+			iMoraleMinus += 7;
+		}
+		else
+		{
+			iMoraleMinus -= 5;
+		}
 
 		temp = sti(PChar.ColonyBuilding.Bank);
-		if(!temp) { iMoraleMinus += 5; }else{ iMoraleMinus -= 4; }
+		if (!temp)
+		{
+			iMoraleMinus += 5;
+		}
+		else
+		{
+			iMoraleMinus -= 4;
+		}
 
 		temp = sti(PChar.ColonyBuilding.HeadPort);
-		if(!temp) { iMoraleMinus += 4; }else{ iMoraleMinus -= 3; }
+		if (!temp)
+		{
+			iMoraleMinus += 4;
+		}
+		else
+		{
+			iMoraleMinus -= 3;
+		}
 	}
 	//<<<<<<<<<<<<<<------------
 
-	if(iMoraleMinus < COLONY_MIN_MORALE_DOWN) { iMoraleMinus = COLONY_MIN_MORALE_DOWN; }
+	if (iMoraleMinus < COLONY_MIN_MORALE_DOWN)
+	{
+		iMoraleMinus = COLONY_MIN_MORALE_DOWN;
+	}
 	ChangeColonyMorale(-iMoraleMinus, false);
 
 	iPopulationMorale = sti(PChar.ColonyBuilding.Population.Morale);
 	bool bDisable = GetDisableAllColonyEvent();
-	if(iPopulationMorale < 20 || rand(100) < 10)
+	if (iPopulationMorale < 20 || rand(100) < 10)
 	{
-		if(!bDisable)
+		if (!bDisable)
 		{
 			CreateMutinyColony();
 		}
 	}
 
 	iQuantityResize = iPopulationQuantity / 10;
-	if(iQuantityResize < 12) iQuantityResize = 12;
-	if(iQuantityResize > 30) iQuantityResize = 30;
+	if (iQuantityResize < 12)
+		iQuantityResize = 12;
+	if (iQuantityResize > 30)
+		iQuantityResize = 30;
 
-
-	if(iPopulationMorale < 40)
+	if (iPopulationMorale < 40)
 	{
 		//if(PChar.DisappearPeople.Action == true) { iQuantityResize *= 2; }
 		ChangeColonyPopulation(-iQuantityResize, false);
@@ -263,7 +323,7 @@ void LiveOfTheColonyUptade()
 	}
 
 	int iMinPeople = GetColonyMinPeople();
-	if(sti(PChar.ColonyBuilding.Population) < iMinPeople)
+	if (sti(PChar.ColonyBuilding.Population) < iMinPeople)
 	{
 		ChangeColonyPopulation(iMinPeople, true);
 	}
@@ -271,7 +331,7 @@ void LiveOfTheColonyUptade()
 	//Log_TestInfo("Мораль после изменения: " + sti(PChar.ColonyBuilding.Population.Morale));
 	//Log_TestInfo("Народу после изменения: " + sti(PChar.ColonyBuilding.Population));
 
-	if(rand(15) == 1)
+	if (rand(15) == 1)
 	{
 		ColonyCheckEpidemy();
 		PlaySound("notebook");
@@ -288,20 +348,21 @@ void MoneyOfTheColony()
 {
 	ref PChar = GetMainCharacter();
 
-	if(PChar.ColonyBuilding.Hovernor == "")
+	if (PChar.ColonyBuilding.Hovernor == "")
 	{
 		Log_InfoS("Ваша колония не имеет управляющего - сбор налога не производится.");
 		return;
 	}
 
 	int iPeopleQuantity = sti(PChar.ColonyBuilding.Population);
-	if(iPeopleQuantity <= 0) return;
+	if (iPeopleQuantity <= 0)
+		return;
 
 	int iBaseMoney, iMoney;
 	int iNalog = sti(PChar.ColonyBuilding.Nalog);
 
 	int iMayorIndex = nMainCharacterIndex;
-	if(GetCharacterIndex(PChar.ColonyBuilding.Hovernor) != -1)
+	if (GetCharacterIndex(PChar.ColonyBuilding.Hovernor) != -1)
 	{
 		iMayorIndex = GetCharacterIndex(PChar.ColonyBuilding.Hovernor);
 	}
@@ -311,17 +372,28 @@ void MoneyOfTheColony()
 	int iCommerce = GetCharacterSkill(mayor, SKILL_COMMERCE) * 2.8;
 
 	float fNalog = 1.1;
-	switch(iNalog) { case 1: fNalog = 1.2; break; case 2: fNalog = 1.9; break; case 3: fNalog = 2.5; break; }
+	switch (iNalog)
+	{
+	case 1:
+		fNalog = 1.2;
+		break;
+	case 2:
+		fNalog = 1.9;
+		break;
+	case 3:
+		fNalog = 2.5;
+		break;
+	}
 
 	iBaseMoney = (iLeaderShip + iCommerce) * fNalog;
 	iMoney = iPeopleQuantity * iBaseMoney;
 
-	if(iMoney < 0)
+	if (iMoney < 0)
 	{
 		iMoney = 0;
 	}
 
-	if(iMoney > 1000000)
+	if (iMoney > 1000000)
 	{
 		iMoney = 1000000;
 	}
@@ -337,22 +409,22 @@ void ColonyCheckEpidemy()
 	int iMedicament = sti(PChar.ColonyBuilding.Medicament);
 	int iPopulationQuantity = sti(PChar.ColonyBuilding.Population);
 
-	if(iPopulationQuantity < 20)
+	if (iPopulationQuantity < 20)
 	{
 		return;
 	}
 
-	int iPopulationIll = iPopulationQuantity / rand(6)+4;
+	int iPopulationIll = iPopulationQuantity / rand(6) + 4;
 	int temp = 0;
 
-	if(iMedicament >= iPopulationIll)
+	if (iMedicament >= iPopulationIll)
 	{
 		temp = rand(10);
-		ChangeColonyGoods(-(iPopulationIll-temp), "Medicament");
+		ChangeColonyGoods(-(iPopulationIll - temp), "Medicament");
 		ChangeColonyPopulation(-temp, false);
 		ChangeColonyMorale(50, true);
 
-		if(temp > 0)
+		if (temp > 0)
 		{
 			Log_Info("Вести из колонии " + PChar.ColonyBuilding.ColonyName + "!");
 			AddQuestRecord("MY_COLONY", "11");
@@ -364,13 +436,16 @@ void ColonyCheckEpidemy()
 	else
 	{
 		temp = iPopulationIll - iMedicament;
-		if(temp <= 0) { temp = 0; }
+		if (temp <= 0)
+		{
+			temp = 0;
+		}
 
 		ChangeColonyGoods(-temp, "Medicament");
 		ChangeColonyPopulation(-temp, false);
 		ChangeColonyMorale(-10, false);
 
-		if(temp > 0)
+		if (temp > 0)
 		{
 			Log_Info("Вести из колонии " + PChar.ColonyBuilding.ColonyName + "!");
 			AddQuestRecord("MY_COLONY", "12");
@@ -385,10 +460,11 @@ void ColonyCheckFoodNeed()
 	int iFood = sti(PChar.ColonyBuilding.Food);
 	int iPopulationDiff = iPopulation / COLONY_FOOD_POPULATION_DELIT;
 
-	if (iPopulation <= 0) return;
+	if (iPopulation <= 0)
+		return;
 
 	bool bNotice = false;
-	if(iPopulationDiff < 1)
+	if (iPopulationDiff < 1)
 	{
 		iPopulationDiff = 1;
 	}
@@ -396,18 +472,19 @@ void ColonyCheckFoodNeed()
 	int iFoodNeed = iPopulationDiff * 7;
 	float fCoff = iPopulationDiff / iPopulation;
 
-	if (fCoff <= 0) return;
+	if (fCoff <= 0)
+		return;
 
 	int iDead = 0;
-	if(iPopulation > 0)
+	if (iPopulation > 0)
 	{
-		if(iFood > iFoodNeed)
+		if (iFood > iFoodNeed)
 		{
 			ChangeColonyGoods(-iFoodNeed, "Food");
 		}
 		else
 		{
-			if(!bNotice)
+			if (!bNotice)
 			{
 				bNotice = true;
 				AddQuestRecord("MY_COLONY", "16");
@@ -419,7 +496,7 @@ void ColonyCheckFoodNeed()
 
 			ChangeColonyMorale(-20, false);
 
-			if(iDead > iPopulation)
+			if (iDead > iPopulation)
 			{
 				iDead = iPopulation;
 			}
@@ -434,7 +511,7 @@ void ColonyCheckFoodNeed()
 	}
 
 	int iSoldiers = sti(PChar.ColonyBuilding.Soldiers);
-	if(iSoldiers < 1)
+	if (iSoldiers < 1)
 	{
 		return;
 	}
@@ -442,7 +519,7 @@ void ColonyCheckFoodNeed()
 	int iSoldiersDiff = iSoldiers / COLONY_FOOD_SOLDIERS_DELIT;
 	iFood = sti(PChar.ColonyBuilding.Food);
 
-	if(iSoldiersDiff < 1)
+	if (iSoldiersDiff < 1)
 	{
 		iSoldiersDiff = 1;
 	}
@@ -450,15 +527,15 @@ void ColonyCheckFoodNeed()
 	iFoodNeed = iSoldiersDiff * 7;
 	fCoff = iSoldiersDiff / iSoldiers;
 
-	if(iSoldiers > 0)
+	if (iSoldiers > 0)
 	{
-		if(iFood > iFoodNeed)
+		if (iFood > iFoodNeed)
 		{
 			ChangeColonyGoods(-iFoodNeed, "Food");
 		}
 		else
 		{
-			if(!bNotice)
+			if (!bNotice)
 			{
 				bNotice = true;
 				AddQuestRecord("MY_COLONY", "16");
@@ -468,7 +545,7 @@ void ColonyCheckFoodNeed()
 			iDead /= 7;
 			iDead /= fCoff;
 
-			if(iDead > iSoldiers)
+			if (iDead > iSoldiers)
 			{
 				iDead = iSoldiers;
 			}
@@ -492,17 +569,17 @@ int GetColonyFoodNeedDays()
 	int iSoldiers = sti(PChar.ColonyBuilding.Soldiers);
 	int iDay = (iPopulation / COLONY_FOOD_POPULATION_DELIT) + (iSoldiers / COLONY_FOOD_SOLDIERS_DELIT);
 
-	if(iPopulation + iSoldiers <= 0)
+	if (iPopulation + iSoldiers <= 0)
 	{
 		return iFood;
 	}
 
-	if(iFood <= 0)
+	if (iFood <= 0)
 	{
 		return 0;
 	}
 
-	if(iDay <= 0)
+	if (iDay <= 0)
 	{
 		return iFood;
 	}
@@ -510,7 +587,7 @@ int GetColonyFoodNeedDays()
 	iDay *= 21;
 	iDays = iFood / iDay;
 
-	if(iDays < 0)
+	if (iDays < 0)
 	{
 		iDays = 0;
 	}
@@ -526,7 +603,7 @@ void CheckDefenceColony()
 	Log_TestInfo("Готовим нападение на колонию.");
 
 	bool bDisable = GetDisableAllColonyEvent();
-	if(PChar.ColonyBuilding.Defence == true || PChar.ColonyBuilding.Action == true || bDisable)
+	if (PChar.ColonyBuilding.Defence == true || PChar.ColonyBuilding.Action == true || bDisable)
 	{
 		Log_TestInfo("Нападения не будет, т.к. идёт стройка или уже действует/готовится какое то нападение.");
 		/*Log_TestInfo("Строится ли что то: " + sti(PChar.ColonyBuilding.Action));
@@ -538,19 +615,22 @@ void CheckDefenceColony()
 	int iRand = rand(5);
 
 	int iMoney = sti(PChar.ColonyBuilding.Money);
-	if(iMoney >= 1000000 && rand(1) == 1)
+	if (iMoney >= 1000000 && rand(1) == 1)
 	{
-		if(rand(10) > 5) iRand = 2; else iRand = 5;
+		if (rand(10) > 5)
+			iRand = 2;
+		else
+			iRand = 5;
 	}
 
-	if(iRand != 2 && iRand != 5)
+	if (iRand != 2 && iRand != 5)
 	{
 		Log_TestInfo("Никакие нападения не сгенерились.");
 		return;
 	}
 	else
 	{
-		if(PChar.ColonyBuilding.Stage == "1")
+		if (PChar.ColonyBuilding.Stage == "1")
 		{
 			CreateLandDefenceColony();
 			Log_TestInfo("Готовится нападение с суши.");
@@ -559,14 +639,14 @@ void CheckDefenceColony()
 		else
 		{
 
-			if(iRand == 2)
+			if (iRand == 2)
 			{
 				CreateSeaDefenceColony();
 				Log_TestInfo("Готовится нападение с моря.");
 				return;
 			}
 
-			if(iRand == 5)
+			if (iRand == 5)
 			{
 				CreateLandDefenceColony();
 				Log_TestInfo("Готовится нападение с суши.");
@@ -586,19 +666,19 @@ void CreateMutinyColony()
 	int iPopulationQuantity = sti(PChar.ColonyBuilding.Population);
 	int iPopulationMorale = sti(PChar.ColonyBuilding.Population.Morale);
 
-	if(iPopulationQuantity <= 100)
+	if (iPopulationQuantity <= 100)
 	{
 		Log_TestInfo("Мятежа не будет, так как мало населения.");
 		return;
 	}
 
-	if(rand(100) < 20)
+	if (rand(100) < 20)
 	{
 		Log_TestInfo("Мятежа не будет, так как повезло.");
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Defence == true || PChar.ColonyBuilding.Action == true)
+	if (PChar.ColonyBuilding.Defence == true || PChar.ColonyBuilding.Action == true)
 	{
 		Log_TestInfo("Мятежа не будет, так как идёт стройка какая-то или какой либо тип нападения уже создан.");
 		Log_TestInfo("Строится ли что то: " + sti(PChar.ColonyBuilding.Action));
@@ -617,15 +697,23 @@ void CreateMutinyColony()
 	int iSoldiersQuantity = sti(PChar.ColonyBuilding.Soldiers) / 100;
 	int iRebels = iPopulationQuantity / 60;
 
-	if(iSoldiersQuantity < 1) { InstantColonyDefendLoose("Colony", "Mutiny"); return; }
+	if (iSoldiersQuantity < 1)
+	{
+		InstantColonyDefendLoose("Colony", "Mutiny");
+		return;
+	}
 
-	if(iRebels < 2) iRebels = 2;
-	if(iRebels > 20) iRebels = 20;
+	if (iRebels < 2)
+		iRebels = 2;
+	if (iRebels > 20)
+		iRebels = 20;
 
-	ChangeColonyPopulation(-(iRebels*15), false);
+	ChangeColonyPopulation(-(iRebels * 15), false);
 
-	if(iSoldiersQuantity < 2) iSoldiersQuantity = 2;
-	if(iSoldiersQuantity > 20) iSoldiersQuantity = 25;
+	if (iSoldiersQuantity < 2)
+		iSoldiersQuantity = 2;
+	if (iSoldiersQuantity > 20)
+		iSoldiersQuantity = 25;
 
 	PChar.ColonyBuilding.Defence.Nation = PIRATE;
 	PChar.ColonyBuilding.Defence.Soldiers = iSoldiersQuantity;
@@ -636,7 +724,7 @@ void CreateMutinyColony()
 	Log_TestInfo("Кол-во солдат: " + iSoldiersQuantity);
 
 	int iRandMinus = 2;
-	if(iRebels > iSoldiersQuantity)
+	if (iRebels > iSoldiersQuantity)
 	{
 		iRandMinus -= (iRebels - iSoldiersQuantity);
 	}
@@ -645,19 +733,35 @@ void CreateMutinyColony()
 		iRandMinus += (iSoldiersQuantity - iRebels);
 	}
 
-	if(iRandMinus <= -7) { InstantColonyDefendLoose("Colony", "Mutiny"); return; }
+	if (iRandMinus <= -7)
+	{
+		InstantColonyDefendLoose("Colony", "Mutiny");
+		return;
+	}
 
 	int iRand = iRandMinus - rand(4);
 
 	int iEnd = 0;
-	if(iRand > 0) { iEnd = 1; }else{ iEnd = 0; }
-
+	if (iRand > 0)
+	{
+		iEnd = 1;
+	}
+	else
+	{
+		iEnd = 0;
+	}
 
 	PChar.ColonyBuilding.Defence.End = iEnd;
 
 	int iTime = 7 + rand(10) + iRandMinus;
-	if(iTime < 7) { iTime = 7; }
-	if(iTime > 30) { iTime = 30; }
+	if (iTime < 7)
+	{
+		iTime = 7;
+	}
+	if (iTime > 30)
+	{
+		iTime = 30;
+	}
 
 	string sClearQuest = "ClearMutinyColony_" + rand(1000000);
 	PChar.ColonyBuilding.ClearQuest = sClearQuest;
@@ -702,12 +806,12 @@ void BattleMutinyColony(string _tmp)
 	int iRebels = sti(PChar.ColonyBuilding.Defence.EnemyQuantity);
 	ref chr;
 
-	if(PChar.ColonyBuilding.Stage != "3")
+	if (PChar.ColonyBuilding.Stage != "3")
 	{
 		ChangeCharacterAddress(CharacterFromID("Builder"), "none", "none");
 	}
 
-	if(PChar.ColonyBuilding.Stage == "1" && PChar.location.locator == "reload6")
+	if (PChar.ColonyBuilding.Stage == "1" && PChar.location.locator == "reload6")
 	{
 		ChangeCharacterAddressGroup(PChar, PChar.location, "rld", "aloc0");
 	}
@@ -715,11 +819,11 @@ void BattleMutinyColony(string _tmp)
 	string sModel = "";
 	string sLocator = "";
 
-	for(i=1; i <= iRebels; i++)
+	for (i = 1; i <= iRebels; i++)
 	{
-		sModel = "citiz_" + (rand(11)+1);
+		sModel = "citiz_" + (rand(11) + 1);
 
-		if(PChar.ColonyBuilding.Stage == "1")
+		if (PChar.ColonyBuilding.Stage == "1")
 		{
 			sLocator = "reload6";
 		}
@@ -736,7 +840,7 @@ void BattleMutinyColony(string _tmp)
 		chr.model.animation = "man";
 		chr.NotRemoved = true;
 		SetNewModelToChar(chr);
-    		FaceMaker(chr);
+		FaceMaker(chr);
 		LAi_NoRebirthEnable(chr);
 		LAi_SetWarriorType(chr);
 		LAi_group_MoveCharacter(chr, "EnemyFight");
@@ -750,36 +854,51 @@ void BattleMutinyColony(string _tmp)
 	bool bMusketeer = false;
 
 	string sAni = "man";
-	for(i=1; i <= iSoldiers; i++)
+	for (i = 1; i <= iSoldiers; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iSoldiers - i < iMusketeers) { bMusketeer = true; }
+		if (iSoldiers - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
-		if(PChar.ColonyBuilding.SoldiersType == "officer")
+		if (PChar.ColonyBuilding.SoldiersType == "officer")
 		{
 			sModel = "officer_" + (rand(63) + 1);
 
-			if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = "officer_" + (rand(63) + 1) + "_mush";
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
-			if(PChar.ColonyBuilding.SoldiersType == "pirate")
+			if (PChar.ColonyBuilding.SoldiersType == "pirate")
 			{
 				sModel = "pirate_" + (rand(24) + 1);
 
-				if(bMusketeer) { sModel = GetPirateMushketerModel(); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = GetPirateMushketerModel();
+					sAni = "mushketer";
+				}
 			}
 			else
 			{
 				sModel = "sold_" + sNation + "_" + (rand(7) + 1);
 
-				if(bMusketeer) { sModel = sNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = sNation + "_mush_" + (rand(2) + 1);
+					sAni = "mushketer";
+				}
 			}
 		}
 
-		if(PChar.ColonyBuilding.Stage == "1")
+		if (PChar.ColonyBuilding.Stage == "1")
 		{
 			sLocator = "reload3";
 		}
@@ -808,7 +927,7 @@ void BattleMutinyColony(string _tmp)
 	LAi_SetFightMode(PChar, true);
 
 	string cnd, rbl;
-	for(i=1; i<=iRebels; i++)
+	for (i = 1; i <= iRebels; i++)
 	{
 		cnd = "l" + i;
 		rbl = "My Colony Mutiny Rebel " + i;
@@ -833,9 +952,9 @@ void BattleMutinyColonyWinner(string _tmp)
 	PChar.ColonyBuilding.Defence.Battle = false;
 
 	LAi_LockFightMode(PChar, false);
-        LAi_SetFightMode(PChar, false);
+	LAi_SetFightMode(PChar, false);
 
-	if(PChar.ColonyBuilding.Stage != "3")
+	if (PChar.ColonyBuilding.Stage != "3")
 	{
 		ChangeCharacterAddressGroup(CharacterFromID("Builder"), "Caiman_town", "goto", "goto8");
 	}
@@ -849,11 +968,11 @@ void BattleMutinyColonyWinner(string _tmp)
 	int iSoldiers = sti(PChar.ColonyBuilding.Defence.Soldiers);
 	string sDefender = "";
 	int iDead = 0;
-	for(int i=1; i<=iSoldiers; i++)
+	for (int i = 1; i <= iSoldiers; i++)
 	{
 		sDefender = "My Colony Mutiny Defender " + i;
 
-		if(LAi_IsDead(CharacterFromID(sDefender)))
+		if (LAi_IsDead(CharacterFromID(sDefender)))
 		{
 			iDead++;
 		}
@@ -883,7 +1002,7 @@ void ClearMutinyColony(string qName)
 	int iEnd = sti(PChar.ColonyBuilding.Defence.End);
 	int iSoldiers = sti(PChar.ColonyBuilding.Defence.Soldiers);
 
-	if(iSoldiers > 0)
+	if (iSoldiers > 0)
 	{
 		iSoldiers /= sti(PChar.ColonyBuilding.Defence.Soldiers.Delete);
 	}
@@ -893,7 +1012,7 @@ void ClearMutinyColony(string qName)
 	int iRebels = sti(PChar.ColonyBuilding.Defence.EnemyQuantity);
 	int iMoney = sti(PChar.ColonyBuilding.Money);
 
-	if(iEnd == 1)
+	if (iEnd == 1)
 	{
 		Log_Info("Вести из колонии " + PChar.ColonyBuilding.ColonyName + "!");
 		AddQuestRecord("MY_COLONY", "2");
@@ -908,12 +1027,12 @@ void ClearMutinyColony(string qName)
 		AddQuestRecord("MY_COLONY", "3");
 		ChangeColonySoldiers(0, true);
 		ChangeColonyMorale(0, true);
-		ChangeColonyMoney(-(iMoney/iRebels), false);
+		ChangeColonyMoney(-(iMoney / iRebels), false);
 		SetColonyMessageInfo("Colony", "Mutiny", "", PIRATE, 0, false, true);
 		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", в колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж? И что вы думали? Гарнизон потерпел поражение!", 5, 1);
 	}
 
-	if(PChar.ColonyBuilding.Stage != "3")
+	if (PChar.ColonyBuilding.Stage != "3")
 	{
 		ChangeCharacterAddressGroup(CharacterFromID("Builder"), "Caiman_town", "goto", "goto8");
 	}
@@ -928,13 +1047,13 @@ void ClearMutinyColony(string qName)
 //-------------------------------------------------------------------------------
 void CreateLandDefenceColony()
 {
-	if(rand(100) < 5)
+	if (rand(100) < 5)
 	{
 		Log_TestInfo("Нападения с суши не будет, так как повезло.");
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Fort == true && rand(100) < 25)
+	if (PChar.ColonyBuilding.Fort == true && rand(100) < 25)
 	{
 		Log_TestInfo("Нападения с суши не будет, так как охранная база отпугнула вражину.");
 		return;
@@ -942,7 +1061,7 @@ void CreateLandDefenceColony()
 
 	int iBaseNation = GetBaseHeroNation();
 	int iNation = FindEnemyNation2Nation(iBaseNation); //FindEnemyNation2Character(nMainCharacterIndex);
-	if(iNation == -1)
+	if (iNation == -1)
 	{
 		iNation = PIRATE;
 	}
@@ -959,7 +1078,7 @@ void CreateLandDefenceColony()
 	int iSoldiersQuantity = sti(PChar.ColonyBuilding.Soldiers) / 100;
 	int iEnemy = 0;
 
-	if(PChar.ColonyBuilding.Stage == "1")
+	if (PChar.ColonyBuilding.Stage == "1")
 	{
 		iEnemy = 5 + rand(4) + rand(4);
 	}
@@ -969,37 +1088,47 @@ void CreateLandDefenceColony()
 	}
 
 	int iCitizen = 0;
-	if(sti(PChar.ColonyBuilding.Population.Morale) >= 70)
+	if (sti(PChar.ColonyBuilding.Population.Morale) >= 70)
 	{
 		iCitizen = sti(PChar.ColonyBuilding.Population) / 70;
 	}
 
 	string sDestroyBuild = "none";
-	if(rand(5) > 3)
+	if (rand(5) > 3)
 	{
 		sDestroyBuild = GetColonyBuildDestroy();
 	}
 	PChar.ColonyBuilding.Defence.DestroyBuild = sDestroyBuild;
 	SetBestGoodForDeleteFromMyColony();
 
-	if(iSoldiersQuantity < 1) { InstantColonyDefendLoose("Colony", "BattleLand"); return; }
+	if (iSoldiersQuantity < 1)
+	{
+		InstantColonyDefendLoose("Colony", "BattleLand");
+		return;
+	}
 
-	if(iCitizen < 0) iCitizen = 0;
-	if(iCitizen > 7) iCitizen = 7;
+	if (iCitizen < 0)
+		iCitizen = 0;
+	if (iCitizen > 7)
+		iCitizen = 7;
 
-	if(iSoldiersQuantity < 2) iSoldiersQuantity = 2;
-	if(iSoldiersQuantity > 22) iSoldiersQuantity = 22;
+	if (iSoldiersQuantity < 2)
+		iSoldiersQuantity = 2;
+	if (iSoldiersQuantity > 22)
+		iSoldiersQuantity = 22;
 
-	if(iEnemy < 2) iEnemy = 2;
-	if(iEnemy > 20) iEnemy = 20;
+	if (iEnemy < 2)
+		iEnemy = 2;
+	if (iEnemy > 20)
+		iEnemy = 20;
 
 	Log_TestInfo("Команда гарнизона + жителей: " + (iSoldiersQuantity + iCitizen));
 	Log_TestInfo("Команда противника: " + iEnemy);
-	if(PChar.ColonyBuilding.Fort == true)
+	if (PChar.ColonyBuilding.Fort == true)
 	{
 		iEnemy -= (sti(PChar.ColonyBuilding.Soldiers) / 10) / iEnemy;
 
-		if(iEnemy < 10)
+		if (iEnemy < 10)
 		{
 			iEnemy = 10;
 		}
@@ -1016,27 +1145,44 @@ void CreateLandDefenceColony()
 	PChar.ColonyBuilding.Defence.EnemyQuantity = iEnemy;
 
 	int iRandMinus = -2;
-	if(iEnemy > iSoldiersQuantity)
+	if (iEnemy > iSoldiersQuantity)
 	{
-		iRandMinus -= (iEnemy - (iSoldiersQuantity+iCitizen));
+		iRandMinus -= (iEnemy - (iSoldiersQuantity + iCitizen));
 	}
 	else
 	{
-		iRandMinus += ((iSoldiersQuantity+iCitizen) - iEnemy);
+		iRandMinus += ((iSoldiersQuantity + iCitizen) - iEnemy);
 	}
 
-	if(iRandMinus < -10) { InstantColonyDefendLoose("Colony", "BattleLand"); return; }
+	if (iRandMinus < -10)
+	{
+		InstantColonyDefendLoose("Colony", "BattleLand");
+		return;
+	}
 
 	int iRand = iRandMinus - rand(4);
 
 	int iEnd = 0;
-	if(iRand > 0) { iEnd = 1; }else{ iEnd = 0; }
+	if (iRand > 0)
+	{
+		iEnd = 1;
+	}
+	else
+	{
+		iEnd = 0;
+	}
 
 	PChar.ColonyBuilding.Defence.End = iEnd;
 
 	int iTime = 7 + rand(5) + iRandMinus;
-	if(iTime < 7) { iTime = 7; }
-	if(iTime > 30) { iTime = 30; }
+	if (iTime < 7)
+	{
+		iTime = 7;
+	}
+	if (iTime > 30)
+	{
+		iTime = 30;
+	}
 
 	string sClearQuest = "ClearLandDefenceColony_" + rand(1000000);
 	PChar.ColonyBuilding.ClearQuest = sClearQuest;
@@ -1055,7 +1201,7 @@ void CreateLandDefenceColony()
 	AddQuestUserData("MY_COLONY", "sLandBattleTime", sTime);
 
 	string sLocation, sEnemyLocator, sSoldiersLocator, sCitizenLocator;
-	if(PChar.ColonyBuilding.Stage == "1")
+	if (PChar.ColonyBuilding.Stage == "1")
 	{
 		sLocation = "Caiman_ExitTown";
 		sEnemyLocator = "reload1_back";
@@ -1066,7 +1212,7 @@ void CreateLandDefenceColony()
 	}
 	else
 	{
-		if(PChar.ColonyBuilding.Plantation == true)
+		if (PChar.ColonyBuilding.Plantation == true)
 		{
 			sLocation = "Caiman_Plantation";
 			sEnemyLocator = "reload2_back";
@@ -1118,11 +1264,11 @@ void BattleLandDefenceColony(string _tmp)
 	string sLocator = "";
 	string sAni = "man";
 
-    	arrayNPCModelHow = 0;
+	arrayNPCModelHow = 0;
 	int iEnemyNation = sti(PChar.ColonyBuilding.Defence.Nation);
 	string sEnemyNation = NationShortName(iEnemyNation);
 
-	if(PChar.ColonyBuilding.Stage == "1")
+	if (PChar.ColonyBuilding.Stage == "1")
 	{
 		ChangeCharacterAddressGroup(PChar, PChar.location, "rld", "aloc0");
 	}
@@ -1134,24 +1280,35 @@ void BattleLandDefenceColony(string _tmp)
 	int iMusketeers = FightInColonyGetMusketeerQty(iEnemy);
 	bool bMusketeer = false;
 
-	for(i=1; i <= iEnemy; i++)
+	for (i = 1; i <= iEnemy; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iEnemy - i < iMusketeers) { bMusketeer = true; }
+		if (iEnemy - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
 		sLocator = PChar.ColonyBuilding.Defence.Locator.Enemy;
 
-		if(iEnemyNation == PIRATE)
+		if (iEnemyNation == PIRATE)
 		{
 			sModel = "pirate_" + (rand(24) + 1);
-			if(bMusketeer) { sModel = GetPirateMushketerModel(); sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = GetPirateMushketerModel();
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
 			sModel = "sold_" + sEnemyNation + "_" + (rand(7) + 1);
-			if(bMusketeer) { sModel = sEnemyNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = sEnemyNation + "_mush_" + (rand(2) + 1);
+				sAni = "mushketer";
+			}
 		}
 
 		chr = GetCharacter(NPC_GeneratePhantomCharacter("soldier", iEnemyNation, 1, 0));
@@ -1162,7 +1319,7 @@ void BattleLandDefenceColony(string _tmp)
 		chr.model.animation = sAni;
 		chr.NotRemoved = true;
 		SetNewModelToChar(chr);
-    		FaceMaker(chr);
+		FaceMaker(chr);
 		LAi_NoRebirthEnable(chr);
 		LAi_SetWarriorType(chr);
 		LAi_group_MoveCharacter(chr, "EnemyFight");
@@ -1173,44 +1330,63 @@ void BattleLandDefenceColony(string _tmp)
 	string sNation = NationShortName(iNation);
 
 	iMusketeers = FightInColonyGetMusketeerQty(iSoldiers);
-	for(i=1; i <= iSoldiers; i++)
+	for (i = 1; i <= iSoldiers; i++)
 	{
 		sAni = "man";
 
 		bMusketeer = false;
-		if(iSoldiers - i < iMusketeers) { bMusketeer = true; }
+		if (iSoldiers - i < iMusketeers)
+		{
+			bMusketeer = true;
+		}
 
-		if(PChar.ColonyBuilding.SoldiersType == "officer")
+		if (PChar.ColonyBuilding.SoldiersType == "officer")
 		{
 			sModel = "officer_" + (rand(63) + 1);
 
-			if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+			if (bMusketeer)
+			{
+				sModel = "officer_" + (rand(63) + 1) + "_mush";
+				sAni = "mushketer";
+			}
 		}
 		else
 		{
-			if(PChar.ColonyBuilding.SoldiersType == "pirate")
+			if (PChar.ColonyBuilding.SoldiersType == "pirate")
 			{
 				sAni = "man";
 				sModel = "pirate_" + (rand(24) + 1);
 
-				if(iEnemyNation == PIRATE)
+				if (iEnemyNation == PIRATE)
 				{
 					sModel = "officer_" + (rand(63) + 1);
 				}
 
-				if(bMusketeer) { sModel = "Mushketer_" + (rand(4)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = "Mushketer_" + (rand(4) + 1);
+					sAni = "mushketer";
+				}
 			}
 			else
 			{
 				sModel = "sold_" + sNation + "_" + (rand(7) + 1);
 
-				if(bMusketeer) { sModel = sNation + "_mush_" + (rand(2)+1); sAni = "mushketer"; }
+				if (bMusketeer)
+				{
+					sModel = sNation + "_mush_" + (rand(2) + 1);
+					sAni = "mushketer";
+				}
 
-				if(iNation == iEnemyNation)
+				if (iNation == iEnemyNation)
 				{
 					sAni = "man";
 					sModel = "officer_" + (rand(63) + 1);
-					if(bMusketeer) { sModel = "officer_" + (rand(63) + 1)+ "_mush"; sAni = "mushketer"; }
+					if (bMusketeer)
+					{
+						sModel = "officer_" + (rand(63) + 1) + "_mush";
+						sAni = "mushketer";
+					}
 				}
 			}
 		}
@@ -1230,9 +1406,9 @@ void BattleLandDefenceColony(string _tmp)
 		ChangeCharacterAddressGroup(chr, PChar.location, "reload", sLocator);
 	}
 
-	for(i=1; i <= iCitizens; i++)
+	for (i = 1; i <= iCitizens; i++)
 	{
-		sModel = "citiz_" + (rand(11)+1);
+		sModel = "citiz_" + (rand(11) + 1);
 		sLocator = PChar.ColonyBuilding.Defence.Locator.Citizen;
 
 		chr = GetCharacter(NPC_GeneratePhantomCharacter("citiz_1", PIRATE, 1, 0));
@@ -1254,7 +1430,7 @@ void BattleLandDefenceColony(string _tmp)
 	LAi_SetFightMode(PChar, true);
 
 	string cnd, enm;
-	for(i=1; i<=iEnemy; i++)
+	for (i = 1; i <= iEnemy; i++)
 	{
 		cnd = "l" + i;
 		enm = "My Colony Land Defence Pirate " + i;
@@ -1274,7 +1450,7 @@ void BattleLandDefenceColonyWinner(string _tmp)
 	PChar.ColonyBuilding.Defence.Battle = false;
 
 	LAi_LockFightMode(PChar, false);
-        LAi_SetFightMode(PChar, false);
+	LAi_SetFightMode(PChar, false);
 
 	AddQuestRecord("MY_COLONY", "5");
 
@@ -1286,11 +1462,11 @@ void BattleLandDefenceColonyWinner(string _tmp)
 	string sDefender = "";
 	int iDead = 0;
 	int i = 0;
-	for(i=1; i<=iSoldiers; i++)
+	for (i = 1; i <= iSoldiers; i++)
 	{
 		sDefender = "My Colony Mutiny Defender " + i;
 
-		if(LAi_IsDead(CharacterFromID(sDefender)))
+		if (LAi_IsDead(CharacterFromID(sDefender)))
 		{
 			iDead++;
 		}
@@ -1300,10 +1476,10 @@ void BattleLandDefenceColonyWinner(string _tmp)
 	ChangeColonySoldiers(-iSoldiersDead, false);
 
 	iDead = 0;
-	for(i=1; i<=iCitizens; i++)
+	for (i = 1; i <= iCitizens; i++)
 	{
 		sDefender = "My Colony Mutiny Cit Defender " + i;
-		if(LAi_IsDead(CharacterFromID(sDefender)))
+		if (LAi_IsDead(CharacterFromID(sDefender)))
 		{
 			iDead++;
 		}
@@ -1315,7 +1491,7 @@ void BattleLandDefenceColonyWinner(string _tmp)
 	PChar.ColonyBuilding.Defence = false;
 	PChar.ColonyBuilding.Defence.Type = "";
 
-	if(CheckAttribute(&Locations[FindLocation(PChar.Location)], "hidden_effects"))
+	if (CheckAttribute(&Locations[FindLocation(PChar.Location)], "hidden_effects"))
 	{
 		DeleteAttribute(&Locations[FindLocation(PChar.Location)], "hidden_effects");
 	}
@@ -1334,20 +1510,20 @@ void ClearLandDefenceColony(string qName)
 	int iSoldiers = sti(PChar.ColonyBuilding.Defence.Soldiers);
 	int iCitizens = sti(PChar.ColonyBuilding.Defence.Citizens);
 
-	if(iSoldiers > 0)
+	if (iSoldiers > 0)
 	{
 		iSoldiers /= sti(PChar.ColonyBuilding.Defence.Soldiers.Delete);
 	}
 
-	if(iCitizens > 0)
+	if (iCitizens > 0)
 	{
 		iCitizens /= sti(PChar.ColonyBuilding.Defence.Citizens.Delete);
 	}
 
-	int iSoldiersDead = iSoldiers*100;
-	int iCitizensDead = iCitizens*70;
+	int iSoldiersDead = iSoldiers * 100;
+	int iCitizensDead = iCitizens * 70;
 
-	if(iEnd == 1)
+	if (iEnd == 1)
 	{
 		Log_Info("Вести из колонии " + PChar.ColonyBuilding.ColonyName + "!");
 		AddQuestRecord("MY_COLONY", "6");
@@ -1398,7 +1574,7 @@ void ClearLandDefenceColony(string qName)
 //-------------------------------------------------------------------------------
 void CreateSeaDefenceColony()
 {
-	if(rand(100) < 5)
+	if (rand(100) < 5)
 	{
 		Log_TestInfo("Нападения с моря не будет, так как повезло.");
 		return;
@@ -1413,7 +1589,7 @@ void CreateSeaDefenceColony()
 
 	int iBaseNation = GetBaseHeroNation();
 	int iNation = FindEnemyNation2Nation(iBaseNation); //FindEnemyNation2Character(nMainCharacterIndex);
-	if(iNation == -1)
+	if (iNation == -1)
 	{
 		iNation = PIRATE;
 	}
@@ -1434,7 +1610,7 @@ void CreateSeaDefenceColony()
 	SetBestGoodForDeleteFromMyColony();
 
 	string sDestroyBuild = "none";
-	if(rand(5) > 3)
+	if (rand(5) > 3)
 	{
 		sDestroyBuild = GetColonyBuildDestroy();
 	}
@@ -1447,12 +1623,12 @@ void CreateSeaDefenceColony()
 	ref rShip;
 	int iEnemyClass = 0;
 
-	for(int i=1; i <= iSquadronQuantity; i++)
+	for (int i = 1; i <= iSquadronQuantity; i++)
 	{
-		iChar = NPC_GenerateCharacter("ColonySeaAttacker_" + i, "pirate_" + (rand(24)+1), "man", "man", sti(PChar.rank), iNation, -1, true);
+		iChar = NPC_GenerateCharacter("ColonySeaAttacker_" + i, "pirate_" + (rand(24) + 1), "man", "man", sti(PChar.rank), iNation, -1, true);
 		chr = GetCharacter(iChar);
 
-		if(iNation != PIRATE)
+		if (iNation != PIRATE)
 		{
 			CreateModel(iChar, "officer", 1);
 		}
@@ -1461,8 +1637,8 @@ void CreateSeaDefenceColony()
 
 		iShipType = GetShipTypeForColonyBattleSea(chr);
 		chr.Ship.Type = GenerateShipExt(iShipType, false, chr);
-		chr.AlwaysEnemy        = true;
-		chr.Coastal_Captain    = true;
+		chr.AlwaysEnemy = true;
+		chr.Coastal_Captain = true;
 		chr.ShipTaskLock = true;
 		chr.AnalizeShips = true;
 		SetRandomNameToShip(chr);
@@ -1476,7 +1652,7 @@ void CreateSeaDefenceColony()
 
 		Group_AddCharacter("ColonySeaAttacker", "ColonySeaAttacker_" + i);
 
-		if(i == 1)
+		if (i == 1)
 		{
 			Group_SetGroupCommander("ColonySeaAttacker", "ColonySeaAttacker_" + i);
 		}
@@ -1486,7 +1662,7 @@ void CreateSeaDefenceColony()
 	}
 
 	int iRes = 5 - iSquadronQuantity;
-	for(int e=1; e <= iRes; e++)
+	for (int e = 1; e <= iRes; e++)
 	{
 		iEnemyClass += 7;
 	}
@@ -1495,12 +1671,12 @@ void CreateSeaDefenceColony()
 	string sGuardian = "";
 	int iGuardianClass = 7;
 
-	for(int g=1; g <= 4; g++)
+	for (int g = 1; g <= 4; g++)
 	{
 		sGuardian = "Ship" + g;
 
 		iChar = sti(PChar.Colony.Guardians.(sGuardian));
-		if(iChar == -1)
+		if (iChar == -1)
 		{
 			iGuardianClass += 7;
 			continue;
@@ -1514,7 +1690,7 @@ void CreateSeaDefenceColony()
 		}
 	}
 
-	if(iGuardianClass - iEnemyClass >= 8)
+	if (iGuardianClass - iEnemyClass >= 8)
 	{
 		BattleSeaDefenceColonyClearAttackers();
 		InstantColonyDefendLoose("Colony", "BattleSea");
@@ -1522,12 +1698,12 @@ void CreateSeaDefenceColony()
 	}
 
 	int iEnd = 0;
-	if(iGuardianClass <= iEnemyClass)
+	if (iGuardianClass <= iEnemyClass)
 	{
 		iEnd = 1;
 	}
 
-	if(rand(5) > 4)
+	if (rand(5) > 4)
 	{
 		iEnd = 0;
 	}
@@ -1536,8 +1712,14 @@ void CreateSeaDefenceColony()
 	PChar.ColonyBuilding.Defence.KillShips = rand(1) * rand(1) * rand(1);
 
 	int iTime = 10 + rand(5) - iGuardianClass;
-	if(iTime < 7) { iTime = 7; }
-	if(iTime > 30) { iTime = 30; }
+	if (iTime < 7)
+	{
+		iTime = 7;
+	}
+	if (iTime > 30)
+	{
+		iTime = 30;
+	}
 
 	string sClearQuest = "ClearBattleSeaColony_" + rand(1000000);
 	PChar.ColonyBuilding.ClearQuest = sClearQuest;
@@ -1574,10 +1756,10 @@ void BattleSeaDefenceColonyClearAttackers()
 	ref chr;
 	string sCharacter = "";
 
-	for(int i = 1; i <= 5; i++)
+	for (int i = 1; i <= 5; i++)
 	{
 		sCharacter = "ColonySeaAttacker_" + i;
-		if(GetCharacterIndex(sCharacter) == -1)
+		if (GetCharacterIndex(sCharacter) == -1)
 		{
 			continue;
 		}
@@ -1593,23 +1775,22 @@ void BattleSeaDefenceColony(string _tmp)
 
 	string sGroup = "";
 	string sShip = "";
-	for(int i=1; i<=4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sGroup = "InterfaceColonyGuardians_" + i;
 		sShip = "Ship" + i;
-		if(Group_FindGroup(sGroup) != -1 && PChar.Colony.Guardians.(sShip).Active == true)
+		if (Group_FindGroup(sGroup) != -1 && PChar.Colony.Guardians.(sShip).Active == true)
 		{
-			if(i != 1 && Group_FindGroup("InterfaceColonyGuardians_1") != -1)
+			if (i != 1 && Group_FindGroup("InterfaceColonyGuardians_1") != -1)
 			{
 				Group_SetPursuitGroup(sGroup, "InterfaceColonyGuardians_1");
 			}
 			else
 			{
-				Group_SetAddress(sGroup, "Caiman", "quest_ships", "Quest_ship_" + (7-i));
+				Group_SetAddress(sGroup, "Caiman", "quest_ships", "Quest_ship_" + (7 - i));
 			}
 
-
-			for(q=1; q<=Group_GetCharactersNum("ColonySeaAttacker"); q++)
+			for (q = 1; q <= Group_GetCharactersNum("ColonySeaAttacker"); q++)
 			{
 				iCharacter = Group_GetCharacterIndexR(Group_GetGroupByID("ColonySeaAttacker"), i);
 				//Group_SetEnemyToCharacter(sGroup, iCharacter);
@@ -1622,12 +1803,12 @@ void BattleSeaDefenceColony(string _tmp)
 
 	Group_SetAddress("ColonySeaAttacker", "Caiman", "quest_ships", "Quest_ship_7");
 
-	int q=0;
+	int q = 0;
 	int iCharacter = 0;
-	for(q=1; q<=4; q++)
+	for (q = 1; q <= 4; q++)
 	{
 		sGroup = "InterfaceColonyGuardians_" + q;
-		if(Group_FindGroup(sGroup) != -1)
+		if (Group_FindGroup(sGroup) != -1)
 		{
 			iCharacter = Group_GetGroupCommanderIndex(sGroup);
 			Group_SetEnemyToCharacter("ColonySeaAttacker", iCharacter);
@@ -1638,7 +1819,7 @@ void BattleSeaDefenceColony(string _tmp)
 	Group_SetTaskAttack("ColonySeaAttacker", PLAYER_GROUP);
 	Group_LockTask("ColonySeaAttacker");
 
-        UpdateRelations();
+	UpdateRelations();
 
 	PChar.quest.BattleSeaDefenceColonyWinner.win_condition.l1 = "Group_Death";
 	PChar.quest.BattleSeaDefenceColonyWinner.win_condition.l1.group = "ColonySeaAttacker";
@@ -1692,10 +1873,10 @@ void BattleSeaDefenceColonyWinner(string _tmp)
 void BattleSeaDefenceColonyExitBattleField(string qName)
 {
 	string sShip = "";
-	for(int i=1; i<=4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
-		if(Group_FindGroup("InterfaceColonyGuardians_" + i) != -1 && PChar.Colony.Guardians.(sShip).Active == true)
+		if (Group_FindGroup("InterfaceColonyGuardians_" + i) != -1 && PChar.Colony.Guardians.(sShip).Active == true)
 		{
 			Group_SetAddress("InterfaceColonyGuardians_" + i, "Caiman", "quest_ships", "Quest_ship_" + i);
 			Group_SetTaskNone("InterfaceColonyGuardians_" + i);
@@ -1712,13 +1893,13 @@ void ClearBattleSeaColony(string qName)
 
 	int iEnd = sti(PChar.ColonyBuilding.Defence.End);
 	int iSoldiers = sti(PChar.ColonyBuilding.Defence.Soldiers);
-	int iSoldiersDead = iSoldiers*(rand(3)+2);
+	int iSoldiersDead = iSoldiers * (rand(3) + 2);
 
 	int iNation = sti(PChar.ColonyBuilding.Defence.Nation);
 	string sNationName = GetNationNameByType(iNation) + "Abl";
 
 	Log_Info("Вести из колонии " + PChar.ColonyBuilding.ColonyName + "!");
-	if(iEnd == 1)
+	if (iEnd == 1)
 	{
 		AddQuestRecord("MY_COLONY", "14");
 		sNationName = "people" + GetNationNameByType(iNation) + "Dat";
@@ -1738,7 +1919,7 @@ void ClearBattleSeaColony(string qName)
 		sNationName = GetNationNameByType(iNation) + "Abl";
 		AddQuestUserData("MY_COLONY", "sNationName", XI_ConvertString(sNationName));
 
-		ChangeColonyPopulation((-rand(100)-100), true);
+		ChangeColonyPopulation((-rand(100) - 100), true);
 		ChangeColonySoldiers(0, true);
 		ChangeColonyMorale(0, true);
 		ChangeColonyMoney(0, true);
@@ -1753,7 +1934,7 @@ void ClearBattleSeaColony(string qName)
 	}
 
 	int iKillShips = sti(PChar.ColonyBuilding.Defence.KillShips);
-	for(int ks = 1; ks <= iKillShips; ks++)
+	for (int ks = 1; ks <= iKillShips; ks++)
 	{
 		KillColonyGuarding(ks);
 	}
@@ -1786,148 +1967,148 @@ void InstantColonyDefendLoose(string sTarget, string sType)
 
 	int iRebels = 0;
 	int iMoney = 0;
-	int iCitizensDead = sti(rand(15)+10)*10;
+	int iCitizensDead = sti(rand(15) + 10) * 10;
 
 	int iNation = PIRATE;
 	string sNationName = "";
 	string sDestroyBuild = "Store";
 
 	int iOreMinus, iGoodMinus, iGold, iSilver, iIron, iSlaves;
-	switch(sTarget)
+	switch (sTarget)
 	{
-		case "Colony":
-			switch(sType)
-			{
-				case "Mutiny":
-					AddQuestRecord("MY_COLONY", "26");
-					iRebels = sti(PChar.ColonyBuilding.Defence.EnemyQuantity);
-					iMoney = sti(PChar.ColonyBuilding.Money);
-					ChangeColonyMoney(-(iMoney/iRebels), false);
+	case "Colony":
+		switch (sType)
+		{
+		case "Mutiny":
+			AddQuestRecord("MY_COLONY", "26");
+			iRebels = sti(PChar.ColonyBuilding.Defence.EnemyQuantity);
+			iMoney = sti(PChar.ColonyBuilding.Money);
+			ChangeColonyMoney(-(iMoney / iRebels), false);
 
-					AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", в колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж? Мятежники с легкостью овладели ситуацией, потому что владелец колонии не удосужился укрепить колонию!", 5, 1);
-				break;
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", в колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж? Мятежники с легкостью овладели ситуацией, потому что владелец колонии не удосужился укрепить колонию!", 5, 1);
+			break;
 
-				case "BattleLand":
-					sDestroyBuild = PChar.ColonyBuilding.Defence.DestroyBuild;
+		case "BattleLand":
+			sDestroyBuild = PChar.ColonyBuilding.Defence.DestroyBuild;
 
-					AddQuestRecord("MY_COLONY", "27");
-					ChangeColonyMoney(0, true);
-					DestroyBuildInCaimanColony(sDestroyBuild);
-					DeleteBestGoodFromMyColony(true);
+			AddQuestRecord("MY_COLONY", "27");
+			ChangeColonyMoney(0, true);
+			DestroyBuildInCaimanColony(sDestroyBuild);
+			DeleteBestGoodFromMyColony(true);
 
-					AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на колонию " + PChar.ColonyBuilding.ColonyName + " было совершено нападение! Напавшие очень удивились, когда не обнаружили у стен колонии охраняющего отряда. А колония была разграблена.", 5, 1);
-				break;
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на колонию " + PChar.ColonyBuilding.ColonyName + " было совершено нападение! Напавшие очень удивились, когда не обнаружили у стен колонии охраняющего отряда. А колония была разграблена.", 5, 1);
+			break;
 
-				case "BattleSea":
-					iNation = sti(PChar.ColonyBuilding.Defence.Nation);
-					sNationName = GetNationNameByType(iNation) + "Gen";
-					sDestroyBuild = PChar.ColonyBuilding.Defence.DestroyBuild;
+		case "BattleSea":
+			iNation = sti(PChar.ColonyBuilding.Defence.Nation);
+			sNationName = GetNationNameByType(iNation) + "Gen";
+			sDestroyBuild = PChar.ColonyBuilding.Defence.DestroyBuild;
 
-					AddQuestRecord("MY_COLONY", "28");
-					AddQuestUserData("MY_COLONY", "sNationName", XI_ConvertString(sNationName));
-					ChangeColonyMoney(0, true);
-					PChar.ColonyBuilding.Defence.KillShips = 4;
-					DestroyBuildInCaimanColony(sDestroyBuild);
-					DeleteBestGoodFromMyColony(true);
-					Group_DeleteGroup("ColonySeaAttacker");
-					Island_SetReloadEnableGlobal("Caiman", true);
+			AddQuestRecord("MY_COLONY", "28");
+			AddQuestUserData("MY_COLONY", "sNationName", XI_ConvertString(sNationName));
+			ChangeColonyMoney(0, true);
+			PChar.ColonyBuilding.Defence.KillShips = 4;
+			DestroyBuildInCaimanColony(sDestroyBuild);
+			DeleteBestGoodFromMyColony(true);
+			Group_DeleteGroup("ColonySeaAttacker");
+			Island_SetReloadEnableGlobal("Caiman", true);
 
-					AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на колонию " + PChar.ColonyBuilding.ColonyName + " было совершено силами эскадры под флагом " + XI_ConvertString(sNationName) + "?! Напавшие очень удивились, когда не обнаружили у стен в водах колонии кораблей охраны. Колония была разграблена.", 5, 1);
-				break;
-			}
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на колонию " + PChar.ColonyBuilding.ColonyName + " было совершено силами эскадры под флагом " + XI_ConvertString(sNationName) + "?! Напавшие очень удивились, когда не обнаружили у стен в водах колонии кораблей охраны. Колония была разграблена.", 5, 1);
+			break;
+		}
 
-			ChangeColonyPopulation(-iCitizensDead, false);
-			ChangeColonySoldiers(0, true);
-			ChangeColonyMorale(0, true);
+		ChangeColonyPopulation(-iCitizensDead, false);
+		ChangeColonySoldiers(0, true);
+		ChangeColonyMorale(0, true);
 
-			PChar.ColonyBuilding.Defence = false;
-			PChar.ColonyBuilding.Defence.Type = "";
-			PChar.ColonyBuilding.Defence.DeadInTown = true;
-			PChar.ColonyBuilding.Defence.Battle = false;
-			SetTimerCondition("ColonyNotSetDead", 0, 0, 6, false);
+		PChar.ColonyBuilding.Defence = false;
+		PChar.ColonyBuilding.Defence.Type = "";
+		PChar.ColonyBuilding.Defence.DeadInTown = true;
+		PChar.ColonyBuilding.Defence.Battle = false;
+		SetTimerCondition("ColonyNotSetDead", 0, 0, 6, false);
 		break;
 
-		case "Mines":
-			switch(sType)
-			{
-				ChangeMinesSoldiers(0, true);
-				ChangeMinesSlaves(0, true);
+	case "Mines":
+		switch (sType)
+		{
+			ChangeMinesSoldiers(0, true);
+			ChangeMinesSlaves(0, true);
 
-				case "Mutiny":
-					iRebels = sti(PChar.Mines.Defence.EnemyQuantity);
-					AddQuestRecord("MY_COLONY", "29");
+		case "Mutiny":
+			iRebels = sti(PChar.Mines.Defence.EnemyQuantity);
+			AddQuestRecord("MY_COLONY", "29");
 
-					iOreMinus = iRebels * (3 + rand(2));
-					ChangeMinesOre(-iOreMinus, "Gold", false);
-					iOreMinus = iRebels * (3 + rand(2));
-					ChangeMinesOre(-iOreMinus, "Silver", false);
-					iOreMinus = iRebels * (3 + rand(2));
-					ChangeMinesOre(-iOreMinus, "Iron", false);
+			iOreMinus = iRebels * (3 + rand(2));
+			ChangeMinesOre(-iOreMinus, "Gold", false);
+			iOreMinus = iRebels * (3 + rand(2));
+			ChangeMinesOre(-iOreMinus, "Silver", false);
+			iOreMinus = iRebels * (3 + rand(2));
+			ChangeMinesOre(-iOreMinus, "Iron", false);
 
-					iGoodMinus = iRebels * 50;
-					ChangeMinesMainGoods(-iGoodMinus, "Food", false);
-					iGoodMinus = iRebels * 25;
-					ChangeMinesMainGoods(-iGoodMinus, "Medicament", false);
+			iGoodMinus = iRebels * 50;
+			ChangeMinesMainGoods(-iGoodMinus, "Food", false);
+			iGoodMinus = iRebels * 25;
+			ChangeMinesMainGoods(-iGoodMinus, "Medicament", false);
 
-					AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на рудниках колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж. Из-за отсутствия необходимого гарнизона, мятежники легко справились с остальными и обратились в бегство.", 5, 1);
-				break;
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на рудниках колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж. Из-за отсутствия необходимого гарнизона, мятежники легко справились с остальными и обратились в бегство.", 5, 1);
+			break;
 
-				case "BattleLand":
-					AddQuestRecord("MY_COLONY", "30");
+		case "BattleLand":
+			AddQuestRecord("MY_COLONY", "30");
 
-					iGold = sti(PChar.Mines.Defence.Minus.Gold);
-					iSilver = sti(PChar.Mines.Defence.Minus.Silver);
-					iIron = sti(PChar.Mines.Defence.Minus.Iron);
-					iSlaves = sti(PChar.Mines.Defence.Minus.Slaves);
+			iGold = sti(PChar.Mines.Defence.Minus.Gold);
+			iSilver = sti(PChar.Mines.Defence.Minus.Silver);
+			iIron = sti(PChar.Mines.Defence.Minus.Iron);
+			iSlaves = sti(PChar.Mines.Defence.Minus.Slaves);
 
-					ChangeMinesOre(-iGold, "Gold", false);
-					ChangeMinesOre(-iSilver, "Silver", false);
-					ChangeMinesOre(-iIron, "Iron", false);
+			ChangeMinesOre(-iGold, "Gold", false);
+			ChangeMinesOre(-iSilver, "Silver", false);
+			ChangeMinesOre(-iIron, "Iron", false);
 
-					AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на рудники колонии " + PChar.ColonyBuilding.ColonyName + " было совершено нападение?! Самое интересное, что рудники почти никто не охранял!", 5, 1);
-				break;
-			}
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на рудники колонии " + PChar.ColonyBuilding.ColonyName + " было совершено нападение?! Самое интересное, что рудники почти никто не охранял!", 5, 1);
+			break;
+		}
 
-			PChar.Mines.Defence = false;
-			PChar.Mines.Defence.Type = "";
-			PChar.Mines.Defence.DeadInTown = true;
-			PChar.Mines.Defence.Battle = false;
+		PChar.Mines.Defence = false;
+		PChar.Mines.Defence.Type = "";
+		PChar.Mines.Defence.DeadInTown = true;
+		PChar.Mines.Defence.Battle = false;
 
-			SetTimerCondition("MinesNotSetDead", 0, 0, 6, false);
-			SetTimerCondition("MinesUptade5", 0, 0, 10, false);
+		SetTimerCondition("MinesNotSetDead", 0, 0, 6, false);
+		SetTimerCondition("MinesUptade5", 0, 0, 10, false);
 		break;
 
-		case "Plantation":
-			switch(sType)
-			{
-				case "Mutiny":
-					iRebels = sti(PChar.Plantation.Defence.EnemyQuantity);
+	case "Plantation":
+		switch (sType)
+		{
+		case "Mutiny":
+			iRebels = sti(PChar.Plantation.Defence.EnemyQuantity);
 
-					AddQuestRecord("MY_COLONY", "31");
-					ChangePlantationSlaves(0, true);
-					ChangePlantationSoldiers(0, true);
+			AddQuestRecord("MY_COLONY", "31");
+			ChangePlantationSlaves(0, true);
+			ChangePlantationSoldiers(0, true);
 
-					iOreMinus = iRebels * (3 + rand(2));
-					ChangePlantationExtract(-iOreMinus, "Sugar", false);
-					iOreMinus = iRebels * (3 + rand(2));
-					ChangePlantationExtract(-iOreMinus, "Coffee", false);
+			iOreMinus = iRebels * (3 + rand(2));
+			ChangePlantationExtract(-iOreMinus, "Sugar", false);
+			iOreMinus = iRebels * (3 + rand(2));
+			ChangePlantationExtract(-iOreMinus, "Coffee", false);
 
-					iGoodMinus = iRebels * 50;
-					ChangePlantationGoods(-iOreMinus, "Food", false);
-					iGoodMinus = iRebels * 25;
-					ChangePlantationGoods(-iOreMinus, "Medicament", false);
+			iGoodMinus = iRebels * 50;
+			ChangePlantationGoods(-iOreMinus, "Food", false);
+			iGoodMinus = iRebels * 25;
+			ChangePlantationGoods(-iOreMinus, "Medicament", false);
 
-					AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на плантации, принадлежащей колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж?! Мятежники тут же праздновали победу, потому что охраняемого гарнизона почти не было!", 5, 1);
-				break;
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", на плантации, принадлежащей колонии " + PChar.ColonyBuilding.ColonyName + " вспыхнул мятеж?! Мятежники тут же праздновали победу, потому что охраняемого гарнизона почти не было!", 5, 1);
+			break;
 
-				PChar.Plantation.Defence = false;
-				PChar.Plantation.Defence.Type = "";
-				PChar.Plantation.Defence.DeadInTown = true;
-				PChar.Plantation.Defence.Battle = false;
+			PChar.Plantation.Defence = false;
+			PChar.Plantation.Defence.Type = "";
+			PChar.Plantation.Defence.DeadInTown = true;
+			PChar.Plantation.Defence.Battle = false;
 
-				SetTimerCondition("PlantationNotSetDead", 0, 0, 6, false);
-				SetTimerCondition("PlantationUptade5", 0, 0, 10, false);
-			}
+			SetTimerCondition("PlantationNotSetDead", 0, 0, 6, false);
+			SetTimerCondition("PlantationUptade5", 0, 0, 10, false);
+		}
 		break;
 	}
 
@@ -1950,18 +2131,18 @@ void SetBestGoodForDeleteFromMyColony()
 	int iDeleteGoods = 0;
 	int iQuantity = 0;
 	int iRand = 0;
-	for(int i=0; i < GOODS_QUANTITY; i++)
+	for (int i = 0; i < GOODS_QUANTITY; i++)
 	{
-		if(sti(Goods[i].Cost) >= 100)
+		if (sti(Goods[i].Cost) >= 100)
 		{
 			sGoodName = Goods[i].Name;
 
-			if(sti(rStoreHouse.Goods.(sGoodName).Quantity) > 0)
+			if (sti(rStoreHouse.Goods.(sGoodName).Quantity) > 0)
 			{
 				iRand = rand(5) + 3;
 				iQuantity = sti(rStoreHouse.Goods.(sGoodName).Quantity) / iRand;
 
-				if(iQuantity > 0)
+				if (iQuantity > 0)
 				{
 					iDeleteGoods++;
 					sGood = "Good_" + iDeleteGoods;
@@ -1978,18 +2159,18 @@ void SetBestGoodForDeleteFromMyColony()
 
 void DeleteBestGoodFromMyColony(bool bDelete)
 {
-	if(!bDelete)
+	if (!bDelete)
 	{
 		return;
 	}
 
 	int iDeleteGoods = 0;
-	if(CheckAttribute(PChar, "ColonyBuilding.DeleteGoods.DeleteQty"))
+	if (CheckAttribute(PChar, "ColonyBuilding.DeleteGoods.DeleteQty"))
 	{
 		iDeleteGoods = sti(PChar.ColonyBuilding.DeleteGoods.DeleteQty);
 	}
 
-	if(iDeleteGoods <= 0)
+	if (iDeleteGoods <= 0)
 	{
 		return;
 	}
@@ -2001,7 +2182,7 @@ void DeleteBestGoodFromMyColony(bool bDelete)
 
 	int iGood = 0;
 	int iStoreQty = 0;
-	for(int i=1; i<=iDeleteGoods; i++)
+	for (int i = 1; i <= iDeleteGoods; i++)
 	{
 		sGood = "Good_" + i;
 		sGoodName = PChar.ColonyBuilding.DeleteGoods.(sGood);
@@ -2015,7 +2196,7 @@ void DeleteBestGoodFromMyColony(bool bDelete)
 		Log_Info(XI_ConvertString(sGoodName) + " в количестве " + iQty + " шт.");
 	}
 
-	if(CheckAttribute(PChar, "ColonyBuilding.DeleteGoods"))
+	if (CheckAttribute(PChar, "ColonyBuilding.DeleteGoods"))
 	{
 		DeleteAttribute(PChar, "ColonyBuilding.DeleteGoods");
 	}
@@ -2025,29 +2206,37 @@ void DeleteBestGoodFromMyColony(bool bDelete)
 
 void SetDeadmansToLocation(ref loc, string sType)
 {
-	if(actLoadFlag) return;
-	if(loc.id != "Caiman_town" && loc.id != "Caiman_Plantation" && loc.id != "Caiman_mines") return;
+	if (actLoadFlag)
+		return;
+	if (loc.id != "Caiman_town" && loc.id != "Caiman_Plantation" && loc.id != "Caiman_mines")
+		return;
 
-	int iPopulation = 100;//sti(PChar.ColonyBuilding.Population);
+	int iPopulation = 100; //sti(PChar.ColonyBuilding.Population);
 	int iMan = iPopulation / 10;
 	int iWoman = iPopulation / 20;
-    int iMassive;
+	int iMassive;
 	string model[23];
 
-	if(iMan > 15) iMan = 15;
-	if(iMan < 0) iMan = 0;
+	if (iMan > 15)
+		iMan = 15;
+	if (iMan < 0)
+		iMan = 0;
 
-	if(iWoman > 10) iWoman = 10;
-	if(iWoman < 0) iWoman = 0;
+	if (iWoman > 10)
+		iWoman = 10;
+	if (iWoman < 0)
+		iWoman = 0;
 
-	if(sti(PChar.ColonyBuilding.Stage) <= 1)
+	if (sti(PChar.ColonyBuilding.Stage) <= 1)
 	{
-		if(iMan > 8) iMan = 8;
-		if(iWoman > 7) iWoman = 7;
+		if (iMan > 8)
+			iMan = 8;
+		if (iWoman > 7)
+			iWoman = 7;
 	}
 
-	int i=1;
-	int b=1;
+	int i = 1;
+	int b = 1;
 	int iSex = 1;
 
 	ref dead;
@@ -2055,46 +2244,45 @@ void SetDeadmansToLocation(ref loc, string sType)
 
 	iSex = 1;
 
-	for(i=1; i <= iMan; i++)
+	for (i = 1; i <= iMan; i++)
 	{
 		dead = GetCharacter(NPC_GeneratePhantomCharacter("citiz_1", PIRATE, iSex, 0));
 
-		sModel = "citiz_" + (rand(11)+1);
+		sModel = "citiz_" + (rand(11) + 1);
 		sAni = "man";
 
-		if(sType == "pirate")
+		if (sType == "pirate")
 		{
-            model[0] = "prizon_1";
-            model[1] = "prizon_2";
-            model[2] = "prizon_3";
-            model[3] = "prizon_4";
-            model[4] = "prizon_5";
-            model[5] = "prizon_6";
-            model[6] = "prizon_7";
-	        model[7] = "prizon_8";
-            model[8] = "pirate_1";
-            model[9] = "prison_5";
-            model[10] = "pirate_1";
-            model[11] = "pirate_11";
-            model[12] = "pirate_12";
-            model[13] = "pirate_13";
-            model[14] = "pirate_14";
-            model[15] = "pirate_15";
-            model[16] = "pirate_16";
-            model[17] = "pirate_21";
-            model[18] = "pirate_25";
-            model[19] = "PKM_rab_1";
-            model[20] = "PKM_rab_2";
-            model[21] = "PKM_rab_3";
-            model[22] = "PKM_rab_4";
+			model[0] = "prizon_1";
+			model[1] = "prizon_2";
+			model[2] = "prizon_3";
+			model[3] = "prizon_4";
+			model[4] = "prizon_5";
+			model[5] = "prizon_6";
+			model[6] = "prizon_7";
+			model[7] = "prizon_8";
+			model[8] = "pirate_1";
+			model[9] = "prison_5";
+			model[10] = "pirate_1";
+			model[11] = "pirate_11";
+			model[12] = "pirate_12";
+			model[13] = "pirate_13";
+			model[14] = "pirate_14";
+			model[15] = "pirate_15";
+			model[16] = "pirate_16";
+			model[17] = "pirate_21";
+			model[18] = "pirate_25";
+			model[19] = "PKM_rab_1";
+			model[20] = "PKM_rab_2";
+			model[21] = "PKM_rab_3";
+			model[22] = "PKM_rab_4";
 
 			iMassive = rand(22);
 
-		    sModel = model[iMassive];
-		    sAni = "man";
+			sModel = model[iMassive];
+			sAni = "man";
 			/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
 		}
-
 
 		dead.model = sModel;
 		dead.model.animation = sAni;
@@ -2108,23 +2296,23 @@ void SetDeadmansToLocation(ref loc, string sType)
 		RemoveCharacterEquip(dead, BLADE_ITEM_TYPE);
 		RemoveCharacterEquip(dead, GUN_ITEM_TYPE);
 
-		for(b=0; b <= 4; b++)
+		for (b = 0; b <= 4; b++)
 		{
 			LaunchBlood(dead, 7.0, true);
 		}
 	}
 
-	if(sType == "pirate")
+	if (sType == "pirate")
 	{
 		return;
 	}
 
 	iSex = 0;
-	for(i=1; i <= iWoman; i++)
+	for (i = 1; i <= iWoman; i++)
 	{
 		dead = GetCharacter(NPC_GeneratePhantomCharacter("girl_1", PIRATE, iSex, 0));
 
-		sModel = "girl_" + (rand(10)+1);
+		sModel = "girl_" + (rand(10) + 1);
 		sAni = "towngirl";
 
 		dead.model = sModel;
@@ -2139,7 +2327,7 @@ void SetDeadmansToLocation(ref loc, string sType)
 		RemoveCharacterEquip(dead, BLADE_ITEM_TYPE);
 		RemoveCharacterEquip(dead, GUN_ITEM_TYPE);
 
-		for(b=0; b <= 4; b++)
+		for (b = 0; b <= 4; b++)
 		{
 			LaunchBlood(dead, 7.0, true);
 		}
@@ -2148,12 +2336,12 @@ void SetDeadmansToLocation(ref loc, string sType)
 
 int FightInColonyGetMusketeerQty(int iQty)
 {
-	if(iQty < 5)
+	if (iQty < 5)
 	{
 		return 0;
 	}
 
-	if(iQty >= 20)
+	if (iQty >= 20)
 	{
 		return iQty / 4;
 	}
@@ -2169,13 +2357,34 @@ int GetColonyMinPeople()
 {
 	int iQty = 0;
 
-	if(PChar.ColonyBuilding.Store == true && PChar.ColonyBuilding.Store.BuildingTime == false) 		{ iQty++; }
-	if(PChar.ColonyBuilding.Shipyard == true && PChar.ColonyBuilding.Shipyard.BuildingTime == false) 	{ iQty++; }
-	if(PChar.ColonyBuilding.Tavern == true && PChar.ColonyBuilding.Tavern.BuildingTime == false) 		{ iQty += 2; }
-	if(PChar.ColonyBuilding.Church == true && PChar.ColonyBuilding.Church.BuildingTime == false) 		{ iQty++; }
-	if(PChar.ColonyBuilding.Bank == true && PChar.ColonyBuilding.Bank.BuildingTime == false) 		{ iQty++; }
-	if(PChar.ColonyBuilding.HeadPort == true && PChar.ColonyBuilding.HeadPort.BuildingTime == false) 	{ iQty++; }
-	if(PChar.ColonyBuilding.StoreHouse == true && PChar.ColonyBuilding.StoreHouse.BuildingTime == false) 	{ iQty++; }
+	if (PChar.ColonyBuilding.Store == true && PChar.ColonyBuilding.Store.BuildingTime == false)
+	{
+		iQty++;
+	}
+	if (PChar.ColonyBuilding.Shipyard == true && PChar.ColonyBuilding.Shipyard.BuildingTime == false)
+	{
+		iQty++;
+	}
+	if (PChar.ColonyBuilding.Tavern == true && PChar.ColonyBuilding.Tavern.BuildingTime == false)
+	{
+		iQty += 2;
+	}
+	if (PChar.ColonyBuilding.Church == true && PChar.ColonyBuilding.Church.BuildingTime == false)
+	{
+		iQty++;
+	}
+	if (PChar.ColonyBuilding.Bank == true && PChar.ColonyBuilding.Bank.BuildingTime == false)
+	{
+		iQty++;
+	}
+	if (PChar.ColonyBuilding.HeadPort == true && PChar.ColonyBuilding.HeadPort.BuildingTime == false)
+	{
+		iQty++;
+	}
+	if (PChar.ColonyBuilding.StoreHouse == true && PChar.ColonyBuilding.StoreHouse.BuildingTime == false)
+	{
+		iQty++;
+	}
 
 	return iQty;
 }
@@ -2184,7 +2393,7 @@ void ChangeColonyPopulation(int iQty, bool bSet)
 {
 	int iMax = sti(PChar.ColonyBuilding.Population.Max);
 
-	if(bSet)
+	if (bSet)
 	{
 		PChar.ColonyBuilding.Population = iQty;
 	}
@@ -2193,13 +2402,15 @@ void ChangeColonyPopulation(int iQty, bool bSet)
 		PChar.ColonyBuilding.Population = sti(PChar.ColonyBuilding.Population) + iQty;
 	}
 
-	if(sti(PChar.ColonyBuilding.Population) < 0) PChar.ColonyBuilding.Population = 0;
-	if(sti(PChar.ColonyBuilding.Population) > iMax) PChar.ColonyBuilding.Population = iMax;
+	if (sti(PChar.ColonyBuilding.Population) < 0)
+		PChar.ColonyBuilding.Population = 0;
+	if (sti(PChar.ColonyBuilding.Population) > iMax)
+		PChar.ColonyBuilding.Population = iMax;
 }
 
 void ChangeColonyMorale(int iQty, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.ColonyBuilding.Population.Morale = iQty;
 	}
@@ -2208,15 +2419,17 @@ void ChangeColonyMorale(int iQty, bool bSet)
 		PChar.ColonyBuilding.Population.Morale = sti(PChar.ColonyBuilding.Population.Morale) + iQty;
 	}
 
-	if(sti(PChar.ColonyBuilding.Population.Morale) < 0) PChar.ColonyBuilding.Population.Morale = 0;
-	if(sti(PChar.ColonyBuilding.Population.Morale) > 100) PChar.ColonyBuilding.Population.Morale = 100;
+	if (sti(PChar.ColonyBuilding.Population.Morale) < 0)
+		PChar.ColonyBuilding.Population.Morale = 0;
+	if (sti(PChar.ColonyBuilding.Population.Morale) > 100)
+		PChar.ColonyBuilding.Population.Morale = 100;
 }
 
 void ChangeColonySoldiers(int iQty, bool bSet)
 {
 	int iMax = sti(PChar.ColonyBuilding.Soldiers.MaxQuantity);
 
-	if(bSet)
+	if (bSet)
 	{
 		PChar.ColonyBuilding.Soldiers = iQty;
 	}
@@ -2225,8 +2438,10 @@ void ChangeColonySoldiers(int iQty, bool bSet)
 		PChar.ColonyBuilding.Soldiers = sti(PChar.ColonyBuilding.Soldiers) + iQty;
 	}
 
-	if(sti(PChar.ColonyBuilding.Soldiers) < 0) PChar.ColonyBuilding.Soldiers = 0;
-	if(sti(PChar.ColonyBuilding.Soldiers) > iMax) PChar.ColonyBuilding.Soldiers = iMax;
+	if (sti(PChar.ColonyBuilding.Soldiers) < 0)
+		PChar.ColonyBuilding.Soldiers = 0;
+	if (sti(PChar.ColonyBuilding.Soldiers) > iMax)
+		PChar.ColonyBuilding.Soldiers = iMax;
 }
 
 void ChangeColonyGoods(int iQty, string sGood)
@@ -2235,13 +2450,15 @@ void ChangeColonyGoods(int iQty, string sGood)
 
 	PChar.ColonyBuilding.(sGood) = sti(PChar.ColonyBuilding.(sGood)) + iQty;
 
-	if(sti(PChar.ColonyBuilding.(sGood)) < 0) PChar.ColonyBuilding.(sGood) = 0;
-	if(sti(PChar.ColonyBuilding.(sGood)) > iMax) PChar.ColonyBuilding.(sGood) = iMax;
+	if (sti(PChar.ColonyBuilding.(sGood)) < 0)
+		PChar.ColonyBuilding.(sGood) = 0;
+	if (sti(PChar.ColonyBuilding.(sGood)) > iMax)
+		PChar.ColonyBuilding.(sGood) = iMax;
 }
 
 void ChangeColonyMoney(int iQty, bool bSet)
 {
-	if(bSet)
+	if (bSet)
 	{
 		PChar.ColonyBuilding.Money = iQty;
 	}
@@ -2250,12 +2467,13 @@ void ChangeColonyMoney(int iQty, bool bSet)
 		PChar.ColonyBuilding.Money = sti(PChar.ColonyBuilding.Money) + iQty;
 	}
 
-	if(sti(PChar.ColonyBuilding.Money) < 0) PChar.ColonyBuilding.Money = 0;
+	if (sti(PChar.ColonyBuilding.Money) < 0)
+		PChar.ColonyBuilding.Money = 0;
 }
 
 int GetMyColonyMoney()
 {
-	if(!CheckAttribute(PChar, "ColonyBuilding.Money"))
+	if (!CheckAttribute(PChar, "ColonyBuilding.Money"))
 	{
 		return 0;
 	}
@@ -2272,9 +2490,9 @@ void SetColonyMessageInfo(string sTarget, string sType, string sEnd, int iNation
 	PChar.ColonyBuilding.MessageInfo.Time = iTime;
 	PChar.ColonyBuilding.MessageInfo.First = bFirst;
 
-	if(!dialogRun && !bQuestCheckProcessFreeze && !bAbordageStarted)
+	if (!dialogRun && !bQuestCheckProcessFreeze && !bAbordageStarted)
 	{
-		if(bInterface)
+		if (bInterface)
 		{
 			DoQuestFunctionDelay("ColonyMessageStartInfo", 2.5);
 		}
@@ -2289,12 +2507,12 @@ void ColonyMessageStartInfo(string _tmp)
 // Разрушить/закрыть здание
 void DestroyBuildInCaimanColony(string sBuild)
 {
-	if(sBuild == "none")
+	if (sBuild == "none")
 	{
 		return; // не сломали ничего
 	}
 
-	if(PChar.ColonyBuilding.(sBuild) == false)
+	if (PChar.ColonyBuilding.(sBuild) == false)
 	{
 		return; // такого здания ещё не построили
 	}
@@ -2304,36 +2522,36 @@ void DestroyBuildInCaimanColony(string sBuild)
 
 	int iCost = 0;
 
-	switch(sBuild)
+	switch (sBuild)
 	{
-		case "Store":
-			Locations[FindLocation("Caiman_town")].reload.l6.disable = true;
-			iCost = 15000 + rand(2500);
+	case "Store":
+		Locations[FindLocation("Caiman_town")].reload.l6.disable = true;
+		iCost = 15000 + rand(2500);
 		break;
 
-		case "Shipyard":
-			Locations[FindLocation("Caiman_town")].reload.l5.disable = true;
-			iCost = 17500 + rand(2850);
+	case "Shipyard":
+		Locations[FindLocation("Caiman_town")].reload.l5.disable = true;
+		iCost = 17500 + rand(2850);
 		break;
 
-		case "Tavern":
-			Locations[FindLocation("Caiman_town")].reload.l4.disable = true;
-			iCost = 15000 + rand(500);
+	case "Tavern":
+		Locations[FindLocation("Caiman_town")].reload.l4.disable = true;
+		iCost = 15000 + rand(500);
 		break;
 
-		case "Church":
-			Locations[FindLocation("Caiman_town")].reload.l7.disable = true;
-			iCost = 20000 + rand(2500);
+	case "Church":
+		Locations[FindLocation("Caiman_town")].reload.l7.disable = true;
+		iCost = 20000 + rand(2500);
 		break;
 
-		case "Bank":
-			Locations[FindLocation("Caiman_town")].reload.l8.disable = true;
-			iCost = 20000 + rand(2500);
+	case "Bank":
+		Locations[FindLocation("Caiman_town")].reload.l8.disable = true;
+		iCost = 20000 + rand(2500);
 		break;
 
-		case "HeadPort":
-			Locations[FindLocation("Caiman_town")].reload.l10.disable = true;
-			iCost = 12500 + rand(2550);
+	case "HeadPort":
+		Locations[FindLocation("Caiman_town")].reload.l10.disable = true;
+		iCost = 12500 + rand(2550);
 		break;
 	}
 
@@ -2342,7 +2560,7 @@ void DestroyBuildInCaimanColony(string sBuild)
 	AddQuestRecord("MY_COLONY", "15");
 	AddQuestUserData("MY_COLONY", "sDestroyBuild", XI_ConvertString("Destroy" + sBuild));
 
-	if(sBuild == "Store")
+	if (sBuild == "Store")
 	{
 		AddQuestRecord("MY_COLONY", "32");
 	}
@@ -2359,14 +2577,26 @@ void RenamedColonyCaiman()
 
 string GetColonyBuildDestroy()
 {
-	switch(rand(5))
+	switch (rand(5))
 	{
-		case 0: return "Store"; break;
-		case 1: return "Shipyard"; break;
-		case 2: return "Tavern"; break;
-		case 3: return "Church"; break;
-		case 4: return "Bank"; break;
-		case 5: return "HeadPort"; break;
+	case 0:
+		return "Store";
+		break;
+	case 1:
+		return "Shipyard";
+		break;
+	case 2:
+		return "Tavern";
+		break;
+	case 3:
+		return "Church";
+		break;
+	case 4:
+		return "Bank";
+		break;
+	case 5:
+		return "HeadPort";
+		break;
 	}
 
 	return "Store";
@@ -2374,29 +2604,30 @@ string GetColonyBuildDestroy()
 
 int GetShipTypeForColonyBattleSea(ref Hunter)
 {
-    int Squadron, hcrew;
+	int Squadron, hcrew;
 
-    int j, q;
-    object rShip;
-    bool bOk = false;
-    int iNation = sti(Hunter.nation);
-    aref aNation;
-    string sAttr;
+	int j, q;
+	object rShip;
+	bool bOk = false;
+	int iNation = sti(Hunter.nation);
+	aref aNation;
+	string sAttr;
 
-    while(!bOk)
-    {
-        Squadron = 100 + rand(24); // LEO: Чуть-чуть 2 класс и остальное 1 класс
+	while (!bOk)
+	{
+		Squadron = 100 + rand(24); // LEO: Чуть-чуть 2 класс и остальное 1 класс
 
-        rShip = GetShipByType(Squadron);
-        makearef(aNation, rShip.nation);
-        q = GetAttributesNum(aNation);
-        for(j = 0; j < q; j++)
-        {
-            sAttr = GetAttributeName(GetAttributeN(aNation, j));
-            if(GetNationTypeByName(sAttr) == iNation && rShip.nation.(sAttr) == true) bOk = true;
-        }
-    }
-    return Squadron;
+		rShip = GetShipByType(Squadron);
+		makearef(aNation, rShip.nation);
+		q = GetAttributesNum(aNation);
+		for (j = 0; j < q; j++)
+		{
+			sAttr = GetAttributeName(GetAttributeN(aNation, j));
+			if (GetNationTypeByName(sAttr) == iNation && rShip.nation.(sAttr) == true)
+				bOk = true;
+		}
+	}
+	return Squadron;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2409,45 +2640,45 @@ int GetSumAutoPurchaseColonyGoods(string sType, bool bCurrent)
 	int iNeedMedicament = 0;
 	int iNeedTools = 0;
 
-	if(bCurrent)
+	if (bCurrent)
 	{
-		switch(sType)
+		switch (sType)
 		{
-			case "Colony":
-				iNeedFood = sti(PChar.ColonyBuilding.Food.MaxQuantity) - sti(PChar.ColonyBuilding.Food);
-				iNeedMedicament = sti(PChar.ColonyBuilding.Medicament.MaxQuantity) - sti(PChar.ColonyBuilding.Medicament);
+		case "Colony":
+			iNeedFood = sti(PChar.ColonyBuilding.Food.MaxQuantity) - sti(PChar.ColonyBuilding.Food);
+			iNeedMedicament = sti(PChar.ColonyBuilding.Medicament.MaxQuantity) - sti(PChar.ColonyBuilding.Medicament);
 			break;
 
-			case "Mines":
-				iNeedFood = sti(PChar.Mines.FoodQuantity.Max) - sti(PChar.Mines.FoodQuantity);
-				iNeedMedicament = sti(PChar.Mines.MedicamentQuantity.Max) - sti(PChar.Mines.MedicamentQuantity);
+		case "Mines":
+			iNeedFood = sti(PChar.Mines.FoodQuantity.Max) - sti(PChar.Mines.FoodQuantity);
+			iNeedMedicament = sti(PChar.Mines.MedicamentQuantity.Max) - sti(PChar.Mines.MedicamentQuantity);
 			break;
 
-			case "Plantation":
-				iNeedFood = sti(PChar.Plantation.Food.MaxQuantity) - sti(PChar.Plantation.Food.Quantity);
-				iNeedMedicament = sti(PChar.Plantation.Medicament.MaxQuantity) - sti(PChar.Plantation.Medicament.Quantity);
-				iNeedTools = sti(PChar.Plantation.Items.MaxQuantity) - sti(PChar.Plantation.Items.Quantity);
+		case "Plantation":
+			iNeedFood = sti(PChar.Plantation.Food.MaxQuantity) - sti(PChar.Plantation.Food.Quantity);
+			iNeedMedicament = sti(PChar.Plantation.Medicament.MaxQuantity) - sti(PChar.Plantation.Medicament.Quantity);
+			iNeedTools = sti(PChar.Plantation.Items.MaxQuantity) - sti(PChar.Plantation.Items.Quantity);
 			break;
 		}
 	}
 	else
 	{
-		switch(sType)
+		switch (sType)
 		{
-			case "Colony":
-				iNeedFood = sti(PChar.ColonyBuilding.Food.MaxQuantity);
-				iNeedMedicament = sti(PChar.ColonyBuilding.Medicament.MaxQuantity);
+		case "Colony":
+			iNeedFood = sti(PChar.ColonyBuilding.Food.MaxQuantity);
+			iNeedMedicament = sti(PChar.ColonyBuilding.Medicament.MaxQuantity);
 			break;
 
-			case "Mines":
-				iNeedFood = sti(PChar.Mines.FoodQuantity.Max);
-				iNeedMedicament = sti(PChar.Mines.MedicamentQuantity.Max);
+		case "Mines":
+			iNeedFood = sti(PChar.Mines.FoodQuantity.Max);
+			iNeedMedicament = sti(PChar.Mines.MedicamentQuantity.Max);
 			break;
 
-			case "Plantation":
-				iNeedFood = sti(PChar.Plantation.Food.MaxQuantity);
-				iNeedMedicament = sti(PChar.Plantation.Medicament.MaxQuantity);
-				iNeedTools = sti(PChar.Plantation.Items.MaxQuantity);
+		case "Plantation":
+			iNeedFood = sti(PChar.Plantation.Food.MaxQuantity);
+			iNeedMedicament = sti(PChar.Plantation.Medicament.MaxQuantity);
+			iNeedTools = sti(PChar.Plantation.Items.MaxQuantity);
 			break;
 		}
 	}
@@ -2464,18 +2695,18 @@ int GetSumAutoPurchaseColonyGoods(string sType, bool bCurrent)
 void AutoPurchaseColonyGoods(string sType)
 {
 	bool bCan = PChar.ColonyBuilding.(sType).AutoPurchase;
-	if(!bCan)
+	if (!bCan)
 	{
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Store == false)
+	if (PChar.ColonyBuilding.Store == false)
 	{
 		return;
 	}
 
 	int iCost = GetSumAutoPurchaseColonyGoods(sType, true);
-	if(iCost <= 0)
+	if (iCost <= 0)
 	{
 		return;
 	}
@@ -2483,14 +2714,20 @@ void AutoPurchaseColonyGoods(string sType)
 	int iColonyMoney = sti(PChar.ColonyBuilding.Money);
 
 	string sTypeText = "колонии";
-	switch(sType)
+	switch (sType)
 	{
-		case "Colony": sTypeText = "вашей колонии ''" + PChar.ColonyBuilding.ColonyName + "''"; break;
-		case "Mines": sTypeText = "ваших рудников"; break;
-		case "Plantation": sTypeText = "вашей плантации"; break;
+	case "Colony":
+		sTypeText = "вашей колонии ''" + PChar.ColonyBuilding.ColonyName + "''";
+		break;
+	case "Mines":
+		sTypeText = "ваших рудников";
+		break;
+	case "Plantation":
+		sTypeText = "вашей плантации";
+		break;
 	}
 
-	if(iColonyMoney < iCost)
+	if (iColonyMoney < iCost)
 	{
 		Log_InfoS("Авто-закупка для " + sTypeText + " не может быть произведена, так как в казне недостаточно денег.");
 		return;
@@ -2504,41 +2741,41 @@ void AutoPurchaseColonyGoods(string sType)
 	int iMedicamentMax = 0;
 	int iToolsMax = 0;
 
-	switch(sType)
+	switch (sType)
 	{
-		case "Colony":
-			iFoodMax = sti(PChar.ColonyBuilding.Food.MaxQuantity);
-			iMedicamentMax = sti(PChar.ColonyBuilding.Medicament.MaxQuantity);
+	case "Colony":
+		iFoodMax = sti(PChar.ColonyBuilding.Food.MaxQuantity);
+		iMedicamentMax = sti(PChar.ColonyBuilding.Medicament.MaxQuantity);
 
-			ChangeColonyGoods(iFoodMax, "Food");
-			ChangeColonyGoods(iMedicamentMax, "Medicament");
+		ChangeColonyGoods(iFoodMax, "Food");
+		ChangeColonyGoods(iMedicamentMax, "Medicament");
 
-			Log_InfoS("Авто-закупка необходимого провианта и медикаментов для вашей колонии ''" + PChar.ColonyBuilding.ColonyName + "'' выполнена.");
-			Log_Info("Цена составила: " + iCost + " пиастров.");
+		Log_InfoS("Авто-закупка необходимого провианта и медикаментов для вашей колонии ''" + PChar.ColonyBuilding.ColonyName + "'' выполнена.");
+		Log_Info("Цена составила: " + iCost + " пиастров.");
 		break;
 
-		case "Mines":
-			iFoodMax = sti(PChar.Mines.FoodQuantity.Max);
-			iMedicamentMax = sti(PChar.Mines.MedicamentQuantity.Max);
+	case "Mines":
+		iFoodMax = sti(PChar.Mines.FoodQuantity.Max);
+		iMedicamentMax = sti(PChar.Mines.MedicamentQuantity.Max);
 
-			ChangeMinesMainGoods(iFoodMax, "Food", true);
-			ChangeMinesMainGoods(iMedicamentMax, "Medicament", true);
+		ChangeMinesMainGoods(iFoodMax, "Food", true);
+		ChangeMinesMainGoods(iMedicamentMax, "Medicament", true);
 
-			Log_InfoS("Авто-закупка необходимого провианта и медикаментов для ваших рудников выполнена.");
-			Log_Info("Цена составила: " + iCost + " пиастров.");
+		Log_InfoS("Авто-закупка необходимого провианта и медикаментов для ваших рудников выполнена.");
+		Log_Info("Цена составила: " + iCost + " пиастров.");
 		break;
 
-		case "Plantation":
-			iFoodMax = sti(PChar.Plantation.Food.MaxQuantity);
-			iMedicamentMax = sti(PChar.Plantation.Medicament.MaxQuantity);
-			iToolsMax = sti(PChar.Plantation.Items.MaxQuantity);
+	case "Plantation":
+		iFoodMax = sti(PChar.Plantation.Food.MaxQuantity);
+		iMedicamentMax = sti(PChar.Plantation.Medicament.MaxQuantity);
+		iToolsMax = sti(PChar.Plantation.Items.MaxQuantity);
 
-			ChangePlantationGoods(iFoodMax, "Food", true);
-			ChangePlantationGoods(iMedicamentMax, "Medicament", true);
-			ChangePlantationGoods(iToolsMax, "Items", true);
+		ChangePlantationGoods(iFoodMax, "Food", true);
+		ChangePlantationGoods(iMedicamentMax, "Medicament", true);
+		ChangePlantationGoods(iToolsMax, "Items", true);
 
-			Log_InfoS("Авто-закупка необходимого провианта, медикаментов и инструментов для вашей плантации выполнена.");
-			Log_Info("Цена составила: " + iCost + " пиастров.");
+		Log_InfoS("Авто-закупка необходимого провианта, медикаментов и инструментов для вашей плантации выполнена.");
+		Log_Info("Цена составила: " + iCost + " пиастров.");
 		break;
 	}
 }
@@ -2590,7 +2827,7 @@ void StoreHouseInit()
 
 	string sGood = "";
 
-	for(int g=0; g < GOODS_QUANTITY; g++)
+	for (int g = 0; g < GOODS_QUANTITY; g++)
 	{
 		sGood = Goods[g].Name;
 		Stores[STORE_HOUSE].goods.(sGood).quantity = 0;
@@ -2602,39 +2839,39 @@ void StoreHouseInit()
 //-------------------------------------------------------------------------------
 void CreateCaimanCitizens(aref loc)
 {
-	if(!CheckAttribute(loc, "id"))
-	{
-	 	return;
-	}
-
-	if(loc.id != "Caiman_town")
+	if (!CheckAttribute(loc, "id"))
 	{
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Defence.Battle == true)
+	if (loc.id != "Caiman_town")
+	{
+		return;
+	}
+
+	if (PChar.ColonyBuilding.Defence.Battle == true)
 	{
 		DeleteAllFantomCharactersFromLocation(loc);
 		return;
 	}
 
-	if(PChar.ColonyBuilding.Defence.DeadInTown == true)
+	if (PChar.ColonyBuilding.Defence.DeadInTown == true)
 	{
 		SetDeadmansToLocation(loc, "citizens");
 		PChar.ColonyBuilding.Defence.DeadInTown = false;
 
-		if(CheckAttribute(loc, "hidden_effects"))
+		if (CheckAttribute(loc, "hidden_effects"))
 		{
 			DeleteAttribute(loc, "hidden_effects");
 		}
-		if(CheckAttribute(&Locations[FindLocation("Caiman_ExitTown")], "hidden_effects"))
+		if (CheckAttribute(&Locations[FindLocation("Caiman_ExitTown")], "hidden_effects"))
 		{
 			DeleteAttribute(&Locations[FindLocation("Caiman_ExitTown")], "hidden_effects");
 		}
 		return;
 	}
 
-	if(isLocationHasCitizens(loc.id))
+	if (isLocationHasCitizens(loc.id))
 	{
 		return;
 	}
@@ -2645,7 +2882,7 @@ void CreateCaimanCitizens(aref loc)
 	string slai_group, locatorName, sType;
 
 	int iNation = PIRATE;
-    	slai_group = GetNationNameByType(iNation)  + "_citizens";
+	slai_group = GetNationNameByType(iNation) + "_citizens";
 	int iCitizen, iSoldier, iPatrol, iMusketoor, iSoldiers, iGenres, iMechant, iCitizens;
 	iSoldiers = sti(PChar.ColonyBuilding.Soldiers);
 
@@ -2653,11 +2890,10 @@ void CreateCaimanCitizens(aref loc)
 	iPatrol = (iSoldiers / 5) / 10;
 	iMusketoor = (iSoldiers / 10) / 10;
 
-	if(iSoldiers <= 0)
+	if (iSoldiers <= 0)
 	{
 		iSoldier = 0;
-		iPatrol = 0
-		iMusketoor = 0;
+		iPatrol = 0 iMusketoor = 0;
 	}
 
 	iCitizens = sti(PChar.ColonyBuilding.Population);
@@ -2665,27 +2901,35 @@ void CreateCaimanCitizens(aref loc)
 	iGenres = (iCitizens / 10) / 10;
 	iMechant = (iCitizens / 10) / 10;
 
-
-	if(iCitizens <= 0)
+	if (iCitizens <= 0)
 	{
 		iCitizen = 0;
 		iGenres = 0;
 		iMechant = 0;
 	}
 
-	if(iCitizen > 20) { iCitizen = 20; }
-
-    	arrayNPCModelHow = 0;
-
-    	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
-    	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
-
-    	string sSoldierType = "";
-	switch(sSoldiersType)
+	if (iCitizen > 20)
 	{
-		case "officer": sSoldierType = "pofficer"; break;
-		case "pirate": sSoldierType = "pirate"; break;
-		case "nation": sSoldierType = "soldier"; break;
+		iCitizen = 20;
+	}
+
+	arrayNPCModelHow = 0;
+
+	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
+	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
+
+	string sSoldierType = "";
+	switch (sSoldiersType)
+	{
+	case "officer":
+		sSoldierType = "pofficer";
+		break;
+	case "pirate":
+		sSoldierType = "pirate";
+		break;
+	case "nation":
+		sSoldierType = "soldier";
+		break;
 	}
 
 	if (checkAttribute(loc, "soldiers") && CheckAttribute(loc, "locators.soldiers"))
@@ -2694,14 +2938,14 @@ void CreateCaimanCitizens(aref loc)
 		makearef(st, loc.locators.soldiers);
 		//iCitizensQuantity = GetAttributesNum(st);
 
-		if(iSoldier > GetAttributesNum(st))
+		if (iSoldier > GetAttributesNum(st))
 		{
 			iSoldier = GetAttributesNum(st);
 		}
 
-		for (i=0; i<iSoldier; i++)
+		for (i = 0; i < iSoldier; i++)
 		{
-			if(sSoldiersType == "nation")
+			if (sSoldiersType == "nation")
 			{
 				iChar = NPC_GeneratePhantomCharacter(sSoldierType, iSoldiersNation, MAN, 0);
 			}
@@ -2713,19 +2957,19 @@ void CreateCaimanCitizens(aref loc)
 			chr = &characters[iChar];
 			SetNPCModelUniq(chr, sSoldierType, MAN);
 			chr.City = "Caiman";
-            		chr.CityType = "soldier";
+			chr.CityType = "soldier";
 			chr.RebirthPhantom = true;
 			chr.nation = PIRATE;
 			LAi_CharacterReincarnation(chr, true, true);
-			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2);
-            		SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true);
+			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2);
+			SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true);
 			LAi_SetLoginTime(chr, 6.0, 23.0);
 
 			solderLoc = GetAttributeN(st, i);
 			locatorName = GetAttributeName(solderLoc);
 			ChangeCharacterAddressGroup(chr, pchar.location, "soldiers", locatorName);
 
-			if (findsubstr(locatorName, "protector" , 0) != -1 && iNation != PIRATE)
+			if (findsubstr(locatorName, "protector", 0) != -1 && iNation != PIRATE)
 			{
 				chr.protector = true;
 			}
@@ -2741,22 +2985,22 @@ void CreateCaimanCitizens(aref loc)
 		}
 	}
 
-	if(checkAttribute(loc, "soldiers") && CheckAttribute(loc, "locators.patrol"))
+	if (checkAttribute(loc, "soldiers") && CheckAttribute(loc, "locators.patrol"))
 	{
 		makearef(st, loc.locators.patrol);
-		if(iPatrol > 7)
+		if (iPatrol > 7)
 		{
 			iPatrol = 7;
 		}
 
-		if(iPatrol > GetAttributesNum(st) - 3)
+		if (iPatrol > GetAttributesNum(st) - 3)
 		{
 			iPatrol = GetAttributesNum(st) - 3;
 		}
 
-		for (i=0; i<iPatrol-3; i++)
+		for (i = 0; i < iPatrol - 3; i++)
 		{
-			if(sSoldiersType == "nation")
+			if (sSoldiersType == "nation")
 			{
 				iChar = NPC_GeneratePhantomCharacter(sSoldierType, iSoldiersNation, MAN, 0);
 			}
@@ -2769,11 +3013,11 @@ void CreateCaimanCitizens(aref loc)
 			SetNPCModelUniq(chr, sSoldierType, MAN);
 			chr.nation = PIRATE;
 			chr.City = "Caiman";
-            chr.CityType = "soldier";
-            SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true);
+			chr.CityType = "soldier";
+			SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true);
 			chr.RebirthPhantom = true;
 			LAi_CharacterReincarnation(chr, true, true);
-			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2);
+			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2);
 			LAi_SetLoginTime(chr, 0.0, 24.0);
 			LAi_SetPatrolType(chr);
 
@@ -2785,33 +3029,33 @@ void CreateCaimanCitizens(aref loc)
 			chr.dialog.currentnode = "first time";
 		}
 
-		if(iMusketoor > 3)
+		if (iMusketoor > 3)
 		{
 			iMusketoor = 3;
 		}
 
-		for (i=1; i<=iMusketoor; i++)
+		for (i = 1; i <= iMusketoor; i++)
 		{
-			if(sSoldiersType != "nation")
+			if (sSoldiersType != "nation")
 			{
-                sType = "mushketer_" + (rand(4)+1);
+				sType = "mushketer_" + (rand(4) + 1);
 			}
 			else
 			{
-                sType = NationShortName(iSoldiersNation) + "_mush_" + i;
+				sType = NationShortName(iSoldiersNation) + "_mush_" + i;
 			}
 
 			chr = GetCharacter(NPC_GenerateCharacter("GenChar_", sType, "man", "mushketer", sti(pchar.rank), PIRATE, 0, false));
 			chr.id = "GenChar_" + chr.index;
 			chr.reputation = (1 + rand(44) + rand(44));
 			chr.City = "Caiman";
-            chr.CityType = "soldier";
+			chr.CityType = "soldier";
 			chr.greeting = "soldier_common";
 			chr.nation = PIRATE;
 			chr.RebirthPhantom = true;
 			LAi_CharacterReincarnation(chr, true, true);
-			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2);
-            SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true);
+			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2);
+			SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true);
 			LAi_SetLoginTime(chr, 6.0, 23.0);
 
 			PlaceCharacter(chr, "patrol", "random_free");
@@ -2827,10 +3071,11 @@ void CreateCaimanCitizens(aref loc)
 		}
 	}
 
-	for(i=0; i<iCitizen; i++)
+	for (i = 0; i < iCitizen; i++)
 	{
 		iSex = rand(3);
-		if(iSex > 1) iSex = 1;
+		if (iSex > 1)
+			iSex = 1;
 
 		iChar = NPC_GeneratePhantomCharacter("citizen", iNation, iSex, 0);
 
@@ -2846,11 +3091,11 @@ void CreateCaimanCitizens(aref loc)
 		LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER_OWN);
 
 		PlaceCharacter(chr, "goto", "random_free");
-		chr.dialog.filename    = "Common_citizen.c";
+		chr.dialog.filename = "Common_citizen.c";
 		chr.dialog.currentnode = "First time";
-		if(chr.sex == "man")
+		if (chr.sex == "man")
 		{
-			if(rand(1) == 1)
+			if (rand(1) == 1)
 			{
 				chr.greeting = "cit_common1";
 			}
@@ -2870,12 +3115,12 @@ void CreateCaimanCitizens(aref loc)
 	{
 		makearef(st, loc.locators.merchant);
 
-		if(iMechant > GetAttributesNum(st))
+		if (iMechant > GetAttributesNum(st))
 		{
 			iMechant = GetAttributesNum(st);
 		}
 
-		for (i=0; i<iMechant; i++)
+		for (i = 0; i < iMechant; i++)
 		{
 			iSex = rand(1);
 			iChar = NPC_GeneratePhantomCharacter("citizen", iNation, iSex, 0);
@@ -2887,18 +3132,25 @@ void CreateCaimanCitizens(aref loc)
 			chr.CityType = "citizen";
 			LAi_SetLoginTime(chr, 7.0, 20.0);
 
-			ChangeCharacterAddressGroup(chr, loc.id, "merchant", "merchant"+(i+1));
+			ChangeCharacterAddressGroup(chr, loc.id, "merchant", "merchant" + (i + 1));
 			LAi_SetMerchantType(chr);
 			chr.dialog.filename = "Common_ItemTrader.c";
 			chr.dialog.currentnode = "first time";
 			//-->
-			if (chr.sex == "man") { chr.greeting = "tra_common"; } else { chr.greeting = "tra_woman_common"; }
+			if (chr.sex == "man")
+			{
+				chr.greeting = "tra_common";
+			}
+			else
+			{
+				chr.greeting = "tra_woman_common";
+			}
 			//<--
 			LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER_OWN);
 		}
 	}
 
-	if(CheckAttribute(loc, "carrier") && IsLoginTime())
+	if (CheckAttribute(loc, "carrier") && IsLoginTime())
 	{
 		int iTemp;
 		int iQtyCarrier = rand(2) + 2;
@@ -2922,18 +3174,19 @@ void CreateCaimanCitizens(aref loc)
 		CarrierName[8] = "GenresChest1";
 		CarrierName[9] = "GenresChest2";
 
-		if(iGenres > 9)
+		if (iGenres > 9)
 		{
 			iGenres = 9;
 		}
 
-		for (i=iGenres; i>0; i--)
+		for (i = iGenres; i > 0; i--)
 		{
 			iSex = 1;
 			while (iSex == 1)
 			{
 				iTemp = rand(9);
-				if (CarrierName[iTemp] != "") iSex = 0;
+				if (CarrierName[iTemp] != "")
+					iSex = 0;
 			}
 			chr = GetCharacter(NPC_GenerateCharacter("Carrier", CarrierName[iTemp], "man", "genres", 35, PIRATE, 0, false));
 			chr.id = chr.id + "_" + chr.index;
@@ -2963,29 +3216,29 @@ void CreateCaimanCitizens(aref loc)
 
 void CreateCaimanGuardingBase(aref loc)
 {
-	if(PChar.ColonyBuilding.SlavesInShore.CurShore == "LandGuardingPort")
+	if (PChar.ColonyBuilding.SlavesInShore.CurShore == "LandGuardingPort")
 	{
 		return;
 	}
 
-	if(!CheckAttribute(loc, "id") || !CheckAttribute(loc, "type"))
+	if (!CheckAttribute(loc, "id") || !CheckAttribute(loc, "type"))
 	{
 		return;
 	}
 
-	if(loc.id != "LandGuardingFort" && loc.id != "LandGuardingPort")
+	if (loc.id != "LandGuardingFort" && loc.id != "LandGuardingPort")
 	{
 		return;
 	}
 
 	int iSoldiers = sti(PChar.ColonyBuilding.Soldiers);
 
-	if(iSoldiers <= 0)
+	if (iSoldiers <= 0)
 	{
 		return;
 	}
 
-	if(isLocationHasCitizens(loc.id))
+	if (isLocationHasCitizens(loc.id))
 	{
 		return;
 	}
@@ -2993,16 +3246,19 @@ void CreateCaimanGuardingBase(aref loc)
 	int iSoldier = (iSoldiers / 2) / 10;
 	int iPatrol = (iSoldiers / 5) / 10;
 
-	if(loc.id == "LandGuardingFort")
+	if (loc.id == "LandGuardingFort")
 	{
-		if(iSoldier > 15) iSoldier = 15;
+		if (iSoldier > 15)
+			iSoldier = 15;
 	}
 	else
 	{
-		if(iSoldier > 10) iSoldier = 10;
+		if (iSoldier > 10)
+			iSoldier = 10;
 	}
 
-	if(iPatrol > 10) iPatrol = 10;
+	if (iPatrol > 10)
+		iPatrol = 10;
 
 	int iNation = PIRATE;
 
@@ -3011,19 +3267,25 @@ void CreateCaimanGuardingBase(aref loc)
 	string sType;
 	arrayNPCModelHow = 0;
 
-    	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
-    	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
+	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
+	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
 
-	switch(sSoldiersType)
+	switch (sSoldiersType)
 	{
-		case "officer": sType = "pofficer"; break;
-		case "pirate": sType = "pirate"; break;
-		case "nation": sType = "soldier"; break;
+	case "officer":
+		sType = "pofficer";
+		break;
+	case "pirate":
+		sType = "pirate";
+		break;
+	case "nation":
+		sType = "soldier";
+		break;
 	}
 
-	for (i=0; i<iSoldier; i++)
+	for (i = 0; i < iSoldier; i++)
 	{
-		if(sSoldiersType == "nation")
+		if (sSoldiersType == "nation")
 		{
 			iChar = NPC_GeneratePhantomCharacter(sType, iSoldiersNation, MAN, 0);
 		}
@@ -3039,8 +3301,8 @@ void CreateCaimanGuardingBase(aref loc)
 		chr.nation = PIRATE;
 		chr.RebirthPhantom = true;
 		LAi_CharacterReincarnation(chr, true, true);
-		LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2);
-		SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true);
+		LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2);
+		SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true);
 		LAi_SetLoginTime(chr, 0.0, 24.0);
 		LAi_SetGuardianType(chr);
 		LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER_OWN);
@@ -3051,9 +3313,9 @@ void CreateCaimanGuardingBase(aref loc)
 		PlaceCharacter(chr, "goto", "random_free");
 	}
 
-	for (i=0; i<iPatrol; i++)
+	for (i = 0; i < iPatrol; i++)
 	{
-		if(sSoldiersType == "nation")
+		if (sSoldiersType == "nation")
 		{
 			iChar = NPC_GeneratePhantomCharacter(sType, iSoldiersNation, MAN, 0);
 		}
@@ -3078,23 +3340,23 @@ void CreateCaimanGuardingBase(aref loc)
 
 void CreateCaimanMinesCitizens(aref loc)
 {
-	if(!CheckAttribute(loc, "id") || !CheckAttribute(loc, "type"))
+	if (!CheckAttribute(loc, "id") || !CheckAttribute(loc, "type"))
 	{
 		return;
 	}
 
-	if(loc.id != "Caiman_Mines")
+	if (loc.id != "Caiman_Mines")
 	{
 		return;
 	}
 
-	if(PChar.Mines.Defence.Battle == true)
+	if (PChar.Mines.Defence.Battle == true)
 	{
 		DeleteAllFantomCharactersFromLocation(loc);
 		return;
 	}
 
-	if(PChar.Mines.Defence.DeadInTown == true)
+	if (PChar.Mines.Defence.DeadInTown == true)
 	{
 		SetDeadmansToLocation(loc, "pirate");
 		PChar.Mines.Defence.DeadInTown = false;
@@ -3105,13 +3367,13 @@ void CreateCaimanMinesCitizens(aref loc)
 	bool bBuildingSilverMine = PChar.ColonyBuilding.SilverMine.Resize.BuildingTime;
 	bool bBuildingIronMine = PChar.ColonyBuilding.IronMine.Resize.BuildingTime;
 
-	if(bBuildingGoldMine && bBuildingSilverMine && bBuildingIronMine)
+	if (bBuildingGoldMine && bBuildingSilverMine && bBuildingIronMine)
 	{
 		DeleteAllFantomCharactersFromLocation(loc);
 		return;
 	}
 
-	if(isLocationHasCitizens(loc.id))
+	if (isLocationHasCitizens(loc.id))
 	{
 		return;
 	}
@@ -3120,16 +3382,22 @@ void CreateCaimanMinesCitizens(aref loc)
 	int iSlaves = sti(PChar.Mines.SlavesQuantity);
 
 	int iPoorSlaves = iSlaves / 15;
-	if(iPoorSlaves > 15) iPoorSlaves = 15;
-	if(iPoorSlaves < 0) iPoorSlaves = 0;
+	if (iPoorSlaves > 15)
+		iPoorSlaves = 15;
+	if (iPoorSlaves < 0)
+		iPoorSlaves = 0;
 
 	int iStaySlaves = iSlaves / 10;
-	if(iStaySlaves > 15) iStaySlaves = 15;
-	if(iStaySlaves < 0) iStaySlaves = 0;
+	if (iStaySlaves > 15)
+		iStaySlaves = 15;
+	if (iStaySlaves < 0)
+		iStaySlaves = 0;
 
 	int iPatrol = iSoldiers / 10;
-	if(iPatrol > 25) iPatrol = 25;
-	if(iPatrol < 0) iPatrol = 0;
+	if (iPatrol > 25)
+		iPatrol = 25;
+	if (iPatrol < 0)
+		iPatrol = 0;
 
 	int iNation = PIRATE;
 	int iMassive;
@@ -3140,21 +3408,27 @@ void CreateCaimanMinesCitizens(aref loc)
 	string sType;
 	arrayNPCModelHow = 0;
 
-    	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
-    	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
+	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
+	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
 
-	switch(sSoldiersType)
+	switch (sSoldiersType)
 	{
-		case "officer": sType = "pofficer"; break;
-		case "pirate": sType = "pirate"; break;
-		case "nation": sType = "soldier"; break;
+	case "officer":
+		sType = "pofficer";
+		break;
+	case "pirate":
+		sType = "pirate";
+		break;
+	case "nation":
+		sType = "soldier";
+		break;
 	}
 
-	if(iPatrol > 0)
+	if (iPatrol > 0)
 	{
-		for (i=0; i<=iPatrol; i++)
+		for (i = 0; i <= iPatrol; i++)
 		{
-			if(sSoldiersType == "nation")
+			if (sSoldiersType == "nation")
 			{
 				iChar = NPC_GeneratePhantomCharacter(sType, iSoldiersNation, MAN, 0);
 			}
@@ -3169,10 +3443,10 @@ void CreateCaimanMinesCitizens(aref loc)
 			chr.City = "Caiman";
 			chr.CityType = "soldier";
 			chr.nation = PIRATE;
-			SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true);
+			SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true);
 			chr.RebirthPhantom = true;
 			LAi_CharacterReincarnation(chr, true, true);
-			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2);
+			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2);
 			LAi_SetLoginTime(chr, 0.0, 24.0);
 			PlaceCharacter(chr, "goto", "random_free");
 			LAi_SetPatrolType(chr);
@@ -3184,39 +3458,39 @@ void CreateCaimanMinesCitizens(aref loc)
 	}
 
 	model[0] = "prizon_1";
-    model[1] = "prizon_2";
-    model[2] = "prizon_3";
-    model[3] = "prizon_4";
-    model[4] = "prizon_5";
-    model[5] = "prizon_6";
-    model[6] = "prizon_7";
+	model[1] = "prizon_2";
+	model[2] = "prizon_3";
+	model[3] = "prizon_4";
+	model[4] = "prizon_5";
+	model[5] = "prizon_6";
+	model[6] = "prizon_7";
 	model[7] = "prizon_8";
-    model[8] = "pirate_1";
-    model[9] = "prison_5";
-    model[10] = "pirate_1";
-    model[11] = "pirate_11";
-    model[12] = "pirate_12";
-    model[13] = "pirate_13";
-    model[14] = "pirate_14";
-    model[15] = "pirate_15";
-    model[16] = "pirate_16";
-    model[17] = "pirate_21";
-    model[18] = "pirate_25";
-    model[19] = "PKM_rab_1";
-    model[20] = "PKM_rab_2";
-    model[21] = "PKM_rab_3";
-    model[22] = "PKM_rab_4";
+	model[8] = "pirate_1";
+	model[9] = "prison_5";
+	model[10] = "pirate_1";
+	model[11] = "pirate_11";
+	model[12] = "pirate_12";
+	model[13] = "pirate_13";
+	model[14] = "pirate_14";
+	model[15] = "pirate_15";
+	model[16] = "pirate_16";
+	model[17] = "pirate_21";
+	model[18] = "pirate_25";
+	model[19] = "PKM_rab_1";
+	model[20] = "PKM_rab_2";
+	model[21] = "PKM_rab_3";
+	model[22] = "PKM_rab_4";
 	string sAni;
 
-	if(iPoorSlaves > 0)
+	if (iPoorSlaves > 0)
 	{
 
-		for(int s=1; s <= iPoorSlaves; s++)
+		for (int s = 1; s <= iPoorSlaves; s++)
 		{
-	    	iMassive = rand(22);
+			iMassive = rand(22);
 
-        	sAni = "man";
-        	/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
+			sAni = "man";
+			/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
 
 			chr = GetCharacter(NPC_GenerateCharacter("Caiman_Mines_Poor_Slave_" + s, model[iMassive], "man", sAni, 7, PIRATE, 0, false));
 			chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
@@ -3232,14 +3506,14 @@ void CreateCaimanMinesCitizens(aref loc)
 		}
 	}
 
-	if(iStaySlaves > 0)
+	if (iStaySlaves > 0)
 	{
-		for(int n=1; n <= iStaySlaves; n++)
+		for (int n = 1; n <= iStaySlaves; n++)
 		{
 			iMassive = rand(22);
 
-	        sAni = "man";
-	        /* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
+			sAni = "man";
+			/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
 
 			chr = GetCharacter(NPC_GenerateCharacter("Caiman_Mines_Stay_Slave_" + n, model[iMassive], "man", sAni, 7, PIRATE, 0, false));
 			chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
@@ -3255,39 +3529,38 @@ void CreateCaimanMinesCitizens(aref loc)
 	}
 }
 
-
 void CreateCaimanPlantationCitizens(aref loc)
 {
-	if(!CheckAttribute(loc, "id") || !CheckAttribute(loc, "type"))
+	if (!CheckAttribute(loc, "id") || !CheckAttribute(loc, "type"))
 	{
 		return;
 	}
 
-	if(loc.id != "Caiman_Plantation")
+	if (loc.id != "Caiman_Plantation")
 	{
 		return;
 	}
 
-	if(PChar.Plantation.Defence.Battle == true || PChar.ColonyBuilding.Defence.Battle == true)
+	if (PChar.Plantation.Defence.Battle == true || PChar.ColonyBuilding.Defence.Battle == true)
 	{
 		DeleteAllFantomCharactersFromLocation(loc);
 		return;
 	}
 
-	if(PChar.Plantation.Defence.DeadInTown == true)
+	if (PChar.Plantation.Defence.DeadInTown == true)
 	{
 		SetDeadmansToLocation(loc, "pirate");
 		PChar.Plantation.Defence.DeadInTown = false;
 		return;
 	}
 
-	if(PChar.Plantation.Size.Resize.BuildingTime == true)
+	if (PChar.Plantation.Size.Resize.BuildingTime == true)
 	{
 		DeleteAllFantomCharactersFromLocation(loc);
 		return;
 	}
 
-	if(isLocationHasCitizens(loc.id))
+	if (isLocationHasCitizens(loc.id))
 	{
 		return;
 	}
@@ -3296,12 +3569,16 @@ void CreateCaimanPlantationCitizens(aref loc)
 	int iSlaves = sti(PChar.Plantation.Slaves.Quantity);
 
 	int iStaySlaves = iSlaves / 10;
-	if(iStaySlaves > 20) iStaySlaves = 20;
-	if(iStaySlaves < 0) iStaySlaves = 0;
+	if (iStaySlaves > 20)
+		iStaySlaves = 20;
+	if (iStaySlaves < 0)
+		iStaySlaves = 0;
 
 	int iPatrol = iSoldiers / 10;
-	if(iPatrol > 20) iPatrol = 20;
-	if(iPatrol < 0) iPatrol = 0;
+	if (iPatrol > 20)
+		iPatrol = 20;
+	if (iPatrol < 0)
+		iPatrol = 0;
 
 	int iNation = sti(PChar.ColonyBuilding.ColonyNation);
 	int iMassive;
@@ -3314,21 +3591,27 @@ void CreateCaimanPlantationCitizens(aref loc)
 
 	SaveCurrentNpcQuestDateParam(loc, "Caiman_Plantation_date");
 
-    	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
-    	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
+	int iSoldiersNation = sti(PChar.ColonyBuilding.ColonyNation);
+	string sSoldiersType = PChar.ColonyBuilding.SoldiersType;
 
-	switch(sSoldiersType)
+	switch (sSoldiersType)
 	{
-		case "officer": sType = "pofficer"; break;
-		case "pirate": sType = "pirate"; break;
-		case "nation": sType = "soldier"; break;
+	case "officer":
+		sType = "pofficer";
+		break;
+	case "pirate":
+		sType = "pirate";
+		break;
+	case "nation":
+		sType = "soldier";
+		break;
 	}
 
-	if(iPatrol > 0)
+	if (iPatrol > 0)
 	{
-		for(i=0; i<=iPatrol; i++)
+		for (i = 0; i <= iPatrol; i++)
 		{
-			if(sSoldiersType == "nation")
+			if (sSoldiersType == "nation")
 			{
 				iChar = NPC_GeneratePhantomCharacter(sType, iSoldiersNation, MAN, 0);
 			}
@@ -3343,10 +3626,10 @@ void CreateCaimanPlantationCitizens(aref loc)
 			chr.City = "Caiman";
 			chr.CityType = "soldier";
 			chr.nation = PIRATE;
-			SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true);
+			SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true);
 			chr.RebirthPhantom = true;
 			LAi_CharacterReincarnation(chr, true, true);
-			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2);
+			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2);
 			LAi_SetLoginTime(chr, 0.0, 24.0);
 			PlaceCharacter(chr, "goto", "random_free");
 			LAi_SetPatrolType(chr);
@@ -3358,37 +3641,37 @@ void CreateCaimanPlantationCitizens(aref loc)
 	}
 
 	model[0] = "prizon_1";
-    model[1] = "prizon_2";
-    model[2] = "prizon_3";
-    model[3] = "prizon_4";
-    model[4] = "prizon_5";
-    model[5] = "prizon_6";
-    model[6] = "prizon_7";
+	model[1] = "prizon_2";
+	model[2] = "prizon_3";
+	model[3] = "prizon_4";
+	model[4] = "prizon_5";
+	model[5] = "prizon_6";
+	model[6] = "prizon_7";
 	model[7] = "prizon_8";
-    model[8] = "pirate_1";
-    model[9] = "prison_5";
-    model[10] = "pirate_1";
-    model[11] = "pirate_11";
-    model[12] = "pirate_12";
-    model[13] = "pirate_13";
-    model[14] = "pirate_14";
-    model[15] = "pirate_15";
-    model[16] = "pirate_16";
-    model[17] = "pirate_21";
-    model[18] = "pirate_25";
-    model[19] = "PKM_rab_1";
-    model[20] = "PKM_rab_2";
-    model[21] = "PKM_rab_3";
-    model[22] = "PKM_rab_4";
+	model[8] = "pirate_1";
+	model[9] = "prison_5";
+	model[10] = "pirate_1";
+	model[11] = "pirate_11";
+	model[12] = "pirate_12";
+	model[13] = "pirate_13";
+	model[14] = "pirate_14";
+	model[15] = "pirate_15";
+	model[16] = "pirate_16";
+	model[17] = "pirate_21";
+	model[18] = "pirate_25";
+	model[19] = "PKM_rab_1";
+	model[20] = "PKM_rab_2";
+	model[21] = "PKM_rab_3";
+	model[22] = "PKM_rab_4";
 
-	if(iStaySlaves > 0)
+	if (iStaySlaves > 0)
 	{
-		for(int n=1; n <= iStaySlaves; n++)
+		for (int n = 1; n <= iStaySlaves; n++)
 		{
-	        iMassive = rand(22);
+			iMassive = rand(22);
 
-	        string sAni = "man";
-	        /* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
+			string sAni = "man";
+			/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAni = "man"; */
 
 			chr = GetCharacter(NPC_GenerateCharacter("Caiman_Plantation_Stay_Slave_" + n, model[iMassive], "man", sAni, 7, PIRATE, 0, false));
 			chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
@@ -3447,7 +3730,7 @@ void CreateSmallColonyCaiman()
 
 	int iColony = FindColony("Caiman");
 	ref rColony = &Colonies[iColony];
-	rColony.StoreNum   = Caiman_STORE;
+	rColony.StoreNum = Caiman_STORE;
 	rColony.smuggling_nation = PIRATE;
 	rColony.nation = PIRATE;
 	rColony.island = "Caiman";
@@ -3458,7 +3741,7 @@ void CreateSmallColonyCaiman()
 
 	RenamedColonyCaiman();
 
-	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что капитан " + GetNameLugger(PChar, "f") + " построил свою колонию, и назвал её ''"+PChar.ColonyBuilding.ColonyName+"''.", 5, 1);
+	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что капитан " + GetNameLugger(PChar, "f") + " построил свою колонию, и назвал её ''" + PChar.ColonyBuilding.ColonyName + "''.", 5, 1);
 }
 
 void CreateModificyColonyCaiman()
@@ -3485,7 +3768,7 @@ void CreateModificyColonyCaiman()
 	string sStore = "Store0" + iStore;
 
 	rStore.filespath.models = "locations\inside\" + sStore + "\";
-	rStore.models.always.locators = sStore + "_locators";
+							  rStore.models.always.locators = sStore + "_locators";
 	rStore.models.always.store = sStore;
 	rStore.models.always.store.level = 65538;
 	rStore.models.always.window = sStore + "_window";
@@ -3515,7 +3798,7 @@ void CreateModificyColonyCaiman()
 	//rShipyard.townsack = "Caiman";
 
 	rShipyard.filespath.models = "locations\inside\" + sShipyard + "\";
-	rShipyard.models.always.locators = sShipyard + "_locators";
+								 rShipyard.models.always.locators = sShipyard + "_locators";
 	rShipyard.models.always.shipyard = sShipyard;
 	rShipyard.models.always.shipyard.level = 65538;
 	rShipyard.models.always.window = sShipyard + "_window";
@@ -3537,11 +3820,11 @@ void CreateModificyColonyCaiman()
 	//rTavern.townsack = "Caiman";
 
 	rTavern.filespath.models = "locations\inside\" + sTavern + "\";
-	rTavern.models.always.tavern = sTavern;
+							   rTavern.models.always.tavern = sTavern;
 	rTavern.models.always.tavern.level = 65538;
 	rTavern.models.always.locators = sTavern + "_locators";
 
-	if(iTavern == 1)
+	if (iTavern == 1)
 	{
 		rTavern.models.always.window = "tavern01_windows";
 	}
@@ -3577,7 +3860,7 @@ void CreateModificyColonyCaiman()
 	//rBank.townsack = "Caiman";
 
 	rBank.filespath.models = "locations\inside\" + sBank + "\";
-	rBank.models.always.locators = sBank + "_locators";
+							 rBank.models.always.locators = sBank + "_locators";
 	rBank.models.always.store = sBank;
 	rBank.models.always.store.level = 65538;
 	rBank.models.always.window = sBank + "_windows";
@@ -3600,7 +3883,7 @@ void CreateModificyColonyCaiman()
 
 	rResidence.image = "loading\inside\residence_3.tga";
 	rResidence.filespath.models = "locations\inside\" + sTownhall;
-	rResidence.models.always.locators = sTownhall + "_locators";
+								  rResidence.models.always.locators = sTownhall + "_locators";
 	rResidence.models.always.l1 = sTownhall;
 	rResidence.models.always.l1.level = 65538;
 	rResidence.models.always.window = sTownhall + "_window";
@@ -3625,11 +3908,17 @@ void CreateModificyColonyCaiman()
 
 	string sShoreHouseEmerge = "houseS1";
 	int iTown = sti(PChar.ColonyBuilding.Architecture.Town);
-	switch(iTown)
+	switch (iTown)
 	{
-		case 1: sShoreHouseEmerge = "houseS1"; break;
-		case 2: sShoreHouseEmerge = "houseS6"; break;
-		case 3: sShoreHouseEmerge = "houseS2"; break;
+	case 1:
+		sShoreHouseEmerge = "houseS1";
+		break;
+	case 2:
+		sShoreHouseEmerge = "houseS6";
+		break;
+	case 3:
+		sShoreHouseEmerge = "houseS2";
+		break;
 	}
 
 	rStoreHouse.reload.l1.name = "reload1";
@@ -3735,7 +4024,7 @@ void CreateModificyColonyCaiman()
 
 	Stores[Caiman_STORE].StoreSize = "large";
 
-	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что недавно капитан " + GetNameLugger(PChar, "f") + " расширил свою колонию, которая называется ''"+PChar.ColonyBuilding.ColonyName+"''.", 5, 1);
+	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что недавно капитан " + GetNameLugger(PChar, "f") + " расширил свою колонию, которая называется ''" + PChar.ColonyBuilding.ColonyName + "''.", 5, 1);
 }
 
 void CreatePlantationInCaiman()
@@ -3758,7 +4047,7 @@ void CreatePlantationInCaiman()
 	rJungle.reload.l1.autoreload = "1";
 	rJungle.reload.l1.label = "Caiman Plantation";
 
-	if(PChar.ColonyBuilding.Mines == false)
+	if (PChar.ColonyBuilding.Mines == false)
 	{
 		ref rCaveEntrance = &Locations[FindLocation("Caiman_CaveEntrance")];
 		rCaveEntrance.reload.l2.go = "Caiman_Jungle_01";
@@ -3782,7 +4071,7 @@ void CreatePlantationInCaiman()
 		rExitMines.reload.l2.label = "Jungle";
 	}
 
-	if(PChar.ColonyBuilding.Fort == false)
+	if (PChar.ColonyBuilding.Fort == false)
 	{
 		ref rShore = &Locations[FindLocation("Shore16")];
 		rShore.reload.l1.go = "Caiman_Jungle_01";
@@ -3806,13 +4095,12 @@ void CreatePlantationInCaiman()
 		rBase.reload.l1.label = "Jungle";
 	}
 
-	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что колония ''"+PChar.ColonyBuilding.ColonyName+"'', хозяином которой является некий капитан " + GetNameLugger(PChar, "f") + ", недавно обзавелась собственной плантацией!", 5, 1);
+	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что колония ''" + PChar.ColonyBuilding.ColonyName + "'', хозяином которой является некий капитан " + GetNameLugger(PChar, "f") + ", недавно обзавелась собственной плантацией!", 5, 1);
 }
 
 void CreateMinesInCaiman()
 {
 	LAi_QuestDelay("MinesUptade1", 1.0);
-
 
 	PChar.ColonyBuilding.Mines = true;
 
@@ -3830,7 +4118,7 @@ void CreateMinesInCaiman()
 	rCaveEntrance.reload.l2.autoreload = "1";
 	rCaveEntrance.reload.l2.label = "Caiman Mines Exit";
 
-	if(PChar.ColonyBuilding.Plantation == true && PChar.ColonyBuilding.Plantation.BuildingTime == false)
+	if (PChar.ColonyBuilding.Plantation == true && PChar.ColonyBuilding.Plantation.BuildingTime == false)
 	{
 		ref rJungle = &Locations[FindLocation("Caiman_Jungle_01")];
 		rJungle.reload.l3.name = "reload3_back";
@@ -3847,7 +4135,7 @@ void CreateMinesInCaiman()
 		rExitMines.reload.l2.label = "Jungle";
 	}
 
-	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что колония ''"+PChar.ColonyBuilding.ColonyName+"'', хозяином которой является некий капитан " + GetNameLugger(PChar, "f") + ", недавно обзавелась собственными рудниками!", 5, 1);
+	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что колония ''" + PChar.ColonyBuilding.ColonyName + "'', хозяином которой является некий капитан " + GetNameLugger(PChar, "f") + ", недавно обзавелась собственными рудниками!", 5, 1);
 }
 
 void CreateFortInCaiman()
@@ -3858,7 +4146,7 @@ void CreateFortInCaiman()
 	PChar.ColonyBuilding.Stage = "3";
 	PChar.ColonyBuilding.Soldiers.MaxQuantity = 2500;
 
-	if(PChar.ColonyBuilding.Plantation == true)
+	if (PChar.ColonyBuilding.Plantation == true)
 	{
 		ref rBase = &Locations[FindLocation("LandGuardingPort")];
 		rBase.reload.l1.name = "reload1_back";
@@ -3893,7 +4181,7 @@ void CreateFortInCaiman()
 	Islands[FindIsland("Caiman")].reload.l2.tex = "t1";
 
 	int idLngFile = LanguageOpenFile("LocLables.txt");
-	worldMap.labels.Shore16.text = CheckingTranslate(idLngFile,"Land Guarding Port");
+	worldMap.labels.Shore16.text = CheckingTranslate(idLngFile, "Land Guarding Port");
 	LanguageCloseFile(idLngFile);
 
 	AddSimpleRumourToAllNations(LinkRandPhrase("Поговаривают", "Говорят", "Ходят слухи") + ", что известный в Карибах капитан " + GetNameLugger(PChar, "f") + " приказал архитектору, возводившему его колонию, соорудить защитную базу для отражения вражеских атак.", 5, 1);
@@ -3911,7 +4199,7 @@ void CreateTownCaiman()
 
 	rTown.id.label = "Street";
 	rTown.worldmap = "Caiman";
-	rTown.image = "loading\Town_"+rand(8)+".tga";
+	rTown.image = "loading\Town_" + rand(8) + ".tga";
 	rTown.citizens = true;
 	rTown.soldiers = true;
 	rTown.carrier = true;
@@ -3925,33 +4213,47 @@ void CreateTownCaiman()
 	int iTown = sti(PChar.ColonyBuilding.Architecture.Town);
 	string sTown = "Antigua";
 
-	switch(iTown) { case 1: sTown = "Antigua"; break; case 2: sTown = "Maracaibo"; break; case 3: sTown = "Cartahena"; break; }
+	switch (iTown)
+	{
+	case 1:
+		sTown = "Antigua";
+		break;
+	case 2:
+		sTown = "Maracaibo";
+		break;
+	case 3:
+		sTown = "Cartahena";
+		break;
+	}
 
 	rTown.filespath.models = "locations\Town_" + sTown + "\Town\";
-	rTown.models.always.town = sTown;
+														 rTown.models.always.town = sTown;
 	rTown.models.always.town.sea_reflection = 1;
 	rTown.models.always.L1 = sTown + "_signsA";
-	rTown.models.always.seabed =  sTown + "_sb";
-	rTown.models.always.locators =  sTown + "_locators";
-	rTown.models.always.grassPatch =  sTown + "_grass";
-	rTown.models.day.fonar =  sTown + "_fd";
-	rTown.models.day.charactersPatch =  sTown + "_patch_day";
-	rTown.models.day.rinok =  sTown + "_rinok";
-	rTown.models.night.fonar =  sTown + "_fn";
-	rTown.models.night.charactersPatch =  sTown + "_patch_night";
+	rTown.models.always.seabed = sTown + "_sb";
+	rTown.models.always.locators = sTown + "_locators";
+	rTown.models.always.grassPatch = sTown + "_grass";
+	rTown.models.day.fonar = sTown + "_fd";
+	rTown.models.day.charactersPatch = sTown + "_patch_day";
+	rTown.models.day.rinok = sTown + "_rinok";
+	rTown.models.night.fonar = sTown + "_fn";
+	rTown.models.night.charactersPatch = sTown + "_patch_night";
 	rTown.models.always.plan = "plan1";
 	rTown.models.always.plan.level = 9;
 
 	rTown.models.always.MillFan = "MillFan";
 	rTown.models.always.MillFan.locator.group = "WindMill";
-	rTown.models.always.MillFan.locator.name ="Fan";
+	rTown.models.always.MillFan.locator.name = "Fan";
 	rTown.models.always.MillFan.rotate.x = 0.0;
 	rTown.models.always.MillFan.rotate.y = 0.0;
 	rTown.models.always.MillFan.rotate.z = 0.3;
 
-	if(sTown == "Maracaibo") { rTown.models.always.MillFan.rotate.z = 0.26; }
+	if (sTown == "Maracaibo")
+	{
+		rTown.models.always.MillFan.rotate.z = 0.26;
+	}
 
-	if(sTown == "Maracaibo")
+	if (sTown == "Maracaibo")
 	{
 		rTown.models.always.Waterfall1 = "fontain1";
 		rTown.models.always.Waterfall1.uvslide.v0 = 0.5;
@@ -3966,7 +4268,7 @@ void CreateTownCaiman()
 		rTown.models.always.Waterfall2.level = 49;
 	}
 
-	if(sTown == "Cartahena")
+	if (sTown == "Cartahena")
 	{
 		rTown.models.always.Waterfall1 = "river1";
 		rTown.models.always.Waterfall1.uvslide.v0 = 0.2;
@@ -4060,9 +4362,18 @@ void CreateTownCaiman()
 	rTown.reload.gate.autoreload = "0";
 	rTown.reload.gate.label = "ExitTown";
 
-	if(sTown == "Antigua") 		{ rTown.reload.l11.name = "houseS1"; }
-	if(sTown == "Maracaibo") 	{ rTown.reload.l11.name = "houseS6"; }
-	if(sTown == "Cartahena") 	{ rTown.reload.l11.name = "houseS2"; }
+	if (sTown == "Antigua")
+	{
+		rTown.reload.l11.name = "houseS1";
+	}
+	if (sTown == "Maracaibo")
+	{
+		rTown.reload.l11.name = "houseS6";
+	}
+	if (sTown == "Cartahena")
+	{
+		rTown.reload.l11.name = "houseS2";
+	}
 
 	rTown.reload.l11.go = "Caiman_StoreHouse";
 	rTown.reload.l11.emerge = "reload1";
@@ -4071,11 +4382,20 @@ void CreateTownCaiman()
 	rTown.reload.l11.disable = true;
 	rTown.reload.l11.close_for_night = 1;
 
-	if(PChar.ColonyBuilding.Store == true) { rTown.reload.l6.disable = false; }
-	if(PChar.ColonyBuilding.StoreHouse == true) { rTown.reload.l11.disable = false; }
-	if(PChar.ColonyBuilding.Tavern == true) { rTown.reload.l4.disable = false; }
+	if (PChar.ColonyBuilding.Store == true)
+	{
+		rTown.reload.l6.disable = false;
+	}
+	if (PChar.ColonyBuilding.StoreHouse == true)
+	{
+		rTown.reload.l11.disable = false;
+	}
+	if (PChar.ColonyBuilding.Tavern == true)
+	{
+		rTown.reload.l4.disable = false;
+	}
 
-	if(sTown == "Antigua")
+	if (sTown == "Antigua")
 	{
 		rTown.reload.l20.name = "houseF2";
 		rTown.reload.l20.go = "CommonRoom_MH2";
@@ -4147,7 +4467,7 @@ void CreateTownCaiman()
 		return;
 	}
 
-	if(sTown == "Maracaibo")
+	if (sTown == "Maracaibo")
 	{
 		rTown.reload.l20.name = "houseSp3";
 		rTown.reload.l20.go = "CommonDoubleflourHouse_1";
@@ -4225,7 +4545,7 @@ void CreateTownCaiman()
 		return;
 	}
 
-	if(sTown == "Cartahena")
+	if (sTown == "Cartahena")
 	{
 		rTown.reload.l20.name = "houseS1";
 		rTown.reload.l20.go = "CommonCobHouse";
@@ -4311,19 +4631,19 @@ string GetColonyAutoSellWork()
 	bool bMines = PChar.ColonyBuilding.Mines.AutoSell;
 	bool bPlantation = PChar.ColonyBuilding.Plantation.AutoSell;
 
-	if(!bMines && !bPlantation)
+	if (!bMines && !bPlantation)
 	{
 		return XI_ConvertString("ColonyGoodsAutoSell_1");
 	}
-	if(bMines && !bPlantation)
+	if (bMines && !bPlantation)
 	{
 		return XI_ConvertString("ColonyGoodsAutoSell_2");
 	}
-	if(!bMines && bPlantation)
+	if (!bMines && bPlantation)
 	{
 		return XI_ConvertString("ColonyGoodsAutoSell_3");
 	}
-	if(bMines && bPlantation)
+	if (bMines && bPlantation)
 	{
 		return XI_ConvertString("ColonyGoodsAutoSell_4");
 	}
@@ -4333,15 +4653,10 @@ string GetColonyAutoSellWork()
 
 int GetColonyAutoSellCurrentQty(string sType)
 {
-	if(CheckAttribute(PChar, "ColonyBuilding." + sType + ".AutoSell.Qty"))
+	if (CheckAttribute(PChar, "ColonyBuilding." + sType + ".AutoSell.Qty"))
 	{
 		return sti(PChar.ColonyBuilding.(sType).AutoSell.Qty);
 	}
 
 	return 0;
 }
-
-
-
-
-

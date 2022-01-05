@@ -1,123 +1,122 @@
 //navy -- полная карта, единая для всех задач (метро, ПГГ)
 void InitTravelMap()
 {
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////// INIT SHORES //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-	NullCharacter.TravelMap.Islands.Trinidad.Shore.t0		= "Shore60";
-	NullCharacter.TravelMap.Islands.Trinidad.Shore.t1		= "Mayak1";
-	NullCharacter.TravelMap.Islands.Cumana.Shore.t0			= "Shore19";
-	NullCharacter.TravelMap.Islands.Caracas.Shore.t0		= "shore21";
-	NullCharacter.TravelMap.Islands.Maracaibo.Shore.t0		= "shore37";
-	NullCharacter.TravelMap.Islands.Cartahena.Shore.t0		= "Shore25";
-	NullCharacter.TravelMap.Islands.Cartahena.Shore.t1		= "Mayak11";
-	NullCharacter.TravelMap.Islands.PortoBello.Shore.t0		= "shore47";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Shore.t0		= "shore54";
-	NullCharacter.TravelMap.Islands.Jamaica.Shore.t0		= "shore36";
-	NullCharacter.TravelMap.Islands.Cuba1.Shore.t0			= "Shore12";
-	NullCharacter.TravelMap.Islands.Cuba1.Shore.t1			= "Mayak9";
-	NullCharacter.TravelMap.Islands.Cuba2.Shore.t0			= "shore13";
-	NullCharacter.TravelMap.Islands.Cuba2.Shore.t1			= "Mayak10";
-	NullCharacter.TravelMap.Islands.Beliz.Shore.t0			= "shore8";
-	NullCharacter.TravelMap.Islands.Bermudes.Shore.t0		= "Shore3";
-	NullCharacter.TravelMap.Islands.SentMartin.Shore.t0		= "shore41";
-	NullCharacter.TravelMap.Islands.Nevis.Shore.t0			= "shore43";
-	NullCharacter.TravelMap.Islands.Nevis.Shore.t1			= "Mayak5";
-	NullCharacter.TravelMap.Islands.Antigua.Shore.t0		= "shore1";
-//	NullCharacter.TravelMap.Islands.Antigua.Shore.t1		= "shore2";
-	NullCharacter.TravelMap.Islands.Barbados.Shore.t0		= "Shore5";
-	NullCharacter.TravelMap.Islands.Barbados.Shore.t1		= "Mayak2";
-	NullCharacter.TravelMap.Islands.Curacao.Shore.t0		= "shore23";
-	NullCharacter.TravelMap.Islands.Martinique.Shore.t0		= "shore38";
-	NullCharacter.TravelMap.Islands.Guadeloupe.Shore.t0		= "shore28";
-	NullCharacter.TravelMap.Islands.Guadeloupe.Shore.t1		= "Mayak4";
-	NullCharacter.TravelMap.Islands.PuertoRico.Shore.t0		= "shore45";
-	NullCharacter.TravelMap.Islands.Hispaniola1.Shore.t0		= "shore33";
-	NullCharacter.TravelMap.Islands.Hispaniola1.Shore.t1		= "Mayak8";
-	NullCharacter.TravelMap.Islands.Hispaniola2.Shore.t0		= "shore34";
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////// INIT SHORES //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	NullCharacter.TravelMap.Islands.Trinidad.Shore.t0 = "Shore60";
+	NullCharacter.TravelMap.Islands.Trinidad.Shore.t1 = "Mayak1";
+	NullCharacter.TravelMap.Islands.Cumana.Shore.t0 = "Shore19";
+	NullCharacter.TravelMap.Islands.Caracas.Shore.t0 = "shore21";
+	NullCharacter.TravelMap.Islands.Maracaibo.Shore.t0 = "shore37";
+	NullCharacter.TravelMap.Islands.Cartahena.Shore.t0 = "Shore25";
+	NullCharacter.TravelMap.Islands.Cartahena.Shore.t1 = "Mayak11";
+	NullCharacter.TravelMap.Islands.PortoBello.Shore.t0 = "shore47";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Shore.t0 = "shore54";
+	NullCharacter.TravelMap.Islands.Jamaica.Shore.t0 = "shore36";
+	NullCharacter.TravelMap.Islands.Cuba1.Shore.t0 = "Shore12";
+	NullCharacter.TravelMap.Islands.Cuba1.Shore.t1 = "Mayak9";
+	NullCharacter.TravelMap.Islands.Cuba2.Shore.t0 = "shore13";
+	NullCharacter.TravelMap.Islands.Cuba2.Shore.t1 = "Mayak10";
+	NullCharacter.TravelMap.Islands.Beliz.Shore.t0 = "shore8";
+	NullCharacter.TravelMap.Islands.Bermudes.Shore.t0 = "Shore3";
+	NullCharacter.TravelMap.Islands.SentMartin.Shore.t0 = "shore41";
+	NullCharacter.TravelMap.Islands.Nevis.Shore.t0 = "shore43";
+	NullCharacter.TravelMap.Islands.Nevis.Shore.t1 = "Mayak5";
+	NullCharacter.TravelMap.Islands.Antigua.Shore.t0 = "shore1";
+	//	NullCharacter.TravelMap.Islands.Antigua.Shore.t1		= "shore2";
+	NullCharacter.TravelMap.Islands.Barbados.Shore.t0 = "Shore5";
+	NullCharacter.TravelMap.Islands.Barbados.Shore.t1 = "Mayak2";
+	NullCharacter.TravelMap.Islands.Curacao.Shore.t0 = "shore23";
+	NullCharacter.TravelMap.Islands.Martinique.Shore.t0 = "shore38";
+	NullCharacter.TravelMap.Islands.Guadeloupe.Shore.t0 = "shore28";
+	NullCharacter.TravelMap.Islands.Guadeloupe.Shore.t1 = "Mayak4";
+	NullCharacter.TravelMap.Islands.PuertoRico.Shore.t0 = "shore45";
+	NullCharacter.TravelMap.Islands.Hispaniola1.Shore.t0 = "shore33";
+	NullCharacter.TravelMap.Islands.Hispaniola1.Shore.t1 = "Mayak8";
+	NullCharacter.TravelMap.Islands.Hispaniola2.Shore.t0 = "shore34";
 	//NullCharacter.TravelMap.Islands.Hispaniola2.Shore.t1		= "Mayak7";
-	NullCharacter.TravelMap.Islands.Tortuga.Shore.t0		= "shore58";
-	NullCharacter.TravelMap.Islands.Tortuga.Shore.t1		= "Mayak6";
+	NullCharacter.TravelMap.Islands.Tortuga.Shore.t0 = "shore58";
+	NullCharacter.TravelMap.Islands.Tortuga.Shore.t1 = "Mayak6";
 
-	NullCharacter.TravelMap.Islands.Caiman.Shore.t0			= "shore16";
-	NullCharacter.TravelMap.Islands.Caiman.Shore.t1			= "shore17";
-	NullCharacter.TravelMap.Islands.Dominica.Shore.t0		= "shore26";
-	NullCharacter.TravelMap.Islands.Dominica.Shore.t1		= "shore27";
-	NullCharacter.TravelMap.Islands.Terks.Shore.t0			= "shore56";
-	NullCharacter.TravelMap.Islands.Terks.Shore.t1			= "shore57";
+	NullCharacter.TravelMap.Islands.Caiman.Shore.t0 = "shore16";
+	NullCharacter.TravelMap.Islands.Caiman.Shore.t1 = "shore17";
+	NullCharacter.TravelMap.Islands.Dominica.Shore.t0 = "shore26";
+	NullCharacter.TravelMap.Islands.Dominica.Shore.t1 = "shore27";
+	NullCharacter.TravelMap.Islands.Terks.Shore.t0 = "shore56";
+	NullCharacter.TravelMap.Islands.Terks.Shore.t1 = "shore57";
 
-
-///////////////// клады //////////////////////////////////////////
-    NullCharacter.TravelMap.Islands.Antigua.Treasure.Antigua_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t0="box1";
-	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t1="box2";
-	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t2="box3";
-	NullCharacter.TravelMap.Islands.Barbados.Treasure.Barbados_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave_2.t0="box1";
-	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t0="box1";
-	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t1="box2";
-	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t2="box3";
-	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t3="box4";
-	NullCharacter.TravelMap.Islands.Caracas.Treasure.Caracas_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Cartahena.Treasure.Cartahena_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Cartahena.Treasure.Cartahena_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Cartahena.Treasure.Cartahena_Cave.t2="box3";
+	///////////////// клады //////////////////////////////////////////
+	NullCharacter.TravelMap.Islands.Antigua.Treasure.Antigua_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Antigua.Treasure.SentJons_TownCave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Barbados.Treasure.Barbados_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Beliz.Treasure.Beliz_Cave_2.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Bermudes.Treasure.Bermudes_Dungeon.t3 = "box4";
+	NullCharacter.TravelMap.Islands.Caracas.Treasure.Caracas_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Cartahena.Treasure.Cartahena_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Cartahena.Treasure.Cartahena_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Cartahena.Treasure.Cartahena_Cave.t2 = "box3";
 	//NullCharacter.TravelMap.Islands.Caiman.Treasure.Caiman_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Nevis.Treasure.Charles_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Cuba1.Treasure.Cuba_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave.t2="box3";
+	NullCharacter.TravelMap.Islands.Nevis.Treasure.Charles_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Cuba1.Treasure.Cuba_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave.t2 = "box3";
 	//NullCharacter.TravelMap.Islands.Cumana.Treasure.Cumana_Cave_2.t0="box1";
-	NullCharacter.TravelMap.Islands.Curacao.Treasure.Curacao_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Curacao.Treasure.Curacao_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Curacao.Treasure.Curacao_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.Dominica.Treasure.Dominica_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Guadeloupe.Treasure.Guadeloupe_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Guadeloupe.Treasure.Guadeloupe_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Guadeloupe.Treasure.Guadeloupe_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.Hispaniola1.Treasure.Hispaniola_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Hispaniola1.Treasure.Hispaniola_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Hispaniola1.Treasure.Hispaniola_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.Jamaica.Treasure.Jamaica_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Maracaibo.Treasure.Maracaibo_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Maracaibo.Treasure.Maracaibo_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.Maracaibo.Treasure.Maracaibo_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.SentMartin.Treasure.Marigo_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.SentMartin.Treasure.Marigo_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.SentMartin.Treasure.Marigo_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.Panama.Treasure.Panama_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Pearl.Treasure.Pearl_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.PortoBello.Treasure.PortoBello_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.PuertoRico.Treasure.SanJuan_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.PuertoRico.Treasure.SanJuan_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.PuertoRico.Treasure.SanJuan_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Cave.t1="box2";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_PearlCave.t0="box1";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_PearlCave.t1="box2";
-	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_PearlCave.t2="box3";
+	NullCharacter.TravelMap.Islands.Curacao.Treasure.Curacao_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Curacao.Treasure.Curacao_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Curacao.Treasure.Curacao_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Dominica.Treasure.Dominica_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Guadeloupe.Treasure.Guadeloupe_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Guadeloupe.Treasure.Guadeloupe_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Guadeloupe.Treasure.Guadeloupe_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Hispaniola1.Treasure.Hispaniola_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Hispaniola1.Treasure.Hispaniola_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Hispaniola1.Treasure.Hispaniola_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Jamaica.Treasure.Jamaica_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Maracaibo.Treasure.Maracaibo_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Maracaibo.Treasure.Maracaibo_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Maracaibo.Treasure.Maracaibo_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.SentMartin.Treasure.Marigo_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.SentMartin.Treasure.Marigo_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.SentMartin.Treasure.Marigo_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Panama.Treasure.Panama_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Pearl.Treasure.Pearl_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.PortoBello.Treasure.PortoBello_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.PuertoRico.Treasure.SanJuan_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.PuertoRico.Treasure.SanJuan_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.PuertoRico.Treasure.SanJuan_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Cave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Cave.t2 = "box3";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_PearlCave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_PearlCave.t1 = "box2";
+	NullCharacter.TravelMap.Islands.SantaCatalina.Treasure.SantaCatalina_PearlCave.t2 = "box3";
 	//NullCharacter.TravelMap.Islands.Tenotchitlan.Treasure.Tenotchitlan_Cave.t0="box1";
 	//NullCharacter.TravelMap.Islands.Tenotchitlan.Treasure.Tenotchitlan_Cave.t1="box2";
 	//NullCharacter.TravelMap.Islands.Tenotchitlan.Treasure.Tenotchitlan_Cave.t2="box3";
-	NullCharacter.TravelMap.Islands.Terks.Treasure.Terks_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Tortuga.Treasure.Tortuga_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Tortuga.Treasure.Tortuga_Cave.t0="box1";
-	NullCharacter.TravelMap.Islands.Trinidad.Treasure.Trinidad_Grot.t0="box1";
-	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t0="box1";
-	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t1="box2";
-	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t2="box3";
-	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t3="box4";
-	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t4="box5";
+	NullCharacter.TravelMap.Islands.Terks.Treasure.Terks_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Tortuga.Treasure.Tortuga_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Tortuga.Treasure.Tortuga_Cave.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Trinidad.Treasure.Trinidad_Grot.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t0 = "box1";
+	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t1 = "box2";
+	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t2 = "box3";
+	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t3 = "box4";
+	NullCharacter.TravelMap.Islands.Martinique.Treasure.FortFrance_Dungeon.t4 = "box5";
 
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////// TRINIDAD ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// TRINIDAD ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.PortSpein.t0 = "Cumana";
 	NullCharacter.TravelMap.PortSpein.t0.town = "Cumana";
 	NullCharacter.TravelMap.PortSpein.t0.town.days.min = 1;
@@ -267,9 +266,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortSpein.t27.town.days.min = 6;
 	NullCharacter.TravelMap.PortSpein.t27.town.days.max = 12;
 
-//////////////////////////////////////////////////////////////////////////////
-////////////////////////////// CUMANA ////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	////////////////////////////// CUMANA ////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Cumana.t0 = "Trinidad";
 	NullCharacter.TravelMap.Cumana.t0.town = "PortSpein";
 	NullCharacter.TravelMap.Cumana.t0.town.days.min = 1;
@@ -419,9 +418,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Cumana.t27.town.days.min = 5;
 	NullCharacter.TravelMap.Cumana.t27.town.days.max = 11;
 
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////// CARACAS ////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// CARACAS ////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Caracas.t0 = "Cumana";
 	NullCharacter.TravelMap.Caracas.t0.town = "Cumana";
 	NullCharacter.TravelMap.Caracas.t0.town.days.min = 2;
@@ -571,9 +570,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Caracas.t27.town.days.min = 8;
 	NullCharacter.TravelMap.Caracas.t27.town.days.max = 14;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// MARACAIBO ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// MARACAIBO ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Maracaibo.t0 = "Cumana";
 	NullCharacter.TravelMap.Maracaibo.t0.town = "Cumana";
 	NullCharacter.TravelMap.Maracaibo.t0.town.days.min = 4;
@@ -723,9 +722,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Maracaibo.t27.town.days.min = 9;
 	NullCharacter.TravelMap.Maracaibo.t27.town.days.max = 14;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// CARTAHENA ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// CARTAHENA ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Cartahena.t0 = "Cumana";
 	NullCharacter.TravelMap.Cartahena.t0.town = "Cumana";
 	NullCharacter.TravelMap.Cartahena.t0.town.days.min = 6;
@@ -875,9 +874,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Cartahena.t27.town.days.min = 8;
 	NullCharacter.TravelMap.Cartahena.t27.town.days.max = 13;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// PORTOBELLO //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// PORTOBELLO //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.PortoBello.t0 = "Cumana";
 	NullCharacter.TravelMap.PortoBello.t0.town = "Cumana";
 	NullCharacter.TravelMap.PortoBello.t0.town.days.min = 10;
@@ -1027,9 +1026,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortoBello.t27.town.days.min = 9;
 	NullCharacter.TravelMap.PortoBello.t27.town.days.max = 14;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////// SANTACATALINA ////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////// SANTACATALINA ////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.SantaCatalina.t0 = "Cumana";
 	NullCharacter.TravelMap.SantaCatalina.t0.town = "Cumana";
 	NullCharacter.TravelMap.SantaCatalina.t0.town.days.min = 12;
@@ -1179,9 +1178,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SantaCatalina.t27.town.days.min = 8;
 	NullCharacter.TravelMap.SantaCatalina.t27.town.days.max = 14;
 
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////// JAMAYKA ////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// JAMAYKA ////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.PortRoyal.t0 = "Cumana";
 	NullCharacter.TravelMap.PortRoyal.t0.town = "Cumana";
 	NullCharacter.TravelMap.PortRoyal.t0.town.days.min = 7;
@@ -1326,9 +1325,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortRoyal.t27.town.days.min = 7;
 	NullCharacter.TravelMap.PortRoyal.t27.town.days.max = 12;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// CUBA /////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////// CUBA /////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Santiago.t0 = "Cumana";
 	NullCharacter.TravelMap.Santiago.t0.town = "Cumana";
 	NullCharacter.TravelMap.Santiago.t0.town.days.min = 13;
@@ -1473,9 +1472,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Santiago.t26.town.days.min = 7;
 	NullCharacter.TravelMap.Santiago.t26.town.days.max = 10;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// CUBA /////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////// CUBA /////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Havana.t0 = "Cumana";
 	NullCharacter.TravelMap.Havana.t0.town = "Cumana";
 	NullCharacter.TravelMap.Havana.t0.town.days.min = 14;
@@ -1620,10 +1619,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Havana.t26.town.days.min = 8;
 	NullCharacter.TravelMap.Havana.t26.town.days.max = 12;
 
-
-//////////////////////////////////////////////////////////////////////////////
-////////////////////////////// BELIZ /////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	////////////////////////////// BELIZ /////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Beliz.t0 = "Cumana";
 	NullCharacter.TravelMap.Beliz.t0.town = "Cumana";
 	NullCharacter.TravelMap.Beliz.t0.town.days.min = 11;
@@ -1773,9 +1771,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Beliz.t27.town.days.min = 7;
 	NullCharacter.TravelMap.Beliz.t27.town.days.max = 12;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// BERMUDES ////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// BERMUDES ////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Pirates.t0 = "Cumana";
 	NullCharacter.TravelMap.Pirates.t0.town = "Cumana";
 	NullCharacter.TravelMap.Pirates.t0.town.days.min = 6;
@@ -1925,9 +1923,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Pirates.t27.town.days.min = 1;
 	NullCharacter.TravelMap.Pirates.t27.town.days.max = 2;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// SENTMARTIN //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// SENTMARTIN //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Marigo.t0 = "Cumana";
 	NullCharacter.TravelMap.Marigo.t0.town = "Cumana";
 	NullCharacter.TravelMap.Marigo.t0.town.days.min = 5;
@@ -2077,9 +2075,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Marigo.t27.town.days.min = 2;
 	NullCharacter.TravelMap.Marigo.t27.town.days.max = 5;
 
-//////////////////////////////////////////////////////////////////////////////
-////////////////////////////// NEVIS /////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	////////////////////////////// NEVIS /////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Charles.t0 = "Cumana";
 	NullCharacter.TravelMap.Charles.t0.town = "Cumana";
 	NullCharacter.TravelMap.Charles.t0.town.days.min = 4;
@@ -2229,9 +2227,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Charles.t27.town.days.min = 3;
 	NullCharacter.TravelMap.Charles.t27.town.days.max = 6;
 
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////// ANTIGUA ////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// ANTIGUA ////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.SentJons.t0 = "Cumana";
 	NullCharacter.TravelMap.SentJons.t0.town = "Cumana";
 	NullCharacter.TravelMap.SentJons.t0.town.days.min = 4;
@@ -2381,9 +2379,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SentJons.t27.town.days.min = 4;
 	NullCharacter.TravelMap.SentJons.t27.town.days.max = 8;
 
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////// BARBADOS ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// BARBADOS ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Bridgetown.t0 = "Cumana";
 	NullCharacter.TravelMap.Bridgetown.t0.town = "Cumana";
 	NullCharacter.TravelMap.Bridgetown.t0.town.days.min = 2;
@@ -2533,9 +2531,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Bridgetown.t27.town.days.min = 6;
 	NullCharacter.TravelMap.Bridgetown.t27.town.days.max = 10;
 
-//////////////////////////////////////////////////////////////////////////////
-////////////////////////////// CURACAO ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	////////////////////////////// CURACAO ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Villemstad.t0 = "Cumana";
 	NullCharacter.TravelMap.Villemstad.t0.town = "Cumana";
 	NullCharacter.TravelMap.Villemstad.t0.town.days.min = 2;
@@ -2685,9 +2683,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Villemstad.t27.town.days.min = 6;
 	NullCharacter.TravelMap.Villemstad.t27.town.days.max = 11;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// MARTINIQUE //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// MARTINIQUE //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.FortFrance.t0 = "Cumana";
 	NullCharacter.TravelMap.FortFrance.t0.town = "Cumana";
 	NullCharacter.TravelMap.FortFrance.t0.town.days.min = 3;
@@ -2832,9 +2830,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.FortFrance.t26.town.days.min = 5;
 	NullCharacter.TravelMap.FortFrance.t26.town.days.max = 8;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// GUADELOUPE //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// GUADELOUPE //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.BasTer.t0 = "Cumana";
 	NullCharacter.TravelMap.BasTer.t0.town = "Cumana";
 	NullCharacter.TravelMap.BasTer.t0.town.days.min = 4;
@@ -2984,9 +2982,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.BasTer.t27.town.days.min = 6;
 	NullCharacter.TravelMap.BasTer.t27.town.days.max = 9;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// PUERTORICO //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// PUERTORICO //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.SanJuan.t0 = "Cumana";
 	NullCharacter.TravelMap.SanJuan.t0.town = "Cumana";
 	NullCharacter.TravelMap.SanJuan.t0.town.days.min = 5;
@@ -3136,9 +3134,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SanJuan.t27.town.days.min = 3;
 	NullCharacter.TravelMap.SanJuan.t27.town.days.max = 5;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// HISPANIOLA //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// HISPANIOLA //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.SantoDomingo.t0 = "Cumana";
 	NullCharacter.TravelMap.SantoDomingo.t0.town = "Cumana";
 	NullCharacter.TravelMap.SantoDomingo.t0.town.days.min = 6;
@@ -3283,9 +3281,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.SantoDomingo.t26.town.days.min = 3;
 	NullCharacter.TravelMap.SantoDomingo.t26.town.days.max = 5;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// HISPANIOLA //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// HISPANIOLA //////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.PortPax.t0 = "Cumana";
 	NullCharacter.TravelMap.PortPax.t0.town = "Cumana";
 	NullCharacter.TravelMap.PortPax.t0.town.days.min = 7;
@@ -3430,9 +3428,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PortPax.t26.town.days.min = 4;
 	NullCharacter.TravelMap.PortPax.t26.town.days.max = 6;
 
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////// TORTUGA ////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// TORTUGA ////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Tortuga.t0 = "Cumana";
 	NullCharacter.TravelMap.Tortuga.t0.town = "Cumana";
 	NullCharacter.TravelMap.Tortuga.t0.town.days.min = 8;
@@ -3582,9 +3580,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Tortuga.t27.town.days.min = 1;
 	NullCharacter.TravelMap.Tortuga.t27.town.days.max = 3;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////// HISPANIOLA LAVEGA ///////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////// HISPANIOLA LAVEGA ///////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.LaVega.t0 = "Cumana";
 	NullCharacter.TravelMap.LaVega.t0.town = "Cumana";
 	NullCharacter.TravelMap.LaVega.t0.town.days.min = 6;
@@ -3729,9 +3727,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.LaVega.t26.town.days.min = 3;
 	NullCharacter.TravelMap.LaVega.t26.town.days.max = 5;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////// MARTINIQUE LEFRANSUA /////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////// MARTINIQUE LEFRANSUA /////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.LeFransua.t0 = "Cumana";
 	NullCharacter.TravelMap.LeFransua.t0.town = "Cumana";
 	NullCharacter.TravelMap.LeFransua.t0.town.days.min = 3;
@@ -3876,9 +3874,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.LeFransua.t26.town.days.min = 5;
 	NullCharacter.TravelMap.LeFransua.t26.town.days.max = 8;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////// CUBA PUERTOPRINCIPE //////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////// CUBA PUERTOPRINCIPE //////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.PuertoPrincipe.t0 = "Cumana";
 	NullCharacter.TravelMap.PuertoPrincipe.t0.town = "Cumana";
 	NullCharacter.TravelMap.PuertoPrincipe.t0.town.days.min = 13;
@@ -4023,9 +4021,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.PuertoPrincipe.t26.town.days.min = 7;
 	NullCharacter.TravelMap.PuertoPrincipe.t26.town.days.max = 10;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////// JAMAYAKA FORTORANGE //////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////// JAMAYAKA FORTORANGE //////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.FortOrange.t0 = "Cumana";
 	NullCharacter.TravelMap.FortOrange.t0.town = "Cumana";
 	NullCharacter.TravelMap.FortOrange.t0.town.days.min = 7;
@@ -4170,17 +4168,17 @@ void InitTravelMap()
 	NullCharacter.TravelMap.FortOrange.t27.town.days.min = 7;
 	NullCharacter.TravelMap.FortOrange.t27.town.days.max = 12;
 
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// PANAMA ///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////// PANAMA ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Panama.t0 = "PortoBello";
 	NullCharacter.TravelMap.Panama.t0.town = "PortoBello";
 	NullCharacter.TravelMap.Panama.t0.town.days.min = 1;
 	NullCharacter.TravelMap.Panama.t0.town.days.max = 1;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// TENOTCHITLAN ////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// TENOTCHITLAN ////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Tenotchitlan.t0 = "Beliz";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town = "Beliz";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town.days.min = 2;
@@ -4191,9 +4189,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.min = 2;
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.max = 3;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// CAIMAN ////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// CAIMAN ////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Tenotchitlan.t0 = "Cuba1";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town = "PuertoPrincipe";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town.days.min = 3;
@@ -4204,9 +4202,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.min = 2;
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.max = 4;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// DOMINICA ////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// DOMINICA ////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Tenotchitlan.t0 = "Cuba1";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town = "PuertoPrincipe";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town.days.min = 9;
@@ -4217,9 +4215,9 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.min = 4;
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.max = 7;
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////// TERKS ////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// TERKS ////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 	NullCharacter.TravelMap.Tenotchitlan.t0 = "Cuba1";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town = "PuertoPrincipe";
 	NullCharacter.TravelMap.Tenotchitlan.t0.town.days.min = 7;
@@ -4229,7 +4227,7 @@ void InitTravelMap()
 	NullCharacter.TravelMap.Tenotchitlan.t1.town = "PortPax";
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.min = 4;
 	NullCharacter.TravelMap.Tenotchitlan.t1.town.days.max = 6;
-// <---------------------------------------------------------------------------
+	// <---------------------------------------------------------------------------
 
 	// Lugger: Ближайшие острова, кроме мейна, кубы и испаньолы -->
 	NullCharacter.TravelMap.MinDestination.Barbados.t1 = "Trinidad";
@@ -4375,7 +4373,7 @@ string GetIslandRandomShoreId(string _island)
 
 	makearef(arDest, NullCharacter.TravelMap.Islands.(_island).Shore);
 	iNum = GetAttributesNum(arDest);
-	sAttr = "t" + rand(iNum-1);
+	sAttr = "t" + rand(iNum - 1);
 
 	if (sAttr == "t-1")
 	{
@@ -4393,9 +4391,9 @@ string GetRandomIslandId()
 
 	makearef(arDest, NullCharacter.TravelMap.Islands);
 	iNum = GetAttributesNum(arDest);
-    iNum = rand(iNum-1);
+	iNum = rand(iNum - 1);
 
-    arImt = GetAttributeN(arDest, iNum);
+	arImt = GetAttributeN(arDest, iNum);
 	return GetAttributeName(arImt);
 }
 
@@ -4416,25 +4414,25 @@ void SetSmugglersTravelDestination(aref arDest)
 
 	makearef(arTown, NullCharacter.TravelMap.(sTown));
 	iNum = GetAttributesNum(arTown);
-	sTmp = "t" + rand(iNum-1);
+	sTmp = "t" + rand(iNum - 1);
 	//необитаемые острова, там нет городов, туда не плаваем.
 	//PS: мы плывем на остров, хотя выбор идет по городам (по сухопутным тоже),
 	//но т.к. высаживаем в бухте, то пофиг.
 	while (arTown.(sTmp).town == "")
 	{
-		sTmp = "t" + rand(iNum-1);
+		sTmp = "t" + rand(iNum - 1);
 	}
 
 	DeleteAttribute(arDest, "destination");
 	iMin = sti(arTown.(sTmp).town.days.min);
 	iMax = sti(arTown.(sTmp).town.days.max);
 
-	arDest.destination.days = iMin + rand(iMax-iMin);
-	arDest.destination =			arTown.(sTmp).town;
-	arDest.destination.loc =		GetIslandRandomShoreId(arTown.(sTmp));
+	arDest.destination.days = iMin + rand(iMax - iMin);
+	arDest.destination = arTown.(sTmp).town;
+	arDest.destination.loc = GetIslandRandomShoreId(arTown.(sTmp));
 	//пишу стандартные аттрибуты, везде будут они.
-	arDest.destination.group =		"reload";
-	arDest.destination.locator =	"sea";
+	arDest.destination.group = "reload";
+	arDest.destination.locator = "sea";
 }
 
 //получить ID города на острове.
@@ -4457,15 +4455,16 @@ string GetCurrentTown()
 	int iColony, iLoc;
 
 	iLoc = FindLoadedLocation();
-	if (iLoc < 0) return "";
+	if (iLoc < 0)
+		return "";
 
 	loc = &Locations[iLoc];
 	iColony = -1;
-	if(CheckAttribute(loc, "fastreload"))
+	if (CheckAttribute(loc, "fastreload"))
 	{
 		iColony = FindColony(loc.fastreload);
 	}
-	if(iColony == -1)
+	if (iColony == -1)
 	{
 		return "";
 	}
@@ -4478,18 +4477,20 @@ int GetMaxDaysFromIsland2Island(string _isl1, string _isl2)
 	int i, iNum;
 	aref arTown;
 	string sTmp, sTown;
-	sTown  = FindTownOnIsland(_isl1);
+	sTown = FindTownOnIsland(_isl1);
 
 	makearef(arTown, NullCharacter.TravelMap.(sTown));
 	iNum = GetAttributesNum(arTown);
 
-	if( _isl1 == "Caiman" ||  _isl2 == "Caiman") return 8;
+	if (_isl1 == "Caiman" || _isl2 == "Caiman")
+		return 8;
 	else
 	{
 		for (i = 0; i < iNum; i++)
 		{
 			sTmp = "t" + i;
-			if (arTown.(sTmp) == _isl2) return sti(arTown.(sTmp).town.days.max);
+			if (arTown.(sTmp) == _isl2)
+				return sti(arTown.(sTmp).town.days.max);
 		}
 	}
 	return -1;
@@ -4500,18 +4501,20 @@ string GetRandomUninhabitatIsland()
 	int iRand = rand(3);
 	switch (iRand)
 	{
-		case 0:
-			sTemp = "Dominica";
+	case 0:
+		sTemp = "Dominica";
 		break;
-		case 1:
-			if(PChar.ColonyBuilding.Stage != "0") sTemp = "Bermudes";
-			else sTemp = "Caiman";
-		break;
-		case 2:
-			sTemp = "Terks";
-		break;
-		case 3:
+	case 1:
+		if (PChar.ColonyBuilding.Stage != "0")
 			sTemp = "Bermudes";
+		else
+			sTemp = "Caiman";
+		break;
+	case 2:
+		sTemp = "Terks";
+		break;
+	case 3:
+		sTemp = "Bermudes";
 		break;
 	}
 	return sTemp;

@@ -7,12 +7,12 @@ int CreateCumanaCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "Cumana_Mayor";
-	ch.model	= "huber_eng";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "Cumana_Mayor";
+	ch.model = "huber_eng";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_townhall";
+	ch.location = "Cumana_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -22,22 +22,22 @@ int CreateCumanaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
 	LAi_group_MoveCharacter(ch, "SPAIN_CITIZENS");
 	LAi_SetImmortal(ch, true);
-    LAi_LoginInCaptureTown(ch, true); //TO_DO eddy, снести
+	LAi_LoginInCaptureTown(ch, true); //TO_DO eddy, снести
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "Cumana_Priest";
-	ch.model	= "priest_2";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "Cumana_Priest";
+	ch.model = "priest_2";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_church";
+	ch.location = "Cumana_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -49,12 +49,12 @@ int CreateCumanaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "Cumana_waitress";
-	ch.model	= "girl_3";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "Cumana_waitress";
+	ch.model = "girl_3";
 	ch.sex = "woman";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_tavern";
+	ch.location = "Cumana_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -66,13 +66,13 @@ int CreateCumanaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "Cumana_tavernkeeper";
-	ch.model	= "barmen_10";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "Cumana_tavernkeeper";
+	ch.model = "barmen_10";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_Tavern";
+	ch.location = "Cumana_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -84,14 +84,13 @@ int CreateCumanaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
+	makeref(ch, Characters[n]); //Торговец
 	ch.id = "Cumana_trader";
-	ch.model	= "trader_1";
+	ch.model = "trader_1";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_Store";
+	ch.location = "Cumana_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -103,13 +102,13 @@ int CreateCumanaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
-	ch.id		= "Cumana_shipyarder";
-	ch.model	= "shipowner_10";
+	makeref(ch, Characters[n]); //Корабел
+	ch.id = "Cumana_shipyarder";
+	ch.model = "shipowner_10";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_Shipyard";
+	ch.location = "Cumana_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -118,7 +117,7 @@ int CreateCumanaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -126,12 +125,12 @@ int CreateCumanaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "Cumana_usurer";
-	ch.model	= "usurer_4";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "Cumana_usurer";
+	ch.model = "usurer_4";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_Bank";
+	ch.location = "Cumana_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -144,12 +143,12 @@ int CreateCumanaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "Cumana_PortMan";
-	ch.model	= "usurer_7";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "Cumana_PortMan";
+	ch.model = "usurer_7";
 	ch.sex = "man";
 	ch.City = "Cumana";
-	ch.location	= "Cumana_PortOffice";
+	ch.location = "Cumana_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -161,12 +160,12 @@ int CreateCumanaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "Cumana_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "Cumana_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

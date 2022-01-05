@@ -6,9 +6,9 @@ void LAi_ChrSnd_Body()
 	return;
 
 	aref chr = GetEventData();
-	if(CheckAttribute(chr, "sex"))
+	if (CheckAttribute(chr, "sex"))
 	{
-		switch(chr.sex)
+		switch (chr.sex)
 		{
 		case "man":
 			LAi_CharacterPlaySound(chr, "body");
@@ -31,11 +31,10 @@ void LAi_ChrSnd_Dead()
 {
 	return;
 
-
 	aref chr = GetEventData();
-	if(CheckAttribute(chr, "sex"))
+	if (CheckAttribute(chr, "sex"))
 	{
-		switch(chr.sex)
+		switch (chr.sex)
 		{
 		case "man":
 			LAi_CharacterPlaySound(chr, "dead");
@@ -58,12 +57,10 @@ void LAi_ChrSnd_Attack()
 {
 	return;
 
-
-
 	aref chr = GetEventData();
-	if(CheckAttribute(chr, "sex"))
+	if (CheckAttribute(chr, "sex"))
 	{
-		switch(chr.sex)
+		switch (chr.sex)
 		{
 		case "man":
 			LAi_CharacterPlaySound(chr, "man_attack");
@@ -87,9 +84,9 @@ void LAi_ChrSnd_Hit()
 	return;
 
 	aref chr = GetEventData();
-	if(CheckAttribute(chr, "sex"))
+	if (CheckAttribute(chr, "sex"))
 	{
-		switch(chr.sex)
+		switch (chr.sex)
 		{
 		case "man":
 			LAi_CharacterPlaySound(chr, "man_hit");

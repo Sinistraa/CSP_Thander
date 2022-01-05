@@ -6,15 +6,12 @@ object questMovieWideScreen;
 bool questMovieIsLockPlayerCtrl = false;
 string questMovieOldSaveState = true;
 
-
-
 void ResetQuestMovie()
 {
 	questMovieProcess = 0;
 	questMovieIsLockPlayerCtrl = false;
 	questMovieOldSaveState = true;
 }
-
 
 bool StartQuestMovie(bool noReload, bool noSave, bool lockPlayerCtrl)
 {
@@ -30,19 +27,24 @@ bool StartQuestMovie(bool noReload, bool noSave, bool lockPlayerCtrl)
 	stk.noSave = noSave;
 	stk.lock = lockPlayerCtrl;
 	//Set parameters
-	if(questMovieProcess > 0)
+	if (questMovieProcess > 0)
 	{
 		InterfaceStates.Buttons.Save.enable = noSave;
-		if(lockPlayerCtrl != false)
+		if (lockPlayerCtrl != false)
 		{
 			QuestMovieLockPlayer();
-		}else{
+		}
+		else
+		{
 			QuestMovieUnLockPlayer();
 		}
-	}else{
+	}
+	else
+	{
 		questMovieOldSaveState = InterfaceStates.Buttons.Save.enable;
 		InterfaceStates.Buttons.Save.enable = noSave;
-		if(lockPlayerCtrl != false) QuestMovieLockPlayer();
+		if (lockPlayerCtrl != false)
+			QuestMovieLockPlayer();
 	}
 	questMovieProcess = questMovieProcess + 1;
 	return true;
@@ -50,10 +52,11 @@ bool StartQuestMovie(bool noReload, bool noSave, bool lockPlayerCtrl)
 
 bool EndQuestMovie()
 {
-	if(questMovieProcess == 0) return false;
+	if (questMovieProcess == 0)
+		return false;
 	Event("EndStartQuestMovie");
 	questMovieProcess = questMovieProcess - 1;
-	if(questMovieProcess == 0)
+	if (questMovieProcess == 0)
 	{
 		QuestMovieUnLockPlayer();
 		InterfaceStates.Buttons.Save.enable = questMovieOldSaveState;
@@ -63,10 +66,12 @@ bool EndQuestMovie()
 	aref stk;
 	makearef(stk, questMovieStack.(level));
 	InterfaceStates.Buttons.Save.enable = stk.noSave;
-	if(sti(stk.lock) != 0)
+	if (sti(stk.lock) != 0)
 	{
 		QuestMovieLockPlayer();
-	}else{
+	}
+	else
+	{
 		QuestMovieUnLockPlayer();
 	}
 	return true;
@@ -74,7 +79,8 @@ bool EndQuestMovie()
 
 void QuestMovieLockPlayer()
 {
-	if(questMovieIsLockPlayerCtrl == true) return;
+	if (questMovieIsLockPlayerCtrl == true)
+		return;
 	questMovieIsLockPlayerCtrl = true;
 	SetCharacterTask_Stay(GetMainCharacter());
 	CreateEntity(&questMovieWideScreen, "WideScreen");
@@ -82,7 +88,8 @@ void QuestMovieLockPlayer()
 
 void QuestMovieUnLockPlayer()
 {
-	if(questMovieIsLockPlayerCtrl == false) return;
+	if (questMovieIsLockPlayerCtrl == false)
+		return;
 	questMovieIsLockPlayerCtrl = false;
 	SetCharacterTask_None(GetMainCharacter());
 	SendMessage(&questMovieWideScreen, "");
@@ -90,12 +97,12 @@ void QuestMovieUnLockPlayer()
 
 bool qmIsNoReload()
 {
-	if(questMovieProcess > 0)
+	if (questMovieProcess > 0)
 	{
 		int l = questMovieProcess - 1;
 		string level = "L" + l + ".noReload";
-		if(sti(questMovieStack.(level)) != 0) return true;
+		if (sti(questMovieStack.(level)) != 0)
+			return true;
 	}
 	return false;
 }
-

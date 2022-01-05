@@ -1,10 +1,10 @@
 #include "scripts\utils.c"
 
 // boal -->
-#define CARDS_RULE  "Правила простые. Играем в 'двадцать одно'. В колоде 36 карт, от тузов до шестерок. Туз -11, король - 4, дама - 3, валет - 2, остальные как написано. Нужно набрать 21 очко. \n Раздаем по одной карте, далее набираем себе недостающие (клик по колоде). Ход передается кликом по портрету с профилем в правом верхнем углу окошка. Если перебор, то игра заканчивается. Каждая карта - это наша ставка. Начать игру можно, если у тебя есть деньги хотя бы для трех ставок. Повтор игры клик по колоде, выход - крестик или Esc."
-#define DICE_RULE   "Играем в 'покер-джокер'. Пять кубиков у каждого, бросаем по очереди все пять. Можно перебросить любое число кубиков, сделав ставку за каждый, но только один раз. Нужно выкинуть максимальный результат. \n Результаты по возрастанию: одна пара (2), две пары (2+2), триада (3), фул (3+2), каре (4), стрит (кубики подряд) и покер (5). Если одинаково выпало, то победил тот, у кого старше комбинация. \n Управление: клик по стакану - бросок кубиков, клик по кубику - на переброс (деньги на ставку должны быть), клик по портрету - передать ход (когда переброс не нужен)."
-#define MAX_TITLENEXTRATE   13 // счетчик для званий
-#define MAX_TITLE           5
+#define CARDS_RULE "Правила простые. Играем в 'двадцать одно'. В колоде 36 карт, от тузов до шестерок. Туз -11, король - 4, дама - 3, валет - 2, остальные как написано. Нужно набрать 21 очко. \n Раздаем по одной карте, далее набираем себе недостающие (клик по колоде). Ход передается кликом по портрету с профилем в правом верхнем углу окошка. Если перебор, то игра заканчивается. Каждая карта - это наша ставка. Начать игру можно, если у тебя есть деньги хотя бы для трех ставок. Повтор игры клик по колоде, выход - крестик или Esc."
+#define DICE_RULE "Играем в 'покер-джокер'. Пять кубиков у каждого, бросаем по очереди все пять. Можно перебросить любое число кубиков, сделав ставку за каждый, но только один раз. Нужно выкинуть максимальный результат. \n Результаты по возрастанию: одна пара (2), две пары (2+2), триада (3), фул (3+2), каре (4), стрит (кубики подряд) и покер (5). Если одинаково выпало, то победил тот, у кого старше комбинация. \n Управление: клик по стакану - бросок кубиков, клик по кубику - на переброс (деньги на ставку должны быть), клик по портрету - передать ход (когда переброс не нужен)."
+#define MAX_TITLENEXTRATE 13 // счетчик для званий
+#define MAX_TITLE 5
 // boal <--
 
 object Address_Form;
@@ -14,16 +14,16 @@ void Set_inDialog_Attributes()
 	ref The_Character_is;
 
 	The_Character_is = GetMainCharacter();
-    if (!CheckAttribute(The_Character_is, "sex") || The_Character_is.sex == "man" || The_Character_is.sex == "skeleton")
+	if (!CheckAttribute(The_Character_is, "sex") || The_Character_is.sex == "man" || The_Character_is.sex == "skeleton")
 	{
 		Address_Form.Spa = "сеньор";
 		Address_Form.Fra = "месье";
 		Address_Form.Eng = "сэр";
 		Address_Form.Hol = "минхер";
 		Address_Form.Pir = "сэр";
-    }
-    else
-    {
+	}
+	else
+	{
 		Address_Form.Spa = "сеньорита";
 		Address_Form.Fra = "мадмуазэль";
 		Address_Form.Eng = "мисс";
@@ -36,7 +36,7 @@ void Set_inDialog_Attributes()
 	Address_Form.Hol.Title1 = "Флибустьер";
 	Address_Form.Pir.Title1 = "Пират";
 
-    Address_Form.Spa.Title2 = "Коммандер";
+	Address_Form.Spa.Title2 = "Коммандер";
 	Address_Form.Fra.Title2 = "Коммандер";
 	Address_Form.Eng.Title2 = "Коммандер";
 	Address_Form.Hol.Title2 = "Коммандер";
@@ -103,63 +103,63 @@ string RandSwear()
 {
 	switch (rand(14))
 	{
-		case 0:
-			return "Карамба! ";
+	case 0:
+		return "Карамба! ";
 		break;
 
-		case 1:
-			return "Проклятье! ";
+	case 1:
+		return "Проклятье! ";
 		break;
 
-		case 2:
-			return "Дьявол! ";
+	case 2:
+		return "Дьявол! ";
 		break;
 
-		case 3:
-			return "Черт! ";
+	case 3:
+		return "Черт! ";
 		break;
 
-		case 4:
-			return "Якорь мне в ... ";
+	case 4:
+		return "Якорь мне в ... ";
 		break;
 
-		case 5:
-			return "Тысяча акул! ";
+	case 5:
+		return "Тысяча акул! ";
 		break;
 
-		case 6:
-			return "Аргкх!!! ";
+	case 6:
+		return "Аргкх!!! ";
 		break;
 
-		case 7:
-			return "Тысяча чертей! ";
+	case 7:
+		return "Тысяча чертей! ";
 		break;
 
-		case 8:
-			return "Алле Хагель! ";	// стандартное пиратское "твою мать"
+	case 8:
+		return "Алле Хагель! "; // стандартное пиратское "твою мать"
 		break;
-		case 9:
-			return "Разрази меня гром! ";
-		break;
-
-		case 10:
-			return "Ар-х, твою бизань! ";
+	case 9:
+		return "Разрази меня гром! ";
 		break;
 
-		case 11:
-			return "А, чтоб тебя... ";
+	case 10:
+		return "Ар-х, твою бизань! ";
 		break;
 
-		case 12:
-			return "Дюжина акул! ";
+	case 11:
+		return "А, чтоб тебя... ";
 		break;
 
-		case 13:
-			return "Укуси меня селедка! ";
+	case 12:
+		return "Дюжина акул! ";
 		break;
 
-		case 14:
-			return "Три тысячи чертей! ";
+	case 13:
+		return "Укуси меня селедка! ";
+		break;
+
+	case 14:
+		return "Три тысячи чертей! ";
 		break;
 	}
 }
@@ -168,18 +168,18 @@ string RandSwear()
 //т.к. "О, Боже!!! Я вырежу тебе сердце" звучит мягко говоря странно :)
 string RandExclamation()
 {
-	switch(rand(2))
+	switch (rand(2))
 	{
-		case 0:
-			return "О, Боже!! ";
+	case 0:
+		return "О, Боже!! ";
 		break;
 
-		case 1:
-			return "О, Небеса! ";
+	case 1:
+		return "О, Небеса! ";
 		break;
 
-		case 2:
-			return "Святая Мадонна! ";
+	case 2:
+		return "Святая Мадонна! ";
 		break;
 	}
 }
@@ -192,222 +192,222 @@ string RandPhraseSimple(string Var1, string Var2);
 {
 	int RandP;
 	RandP = Rand(1);
-	switch(RandP)
+	switch (RandP)
 	{
-		case 0:
-			return /*"First phrase selected" + */ Var1;
+	case 0:
+		return /*"First phrase selected" + */ Var1;
 		break;
 
-		case 1:
-			return /*"Second phrase selected" + */Var2;
+	case 1:
+		return /*"Second phrase selected" + */ Var2;
 		break;
 	}
 	return "ERROR";
 }
 // выбор фразы из трех
-string LinkRandPhrase (string Var1, string Var2, string Var3)
+string LinkRandPhrase(string Var1, string Var2, string Var3)
 {
 	int RandP;
 	RandP = Rand(2);
-	switch(RandP)
+	switch (RandP)
 	{
-		case 0:
+	case 0:
 
-			return /*"First phrase selected" + */ Var1;
-
-		break;
-
-		case 1:
-
-			return /*"Second phrase selected" + */Var2;
+		return /*"First phrase selected" + */ Var1;
 
 		break;
 
-		case 2:
+	case 1:
 
-			return /*"Third phrase selected" + */Var3;
+		return /*"Second phrase selected" + */ Var2;
+
+		break;
+
+	case 2:
+
+		return /*"Third phrase selected" + */ Var3;
 
 		break;
 	}
 	return "ERROR";
 }
 
-string LinkRandArrayPhrase (int z)
+string LinkRandArrayPhrase(int z)
 {
 	return rand_arr[prand(z)];
 }
 
 string NationKingsCrown(ref Character)
 {
-    switch(sti(Character.nation))
+	switch (sti(Character.nation))
 	{
-		case ENGLAND:
-            return "Английскому престолу";
+	case ENGLAND:
+		return "Английскому престолу";
 		break;
-		case FRANCE:
-            return "Французской короне";
+	case FRANCE:
+		return "Французской короне";
 		break;
-		case SPAIN:
-            return "Испанской короне";
+	case SPAIN:
+		return "Испанской короне";
 		break;
-		case HOLLAND:
-			return "Королевству Нидерланды";
+	case HOLLAND:
+		return "Королевству Нидерланды";
 		break;
-		case PIRATE:
-			return "Береговому братству";
+	case PIRATE:
+		return "Береговому братству";
 		break;
 	}
 }
 string NationKingsName(ref NPChar)
 {
-    switch(sti(NPChar.nation))
+	switch (sti(NPChar.nation))
 	{
-		case ENGLAND:
-            return "Его Величества Карла II Стюарта";
+	case ENGLAND:
+		return "Его Величества Карла II Стюарта";
 		break;
-		case FRANCE:
-            return "Его Величества Людовика XIV";
+	case FRANCE:
+		return "Его Величества Людовика XIV";
 		break;
-		case SPAIN:
-            return "Его Католического Величества Карла II Габсбурга";
+	case SPAIN:
+		return "Его Католического Величества Карла II Габсбурга";
 		break;
-		case HOLLAND:
-			return "Его Величества Вильгельма III Оранского";
+	case HOLLAND:
+		return "Его Величества Вильгельма III Оранского";
 		break;
-		case PIRATE:
-			return "берегового пиратского братства";
+	case PIRATE:
+		return "берегового пиратского братства";
 		break;
 	}
 }
 
 string NationNameMan(int pNation)
 {
-    switch(pNation)
+	switch (pNation)
 	{
-		case ENGLAND:
-            return "англичанин";
+	case ENGLAND:
+		return "англичанин";
 		break;
-		case FRANCE:
-            return "француз";
+	case FRANCE:
+		return "француз";
 		break;
-		case SPAIN:
-            return "испанец";
+	case SPAIN:
+		return "испанец";
 		break;
-		case HOLLAND:
-			return "голландец";
+	case HOLLAND:
+		return "голландец";
 		break;
-		case PIRATE:
-			return "пират";
+	case PIRATE:
+		return "пират";
 		break;
 	}
 }
 // boal 13.03.2004 <--
 string NationNamePeople(int pNation)
 {
-    switch(pNation)
+	switch (pNation)
 	{
-		case ENGLAND:
-            return "англичане";
+	case ENGLAND:
+		return "англичане";
 		break;
-		case FRANCE:
-            return "французы";
+	case FRANCE:
+		return "французы";
 		break;
-		case SPAIN:
-            return "испанцы";
+	case SPAIN:
+		return "испанцы";
 		break;
-		case HOLLAND:
-			return "голландцы";
+	case HOLLAND:
+		return "голландцы";
 		break;
-		case PIRATE:
-			return "пираты";
+	case PIRATE:
+		return "пираты";
 		break;
 	}
 }
 
 string NationNamePeopleAcc(int pNation)
 {
-    switch(pNation)
+	switch (pNation)
 	{
-		case ENGLAND:
-            return "англичанами";
+	case ENGLAND:
+		return "англичанами";
 		break;
-		case FRANCE:
-            return "французами";
+	case FRANCE:
+		return "французами";
 		break;
-		case SPAIN:
-            return "испанцами";
+	case SPAIN:
+		return "испанцами";
 		break;
-		case HOLLAND:
-			return "голландцами";
+	case HOLLAND:
+		return "голландцами";
 		break;
-		case PIRATE:
-			return "паратами";
+	case PIRATE:
+		return "паратами";
 		break;
 	}
 }
 
 string NationNameAblative(int iNation) //творительный падеж
 {
-    switch(iNation)
+	switch (iNation)
 	{
-		case ENGLAND:
-            return "Англией";
+	case ENGLAND:
+		return "Англией";
 		break;
-		case FRANCE:
-            return "Францией";
+	case FRANCE:
+		return "Францией";
 		break;
-		case SPAIN:
-            return "Испанией";
+	case SPAIN:
+		return "Испанией";
 		break;
-		case HOLLAND:
-			return "Голландией";
+	case HOLLAND:
+		return "Голландией";
 		break;
-		case PIRATE:
-			return "пиратами";
+	case PIRATE:
+		return "пиратами";
 		break;
 	}
 }
 
 string NationNameNominative(int iNation) //именительный падеж
 {
-    switch(iNation)
+	switch (iNation)
 	{
-		case ENGLAND:
-            return "Англия";
+	case ENGLAND:
+		return "Англия";
 		break;
-		case FRANCE:
-            return "Франция";
+	case FRANCE:
+		return "Франция";
 		break;
-		case SPAIN:
-            return "Испания";
+	case SPAIN:
+		return "Испания";
 		break;
-		case HOLLAND:
-			return "Голландия";
+	case HOLLAND:
+		return "Голландия";
 		break;
-		case PIRATE:
-			return "Береговое братство";
+	case PIRATE:
+		return "Береговое братство";
 		break;
 	}
 }
 
 string NationNameGenitive(int iNation) // родительный падеж
 {
-    switch(iNation)
+	switch (iNation)
 	{
-		case ENGLAND:
-            return "Англии";
+	case ENGLAND:
+		return "Англии";
 		break;
-		case FRANCE:
-            return "Франции";
+	case FRANCE:
+		return "Франции";
 		break;
-		case SPAIN:
-            return "Испании";
+	case SPAIN:
+		return "Испании";
 		break;
-		case HOLLAND:
-			return "Голландии";
+	case HOLLAND:
+		return "Голландии";
 		break;
-		case PIRATE:
-			return "пиратов";
+	case PIRATE:
+		return "пиратов";
 		break;
 	}
 }
@@ -415,126 +415,126 @@ string NationNameGenitive(int iNation) // родительный падеж
 ///////Часто будет использоваться поэтому заношу сюда
 string NationEuropaTown(int iNation)
 {
-    switch(iNation)
+	switch (iNation)
 	{
-		case ENGLAND:
-            return "Лондон";
+	case ENGLAND:
+		return "Лондон";
 		break;
-		case FRANCE:
-            return "Ля Рошель";
+	case FRANCE:
+		return "Ля Рошель";
 		break;
-		case SPAIN:
-            return "Севилью";
+	case SPAIN:
+		return "Севилью";
 		break;
-        case PIRATE:
-	    	return "Тортугу";
+	case PIRATE:
+		return "Тортугу";
 		break;
-		case HOLLAND:
-	    	return "Амстердам";
+	case HOLLAND:
+		return "Амстердам";
 		break;
 	}
 }
 string GetCityName(string city) // имена городов по аттрибуту char.city
 {
-    string ret;
-    int nFile = LanguageOpenFile("LocLables.txt");
+	string ret;
+	int nFile = LanguageOpenFile("LocLables.txt");
 
 	ret = LanguageConvertString(nFile, city + " Town")
-	LanguageCloseFile( nFile );
+		LanguageCloseFile(nFile);
 
-	return  ret;
+	return ret;
 }
 
 string GetPortByCityName(string city) // имена портов по городов по аттрибуту char.city
 {
-    switch(city)
+	switch (city)
 	{
-		case "Bridgetown":
-            return "Bridgetown_town";
+	case "Bridgetown":
+		return "Bridgetown_town";
 		break;
-		case "SanJuan":
-            return "SanJuan_town";
+	case "SanJuan":
+		return "SanJuan_town";
 		break;
-		case "Santiago":
-            return "Santiago_town";
+	case "Santiago":
+		return "Santiago_town";
 		break;
-		case "PuertoPrincipe":
-            return "PuertoPrincipe_port";
+	case "PuertoPrincipe":
+		return "PuertoPrincipe_port";
 		break;
-		case "SentJons":
-            return "SentJons_town";
+	case "SentJons":
+		return "SentJons_town";
 		break;
-		case "PortRoyal":
-            return "PortRoyal_town";
+	case "PortRoyal":
+		return "PortRoyal_town";
 		break;
-		case "FortOrange":
-            return "Shore35";
+	case "FortOrange":
+		return "Shore35";
 		break;
-		case "Villemstad":
-            return "Villemstad_town";
+	case "Villemstad":
+		return "Villemstad_town";
 		break;
-		case "BasTer":
-            return "BasTer_town";
+	case "BasTer":
+		return "BasTer_town";
 		break;
-		case "LaVega":
-            return "LaVega_port";
+	case "LaVega":
+		return "LaVega_port";
 		break;
-		case "Bridgetown":
-            return "Bridgetown_town";
+	case "Bridgetown":
+		return "Bridgetown_town";
 		break;
-		case "SantoDomingo":
-            return "SantoDomingo_town";
+	case "SantoDomingo":
+		return "SantoDomingo_town";
 		break;
-		case "PortPax":
-            return "PortPax_town";
+	case "PortPax":
+		return "PortPax_town";
 		break;
-		case "Pirates":
-            return "Pirates_town";
-        break;
-		case "FortFrance":
-            return "FortFrance_town";
+	case "Pirates":
+		return "Pirates_town";
 		break;
-		case "LeFransua":
-            return "LeFransua_port";
+	case "FortFrance":
+		return "FortFrance_town";
 		break;
-		case "Havana":
-            return "Havana_town";
+	case "LeFransua":
+		return "LeFransua_port";
 		break;
-		case "Charles":
-            return "Charles_town";
+	case "Havana":
+		return "Havana_town";
 		break;
-		case "PortoBello":
-            return "PortoBello_town";
+	case "Charles":
+		return "Charles_town";
 		break;
-		case "PortSpein":
-            return "PortSpein_town";
+	case "PortoBello":
+		return "PortoBello_town";
 		break;
-		case "Tortuga":
-            return "Tortuga_town";
+	case "PortSpein":
+		return "PortSpein_town";
 		break;
-		case "Marigo":
-            return "Marigo_town";
+	case "Tortuga":
+		return "Tortuga_town";
 		break;
-		case "Panama":
-            return "Panama_town";
+	case "Marigo":
+		return "Marigo_town";
 		break;
-		case "Cartahena":
-            return "Cartahena_town";
+	case "Panama":
+		return "Panama_town";
 		break;
-		case "Maracaibo":
-            return "Maracaibo_town";
+	case "Cartahena":
+		return "Cartahena_town";
 		break;
-		case "Caracas":
-            return "Caracas_town";
+	case "Maracaibo":
+		return "Maracaibo_town";
 		break;
-		case "Cumana":
-            return "Cumana_town";
+	case "Caracas":
+		return "Caracas_town";
 		break;
-		case "SantaCatalina":
-            return "SantaCatalina_town";
+	case "Cumana":
+		return "Cumana_town";
 		break;
-		case "Beliz":
-            return "Beliz_town";
+	case "SantaCatalina":
+		return "SantaCatalina_town";
+		break;
+	case "Beliz":
+		return "Beliz_town";
 		break;
 	}
 	return "";
@@ -542,40 +542,40 @@ string GetPortByCityName(string city) // имена портов по город
 
 string GetMayakByCityName(string city) // получить id маяка по названию города
 {
-    switch(city)
+	switch (city)
 	{
-		case "Bridgetown":
-			return "Mayak2";
+	case "Bridgetown":
+		return "Mayak2";
 		break;
-		case "Santiago":
-			return "Mayak9";
+	case "Santiago":
+		return "Mayak9";
 		break;
-		case "PortRoyal":
-            return "Mayak3";
+	case "PortRoyal":
+		return "Mayak3";
 		break;
-		case "BasTer":
-            return "Mayak4";
+	case "BasTer":
+		return "Mayak4";
 		break;
-		case "SantoDomingo":
-            return "Mayak8";
+	case "SantoDomingo":
+		return "Mayak8";
 		break;
-		case "PortPax":
-            return "Mayak7";
+	case "PortPax":
+		return "Mayak7";
 		break;
-		case "Havana":
-            return "Mayak10";
+	case "Havana":
+		return "Mayak10";
 		break;
-		case "Charles":
-            return "Mayak5";
+	case "Charles":
+		return "Mayak5";
 		break;
-		case "PortSpein":
-            return "Mayak1";
+	case "PortSpein":
+		return "Mayak1";
 		break;
-		case "Tortuga":
-            return "Mayak6";
+	case "Tortuga":
+		return "Mayak6";
 		break;
-		case "Cartahena":
-            return "Mayak11";
+	case "Cartahena":
+		return "Mayak11";
 		break;
 	}
 	return "";
@@ -583,40 +583,40 @@ string GetMayakByCityName(string city) // получить id маяка по н
 
 string GetCityNameByMayak(string mayak) // получить id города по маяку
 {
-    switch(mayak)
+	switch (mayak)
 	{
-		case "Mayak1":
-            return "PortSpein";
+	case "Mayak1":
+		return "PortSpein";
 		break;
-		case "Mayak2":
-			return "Bridgetown";
+	case "Mayak2":
+		return "Bridgetown";
 		break;
-		case "Mayak3":
-            return "PortRoyal";
+	case "Mayak3":
+		return "PortRoyal";
 		break;
-		case "Mayak4":
-            return "BasTer";
+	case "Mayak4":
+		return "BasTer";
 		break;
-		case "Mayak5":
-            return "Charles";
+	case "Mayak5":
+		return "Charles";
 		break;
-		case "Mayak6":
-            return "Tortuga";
+	case "Mayak6":
+		return "Tortuga";
 		break;
-		case "Mayak7":
-            return "PortPax";
+	case "Mayak7":
+		return "PortPax";
 		break;
-		case "Mayak8":
-            return "SantoDomingo";
+	case "Mayak8":
+		return "SantoDomingo";
 		break;
-		case "Mayak9":
-			return "Santiago";
+	case "Mayak9":
+		return "Santiago";
 		break;
-		case "Mayak10":
-            return "Havana";
+	case "Mayak10":
+		return "Havana";
 		break;
-		case "Mayak11":
-            return "Cartahena";
+	case "Mayak11":
+		return "Cartahena";
 		break;
 	}
 	return "";
@@ -625,7 +625,7 @@ string GetCityNameByMayak(string mayak) // получить id города по
 string GetIslandByArealName(string areal)
 {
 	string sAreal = areal;
-	if(areal == "PortoBello" || areal == "Panama" || areal == "Cartahena" ||
+	if (areal == "PortoBello" || areal == "Panama" || areal == "Cartahena" ||
 		areal == "Maracaibo" || areal == "Caracas" || areal == "Cumana" || areal == "SantaCatalina" ||
 		areal == "Beliz" || areal == "Tenotchitlan")
 	{
@@ -636,94 +636,94 @@ string GetIslandByArealName(string areal)
 
 string GetIslandByCityName(string city) // имена острова по городу по аттрибуту char.city
 {
-    switch(city)
+	switch (city)
 	{
-		case "Bridgetown":
-            return "Barbados";
+	case "Bridgetown":
+		return "Barbados";
 		break;
-		case "SanJuan":
-            return "PuertoRico";
+	case "SanJuan":
+		return "PuertoRico";
 		break;
-		case "Santiago":
-            return "Cuba";
+	case "Santiago":
+		return "Cuba";
 		break;
-		case "PuertoPrincipe":
-            return "Cuba";
+	case "PuertoPrincipe":
+		return "Cuba";
 		break;
-		case "SentJons":
-            return "Antigua";
+	case "SentJons":
+		return "Antigua";
 		break;
-		case "PortRoyal":
-            return "Jamaica";
+	case "PortRoyal":
+		return "Jamaica";
 		break;
-		case "FortOrange":
-            return "Jamaica";
+	case "FortOrange":
+		return "Jamaica";
 		break;
-		case "Villemstad":
-            return "Curacao";
+	case "Villemstad":
+		return "Curacao";
 		break;
-		case "BasTer":
-            return "Guadeloupe";
+	case "BasTer":
+		return "Guadeloupe";
 		break;
-		case "LaVega":
-            return "Hispaniola";
+	case "LaVega":
+		return "Hispaniola";
 		break;
-		case "SantoDomingo":
-            return "Hispaniola";
+	case "SantoDomingo":
+		return "Hispaniola";
 		break;
-		case "PortPax":
-            return "Hispaniola";
+	case "PortPax":
+		return "Hispaniola";
 		break;
-		case "Pirates":
-            return "Bermudes";
-        break;
-		case "FortFrance":
-            return "Martinique";
+	case "Pirates":
+		return "Bermudes";
 		break;
-		case "LeFransua":
-            return "Martinique";
+	case "FortFrance":
+		return "Martinique";
 		break;
-		case "Havana":
-            return "Cuba";
+	case "LeFransua":
+		return "Martinique";
 		break;
-		case "Charles":
-            return "Nevis";
+	case "Havana":
+		return "Cuba";
 		break;
-		case "PortoBello":
-            return "Mein";
+	case "Charles":
+		return "Nevis";
 		break;
-		case "PortSpein":
-            return "Trinidad";
+	case "PortoBello":
+		return "Mein";
 		break;
-		case "Tortuga":
-            return "Tortuga";
+	case "PortSpein":
+		return "Trinidad";
 		break;
-		case "Marigo":
-            return "SentMartin";
+	case "Tortuga":
+		return "Tortuga";
 		break;
-		case "Panama":
-            return "Mein";
+	case "Marigo":
+		return "SentMartin";
 		break;
-		case "Cartahena":
-            return "Mein";
+	case "Panama":
+		return "Mein";
 		break;
-		case "Maracaibo":
-            return "Mein";
+	case "Cartahena":
+		return "Mein";
 		break;
-		case "Caracas":
-            return "Mein";
+	case "Maracaibo":
+		return "Mein";
 		break;
-		case "Cumana":
-            return "Mein";
+	case "Caracas":
+		return "Mein";
 		break;
-		case "SantaCatalina":
-            return "Mein";
+	case "Cumana":
+		return "Mein";
 		break;
-		case "Beliz":
-            return "Mein";
+	case "SantaCatalina":
+		return "Mein";
 		break;
-		case "Tenotchitlan":
-            return "Mein";
+	case "Beliz":
+		return "Mein";
+		break;
+	case "Tenotchitlan":
+		return "Mein";
 		break;
 	}
 	return "";
@@ -731,94 +731,94 @@ string GetIslandByCityName(string city) // имена острова по гор
 
 string GetArealByCityName(string city) // ареал по городу по аттрибуту char.city
 {
-    switch(city)
+	switch (city)
 	{
-		case "Bridgetown":
-            return "Barbados";
+	case "Bridgetown":
+		return "Barbados";
 		break;
-		case "SanJuan":
-            return "PuertoRico";
+	case "SanJuan":
+		return "PuertoRico";
 		break;
-		case "Santiago":
-            return "Cuba1";
+	case "Santiago":
+		return "Cuba1";
 		break;
-		case "PuertoPrincipe":
-            return "Cuba1";
+	case "PuertoPrincipe":
+		return "Cuba1";
 		break;
-		case "SentJons":
-            return "Antigua";
+	case "SentJons":
+		return "Antigua";
 		break;
-		case "PortRoyal":
-            return "Jamaica";
+	case "PortRoyal":
+		return "Jamaica";
 		break;
-		case "FortOrange":
-            return "Jamaica";
+	case "FortOrange":
+		return "Jamaica";
 		break;
-		case "Villemstad":
-            return "Curacao";
+	case "Villemstad":
+		return "Curacao";
 		break;
-		case "BasTer":
-            return "Guadeloupe";
+	case "BasTer":
+		return "Guadeloupe";
 		break;
-		case "LaVega":
-            return "Hispaniola1";
+	case "LaVega":
+		return "Hispaniola1";
 		break;
-		case "SantoDomingo":
-            return "Hispaniola1";
+	case "SantoDomingo":
+		return "Hispaniola1";
 		break;
-		case "PortPax":
-            return "Hispaniola2";
+	case "PortPax":
+		return "Hispaniola2";
 		break;
-		case "Pirates":
-            return "Bermudes";
-        break;
-		case "FortFrance":
-            return "Martinique";
+	case "Pirates":
+		return "Bermudes";
 		break;
-		case "LeFransua":
-            return "Martinique";
+	case "FortFrance":
+		return "Martinique";
 		break;
-		case "Havana":
-            return "Cuba2";
+	case "LeFransua":
+		return "Martinique";
 		break;
-		case "Charles":
-            return "Nevis";
+	case "Havana":
+		return "Cuba2";
 		break;
-		case "PortoBello":
-            return "PortoBello";
+	case "Charles":
+		return "Nevis";
 		break;
-		case "PortSpein":
-            return "Trinidad";
+	case "PortoBello":
+		return "PortoBello";
 		break;
-		case "Tortuga":
-            return "Tortuga";
+	case "PortSpein":
+		return "Trinidad";
 		break;
-		case "Marigo":
-            return "SentMartin";
+	case "Tortuga":
+		return "Tortuga";
 		break;
-		case "Panama":
-            return "Panama";
+	case "Marigo":
+		return "SentMartin";
 		break;
-		case "Cartahena":
-            return "Cartahena";
+	case "Panama":
+		return "Panama";
 		break;
-		case "Maracaibo":
-            return "Maracaibo";
+	case "Cartahena":
+		return "Cartahena";
 		break;
-		case "Caracas":
-            return "Caracas";
+	case "Maracaibo":
+		return "Maracaibo";
 		break;
-		case "Cumana":
-            return "Cumana";
+	case "Caracas":
+		return "Caracas";
 		break;
-		case "SantaCatalina":
-            return "SantaCatalina";
+	case "Cumana":
+		return "Cumana";
 		break;
-		case "Beliz":
-            return "Beliz";
+	case "SantaCatalina":
+		return "SantaCatalina";
 		break;
-		case "Tenotchitlan":
-            return "Tenotchitlan";
+	case "Beliz":
+		return "Beliz";
+		break;
+	case "Tenotchitlan":
+		return "Tenotchitlan";
 		break;
 	}
 	return "";
@@ -827,7 +827,8 @@ string GetArealByCityName(string city) // ареал по городу по ат
 string GiveArealByLocation(ref location)
 {
 	string sAreal;
-	if (CheckAttribute(location, "MustSetReloadBack")) return "none";
+	if (CheckAttribute(location, "MustSetReloadBack"))
+		return "none";
 	if (CheckAttribute(location, "fastreload"))
 	{
 		sAreal = GetArealByCityName(location.fastreload);
@@ -838,13 +839,16 @@ string GiveArealByLocation(ref location)
 		sAreal = GetArealByCityName(location.parent_colony);
 		return sAreal;
 	}
-	if (!CheckAttribute(location, "islandId")) return "none";
+	if (!CheckAttribute(location, "islandId"))
+		return "none";
 	if (location.islandId == "Cuba" || location.islandId == "Hispaniola" || location.islandId == "Mein")
 	{
-		if (!CheckAttribute(location, "islandIdAreal")) return "none";
+		if (!CheckAttribute(location, "islandIdAreal"))
+			return "none";
 		sAreal = location.islandIdAreal;
 	}
-	else sAreal = location.islandId;
+	else
+		sAreal = location.islandId;
 	return sAreal;
 }
 
@@ -857,127 +861,127 @@ string GetCityNameByIsland(string CurIslandId)
 
 	switch (CurIslandId)
 	{
-    	case "Antigua":
-			TargetLocation = "SentJons";
+	case "Antigua":
+		TargetLocation = "SentJons";
 		break;
-		case "Bermudes":
-			TargetLocation = "Pirates";
+	case "Bermudes":
+		TargetLocation = "Pirates";
 		break;
-		case "Barbados":
-			TargetLocation = "Bridgetown";
+	case "Barbados":
+		TargetLocation = "Bridgetown";
 		break;
-		case "Beliz":
-			TargetLocation = "Beliz";
+	case "Beliz":
+		TargetLocation = "Beliz";
 		break;
-		case "Cuba1":
-			TargetLocation = "Santiago";
+	case "Cuba1":
+		TargetLocation = "Santiago";
 		break;
-		case "Cuba2":
-			TargetLocation = "Havana";
+	case "Cuba2":
+		TargetLocation = "Havana";
 		break;
-		case "Cumana":
-			TargetLocation = "Cumana";
+	case "Cumana":
+		TargetLocation = "Cumana";
 		break;
-		case "Caracas":
-			TargetLocation = "Caracas";
+	case "Caracas":
+		TargetLocation = "Caracas";
 		break;
-		case "Curacao":
-			TargetLocation = "Villemstad";
+	case "Curacao":
+		TargetLocation = "Villemstad";
 		break;
-		case "Cartahena":
-			TargetLocation = "Cartahena";
+	case "Cartahena":
+		TargetLocation = "Cartahena";
 		break;
-		case "Guadeloupe":
-			TargetLocation = "BasTer";
+	case "Guadeloupe":
+		TargetLocation = "BasTer";
 		break;
-		case "Hispaniola1":
-			TargetLocation = "SantoDomingo";
+	case "Hispaniola1":
+		TargetLocation = "SantoDomingo";
 		break;
-		case "Hispaniola2":
-			TargetLocation = "PortPax";
+	case "Hispaniola2":
+		TargetLocation = "PortPax";
 		break;
-		case "Jamaica":
-			TargetLocation = "PortRoyal";
+	case "Jamaica":
+		TargetLocation = "PortRoyal";
 		break;
-		case "Maracaibo":
-			TargetLocation = "Maracaibo";
+	case "Maracaibo":
+		TargetLocation = "Maracaibo";
 		break;
-		case "Martinique":
-			TargetLocation = "FortFrance";
+	case "Martinique":
+		TargetLocation = "FortFrance";
 		break;
-		case "SentMartin":
-			TargetLocation = "Marigo";
+	case "SentMartin":
+		TargetLocation = "Marigo";
 		break;
-		case "Nevis":
-			TargetLocation = "Charles";
+	case "Nevis":
+		TargetLocation = "Charles";
 		break;
-		case "PuertoRico":
-			TargetLocation = "SanJuan";
+	case "PuertoRico":
+		TargetLocation = "SanJuan";
 		break;
-		case "PortoBello":
-			TargetLocation = "PortoBello";
+	case "PortoBello":
+		TargetLocation = "PortoBello";
 		break;
-		case "Pearl":
-			TargetLocation = "none";
+	case "Pearl":
+		TargetLocation = "none";
 		break;
-		case "Panama":
-			TargetLocation = "Panama";
+	case "Panama":
+		TargetLocation = "Panama";
 		break;
-		case "SantaCatalina":
-			TargetLocation = "SantaCatalina";
+	case "SantaCatalina":
+		TargetLocation = "SantaCatalina";
 		break;
-		case "Terks":
-			TargetLocation = "none";
+	case "Terks":
+		TargetLocation = "none";
 		break;
-		case "Dominica":
-			TargetLocation = "none";
+	case "Dominica":
+		TargetLocation = "none";
 		break;
-		case "Caiman":
-			TargetLocation = "none";
+	case "Caiman":
+		TargetLocation = "none";
 		break;
-		case "Tortuga":
-			TargetLocation = "Tortuga";
+	case "Tortuga":
+		TargetLocation = "Tortuga";
 		break;
-		case "Trinidad":
-			TargetLocation = "PortSpein";
+	case "Trinidad":
+		TargetLocation = "PortSpein";
 		break;
-		case "Tenotchitlan":
-			TargetLocation = "none";
+	case "Tenotchitlan":
+		TargetLocation = "none";
 		break;
 	}
-    return TargetLocation;
+	return TargetLocation;
 }
 
 string TimeGreeting()
 {
-    if (GetHour() >= 18 && GetHour() < 23)
-    {
-       return "Добрый вечер";
-    }
-    if (GetHour() >= 6 && GetHour() < 12)
-    {
-       return "Доброе утро";
-    }
-    if (GetHour() >= 12 && GetHour() < 18)
-    {
-       return "Добрый день";
-    }
-    if (GetHour() >= 23 || GetHour() < 6)
-    {
-       return "Доброй ночи";
-    }
-    return "Здрасте";
+	if (GetHour() >= 18 && GetHour() < 23)
+	{
+		return "Добрый вечер";
+	}
+	if (GetHour() >= 6 && GetHour() < 12)
+	{
+		return "Доброе утро";
+	}
+	if (GetHour() >= 12 && GetHour() < 18)
+	{
+		return "Добрый день";
+	}
+	if (GetHour() >= 23 || GetHour() < 6)
+	{
+		return "Доброй ночи";
+	}
+	return "Здрасте";
 }
 
 // выбор фразы от репутации
-string PCharRepPhrase (string bad, string good)
+string PCharRepPhrase(string bad, string good)
 {
 	return NPCharRepPhrase(pchar, bad, good);
 }
 // boal для НПС
 string NPCharRepPhrase(ref _pchar, string bad, string good)
 {
-	if(makeint(_pchar.reputation) < 41)
+	if (makeint(_pchar.reputation) < 41)
 	{
 		return bad;
 	}
@@ -990,104 +994,105 @@ string NPCharRepPhrase(ref _pchar, string bad, string good)
 ////////// поиск нужного перса для диалога
 string GetCharIDByParam(string attrPresent1, string attr2, string val2)
 {
-    ref rCharacter; //ищем
+	ref rCharacter; //ищем
 	int n = GetCharIDXByParam(attrPresent1, attr2, val2);
 
-    if (n > 0)
-    {
-        makeref(rCharacter,Characters[n]);
-        return  rCharacter.id;
-    }
-    return  "";
+	if (n > 0)
+	{
+		makeref(rCharacter, Characters[n]);
+		return rCharacter.id;
+	}
+	return "";
 }
 int GetCharIDXByParam(string attrPresent1, string attr2, string val2)
 {
-    ref rCharacter; //ищем
+	ref rCharacter; //ищем
 	int n;
 
-	for(n=0; n<MAX_CHARACTERS; n++)
+	for (n = 0; n < MAX_CHARACTERS; n++)
 	{
-		makeref(rCharacter,Characters[n]);
+		makeref(rCharacter, Characters[n]);
 		if (CheckAttribute(rCharacter, attrPresent1))
 		{
-            if (rCharacter.(attr2) == val2)
-                return  n;
+			if (rCharacter.(attr2) == val2)
+				return n;
 		}
-    }
-    return  -1;
+	}
+	return -1;
 }
 int GetCharIDXForTownAttack(string attrPresent1)
 {
-    ref   rColony; //ищем
-	int   n;
-	bool  ok;
+	ref rColony; //ищем
+	int n;
+	bool ok;
 
-	for (n=0; n<MAX_COLONIES; n++)
+	for (n = 0; n < MAX_COLONIES; n++)
 	{
 		makeref(rColony, colonies[n]);
 		ok = false;
 		if (CheckAttribute(rColony, "Default.BoardLocation2") && rColony.Default.BoardLocation2 == attrPresent1)
 		{
-		    ok = true;
+			ok = true;
 		}
 		if (rColony.Default.BoardLocation == attrPresent1 || ok)
-        {
+		{
 			if (rColony.HeroOwn == true)
 			{
-			    return  -1;
+				return -1;
 			}
 
 			return GetFortCommanderIdx(rColony.id);
 		}
-    }
-    return  -1;
+	}
+	return -1;
 }
 // обращение НПС к ГГ, зависит от нации НПС
 string GetAddress_Form(ref NPChar)
 {
-    string attr = NationShortName(sti(NPChar.nation));
-    return address_form.(attr);
+	string attr = NationShortName(sti(NPChar.nation));
+	return address_form.(attr);
 }
 // обращение ГГ к НПС, зависит от нации НПС и его пола
 string GetAddress_FormToNPC(ref NPChar)
 {
-    string attr  = NationShortName(sti(NPChar.nation));
-    string attr2 = NPChar.sex;
-    // проверка на скелетов
-    if (attr2 != "woman")
-    {
-        attr2 = "man";
-    }
-    return address_form.(attr).(attr2);
+	string attr = NationShortName(sti(NPChar.nation));
+	string attr2 = NPChar.sex;
+	// проверка на скелетов
+	if (attr2 != "woman")
+	{
+		attr2 = "man";
+	}
+	return address_form.(attr).(attr2);
 }
 string GetAddress_FormTitle(int nation, int num)
 {
-    string attr  =  NationShortName(nation);
-    string attr2 =  "Title" + num;
-    string ret   =  "нет звания";
-    if (CheckAttribute(address_form, attr + "." + attr2))
-    {
-        ret = address_form.(attr).(attr2);
-    }
-    return ret;
+	string attr = NationShortName(nation);
+	string attr2 = "Title" + num;
+	string ret = "нет звания";
+	if (CheckAttribute(address_form, attr + "." + attr2))
+	{
+		ret = address_form.(attr).(attr2);
+	}
+	return ret;
 }
 
 bool isCityHasFort(string _city)
 {
-    int iTest = FindColony(_city); // город
-    ref rColony;
+	int iTest = FindColony(_city); // город
+	ref rColony;
 	if (iTest != -1)
 	{
 		rColony = GetColonyByIndex(iTest);
-		if (!CheckAttribute(rColony, "HasNoFort")) return true;
+		if (!CheckAttribute(rColony, "HasNoFort"))
+			return true;
 	}
 	return false;
 }
 
 string GetCityFrom_Sea(string _city)
 {
-    int iTest = FindColony(_city); // город
-    ref rColony;
+	int iTest = FindColony(_city); // город
+	ref rColony;
 	if (iTest != -1)
 	{
 		rColony = GetColonyByIndex(iTest);
@@ -1106,7 +1111,7 @@ string GetWorkTypeOfMan(ref NPChar, string sPrefix)
 	{
 		sCity = NPChar.City;
 		sTemp = NPChar.id;
-		sTemp = strcut(sTemp, strlen(sCity)+1, strlen(sTemp)-1);
+		sTemp = strcut(sTemp, strlen(sCity) + 1, strlen(sTemp) - 1);
 	}
 	return XI_ConvertString("Who" + sTemp + sPrefix);
 }
@@ -1144,11 +1149,11 @@ String ChangeNameCaseEx(String _nameType, String _name, String _fromCase, String
 
 	makearef(typeNames, Names.Pirates.(_nameType));
 
-	for(int i = 0; i < GetAttributesNum(typeNames); i++)
+	for (int i = 0; i < GetAttributesNum(typeNames); i++)
 	{
 		nameId = "l" + i;
 
-		if(GetName(_nameType, nameId, _fromCase) == _name)
+		if (GetName(_nameType, nameId, _fromCase) == _name)
 		{
 			return GetName(_nameType, nameId, _toCase);
 		}
@@ -1165,11 +1170,11 @@ String ChangeNameCase(String _nameType, String _name, String _toCase)
 
 	makearef(typeNames, Names.Pirates.(_nameType));
 
-	for(int i = 0; i < GetAttributesNum(typeNames); i++)
+	for (int i = 0; i < GetAttributesNum(typeNames); i++)
 	{
 		nameId = "l" + i;
 
-		if(GetName(_nameType, nameId, NAME_NOM) == _name || GetName(_nameType, nameId, NAME_GEN) || GetName(_nameType, nameId, NAME_DAT) ||
+		if (GetName(_nameType, nameId, NAME_NOM) == _name || GetName(_nameType, nameId, NAME_GEN) || GetName(_nameType, nameId, NAME_DAT) ||
 			GetName(_nameType, nameId, NAME_ACC) == _name || GetName(_nameType, nameId, NAME_ABL) || GetName(_nameType, nameId, NAME_VOC))
 		{
 			return GetName(_nameType, nameId, _toCase);

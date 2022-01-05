@@ -1,6 +1,6 @@
 
 
-#define LAI_TMPL_DIALOG		"dialog"
+#define LAI_TMPL_DIALOG "dialog"
 
 /*
 	Возможные состояния:
@@ -8,10 +8,10 @@
 		"dialog"	разговаривает
 */
 
-
 bool LAi_tmpl_SetDialog(aref chr, aref by, float dlgTime)
 {
-	if(!LAi_tmpl_dialog_InitTemplate(chr)) return false;
+	if (!LAi_tmpl_dialog_InitTemplate(chr))
+		return false;
 	chr.chr_ai.tmpl.dialog = "";
 	chr.chr_ai.tmpl.time = "0";
 	chr.chr_ai.tmpl.dlgtime = "-1";
@@ -24,7 +24,8 @@ bool LAi_tmpl_SetDialog(aref chr, aref by, float dlgTime)
 //Если мы пасивны, запускаем шаблон без времени завершения
 bool LAi_tmpl_SetActivatedDialog(aref chr, aref by)
 {
-	if(!LAi_tmpl_dialog_InitTemplate(chr)) return false;
+	if (!LAi_tmpl_dialog_InitTemplate(chr))
+		return false;
 	chr.chr_ai.tmpl.dialog = by.index;
 	chr.chr_ai.tmpl.time = "0";
 	chr.chr_ai.tmpl.dlgtime = "-1";
@@ -41,12 +42,14 @@ void LAi_tmpl_dialog_NoAni(aref chr)
 //Остановить диалог между NPC
 bool LAi_tmpl_dialog_StopNPC(aref chr)
 {
-	if(chr.chr_ai.tmpl.state == "dialog")
+	if (chr.chr_ai.tmpl.state == "dialog")
 	{
 		//Если один из беседующих игрок, то не прекращаем диалог
 		int idx = sti(chr.chr_ai.tmpl.dialog);
-		if(nMainCharacterIndex == sti(chr.index)) return false;
-		if(nMainCharacterIndex == idx) return false;
+		if (nMainCharacterIndex == sti(chr.index))
+			return false;
+		if (nMainCharacterIndex == idx)
+			return false;
 		//Операнивно всё сворачиваем
 		CharacterPlayAction(chr, "");
 		CharacterPlayAction(&Characters[idx], "");
@@ -60,19 +63,21 @@ bool LAi_tmpl_dialog_StopNPC(aref chr)
 	return true;
 }
 
-
 bool LAi_tmpl_dialog_InitTemplate(aref chr)
 {
 	SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "LockFightMode", false);
 	CharacterPlayAction(chr, "");
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.tmpl"))
+	if (CheckAttribute(chr, "chr_ai.tmpl"))
 	{
-		if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG) isNew = true;
-	}else{
+		if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+			isNew = true;
+	}
+	else
+	{
 		isNew = true;
 	}
-	if(isNew)
+	if (isNew)
 	{
 		DeleteAttribute(chr, "chr_ai.tmpl");
 		chr.chr_ai.tmpl = LAI_TMPL_DIALOG;
@@ -80,27 +85,38 @@ bool LAi_tmpl_dialog_InitTemplate(aref chr)
 		chr.chr_ai.tmpl.dialog = "";
 		chr.chr_ai.tmpl.time = "0";
 		chr.chr_ai.tmpl.dlgtime = "-1";
-		if(LAi_IsInitedAI) SetCharacterTask_Stay(chr);
-	}else{
+		if (LAi_IsInitedAI)
+			SetCharacterTask_Stay(chr);
+	}
+	else
+	{
 		chr.chr_ai.tmpl.wait = "0";
-		if(!CheckAttribute(chr, "chr_ai.tmpl.state")) chr.chr_ai.tmpl.state = "wait";
-		if(chr.chr_ai.tmpl.state == "falure") chr.chr_ai.tmpl.state = "wait";
-		if(!CheckAttribute(chr, "chr_ai.tmpl.time")) chr.chr_ai.tmpl.time = "0";
-		if(!CheckAttribute(chr, "chr_ai.tmpl.dlgtime")) chr.chr_ai.tmpl.dlgtime = "-1";
-		if(!CheckAttribute(chr, "chr_ai.tmpl.dialog"))
+		if (!CheckAttribute(chr, "chr_ai.tmpl.state"))
+			chr.chr_ai.tmpl.state = "wait";
+		if (chr.chr_ai.tmpl.state == "falure")
+			chr.chr_ai.tmpl.state = "wait";
+		if (!CheckAttribute(chr, "chr_ai.tmpl.time"))
+			chr.chr_ai.tmpl.time = "0";
+		if (!CheckAttribute(chr, "chr_ai.tmpl.dlgtime"))
+			chr.chr_ai.tmpl.dlgtime = "-1";
+		if (!CheckAttribute(chr, "chr_ai.tmpl.dialog"))
 		{
 			chr.chr_ai.tmpl.dialog = "";
 			chr.chr_ai.tmpl.state = "wait";
-		}else{
-			if(chr.chr_ai.tmpl.dialog == "") chr.chr_ai.tmpl.state = "wait";
 		}
-		if(chr.chr_ai.tmpl.state == "wait")
+		else
+		{
+			if (chr.chr_ai.tmpl.dialog == "")
+				chr.chr_ai.tmpl.state = "wait";
+		}
+		if (chr.chr_ai.tmpl.state == "wait")
 		{
 			chr.chr_ai.tmpl.dialog = "";
 			chr.chr_ai.tmpl.time = "0";
 			chr.chr_ai.tmpl.dlgtime = "-1";
 		}
-		if(LAi_IsInitedAI) LAi_tmpl_dialog_CharacterUpdate(chr, 0.0);
+		if (LAi_IsInitedAI)
+			LAi_tmpl_dialog_CharacterUpdate(chr, 0.0);
 	}
 	chr.chr_ai.tmpl.phrasetime = rand(3);
 	return true;
@@ -109,10 +125,10 @@ bool LAi_tmpl_dialog_InitTemplate(aref chr)
 //Возможно ли завенсти диалог
 bool LAi_tmpl_dialog_IsActive(aref chr)
 {
-	if(chr.chr_ai.tmpl.state == "wait") return false;
+	if (chr.chr_ai.tmpl.state == "wait")
+		return false;
 	return true;
 }
-
 
 //Процессирование шаблона персонажа
 void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
@@ -124,28 +140,29 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 	int animChoice = 0;
 	makearef(tmpl, chr.chr_ai.tmpl);
 	int idx = sti(chr.chr_ai.tmpl.dialog);
-	if(LAi_IsDead(&Characters[idx]))
+	if (LAi_IsDead(&Characters[idx]))
 	{
 		LAi_tmpl_dialog_StopNPC(chr);
 		return;
 	}
-	if(LAi_IsDead(chr))
+	if (LAi_IsDead(chr))
 	{
 		LAi_tmpl_dialog_StopNPC(chr);
 		return;
 	}
-	if (sti(chr.index) == nMainCharacterIndex) return;
+	if (sti(chr.index) == nMainCharacterIndex)
+		return;
 	//Если в диалоге, направляемся на персонажа
-	if(tmpl.state == "dialog")
+	if (tmpl.state == "dialog")
 	{
 		//Проверяем время ведения диолога
 		float dlgtime = stf(tmpl.dlgtime);
-		if(dlgtime >= 0)
+		if (dlgtime >= 0)
 		{
 			//Мы ведём диалог
 			time = stf(tmpl.time) + dltTime;
 			tmpl.time = time;
-			if(time > dlgtime)
+			if (time > dlgtime)
 			{
 				CharacterPlayAction(chr, "");
 				CharacterPlayAction(&Characters[idx], "");
@@ -160,23 +177,26 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 		}
 	}
 	//если нищий и сидит - ничего не крутим
-	if (chr.chr_ai.type == LAI_TYPE_POOR && sti(chr.chr_ai.type.SitState)) return;
-	if (chr.model.animation == "mushketer") return;
+	if (chr.chr_ai.type == LAI_TYPE_POOR && sti(chr.chr_ai.type.SitState))
+		return;
+	if (chr.model.animation == "mushketer")
+		return;
 
 	if (chr.chr_ai.type == LAI_TYPE_HUBER)
 	{
 		time = stf(chr.chr_ai.tmpl.phrasetime) - dltTime;
 		chr.chr_ai.tmpl.phrasetime = time;
-		if(time < 0.0)
+		if (time < 0.0)
 		{
-			if(!CheckAttribute(chr, "chr_ai.tmpl.noani"))
+			if (!CheckAttribute(chr, "chr_ai.tmpl.noani"))
 			{
 				if (CheckAttribute(chr, "chr_ai.tmpl.firstAnim"))
 				{
 					CharacterPlayAction(chr, "Gov_Dialog_" + chr.chr_ai.tmpl.firstAnim);
 					DeleteAttribute(chr, "chr_ai.tmpl.firstAnim");
 				}
-				else CharacterPlayAction(chr, "Gov_Dialog_" + (rand(2)+1));
+				else
+					CharacterPlayAction(chr, "Gov_Dialog_" + (rand(2) + 1));
 				chr.chr_ai.tmpl.phrasetime = 20;
 			}
 		}
@@ -185,14 +205,15 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 	//если диалоговый нпс сидит
 	if (chr.chr_ai.type == LAI_TYPE_SIT)
 	{
-		if (CheckAttribute(chr, "nonTable")) return; //режеми диалоговые анимации сидунам не за столом
+		if (CheckAttribute(chr, "nonTable"))
+			return; //режеми диалоговые анимации сидунам не за столом
 		time = stf(chr.chr_ai.tmpl.phrasetime) - dltTime;
-		if(time < 0.0)
+		if (time < 0.0)
 		{
 			int num = FindNearCharacters(chr, 2.5, -1.0, 0.0, 0.0, false, false);
-			for(int i = 0; i < num; i++)
+			for (int i = 0; i < num; i++)
 			{
-				if(chrFindNearCharacters[i].index == idx)
+				if (chrFindNearCharacters[i].index == idx)
 				{
 					GetCharacterAy(chr, &fAng);
 					xAng = stf(chrFindNearCharacters[i].dx) * cos(fAng) - stf(chrFindNearCharacters[i].dz) * sin(fAng);
@@ -201,10 +222,10 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 					break;
 				}
 			}
-			if(!CheckAttribute(chr, "chr_ai.tmpl.noani"))
+			if (!CheckAttribute(chr, "chr_ai.tmpl.noani"))
 			{
 				if (zAng < 0)
-				{	//если нпс сзади
+				{ //если нпс сзади
 					if (xAng > 0)
 					{
 						CharacterPlayAction(chr, "Sit_Dialog2"); //справа
@@ -217,7 +238,7 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 					}
 				}
 				else
-				{	//если нпс спереди
+				{ //если нпс спереди
 					if (xAng > 0.9)
 					{
 						CharacterPlayAction(chr, "Sit_Dialog2"); //справа
@@ -248,21 +269,22 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 		SetCharacterTask_Stay(chr);
 		//Выкидываем всякие жесты и фразочки
 		time = stf(chr.chr_ai.tmpl.phrasetime) - dltTime;
-		if(time < 0.0)
+		if (time < 0.0)
 		{
 			string sTemp;
-			if(!CheckAttribute(chr, "chr_ai.tmpl.noani"))
+			if (!CheckAttribute(chr, "chr_ai.tmpl.noani"))
 			{
-				if(CheckAttribute(chr,"sex"))
+				if (CheckAttribute(chr, "sex"))
 				{
-					if(chr.sex == "woman")
+					if (chr.sex == "woman")
 					{
 						if (characters[sti(chr.chr_ai.tmpl.dialog)].sex == "man" && !CheckAttribute(chr, "chr_ai.tmpl.poklon"))
 						{
 							sTemp = "knicksen";
 							chr.chr_ai.tmpl.poklon = true;
 						}
-						else sTemp = "dialog_stay" + (rand(8)+1);
+						else
+							sTemp = "dialog_stay" + (rand(8) + 1);
 					}
 					else
 					{
@@ -271,27 +293,31 @@ void LAi_tmpl_dialog_CharacterUpdate(aref chr, float dltTime)
 							sTemp = "Poklon";
 							chr.chr_ai.tmpl.poklon = true;
 						}
-						else sTemp = "dialog_stay" + (rand(14)+1);
+						else
+							sTemp = "dialog_stay" + (rand(14) + 1);
 					}
 				}
 				CharacterPlayAction(chr, sTemp);
 			}
-			if(stf(tmpl.dlgtime) >= 0.0)
+			if (stf(tmpl.dlgtime) >= 0.0)
 			{
 				// string snd = "male-citizen";
 				string snd = "cit_common";
-				if(CheckAttribute(chr,"sex"))
+				if (CheckAttribute(chr, "sex"))
 				{
 					// if(chr.sex == "woman") snd = "female-citizen";
-					if(chr.sex == "woman") snd = "Gr_Woman_Citizen";
+					if (chr.sex == "woman")
+						snd = "Gr_Woman_Citizen";
 				}
-				if(bCharVoice) // LEO
+				if (bCharVoice) // LEO
 				{
 					LAi_CharacterPlaySound(chr, snd);
 				}
 			}
 			chr.chr_ai.tmpl.phrasetime = 5 + rand(1);
-		}else{
+		}
+		else
+		{
 			chr.chr_ai.tmpl.phrasetime = time;
 		}
 	}
@@ -337,7 +363,6 @@ void LAi_tmpl_dialog_FailureFollow(aref chr)
 {
 }
 
-
 //Персонаж начал перемещение за другим
 void LAi_tmpl_dialog_FightGo(aref chr)
 {
@@ -365,7 +390,6 @@ bool LAi_tmpl_dialog_IsFight(aref chr)
 	return false;
 }
 
-
 //Персонаж выполнил команду  escape
 void LAi_tmpl_dialog_EndEscape(aref chr)
 {
@@ -381,7 +405,6 @@ void LAi_tmpl_dialog_FailureEscape(aref chr)
 {
 }
 
-
 //Персонаж толкается с другими персонажами
 void LAi_tmpl_dialog_ColThreshold(aref chr)
 {
@@ -392,7 +415,6 @@ void LAi_tmpl_dialog_EndAction(aref chr)
 {
 	CharacterPlayAction(chr, "");
 }
-
 
 //Персонажа просят освободить место
 void LAi_tmpl_dialog_FreePos(aref chr, aref who)
@@ -405,10 +427,12 @@ void LAi_tmpl_dialog_FreePos(aref chr, aref who)
 
 void LAi_tmpl_dialog_updatetemplate(aref chr)
 {
-	if(chr.chr_ai.tmpl.state == "dialog")
+	if (chr.chr_ai.tmpl.state == "dialog")
 	{
 		SetCharacterTask_Stay(chr);
-	}else{
+	}
+	else
+	{
 		chr.chr_ai.tmpl.state = "wait";
 		SetCharacterTask_Stay(chr);
 	}
@@ -424,40 +448,45 @@ void LAi_tmpl_dialog_StartDialog(aref chr, aref by, float dlgTime)
 	//Запускаем диалог
 	int idx = sti(chr.chr_ai.tmpl.dialog);
 	int my = sti(chr.index);
-	if(idx == my)
+	if (idx == my)
 	{
 		//Не говорим сами с собой
 		Trace("Template dialog: can't start dialog with myself!");
 		chr.chr_ai.tmpl.dlgtime = "0";
 	}
-	if(!IsEntity(&Characters[idx]))
+	if (!IsEntity(&Characters[idx]))
 	{
 		//Не говорим с несущиствующим персонажем
 		Trace("Template dialog: can't start dialog with unloaded character!");
 		chr.chr_ai.tmpl.dlgtime = "0";
 	}
-	if(nMainCharacterIndex == idx)
+	if (nMainCharacterIndex == idx)
 	{
 		//Диалог с главным персонажем
 		chr.chr_ai.tmpl.dlgtime = "-1";
-		if(!DialogMain(&Characters[my]))
+		if (!DialogMain(&Characters[my]))
 		{
 			Trace("Template dialog: can't start dialog_1, DialogMain return false!");
 			chr.chr_ai.tmpl.dlgtime = "0";
 		}
-	}else{
-		if(nMainCharacterIndex == my)
+	}
+	else
+	{
+		if (nMainCharacterIndex == my)
 		{
 			//Диалог с главным персонажем
 			chr.chr_ai.tmpl.dlgtime = "-1";
-			if(!DialogMain(&Characters[idx]))
+			if (!DialogMain(&Characters[idx]))
 			{
 				Trace("Template dialog: can't start dialog_2, DialogMain return false!");
 				chr.chr_ai.tmpl.dlgtime = "0";
 			}
-		}else{
+		}
+		else
+		{
 			//Диалог между NPC
-			if(dlgTime < 0) dlgTime = 0;
+			if (dlgTime < 0)
+				dlgTime = 0;
 			LAi_Character_StartDialog(&Characters[my], &Characters[idx]);
 			LAi_Character_StartDialog(&Characters[idx], &Characters[my]);
 			chr.chr_ai.tmpl.dlgtime = dlgTime;

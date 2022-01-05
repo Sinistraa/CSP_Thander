@@ -6,10 +6,7 @@
 		dialog
 */
 
-
-
-#define LAI_TYPE_STAY		"stay"
-
+#define LAI_TYPE_STAY "stay"
 
 //Инициализация
 void LAi_type_stay_Init(aref chr)
@@ -22,18 +19,19 @@ void LAi_type_stay_Init(aref chr)
 	//Установим анимацию персонажу
 	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "isMusketer.weapon") && chr.index != getmaincharacterindex() && !isOfficer(chr))
 	{
-        while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
-        {
-            TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
-        }
-        while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
-        {
-            TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
-        }
+		while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
+		{
+			TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
+		}
+		while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
+		{
+			TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
+		}
 		GiveItem2Character(chr, "unarmed");
 		EquipCharacterbyItem(chr, "unarmed");
 		string sMush = "mushket";
-		if (chr.model == "MusketeerEnglish_2") sMush = "mushket2x2";
+		if (chr.model == "MusketeerEnglish_2")
+			sMush = "mushket2x2";
 		GiveItem2Character(chr, sMush);
 		EquipCharacterbyItem(chr, sMush);
 		chr.items.bullet = 100;
@@ -55,12 +53,13 @@ void LAi_type_stay_CharacterUpdate(aref chr, float dltTime)
 	int num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.001, true, true);
 	int idx;
 	bool bVis = false;
-	if(num > 0)
+	if (num > 0)
 	{
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) break;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				break;
 			//квест штурма Панамы -->>
 			if (chr.id == "Richard_Soukins")
 			{
@@ -84,15 +83,17 @@ void LAi_type_stay_CharacterUpdate(aref chr, float dltTime)
 			LAi_SetWarriorTypeNoGroup(chr);
 		}
 		//<<--штурм Панамы
-		if(i < num)
+		if (i < num)
 		{
-			if(chr.chr_ai.tmpl != LAI_TMPL_ANI)
+			if (chr.chr_ai.tmpl != LAI_TMPL_ANI)
 			{
 				LAi_tmpl_ani_PlayAnimation(chr, "afraid", -1.0);
 				LAi_SetAfraidDead(chr);
 			}
-		}else{
-			if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
+		}
+		else
+		{
+			if (chr.chr_ai.tmpl != LAI_TMPL_STAY)
 			{
 				LAi_tmpl_stay_InitTemplate(chr);
 				LAi_SetDefaultDead(chr);
@@ -101,7 +102,7 @@ void LAi_type_stay_CharacterUpdate(aref chr, float dltTime)
 	}
 	else
 	{
-		if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
+		if (chr.chr_ai.tmpl != LAI_TMPL_STAY)
 		{
 			LAi_tmpl_stay_InitTemplate(chr);
 			LAi_SetDefaultDead(chr);
@@ -110,8 +111,10 @@ void LAi_type_stay_CharacterUpdate(aref chr, float dltTime)
 		if (chr.id == "Richard_Soukins")
 		{
 			float dist = -1.0;
-			if(!GetCharacterDistByChr3D(chr, pchar, &dist)) return;
-			if (dist > 12.5) LAi_SetWarriorTypeNoGroup(chr);
+			if (!GetCharacterDistByChr3D(chr, pchar, &dist))
+				return;
+			if (dist > 12.5)
+				LAi_SetWarriorTypeNoGroup(chr);
 		}
 		//<<--штурм Панамы
 	}
@@ -143,7 +146,8 @@ void LAi_type_stay_NeedDialog(aref chr, aref by)
 bool LAi_type_stay_CanDialog(aref chr, aref by)
 {
 	//Если уже говорим, то откажем
-	if(chr.chr_ai.tmpl != LAI_TMPL_STAY && by.id != "Blaze") return false;
+	if (chr.chr_ai.tmpl != LAI_TMPL_STAY && by.id != "Blaze")
+		return false;
 	//Согласимся на диалог
 	return true;
 }
@@ -164,12 +168,10 @@ void LAi_type_stay_EndDialog(aref chr, aref by)
 	LAi_CharacterRestoreAy(chr);
 }
 
-
 //Персонаж выстрелил
 void LAi_type_stay_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
 }
-
 
 //Персонаж атакован
 void LAi_type_stay_Attacked(aref chr, aref by)
@@ -190,4 +192,3 @@ void LAi_type_stay_Attacked(aref chr, aref by)
 	}
 	//<-- штурм Панамы, смотрим, со спины ли выстрел
 }
-

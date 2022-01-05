@@ -1,68 +1,67 @@
-bool	bAbordageStarted = false;
-bool	bAbordageFortCanBe;
-bool	bAbordagePlaceShipNear = false;
-bool	bMCAbordageInitiator = true;
-string	sAbordageLocator;
-int		iAbordageFortEnemyCharacter; /*, iAbordageOurCharacter*/
-int		iAbordageCharacter;
-int		iAbordageMode;
-float	fOldMaxSeaHeight;
+bool bAbordageStarted = false;
+bool bAbordageFortCanBe;
+bool bAbordagePlaceShipNear = false;
+bool bMCAbordageInitiator = true;
+string sAbordageLocator;
+int iAbordageFortEnemyCharacter; /*, iAbordageOurCharacter*/
+int iAbordageCharacter;
+int iAbordageMode;
+float fOldMaxSeaHeight;
 
 void DeleteAbordageEnvironment()
 {
-	DelEventHandler(ABORDAGE_CAN_BE,"Abordage_CanBe");
+	DelEventHandler(ABORDAGE_CAN_BE, "Abordage_CanBe");
 }
 
 void CreateAbordageEnvironment()
 {
 	bAbordageStarted = false;
-	SetEventHandler(ABORDAGE_CAN_BE,"Abordage_CanBe",0);
+	SetEventHandler(ABORDAGE_CAN_BE, "Abordage_CanBe", 0);
 	bAbordageFortCanBe = false;
 }
 
 void Abordage_CanBe()
 {
-
 }
 
 void Abordage_ReloadStartFade()
 {
 	int a = GetEventData();
 	aref reload_fader = GetEventData();
-	LayerFreeze(SEA_EXECUTE,true);
-	LayerFreeze(SEA_REALIZE,true);
-	LayerFreeze(SEA_REFLECTION2,true);
-	LayerFreeze(EXECUTE,false);
-	LayerFreeze(REALIZE,false);
+	LayerFreeze(SEA_EXECUTE, true);
+	LayerFreeze(SEA_REALIZE, true);
+	LayerFreeze(SEA_REFLECTION2, true);
+	LayerFreeze(EXECUTE, false);
+	LayerFreeze(REALIZE, false);
 
 	MoveWeatherToLayers(EXECUTE, REALIZE);
 	MoveSeaToLayers(EXECUTE, REALIZE);
-    HideGrass();
+	HideGrass();
 
 	SendMessage(&AIBalls, "l", MSG_MODEL_RELEASE);
 
 	DelEventHandler("FaderEvent_StartFade", "Abordage_ReloadStartFade");
 
 	fOldMaxSeaHeight = stf(Sea.MaxSeaHeight);
-	Sea.MaxSeaHeight = 1.2;						// set maxinum sea height for ship abordage
+	Sea.MaxSeaHeight = 1.2; // set maxinum sea height for ship abordage
 }
 
 void Go2LocationAfterAbordage()
 {
-	Sea.MaxSeaHeight = fOldMaxSeaHeight;		// restore old MaxSeaHeight
+	Sea.MaxSeaHeight = fOldMaxSeaHeight; // restore old MaxSeaHeight
 	bAbordageStarted = false;
 	// boal -->
-	bCabinStarted    = false;
+	bCabinStarted = false;
 	bDeckBoatStarted = false;
 	// boal <--
 	bSeaReloadStarted = false;
 	Sea.AbordageMode = false;
 
-    SendMessage(&Particles,"l", PS_CLEAR_CAPTURED); // boal
+	SendMessage(&Particles, "l", PS_CLEAR_CAPTURED); // boal
 	PauseParticles(false);
 	LayerFreeze(SEA_REFLECTION2, false);
 
-	Sea.MaxSeaHeight = fOldMaxSeaHeight;		// restore old MaxSeaHeight
+	Sea.MaxSeaHeight = fOldMaxSeaHeight; // restore old MaxSeaHeight
 	DeleteAttribute(pchar, "abordage_active");
 }
 
@@ -77,9 +76,9 @@ void Return2SeaAfterAbordage()
 
 	MoveWeatherToLayers(SEA_EXECUTE, SEA_REALIZE);
 	MoveSeaToLayers(SEA_EXECUTE, SEA_REALIZE);
-    ShowGrass();
+	ShowGrass();
 
-	Sea.MaxSeaHeight = fOldMaxSeaHeight;		// restore old MaxSeaHeight
+	Sea.MaxSeaHeight = fOldMaxSeaHeight; // restore old MaxSeaHeight
 	bAbordageStarted = false;
 	Sea.AbordageMode = false;
 
@@ -89,11 +88,11 @@ void Return2SeaAfterAbordage()
 
 	SetSchemeForSea();
 
-    SendMessage(&Particles,"l", PS_CLEAR_CAPTURED); // boal
+	SendMessage(&Particles, "l", PS_CLEAR_CAPTURED); // boal
 	PauseParticles(false);
 
 	bSeaReloadStarted = false;
-    //#20190117-03
+	//#20190117-03
 	Ship_RecreateStaticSounds();
 	DeleteAttribute(pchar, "abordage_active");
 }
@@ -105,7 +104,7 @@ void Abordage_ReloadEndFade()
 	// Delete current cannonballs
 	AIBalls.Clear = "";
 
-    ResetSound(); // new
+	ResetSound(); // new
 
 	if (bAbordagePlaceShipNear)
 	{
@@ -113,36 +112,42 @@ void Abordage_ReloadEndFade()
 	}
 
 	PauseParticles(true);
-    //DeleteParticles(); // boal fix костры нах
+	//DeleteParticles(); // boal fix костры нах
 
 	// start abordage location
 	int a = GetEventData();
 	aref reload_fader = GetEventData();
 	switch (iAbordageMode)
 	{
-		case FORT_ABORDAGE:
-			DeleteSeaEnvironment();
-			LAi_StartBoarding(BRDLT_FORT, &Characters[iAbordageCharacter], true);
+	case FORT_ABORDAGE:
+		DeleteSeaEnvironment();
+		LAi_StartBoarding(BRDLT_FORT, &Characters[iAbordageCharacter], true);
 		break;
 
-		case SHIP_ABORDAGE:
-			// calc & apply abordage damage for ships
-				fHP1 = stf(Characters[iAbordageCharacter].Ship.HP);
-				fHP2 = stf(Characters[nMainCharacterIndex].Ship.HP);
-				fHP = 0.1 + frnd() * 0.2;
-				if (fHP1 > fHP2) { fHP = fHP * fHP2; }
-				if (fHP1 < fHP2) { fHP = fHP * fHP1; }
+	case SHIP_ABORDAGE:
+		// calc & apply abordage damage for ships
+		fHP1 = stf(Characters[iAbordageCharacter].Ship.HP);
+		fHP2 = stf(Characters[nMainCharacterIndex].Ship.HP);
+		fHP = 0.1 + frnd() * 0.2;
+		if (fHP1 > fHP2)
+		{
+			fHP = fHP * fHP2;
+		}
+		if (fHP1 < fHP2)
+		{
+			fHP = fHP * fHP1;
+		}
 
-				int AbordageStike;
-				bSeaReloadStarted = false;
-				AbordageStike = fHP * (1.05 - stf(Characters[iAbordageCharacter].TmpSkill.Sneak));
-				Ship_ApplyHullHitpoints(&Characters[iAbordageCharacter], AbordageStike/1.5, KILL_BY_TOUCH, -1);
-				AbordageStike = fHP * (1.05 - stf(Characters[nMainCharacterIndex].TmpSkill.Sneak))
-				Ship_ApplyHullHitpoints(&Characters[nMainCharacterIndex], AbordageStike/1.5, KILL_BY_TOUCH, -1);
-				bSeaReloadStarted = true;
+		int AbordageStike;
+		bSeaReloadStarted = false;
+		AbordageStike = fHP * (1.05 - stf(Characters[iAbordageCharacter].TmpSkill.Sneak));
+		Ship_ApplyHullHitpoints(&Characters[iAbordageCharacter], AbordageStike / 1.5, KILL_BY_TOUCH, -1);
+		AbordageStike = fHP * (1.05 - stf(Characters[nMainCharacterIndex].TmpSkill.Sneak))
+								  Ship_ApplyHullHitpoints(&Characters[nMainCharacterIndex], AbordageStike / 1.5, KILL_BY_TOUCH, -1);
+		bSeaReloadStarted = true;
 
-			// load boarding
-				LAi_StartBoarding(BRDLT_SHIP, &Characters[iAbordageCharacter], bMCAbordageInitiator);
+		// load boarding
+		LAi_StartBoarding(BRDLT_SHIP, &Characters[iAbordageCharacter], bMCAbordageInitiator);
 		break;
 	}
 	DelEventHandler("FaderEvent_EndFade", "Abordage_ReloadEndFade");
@@ -153,12 +158,12 @@ void Abordage_ReloadEndFade()
 
 void Sea_AbordageLoad(int _iAbordageMode, bool _bMCAbordageInitiator)
 {
-	if(LAi_IsDead(&characters[iAbordageShipEnemyCharacter]) == true && _iAbordageMode != FORT_ABORDAGE)
+	if (LAi_IsDead(&characters[iAbordageShipEnemyCharacter]) == true && _iAbordageMode != FORT_ABORDAGE)
 	{
 		return;
 	}
 
-	ref		rIsland;
+	ref rIsland;
 	string sPlayerLocation = pchar.location;
 	int iIslandIndex = FindIsland(sPlayerLocation);
 	if (iIslandIndex >= 0)
@@ -166,25 +171,26 @@ void Sea_AbordageLoad(int _iAbordageMode, bool _bMCAbordageInitiator)
 		rIsland = GetIslandByIndex(iIslandIndex);
 	}
 	//if (rIsland.id == "KhaelRoa" && CheckAttribute(pchar,"GhostCap.Fight") && !CheckAttribute(pchar,"GenQuest.GhostShip.LastBattle")) return;
-	if (CheckAttribute(pchar,"GhostCap.Fight") && !CheckAttribute(pchar,"GenQuest.GhostShip.LastBattle")) return;
-	if(!CheckAttribute(pchar, "abordage_active"))
+	if (CheckAttribute(pchar, "GhostCap.Fight") && !CheckAttribute(pchar, "GenQuest.GhostShip.LastBattle"))
+		return;
+	if (!CheckAttribute(pchar, "abordage_active"))
 	{
-		if( !CheckAttribute(pchar,"abordage_active_count") )
+		if (!CheckAttribute(pchar, "abordage_active_count"))
 		{
-			if (!CheckAttribute(&characters[iAbordageShipEnemyCharacter], "abordage_twice") || _iAbordageMode == FORT_ABORDAGE || CheckAttribute(&characters[iAbordageShipEnemyCharacter],"PGGAi.Task.SetSail"))
+			if (!CheckAttribute(&characters[iAbordageShipEnemyCharacter], "abordage_twice") || _iAbordageMode == FORT_ABORDAGE || CheckAttribute(&characters[iAbordageShipEnemyCharacter], "PGGAi.Task.SetSail"))
 			{
 				Sea_AbordageLoad_ActiveCountStart();
 
 				pchar.boarding_info.mode = _iAbordageMode;
 				pchar.boarding_info.indicator = _bMCAbordageInitiator;
 
-				if(CheckAttribute(&InterfaceStates,"EnabledAutoSaveMode") )
+				if (CheckAttribute(&InterfaceStates, "EnabledAutoSaveMode"))
 				{
-					if(sti(InterfaceStates.EnabledAutoSaveMode) != 0)
+					if (sti(InterfaceStates.EnabledAutoSaveMode) != 0)
 					{
 						//MakeAutoSaveAndGoOnAbord(); //eddy. чтобы глюков не було.
 						MakeAutoSave();
-						SetEventHandler("evntSave","Continue_Sea_AbordageLoadPre", 0);
+						SetEventHandler("evntSave", "Continue_Sea_AbordageLoadPre", 0);
 					}
 					else
 					{
@@ -195,7 +201,9 @@ void Sea_AbordageLoad(int _iAbordageMode, bool _bMCAbordageInitiator)
 				{
 					Continue_Sea_AbordageLoad();
 				}
-			} else {
+			}
+			else
+			{
 				Log_SetStringToLog(XI_ConvertString("The Repeated boarding the ship is impossible"));
 			}
 		}
@@ -207,24 +215,27 @@ void Sea_AbordageLoad(int _iAbordageMode, bool _bMCAbordageInitiator)
 void Sea_AbordageLoad_ActiveCountStart()
 {
 	pchar.abordage_active_count = 4;
-	SetEventHandler("frame","Sea_AbordageLoad_ActiveCount",1);
+	SetEventHandler("frame", "Sea_AbordageLoad_ActiveCount", 1);
 }
 
 void Sea_AbordageLoad_ActiveCount()
 {
 	int n = sti(pchar.abordage_active_count) - 1;
-	if( n<=0 ) {
-		DelEventHandler("frame","Sea_AbordageLoad_ActiveCount");
-		DeleteAttribute(pchar,"abordage_active_count");
-	} else {
+	if (n <= 0)
+	{
+		DelEventHandler("frame", "Sea_AbordageLoad_ActiveCount");
+		DeleteAttribute(pchar, "abordage_active_count");
+	}
+	else
+	{
 		pchar.abordage_active_count = n;
 	}
 }
 
 void Continue_Sea_AbordageLoadPre()
 {
-	DelEventHandler("evntSave","Continue_Sea_AbordageLoadPre");
-	SetEventHandler("frame","Continue_Sea_AbordageLoad",1);
+	DelEventHandler("evntSave", "Continue_Sea_AbordageLoadPre");
+	SetEventHandler("frame", "Continue_Sea_AbordageLoad", 1);
 }
 
 void Continue_Sea_AbordageLoad()
@@ -232,7 +243,7 @@ void Continue_Sea_AbordageLoad()
 	int _iAbordageMode = sti(pchar.boarding_info.mode);
 	int _bMCAbordageInitiator = sti(pchar.boarding_info.indicator);
 
-	DelEventHandler("frame","Continue_Sea_AbordageLoad");
+	DelEventHandler("frame", "Continue_Sea_AbordageLoad");
 
 	if (bSeaActive == false)
 	{
@@ -245,7 +256,7 @@ void Continue_Sea_AbordageLoad()
 		_iAbordageCharacter = iAbordageFortEnemyCharacter;
 	}
 
-	if (!CheckAttribute(&characters[_iAbordageCharacter], "abordage_twice") || _iAbordageMode == FORT_ABORDAGE || CheckAttribute(&characters[iAbordageShipEnemyCharacter],"PGGAi.Task.SetSail"))
+	if (!CheckAttribute(&characters[_iAbordageCharacter], "abordage_twice") || _iAbordageMode == FORT_ABORDAGE || CheckAttribute(&characters[iAbordageShipEnemyCharacter], "PGGAi.Task.SetSail"))
 	{
 		Sea_AbordageStartNow(_iAbordageMode, _iAbordageCharacter, false, _bMCAbordageInitiator);
 	}
@@ -274,13 +285,13 @@ void Sea_AbordageStartNow(int _iAbordageMode, int _iAbordageCharacter, bool _bPl
 	SendMessage(&reload_fader, "l", FADER_STARTFRAME);
 
 	// boal -->
- 	ClearAllFire();
-    // boal <--
+	ClearAllFire();
+	// boal <--
 	PauseAllSounds();
-   //ResetSoundScheme();
+	//ResetSoundScheme();
 	//ResetSound(); // new
-    PlayVoice("INTERFACE\_GTBoard_"+rand(6)+".wav"); // boal
-    pchar.abordage_active = 1;  // чтоб два раза подряд не жали
+	PlayVoice("INTERFACE\_GTBoard_" + rand(6) + ".wav"); // boal
+	pchar.abordage_active = 1;							 // чтоб два раза подряд не жали
 	//PlayStereoSound("abordage");
 
 	Event(ABORDAGE_START_EVENT, "ll", nMainCharacterIndex, iAbordageCharacter);
@@ -288,7 +299,7 @@ void Sea_AbordageStartNow(int _iAbordageMode, int _iAbordageCharacter, bool _bPl
 	bAbordageStarted = true;
 	Sea.AbordageMode = true;
 
-	if(_bMCAbordageInitiator != true && _iAbordageMode != FORT_ABORDAGE)
+	if (_bMCAbordageInitiator != true && _iAbordageMode != FORT_ABORDAGE)
 	{
 		characters[_iAbordageCharacter].abordage_iniciator = 1;
 	}
@@ -296,7 +307,7 @@ void Sea_AbordageStartNow(int _iAbordageMode, int _iAbordageCharacter, bool _bPl
 
 void MakeAutoSaveAndGoOnAbord()
 {
-    MakeAutoSave();
+	MakeAutoSave();
 	//eddy. задержка вызова абордажа
 	pchar.GenQuest.CallFunctionParam = "Continue_Sea_AbordageLoadPre";
 	DoQuestCheckDelay("CallFunctionParam", 2.0);

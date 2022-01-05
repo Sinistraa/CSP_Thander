@@ -8,9 +8,9 @@ void InitInterface(string iniName)
 {
 	StartAboveForm(true);
 
-    SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
-    SetFormatedText("MAP_CAPTION", XI_ConvertString("titleNewGame"));
+	SetFormatedText("MAP_CAPTION", XI_ConvertString("titleNewGame"));
 
 	SetFormatedText("INFO_TEXT_QUESTION", XI_ConvertString("NewGameWhatType"));
 
@@ -18,46 +18,46 @@ void InitInterface(string iniName)
 
 	//SetFormatedText("INFO_TEXT",totalInfo);
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0);
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("evntDoPostExit","DoPostExit",0);
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0);
+	SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("evntDoPostExit", "DoPostExit", 0);
 
-	EI_CreateFrame("INFO_BORDERS", 250,152,550,342);
+	EI_CreateFrame("INFO_BORDERS", 250, 152, 550, 342);
 }
 
 void ProcessBreakExit()
 {
-    if( CheckAttribute(&InterfaceStates,"showGameMenuOnExit") && sti(InterfaceStates.showGameMenuOnExit) == true)
-    {
-        //isOkExit = true;
-        IDoExit(RC_INTERFACE_LAUNCH_GAMEMENU);
-        return;
-    }
-	IDoExit( RC_INTERFACE_ANY_EXIT );
+	if (CheckAttribute(&InterfaceStates, "showGameMenuOnExit") && sti(InterfaceStates.showGameMenuOnExit) == true)
+	{
+		//isOkExit = true;
+		IDoExit(RC_INTERFACE_LAUNCH_GAMEMENU);
+		return;
+	}
+	IDoExit(RC_INTERFACE_ANY_EXIT);
 	ReturnToMainMenu();
 }
 
 void ProcessCancelExit()
 {
-    if( CheckAttribute(&InterfaceStates,"showGameMenuOnExit") && sti(InterfaceStates.showGameMenuOnExit) == true)
-    {
-        //isOkExit = true;
-        IDoExit(RC_INTERFACE_LAUNCH_GAMEMENU);
-        return;
-    }
-	IDoExit( RC_INTERFACE_ANY_EXIT );
+	if (CheckAttribute(&InterfaceStates, "showGameMenuOnExit") && sti(InterfaceStates.showGameMenuOnExit) == true)
+	{
+		//isOkExit = true;
+		IDoExit(RC_INTERFACE_LAUNCH_GAMEMENU);
+		return;
+	}
+	IDoExit(RC_INTERFACE_ANY_EXIT);
 	ReturnToMainMenu();
 }
 
 void IDoExit(int exitCode)
 {
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("evntDoPostExit","DoPostExit");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("evntDoPostExit", "DoPostExit");
 
-    EndAboveForm(true);
+	EndAboveForm(true);
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
@@ -68,32 +68,38 @@ void ProcCommand()
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	switch(nodName)
+	switch (nodName)
 	{
 	case "B_OK":
-		if(comName=="activate" || comName=="click")
+		if (comName == "activate" || comName == "click")
 		{
 			//KillCompanions();
-   			IDoExit(RC_INTERFACE_ANY_EXIT);
-   			LaunchSelectCharacter();
+			IDoExit(RC_INTERFACE_ANY_EXIT);
+			LaunchSelectCharacter();
 		}
-		if(comName=="downstep")
+		if (comName == "downstep")
 		{
-			if(GetSelectable("B_CANCEL"))	{SetCurrentNode("B_CANCEL");}
+			if (GetSelectable("B_CANCEL"))
+			{
+				SetCurrentNode("B_CANCEL");
+			}
 		}
-	break;
+		break;
 
 	case "B_CANCEL":
-		if(comName=="activate" || comName=="click")
+		if (comName == "activate" || comName == "click")
 		{
 			IDoExit(RC_INTERFACE_ANY_EXIT);
 			LaunchHistoricBattle();
 		}
-		if(comName=="upstep")
+		if (comName == "upstep")
 		{
-			if(GetSelectable("B_OK"))	{SetCurrentNode("B_OK");}
+			if (GetSelectable("B_OK"))
+			{
+				SetCurrentNode("B_OK");
+			}
 		}
-	break;
+		break;
 	}
 }
 
@@ -105,10 +111,10 @@ void DoPostExit()
 
 void CalculateInfoData()
 {
-	aref    rootItems;
-	string  sEnd;
-	int     cn, i;
-	ref     chr;
+	aref rootItems;
+	string sEnd;
+	int cn, i;
+	ref chr;
 
 	makearef(rootItems, pchar.CheckEnemyCompanionDistance);
 
@@ -142,9 +148,9 @@ void CalculateInfoData()
 
 void KillCompanions()
 {
-	aref    rootItems;
-	int     cn, i;
-	ref     chr;
+	aref rootItems;
+	int cn, i;
+	ref chr;
 
 	makearef(rootItems, pchar.CheckEnemyCompanionDistance);
 	for (i = 0; i < GetAttributesNum(rootItems); i++)
@@ -156,7 +162,7 @@ void KillCompanions()
 			RemoveCharacterCompanion(PChar, chr);
 			if (!CheckAttribute(chr, "PGGAi"))
 			{
-		        chr.LifeDay = 0;
+				chr.LifeDay = 0;
 			}
 			else
 			{
@@ -165,9 +171,9 @@ void KillCompanions()
 				chr.PGGAi.location.town = PGG_FindRandomTownByNation(sti(chr.nation));
 				PGG_ChangeRelation2MainCharacter(chr, -40);
 			}
-	        chr.location = "";
-	        chr.location.group = "";
-	        chr.location.locator = "";
+			chr.location = "";
+			chr.location.group = "";
+			chr.location.locator = "";
 		}
 	}
 	PChar.GenQuest.CallFunctionParam = pchar.CheckEnemyCompanionType;

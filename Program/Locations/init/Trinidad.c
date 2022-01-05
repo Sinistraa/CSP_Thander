@@ -11,10 +11,11 @@ int LocationInitTrinidad(int n)
 
 	locations[n].townsack = "PortSpein";
 	locations[n].fastreload = "PortSpein";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 
 	locations[n].filespath.models = "locations\Town_PortSpein\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -36,13 +37,13 @@ int LocationInitTrinidad(int n)
 	//River
 	locations[n].models.always.Waterfall1 = "river1";
 	locations[n].models.always.Waterfall1.uvslide.v0 = 0.2;
-    locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall1.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall1.level = 50;
 
 	locations[n].models.always.Waterfall2 = "river2";
 	locations[n].models.always.Waterfall2.uvslide.v0 = 0.3;
-    locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall2.level = 49;
 
@@ -52,7 +53,7 @@ int LocationInitTrinidad(int n)
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.3;
@@ -69,7 +70,7 @@ int LocationInitTrinidad(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Trinidad";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -138,7 +139,7 @@ int LocationInitTrinidad(int n)
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
 
-    // --> Квестовые локации, четкая фиксация на 9 едениц, откр/закр только по квестам, обычно всегда открыты.
+	// --> Квестовые локации, четкая фиксация на 9 едениц, откр/закр только по квестам, обычно всегда открыты.
 	locations[n].reload.l11.name = "houseF2";
 	locations[n].reload.l11.go = "PortSpein_houseF2";
 	locations[n].reload.l11.emerge = "reload1";
@@ -152,7 +153,7 @@ int LocationInitTrinidad(int n)
 	locations[n].reload.l12.autoreload = "0";
 	locations[n].reload.l12.label = "House";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS1";
 	locations[n].reload.l20.go = "CommonCobHouse";
 	locations[n].reload.l20.emerge = "reload1";
@@ -232,7 +233,8 @@ int LocationInitTrinidad(int n)
 	locations[n].id = "PortSpein_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern02\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "PortSpein";
@@ -240,7 +242,7 @@ int LocationInitTrinidad(int n)
 	//Sound
 	locations[n].type = "tavern";
 	locations[n].fastreload = "PortSpein";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "Tavern02";
@@ -287,7 +289,7 @@ int LocationInitTrinidad(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortSpein";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Tavern_room_locators";
@@ -315,20 +317,21 @@ int LocationInitTrinidad(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\store02\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortSpein";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "PortSpein";
-  	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Store02_locators";
@@ -352,7 +355,7 @@ int LocationInitTrinidad(int n)
 	locations[n].reload.l1.emerge = "reload6";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -361,20 +364,21 @@ int LocationInitTrinidad(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РОСТОВЩИК
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortSpein";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "PortSpein";
-  	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Bank01_locators";
@@ -408,20 +412,21 @@ int LocationInitTrinidad(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard01\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortSpein";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shipyard";
 	locations[n].fastreload = "PortSpein";
-  	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Shipyard01_locators";
@@ -454,7 +459,7 @@ int LocationInitTrinidad(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_townhall";
@@ -467,8 +472,8 @@ int LocationInitTrinidad(int n)
 	//Sound
 	locations[n].type = "residence";
 	locations[n].fastreload = "PortSpein";
- 	locations[n].islandId = "Trinidad";
- 	// стража
+	locations[n].islandId = "Trinidad";
+	// стража
 	locations[n].soldiers = true;
 	LAi_LocationFantomsGen(&locations[n], true);
 	//Models
@@ -520,7 +525,7 @@ int LocationInitTrinidad(int n)
 	//Sound
 	locations[n].type = "church";
 	locations[n].fastreload = "PortSpein";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\churchInside2";
@@ -559,7 +564,7 @@ int LocationInitTrinidad(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_PortOffice";
@@ -571,7 +576,7 @@ int LocationInitTrinidad(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortSpein";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\PortOffice";
@@ -610,7 +615,7 @@ int LocationInitTrinidad(int n)
 	//Town sack
 	locations[n].townsack = "PortSpein";
 	locations[n].lockWeather = "Inside";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortSpein";
@@ -650,7 +655,7 @@ int LocationInitTrinidad(int n)
 	//Town sack
 	locations[n].townsack = "PortSpein";
 	locations[n].lockWeather = "Inside";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "PortSpein";
@@ -689,12 +694,12 @@ int LocationInitTrinidad(int n)
 	locations[n].id = "PortSpein_ExitTown";
 	locations[n].fastreload = "PortSpein";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "PortSpein";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\TownExitW";
@@ -758,10 +763,10 @@ int LocationInitTrinidad(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Trinidad_Jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\Jungle5";
@@ -814,10 +819,10 @@ int LocationInitTrinidad(int n)
 	locations[n].id = "Mayak1";
 	locations[n].id.label = "Mayak1";
 	locations[n].worldmap = "Mayak1";
-	locations[n].image = "loading\outside\lighthouse_"+rand(1)+".tga";
+	locations[n].image = "loading\outside\lighthouse_" + rand(1) + ".tga";
 	//Sound
 	locations[n].type = "mayak";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Shores\Lighthouse";
@@ -856,7 +861,7 @@ int LocationInitTrinidad(int n)
 	Locations[n].models.day.glassonday.tech = "LocationWindows";
 	locations[n].models.day.glassonday.level = 66532;
 	//Night
-	locations[n].models.night.volumeLight= "lighthouse_volumeLight";
+	locations[n].models.night.volumeLight = "lighthouse_volumeLight";
 	locations[n].models.night.volumeLight.tech = "LighthouseLight";
 	locations[n].models.night.volumeLight.level = 66529;
 
@@ -899,10 +904,10 @@ int LocationInitTrinidad(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Trinidad_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\CaveEnt1";
@@ -947,10 +952,10 @@ int LocationInitTrinidad(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Trinidad_Grot";
 	locations[n].id.label = "Grot";
-	locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\grotto2";
@@ -965,7 +970,7 @@ int LocationInitTrinidad(int n)
 
 	Locations[n].models.always.rays = "grotto2_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -987,14 +992,15 @@ int LocationInitTrinidad(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Trinidad_Jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle1\";
-	Locations[n].models.always.jungle = "jungle1";
+									Locations[n]
+										.models.always.jungle = "jungle1";
 	Locations[n].models.always.locators = "jungle1_locators";
 	Locations[n].models.always.grassPatch = "jungle1_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -1039,7 +1045,7 @@ int LocationInitTrinidad(int n)
 	locations[n].worldmap = "Shore60";
 	//Sound
 	locations[n].type = "seashore";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Shores\Shore07";
@@ -1080,7 +1086,7 @@ int LocationInitTrinidad(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////
@@ -1092,7 +1098,7 @@ int LocationInitTrinidad(int n)
 	locations[n].image = "loading\outside\harbor_" + rand(14) + ".tga";
 	//Sound
 	locations[n].type = "cave";
- 	locations[n].islandId = "Trinidad";
+	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
 	locations[n].models.always.town = "Grotto";
@@ -1131,7 +1137,6 @@ int LocationInitTrinidad(int n)
 	locations[n].reload.l1.label = "Sea";
 	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
-
 
 	return n;
 }

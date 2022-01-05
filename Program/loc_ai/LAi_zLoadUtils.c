@@ -14,17 +14,22 @@ void CreateLostShipsCity(aref loc)
 		int qtyChurch = 0;
 		int qtyPrison = 0;
 		int qtyStore = 0;
-		for(i=0; i<MAX_CHARACTERS; i++)
+		for (i = 0; i < MAX_CHARACTERS; i++)
 		{
 			makeref(sld, characters[i]);
-			if (sld.location == "FleuronTavern") qtyTavern++;
-			if (sld.location == "SanAugustineResidence") qtyResidence++;
-			if (sld.location == "GloriaChurch") qtyChurch++;
-			if (sld.location == "TartarusPrison") qtyPrison++;
-			if (sld.location == "EsmeraldaStoreBig") qtyStore++;
+			if (sld.location == "FleuronTavern")
+				qtyTavern++;
+			if (sld.location == "SanAugustineResidence")
+				qtyResidence++;
+			if (sld.location == "GloriaChurch")
+				qtyChurch++;
+			if (sld.location == "TartarusPrison")
+				qtyPrison++;
+			if (sld.location == "EsmeraldaStoreBig")
+				qtyStore++;
 		}
 		//размещаем нпс
-		for(i=0; i<MAX_CHARACTERS; i++)
+		for (i = 0; i < MAX_CHARACTERS; i++)
 		{
 			makeref(sld, characters[i]);
 			if (CheckAttribute(sld, "city") && sld.city == "LostShipsCity")
@@ -48,18 +53,18 @@ void CreateLostShipsCity(aref loc)
 						//<-- вечером организовываем толпу в таверне
 						if (sld.location == "SanAugustineResidence") //если адмирал в резиденции
 						{
-							if (rand(1))	//вероятность выхода из резиденции
+							if (rand(1)) //вероятность выхода из резиденции
 							{
 								SaveCurrentNpcQuestDateParam(sld, "location");
-								sld.location.hours = rand(5)+1;
+								sld.location.hours = rand(5) + 1;
 								if (rand(1))
-								{	//выходим на улицы
+								{ //выходим на улицы
 									//проверим занятость локатора
 									if (!LAi_CheckLocatorFree("goto", sld.location.baseLocator))
-									{	//выберем незанятый
+									{ //выберем незанятый
 										sTemp = sld.location.baseLocator;
 										sTemp = strcut(sTemp, 4, 5);
-										for (n=0; n<=9; n++)
+										for (n = 0; n <= 9; n++)
 										{
 											sLocator = "goto" + sTemp + "_" + n;
 											if (LAi_CheckLocatorFree("goto", sLocator))
@@ -77,7 +82,7 @@ void CreateLostShipsCity(aref loc)
 									}
 								}
 								else
-								{	//в таверну
+								{ //в таверну
 									if (qtyTavern < LSC_MAX_TAVERN)
 									{
 										sld.location.going = "toTavern"; //флаг генерации в таверне
@@ -87,7 +92,7 @@ void CreateLostShipsCity(aref loc)
 							}
 						}
 						else
-						{	//рулим в резиденцию
+						{								  //рулим в резиденцию
 							LAi_SetHuberTypeNoGroup(sld); //садим за стол
 							ChangeCharacterAddressGroup(sld, "SanAugustineResidence", "sit", "sit1");
 						}
@@ -117,7 +122,7 @@ void CreateLostShipsCity(aref loc)
 							if (rand(1))
 							{
 								SaveCurrentNpcQuestDateParam(sld, "location");
-								sld.location.hours = rand(5)+1;
+								sld.location.hours = rand(5) + 1;
 								switch (rand(2))
 								{
 								case 0: //в резиденцию к шефу
@@ -125,7 +130,7 @@ void CreateLostShipsCity(aref loc)
 									{
 										qtyResidence++;
 										LAi_SetWarriorTypeNoGroup(sld);
-										ChangeCharacterAddressGroup(sld, "SanAugustineResidence", "goto", "goto"+qtyResidence);
+										ChangeCharacterAddressGroup(sld, "SanAugustineResidence", "goto", "goto" + qtyResidence);
 									}
 									break;
 								case 1: //в таверну
@@ -140,20 +145,20 @@ void CreateLostShipsCity(aref loc)
 									{
 										qtyPrison++;
 										LAi_SetWarriorTypeNoGroup(sld);
-										ChangeCharacterAddressGroup(sld, "TartarusPrison", "goto", "goto"+qtyPrison);
+										ChangeCharacterAddressGroup(sld, "TartarusPrison", "goto", "goto" + qtyPrison);
 									}
 									break;
 								}
 							}
 						}
 						else
-						{	//возвращемся на варшип
+						{ //возвращемся на варшип
 							//проверим занятость локатора
 							if (!LAi_CheckLocatorFree("goto", sld.location.baseLocator))
-							{	//выберем незанятый
+							{ //выберем незанятый
 								sTemp = sld.location.baseLocator;
 								sTemp = strcut(sTemp, 4, 5);
-								for (n=0; n<=9; n++)
+								for (n = 0; n <= 9; n++)
 								{
 									sLocator = "goto" + sTemp + "_" + n;
 									if (LAi_CheckLocatorFree("goto", sLocator))
@@ -195,7 +200,7 @@ void CreateLostShipsCity(aref loc)
 							if (rand(1))
 							{
 								SaveCurrentNpcQuestDateParam(sld, "location");
-								sld.location.hours = rand(3)+1;
+								sld.location.hours = rand(3) + 1;
 								switch (rand(2))
 								{
 								case 0: //в церковь
@@ -223,13 +228,13 @@ void CreateLostShipsCity(aref loc)
 							}
 						}
 						else
-						{	//возвращемся на свой корабль
+						{ //возвращемся на свой корабль
 							//проверим занятость локатора
 							if (!LAi_CheckLocatorFree("goto", sld.location.baseLocator))
-							{	//выберем незанятый
+							{ //выберем незанятый
 								sTemp = sld.location.baseLocator;
 								sTemp = strcut(sTemp, 4, 5);
-								for (n=0; n<=9; n++)
+								for (n = 0; n <= 9; n++)
 								{
 									sLocator = "goto" + sTemp + "_" + n;
 									if (LAi_CheckLocatorFree("goto", sLocator))
@@ -271,7 +276,7 @@ void CreateLostShipsCity(aref loc)
 							if (rand(1))
 							{
 								SaveCurrentNpcQuestDateParam(sld, "location");
-								sld.location.hours = rand(6)+1;
+								sld.location.hours = rand(6) + 1;
 								switch (rand(3))
 								{
 								case 0: //в церковь
@@ -298,10 +303,10 @@ void CreateLostShipsCity(aref loc)
 								case 3: //на улицы
 									//проверим занятость локатора
 									if (!LAi_CheckLocatorFree("goto", sld.location.baseLocator))
-									{	//выберем незанятый
+									{ //выберем незанятый
 										sTemp = sld.location.baseLocator;
 										sTemp = strcut(sTemp, 4, 5);
-										for (n=0; n<=9; n++)
+										for (n = 0; n <= 9; n++)
 										{
 											sLocator = "goto" + sTemp + "_" + n;
 											if (LAi_CheckLocatorFree("goto", sLocator))
@@ -322,7 +327,7 @@ void CreateLostShipsCity(aref loc)
 							}
 						}
 						else
-						{	//возвращемся на свой корабль
+						{ //возвращемся на свой корабль
 							LAi_SetOwnerTypeNoGroup(sld);
 							ChangeCharacterAddressGroup(sld, sld.location.baseLocation, "barmen", "stay");
 						}
@@ -334,7 +339,7 @@ void CreateLostShipsCity(aref loc)
 	//------------------- таверна ------------------------
 	if (loc.id == "FleuronTavern")
 	{
-		for(i=0; i<MAX_CHARACTERS; i++)
+		for (i = 0; i < MAX_CHARACTERS; i++)
 		{
 			makeref(sld, characters[i]);
 			if (CheckAttribute(sld, "location.going") && sld.location.going == "toTavern")
@@ -374,14 +379,14 @@ void CreateLostShipsCity(aref loc)
 		}
 		else
 		{
-			for(i=0; i<MAX_CHARACTERS; i++)
+			for (i = 0; i < MAX_CHARACTERS; i++)
 			{
 				makeref(sld, characters[i]);
 				//падре днем
 				if (sld.id == "LSC_Priest")
 				{
 					LAi_SetPriestTypeNoGroup(sld);
-					ChangeCharacterAddressGroup(sld, sld.location, "barmen",  "stay");
+					ChangeCharacterAddressGroup(sld, sld.location, "barmen", "stay");
 				}
 				//граждане
 				if (CheckAttribute(sld, "location.going") && sld.location.going == "toChurch")
@@ -405,13 +410,13 @@ void CreateLostShipsCity(aref loc)
 	//------------------- магазин ------------------------
 	if (loc.id == "EsmeraldaStoreBig")
 	{
-		for(i=0; i<MAX_CHARACTERS; i++)
+		for (i = 0; i < MAX_CHARACTERS; i++)
 		{
 			makeref(sld, characters[i]);
 			if (CheckAttribute(sld, "location.going") && sld.location.going == "toStore")
 			{
 				DeleteAttribute(sld, "location.going");
-                LAi_SetStayTypeNoGroup(sld);
+				LAi_SetStayTypeNoGroup(sld);
 				PlaceCharacter(sld, "goto", "random_free");
 			}
 		}
@@ -465,49 +470,52 @@ void CreatPlantation(aref loc)
 	if (loc.id == "Plantation_Sp1")
 	{
 		bool ok = false;
-		if (CheckAttribute(Pchar,"questTemp.CapBloodLine") && Pchar.questTemp.CapBloodLine == false) ok = true;
+		if (CheckAttribute(Pchar, "questTemp.CapBloodLine") && Pchar.questTemp.CapBloodLine == false)
+			ok = true;
 		if (startHeroType != 1 || ok)
 		{
-			if (!CheckAttribute(pchar,"AlreadyPlantRuler"))
+			if (!CheckAttribute(pchar, "AlreadyPlantRuler"))
 			{
-				ref ch = GetCharacter(NPC_GenerateCharacter("PlantRuler", "off_eng_"+(rand(1)+1), "man", "man", 30, ENGLAND, 1, true));
+				ref ch = GetCharacter(NPC_GenerateCharacter("PlantRuler", "off_eng_" + (rand(1) + 1), "man", "man", 30, ENGLAND, 1, true));
 				ch.greeting = "soldier_common";
-				ch.name 	= "Джон";
+				ch.name = "Джон";
 				ch.lastname = "Синс";
 				ch.City = "Bridgetown";
 				ch.Dialog.Filename = "PlantRuler.c";
-				ch.dialog.currentnode   = "Meet";
+				ch.dialog.currentnode = "Meet";
 				LAi_SetCitizenType(ch);
 				LAi_group_MoveCharacter(ch, "ENGLAND_CITIZENS");
 				LAi_SetImmortal(ch, true);
-				DeleteAttribute(ch,"lifeDay");
+				DeleteAttribute(ch, "lifeDay");
 				pchar.AlreadyPlantRuler = true;
-				ch.SlavesLimit = 250+rand(750);
-				ChangeCharacterAddressGroup(ch, pchar.location, "goto",  "goto1");
+				ch.SlavesLimit = 250 + rand(750);
+				ChangeCharacterAddressGroup(ch, pchar.location, "goto", "goto1");
 			}
 		}
 		return;
 	}
-    if (loc.id != "Bridgetown_Plantation") return;
-    if(LAi_IsCapturedLocation) // fix нефиг грузить, когда город трупов или боевка
+	if (loc.id != "Bridgetown_Plantation")
+		return;
+	if (LAi_IsCapturedLocation) // fix нефиг грузить, когда город трупов или боевка
 	{
 		return;
 	}
-	if (GetNpcQuestPastDayWOInit(loc, "Plantation_date") < 2) return;
+	if (GetNpcQuestPastDayWOInit(loc, "Plantation_date") < 2)
+		return;
 
 	int iColony = -1;
 	int iNation = -1;
 
-    iColony = FindColony("Bridgetown");
+	iColony = FindColony("Bridgetown");
 
-	if(iColony == -1)
+	if (iColony == -1)
 	{
 		return;
 	}
 
 	iNation = GetCityNation("Bridgetown");
 
-	if(iNation == -1)
+	if (iNation == -1)
 	{
 		return;
 	}
@@ -517,81 +525,81 @@ void CreatPlantation(aref loc)
 	aref st;
 	int iChar, i, iSex;
 	string slai_group, locatorName, sType;
-    slai_group = GetNationNameByType(iNation)  + "_citizens";
+	slai_group = GetNationNameByType(iNation) + "_citizens";
 	int num, iMassive, iRank;
 	string sAnime;
 	string model[23];
-// просто работники
-    model[0] = "prizon_1";
-    model[1] = "prizon_2";
-    model[2] = "prizon_3";
-    model[3] = "prizon_4";
-    model[4] = "prizon_5";
-    model[5] = "prizon_6";
-    model[6] = "prizon_7";
+	// просто работники
+	model[0] = "prizon_1";
+	model[1] = "prizon_2";
+	model[2] = "prizon_3";
+	model[3] = "prizon_4";
+	model[4] = "prizon_5";
+	model[5] = "prizon_6";
+	model[6] = "prizon_7";
 	model[7] = "prizon_8";
-    model[8] = "pirate_1";
-    model[9] = "prison_5";
-    model[10] = "pirate_1";
-    model[11] = "pirate_11";
-    model[12] = "pirate_12";
-    model[13] = "pirate_13";
-    model[14] = "pirate_14";
-    model[15] = "pirate_15";
-    model[16] = "pirate_16";
-    model[17] = "pirate_21";
-    model[18] = "pirate_25";
-    model[19] = "PKM_rab_1";
-    model[20] = "PKM_rab_2";
-    model[21] = "PKM_rab_3";
-    model[22] = "PKM_rab_4";
-    i = 0;
-    num = rand(3) + 7; //количество
-    while(i < num)
-    {
-        iMassive = rand(22);
-        if (model[iMassive] != "")
-        {
-            sAnime = "man"
-            /* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAnime = "man"; */
+	model[8] = "pirate_1";
+	model[9] = "prison_5";
+	model[10] = "pirate_1";
+	model[11] = "pirate_11";
+	model[12] = "pirate_12";
+	model[13] = "pirate_13";
+	model[14] = "pirate_14";
+	model[15] = "pirate_15";
+	model[16] = "pirate_16";
+	model[17] = "pirate_21";
+	model[18] = "pirate_25";
+	model[19] = "PKM_rab_1";
+	model[20] = "PKM_rab_2";
+	model[21] = "PKM_rab_3";
+	model[22] = "PKM_rab_4";
+	i = 0;
+	num = rand(3) + 7; //количество
+	while (i < num)
+	{
+		iMassive = rand(22);
+		if (model[iMassive] != "")
+		{
+			sAnime = "man"
+				/* if(model[iMassive] == "pirate_1" || model[iMassive] == "pirate_11" || model[iMassive] == "pirate_12" || model[iMassive] == "pirate_13" || model[iMassive] == "pirate_14" || model[iMassive] == "pirate_15" || model[iMassive] == "pirate_16" || model[iMassive] == "pirate_21" || model[iMassive] == "pirate_25") sAnime = "man"; */
 
-            chr = GetCharacter(NPC_GenerateCharacter("Slave_"+i, model[iMassive], "man", sAnime, 7, ENGLAND, 2, false));
-            //chr.dialog.Filename = "Pearl_dialog.c";
-            chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
-            //chr.dialog.currentnode = "PearlMan";
-            chr.greeting = "Gr_slave";
-            chr.CityType = "citizen";
-            chr.city = Colonies[iColony].id;
-            LAi_SetLoginTime(chr, 6.0, 22.99);
+				chr = GetCharacter(NPC_GenerateCharacter("Slave_" + i, model[iMassive], "man", sAnime, 7, ENGLAND, 2, false));
+			//chr.dialog.Filename = "Pearl_dialog.c";
+			chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
+			//chr.dialog.currentnode = "PearlMan";
+			chr.greeting = "Gr_slave";
+			chr.CityType = "citizen";
+			chr.city = Colonies[iColony].id;
+			LAi_SetLoginTime(chr, 6.0, 22.99);
 
-            PlaceCharacter(chr, "goto", "random_free");
-            LAi_SetCitizenType(chr);
-            LAi_group_MoveCharacter(chr, slai_group);
-            i++;
-            model[iMassive] = "";
-        }
-    }
+			PlaceCharacter(chr, "goto", "random_free");
+			LAi_SetCitizenType(chr);
+			LAi_group_MoveCharacter(chr, slai_group);
+			i++;
+			model[iMassive] = "";
+		}
+	}
 	if (checkAttribute(loc, "soldiers") && CheckAttribute(loc, "locators.soldiers"))
 	{
- 		if(iNation == PIRATE)
+		if (iNation == PIRATE)
 		{
-            sType = "mushketer_" + (rand(4)+1);
+			sType = "mushketer_" + (rand(4) + 1);
 		}
 		else
 		{
-            sType = NationShortName(iNation) + "_mush_" + (rand(2)+1);
+			sType = NationShortName(iNation) + "_mush_" + (rand(2) + 1);
 		}
 		chr = GetCharacter(NPC_GenerateCharacter("GenChar_", sType, "man", "mushketer", sti(pchar.rank), iNation, 2, false));
 		chr.id = "GenChar_" + chr.index;
-		chr.reputation = (1 + rand(44) + rand(44));// репа всем горожанам
+		chr.reputation = (1 + rand(44) + rand(44)); // репа всем горожанам
 		chr.City = Colonies[iColony].id;
-        chr.CityType = "soldier";
+		chr.CityType = "soldier";
 		chr.greeting = "soldier_common";
 		chr.MusketerDistance = 0;
 		LAi_SetLoginTime(chr, 6.0, 23.0); //а ночью будет беготня от патруля :)
 
 		LAi_SetPatrolType(chr);
-        if (sti(Colonies[iColony].HeroOwn) == true)
+		if (sti(Colonies[iColony].HeroOwn) == true)
 		{
 			LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER_OWN);
 			chr.greeting = "pirat_guard";
@@ -610,34 +618,34 @@ void CreatPlantation(aref loc)
 	{
 		makearef(st, loc.locators.patrol);
 		iCitizensQuantity = GetAttributesNum(st);
-		if(iCitizensQuantity > 10)
+		if (iCitizensQuantity > 10)
 		{
 			iCitizensQuantity = 10;
 		}
-		for (i=0; i<iCitizensQuantity-3; i++)
+		for (i = 0; i < iCitizensQuantity - 3; i++)
 		{
-            if(iNation != PIRATE && LAi_IsCapturedLocation == 0)
+			if (iNation != PIRATE && LAi_IsCapturedLocation == 0)
 			{
-                sType = "soldier";
+				sType = "soldier";
 				iChar = NPC_GeneratePhantomCharacter("soldier", iNation, MAN, 2);
 			}
 			else
 			{
-                sType = "pirate";
+				sType = "pirate";
 				iChar = NPC_GeneratePhantomCharacter("pirate", iNation, MAN, 2);
 			}
 			chr = &characters[iChar];
 			SetNPCModelUniq(chr, sType, MAN);
 			chr.City = Colonies[iColony].id;
-            chr.CityType = "soldier";
-            SetFantomParamFromRank(chr, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE, true); // бравые орлы
+			chr.CityType = "soldier";
+			SetFantomParamFromRank(chr, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, true); // бравые орлы
 			chr.RebirthPhantom = true;
 			LAi_CharacterReincarnation(chr, true, true);
-			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE+2); //задаем шаг на увеличение ранга фантомам на реинкарнацию
+			LAi_SetReincarnationRankStep(chr, MOD_SKILL_ENEMY_RATE + 2); //задаем шаг на увеличение ранга фантомам на реинкарнацию
 			LAi_SetLoginTime(chr, 0.0, 24.0);
 			LAi_SetPatrolType(chr);
 
-            if (sti(Colonies[iColony].HeroOwn) == true)
+			if (sti(Colonies[iColony].HeroOwn) == true)
 			{
 				LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER_OWN);
 				chr.greeting = "pirat_guard";
@@ -648,14 +656,14 @@ void CreatPlantation(aref loc)
 				chr.greeting = "soldier_common";
 			}
 			PlaceCharacter(chr, "patrol", "random_free");
-			if(Pchar.questTemp.CapBloodLine == true)  // Линейка Блада
+			if (Pchar.questTemp.CapBloodLine == true) // Линейка Блада
 			{
-                chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
-            }
-            else
-            {
-                chr.dialog.filename = "Common_Soldier.c";
-            }
+				chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
+			}
+			else
+			{
+				chr.dialog.filename = "Common_Soldier.c";
+			}
 			chr.dialog.currentnode = "first time";
 		}
 	}
@@ -682,14 +690,15 @@ void CreatPlantation(aref loc)
 		CarrierName[7] = "GenresBottle2";
 		CarrierName[8] = "GenresChest1";
 		CarrierName[9] = "GenresChest2";
-		for (i=iQtyCarrier; i>0; i--)
+		for (i = iQtyCarrier; i > 0; i--)
 		{
 			//выберем уникальную для этой локации модельку
 			iSex = 1;
 			while (iSex == 1)
 			{
 				iTemp = rand(9);
-				if (CarrierName[iTemp] != "") iSex = 0;
+				if (CarrierName[iTemp] != "")
+					iSex = 0;
 			}
 			chr = GetCharacter(NPC_GenerateCharacter("Carrier", CarrierName[iTemp], "man", "genres", 35, iNation, 2, false));
 			chr.id = chr.id + "_" + chr.index;
@@ -711,7 +720,7 @@ void CreatPlantation(aref loc)
 			}
 			ChangeCharacterAddressGroup(chr, loc.id, "reload", "gate");
 			LAi_SetCarrierType(chr);
-			LAi_SetLoginTime(chr, 6.0, 23.0);//homo ночью пусть спят
+			LAi_SetLoginTime(chr, 6.0, 23.0); //homo ночью пусть спят
 			LAi_group_MoveCharacter(chr, slai_group);
 		}
 	}
@@ -728,11 +737,11 @@ void CreatUnderwater(aref loc)
 			pchar.questTemp.LSC.immersions.pay = false; //оплаченное погружение использовано
 			pchar.questTemp.LSC.immersions = sti(pchar.questTemp.LSC.immersions);
 			SetShowTimer(400.0); //таймер
-			for (int i=1; i<=22; i++)
+			for (int i = 1; i <= 22; i++)
 			{
-				if (GetCharacterIndex("Crab_"+i) == -1)
+				if (GetCharacterIndex("Crab_" + i) == -1)
 				{
-					sld = GetCharacter(NPC_GenerateCharacter("Crab_"+i, "crabBig", "crab", "crabBig", 40+(MOD_SKILL_ENEMY_RATE), PIRATE, -1, false));
+					sld = GetCharacter(NPC_GenerateCharacter("Crab_" + i, "crabBig", "crab", "crabBig", 40 + (MOD_SKILL_ENEMY_RATE), PIRATE, -1, false));
 					GiveItem2Character(sld, "unarmed");
 					EquipCharacterbyItem(sld, "unarmed");
 					LAi_SetWarriorType(sld);
@@ -757,12 +766,13 @@ void CreatTenochtitlan(aref loc)
 		int i;
 		//проверяем наличие тотемов у ГГ, чтобы купленным дать shown
 		if (locations[reload_cur_location_index].id == "Tenotchitlan_Jungle_06")
-		{	//срабатывает только, если заходим из джунглей
+		{ //срабатывает только, если заходим из джунглей
 			ref itm;
 			string sTemp;
-			for (i=1; i<=15; i++)
+			for (i = 1; i <= 15; i++)
 			{
-				if (i == 11) continue;
+				if (i == 11)
+					continue;
 				sTemp = "Totem_" + i;
 				if (CheckCharacterItem(pchar, sTemp))
 				{
@@ -779,9 +789,9 @@ void CreatTenochtitlan(aref loc)
 		{
 			//близнецов расставим иначе
 			int iTemp;
-			for (i=1; i<=2; i++)
+			for (i = 1; i <= 2; i++)
 			{
-				iTemp = GetCharacterIndex("AztecCitizen_"+i);
+				iTemp = GetCharacterIndex("AztecCitizen_" + i);
 				if (iTemp != -1)
 				{
 					PlaceCharacter(&characters[iTemp], "goto", "random_free");
@@ -808,15 +818,17 @@ void CreatTenochtitlanInside(aref loc)
 			//Boyer mod: 3 warriors is very difficult, they will always outrank, have poison and very deadly weapon...and is enough.  At 10 = Impossible, there will be 4
 			//#20170318-33
 			warriorQty = makeint(MOD_SKILL_ENEMY_RATE / 2.5);
-			if (warriorQty < 3) warriorQty = 3;
+			if (warriorQty < 3)
+				warriorQty = 3;
 			//определим ранг войнов. обработаем от сложности, но не менее 15 уровня
 			warriorRank = GetCoffDiff(sti(pchar.rank), 1000);
-			if (warriorRank < 11) warriorRank = 11;
+			if (warriorRank < 11)
+				warriorRank = 11;
 			//инкремент на кол-во посещений
 			loc.smallGodTemple = sti(loc.smallGodTemple) + 1;
 			warriorRank = warriorRank + sti(loc.smallGodTemple) * 4;
 			//генерим ацтеков с неповторяемыми модельками
-		    model[0] = "AztecWarrior1";
+			model[0] = "AztecWarrior1";
 			model[1] = "AztecWarrior2";
 			model[2] = "AztecWarrior3";
 			model[3] = "AztecWarrior4";
@@ -824,35 +836,35 @@ void CreatTenochtitlanInside(aref loc)
 			//Boyer change
 			//i = 0;
 			//while(i < warriorQty)
-			for(i=0; i < warriorQty; i++)
+			for (i = 0; i < warriorQty; i++)
 			{
 				iMassive = rand(4);
 				//if (model[iMassive] != "")
 				//{
-					chr = GetCharacter(NPC_GenerateCharacter("AztecWarrior"+loc.index+"_"+i, model[iMassive], "skeleton", "man", warriorRank, PIRATE, 0, true));
-					SetFantomParamFromRank(chr, warriorRank, true);
-					while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
-					{
-						TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
-					}
-					while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
-					{
-						TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
-					}
-					GiveItem2Character(chr, "toporAZ");
-					EquipCharacterbyItem(chr, "toporAZ");
-					SetCharacterPerk(chr, "Energaiser");
-					if (sti(loc.smallGodTemple) > 3 && MOD_SKILL_ENEMY_RATE > 1)
-					{
-						SetCharacterPerk(chr, "SwordplayProfessional");
-						SetCharacterPerk(chr, "AdvancedDefense");
-						SetCharacterPerk(chr, "CriticalHit");
-						SetCharacterPerk(chr, "Sliding");
-						TakeNItems(chr,"potion1", rand(MOD_SKILL_ENEMY_RATE)+1);
-					}
-					PlaceCharacter(chr, "goto", "random_free");
-					LAi_SetWarriorType(chr);
-					LAi_group_MoveCharacter(chr, "EnemyFight");
+				chr = GetCharacter(NPC_GenerateCharacter("AztecWarrior" + loc.index + "_" + i, model[iMassive], "skeleton", "man", warriorRank, PIRATE, 0, true));
+				SetFantomParamFromRank(chr, warriorRank, true);
+				while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
+				{
+					TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
+				}
+				while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
+				{
+					TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
+				}
+				GiveItem2Character(chr, "toporAZ");
+				EquipCharacterbyItem(chr, "toporAZ");
+				SetCharacterPerk(chr, "Energaiser");
+				if (sti(loc.smallGodTemple) > 3 && MOD_SKILL_ENEMY_RATE > 1)
+				{
+					SetCharacterPerk(chr, "SwordplayProfessional");
+					SetCharacterPerk(chr, "AdvancedDefense");
+					SetCharacterPerk(chr, "CriticalHit");
+					SetCharacterPerk(chr, "Sliding");
+					TakeNItems(chr, "potion1", rand(MOD_SKILL_ENEMY_RATE) + 1);
+				}
+				PlaceCharacter(chr, "goto", "random_free");
+				LAi_SetWarriorType(chr);
+				LAi_group_MoveCharacter(chr, "EnemyFight");
 				//	i++;
 				//	model[iMassive] = "";
 				//}
@@ -871,11 +883,13 @@ void CreatTenochtitlanInside(aref loc)
 			//Boyer mod: 3 warriors is very difficult, they will always outrank, have poison and very deadly weapon...and is enough.  At 10 = Impossible, there will be 4
 			//#20170318-33
 			warriorQty = makeint(MOD_SKILL_ENEMY_RATE / 2.5);
-			if (warriorQty < 3) warriorQty = 3;
+			if (warriorQty < 3)
+				warriorQty = 3;
 			warriorRank = GetCoffDiff(sti(pchar.rank), 1000);
-			if (warriorRank < 20) warriorRank = 20;
+			if (warriorRank < 20)
+				warriorRank = 20;
 			//генерим ацтеков с неповторяемыми модельками
-			for (n=1; n<=7; n++)
+			for (n = 1; n <= 7; n++)
 			{
 				model[0] = "AztecWarrior1";
 				model[1] = "AztecWarrior2";
@@ -883,40 +897,40 @@ void CreatTenochtitlanInside(aref loc)
 				model[3] = "AztecWarrior4";
 				model[4] = "AztecWarrior5";
 				//Boyer change
-                //i = 0;
-                //while(i < warriorQty)
-                for(i=0; i < warriorQty; i++)
-                {
+				//i = 0;
+				//while(i < warriorQty)
+				for (i = 0; i < warriorQty; i++)
+				{
 					iMassive = rand(4);
 					//if (model[iMassive] != "")
 					//{
-						chr = GetCharacter(NPC_GenerateCharacter("AztecWarrior"+loc.index+"_"+n+""+i, model[iMassive], "skeleton", "man", warriorRank, PIRATE, 0, true));
-						SetFantomParamFromRank(chr, 15, true);
-						while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
-						{
-							TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
-						}
-						while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
-						{
-							TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
-						}
-						GiveItem2Character(chr, "toporAZ");
-						EquipCharacterbyItem(chr, "toporAZ");
-						SetCharacterPerk(chr, "Energaiser");
-						if (MOD_SKILL_ENEMY_RATE > 5)
-						{
-							SetCharacterPerk(chr, "SwordplayProfessional");
-							SetCharacterPerk(chr, "AdvancedDefense");
-							SetCharacterPerk(chr, "CriticalHit");
-							SetCharacterPerk(chr, "Sliding");
-							TakeNItems(chr,"potion1", rand(MOD_SKILL_ENEMY_RATE)+1);
-						}
-						sLocator = "monster"+n;
-						ChangeCharacterAddressGroup(chr, loc.id, "monsters", sLocator+(i+1));
-						LAi_SetWarriorType(chr);
-						LAi_warrior_SetStay(chr, true);
-						LAi_warrior_DialogEnable(chr, false);
-						LAi_group_MoveCharacter(chr, LAI_GROUP_MONSTERS);
+					chr = GetCharacter(NPC_GenerateCharacter("AztecWarrior" + loc.index + "_" + n + "" + i, model[iMassive], "skeleton", "man", warriorRank, PIRATE, 0, true));
+					SetFantomParamFromRank(chr, 15, true);
+					while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
+					{
+						TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
+					}
+					while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
+					{
+						TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
+					}
+					GiveItem2Character(chr, "toporAZ");
+					EquipCharacterbyItem(chr, "toporAZ");
+					SetCharacterPerk(chr, "Energaiser");
+					if (MOD_SKILL_ENEMY_RATE > 5)
+					{
+						SetCharacterPerk(chr, "SwordplayProfessional");
+						SetCharacterPerk(chr, "AdvancedDefense");
+						SetCharacterPerk(chr, "CriticalHit");
+						SetCharacterPerk(chr, "Sliding");
+						TakeNItems(chr, "potion1", rand(MOD_SKILL_ENEMY_RATE) + 1);
+					}
+					sLocator = "monster" + n;
+					ChangeCharacterAddressGroup(chr, loc.id, "monsters", sLocator + (i + 1));
+					LAi_SetWarriorType(chr);
+					LAi_warrior_SetStay(chr, true);
+					LAi_warrior_DialogEnable(chr, false);
+					LAi_group_MoveCharacter(chr, LAI_GROUP_MONSTERS);
 					//	i++;
 					//	model[iMassive] = "";
 					//}
@@ -987,8 +1001,7 @@ void CreatDesMoines(aref loc)
 					model[7] = "skel4";
 					model[8] = "skel1";
 					model[9] = "skel2";
-					sSex = "skeleton"
-					sNode = "DMSkel";
+					sSex = "skeleton" sNode = "DMSkel";
 					sModel = "skeletcap";
 					bImmortal = true;
 				}
@@ -996,21 +1009,21 @@ void CreatDesMoines(aref loc)
 			//Boyer change
 			//i = 0;
 			//while(i < 8)
-			for(i=0; i < 8; i++)
+			for (i = 0; i < 8; i++)
 			{
 				iMassive = rand(9);
 				//if (model[iMassive] != "")
 				//{
-					chr = GetCharacter(NPC_GenerateCharacter("MCCitiz_"+i, model[iMassive], sSex, "man", 15, SPAIN, 0, true));
-					chr.dialog.filename = "Quest\MagicCity.c";
-					chr.dialog.currentnode = sNode;
-					chr.greeting = "cit_common";
-					chr.city = "DesMoines";
-					LAi_RemoveLoginTime(chr);
-					LAi_SetImmortal(chr, bImmortal);
-					PlaceCharacter(chr, "goto", "random_free");
-					LAi_SetCitizenType(chr);
-					LAi_group_MoveCharacter(chr, "SPAIN_CITIZENS");
+				chr = GetCharacter(NPC_GenerateCharacter("MCCitiz_" + i, model[iMassive], sSex, "man", 15, SPAIN, 0, true));
+				chr.dialog.filename = "Quest\MagicCity.c";
+				chr.dialog.currentnode = sNode;
+				chr.greeting = "cit_common";
+				chr.city = "DesMoines";
+				LAi_RemoveLoginTime(chr);
+				LAi_SetImmortal(chr, bImmortal);
+				PlaceCharacter(chr, "goto", "random_free");
+				LAi_SetCitizenType(chr);
+				LAi_group_MoveCharacter(chr, "SPAIN_CITIZENS");
 				//	i++;
 				//	model[iMassive] = "";
 				//}
@@ -1018,7 +1031,7 @@ void CreatDesMoines(aref loc)
 		}
 		if (loc.id == "DesMoines_Townhall")
 		{
-			if (GetHour() > 6.0 && GetHour() < 21.99 )
+			if (GetHour() > 6.0 && GetHour() < 21.99)
 			{
 				sSex = "man";
 				sNode = "DMCitiz";
@@ -1036,8 +1049,7 @@ void CreatDesMoines(aref loc)
 				}
 				else
 				{
-					sSex = "skeleton"
-					sNode = "DMSkel";
+					sSex = "skeleton" sNode = "DMSkel";
 					sModel = "skeletcap";
 					bImmortal = true;
 				}

@@ -8,34 +8,67 @@ void FishingShipCreate(string sIslandID, int nShipCount, int iNation, int Colony
     int i, iChar, shipType;
     ref sld;
     string sLocatorGroup = "Quest_Ships";
-	string sLocator = Island_FindRandomLocator(sIslandID, sLocatorGroup);
+    string sLocator = Island_FindRandomLocator(sIslandID, sLocatorGroup);
 
-    for(i = 0; i < nShipCount; i++)
+    for (i = 0; i < nShipCount; i++)
     {
         iChar = GenerateCharacter(iNation, WITHOUT_SHIP, "soldier", MAN, -1, WARRIOR);
         sld = &characters[iChar];
-        switch(rand(15)) {
-            case 0: shipType = SHIP_TARTANE; break;
-            case 1: shipType = SHIP_TARTANE2; break;
-            case 2: shipType = SHIP_CARAVEL20S; break;
-            case 3: shipType = SHIP_Boeier; break;
-            case 4: shipType = SHIP_Balandra; break;
-            case 5: shipType = SHIP_Chaloupe; break;
-            case 6: shipType = SHIP_LUGGER; break;
-            case 7: shipType = SHIP_KETCH; break;
-            case 8: shipType = SHIP_PINK; break;
-            case 9: shipType = SHIP_FLEUT; break;
-            case 10: shipType = SHIP_BARQUE_L; break;
-            case 11: shipType = SHIP_GALEOTH_H; break;
-            case 12: shipType = SHIP_BARQUE3; break;
-            case 13: shipType = SHIP_BARQUE4; break;
-            case 14: shipType = SHIP_BARQUE; break;
-            case 15: shipType = SHIP_QuecheIberica; break;
+        switch (rand(15))
+        {
+        case 0:
+            shipType = SHIP_TARTANE;
+            break;
+        case 1:
+            shipType = SHIP_TARTANE2;
+            break;
+        case 2:
+            shipType = SHIP_CARAVEL20S;
+            break;
+        case 3:
+            shipType = SHIP_Boeier;
+            break;
+        case 4:
+            shipType = SHIP_Balandra;
+            break;
+        case 5:
+            shipType = SHIP_Chaloupe;
+            break;
+        case 6:
+            shipType = SHIP_LUGGER;
+            break;
+        case 7:
+            shipType = SHIP_KETCH;
+            break;
+        case 8:
+            shipType = SHIP_PINK;
+            break;
+        case 9:
+            shipType = SHIP_FLEUT;
+            break;
+        case 10:
+            shipType = SHIP_BARQUE_L;
+            break;
+        case 11:
+            shipType = SHIP_GALEOTH_H;
+            break;
+        case 12:
+            shipType = SHIP_BARQUE3;
+            break;
+        case 13:
+            shipType = SHIP_BARQUE4;
+            break;
+        case 14:
+            shipType = SHIP_BARQUE;
+            break;
+        case 15:
+            shipType = SHIP_QuecheIberica;
+            break;
         }
         sld.Ship.Type = GenerateShip(shipType, false);
-		SetRandomNameToShip(sld);
-		SetBaseShipData(sld);
-		SetCrewQuantityFull(sld);
+        SetRandomNameToShip(sld);
+        SetBaseShipData(sld);
+        SetCrewQuantityFull(sld);
         PlaceFishingShip(iChar, sIslandID, sLocatorGroup, sLocator);
         sld.FishingShips = Colonies[ColonyIdx].id;
         if (iNation == PIRATE)
@@ -66,27 +99,27 @@ void PlaceFishingShip(int iChar, string sIslandID, string sLocatorGroup, string 
 {
     //#20190505-01
     string sGroup = "IslandGroup" + iChar;
-	Group_DelCharacter(sGroup, characters[iChar].id);
-	sGroup = "FishingGroup" + iChar;
-	Group_AddCharacter(sGroup, characters[iChar].id);
-	Group_SetGroupCommander(sGroup, characters[iChar].id);
-	Group_SetAddress(sGroup, sIslandID, sLocatorGroup, sLocator);
-	Ship_SetTaskDrift(SECONDARY_TASK, iChar);
+    Group_DelCharacter(sGroup, characters[iChar].id);
+    sGroup = "FishingGroup" + iChar;
+    Group_AddCharacter(sGroup, characters[iChar].id);
+    Group_SetGroupCommander(sGroup, characters[iChar].id);
+    Group_SetAddress(sGroup, sIslandID, sLocatorGroup, sLocator);
+    Ship_SetTaskDrift(SECONDARY_TASK, iChar);
 }
 //#20190109-03
 void DropFishingFloats(ref rCharacter)
 {
-	ref rGood;
-	string sGood;
+    ref rGood;
+    string sGood;
 
     sGood = Goods[GOOD_FISH].name;
 
     int iQuantity = 25 + rand(10);
     iQuantity = iQuantity / sti(Goods[GOOD_FISH].Units);
 
-    int iSwimQuantity = rand(iQuantity/4) + rand(iQuantity/4) + rand(iQuantity/4) + rand(iQuantity/4);
+    int iSwimQuantity = rand(iQuantity / 4) + rand(iQuantity / 4) + rand(iQuantity / 4) + rand(iQuantity / 4);
 
-    if(iSwimQuantity < 1)
+    if (iSwimQuantity < 1)
     {
         iSwimQuantity = 1;
     }

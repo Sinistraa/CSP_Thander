@@ -3,21 +3,22 @@ extern void initFastReloadTable();
 void InitBaseInterfaces()
 {
 	InterfaceStates.BackEnvironmentIsCreated = false;
-	SetEventHandler("GetQuestTextFileName","GetQuestTextFileName",0);
+	SetEventHandler("GetQuestTextFileName", "GetQuestTextFileName", 0);
 	GameInterface.GameTime.sec = InterfaceStates.GameTime.sec;
 	GameInterface.GameTime.min = InterfaceStates.GameTime.min;
 	GameInterface.GameTime.hour = InterfaceStates.GameTime.hour;
-	CreateEntity(&GameInterface,"xinterface");
-	DelEventHandler("GetQuestTextFileName","GetQuestTextFileName");
-	LayerAddObject(INTERFACE_EXECUTE,&GameInterface,-100);
-	LayerAddObject(INTERFACE_REALIZE,&GameInterface,-100);
-	if(!IsEntity(&LanguageObject))
-	{	CreateEntity(&LanguageObject,"obj_strservice");
+	CreateEntity(&GameInterface, "xinterface");
+	DelEventHandler("GetQuestTextFileName", "GetQuestTextFileName");
+	LayerAddObject(INTERFACE_EXECUTE, &GameInterface, -100);
+	LayerAddObject(INTERFACE_REALIZE, &GameInterface, -100);
+	if (!IsEntity(&LanguageObject))
+	{
+		CreateEntity(&LanguageObject, "obj_strservice");
 	}
 	InitLogInterface();
 	InitBattleLandInterface();
 	InterfaceStates.Launched = false;
-	if( storeDayUpdateCnt>=0 ) // обновление магазина можно включить
+	if (storeDayUpdateCnt >= 0) // обновление магазина можно включить
 	{
 		Event("EvStoreDayUpdate");
 	}
@@ -53,20 +54,18 @@ void InitBaseInterfaces_main()
 	InterfaceStates.Buttons.Quit.enable = true;
 	InterfaceStates.Buttons.Controls.enable = true;
 
-
-	InterfaceStates.BattleShow.FastCommand	= true;
-	InterfaceStates.BattleShow.LogString	= true;
-	InterfaceStates.BattleShow.Navigator	= true;
-	InterfaceStates.BattleShow.Command		= true;
-	InterfaceStates.BattleShow.Alarm		= true;
-
+	InterfaceStates.BattleShow.FastCommand = true;
+	InterfaceStates.BattleShow.LogString = true;
+	InterfaceStates.BattleShow.Navigator = true;
+	InterfaceStates.BattleShow.Command = true;
+	InterfaceStates.BattleShow.Alarm = true;
 
 	InterfaceStates.doUnFreeze = true;
 	InterfaceStates.Launched = false;
 
 	InitInterfaceTables();
 
-	if( LoadSegment("battle_interface\fast_reload_table.c") )
+	if (LoadSegment("battle_interface\fast_reload_table.c"))
 	{
 		initFastReloadTable();
 		UnloadSegment("battle_interface\fast_reload_table.c");
@@ -75,7 +74,7 @@ void InitBaseInterfaces_main()
 
 void InitInterfaceTables()
 {
-	SetArraySize(&Interfaces,INTERFACE_QUANTITY+3);
+	SetArraySize(&Interfaces, INTERFACE_QUANTITY + 3);
 
 	// Lugger -->
 	// Arena
@@ -168,13 +167,13 @@ void InitInterfaceTables()
 	Interfaces[INTERFACE_ITEMSTRADE].IniFile = "RESOURCE\INI\INTERFACES\itemstrade.ini";
 	// boal -->
 	Interfaces[INTERFACE_FOR_TEST].SectionName = "interface\for_test.c";
-	Interfaces[INTERFACE_FOR_TEST].IniFile     = "RESOURCE\INI\INTERFACES\for_test.ini";
+	Interfaces[INTERFACE_FOR_TEST].IniFile = "RESOURCE\INI\INTERFACES\for_test.ini";
 
 	Interfaces[INTERFACE_NATION_LEGEND].SectionName = "interface\NationLegend.c";
-    Interfaces[INTERFACE_NATION_LEGEND].IniFile = "RESOURCE\INI\INTERFACES\NationLegend.ini";
+	Interfaces[INTERFACE_NATION_LEGEND].IniFile = "RESOURCE\INI\INTERFACES\NationLegend.ini";
 
-    Interfaces[INTERFACE_COLONY_CAPTURE].SectionName = "interface\ColonyCapture.c";
-    Interfaces[INTERFACE_COLONY_CAPTURE].IniFile = "RESOURCE\INI\INTERFACES\ColonyCapture.ini";
+	Interfaces[INTERFACE_COLONY_CAPTURE].SectionName = "interface\ColonyCapture.c";
+	Interfaces[INTERFACE_COLONY_CAPTURE].IniFile = "RESOURCE\INI\INTERFACES\ColonyCapture.ini";
 	// boal <--
 	Interfaces[INTERFACE_SALARY].SectionName = "interface\salary.c";
 	Interfaces[INTERFACE_SALARY].IniFile = "RESOURCE\INI\INTERFACES\salary.ini";
@@ -236,7 +235,7 @@ void InitInterfaceTables()
 	Interfaces[INTERFACE_QUICK_SAVE].IniFile = "RESOURCE\INI\INTERFACES\quick_save.ini";
 	// boal -->
 	Interfaces[INTERFACE_DEBUGER].SectionName = "interface\debuger.c";
-	Interfaces[INTERFACE_DEBUGER].IniFile     = "RESOURCE\INI\INTERFACES\debuger.ini";
+	Interfaces[INTERFACE_DEBUGER].IniFile = "RESOURCE\INI\INTERFACES\debuger.ini";
 
 	Interfaces[INTERFACE_BOAL_BETA].SectionName = "interface\boal_beta.c";
 	Interfaces[INTERFACE_BOAL_BETA].IniFile = "RESOURCE\INI\INTERFACES\boal_beta.ini";
@@ -248,7 +247,7 @@ void InitInterfaceTables()
 	Interfaces[INTERFACE_DICE_GAME].IniFile = "RESOURCE\INI\INTERFACES\boal_dice.ini";
 
 	Interfaces[INTERFACE_FRAMEFORM].SectionName = "interface\boal_frame.c";
-	Interfaces[INTERFACE_FRAMEFORM].IniFile     = "RESOURCE\INI\INTERFACES\boal_frame.ini";
+	Interfaces[INTERFACE_FRAMEFORM].IniFile = "RESOURCE\INI\INTERFACES\boal_frame.ini";
 
 	Interfaces[INTERFACE_PS_HERO].SectionName = "interface\PsHero.c";
 	Interfaces[INTERFACE_PS_HERO].IniFile = "RESOURCE\INI\INTERFACES\PsHero.ini";
@@ -256,7 +255,7 @@ void InitInterfaceTables()
 	Interfaces[INTERFACE_LEAVE_BATTLE].SectionName = "interface\LeaveBattle.c";
 	Interfaces[INTERFACE_LEAVE_BATTLE].IniFile = "RESOURCE\INI\NTERFACES\LeaveBattle.ini";
 
-	Interfaces[INTERFACE_SPEAK].SectionName = "interface\Speak.c";  // Philippe
+	Interfaces[INTERFACE_SPEAK].SectionName = "interface\Speak.c"; // Philippe
 	Interfaces[INTERFACE_SPEAK].IniFile = "RESOURCE\INI\INTERFACES\Speak.ini";
 
 	Interfaces[INTERFACE_CONTRATRADE].SectionName = "interface\contraband.c";
@@ -293,13 +292,12 @@ void InitInterfaceTables()
 
 	//Взлом замков
 	Interfaces[INTERFACE_LOCKPICK].SectionName = "interface\lockpicking.c";
-    Interfaces[INTERFACE_LOCKPICK].IniFile = "RESOURCE\INI\INTERFACES\lockpicking.ini";
+	Interfaces[INTERFACE_LOCKPICK].IniFile = "RESOURCE\INI\INTERFACES\lockpicking.ini";
 
 	Interfaces[INTERFACE_POINTS_EX].SectionName = "interface\pointsshop.c";
-    Interfaces[INTERFACE_POINTS_EX].IniFile = "RESOURCE\INI\INTERFACES\pointsshop.ini";
+	Interfaces[INTERFACE_POINTS_EX].IniFile = "RESOURCE\INI\INTERFACES\pointsshop.ini";
 
 	Interfaces[INTERFACE_CRAFT_ALL].SectionName = "interface\craft_all.c";
-    Interfaces[INTERFACE_CRAFT_ALL].IniFile = "RESOURCE\INI\INTERFACES\craft_all.ini";
+	Interfaces[INTERFACE_CRAFT_ALL].IniFile = "RESOURCE\INI\INTERFACES\craft_all.ini";
 	// boal <--
-
 }

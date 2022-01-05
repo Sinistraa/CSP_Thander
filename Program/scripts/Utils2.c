@@ -37,14 +37,14 @@ float SM_CurrentHourToLightIntencity()
 float SM_FastRound(float f, int d)
 {
 	float h = 0.5;
-	if (f < 0) h = -0.5;
+	if (f < 0)
+		h = -0.5;
 
 	if (d == 0)
 		return makeint(f + h);
 
 	return makefloat(makeint(f * pow(10, d) + h)) / pow(10, d);
 }
-
 
 /*
 void TestAttr()
@@ -105,66 +105,79 @@ void csmLootCollector()
 
 	if (LAi_IsBoardingProcess())
 	{
-	makearef(arBoxes, rLoc.locators.box);
-	iBoxes = GetAttributesNum(arBoxes);
+		makearef(arBoxes, rLoc.locators.box);
+		iBoxes = GetAttributesNum(arBoxes);
 
-	if (iBoxes > 0)
-	{
-		if (iBoxes > MAX_HANDLED_BOXES)
-			iBoxes = MAX_HANDLED_BOXES;
-
-		for (i = 0; i < iBoxes; i++)
+		if (iBoxes > 0)
 		{
-			sTemp = GetAttributeName(GetAttributeN(arBoxes, i));
+			if (iBoxes > MAX_HANDLED_BOXES)
+				iBoxes = MAX_HANDLED_BOXES;
 
-			if (sTemp == "csmBoxLC" || sTemp == "")
-				continue;
-
-			if (!csmCA(rLoc, sTemp + ".items") && !csmCA(rLoc, sTemp + ".money"))
-				continue;
-
-			if (csmCA(rLoc, sTemp + ".money"))
-				rLoc.csmBoxLC.money = sti(rLoc.csmBoxLC.money) + sti(rLoc.(sTemp).money);
-
-			makearef(arFromBox, rLoc.(sTemp).items);
-
-			for (j = 0; j < GetAttributesNum(arFromBox); j++)
+			for (i = 0; i < iBoxes; i++)
 			{
-				arItem = GetAttributeN(arFromBox, j);
-				sAttr = GetAttributeName(arItem);
+				sTemp = GetAttributeName(GetAttributeN(arBoxes, i));
 
-				if (sAttr != "")
+				if (sTemp == "csmBoxLC" || sTemp == "")
+					continue;
+
+				if (!csmCA(rLoc, sTemp + ".items") && !csmCA(rLoc, sTemp + ".money"))
+					continue;
+
+				if (csmCA(rLoc, sTemp + ".money"))
+					rLoc.csmBoxLC.money = sti(rLoc.csmBoxLC.money) + sti(rLoc.(sTemp).money);
+
+				makearef(arFromBox, rLoc.(sTemp).items);
+
+				for (j = 0; j < GetAttributesNum(arFromBox); j++)
 				{
-					if (!csmCA(rLoc, "csmBoxLC.items." + sAttr))
-						rLoc.csmBoxLC.items.(sAttr) = 0;
+					arItem = GetAttributeN(arFromBox, j);
+					sAttr = GetAttributeName(arItem);
 
-					rLoc.csmBoxLC.items.(sAttr) = makeint(sti(rLoc.csmBoxLC.items.(sAttr)) + makeint(GetAttributeValue(arItem)));
-					rLoc.(sTemp).items.(sAttr) = 0;
+					if (sAttr != "")
+					{
+						if (!csmCA(rLoc, "csmBoxLC.items." + sAttr))
+							rLoc.csmBoxLC.items.(sAttr) = 0;
+
+						rLoc.csmBoxLC.items.(sAttr) = makeint(sti(rLoc.csmBoxLC.items.(sAttr)) + makeint(GetAttributeValue(arItem)));
+						rLoc.(sTemp).items.(sAttr) = 0;
+					}
 				}
+
+				csmDA(rLoc, sTemp + ".items");
+				rLoc.(sTemp).items = "";
+				rLoc.(sTemp).money = 0;
 			}
 
-			csmDA(rLoc, sTemp + ".items");
-			rLoc.(sTemp).items = "";
-			rLoc.(sTemp).money = 0;
-		}
-
-		if (!CheckAttribute(rLoc, "csmBoxLC.ExtraLoot"))
-		{
-			rLoc.csmBoxLC.ExtraLoot = true;
-			if (rand (1) == 0)	rLoc.csmBoxLC.items.potion1 = makeint(rLoc.csmBoxLC.items.potion1) + rand (3);//Зелье
-			if (rand (3) == 0)	rLoc.csmBoxLC.items.potion2 = makeint(rLoc.csmBoxLC.items.potion2) + rand (2);//Эликсир
-			if (rand (1) == 0)	rLoc.csmBoxLC.items.potion3 = makeint(rLoc.csmBoxLC.items.potion3) + rand (1);//противоядие
-			if (rand (3) == 0)	rLoc.csmBoxLC.items.potion4 = makeint(rLoc.csmBoxLC.items.potion4) + rand (1);//микстура
-			if (rand (1) == 0)	rLoc.csmBoxLC.items.potion5 = makeint(rLoc.csmBoxLC.items.potion5) + rand (5);//Виноград
-			if (rand (3) == 0)	rLoc.csmBoxLC.items.potionwine = makeint(rLoc.csmBoxLC.items.potionwine) + rand (1);//вино
-			if (rand (1) == 0)	rLoc.csmBoxLC.items.potionrum = makeint(rLoc.csmBoxLC.items.potionrum) + rand (2);//ром
-			if (rand (1) == 0)	rLoc.csmBoxLC.items.Food1 = makeint(rLoc.csmBoxLC.items.Food1) + rand (5);//фрукты
-			if (rand (2) == 0)	rLoc.csmBoxLC.items.Food2 = makeint(rLoc.csmBoxLC.items.Food2) + rand (4);//хлеб
-			if (rand (2) == 0)	rLoc.csmBoxLC.items.Food3 = makeint(rLoc.csmBoxLC.items.Food3) + rand (3);//сыр
-			if (rand (3) == 0)	rLoc.csmBoxLC.items.Food4 = makeint(rLoc.csmBoxLC.items.Food4) + rand (2);//рыба
-			if (rand (3) == 0)	rLoc.csmBoxLC.items.Food5 = makeint(rLoc.csmBoxLC.items.Food5) + rand (2);//мясо
-			if (rand (99) == 0)	rLoc.csmBoxLC.items.chest_quest = 1;//странный сундук
-		}
+			if (!CheckAttribute(rLoc, "csmBoxLC.ExtraLoot"))
+			{
+				rLoc.csmBoxLC.ExtraLoot = true;
+				if (rand(1) == 0)
+					rLoc.csmBoxLC.items.potion1 = makeint(rLoc.csmBoxLC.items.potion1) + rand(3); //Зелье
+				if (rand(3) == 0)
+					rLoc.csmBoxLC.items.potion2 = makeint(rLoc.csmBoxLC.items.potion2) + rand(2); //Эликсир
+				if (rand(1) == 0)
+					rLoc.csmBoxLC.items.potion3 = makeint(rLoc.csmBoxLC.items.potion3) + rand(1); //противоядие
+				if (rand(3) == 0)
+					rLoc.csmBoxLC.items.potion4 = makeint(rLoc.csmBoxLC.items.potion4) + rand(1); //микстура
+				if (rand(1) == 0)
+					rLoc.csmBoxLC.items.potion5 = makeint(rLoc.csmBoxLC.items.potion5) + rand(5); //Виноград
+				if (rand(3) == 0)
+					rLoc.csmBoxLC.items.potionwine = makeint(rLoc.csmBoxLC.items.potionwine) + rand(1); //вино
+				if (rand(1) == 0)
+					rLoc.csmBoxLC.items.potionrum = makeint(rLoc.csmBoxLC.items.potionrum) + rand(2); //ром
+				if (rand(1) == 0)
+					rLoc.csmBoxLC.items.Food1 = makeint(rLoc.csmBoxLC.items.Food1) + rand(5); //фрукты
+				if (rand(2) == 0)
+					rLoc.csmBoxLC.items.Food2 = makeint(rLoc.csmBoxLC.items.Food2) + rand(4); //хлеб
+				if (rand(2) == 0)
+					rLoc.csmBoxLC.items.Food3 = makeint(rLoc.csmBoxLC.items.Food3) + rand(3); //сыр
+				if (rand(3) == 0)
+					rLoc.csmBoxLC.items.Food4 = makeint(rLoc.csmBoxLC.items.Food4) + rand(2); //рыба
+				if (rand(3) == 0)
+					rLoc.csmBoxLC.items.Food5 = makeint(rLoc.csmBoxLC.items.Food5) + rand(2); //мясо
+				if (rand(99) == 0)
+					rLoc.csmBoxLC.items.chest_quest = 1; //странный сундук
+			}
 		}
 	}
 
@@ -177,8 +190,7 @@ void csmLootCollector()
 			if (!csmCA(rDeadman, "id"))
 				continue;
 
-			sld = CharacterFromId(rDeadman.id)
-			if (CheckAttribute(sld, "CantLoot"))//fix
+			sld = CharacterFromId(rDeadman.id) if (CheckAttribute(sld, "CantLoot")) //fix
 				continue;
 
 			if (!csmCA(rDeadman, "items") && !csmCA(rDeadman, "money"))
@@ -205,11 +217,11 @@ void csmLootCollector()
 					{
 						rDeadman.items.(sAttr) = 0;
 						continue;
-					}*/ //нахуй второй фильтр для лута если в методе труповещей уже есть 1
+					}*/
+					//нахуй второй фильтр для лута если в методе труповещей уже есть 1
 
 					rLoc.csmBoxLC.items.(sAttr) = makeint(sti(rLoc.csmBoxLC.items.(sAttr)) + makeint(GetAttributeValue(arItem)));
 					rDeadman.items.(sAttr) = 0;
-
 				}
 			}
 

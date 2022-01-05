@@ -12,7 +12,10 @@ void GenerateArena()
 	GenerateArenaOdds();
 
 	int iMoneyView = sti(PChar.rank) * 100 + rand(100);
-	if(iMoneyView > 10000) { iMoneyView = 10000 + rand(100); }
+	if (iMoneyView > 10000)
+	{
+		iMoneyView = 10000 + rand(100);
+	}
 
 	PChar.Arena.ViewCost = iMoneyView;
 
@@ -20,16 +23,25 @@ void GenerateArena()
 
 	PChar.Arena = "Generate";
 
-	if(!CheckAttribute(PChar, "Statistic.Arena.Count")) 		{ PChar.Statistic.Arena.Count = 0; }
-	if(!CheckAttribute(PChar, "Statistic.Arena.LooserCount")) 	{ PChar.Statistic.Arena.LooserCount = 0; }
-	if(!CheckAttribute(PChar, "Statistic.Arena.WinnerCount")) 	{ PChar.Statistic.Arena.WinnerCount = 0; }
+	if (!CheckAttribute(PChar, "Statistic.Arena.Count"))
+	{
+		PChar.Statistic.Arena.Count = 0;
+	}
+	if (!CheckAttribute(PChar, "Statistic.Arena.LooserCount"))
+	{
+		PChar.Statistic.Arena.LooserCount = 0;
+	}
+	if (!CheckAttribute(PChar, "Statistic.Arena.WinnerCount"))
+	{
+		PChar.Statistic.Arena.WinnerCount = 0;
+	}
 
-	if(CheckAttribute(PChar, "quest.ClearArenaTime.over"))
+	if (CheckAttribute(PChar, "quest.ClearArenaTime.over"))
 	{
 		DeleteAttribute(PChar, "quest.ClearArenaTime.over");
 	}
 
-	int iTime = rand(5)+20;
+	int iTime = rand(5) + 20;
 	SetTimerFunction("ClearArenaTime", 0, 0, iTime);
 }
 
@@ -42,9 +54,9 @@ void GenerateArenaDuel()
 
 	int iCharacter = 0;
 
-	if(GetCharacterIndex("Arena Duel Characer") == -1)
+	if (GetCharacterIndex("Arena Duel Characer") == -1)
 	{
-		iCharacter = NPC_GenerateCharacterIndep("Arena Duel Characer", "officer_"+(rand(63)+1), "man", "man", iRank, PIRATE, -1, true);
+		iCharacter = NPC_GenerateCharacterIndep("Arena Duel Characer", "officer_" + (rand(63) + 1), "man", "man", iRank, PIRATE, -1, true);
 	}
 	else
 	{
@@ -69,30 +81,48 @@ void GenerateArenaDuel()
 	int iFencing = sti(PChar.skill.Fencing) + 30;
 	int iFencingHeavy = sti(PChar.skill.FencingHeavy) + 30;
 
-	if(iFencingLight < 30) { iFencingLight = 30; }
-	if(iFencingLight > 100) { iFencingLight = 100; }
-
-	if(iFencing < 30) { iFencing = 30; }
-	if(iFencing > 100) { iFencing = 100; }
-
-	if(iFencingHeavy < 30) { iFencingHeavy = 30; }
-	if(iFencingHeavy > 100) { iFencingHeavy = 100; }
-
-	if(rand(3) > 1)
+	if (iFencingLight < 30)
 	{
-		iLeaderShip += rand(10)+10;
+		iFencingLight = 30;
+	}
+	if (iFencingLight > 100)
+	{
+		iFencingLight = 100;
+	}
+
+	if (iFencing < 30)
+	{
+		iFencing = 30;
+	}
+	if (iFencing > 100)
+	{
+		iFencing = 100;
+	}
+
+	if (iFencingHeavy < 30)
+	{
+		iFencingHeavy = 30;
+	}
+	if (iFencingHeavy > 100)
+	{
+		iFencingHeavy = 100;
+	}
+
+	if (rand(3) > 1)
+	{
+		iLeaderShip += rand(10) + 10;
 	}
 	else
 	{
-		iLeaderShip -= rand(5)+10;
+		iLeaderShip -= rand(5) + 10;
 	}
 
-	if(iLeaderShip > 100)
+	if (iLeaderShip > 100)
 	{
 		iLeaderShip = 100;
 	}
 
-	if(iLeaderShip < 30)
+	if (iLeaderShip < 30)
 	{
 		iLeaderShip = 30;
 	}
@@ -106,9 +136,11 @@ void GenerateArenaDuel()
 	Characters[iCharacter].skill.Fencing = iFencing;
 	Characters[iCharacter].skill.FencingHeavy = iFencingHeavy;
 	Characters[iCharacter].skill.LeaderShip = iLeaderShip;
-	Characters[iCharacter].model = "officer_" + (rand(63)+1);
-	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations) Characters[iCharacter].model.animation = "spy"; // LEO: Превозмогаторам страдать 15.12.2021
-	else Characters[iCharacter].model.animation = "man_fast";
+	Characters[iCharacter].model = "officer_" + (rand(63) + 1);
+	if (MOD_SKILL_ENEMY_RATE == 10 && bHardAnimations)
+		Characters[iCharacter].model.animation = "spy"; // LEO: Превозмогаторам страдать 15.12.2021
+	else
+		Characters[iCharacter].model.animation = "man_fast";
 	Characters[iCharacter].greeting = "Gr_ArenaMember";
 
 	SetRandomNameToCharacter(&Characters[iCharacter]);
@@ -119,12 +151,15 @@ void GenerateArenaDuel()
 
 	int iSkill = GetArenaOddsGreatestFencingSkill(&Characters[iCharacter]) * 10;
 
-	int rand_1 = rand(9)+1;
-	int rand_2 = rand(9)+1;
+	int rand_1 = rand(9) + 1;
+	int rand_2 = rand(9) + 1;
 	rand_1 += rand_2;
 
 	float HP = fHp + 250 + (rand(20) * rand_1);
-	if(HP < 200) { HP = 200; }
+	if (HP < 200)
+	{
+		HP = 200;
+	}
 
 	fEnergy += 10 + rand(5);
 
@@ -136,54 +171,77 @@ void GenerateArenaDuel()
 	int iOdd = GetOddForDuelCharacter(&Characters[iCharacter], sti(Characters[iCharacter].skill.(sSkill)));
 	Characters[iCharacter].Odd = iOdd;
 
-    SetSpeciality(&Characters[iCharacter], PerksChars()); // LEO: Характеры 01.12.2021
+	SetSpeciality(&Characters[iCharacter], PerksChars()); // LEO: Характеры 01.12.2021
 	SetCharacterPerk(&Characters[iCharacter], "Energaiser");
 	if (MOD_SKILL_ENEMY_RATE == 10)
 	{
 		TakeNItems(&Characters[iCharacter], "BackPack5", 1);
 		EquipCharacterbyItem(&Characters[iCharacter], "BackPack5");
 		TakeNItems(&Characters[iCharacter], "potion2", 50);
-		TakeNItems(&Characters[iCharacter], "Food"+(2+rand(3)), 30);
-		TakeNItems(&Characters[iCharacter], "Food"+(2+rand(3)), 30);
+		TakeNItems(&Characters[iCharacter], "Food" + (2 + rand(3)), 30);
+		TakeNItems(&Characters[iCharacter], "Food" + (2 + rand(3)), 30);
 	}
 	else
 	{
-		TakeNItems(&Characters[iCharacter], "potion" + (rand(3)+1), (rand(10)+10));
-		TakeNItems(&Characters[iCharacter], "potion" + (rand(3)+1), (rand(10)+10));
-		TakeNItems(&Characters[iCharacter], "potion" + (rand(3)+1), (rand(10)+10));
-		TakeNItems(&Characters[iCharacter], "Food"	 + (1+rand(2)), 20);
+		TakeNItems(&Characters[iCharacter], "potion" + (rand(3) + 1), (rand(10) + 10));
+		TakeNItems(&Characters[iCharacter], "potion" + (rand(3) + 1), (rand(10) + 10));
+		TakeNItems(&Characters[iCharacter], "potion" + (rand(3) + 1), (rand(10) + 10));
+		TakeNItems(&Characters[iCharacter], "Food" + (1 + rand(2)), 20);
 	}
 	LAi_NPC_EquipPerk(&Characters[iCharacter], "fantom"); // LEO: Перки от уровня 01.12.2021
 
 	if (IsCharacterPerkOn(&Characters[iCharacter], "Ciras"))
+	{
+		string cirnum;
+		switch (rand(4))
 		{
-			string cirnum;
-			switch (rand(4))
-			{
-				case 0: cirnum = "cirass1"; break;
-				case 1: cirnum = "cirass2"; break;
-				case 2: cirnum = "cirass3"; break;
-				case 3: cirnum = "cirass4"; break;
-				case 4: cirnum = "cirass5"; break;
-			}
-			if (CheckAttribute(&Characters[iCharacter], "HeroModel")) // все, у кого есть что одеть
-			{
-				switch (cirnum)
-				{
-					case "cirass1": Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 1); break;
-					case "cirass2": Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 2); break;
-					case "cirass3": Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 3); break;
-					case "cirass4": Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 4); break;
-					case "cirass5": Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 5); break;
-				}
-			}
-			Characters[iCharacter].cirassId = Items_FindItemIdx(cirnum);
-			Log_TestInfo("Персонаж "+Characters[iCharacter].name+" получил кирасу "+cirnum);
+		case 0:
+			cirnum = "cirass1";
+			break;
+		case 1:
+			cirnum = "cirass2";
+			break;
+		case 2:
+			cirnum = "cirass3";
+			break;
+		case 3:
+			cirnum = "cirass4";
+			break;
+		case 4:
+			cirnum = "cirass5";
+			break;
 		}
+		if (CheckAttribute(&Characters[iCharacter], "HeroModel")) // все, у кого есть что одеть
+		{
+			switch (cirnum)
+			{
+			case "cirass1":
+				Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 1);
+				break;
+			case "cirass2":
+				Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 2);
+				break;
+			case "cirass3":
+				Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 3);
+				break;
+			case "cirass4":
+				Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 4);
+				break;
+			case "cirass5":
+				Characters[iCharacter].model = GetSubStringByNum(Characters[iCharacter].HeroModel, 5);
+				break;
+			}
+		}
+		Characters[iCharacter].cirassId = Items_FindItemIdx(cirnum);
+		Log_TestInfo("Персонаж " + Characters[iCharacter].name + " получил кирасу " + cirnum);
+	}
 
 	int iMinOdd = sti(Characters[iCharacter].Odd) / 2;
 	int iMaxOdd = sti(Characters[iCharacter].Odd) * 2;
-	if(iMinOdd < 500) { iMinOdd = 500; }
+	if (iMinOdd < 500)
+	{
+		iMinOdd = 500;
+	}
 	// if(iMaxOdd > 25000) { iMaxOdd = 25000; } // LEO: Без ограничений 01.12.2021
 
 	PChar.Arena.Duel = "Generate";
@@ -253,7 +311,7 @@ void StartArenaDuel(string _tmp)
 
 	int iEnemy = sti(PChar.Arena.Duel.Character);
 
-	string sLocator = "arena_member_" + (rand(7)+1);
+	string sLocator = "arena_member_" + (rand(7) + 1);
 	ChangeCharacterAddressGroup(&Characters[iEnemy], "FencingTown_Arena", "goto", sLocator);
 	LAi_SetStayType(&Characters[iEnemy]);
 
@@ -292,13 +350,15 @@ void ArenaDuelStartBattleWithEnemy()
 	LAi_SetWarriorType(chr);
 
 	string sPlayerLocator, sEnemyLocator;
-	if(rand(1) == 1)
+	if (rand(1) == 1)
 	{
-		sPlayerLocator = "aloc1"; sEnemyLocator = "aloc3";
+		sPlayerLocator = "aloc1";
+		sEnemyLocator = "aloc3";
 	}
 	else
 	{
-		sPlayerLocator = "aloc3"; sEnemyLocator = "aloc1";
+		sPlayerLocator = "aloc3";
+		sEnemyLocator = "aloc1";
 	}
 
 	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "rld", sPlayerLocator);
@@ -306,7 +366,7 @@ void ArenaDuelStartBattleWithEnemy()
 
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "Arena.Duel.Saber"))
+	if (CheckAttribute(PChar, "Arena.Duel.Saber"))
 	{
 		sSaber = PChar.Arena.Duel.Saber;
 	}
@@ -316,11 +376,11 @@ void ArenaDuelStartBattleWithEnemy()
 	RemoveCharacterEquip(chr, BLADE_ITEM_TYPE);
 	RemoveCharacterEquip(chr, GUN_ITEM_TYPE);
 
-        GiveItem2Character(PChar, sSaber);
+	GiveItem2Character(PChar, sSaber);
 	EquipCharacterByItem(PChar, sSaber);
 
 	// DeleteAttribute(chr, "items");
-        GiveItem2Character(chr, sSaber);
+	GiveItem2Character(chr, sSaber);
 	EquipCharacterByItem(chr, sSaber);
 
 	LAi_SetFightMode(PChar, true);
@@ -353,7 +413,7 @@ void ArenaDuelSetLooser(ref chr)
 
 	LAi_SetFightMode(PChar, false);
 	LAi_SetActorType(PChar);
-	if(CheckAttribute(chr, "id") && GetCharacterIndex(chr.id) == nMainCharacterIndex)
+	if (CheckAttribute(chr, "id") && GetCharacterIndex(chr.id) == nMainCharacterIndex)
 	{
 		PChar.Arena.Duel.LooserCount = sti(PChar.Arena.Duel.LooserCount) + 1;
 	}
@@ -363,20 +423,19 @@ void ArenaDuelSetLooser(ref chr)
 	}
 
 	LAi_QuestDelay("ArenaDuelCheckNewRound", 3.0);
-
 }
 
 void ArenaDuelCheckNewRound()
 {
 	PChar.Arena.Duel.Count = sti(PChar.Arena.Duel.Count) + 1;
 
-	if(sti(PChar.Arena.Duel.LooserCount) >= 3)
+	if (sti(PChar.Arena.Duel.LooserCount) >= 3)
 	{
 		ArenaDuelEnd(sti(PChar.Arena.Duel.Count), false);
 	}
 	else
 	{
-		if(sti(PChar.Arena.Duel.WinnerCount) >= 3)
+		if (sti(PChar.Arena.Duel.WinnerCount) >= 3)
 		{
 			ArenaDuelEnd(sti(PChar.Arena.Duel.Count), true);
 		}
@@ -392,7 +451,7 @@ void ArenaDuelStartNewRound(int iCount)
 	LAi_Fade("", "");
 
 	PlayStereoSound("new_round");
-	Log_Info((iCount+1) + " раунд!");
+	Log_Info((iCount + 1) + " раунд!");
 
 	int iEnemy = sti(PChar.Arena.Duel.Character);
 	ref chr = &Characters[iEnemy];
@@ -416,13 +475,15 @@ void ArenaDuelStartNewRound(int iCount)
 	LAi_SetWarriorType(chr);
 
 	string sPlayerLocator, sEnemyLocator;
-	if(rand(1) == 1)
+	if (rand(1) == 1)
 	{
-		sPlayerLocator = "aloc1"; sEnemyLocator = "aloc3";
+		sPlayerLocator = "aloc1";
+		sEnemyLocator = "aloc3";
 	}
 	else
 	{
-		sPlayerLocator = "aloc3"; sEnemyLocator = "aloc1";
+		sPlayerLocator = "aloc3";
+		sEnemyLocator = "aloc1";
 	}
 
 	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "rld", sPlayerLocator);
@@ -445,15 +506,15 @@ void ArenaDuelEnd(int iCount, bool bWin)
 	LAi_Fade("", "");
 
 	PChar.Statistic.Arena.Count = sti(PChar.Statistic.Arena.Count) + 1;
-	if(!bWin)
+	if (!bWin)
 	{
 		PChar.Statistic.Arena.LooserCount = sti(PChar.Statistic.Arena.LooserCount) + 1;
-		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + " потерп"+ GetSexPhrase("ел","ела") +" поражение в дуэли, что проходила в качестве соревнований на Арене!", 5, 1);
+		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + " потерп" + GetSexPhrase("ел", "ела") + " поражение в дуэли, что проходила в качестве соревнований на Арене!", 5, 1);
 	}
 	else
 	{
 		PChar.Statistic.Arena.WinnerCount = sti(PChar.Statistic.Arena.WinnerCount) + 1;
-		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", некий капитан " + GetNameLugger(PChar, "f") + " оказал"+ GetSexPhrase("ся","ась") +" сильнее в дуэли, что проходила в качестве соревнований на Арене!", 5, 1);
+		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", некий капитан " + GetNameLugger(PChar, "f") + " оказал" + GetSexPhrase("ся", "ась") + " сильнее в дуэли, что проходила в качестве соревнований на Арене!", 5, 1);
 	}
 
 	PChar.quest.ArenaDuelLooserDetector.over = "yes";
@@ -462,7 +523,6 @@ void ArenaDuelEnd(int iCount, bool bWin)
 	LAi_SetCurHPMax(PChar);
 	ChangeCharacterAddressGroup(CharacterFromID("FencingTown_Head"), "FencingTown_Arena", "goto", "arena_head");
 
-
 	InterfaceStates.Buttons.Save.enable = true;
 
 	LAi_SetActorType(PChar);
@@ -470,7 +530,7 @@ void ArenaDuelEnd(int iCount, bool bWin)
 	LAi_ActorWaitDialog(PChar, CharacterFromID("FencingTown_Head"));
 	LAi_ActorDialog(CharacterFromID("FencingTown_Head"), PChar, "", 5.0, 1.0);
 
-	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "goto", "arena_member_" + (rand(7)+1));
+	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "goto", "arena_member_" + (rand(7) + 1));
 	Characters[GetCharacterIndex("FencingTown_Head")].dialog.currentnode = "FightInArena_2";
 	Locations[FindLocation("FencingTown_Arena")].locators_radius.item.looser_detector = 0.5;
 }
@@ -491,7 +551,7 @@ void ArenaDuelTheEnd()
 
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "Arena.Duel.Saber"))
+	if (CheckAttribute(PChar, "Arena.Duel.Saber"))
 	{
 		sSaber = PChar.Arena.Duel.Saber;
 	}
@@ -503,12 +563,12 @@ void ArenaDuelTheEnd()
 
 	DoQuestReloadToLocation("FencingTown_ExitTown", "reload", "reload4", "");
 
-	if(CheckAttribute(PChar, "Arena.Duel"))
+	if (CheckAttribute(PChar, "Arena.Duel"))
 	{
 		DeleteAttribute(PChar, "Arena.Duel");
 	}
 
-	if(CheckAttribute(PChar, "ArenaAction"))
+	if (CheckAttribute(PChar, "ArenaAction"))
 	{
 		DeleteAttribute(PChar, "ArenaAction");
 	}
@@ -516,7 +576,7 @@ void ArenaDuelTheEnd()
 	ClearArena("");
 
 	ref member;
-	if(GetCharacterIndex("Arena Duel Characer") != -1)
+	if (GetCharacterIndex("Arena Duel Characer") != -1)
 	{
 		member = &Characters[GetCharacterIndex("Arena Duel Characer")];
 		member.LifeDay = 0;
@@ -607,7 +667,7 @@ void StartArenaEtapsBattle()
 	LAi_SetPlayerType(PChar);
 
 	string sPlayerLocator;
-	if(rand(1) == 1)
+	if (rand(1) == 1)
 	{
 		sPlayerLocator = "aloc1";
 	}
@@ -619,7 +679,7 @@ void StartArenaEtapsBattle()
 	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "rld", sPlayerLocator);
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "Arena.Etaps.Saber"))
+	if (CheckAttribute(PChar, "Arena.Etaps.Saber"))
 	{
 		sSaber = PChar.Arena.Etaps.Saber;
 	}
@@ -627,7 +687,7 @@ void StartArenaEtapsBattle()
 	RemoveCharacterEquip(PChar, GUN_ITEM_TYPE);
 	RemoveCharacterEquip(PChar, BLADE_ITEM_TYPE);
 
-        GiveItem2Character(PChar, sSaber);
+	GiveItem2Character(PChar, sSaber);
 	EquipCharacterByItem(PChar, sSaber);
 
 	LAi_SetFightMode(PChar, true);
@@ -640,7 +700,7 @@ void ArenaEtapsSetRound(int iEtap)
 {
 	string sEtap = "Etap_" + iEtap;
 
-	if(PChar.Arena.Etaps.(sEtap) == "NO")
+	if (PChar.Arena.Etaps.(sEtap) == "NO")
 	{
 		ArenaEtapsSetPauseToDoNewRound(iEtap);
 		return;
@@ -659,31 +719,55 @@ void ArenaEtapsSetRound(int iEtap)
 
 	string sQuest = "";
 	string sSex = "";
-	switch(sType)
+	switch (sType)
 	{
-		case "crabBig": sModel = "crabBig"; sAnimation = "crabBig"; sSex = "crab"; break;
-		case "Skel": sModel = "Skel"; sAnimation = "man_fast"; sSex = "skeleton"; break; // LEO: Ловкач
-		case "SkelOld": sModel = "Skel_"; sAnimation = "man_fast"; sSex = "skeleton"; break; // LEO: Ловкач
-		case "monkey": sModel = "monkey"; sAnimation = "monkey"; sSex = "monkey"; break;
-		case "crabBigKing": sModel = "crabBigKing"; sAnimation = "crabBigKing"; sSex = "crab"; break;
-		case "SkelKing": sModel = "skeletcap"; sAnimation = "spy"; sSex = "skeleton"; break; // LEO: Анимка "spy" хоть где то должна работать
+	case "crabBig":
+		sModel = "crabBig";
+		sAnimation = "crabBig";
+		sSex = "crab";
+		break;
+	case "Skel":
+		sModel = "Skel";
+		sAnimation = "man_fast";
+		sSex = "skeleton";
+		break; // LEO: Ловкач
+	case "SkelOld":
+		sModel = "Skel_";
+		sAnimation = "man_fast";
+		sSex = "skeleton";
+		break; // LEO: Ловкач
+	case "monkey":
+		sModel = "monkey";
+		sAnimation = "monkey";
+		sSex = "monkey";
+		break;
+	case "crabBigKing":
+		sModel = "crabBigKing";
+		sAnimation = "crabBigKing";
+		sSex = "crab";
+		break;
+	case "SkelKing":
+		sModel = "skeletcap";
+		sAnimation = "spy";
+		sSex = "skeleton";
+		break; // LEO: Анимка "spy" хоть где то должна работать
 	}
 
 	int iChar = 0;
 	ref chr;
 	string sCdn = "";
 
-	if(sType == "Skel")
+	if (sType == "Skel")
 	{
-		sModel = "Skel" + (rand(3)+1);
+		sModel = "Skel" + (rand(3) + 1);
 	}
 
-	if(sType == "SkelOld")
+	if (sType == "SkelOld")
 	{
-		sModel = "Skel_" + (rand(4)+1);
+		sModel = "Skel_" + (rand(4) + 1);
 	}
 
-	if(iQuantity == 1)
+	if (iQuantity == 1)
 	{
 		iChar = NPC_GeneratePhantomCharacter("", PIRATE, MAN, 0);
 		chr = &Characters[iChar];
@@ -708,16 +792,16 @@ void ArenaEtapsSetRound(int iEtap)
 	}
 	else
 	{
-		for(int i=1; i <= iQuantity; i++)
+		for (int i = 1; i <= iQuantity; i++)
 		{
-			if(sType == "Skel")
+			if (sType == "Skel")
 			{
-				sModel = "Skel" + (rand(3)+1);
+				sModel = "Skel" + (rand(3) + 1);
 			}
 
-			if(sType == "SkelOld")
+			if (sType == "SkelOld")
 			{
-				sModel = "Skel_" + (rand(4)+1);
+				sModel = "Skel_" + (rand(4) + 1);
 			}
 
 			iChar = NPC_GeneratePhantomCharacter("", PIRATE, MAN, 0);
@@ -730,7 +814,7 @@ void ArenaEtapsSetRound(int iEtap)
 			ChangeCharacterAddressGroup(chr, PChar.location, "goto", "wall_enemy_" + i);
 			ArenaEtapsSetMonsterAttributes(chr, iEtap);
 
-			if(sModel == "monkey")
+			if (sModel == "monkey")
 			{
 				LAi_SetMonkeyTypeNoGroup(chr);
 			}
@@ -762,7 +846,7 @@ void ArenaEtapsLooserDetector(ref chr)
 	ArenaEtapsSetLooser(PChar);
 
 	int iEtap = 1;
-	if(CheckAttribute(PChar, "Arena.Etaps.Etap"))
+	if (CheckAttribute(PChar, "Arena.Etaps.Etap"))
 	{
 		iEtap = sti(PChar.Arena.Etaps.Etap);
 	}
@@ -771,7 +855,7 @@ void ArenaEtapsLooserDetector(ref chr)
 
 	string sQuest = "ArenaEtapsPrepareWinEtap_" + iEtap;
 
-	if(CheckAttribute(PChar, "quest." + sQuest))
+	if (CheckAttribute(PChar, "quest." + sQuest))
 	{
 		DeleteAttribute(PChar, "quest." + sQuest);
 	}
@@ -779,7 +863,7 @@ void ArenaEtapsLooserDetector(ref chr)
 
 void ArenaEtapsSetLooser(ref chr)
 {
-	if(GetCharacterIndex(chr.id) == nMainCharacterIndex)
+	if (GetCharacterIndex(chr.id) == nMainCharacterIndex)
 	{
 		LAi_SetImmortal(chr, true);
 		LAi_SetFightMode(PChar, false);
@@ -787,13 +871,13 @@ void ArenaEtapsSetLooser(ref chr)
 		ArenaEtapsEnd(false);
 
 		int iEtap = 1;
-		if(CheckAttribute(PChar, "Arena.Etaps.Etap"))
+		if (CheckAttribute(PChar, "Arena.Etaps.Etap"))
 		{
 			iEtap = sti(PChar.Arena.Etaps.Etap);
 		}
 
 		string sQuest = "ArenaEtapsPrepareWinEtap_" + iEtap;
-		if(CheckAttribute(PChar, "quest." + sQuest))
+		if (CheckAttribute(PChar, "quest." + sQuest))
 		{
 			DeleteAttribute(PChar, "quest." + sQuest);
 		}
@@ -821,14 +905,14 @@ void ArenaEtapsWinEtap(string qName)
 	LAi_Fade("", "");
 
 	int iEtap = 1;
-	if(CheckAttribute(PChar, "Arena.Etaps.Etap"))
+	if (CheckAttribute(PChar, "Arena.Etaps.Etap"))
 	{
 		iEtap = sti(PChar.Arena.Etaps.Etap);
 	}
 
 	ArenaEtapsClearMonster(iEtap);
 
-	if(iEtap == 5)
+	if (iEtap == 5)
 	{
 		PlayStereoSound("new_round");
 		Log_Info("Все этапы пройдены!");
@@ -839,7 +923,7 @@ void ArenaEtapsWinEtap(string qName)
 	iEtap++;
 
 	PlayStereoSound("new_round");
-	Log_Info("Этап " + (iEtap-1) + " завершён!");
+	Log_Info("Этап " + (iEtap - 1) + " завершён!");
 	Log_Info("Этап " + iEtap + " начат!");
 
 	ArenaEtapsSetRound(iEtap);
@@ -850,15 +934,15 @@ void ArenaEtapsEnd(bool bWin)
 	LAi_Fade("", "");
 
 	PChar.Statistic.Arena.Count = sti(PChar.Statistic.Arena.Count) + 1;
-	if(!bWin)
+	if (!bWin)
 	{
 		PChar.Statistic.Arena.LooserCount = sti(PChar.Statistic.Arena.LooserCount) + 1;
-		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", некий капитан " + GetNameLugger(PChar, "f") + "  не справил"+ GetSexPhrase("ся","ась") +" со страшными монстрами на соревнованиях Арены!", 5, 1);
+		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", некий капитан " + GetNameLugger(PChar, "f") + "  не справил" + GetSexPhrase("ся", "ась") + " со страшными монстрами на соревнованиях Арены!", 5, 1);
 	}
 	else
 	{
 		PChar.Statistic.Arena.WinnerCount = sti(PChar.Statistic.Arena.WinnerCount) + 1;
-		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + " сум"+ GetSexPhrase("ел","ела") +" справиться со страшными монстрами на соревнованиях Арены!", 5, 1);
+		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + " сум" + GetSexPhrase("ел", "ела") + " справиться со страшными монстрами на соревнованиях Арены!", 5, 1);
 	}
 
 	LAi_UseAtidoteBottle(PChar);
@@ -873,7 +957,7 @@ void ArenaEtapsEnd(bool bWin)
 	LAi_ActorWaitDialog(PChar, CharacterFromID("FencingTown_Head"));
 	LAi_ActorDialog(CharacterFromID("FencingTown_Head"), PChar, "", 5.0, 1.0);
 
-	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "goto", "arena_member_" + (rand(7)+1));
+	ChangeCharacterAddressGroup(PChar, "FencingTown_Arena", "goto", "arena_member_" + (rand(7) + 1));
 	Characters[GetCharacterIndex("FencingTown_Head")].dialog.currentnode = "FightInArena_4";
 	Locations[FindLocation("FencingTown_Arena")].locators_radius.item.looser_detector = 0.5;
 }
@@ -888,7 +972,7 @@ void ArenaEtapsTheEnd()
 
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "Arena.Etaps.Saber"))
+	if (CheckAttribute(PChar, "Arena.Etaps.Saber"))
 	{
 		sSaber = PChar.Arena.Etaps.Saber;
 	}
@@ -898,12 +982,12 @@ void ArenaEtapsTheEnd()
 
 	DoQuestReloadToLocation("FencingTown_ExitTown", "reload", "reload4", "");
 
-	if(CheckAttribute(PChar, "Arena.Etaps"))
+	if (CheckAttribute(PChar, "Arena.Etaps"))
 	{
 		DeleteAttribute(PChar, "Arena.Etaps");
 	}
 
-	if(CheckAttribute(PChar, "ArenaEtapsAction"))
+	if (CheckAttribute(PChar, "ArenaEtapsAction"))
 	{
 		DeleteAttribute(PChar, "ArenaEtapsAction");
 	}
@@ -925,14 +1009,14 @@ void ArenaEtapsClearMonster(int iEtap)
 
 	iQuantity = sti(PChar.Arena.Etaps.(sEtap).Quantity);
 
-	if(iQuantity == 1)
+	if (iQuantity == 1)
 	{
 		sMonster = "arena_etaps_" + iEtap + "_monster_1";
 		ChangeCharacterAddress(CharacterFromID(sMonster), "None", "");
 	}
 	else
 	{
-		for(int i=1; i <= iQuantity; i++)
+		for (int i = 1; i <= iQuantity; i++)
 		{
 			sMonster = "arena_etaps_" + iEtap + "_monster_" + i;
 			ChangeCharacterAddress(CharacterFromID(sMonster), "None", "");
@@ -949,12 +1033,12 @@ void ArenaEtapsSetMonsterAttributes(ref monster, int iEtap)
 	monster.chr_ai.energy = stf(Energy);
 	monster.chr_ai.energyMax = stf(Energy);
 
-	if(monster.model == "skeletcap" || monster.model == "crabBigKing")
+	if (monster.model == "skeletcap" || monster.model == "crabBigKing")
 	{
 		HP += 500 + rand(500);
 	}
 
-	if(HP > 5000)
+	if (HP > 5000)
 	{
 		HP = 5000;
 	}
@@ -963,16 +1047,34 @@ void ArenaEtapsSetMonsterAttributes(ref monster, int iEtap)
 	SetEnergyToCharacter(monster);
 
 	int iFencingLight = sti(PChar.skill.FencingLight) + 20;
-	if(iFencingLight < 20) { iFencingLight = 20; }
-	if(iFencingLight > 100) { iFencingLight = 100; }
+	if (iFencingLight < 20)
+	{
+		iFencingLight = 20;
+	}
+	if (iFencingLight > 100)
+	{
+		iFencingLight = 100;
+	}
 
 	int iFencing = sti(PChar.skill.Fencing) + 20;
-	if(iFencing < 20) { iFencing = 20; }
-	if(iFencing > 100) { iFencing = 100; }
+	if (iFencing < 20)
+	{
+		iFencing = 20;
+	}
+	if (iFencing > 100)
+	{
+		iFencing = 100;
+	}
 
 	int iFencingHeavy = sti(PChar.skill.FencingHeavy) + 20;
-	if(iFencingHeavy < 20) { iFencingHeavy = 20; }
-	if(iFencingHeavy > 100) { iFencingHeavy = 100; }
+	if (iFencingHeavy < 20)
+	{
+		iFencingHeavy = 20;
+	}
+	if (iFencingHeavy > 100)
+	{
+		iFencingHeavy = 100;
+	}
 
 	monster.rank = GetRank(PChar, 5) + MOD_SKILL_ENEMY_RATE;
 	monster.skill.FencingLight = iFencingLight;
@@ -987,29 +1089,29 @@ void ArenaEtapsSetMonsterAttributes(ref monster, int iEtap)
 		TakeNItems(monster, "BackPack5", 1);
 		EquipCharacterbyItem(monster, "BackPack5");
 		TakeNItems(monster, "potion2", 50);
-		TakeNItems(monster, "Food"+(2+rand(3)), 30);
-		TakeNItems(monster, "Food"+(2+rand(3)), 30);
+		TakeNItems(monster, "Food" + (2 + rand(3)), 30);
+		TakeNItems(monster, "Food" + (2 + rand(3)), 30);
 	}
 	else
 	{
-		TakeNItems(monster, "potion" + (rand(3)+1), (rand(10)+10));
-		TakeNItems(monster, "potion" + (rand(3)+1), (rand(10)+10));
-		TakeNItems(monster, "potion" + (rand(3)+1), (rand(10)+10));
-		TakeNItems(monster, "Food"	 + (1+rand(2)), 20);
+		TakeNItems(monster, "potion" + (rand(3) + 1), (rand(10) + 10));
+		TakeNItems(monster, "potion" + (rand(3) + 1), (rand(10) + 10));
+		TakeNItems(monster, "potion" + (rand(3) + 1), (rand(10) + 10));
+		TakeNItems(monster, "Food" + (1 + rand(2)), 20);
 	}
 
 	RemoveCharacterEquip(monster, BLADE_ITEM_TYPE);
 	RemoveCharacterEquip(monster, GUN_ITEM_TYPE);
 
 	string sSkeletSaber = GetSaberForArena("Fencing");
-	if(monster.model == "crabBig" || monster.model == "crabBigKing" || monster.model == "monkey")
+	if (monster.model == "crabBig" || monster.model == "crabBigKing" || monster.model == "monkey")
 	{
 		GiveItem2Character(monster, "monkrab");
 		EquipCharacterByItem(monster, "monkrab");
 	}
 	else
 	{
-		if(monster.model == "skeletcap")
+		if (monster.model == "skeletcap")
 		{
 			sSkeletSaber = PChar.Arena.Etaps.Saber;
 		}
@@ -1035,15 +1137,20 @@ void GenerateArenaTournament()
 	int iRank = GetRank(PChar, MOD_SKILL_ENEMY_RATE);
 
 	iRank *= 1000;
-	iRank *= rand(4)+1;
+	iRank *= rand(4) + 1;
 	iMoney = iRank * 8;
-	if(sti(PChar.rank) < 10 && iMoney > 250000) { iMoney = 250000; }
+	if (sti(PChar.rank) < 10 && iMoney > 250000)
+	{
+		iMoney = 250000;
+	}
 
-	for(int i=1; i <= 7; i++)
+	for (int i = 1; i <= 7; i++)
 	{
 		int iRank2 = GetRank(PChar, 5) + MOD_SKILL_ENEMY_RATE;
-		if (iMoney >= 1000000 && bHardAnimations) iChar = NPC_GenerateCharacterIndep("Arena_Tournament_Character_" + i, "officer_"+(rand(63)+1), "man", "spy", iRank2, PIRATE, -1, true);
-		else iChar = NPC_GenerateCharacterIndep("Arena_Tournament_Character_" + i, "officer_"+(rand(63)+1), "man", "man_fast", iRank2, PIRATE, -1, true);
+		if (iMoney >= 1000000 && bHardAnimations)
+			iChar = NPC_GenerateCharacterIndep("Arena_Tournament_Character_" + i, "officer_" + (rand(63) + 1), "man", "spy", iRank2, PIRATE, -1, true);
+		else
+			iChar = NPC_GenerateCharacterIndep("Arena_Tournament_Character_" + i, "officer_" + (rand(63) + 1), "man", "man_fast", iRank2, PIRATE, -1, true);
 
 		chr = &Characters[iChar];
 		DeleteAttribute(chr, "items");
@@ -1054,15 +1161,15 @@ void GenerateArenaTournament()
 			TakeNItems(&Characters[iChar], "BackPack5", 1);
 			EquipCharacterbyItem(&Characters[iChar], "BackPack5");
 			TakeNItems(&Characters[iChar], "potion2", 50);
-			TakeNItems(&Characters[iChar], "Food"   + (2+rand(3)), 30);
-			TakeNItems(&Characters[iChar], "Food"   + (2+rand(3)), 30);
+			TakeNItems(&Characters[iChar], "Food" + (2 + rand(3)), 30);
+			TakeNItems(&Characters[iChar], "Food" + (2 + rand(3)), 30);
 		}
 		else
 		{
-			TakeNItems(&Characters[iChar], "potion" + (rand(3)+1), (rand(10)+10));
-			TakeNItems(&Characters[iChar], "potion" + (rand(3)+1), (rand(10)+10));
-			TakeNItems(&Characters[iChar], "potion" + (rand(3)+1), (rand(10)+10));
-			TakeNItems(&Characters[iChar], "Food"   + (1+rand(2)), 20);
+			TakeNItems(&Characters[iChar], "potion" + (rand(3) + 1), (rand(10) + 10));
+			TakeNItems(&Characters[iChar], "potion" + (rand(3) + 1), (rand(10) + 10));
+			TakeNItems(&Characters[iChar], "potion" + (rand(3) + 1), (rand(10) + 10));
+			TakeNItems(&Characters[iChar], "Food" + (1 + rand(2)), 20);
 		}
 
 		sChar = "Arena_Tournament_Character_" + i;
@@ -1070,30 +1177,50 @@ void GenerateArenaTournament()
 		iNumPosition = GetNumPositionForCharInTournament();
 		chr.greeting = "Gr_ArenaMember";
 
-		if (IsCharacterPerkOn(chr, "Ciras") && rand(4)==0)
+		if (IsCharacterPerkOn(chr, "Ciras") && rand(4) == 0)
 		{
 			string cirnum;
 			switch (rand(4))
 			{
-				case 0: cirnum = "cirass1"; break;
-				case 1: cirnum = "cirass2"; break;
-				case 2: cirnum = "cirass3"; break;
-				case 3: cirnum = "cirass4"; break;
-				case 4: cirnum = "cirass5"; break;
+			case 0:
+				cirnum = "cirass1";
+				break;
+			case 1:
+				cirnum = "cirass2";
+				break;
+			case 2:
+				cirnum = "cirass3";
+				break;
+			case 3:
+				cirnum = "cirass4";
+				break;
+			case 4:
+				cirnum = "cirass5";
+				break;
 			}
 			if (CheckAttribute(chr, "HeroModel")) // все, у кого есть что одеть
 			{
 				switch (cirnum)
 				{
-					case "cirass1": chr.model = GetSubStringByNum(chr.HeroModel, 1); break;
-					case "cirass2": chr.model = GetSubStringByNum(chr.HeroModel, 2); break;
-					case "cirass3": chr.model = GetSubStringByNum(chr.HeroModel, 3); break;
-					case "cirass4": chr.model = GetSubStringByNum(chr.HeroModel, 4); break;
-					case "cirass5": chr.model = GetSubStringByNum(chr.HeroModel, 5); break;
+				case "cirass1":
+					chr.model = GetSubStringByNum(chr.HeroModel, 1);
+					break;
+				case "cirass2":
+					chr.model = GetSubStringByNum(chr.HeroModel, 2);
+					break;
+				case "cirass3":
+					chr.model = GetSubStringByNum(chr.HeroModel, 3);
+					break;
+				case "cirass4":
+					chr.model = GetSubStringByNum(chr.HeroModel, 4);
+					break;
+				case "cirass5":
+					chr.model = GetSubStringByNum(chr.HeroModel, 5);
+					break;
 				}
 			}
 			chr.cirassId = Items_FindItemIdx(cirnum);
-			Log_TestInfo("Персонаж "+chr.name+" получил кирасу "+cirnum);
+			Log_TestInfo("Персонаж " + chr.name + " получил кирасу " + cirnum);
 		}
 
 		//SetNewModelToChar(chr);
@@ -1113,25 +1240,25 @@ void GenerateArenaTournament()
 	DeleteAttribute(PChar, "Arena.Tournament.Positions");
 	DeleteAttribute(PChar, "Arena.Tournament.Models");
 
-	string sSaber = GetSaberForArenaT("FencingLight",1);
+	string sSaber = GetSaberForArenaT("FencingLight", 1);
 	PChar.Arena.Tournament.Saber.Light1 = sSaber;
-	sSaber = GetSaberForArenaT("FencingLight",2);
+	sSaber = GetSaberForArenaT("FencingLight", 2);
 	PChar.Arena.Tournament.Saber.Light2 = sSaber;
-	sSaber = GetSaberForArenaT("FencingLight",3);
+	sSaber = GetSaberForArenaT("FencingLight", 3);
 	PChar.Arena.Tournament.Saber.Light3 = sSaber;
 
-	sSaber = GetSaberForArenaT("Fencing",1);
+	sSaber = GetSaberForArenaT("Fencing", 1);
 	PChar.Arena.Tournament.Saber.Saber1 = sSaber;
-	sSaber = GetSaberForArenaT("Fencing",2);
+	sSaber = GetSaberForArenaT("Fencing", 2);
 	PChar.Arena.Tournament.Saber.Saber2 = sSaber;
-	sSaber = GetSaberForArenaT("Fencing",3);
+	sSaber = GetSaberForArenaT("Fencing", 3);
 	PChar.Arena.Tournament.Saber.Saber3 = sSaber;
 
-	sSaber = GetSaberForArenaT("FencingHeavy",1);
+	sSaber = GetSaberForArenaT("FencingHeavy", 1);
 	PChar.Arena.Tournament.Saber.Heavy1 = sSaber;
-	sSaber = GetSaberForArenaT("FencingHeavy",2);
+	sSaber = GetSaberForArenaT("FencingHeavy", 2);
 	PChar.Arena.Tournament.Saber.Heavy2 = sSaber;
-	sSaber = GetSaberForArenaT("FencingHeavy",3);
+	sSaber = GetSaberForArenaT("FencingHeavy", 3);
 	PChar.Arena.Tournament.Saber.Heavy3 = sSaber;
 
 	PChar.Arena.Tournament.Money = iMoney;
@@ -1202,13 +1329,13 @@ void StartArenaTournament(string _tmp)
 	Locations[FindLocation(PChar.location)].reload.l1.disable = true;
 
 	int iEnemy = -1;
-	string sLocator = "arena_member_" + (rand(7)+1);
+	string sLocator = "arena_member_" + (rand(7) + 1);
 
-	for(int e=1; e<=7; e++)
+	for (int e = 1; e <= 7; e++)
 	{
 		iEnemy = GetCharacterIndex("Arena_Tournament_Character_" + e);
 
-		if(iEnemy != -1)
+		if (iEnemy != -1)
 		{
 			sLocator = "arena_member_" + e;
 			ChangeCharacterAddressGroup(&Characters[iEnemy], "FencingTown_Arena", "goto", sLocator);
@@ -1226,20 +1353,20 @@ void ArenaTournamentTalkWithRandEnemy()
 {
 	SetTimeScale(2.0);
 	int iEnemy = -1;
-	int iRand = rand(6)+1;
+	int iRand = rand(6) + 1;
 
-	for(int e=1; e<=7; e++)
+	for (int e = 1; e <= 7; e++)
 	{
 		iEnemy = GetCharacterIndex("Arena_Tournament_Character_" + e);
 
-		if(iEnemy != -1)
+		if (iEnemy != -1)
 		{
 			Characters[iEnemy].Dialog.FileName = "FencingTownHead_dialog.c";
 			Characters[iEnemy].Dialog.CurrentNode = "FightInArena_6";
 			LAi_SetActorType(&Characters[iEnemy]);
 			LAi_ActorTurnToLocator(&Characters[iEnemy], "item", "looser_detector");
 
-			if(iRand == e)
+			if (iRand == e)
 			{
 				LAi_ActorWaitDialog(PChar, &Characters[iEnemy]);
 				LAi_ActorDialog(&Characters[iEnemy], PChar, "", 5.0, 1.0);
@@ -1270,9 +1397,9 @@ void ArenaTournamentGoStart(int iStage, int iStageTemp)
 {
 	ref attack, enemy;
 
-	if(iStage == 1)
+	if (iStage == 1)
 	{
-		if(iStageTemp != 1)
+		if (iStageTemp != 1)
 		{
 			ArenaTournamentPrepareInterface();
 		}
@@ -1290,35 +1417,56 @@ void ArenaTournamentGoStart(int iStage, int iStageTemp)
 	int iAttackPos = 0;
 
 	string sStage = "1_4";
-	switch(iStage)
+	switch (iStage)
 	{
-		case 1: sStage = "1_4";
-			if(iStageTemp == 1)
+	case 1:
+		sStage = "1_4";
+		if (iStageTemp == 1)
+		{
+			iAttackPos = 1;
+			iEnemyPos = 2;
+		}
+		else
+		{
+			if (iStageTemp == 2)
 			{
-				iAttackPos = 1; iEnemyPos = 2;
+				iAttackPos = 3;
+				iEnemyPos = 4;
 			}
 			else
 			{
-				if(iStageTemp == 2)
+				if (iStageTemp == 3)
 				{
-					iAttackPos = 3; iEnemyPos = 4;
+					iAttackPos = 5;
+					iEnemyPos = 6;
 				}
 				else
 				{
-					if(iStageTemp == 3)
-					{
-						iAttackPos = 5; iEnemyPos = 6;
-					}
-					else
-					{
-						iAttackPos = 7; iEnemyPos = 8;
-					}
+					iAttackPos = 7;
+					iEnemyPos = 8;
 				}
 			}
+		}
 
 		break;
-		case 2: sStage = "1_2"; if(iStageTemp == 1) { iAttackPos = 1; iEnemyPos = 2; }else{ iAttackPos = 3; iEnemyPos = 4; } break;
-		case 3: sStage = "final"; iAttackPos = 1; iEnemyPos = 2; break;
+	case 2:
+		sStage = "1_2";
+		if (iStageTemp == 1)
+		{
+			iAttackPos = 1;
+			iEnemyPos = 2;
+		}
+		else
+		{
+			iAttackPos = 3;
+			iEnemyPos = 4;
+		}
+		break;
+	case 3:
+		sStage = "final";
+		iAttackPos = 1;
+		iEnemyPos = 2;
+		break;
 	}
 
 	string sChar = ArenaTournamentGetCharacterIDFromPos(iAttackPos, sStage);
@@ -1377,11 +1525,11 @@ void ArenaTournamentStartNewBattle()
 	LAi_SetWarriorType(attack);
 	LAi_SetWarriorType(enemy);
 
-	if(attack.id == PChar.id)
+	if (attack.id == PChar.id)
 	{
 		LAi_SetPlayerType(attack);
 	}
-	if(enemy.id == PChar.id)
+	if (enemy.id == PChar.id)
 	{
 		LAi_SetPlayerType(enemy);
 	}
@@ -1392,19 +1540,21 @@ void ArenaTournamentStartNewBattle()
 
 	locCameraToPos(x, y, z, false);
 
-	if(attack.id == PChar.id || enemy.id == PChar.id)
+	if (attack.id == PChar.id || enemy.id == PChar.id)
 	{
 		locCameraFollow();
 	}
 
 	string sPlayerLocator, sEnemyLocator;
-	if(rand(1) == 1)
+	if (rand(1) == 1)
 	{
-		sPlayerLocator = "aloc1"; sEnemyLocator = "aloc3";
+		sPlayerLocator = "aloc1";
+		sEnemyLocator = "aloc3";
 	}
 	else
 	{
-		sPlayerLocator = "aloc3"; sEnemyLocator = "aloc1";
+		sPlayerLocator = "aloc3";
+		sEnemyLocator = "aloc1";
 	}
 
 	ChangeCharacterAddressGroup(attack, "FencingTown_Arena", "rld", sPlayerLocator);
@@ -1418,22 +1568,25 @@ void ArenaTournamentStartNewBattle()
 	LAi_group_SetRelation("ARENA_TOURNAMENT_CHARACTER_1", "ARENA_TOURNAMENT_CHARACTER_2", LAI_GROUP_ENEMY);
 	LAi_group_FightGroups("ARENA_TOURNAMENT_CHARACTER_1", "ARENA_TOURNAMENT_CHARACTER_2", true);
 
-	if(attack.id == PChar.id)
+	if (attack.id == PChar.id)
 	{
 		LAi_group_MoveCharacter(attack, LAI_GROUP_PLAYER);
 		LAi_group_SetRelation(LAI_GROUP_PLAYER, "ARENA_TOURNAMENT_CHARACTER_2", LAI_GROUP_ENEMY);
 		LAi_group_FightGroups(LAI_GROUP_PLAYER, "ARENA_TOURNAMENT_CHARACTER_2", true);
 	}
-	if(enemy.id == PChar.id)
+	if (enemy.id == PChar.id)
 	{
 		LAi_group_MoveCharacter(enemy, LAI_GROUP_PLAYER);
 		LAi_group_SetRelation(LAI_GROUP_PLAYER, "ARENA_TOURNAMENT_CHARACTER_1", LAI_GROUP_ENEMY);
 		LAi_group_FightGroups(LAI_GROUP_PLAYER, "ARENA_TOURNAMENT_CHARACTER_1", true);
 	}
-	if(attack.id != PChar.id && enemy.id != PChar.id) SetTimeScale(6.0);
-	else SetTimeScale(1.0);
-	if (CheckAttribute(PChar,"ArenaOdds")) SetTimeScale(1.0);
-	if(attack.id == PChar.id || enemy.id == PChar.id)
+	if (attack.id != PChar.id && enemy.id != PChar.id)
+		SetTimeScale(6.0);
+	else
+		SetTimeScale(1.0);
+	if (CheckAttribute(PChar, "ArenaOdds"))
+		SetTimeScale(1.0);
+	if (attack.id == PChar.id || enemy.id == PChar.id)
 	{
 		string sQuest = "AT_LooserDetector_" + sti(PChar.Arena.Tournament.Temp.Stage) + "_" + sti(PChar.Arena.Tournament.Temp.StageTemp);
 		PChar.quest.(sQuest).win_condition.l1 = "locator";
@@ -1469,7 +1622,7 @@ void ArenaTournamentSetLooser(ref chr)
 	LAi_SetFightMode(&Characters[iAttack], false);
 	LAi_SetActorType(&Characters[iAttack]);
 
-	if(CheckAttribute(chr, "ArenaTournament.Attack"))
+	if (CheckAttribute(chr, "ArenaTournament.Attack"))
 	{
 		PChar.Arena.Tournament.Temp.LooserCount = sti(PChar.Arena.Tournament.Temp.LooserCount) + 1;
 		Log_SetStringToLog("В этом раунде победитель " + Characters[iEnemy].name + " " + Characters[iEnemy].lastname);
@@ -1499,21 +1652,27 @@ void ArenaTournamentCheckNewRound(string qName)
 
 	string sStage = "";
 
-	switch(sti(PChar.Arena.Tournament.Temp.Stage))
+	switch (sti(PChar.Arena.Tournament.Temp.Stage))
 	{
-		case 1: sStage = "1_4"; break;
-		case 2: sStage = "1_2"; break;
-		case 3: sStage = "final"; break;
+	case 1:
+		sStage = "1_4";
+		break;
+	case 2:
+		sStage = "1_2";
+		break;
+	case 3:
+		sStage = "final";
+		break;
 	}
 
-	if(sti(PChar.Arena.Tournament.Temp.LooserCount) >= 3)
+	if (sti(PChar.Arena.Tournament.Temp.LooserCount) >= 3)
 	{
 		Characters[iAttack].ArenaTournament.looser.(sStage) = sStage;
 		ArenaTournamentDuelEnd(false);
 	}
 	else
 	{
-		if(sti(PChar.Arena.Tournament.Temp.WinnerCount) >= 3)
+		if (sti(PChar.Arena.Tournament.Temp.WinnerCount) >= 3)
 		{
 			Characters[iEnemy].ArenaTournament.looser.(sStage) = sStage;
 			ArenaTournamentDuelEnd(true);
@@ -1537,13 +1696,13 @@ void ArenaTournamentDuelEnd(bool bWin)
 	int iAttack = GetCharacterIndex(sAttack);
 
 	ref enemy, attack;
-	if(CheckAttribute(&Characters[iAttack], "ArenaTournament.looser"))
+	if (CheckAttribute(&Characters[iAttack], "ArenaTournament.looser"))
 	{
 		looser = &Characters[iAttack];
 		PChar.Arena.Tournament.Temp.Winner = Characters[iEnemy].id;
 	}
 
-	if(CheckAttribute(&Characters[iEnemy], "ArenaTournament.looser"))
+	if (CheckAttribute(&Characters[iEnemy], "ArenaTournament.looser"))
 	{
 		looser = &Characters[iEnemy];
 		PChar.Arena.Tournament.Temp.Winner = Characters[iAttack].id;
@@ -1570,14 +1729,14 @@ void ArenaTournamentDuelEnd(bool bWin)
 	string sQuest = "AT_LooserDetector_" + sti(PChar.Arena.Tournament.Temp.Stage) + "_" + sti(PChar.Arena.Tournament.Temp.StageTemp);
 	PChar.quest.(sQuest).over = "yes";
 
-	if(sti(PChar.Arena.Tournament.Temp.Stage) == 1)
+	if (sti(PChar.Arena.Tournament.Temp.Stage) == 1)
 	{
-		if(sti(PChar.Arena.Tournament.Temp.StageTemp) <= 4)
+		if (sti(PChar.Arena.Tournament.Temp.StageTemp) <= 4)
 		{
 			PChar.Arena.Tournament.Temp.StageTemp = sti(PChar.Arena.Tournament.Temp.StageTemp) + 1;
 		}
 
-		if(sti(PChar.Arena.Tournament.Temp.StageTemp) > 4)
+		if (sti(PChar.Arena.Tournament.Temp.StageTemp) > 4)
 		{
 			PChar.Arena.Tournament.Temp.Stage = 2;
 			PChar.Arena.Tournament.Temp.StageTemp = 1;
@@ -1585,14 +1744,14 @@ void ArenaTournamentDuelEnd(bool bWin)
 		}
 	}
 
-	if(sti(PChar.Arena.Tournament.Temp.Stage) == 2 && PChar.Arena.Tournament.Temp.StagePause == false)
+	if (sti(PChar.Arena.Tournament.Temp.Stage) == 2 && PChar.Arena.Tournament.Temp.StagePause == false)
 	{
-		if(sti(PChar.Arena.Tournament.Temp.StageTemp) <= 2)
+		if (sti(PChar.Arena.Tournament.Temp.StageTemp) <= 2)
 		{
 			PChar.Arena.Tournament.Temp.StageTemp = sti(PChar.Arena.Tournament.Temp.StageTemp) + 1;
 		}
 
-		if(sti(PChar.Arena.Tournament.Temp.StageTemp) > 2)
+		if (sti(PChar.Arena.Tournament.Temp.StageTemp) > 2)
 		{
 			PChar.Arena.Tournament.Temp.Stage = 3;
 			PChar.Arena.Tournament.Temp.StageTemp = 1;
@@ -1600,7 +1759,7 @@ void ArenaTournamentDuelEnd(bool bWin)
 		}
 	}
 
-	if(sti(PChar.Arena.Tournament.Temp.Stage) == 3 && PChar.Arena.Tournament.Temp.StagePause == false)
+	if (sti(PChar.Arena.Tournament.Temp.Stage) == 3 && PChar.Arena.Tournament.Temp.StagePause == false)
 	{
 		ArenaTournamentEnd();
 		return;
@@ -1609,7 +1768,7 @@ void ArenaTournamentDuelEnd(bool bWin)
 	iStage = sti(PChar.Arena.Tournament.Temp.Stage);
 	iStageTemp = sti(PChar.Arena.Tournament.Temp.StageTemp);
 
-	if(iStage == 2 && iStageTemp == 1)
+	if (iStage == 2 && iStageTemp == 1)
 	{
 		PChar.Arena.Tournament.InterfacePause = true;
 		PChar.Arena.Tournament.Temp.InterfaceStage = "1_2";
@@ -1618,7 +1777,7 @@ void ArenaTournamentDuelEnd(bool bWin)
 		return;
 	}
 
-	if(iStage == 3 && iStageTemp == 1)
+	if (iStage == 3 && iStageTemp == 1)
 	{
 		PChar.Arena.Tournament.InterfacePause = true;
 		PChar.Arena.Tournament.Temp.InterfaceStage = "final";
@@ -1644,7 +1803,7 @@ void ArenaTournamentEnd()
 	bool bWinner = false;
 
 	string sWinner = PChar.Arena.Tournament.Temp.Winner;
-	if(sWinner == "Blaze")
+	if (sWinner == "Blaze")
 	{
 		bWinner = true;
 	}
@@ -1656,15 +1815,15 @@ void ArenaTournamentEnd()
 	PChar.Arena.Tournament.Win = bWinner;
 
 	PChar.Statistic.Arena.Count = sti(PChar.Statistic.Arena.Count) + 1;
-	if(!bWinner)
+	if (!bWinner)
 	{
 		PChar.Statistic.Arena.LooserCount = sti(PChar.Statistic.Arena.LooserCount) + 1;
-		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + ", участвов"+ GetSexPhrase("ший","шая") +" в последнем турнире на Арене, не смо"+ GetSexPhrase("г","гла") +" его выиграть.", 5, 1);
+		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + ", участвов" + GetSexPhrase("ший", "шая") + " в последнем турнире на Арене, не смо" + GetSexPhrase("г", "гла") + " его выиграть.", 5, 1);
 	}
 	else
 	{
 		PChar.Statistic.Arena.WinnerCount = sti(PChar.Statistic.Arena.WinnerCount) + 1;
-		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", в последнем турнире, проходящем на Арене, сильнее всех оказал"+ GetSexPhrase("ся","ась") +" капитан " + GetNameLugger(PChar, "f") + ".", 5, 1);
+		AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", в последнем турнире, проходящем на Арене, сильнее всех оказал" + GetSexPhrase("ся", "ась") + " капитан " + GetNameLugger(PChar, "f") + ".", 5, 1);
 	}
 
 	locCameraFollow();
@@ -1692,12 +1851,11 @@ void ArenaTournamentTheEnd()
 	string sSaber = "blade1";
 
 	RemoveCharacterEquip(PChar, BLADE_ITEM_TYPE);
-	if (CheckAttribute(pchar,"Arena.TournamentWeapon"))
+	if (CheckAttribute(pchar, "Arena.TournamentWeapon"))
 	{
 		sSaber = pchar.Arena.TournamentWeapon;
 		TakeNItems(PChar, sSaber, -1);
 	}
-
 
 	/*if(CheckAttribute(PChar, "Arena.Tournament.Saber.Light"))
 	{
@@ -1718,18 +1876,18 @@ void ArenaTournamentTheEnd()
 	string sMember = "";
 
 	ref member;
-	for(int i = 1; i <= 7; i++)
+	for (int i = 1; i <= 7; i++)
 	{
 		sMember = "Arena_Tournament_Character_" + i;
 		member = &Characters[GetCharacterIndex(sMember)];
 
 		RemoveCharacterEquip(member, BLADE_ITEM_TYPE);
-		if(CheckAttribute(member, "ArenaAction"))
+		if (CheckAttribute(member, "ArenaAction"))
 		{
 			DeleteAttribute(member, "ArenaAction");
 		}
 
-		if(CheckAttribute(member, "ArenaTournament.looser"))
+		if (CheckAttribute(member, "ArenaTournament.looser"))
 		{
 			DeleteAttribute(member, "ArenaTournament.looser");
 		}
@@ -1745,17 +1903,17 @@ void ArenaTournamentTheEnd()
 
 	DoQuestReloadToLocation("FencingTown_ExitTown", "reload", "reload4", "");
 
-	if(CheckAttribute(PChar, "ArenaAction"))
+	if (CheckAttribute(PChar, "ArenaAction"))
 	{
 		DeleteAttribute(PChar, "ArenaAction");
 	}
 
-	if(CheckAttribute(PChar, "ArenaTournament.looser"))
+	if (CheckAttribute(PChar, "ArenaTournament.looser"))
 	{
 		DeleteAttribute(PChar, "ArenaTournament.looser");
 	}
 
-	if(CheckAttribute(PChar, "Arena.Tournament"))
+	if (CheckAttribute(PChar, "Arena.Tournament"))
 	{
 		DeleteAttribute(PChar, "Arena.Tournament");
 	}
@@ -1783,12 +1941,13 @@ void ArenaTournamentSetDetailsForChar(ref chr, int iStage)
 
 	if (chr.index == nMainCharacterIndex)
 	{
-		if (iStage == 2 || iStage == 3) TakeNItems(chr,sSaber,-1);
+		if (iStage == 2 || iStage == 3)
+			TakeNItems(chr, sSaber, -1);
 	}
 	GiveItem2Character(chr, sSaber);
 	EquipCharacterByItem(chr, sSaber);
 
-	if(chr.id == PChar.id)
+	if (chr.id == PChar.id)
 	{
 		return;
 	}
@@ -1803,8 +1962,8 @@ void ArenaTournamentSetDetailsForChar(ref chr, int iStage)
 	float HPmx = LAi_GetCharacterMaxHP(PChar);
 	float Energy = LAi_GetCharacterMaxEnergy(PChar);
 
-	int rand_1 = rand(9)+1;
-	int rand_2 = rand(9)+1;
+	int rand_1 = rand(9) + 1;
+	int rand_2 = rand(9) + 1;
 	rand_1 += rand_2;
 
 	float HP = HPmx + 200 + (rand(20) * rand_1);
@@ -1813,7 +1972,7 @@ void ArenaTournamentSetDetailsForChar(ref chr, int iStage)
 	chr.chr_ai.energy = stf(Energy);
 	chr.chr_ai.energyMax = stf(Energy);
 
-	if(chr.id != PChar.id)
+	if (chr.id != PChar.id)
 	{
 		LAi_SetHP(chr, stf(HP), stf(HP));
 	}
@@ -1826,20 +1985,38 @@ void ArenaTournamentSetDetailsForChar(ref chr, int iStage)
 	iFencing += (iBonus + 10);
 	iFencingHeavy += (iBonus + 10);
 
-	if(iFencingLight > 100) { iFencingLight = 100; }
-	if(iFencingLight < 30) { iFencingLight = 30; }
+	if (iFencingLight > 100)
+	{
+		iFencingLight = 100;
+	}
+	if (iFencingLight < 30)
+	{
+		iFencingLight = 30;
+	}
 
-	if(iFencing > 100) { iFencing = 100; }
-	if(iFencing < 30) { iFencing = 30; }
+	if (iFencing > 100)
+	{
+		iFencing = 100;
+	}
+	if (iFencing < 30)
+	{
+		iFencing = 30;
+	}
 
-	if(iFencingHeavy > 100) { iFencingHeavy = 100; }
-	if(iFencingHeavy < 30) { iFencingHeavy = 30; }
+	if (iFencingHeavy > 100)
+	{
+		iFencingHeavy = 100;
+	}
+	if (iFencingHeavy < 30)
+	{
+		iFencingHeavy = 30;
+	}
 
 	chr.skill.FencingLight = iFencingLight;
 	chr.skill.Fencing = iFencing;
 	chr.skill.FencingHeavy = iFencingHeavy;
 
-	if(chr.id != PChar.id)
+	if (chr.id != PChar.id)
 	{
 		SetCharacterPerk(chr, "Energaiser");
 		SetCharacterPerk(chr, "SwordplayProfessional");
@@ -1853,14 +2030,14 @@ int GetNumPositionForCharInTournament()
 {
 	string sPos = "";
 
-	int iRand = rand(7)+1;
+	int iRand = rand(7) + 1;
 
-	for(int i=1; i <= 8; i++)
+	for (int i = 1; i <= 8; i++)
 	{
 		sPos = "Position_" + i;
-		if(iRand == i)
+		if (iRand == i)
 		{
-			if(!CheckAttribute(PChar, "Arena.Tournament.Positions." + sPos))
+			if (!CheckAttribute(PChar, "Arena.Tournament.Positions." + sPos))
 			{
 				PChar.Arena.Tournament.Positions.(sPos) = true;
 				return i;
@@ -1868,7 +2045,7 @@ int GetNumPositionForCharInTournament()
 			else
 			{
 				i = 0;
-				iRand = rand(7)+1;
+				iRand = rand(7) + 1;
 				continue;
 			}
 		}
@@ -1882,13 +2059,13 @@ string GetModelForCharacterInTournament()
 	string sModel = "";
 	int iRand = rand(19) + 1;
 
-	for(int i=1; i <= 20; i++)
+	for (int i = 1; i <= 20; i++)
 	{
 		sModel = "officer_" + i;
 
-		if(iRand == i)
+		if (iRand == i)
 		{
-			if(!CheckAttribute(PChar, "Arena.Tournament.Models." + sModel))
+			if (!CheckAttribute(PChar, "Arena.Tournament.Models." + sModel))
 			{
 				PChar.Arena.Tournament.Models.(sModel) = true;
 				return sModel;
@@ -1896,31 +2073,49 @@ string GetModelForCharacterInTournament()
 			else
 			{
 				i = 0;
-				iRand = rand(19)+1;
+				iRand = rand(19) + 1;
 				continue;
 			}
 		}
 	}
-	return "officer_" + (rand(63)+1);
+	return "officer_" + (rand(63) + 1);
 }
 
 void ArenaTournamentSetPosition(int iNum, string sChar, string sStage)
 {
 	int iPosition = 1;
-	switch(sStage)
+	switch (sStage)
 	{
-		case "1_2":
-			if(iNum == 1 || iNum == 2) { iPosition = 1; }
-			if(iNum == 3 || iNum == 4) { iPosition = 2; }
-			if(iNum == 5 || iNum == 6) { iPosition = 3; }
-			if(iNum == 7 || iNum == 8) { iPosition = 4; }
-			PChar.Arena.Tournament.(sChar).Position.1_2 = iPosition;
+	case "1_2":
+		if (iNum == 1 || iNum == 2)
+		{
+			iPosition = 1;
+		}
+		if (iNum == 3 || iNum == 4)
+		{
+			iPosition = 2;
+		}
+		if (iNum == 5 || iNum == 6)
+		{
+			iPosition = 3;
+		}
+		if (iNum == 7 || iNum == 8)
+		{
+			iPosition = 4;
+		}
+		PChar.Arena.Tournament.(sChar).Position .1_2 = iPosition;
 		break;
 
-		case "final":
-			if(iNum == 1 || iNum == 2 || iNum == 3 || iNum == 4) { iPosition = 1;}
-			if(iNum == 5 || iNum == 6 || iNum == 7 || iNum == 8) { iPosition = 2;}
-			PChar.Arena.Tournament.(sChar).Position.final = iPosition;
+	case "final":
+		if (iNum == 1 || iNum == 2 || iNum == 3 || iNum == 4)
+		{
+			iPosition = 1;
+		}
+		if (iNum == 5 || iNum == 6 || iNum == 7 || iNum == 8)
+		{
+			iPosition = 2;
+		}
+		PChar.Arena.Tournament.(sChar).Position.final = iPosition;
 		break;
 	}
 }
@@ -1930,32 +2125,32 @@ string ArenaTournamentGetCharacterIDFromPos(int p, string sType)
 	aref pos;
 	string sChar = "";
 
-	for(int i=1; i <= 8; i++)
+	for (int i = 1; i <= 8; i++)
 	{
 		sChar = "Arena_Tournament_Character_" + i;
 
-		if(i == 8)
+		if (i == 8)
 		{
 			sChar = "Blaze";
 		}
 
-		if(CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser"))
+		if (CheckAttribute(&Characters[GetCharacterIndex(sChar)], "ArenaTournament.looser"))
 		{
 			continue;
 		}
 
 		makearef(pos, PChar.Arena.Tournament.(sChar));
 
-		if(sType == "1_4")
+		if (sType == "1_4")
 		{
-			if(sti(pos.Position) == p)
+			if (sti(pos.Position) == p)
 			{
 				return sChar;
 			}
 		}
 		else
 		{
-			if(sti(pos.Position.(sType)) == p)
+			if (sti(pos.Position.(sType)) == p)
 			{
 				return sChar;
 			}
@@ -1969,14 +2164,38 @@ void ArenaTournamentSetCharacterFromArena(ref chr)
 {
 	string sLocator = "";
 
-	if(chr.id == "Arena_Tournament_Character_1") { sLocator = "arena_member_1"; }
-	if(chr.id == "Arena_Tournament_Character_2") { sLocator = "arena_member_2"; }
-	if(chr.id == "Arena_Tournament_Character_3") { sLocator = "arena_member_3"; }
-	if(chr.id == "Arena_Tournament_Character_4") { sLocator = "arena_member_4"; }
-	if(chr.id == "Arena_Tournament_Character_5") { sLocator = "arena_member_5"; }
-	if(chr.id == "Arena_Tournament_Character_6") { sLocator = "arena_member_6"; }
-	if(chr.id == "Arena_Tournament_Character_7") { sLocator = "arena_member_7"; }
-	if(chr.id == "Blaze") { sLocator = "arena_member_8"; }
+	if (chr.id == "Arena_Tournament_Character_1")
+	{
+		sLocator = "arena_member_1";
+	}
+	if (chr.id == "Arena_Tournament_Character_2")
+	{
+		sLocator = "arena_member_2";
+	}
+	if (chr.id == "Arena_Tournament_Character_3")
+	{
+		sLocator = "arena_member_3";
+	}
+	if (chr.id == "Arena_Tournament_Character_4")
+	{
+		sLocator = "arena_member_4";
+	}
+	if (chr.id == "Arena_Tournament_Character_5")
+	{
+		sLocator = "arena_member_5";
+	}
+	if (chr.id == "Arena_Tournament_Character_6")
+	{
+		sLocator = "arena_member_6";
+	}
+	if (chr.id == "Arena_Tournament_Character_7")
+	{
+		sLocator = "arena_member_7";
+	}
+	if (chr.id == "Blaze")
+	{
+		sLocator = "arena_member_8";
+	}
 
 	ChangeCharacterAddressGroup(chr, "FencingTown_Arena", "goto", sLocator);
 	LAi_SetActorType(chr);
@@ -1991,7 +2210,7 @@ void ArenaTournamentPrepareInterface()
 	string sAttack = PChar.Arena.Tournament.Temp.Attack;
 	string sEnemy = PChar.Arena.Tournament.Temp.Enemy;
 
-	if(GetCharacterIndex(sAttack) != -1)
+	if (GetCharacterIndex(sAttack) != -1)
 	{
 		attack = &Characters[GetCharacterIndex(sAttack)];
 		DeleteAttribute(attack, "ArenaTournament.Attack");
@@ -1999,7 +2218,7 @@ void ArenaTournamentPrepareInterface()
 		ArenaTournamentSetCharacterFromArena(attack);
 	}
 
-	if(GetCharacterIndex(sEnemy) != -1)
+	if (GetCharacterIndex(sEnemy) != -1)
 	{
 		enemy = &Characters[GetCharacterIndex(sEnemy)];
 		DeleteAttribute(enemy, "ArenaTournament.Attack");
@@ -2041,7 +2260,6 @@ void ArenaTournamentPrepareInterface()
 	}*/
 }
 
-
 //-------------------------------------------------------------------------------
 // Ставки
 //-------------------------------------------------------------------------------
@@ -2049,15 +2267,48 @@ void GenerateArenaOdds()
 {
 	string sSaber, sSaberType;
 
-	switch(rand(2)) { case 0: sSaberType = "FencingLight"; break; case 1: sSaberType = "Fencing"; break; case 2: sSaberType = "FencingHeavy"; break; }
+	switch (rand(2))
+	{
+	case 0:
+		sSaberType = "FencingLight";
+		break;
+	case 1:
+		sSaberType = "Fencing";
+		break;
+	case 2:
+		sSaberType = "FencingHeavy";
+		break;
+	}
 	sSaber = GetSaberForArena(sSaberType);
 	PChar.Arena.Odds.Saber.Light = sSaber;
 
-	switch(rand(2)) { case 0: sSaberType = "FencingLight"; break; case 1: sSaberType = "Fencing"; break; case 2: sSaberType = "FencingHeavy"; break; }
+	switch (rand(2))
+	{
+	case 0:
+		sSaberType = "FencingLight";
+		break;
+	case 1:
+		sSaberType = "Fencing";
+		break;
+	case 2:
+		sSaberType = "FencingHeavy";
+		break;
+	}
 	sSaber = GetSaberForArena(sSaberType);
 	PChar.Arena.Odds.Saber.Saber = sSaber;
 
-	switch(rand(2)) { case 0: sSaberType = "FencingLight"; break; case 1: sSaberType = "Fencing"; break; case 2: sSaberType = "FencingHeavy"; break; }
+	switch (rand(2))
+	{
+	case 0:
+		sSaberType = "FencingLight";
+		break;
+	case 1:
+		sSaberType = "Fencing";
+		break;
+	case 2:
+		sSaberType = "FencingHeavy";
+		break;
+	}
 	sSaber = GetSaberForArena(sSaberType);
 	PChar.Arena.Odds.Saber.Heavy = sSaber;
 
@@ -2082,7 +2333,7 @@ void GenerateArenaOdds()
 
 void PrepareArenaOdds()
 {
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		PChar.Arena.Odds.BiletCount = 1;
 	}
@@ -2119,7 +2370,7 @@ void PrepareArenaOddsEnd()
 	LAi_SetStayType(CharacterFromID("FencingTown_Head"));
 	ChangeCharacterAddressGroup(CharacterFromID("FencingTown_Head"), "FencingTown_Arena", "goto", "arena_head");
 
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		Characters[GetCharacterIndex("FencingTown_Head")].dialog.currentnode = "FightInArena_8";
 	}
@@ -2142,7 +2393,7 @@ void StartArenaOdds(string _tmp)
 	InterfaceStates.Buttons.Save.enable = false;
 	PChar.Arena = "Start";
 
-	if(PChar.model.animation == "mushketer")
+	if (PChar.model.animation == "mushketer")
 	{
 		RemoveCharacterEquip(PChar, GUN_ITEM_TYPE);
 	}
@@ -2156,22 +2407,43 @@ void StartArenaOdds(string _tmp)
 	Locations[FindLocation(PChar.location)].reload.l1.disable = true;
 
 	int iEnemy = -1;
-	string sLocator = "arena_member_" + (rand(7)+1);
+	string sLocator = "arena_member_" + (rand(7) + 1);
 
 	int iStage = 1;
 	int iCount = 1;
-	for(int e=1; e<=6; e++)
+	for (int e = 1; e <= 6; e++)
 	{
-		switch(e)
+		switch (e)
 		{
-			case 1: iStage = 1; iCount = 1; break; case 2: iStage = 1; iCount = 2; break;
-			case 3: iStage = 2; iCount = 1; break; case 4: iStage = 2; iCount = 2; break;
-			case 5: iStage = 3; iCount = 1; break; case 6: iStage = 3; iCount = 2; break;
+		case 1:
+			iStage = 1;
+			iCount = 1;
+			break;
+		case 2:
+			iStage = 1;
+			iCount = 2;
+			break;
+		case 3:
+			iStage = 2;
+			iCount = 1;
+			break;
+		case 4:
+			iStage = 2;
+			iCount = 2;
+			break;
+		case 5:
+			iStage = 3;
+			iCount = 1;
+			break;
+		case 6:
+			iStage = 3;
+			iCount = 2;
+			break;
 		}
 
 		iEnemy = GetCharacterIndex("Arena_Odds_Duel_" + iStage + "_Character_" + iCount);
 
-		if(iEnemy != -1)
+		if (iEnemy != -1)
 		{
 			sLocator = "arena_member_" + e;
 			ChangeCharacterAddressGroup(&Characters[iEnemy], "FencingTown_Arena", "goto", sLocator);
@@ -2225,7 +2497,7 @@ void ArenaOddsGo(string qName)
 	PChar.model = "";
 	SetNewModelToChar(PChar);
 
-    	SetCharacterTask_None(GetMainCharacter());
+	SetCharacterTask_None(GetMainCharacter());
 
 	LAi_Fade("", "");
 
@@ -2243,7 +2515,7 @@ void ArenaOddsGoStart(int iStage)
 {
 	ref attack, enemy;
 
-	if(iStage != 1)
+	if (iStage != 1)
 	{
 		ArenaOddsSetCharacterFromArenaToLoc();
 	}
@@ -2276,12 +2548,12 @@ void ArenaOddsGoStart(int iStage)
 
 	Log_Info(attack.name + " " + attack.lastname + " VS " + enemy.name + " " + enemy.lastname);
 
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		int iActionStage = sti(PChar.Arena.Odds.ActionFight);
 		int iActionCharacter = sti(PChar.Arena.Odds.Character);
 
-		if(iActionStage == iStage)
+		if (iActionStage == iStage)
 		{
 			Log_Info("Вы сделали ставку на этот поединок. На дуэлянта по имени " + Characters[iActionCharacter].name + " " + Characters[iActionCharacter].lastname + ".");
 		}
@@ -2314,13 +2586,15 @@ void ArenaOddsStartNewBattle()
 	locCameraToPos(x, y, z, false);
 
 	string sPlayerLocator, sEnemyLocator;
-	if(rand(1) == 1)
+	if (rand(1) == 1)
 	{
-		sPlayerLocator = "aloc1"; sEnemyLocator = "aloc3";
+		sPlayerLocator = "aloc1";
+		sEnemyLocator = "aloc3";
 	}
 	else
 	{
-		sPlayerLocator = "aloc3"; sEnemyLocator = "aloc1";
+		sPlayerLocator = "aloc3";
+		sEnemyLocator = "aloc1";
 	}
 
 	ChangeCharacterAddressGroup(attack, "FencingTown_Arena", "rld", sPlayerLocator);
@@ -2351,7 +2625,7 @@ void ArenaOddsSetLooser(ref chr)
 	LAi_SetFightMode(&Characters[iAttack], false);
 	LAi_SetActorType(&Characters[iAttack]);
 
-	if(CheckAttribute(chr, "ArenaOdds.Attack"))
+	if (CheckAttribute(chr, "ArenaOdds.Attack"))
 	{
 		PChar.Arena.Odds.Temp.LooserCount = sti(PChar.Arena.Odds.Temp.LooserCount) + 1;
 		Log_SetStringToLog("В этом раунде победу одержал " + Characters[iEnemy].name + " " + Characters[iEnemy].lastname);
@@ -2379,14 +2653,14 @@ void ArenaOddsCheckNewRound(string qName)
 	int iEnemy = GetCharacterIndex(sEnemy);
 	int iAttack = GetCharacterIndex(sAttack);
 
-	if(sti(PChar.Arena.Odds.Temp.LooserCount) >= 3)
+	if (sti(PChar.Arena.Odds.Temp.LooserCount) >= 3)
 	{
 		Characters[iAttack].ArenaOdds.looser = true;
 		ArenaOddsDuelEnd(false);
 	}
 	else
 	{
-		if(sti(PChar.Arena.Odds.Temp.WinnerCount) >= 3)
+		if (sti(PChar.Arena.Odds.Temp.WinnerCount) >= 3)
 		{
 			Characters[iEnemy].ArenaOdds.looser = true;
 			ArenaOddsDuelEnd(true);
@@ -2412,19 +2686,19 @@ void ArenaOddsDuelEnd(bool bWin)
 	int iAttack = GetCharacterIndex(sAttack);
 
 	ref enemy, attack;
-	if(CheckAttribute(&Characters[iAttack], "ArenaOdds.looser"))
+	if (CheckAttribute(&Characters[iAttack], "ArenaOdds.looser"))
 	{
 		looser = &Characters[iAttack];
 		PChar.Arena.Odds.Temp.Winner = Characters[iEnemy].id;
 	}
 
-	if(CheckAttribute(&Characters[iEnemy], "ArenaOdds.looser"))
+	if (CheckAttribute(&Characters[iEnemy], "ArenaOdds.looser"))
 	{
 		looser = &Characters[iEnemy];
 		PChar.Arena.Odds.Temp.Winner = Characters[iAttack].id;
 	}
 
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		// логи для теста -->
 		//Log_TestInfo("ID атакующего: " + Characters[iAttack].id);
@@ -2435,17 +2709,17 @@ void ArenaOddsDuelEnd(bool bWin)
 
 	int iStage = 0;
 
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		int iActionStage = sti(PChar.Arena.Odds.ActionFight);
 		int iActionCharacter = sti(PChar.Arena.Odds.Character);
-		if(iActionStage == sti(PChar.Arena.Odds.Temp.Stage))
+		if (iActionStage == sti(PChar.Arena.Odds.Temp.Stage))
 		{
 			// логи для теста -->
 			//Log_TestInfo("ID того, на кого ставка: " + Characters[iActionCharacter].id);
 			// логи для теста <--
 
-			if(PChar.Arena.Odds.Temp.Winner == Characters[iActionCharacter].id)
+			if (PChar.Arena.Odds.Temp.Winner == Characters[iActionCharacter].id)
 			{
 				PChar.Arena.Odds.Win = true;
 				Log_InfoS("Вы сделали ставку на дуэлянта по имени " + Characters[iActionCharacter].name + " " + Characters[iActionCharacter].lastname + " и не прогадали! Ваш выигрыш составил " + sti(PChar.Arena.Odds.Prize) + " золотых.");
@@ -2459,19 +2733,19 @@ void ArenaOddsDuelEnd(bool bWin)
 		}
 	}
 
-	if(sti(PChar.Arena.Odds.Temp.Stage) == 1)
+	if (sti(PChar.Arena.Odds.Temp.Stage) == 1)
 	{
 		PChar.Arena.Odds.Temp.Stage = 2;
 		PChar.Arena.Odds.Temp.StagePause = true;
 	}
 
-	if(sti(PChar.Arena.Odds.Temp.Stage) == 2 && PChar.Arena.Odds.Temp.StagePause == false)
+	if (sti(PChar.Arena.Odds.Temp.Stage) == 2 && PChar.Arena.Odds.Temp.StagePause == false)
 	{
 		PChar.Arena.Odds.Temp.Stage = 3;
 		PChar.Arena.Odds.Temp.StagePause = true;
 	}
 
-	if(sti(PChar.Arena.Odds.Temp.Stage) == 3 && PChar.Arena.Odds.Temp.StagePause == false)
+	if (sti(PChar.Arena.Odds.Temp.Stage) == 3 && PChar.Arena.Odds.Temp.StagePause == false)
 	{
 		ArenaOddsEnd();
 		return;
@@ -2481,7 +2755,7 @@ void ArenaOddsDuelEnd(bool bWin)
 	ArenaOddsGoStart(iStage);
 	ArenaOddsStartNewBattle();
 
-	if(iStage == 2 || iStage == 3)
+	if (iStage == 2 || iStage == 3)
 	{
 		PChar.Arena.Odds.Temp.StagePause = false;
 	}
@@ -2495,22 +2769,22 @@ void ArenaOddsEnd()
 
 	bool bWinner = PChar.Arena.Odds.Win;
 
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		PChar.Statistic.Arena.Count = sti(PChar.Statistic.Arena.Count) + 1;
-		if(!bWinner)
+		if (!bWinner)
 		{
 			PChar.Statistic.Arena.LooserCount = sti(PChar.Statistic.Arena.LooserCount) + 1;
-			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", даже капитан " + GetNameLugger(PChar, "f") + " не смо"+ GetSexPhrase("г","гла") +" правильно указать победителя одной из дуэлей, недавно проходившей на Арене и проигр"+ GetSexPhrase("ал","ала") +" свои деньги.", 5, 1);
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", даже капитан " + GetNameLugger(PChar, "f") + " не смо" + GetSexPhrase("г", "гла") + " правильно указать победителя одной из дуэлей, недавно проходившей на Арене и проигр" + GetSexPhrase("ал", "ала") + " свои деньги.", 5, 1);
 		}
 		else
 		{
 			PChar.Statistic.Arena.WinnerCount = sti(PChar.Statistic.Arena.WinnerCount) + 1;
-			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + "  указ"+ GetSexPhrase("ал","ала") +" победителя одной из дуэлей, недавно проходившей на Арене и выигр"+ GetSexPhrase("ал","ала") +" деньги!", 5, 1);
+			AddSimpleRumourToAllNations(LinkRandPhrase("Слыхали", "Знаете ли вы", "Невероятно") + ", капитан " + GetNameLugger(PChar, "f") + "  указ" + GetSexPhrase("ал", "ала") + " победителя одной из дуэлей, недавно проходившей на Арене и выигр" + GetSexPhrase("ал", "ала") + " деньги!", 5, 1);
 		}
 	}
 
-	if(PChar.Arena.Mode.NotOdd == false)
+	if (PChar.Arena.Mode.NotOdd == false)
 	{
 		Characters[GetCharacterIndex("FencingTown_Head")].dialog.currentnode = "FightInArena_9";
 	}
@@ -2545,13 +2819,34 @@ void ArenaOddsTheEnd()
 	ref member;
 	int iStage = 1;
 	int iCount = 1;
-	for(int i = 1; i <= 6; i++)
+	for (int i = 1; i <= 6; i++)
 	{
-		switch(i)
+		switch (i)
 		{
-			case 1: iStage = 1; iCount = 1; break; case 2: iStage = 1; iCount = 2; break;
-			case 3: iStage = 2; iCount = 1; break; case 4: iStage = 2; iCount = 2; break;
-			case 5: iStage = 3; iCount = 1; break; case 6: iStage = 3; iCount = 2; break;
+		case 1:
+			iStage = 1;
+			iCount = 1;
+			break;
+		case 2:
+			iStage = 1;
+			iCount = 2;
+			break;
+		case 3:
+			iStage = 2;
+			iCount = 1;
+			break;
+		case 4:
+			iStage = 2;
+			iCount = 2;
+			break;
+		case 5:
+			iStage = 3;
+			iCount = 1;
+			break;
+		case 6:
+			iStage = 3;
+			iCount = 2;
+			break;
 		}
 
 		sMember = "Arena_Odds_Duel_" + iStage + "_Character_" + iCount;
@@ -2559,12 +2854,12 @@ void ArenaOddsTheEnd()
 
 		RemoveCharacterEquip(member, BLADE_ITEM_TYPE);
 
-		if(CheckAttribute(member, "ArenaAction"))
+		if (CheckAttribute(member, "ArenaAction"))
 		{
 			DeleteAttribute(member, "ArenaAction");
 		}
 
-		if(CheckAttribute(member, "ArenaOdds.looser"))
+		if (CheckAttribute(member, "ArenaOdds.looser"))
 		{
 			DeleteAttribute(member, "ArenaOdds.looser");
 		}
@@ -2583,17 +2878,17 @@ void ArenaOddsTheEnd()
 
 	DoQuestReloadToLocation("FencingTown_ExitTown", "reload", "reload4", "");
 
-	if(CheckAttribute(PChar, "ArenaAction"))
+	if (CheckAttribute(PChar, "ArenaAction"))
 	{
 		DeleteAttribute(PChar, "ArenaAction");
 	}
 
-	if(CheckAttribute(PChar, "ArenaOdds.looser"))
+	if (CheckAttribute(PChar, "ArenaOdds.looser"))
 	{
 		DeleteAttribute(PChar, "ArenaOdds.looser");
 	}
 
-	if(CheckAttribute(PChar, "Arena.Odds"))
+	if (CheckAttribute(PChar, "Arena.Odds"))
 	{
 		DeleteAttribute(PChar, "Arena.Odds");
 	}
@@ -2617,11 +2912,17 @@ void ArenaOddsSetDetailsForChar(ref chr, int iStage)
 
 	string sSaber = "blade1";
 
-	switch(iStage)
+	switch (iStage)
 	{
-		case 1: sSaber = PChar.Arena.Odds.Saber.Light; break;
-		case 2: sSaber = PChar.Arena.Odds.Saber.Saber; break;
-		case 3: sSaber = PChar.Arena.Odds.Saber.Heavy; break;
+	case 1:
+		sSaber = PChar.Arena.Odds.Saber.Light;
+		break;
+	case 2:
+		sSaber = PChar.Arena.Odds.Saber.Saber;
+		break;
+	case 3:
+		sSaber = PChar.Arena.Odds.Saber.Heavy;
+		break;
 	}
 
 	RemoveCharacterEquip(chr, GUN_ITEM_TYPE);
@@ -2655,12 +2956,30 @@ void ArenaOddsSetCharacterFromArena(ref chr)
 {
 	string sLocator = "";
 
-	if(chr.id == "Arena_Odds_Duel_1_Character_1") { sLocator = "arena_member_1"; }
-	if(chr.id == "Arena_Odds_Duel_1_Character_2") { sLocator = "arena_member_2"; }
-	if(chr.id == "Arena_Odds_Duel_2_Character_1") { sLocator = "arena_member_3"; }
-	if(chr.id == "Arena_Odds_Duel_2_Character_2") { sLocator = "arena_member_4"; }
-	if(chr.id == "Arena_Odds_Duel_3_Character_1") { sLocator = "arena_member_5"; }
-	if(chr.id == "Arena_Odds_Duel_3_Character_2") { sLocator = "arena_member_6"; }
+	if (chr.id == "Arena_Odds_Duel_1_Character_1")
+	{
+		sLocator = "arena_member_1";
+	}
+	if (chr.id == "Arena_Odds_Duel_1_Character_2")
+	{
+		sLocator = "arena_member_2";
+	}
+	if (chr.id == "Arena_Odds_Duel_2_Character_1")
+	{
+		sLocator = "arena_member_3";
+	}
+	if (chr.id == "Arena_Odds_Duel_2_Character_2")
+	{
+		sLocator = "arena_member_4";
+	}
+	if (chr.id == "Arena_Odds_Duel_3_Character_1")
+	{
+		sLocator = "arena_member_5";
+	}
+	if (chr.id == "Arena_Odds_Duel_3_Character_2")
+	{
+		sLocator = "arena_member_6";
+	}
 
 	ChangeCharacterAddressGroup(chr, "FencingTown_Arena", "goto", sLocator);
 	LAi_group_MoveCharacter(chr, "ARENA_ODDS_NONE_ACTION");
@@ -2676,7 +2995,7 @@ string GetCharacterArenaOddsFromStage(int iStage, int iNum)
 	string sFight = "Fight_" + iStage;
 	string sFightChar = "Char_" + iNum;
 
-	if(CheckAttribute(PChar, "Arena.Odds." + sFight + "." + sFightChar))
+	if (CheckAttribute(PChar, "Arena.Odds." + sFight + "." + sFightChar))
 	{
 		sChar = PChar.Arena.Odds.(sFight).(sFightChar);
 	}
@@ -2692,9 +3011,9 @@ void GenerateArenaOddsDuel(int iCount)
 
 	string sFight = "Fight_" + iCount;
 	string sFightChar = "";
-	for(int i=1; i <= 2; i++)
+	for (int i = 1; i <= 2; i++)
 	{
-		iChar = NPC_GenerateCharacter("Arena_Odds_Duel_" + iCount + "_Character_" + i, "officer_"+(rand(63)+1), "man", "man", GetRank(PChar, MOD_SKILL_ENEMY_RATE), PIRATE, -1, true);
+		iChar = NPC_GenerateCharacter("Arena_Odds_Duel_" + iCount + "_Character_" + i, "officer_" + (rand(63) + 1), "man", "man", GetRank(PChar, MOD_SKILL_ENEMY_RATE), PIRATE, -1, true);
 
 		chr = &Characters[iChar];
 		DeleteAttribute(chr, "items");
@@ -2725,13 +3044,13 @@ void ArenaOddsSetCharacterDetails(ref chr)
 	int iFencing = sti(PChar.skill.Fencing);
 	int iFencingHeavy = sti(PChar.skill.FencingHeavy);
 
-	int rand_1 = rand(9)+1;
-	int rand_2 = rand(9)+1;
+	int rand_1 = rand(9) + 1;
+	int rand_2 = rand(9) + 1;
 
 	rand_1 += rand_2;
 
 	float HP = 200 + (rand(20) * rand_1);
-	if(HP > 1000)
+	if (HP > 1000)
 	{
 		HP = 1000;
 	}
@@ -2745,17 +3064,35 @@ void ArenaOddsSetCharacterDetails(ref chr)
 	int iSkill = GetArenaOddsGreatestFencingSkill(chr);
 
 	iFencingLight += 20 + rand(50);
-	iFencing +=  20 + rand(50);
+	iFencing += 20 + rand(50);
 	iFencingHeavy += 20 + rand(50);
 
-	if(iFencingLight > 100) { iFencingLight = 100 - rand(30); }
-	if(iFencingLight < 30) { iFencingLight = 30 + rand(30); }
+	if (iFencingLight > 100)
+	{
+		iFencingLight = 100 - rand(30);
+	}
+	if (iFencingLight < 30)
+	{
+		iFencingLight = 30 + rand(30);
+	}
 
-	if(iFencing > 100) { iFencing = 100 - rand(30); }
-	if(iFencing < 30) { iFencing = 30 + rand(30); }
+	if (iFencing > 100)
+	{
+		iFencing = 100 - rand(30);
+	}
+	if (iFencing < 30)
+	{
+		iFencing = 30 + rand(30);
+	}
 
-	if(iFencingHeavy > 100) { iFencingHeavy = 100 - rand(30); }
-	if(iFencingHeavy < 30) { iFencingHeavy = 30 + rand(30); }
+	if (iFencingHeavy > 100)
+	{
+		iFencingHeavy = 100 - rand(30);
+	}
+	if (iFencingHeavy < 30)
+	{
+		iFencingHeavy = 30 + rand(30);
+	}
 
 	chr.skill.FencingLight = iFencingLight;
 	chr.skill.Fencing = iFencing;
@@ -2779,13 +3116,19 @@ float GetArenaOddsRateForCharacter(ref chr)
 
 	fRate -= stf(iSkill);
 
-	int iRandBonus = rand(3)+1;
+	int iRandBonus = rand(3) + 1;
 	float fBonus = 1.1 * (iRandBonus);
 
 	fRate += fBonus;
 
-	if(fRate > 15.0) { fRate = 15.0; }
-	if(fRate < 1.3) { fRate = 1.3; }
+	if (fRate > 15.0)
+	{
+		fRate = 15.0;
+	}
+	if (fRate < 1.3)
+	{
+		fRate = 1.3;
+	}
 
 	return fRate;
 }
@@ -2796,17 +3139,17 @@ int GetArenaOddsGreatestFencingSkill(ref chr)
 	int iFencing = sti(chr.skill.Fencing);
 	int iFencingHeavy = sti(chr.skill.FencingHeavy);
 
-	if(iFencingLight >= iFencing && iFencingLight >= iFencingHeavy)
+	if (iFencingLight >= iFencing && iFencingLight >= iFencingHeavy)
 	{
 		return iFencingLight;
 	}
 
-	if(iFencing >= iFencingLight && iFencing >= iFencingHeavy)
+	if (iFencing >= iFencingLight && iFencing >= iFencingHeavy)
 	{
 		return iFencing;
 	}
 
-	if(iFencingHeavy >= iFencing && iFencingHeavy >= iFencingLight)
+	if (iFencingHeavy >= iFencing && iFencingHeavy >= iFencingLight)
 	{
 		return iFencingHeavy;
 	}
@@ -2820,7 +3163,10 @@ int GetArenaOddsMaxOdd() // LEO: Параметры ставок - изиман�
 	int iOdd = iRank * ((20 + rand(20)) * sti(PChar.rank)) + rand(1000);
 
 	// if(iOdd > 25000) { iOdd = 25000; }	// LEO: Без ограничений
-	if(iOdd < 100) { iOdd = 100; }
+	if (iOdd < 100)
+	{
+		iOdd = 100;
+	}
 
 	return iOdd;
 }
@@ -2830,13 +3176,13 @@ string GetModelForCharacterInOdds()
 	string sModel = "";
 	int iRand = rand(19) + 1;
 
-	for(int i=1; i <= 20; i++)
+	for (int i = 1; i <= 20; i++)
 	{
 		sModel = "officer_" + i;
 
-		if(iRand == i)
+		if (iRand == i)
 		{
-			if(!CheckAttribute(PChar, "Arena.Odds.Models." + sModel))
+			if (!CheckAttribute(PChar, "Arena.Odds.Models." + sModel))
 			{
 				PChar.Arena.Odds.Models.(sModel) = true;
 				return sModel;
@@ -2844,12 +3190,12 @@ string GetModelForCharacterInOdds()
 			else
 			{
 				i = 0;
-				iRand = rand(19)+1;
+				iRand = rand(19) + 1;
 				continue;
 			}
 		}
 	}
-	return "officer_" + (rand(63)+1);
+	return "officer_" + (rand(63) + 1);
 }
 
 //-------------------------------------------------------------------------------
@@ -2858,7 +3204,7 @@ string GetModelForCharacterInOdds()
 string GetSkillFromSaber(string sSaber)
 {
 	ref Saber = &Items[FindItem(sSaber)];
-	if(CheckAttribute(Saber, "FencingType"))
+	if (CheckAttribute(Saber, "FencingType"))
 	{
 		return Saber.FencingType;
 	}
@@ -2899,46 +3245,90 @@ string GetSaberForArena(string sType)
 	*/
 
 	// Примитивным рандомом
-	switch(sType)
+	switch (sType)
 	{
-		case "FencingLight":
-			switch(rand(6))
-			{
-				case 0: return "blade2"; break;
-				case 1: return "blade6"; break;
-				case 2: return "blade9"; break;
-				case 3: return "blade14"; break;
-				case 4: return "blade19"; break;
-				case 5: return "blade22"; break;
-				case 6: return "blade23"; break;
-			}
+	case "FencingLight":
+		switch (rand(6))
+		{
+		case 0:
+			return "blade2";
+			break;
+		case 1:
+			return "blade6";
+			break;
+		case 2:
+			return "blade9";
+			break;
+		case 3:
+			return "blade14";
+			break;
+		case 4:
+			return "blade19";
+			break;
+		case 5:
+			return "blade22";
+			break;
+		case 6:
+			return "blade23";
+			break;
+		}
 		break;
 
-		case "Fencing":
-			switch(rand(8))
-			{
-				case 0: return "blade1"; break;
-				case 1: return "blade4"; break;
-				case 2: return "topor3"; break;
-				case 3: return "blade3"; break;
-				case 4: return "blade7"; break;
-				case 5: return "blade12"; break;
-				case 6: return "blade18"; break;
-				case 7: return "blade30"; break;
-				case 8: return "blade25"; break;
-			}
+	case "Fencing":
+		switch (rand(8))
+		{
+		case 0:
+			return "blade1";
+			break;
+		case 1:
+			return "blade4";
+			break;
+		case 2:
+			return "topor3";
+			break;
+		case 3:
+			return "blade3";
+			break;
+		case 4:
+			return "blade7";
+			break;
+		case 5:
+			return "blade12";
+			break;
+		case 6:
+			return "blade18";
+			break;
+		case 7:
+			return "blade30";
+			break;
+		case 8:
+			return "blade25";
+			break;
+		}
 		break;
 
-		case "FencingHeavy":
-			switch(rand(5))
-			{
-				case 0: return "blade10"; break;
-				case 1: return "blade35"; break;
-				case 2: return "blade11"; break;
-				case 3: return "topor1"; break;
-				case 4: return "blade15"; break;
-				case 5: return "blade16"; break;
-			}
+	case "FencingHeavy":
+		switch (rand(5))
+		{
+		case 0:
+			return "blade10";
+			break;
+		case 1:
+			return "blade35";
+			break;
+		case 2:
+			return "blade11";
+			break;
+		case 3:
+			return "topor1";
+			break;
+		case 4:
+			return "blade15";
+			break;
+		case 5:
+			return "blade16";
+			break;
+		}
 		break;
 	}
 
@@ -2948,104 +3338,174 @@ string GetSaberForArena(string sType)
 string GetSaberForArenaT(string sType, int LA)
 {
 	// Примитивным рандомом
-	switch(sType)
+	switch (sType)
 	{
-		case "FencingLight":
-			if (LA == 1)
+	case "FencingLight":
+		if (LA == 1)
+		{
+			switch (rand(2))
 			{
-				switch(rand(2))
-				{
-					case 0: return "blade9"; break;
-					case 1: return "blade14"; break;
-					case 2: return "blade45"; break;
-				}
+			case 0:
+				return "blade9";
+				break;
+			case 1:
+				return "blade14";
+				break;
+			case 2:
+				return "blade45";
+				break;
 			}
-			if (LA == 2)
+		}
+		if (LA == 2)
+		{
+			switch (rand(3))
 			{
-				switch(rand(3))
-				{
-					case 0: return "blade19"; break;
-					case 1: return "blade22"; break;
-					case 2: return "blade36"; break;
-					case 3: return "blade37"; break;
-				}
+			case 0:
+				return "blade19";
+				break;
+			case 1:
+				return "blade22";
+				break;
+			case 2:
+				return "blade36";
+				break;
+			case 3:
+				return "blade37";
+				break;
 			}
-			if (LA == 3)
+		}
+		if (LA == 3)
+		{
+			switch (rand(4))
 			{
-				switch(rand(4))
-				{
-					case 0: return "blade14"; break;
-					case 1: return "blade23"; break;
-					case 2: return "blade27"; break;
-					case 3: return "blade38"; break;
-					case 4: return "blade26"; break;
-				}
+			case 0:
+				return "blade14";
+				break;
+			case 1:
+				return "blade23";
+				break;
+			case 2:
+				return "blade27";
+				break;
+			case 3:
+				return "blade38";
+				break;
+			case 4:
+				return "blade26";
+				break;
 			}
+		}
 		break;
 
-		case "Fencing":
-			if (LA == 1)
+	case "Fencing":
+		if (LA == 1)
+		{
+			switch (rand(3))
 			{
-				switch(rand(3))
-				{
-					case 0: return "blade7"; break;
-					case 1: return "blade12"; break;
-					case 2: return "blade18"; break;
-					case 3: return "topor_05"; break;
-				}
+			case 0:
+				return "blade7";
+				break;
+			case 1:
+				return "blade12";
+				break;
+			case 2:
+				return "blade18";
+				break;
+			case 3:
+				return "topor_05";
+				break;
 			}
-			if (LA == 2)
+		}
+		if (LA == 2)
+		{
+			switch (rand(4))
 			{
-				switch(rand(4))
-				{
-					case 0: return "blade31"; break;
-					case 1: return "blade34"; break;
-					case 2: return "blade39"; break;
-					case 3: return "blade40"; break;
-					case 4: return "blade46"; break;
-				}
+			case 0:
+				return "blade31";
+				break;
+			case 1:
+				return "blade34";
+				break;
+			case 2:
+				return "blade39";
+				break;
+			case 3:
+				return "blade40";
+				break;
+			case 4:
+				return "blade46";
+				break;
 			}
-			if (LA == 3)
+		}
+		if (LA == 3)
+		{
+			switch (rand(2))
 			{
-				switch(rand(2))
-				{
-					case 0: return "blade30"; break;
-					case 1: return "blade24"; break;
-					case 2: return "blade25"; break;
-				}
+			case 0:
+				return "blade30";
+				break;
+			case 1:
+				return "blade24";
+				break;
+			case 2:
+				return "blade25";
+				break;
 			}
+		}
 		break;
 
-		case "FencingHeavy":
-			if (LA == 1)
+	case "FencingHeavy":
+		if (LA == 1)
+		{
+			switch (rand(2))
 			{
-				switch(rand(2))
-				{
-					case 0: return "blade8"; break;
-					case 1: return "blade11"; break;
-					case 2: return "blade16"; break;
-				}
+			case 0:
+				return "blade8";
+				break;
+			case 1:
+				return "blade11";
+				break;
+			case 2:
+				return "blade16";
+				break;
 			}
-			if (LA == 2)
+		}
+		if (LA == 2)
+		{
+			switch (rand(3))
 			{
-				switch(rand(3))
-				{
-					case 0: return "blade15"; break;
-					case 1: return "blade21"; break;
-					case 2: return "blade42"; break;
-					case 3: return "topor2"; break;
-				}
+			case 0:
+				return "blade15";
+				break;
+			case 1:
+				return "blade21";
+				break;
+			case 2:
+				return "blade42";
+				break;
+			case 3:
+				return "topor2";
+				break;
 			}
-			if (LA == 3)
+		}
+		if (LA == 3)
+		{
+			switch (rand(3))
 			{
-				switch(rand(3))
-				{
-					case 0: return "blade13"; break;
-					case 1: return "blade20"; break;
-					case 2: return "blade33"; break;
-					case 3: return "blade28"; break;
-				}
+			case 0:
+				return "blade13";
+				break;
+			case 1:
+				return "blade20";
+				break;
+			case 2:
+				return "blade33";
+				break;
+			case 3:
+				return "blade28";
+				break;
 			}
+		}
 		break;
 	}
 
@@ -3060,11 +3520,11 @@ int GetOddForDuelCharacter(ref chr, int iSkill)
 	float HP = LAi_GetCharacterMaxHP(chr);
 
 	// --> LEO: Серьёзные ставки против потного противника с антифритайзовской системой финтов - анимка Spy
-	HP *= 10 + (sti(PChar.rank)*2);
+	HP *= 10 + (sti(PChar.rank) * 2);
 
-	iRank *= 30 + (sti(PChar.rank)*6);
-	iLeader *= 25 + (sti(PChar.rank)*5);
-	iSkill *= 35 + (sti(PChar.rank)*7);
+	iRank *= 30 + (sti(PChar.rank) * 6);
+	iLeader *= 25 + (sti(PChar.rank) * 5);
+	iSkill *= 35 + (sti(PChar.rank) * 7);
 
 	// <-- LEO
 	iSum = iRank + iLeader + iSkill + HP;
@@ -3078,58 +3538,58 @@ void ArenaEtapsGetEtap()
 	int iQuantity = 0;
 	int iCost = 0;
 
-	for(int e=1; e <= 5; e++)
+	for (int e = 1; e <= 5; e++)
 	{
-		switch(e)
+		switch (e)
 		{
-			case 1:
-				sType_1 = ArenaEtapsGetEtapType(1, "");
-				iQuantity = 1;
-				iCost = ArenaEtapsGetCostForEtap(sType_1, iQuantity);
+		case 1:
+			sType_1 = ArenaEtapsGetEtapType(1, "");
+			iQuantity = 1;
+			iCost = ArenaEtapsGetCostForEtap(sType_1, iQuantity);
 
-				PChar.Arena.Etaps.Etap_1.Type = sType_1;
-				PChar.Arena.Etaps.Etap_1.Quantity = iQuantity;
-				PChar.Arena.Etaps.Etap_1.Cost = iCost;
+			PChar.Arena.Etaps.Etap_1.Type = sType_1;
+			PChar.Arena.Etaps.Etap_1.Quantity = iQuantity;
+			PChar.Arena.Etaps.Etap_1.Cost = iCost;
 			break;
 
-			case 2:
-				sType_2 = ArenaEtapsGetEtapType(2, sType_1);
-				iQuantity = rand(4) + 1;
-				iCost = ArenaEtapsGetCostForEtap(sType_2, iQuantity);
+		case 2:
+			sType_2 = ArenaEtapsGetEtapType(2, sType_1);
+			iQuantity = rand(4) + 1;
+			iCost = ArenaEtapsGetCostForEtap(sType_2, iQuantity);
 
-				PChar.Arena.Etaps.Etap_2.Type = sType_2;
-				PChar.Arena.Etaps.Etap_2.Quantity = iQuantity;
-				PChar.Arena.Etaps.Etap_2.Cost = iCost;
+			PChar.Arena.Etaps.Etap_2.Type = sType_2;
+			PChar.Arena.Etaps.Etap_2.Quantity = iQuantity;
+			PChar.Arena.Etaps.Etap_2.Cost = iCost;
 			break;
 
-			case 3:
-				sType_3 = ArenaEtapsGetEtapType(3, sType_2);
-				iQuantity = rand(4) + 1;
-				iCost = ArenaEtapsGetCostForEtap(sType_3, iQuantity);
+		case 3:
+			sType_3 = ArenaEtapsGetEtapType(3, sType_2);
+			iQuantity = rand(4) + 1;
+			iCost = ArenaEtapsGetCostForEtap(sType_3, iQuantity);
 
-				PChar.Arena.Etaps.Etap_3.Type = sType_3;
-				PChar.Arena.Etaps.Etap_3.Quantity = iQuantity;
-				PChar.Arena.Etaps.Etap_3.Cost = iCost;
+			PChar.Arena.Etaps.Etap_3.Type = sType_3;
+			PChar.Arena.Etaps.Etap_3.Quantity = iQuantity;
+			PChar.Arena.Etaps.Etap_3.Cost = iCost;
 			break;
 
-			case 4:
-				sType_4 = ArenaEtapsGetEtapType(4, sType_3);
-				iQuantity = rand(4) + 1;
-				iCost = ArenaEtapsGetCostForEtap(sType_4, iQuantity);
+		case 4:
+			sType_4 = ArenaEtapsGetEtapType(4, sType_3);
+			iQuantity = rand(4) + 1;
+			iCost = ArenaEtapsGetCostForEtap(sType_4, iQuantity);
 
-				PChar.Arena.Etaps.Etap_4.Type = sType_4;
-				PChar.Arena.Etaps.Etap_4.Quantity = iQuantity;
-				PChar.Arena.Etaps.Etap_4.Cost = iCost;
+			PChar.Arena.Etaps.Etap_4.Type = sType_4;
+			PChar.Arena.Etaps.Etap_4.Quantity = iQuantity;
+			PChar.Arena.Etaps.Etap_4.Cost = iCost;
 			break;
 
-			case 5:
-				sType_5 = ArenaEtapsGetEtapType(5, "");
-				iQuantity = 1;
-				iCost = ArenaEtapsGetCostForEtap(sType_5, iQuantity);
+		case 5:
+			sType_5 = ArenaEtapsGetEtapType(5, "");
+			iQuantity = 1;
+			iCost = ArenaEtapsGetCostForEtap(sType_5, iQuantity);
 
-				PChar.Arena.Etaps.Etap_5.Type = sType_5;
-				PChar.Arena.Etaps.Etap_5.Quantity = iQuantity;
-				PChar.Arena.Etaps.Etap_5.Cost = iCost;
+			PChar.Arena.Etaps.Etap_5.Type = sType_5;
+			PChar.Arena.Etaps.Etap_5.Quantity = iQuantity;
+			PChar.Arena.Etaps.Etap_5.Cost = iCost;
 			break;
 		}
 	}
@@ -3137,56 +3597,80 @@ void ArenaEtapsGetEtap()
 
 string ArenaEtapsGetEtapType(int iEtap, string sBack)
 {
-	if(iEtap == 1)
+	if (iEtap == 1)
 	{
-		switch(rand(3))
+		switch (rand(3))
 		{
-			case 0: return "crabBig"; break;
-			case 1: return "Skel"; break;
-			case 2: return "SkelOld"; break;
-			case 3: return "monkey"; break;
+		case 0:
+			return "crabBig";
+			break;
+		case 1:
+			return "Skel";
+			break;
+		case 2:
+			return "SkelOld";
+			break;
+		case 3:
+			return "monkey";
+			break;
 		}
 	}
 
-	if(iEtap == 2 || iEtap == 3 || iEtap == 4)
+	if (iEtap == 2 || iEtap == 3 || iEtap == 4)
 	{
-		if(sBack == "Skel" || sBack == "SkelOld")
+		if (sBack == "Skel" || sBack == "SkelOld")
 		{
-			switch(rand(1))
+			switch (rand(1))
 			{
-				case 0: return "crabBig"; break;
-				case 1: return "monkey"; break;
+			case 0:
+				return "crabBig";
+				break;
+			case 1:
+				return "monkey";
+				break;
 			}
 		}
 		else
 		{
-			if(sBack == "crabBig")
+			if (sBack == "crabBig")
 			{
-				switch(rand(2))
+				switch (rand(2))
 				{
-					case 0: return "monkey"; break;
-					case 1: return "Skel"; break;
-					case 2: return "SkelOld"; break;
+				case 0:
+					return "monkey";
+					break;
+				case 1:
+					return "Skel";
+					break;
+				case 2:
+					return "SkelOld";
+					break;
 				}
 			}
 			else
 			{
-				if(sBack == "monkey")
+				if (sBack == "monkey")
 				{
-					switch(rand(2))
+					switch (rand(2))
 					{
-						case 0: return "crabBig"; break;
-						case 1: return "Skel"; break;
-						case 2: return "SkelOld"; break;
+					case 0:
+						return "crabBig";
+						break;
+					case 1:
+						return "Skel";
+						break;
+					case 2:
+						return "SkelOld";
+						break;
 					}
 				}
 			}
 		}
 	}
 
-	if(iEtap == 5)
+	if (iEtap == 5)
 	{
-		if(rand(2) > 1)
+		if (rand(2) > 1)
 		{
 			return "SkelKing";
 		}
@@ -3204,17 +3688,29 @@ int ArenaEtapsGetCostForEtap(string sType, int iQuantity)
 	int iType = 0;
 	int iCost = 0;
 
-	iRank *= 100 + (sti(PChar.rank)*2);
-	iLeader *= 200 + (sti(PChar.rank)*4);
+	iRank *= 100 + (sti(PChar.rank) * 2);
+	iLeader *= 200 + (sti(PChar.rank) * 4);
 
-	switch(sType)
+	switch (sType)
 	{
-		case "crabBig": iType = 40 + (sti(PChar.rank)*20); break;
-		case "Skel": iType = 220 + (sti(PChar.rank)*110); break;
-		case "SkelOld": iType = 220 + (sti(PChar.rank)*110); break;
-		case "monkey": iType = 55 + (sti(PChar.rank)*25); break;
-		case "crabBigKing": iType = 4000 + (sti(PChar.rank)*2000); break;
-		case "SkelKing": iType = 5000 + (sti(PChar.rank)*2500); break;
+	case "crabBig":
+		iType = 40 + (sti(PChar.rank) * 20);
+		break;
+	case "Skel":
+		iType = 220 + (sti(PChar.rank) * 110);
+		break;
+	case "SkelOld":
+		iType = 220 + (sti(PChar.rank) * 110);
+		break;
+	case "monkey":
+		iType = 55 + (sti(PChar.rank) * 25);
+		break;
+	case "crabBigKing":
+		iType = 4000 + (sti(PChar.rank) * 2000);
+		break;
+	case "SkelKing":
+		iType = 5000 + (sti(PChar.rank) * 2500);
+		break;
 	}
 
 	//iQuantity += rand(2);
@@ -3227,23 +3723,23 @@ int ArenaEtapsGetCostForEtap(string sType, int iQuantity)
 
 void ClearArena(string qName)
 {
-	if(CheckAttribute(PChar, "Arena"))
+	if (CheckAttribute(PChar, "Arena"))
 	{
 		DeleteAttribute(PChar, "Arena");
 	}
-	if(CheckAttribute(PChar, "ArenaAction"))
+	if (CheckAttribute(PChar, "ArenaAction"))
 	{
 		DeleteAttribute(PChar, "ArenaAction");
 	}
-	if(CheckAttribute(PChar, "ArenaEtapsAction"))
+	if (CheckAttribute(PChar, "ArenaEtapsAction"))
 	{
 		DeleteAttribute(PChar, "ArenaEtapsAction");
 	}
-	if(CheckAttribute(PChar, "ArenaTournament"))
+	if (CheckAttribute(PChar, "ArenaTournament"))
 	{
 		DeleteAttribute(PChar, "ArenaTournament");
 	}
-	if(CheckAttribute(PChar, "ArenaOdds"))
+	if (CheckAttribute(PChar, "ArenaOdds"))
 	{
 		DeleteAttribute(PChar, "ArenaOdds");
 	}
@@ -3261,7 +3757,7 @@ void ClearArena(string qName)
 void ClearArenaCharacters()
 {
 	ref member;
-	if(GetCharacterIndex("Arena Duel Characer") != -1)
+	if (GetCharacterIndex("Arena Duel Characer") != -1)
 	{
 		member = &Characters[GetCharacterIndex("Arena Duel Characer")];
 		member.LifeDay = 0;
@@ -3270,10 +3766,10 @@ void ClearArenaCharacters()
 	int i = 0;
 
 	string sMember = "";
-	for(i = 1; i <= 7; i++)
+	for (i = 1; i <= 7; i++)
 	{
 		sMember = "Arena_Tournament_Character_" + i;
-		if(GetCharacterIndex(sMember) == -1)
+		if (GetCharacterIndex(sMember) == -1)
 		{
 			continue;
 		}
@@ -3282,20 +3778,40 @@ void ClearArenaCharacters()
 		member.LifeDay = 0;
 	}
 
-
 	int iStage = 1;
 	int iCount = 1;
-	for(i = 1; i <= 6; i++)
+	for (i = 1; i <= 6; i++)
 	{
-		switch(i)
+		switch (i)
 		{
-			case 1: iStage = 1; iCount = 1; break; case 2: iStage = 1; iCount = 2; break;
-			case 3: iStage = 2; iCount = 1; break; case 4: iStage = 2; iCount = 2; break;
-			case 5: iStage = 3; iCount = 1; break; case 6: iStage = 3; iCount = 2; break;
+		case 1:
+			iStage = 1;
+			iCount = 1;
+			break;
+		case 2:
+			iStage = 1;
+			iCount = 2;
+			break;
+		case 3:
+			iStage = 2;
+			iCount = 1;
+			break;
+		case 4:
+			iStage = 2;
+			iCount = 2;
+			break;
+		case 5:
+			iStage = 3;
+			iCount = 1;
+			break;
+		case 6:
+			iStage = 3;
+			iCount = 2;
+			break;
 		}
 
 		sMember = "Arena_Odds_Duel_" + iStage + "_Character_" + iCount;
-		if(GetCharacterIndex(sMember) == -1)
+		if (GetCharacterIndex(sMember) == -1)
 		{
 			continue;
 		}
@@ -3307,23 +3823,23 @@ void ClearArenaCharacters()
 
 void ClearArenaTime(string qName)
 {
-	if(CheckAttribute(PChar, "Arena"))
+	if (CheckAttribute(PChar, "Arena"))
 	{
 		DeleteAttribute(PChar, "Arena");
 	}
-	if(CheckAttribute(PChar, "ArenaAction"))
+	if (CheckAttribute(PChar, "ArenaAction"))
 	{
 		DeleteAttribute(PChar, "ArenaAction");
 	}
-	if(CheckAttribute(PChar, "ArenaEtapsAction"))
+	if (CheckAttribute(PChar, "ArenaEtapsAction"))
 	{
 		DeleteAttribute(PChar, "ArenaEtapsAction");
 	}
-	if(CheckAttribute(PChar, "ArenaTournament"))
+	if (CheckAttribute(PChar, "ArenaTournament"))
 	{
 		DeleteAttribute(PChar, "ArenaTournament");
 	}
-	if(CheckAttribute(PChar, "ArenaOdds"))
+	if (CheckAttribute(PChar, "ArenaOdds"))
 	{
 		DeleteAttribute(PChar, "ArenaOdds");
 	}
@@ -3337,17 +3853,17 @@ void ClearArenaTime(string qName)
 //-------------------------------------------------------------------------------
 void CreateArenaCitizens(aref loc)
 {
-	if(!CheckAttribute(loc, "id"))
+	if (!CheckAttribute(loc, "id"))
 	{
 		return;
 	}
 
-	if(loc.id != "FencingTown_Fort")
+	if (loc.id != "FencingTown_Fort")
 	{
 		return;
 	}
 
-	if(isLocationHasCitizens(loc.id))
+	if (isLocationHasCitizens(loc.id))
 	{
 		return;
 	}
@@ -3373,9 +3889,9 @@ void CreateArenaCitizens(aref loc)
 	sModels[11] = "officer_10";
 
 	int iRank = GetRank(PChar, MOD_SKILL_ENEMY_RATE);
-	int iQuantity = rand(5)+6;
+	int iQuantity = rand(5) + 6;
 
-	for(int i=1; i <= iQuantity; i++)
+	for (int i = 1; i <= iQuantity; i++)
 	{
 		iCharacter = NPC_GenerateCharacter("FencingTown_Citizen_" + i, sModels[i], "man", "man", iRank, iNation, 2, true);
 		chr = &Characters[iCharacter];
@@ -3384,7 +3900,7 @@ void CreateArenaCitizens(aref loc)
 		chr.Dialog.FileName = "FencingTown_dialog.c";
 		chr.Dialog.CurrentNode = "First Time";
 
-		if(rand(1) == 1)
+		if (rand(1) == 1)
 		{
 			chr.greeting = "cit_common1";
 		}
@@ -3402,7 +3918,7 @@ void CreateArenaCitizens(aref loc)
 		SetFoodToCharacter(chr, 3, 20);
 	}
 
-	if(GetCharacterIndex("FencingTown_Head") == -1)
+	if (GetCharacterIndex("FencingTown_Head") == -1)
 	{
 		SetFencingTownHead();
 	}
@@ -3446,10 +3962,10 @@ void CreateFireInArena()
 	z = 2.95;
 
 	step = 42;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		x += 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Вторая часть
@@ -3457,10 +3973,10 @@ void CreateFireInArena()
 	z = 3.3012;
 
 	step = 40;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		z += 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Третья часть
@@ -3468,10 +3984,10 @@ void CreateFireInArena()
 	z = 7.1013;
 
 	step = 40;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		x += 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Четвёртая часть
@@ -3479,10 +3995,10 @@ void CreateFireInArena()
 	z = 6.8021;
 
 	step = 123;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		z -= 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Пятая часть
@@ -3490,10 +4006,10 @@ void CreateFireInArena()
 	z = -5.1131;
 
 	step = 130;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		x -= 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Шестая часть
@@ -3501,10 +4017,10 @@ void CreateFireInArena()
 	z = -5.053;
 
 	step = 126;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		z += 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Седьмая часть
@@ -3512,10 +4028,10 @@ void CreateFireInArena()
 	z = 7.0759;
 
 	step = 40;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		x += 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// Восьмая часть
@@ -3523,18 +4039,20 @@ void CreateFireInArena()
 	z = 7.0156;
 
 	step = 40;
-	for(n = 1; n <= step; n++)
+	for (n = 1; n <= step; n++)
 	{
 		z -= 0.1;
-		CreateParticleSystem("fire", x, y, z,-1.57,0,0,0);
+		CreateParticleSystem("fire", x, y, z, -1.57, 0, 0, 0);
 	}
 
 	// "Фонарики"
-	x = -4.3352; y = 17.887; z = -4.6905;
-	CreateParticleSystem("torch", x, y, z,-1.57,0,0,0);
+	x = -4.3352;
+	y = 17.887;
+	z = -4.6905;
+	CreateParticleSystem("torch", x, y, z, -1.57, 0, 0, 0);
 
 	x = 4.4049;
-	CreateParticleSystem("torch", x, y, z,-1.57,0,0,0);
+	CreateParticleSystem("torch", x, y, z, -1.57, 0, 0, 0);
 }
 
 void CreateArenaFightPeople()
@@ -3544,22 +4062,28 @@ void CreateArenaFightPeople()
 
 	ref chr;
 	string sType, sLocator, sAnimation;
-	for(int i=1; i <= iCitizenQuantity; i++)
+	for (int i = 1; i <= iCitizenQuantity; i++)
 	{
-		switch(rand(2))
+		switch (rand(2))
 		{
-			case 0: sType = "pirate"; break;
-			case 1: sType = "citizen"; break;
-			case 2: sType = "shipowner"; break;
+		case 0:
+			sType = "pirate";
+			break;
+		case 1:
+			sType = "citizen";
+			break;
+		case 2:
+			sType = "shipowner";
+			break;
 		}
 
-		if(rand(1) == 0)
+		if (rand(1) == 0)
 		{
 			sAnimation = "Sit_Idle02";
 		}
 		else
 		{
-			sAnimation = "Sit2_Idle0" + (rand(6)+1);
+			sAnimation = "Sit2_Idle0" + (rand(6) + 1);
 		}
 
 		chr = GetCharacter(NPC_GeneratePhantomCharacter(sType, PIRATE, MAN, 0));
@@ -3580,15 +4104,19 @@ void CreateArenaFightPeople()
 		LAi_group_MoveCharacter(chr, "PIRATE_CITIZENS");
 	}
 
-	for(int n=1; n <= iTraderQuantity; n++)
+	for (int n = 1; n <= iTraderQuantity; n++)
 	{
-		switch(rand(1))
+		switch (rand(1))
 		{
-			case 0: sType = "trader"; break;
-			case 1: sType = "usurer"; break;
+		case 0:
+			sType = "trader";
+			break;
+		case 1:
+			sType = "usurer";
+			break;
 		}
 
-		sAnimation = "idle_" + (rand(10)+1);
+		sAnimation = "idle_" + (rand(10) + 1);
 
 		chr = GetCharacter(NPC_GeneratePhantomCharacter(sType, PIRATE, MAN, 0));
 		RemoveCharacterEquip(chr, GUN_ITEM_TYPE);
@@ -3610,22 +4138,22 @@ void CreateArenaFightPeople()
 
 string GetLocatorForCitizenInArenaFight()
 {
-	int iRand = rand(117)+1;
+	int iRand = rand(117) + 1;
 	string sLocator = "";
 
-	for(int i=1; i <= 118; i++)
+	for (int i = 1; i <= 118; i++)
 	{
-		if(i == iRand)
+		if (i == iRand)
 		{
 			sLocator = "arena_sit_" + i;
-			if(!CheckAttribute(PChar, "Arena.Locators." + sLocator))
+			if (!CheckAttribute(PChar, "Arena.Locators." + sLocator))
 			{
 				PChar.Arena.Locators.(sLocator) = "use";
 				return sLocator;
 			}
 			else
 			{
-				iRand = rand(117)+1;
+				iRand = rand(117) + 1;
 				i = 1;
 			}
 		}
@@ -3635,22 +4163,22 @@ string GetLocatorForCitizenInArenaFight()
 
 string GetLocatorForTraderInArenaFight()
 {
-	int iRand = rand(90)+1;
+	int iRand = rand(90) + 1;
 	string sLocator = "";
 
-	for(int i=1; i <= 91; i++)
+	for (int i = 1; i <= 91; i++)
 	{
-		if(i == iRand)
+		if (i == iRand)
 		{
 			sLocator = "arena_stay_" + i;
-			if(!CheckAttribute(PChar, "Arena.Locators." + sLocator))
+			if (!CheckAttribute(PChar, "Arena.Locators." + sLocator))
 			{
 				PChar.Arena.Locators.(sLocator) = "use";
 				return sLocator;
 			}
 			else
 			{
-				iRand = rand(90)+1;
+				iRand = rand(90) + 1;
 				i = 1;
 			}
 		}
@@ -3664,29 +4192,29 @@ string GetLocatorForTraderInArenaFight()
 void CheckAcademyAndOtherLoosers(ref chr)
 {
 	bool ok = CheckAttribute(chr, "LandAcademy") || CheckAttribute(chr, "ArenaAction") || CheckAttribute(chr, "ArenaEtapsAction") || CheckAttribute(chr, "ArenaTournament") || CheckAttribute(chr, "ArenaOdds");
-	if(ok)
+	if (ok)
 	{
-		if(CheckAttribute(chr, "LandAcademy"))
+		if (CheckAttribute(chr, "LandAcademy"))
 		{
 			AcademyLandSetLooser(chr);
 			return;
 		}
-		if(CheckAttribute(chr, "ArenaAction"))
+		if (CheckAttribute(chr, "ArenaAction"))
 		{
 			ArenaDuelSetLooser(chr);
 			return;
 		}
-		if(CheckAttribute(chr, "ArenaEtapsAction"))
+		if (CheckAttribute(chr, "ArenaEtapsAction"))
 		{
 			ArenaEtapsSetLooser(chr);
 			return;
 		}
-		if(CheckAttribute(chr, "ArenaTournament"))
+		if (CheckAttribute(chr, "ArenaTournament"))
 		{
 			ArenaTournamentSetLooser(chr);
 			return;
 		}
-		if(CheckAttribute(chr, "ArenaOdds"))
+		if (CheckAttribute(chr, "ArenaOdds"))
 		{
 			ArenaOddsSetLooser(chr);
 			return;
@@ -3716,18 +4244,17 @@ void ArenaBileterGiveItems(ref chr)
 	int i = 0;
 
 	string sItem = "Food1";
-	for(i=1; i<=5; i++)
+	for (i = 1; i <= 5; i++)
 	{
 		sItem = "Food" + i;
 		d = (20 / i) + rand(5);
 		TakeNItems(chr, sItem, d);
 	}
 
-	for(i=1; i<=5; i++)
+	for (i = 1; i <= 5; i++)
 	{
 		sItem = "potion" + i;
 		d = (20 / i) + rand(5);
 		TakeNItems(chr, sItem, d);
 	}
 }
-

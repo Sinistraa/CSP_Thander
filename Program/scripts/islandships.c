@@ -16,7 +16,7 @@ void GenerateIslandShips(string sIslandID)
 
 	int MainDefenderChar = -1;
 
-	for (int i = 0; i< MAX_COLONIES; i++)
+	for (int i = 0; i < MAX_COLONIES; i++)
 	{
 		iCount = 1;
 		MainDefenderChar = -1;
@@ -29,7 +29,7 @@ void GenerateIslandShips(string sIslandID)
 				if (CheckAttribute(&colonies[i], "AlreadyGen")) //охрана
 				{
 					int check = 0;
-					for (int j=GlobalCharacters; j<MAX_CHARACTERS; j++)
+					for (int j = GlobalCharacters; j < MAX_CHARACTERS; j++)
 					{
 						if (CheckAttribute(&characters[j], "fortDefender") && CheckAttribute(&characters[j], "IslandShips") && characters[j].IslandShips == colonies[i].id)
 						{
@@ -43,21 +43,23 @@ void GenerateIslandShips(string sIslandID)
 						} */
 					}
 					//Log_Info(""+check);
-					if (check == 0) DeleteAttribute(&colonies[i],"AlreadyGen");
+					if (check == 0)
+						DeleteAttribute(&colonies[i], "AlreadyGen");
 				}
 				if (!CheckAttribute(&colonies[i], "AlreadyGen")) //охрана
 				{
-                    //SaveCurrentNpcQuestDateParam(&colonies[i], "GenShipDate"); // дата заполнения
+					//SaveCurrentNpcQuestDateParam(&colonies[i], "GenShipDate"); // дата заполнения
 					iNation = sti(Colonies[i].nation);
 
 					FortDefender = false;
 
-					if (defendersCount != 0);
+					if (defendersCount != 0)
+						;
 					{
-						iShipsQuantity = rand(2)+defendersCount;
-						if (CheckAttribute(FortChref,"Fort.Mode"))
+						iShipsQuantity = rand(2) + defendersCount;
+						if (CheckAttribute(FortChref, "Fort.Mode"))
 						{
-							if(sti(FortChref.Fort.Mode) == FORT_ABORDAGE || sti(FortChref.Fort.Mode) == FORT_DEAD || iNation == PIRATE)
+							if (sti(FortChref.Fort.Mode) == FORT_ABORDAGE || sti(FortChref.Fort.Mode) == FORT_DEAD || iNation == PIRATE)
 							{
 								iShipsQuantity = 0;
 								continue;
@@ -67,41 +69,52 @@ void GenerateIslandShips(string sIslandID)
 						for (j = 0; j < iShipsQuantity; j++)
 						{
 							sTemp = "off_" + NationShortName(iNation) + "_" + i;
-							if(defendersCount > 0) iChar = NPC_GenerateCharacter("FortDefender"+i+j, sTemp, "man","spy", 30, iNation, -1, true);
-							else iChar = NPC_GenerateCharacter("Officer"+i + (j-defendersCount), "pirate", "man","spy", sti(pchar.rank) + 5, iNation, -1, true);
+							if (defendersCount > 0)
+								iChar = NPC_GenerateCharacter("FortDefender" + i + j, sTemp, "man", "spy", 30, iNation, -1, true);
+							else
+								iChar = NPC_GenerateCharacter("Officer" + i + (j - defendersCount), "pirate", "man", "spy", sti(pchar.rank) + 5, iNation, -1, true);
 
-							if(defendersCount > 0) FortDefender = true;
-							else FortDefender = false;
+							if (defendersCount > 0)
+								FortDefender = true;
+							else
+								FortDefender = false;
 
-
-							if(defendersCount > 0 && MainDefenderChar == -1) MainDefenderChar = iChar;
+							if (defendersCount > 0 && MainDefenderChar == -1)
+								MainDefenderChar = iChar;
 							chr = GetCharacter(iChar);
 
-							if(defendersCount > 0) CreateFortDefenders(chr, iNation);
-							else chr.Ship.Type = GenerateShipExt(28 + rand (4), 1, chr);
+							if (defendersCount > 0)
+								CreateFortDefenders(chr, iNation);
+							else
+								chr.Ship.Type = GenerateShipExt(28 + rand(4), 1, chr);
 
 							PlaceCharacterShip(iChar, iNation, sIslandID, i, FortDefender, MainDefenderChar);
 
 							characters[iChar].IslandShips = Colonies[i].id; // номер города, чтоб тереть по захвату города to_do
 							if (iNation == PIRATE)
 							{ // нащ город
-								characters[iChar].AlwaysFriend        = true;
+								characters[iChar].AlwaysFriend = true;
 								SetCharacterRelationBoth(iChar, GetMainCharacterIndex(), RELATION_FRIEND);
 							}
 
-							if(defendersCount > 0) characters[iChar].Ship.Mode = "war";
-							else characters[iChar].Ship.Mode = "pirate";
+							if (defendersCount > 0)
+								characters[iChar].Ship.Mode = "war";
+							else
+								characters[iChar].Ship.Mode = "pirate";
 
-							if (rand(4) == 1 || GetCharacterShipClass(&characters[iChar]) == 1) SetRandGeraldSail(chr, iNation);
+							if (rand(4) == 1 || GetCharacterShipClass(&characters[iChar]) == 1)
+								SetRandGeraldSail(chr, iNation);
 
-							characters[iChar].AlwaysSandbankManeuver = true;  // тупым запрет тонуть об берег
+							characters[iChar].AlwaysSandbankManeuver = true; // тупым запрет тонуть об берег
 
 							characters[iChar].AnalizeShips = true; //анализить вражеские корабли
 
 							characters[iChar].location.from_sea = colonies[i].from_sea;
 
-							if(defendersCount > 0) SetCaptanModelByEncType(chr, "war");
-							else SetCaptanModelByEncType(chr, "pirate");
+							if (defendersCount > 0)
+								SetCaptanModelByEncType(chr, "war");
+							else
+								SetCaptanModelByEncType(chr, "pirate");
 
 							Fantom_SetCannons(chr, characters[iChar].Ship.Mode);
 
@@ -111,57 +124,58 @@ void GenerateIslandShips(string sIslandID)
 
 							SetBaseShipData(chr);
 
-							AddItems(chr,"potion2",10);
+							AddItems(chr, "potion2", 10);
 
-							if(defendersCount > 0) SetCrewQuantityFull(chr);
-							else SetCrewQuantity(chr, GetOptCrewQuantity(chr));
+							if (defendersCount > 0)
+								SetCrewQuantityFull(chr);
+							else
+								SetCrewQuantity(chr, GetOptCrewQuantity(chr));
 
-
-
-							if(defendersCount < 0) SetSeaFantomParam(chr, "pirate");
+							if (defendersCount < 0)
+								SetSeaFantomParam(chr, "pirate");
 
 							Ship_FlagRefresh(chr);
 
-
-							if(defendersCount > 0)
+							if (defendersCount > 0)
 							{
 								SelAllPerksToNotPchar(chr);
-								if(CheckAttribute(chr,"perks.list.ShipEscape")) DeleteAttribute(chr,"perks.list.ShipEscape");
-								switch(rand(2))
+								if (CheckAttribute(chr, "perks.list.ShipEscape"))
+									DeleteAttribute(chr, "perks.list.ShipEscape");
+								switch (rand(2))
 								{
-									case 0:
-										GiveItem2Character(chr,"blade32");
-										EquipCharacterByItem(chr,"blade32");
+								case 0:
+									GiveItem2Character(chr, "blade32");
+									EquipCharacterByItem(chr, "blade32");
 									break;
-									case 1:
-										GiveItem2Character(chr,"blade28");
-										EquipCharacterByItem(chr,"blade28");
+								case 1:
+									GiveItem2Character(chr, "blade28");
+									EquipCharacterByItem(chr, "blade28");
 									break;
-									case 2:
-										GiveItem2Character(chr,"blade26");
-										EquipCharacterByItem(chr,"blade26");
+								case 2:
+									GiveItem2Character(chr, "blade26");
+									EquipCharacterByItem(chr, "blade26");
 									break;
 								}
 								SetSelfSkill(chr, 100, 100, 100, 100, 90);
 								SetShipSkill(chr, 90, 90, 90, 90, 100, 90, 90, 90, 90);
 							}
 
-							if(defendersCount > 0) defendersCount = defendersCount - 1;
+							if (defendersCount > 0)
+								defendersCount = defendersCount - 1;
 						}
 					}
-
 				}
 				if (!CheckAttribute(&colonies[i], "GenShipDate") || GetNpcQuestPastDayParam(&colonies[i], "GenShipDate") > 0) //торгаши
 				{
-                    SaveCurrentNpcQuestDateParam(&colonies[i], "GenShipDate"); // дата заполнения
+					SaveCurrentNpcQuestDateParam(&colonies[i], "GenShipDate"); // дата заполнения
 					iNation = sti(Colonies[i].nation);
 
 					FortDefender = false;
 
 					iShipsQuantity = rand(2);
-					if (CheckAttribute(FortChref,"Fort.Mode"))
+					if (CheckAttribute(FortChref, "Fort.Mode"))
 					{
-						if(sti(FortChref.Fort.Mode) == FORT_ABORDAGE || sti(FortChref.Fort.Mode) == FORT_DEAD || iNation == PIRATE)
+						if (sti(FortChref.Fort.Mode) == FORT_ABORDAGE || sti(FortChref.Fort.Mode) == FORT_DEAD || iNation == PIRATE)
 						{
 							iShipsQuantity = 0;
 							continue;
@@ -178,7 +192,7 @@ void GenerateIslandShips(string sIslandID)
 
 						if (iNation == PIRATE)
 						{ // нащ город
-							characters[iChar].AlwaysFriend        = true;
+							characters[iChar].AlwaysFriend = true;
 							SetCharacterRelationBoth(iChar, GetMainCharacterIndex(), RELATION_FRIEND);
 						}
 
@@ -188,18 +202,18 @@ void GenerateIslandShips(string sIslandID)
 						SetBaseShipData(chr);
 						SetCrewQuantity(chr, GetOptCrewQuantity(chr));
 
-						if (rand(4) == 1 || GetCharacterShipClass(&characters[iChar]) == 1) SetRandGeraldSail(chr, sti(characters[iChar].Nation));
+						if (rand(4) == 1 || GetCharacterShipClass(&characters[iChar]) == 1)
+							SetRandGeraldSail(chr, sti(characters[iChar].Nation));
 						characters[iChar].AlwaysSandbankManeuver = true;
 						characters[iChar].AnalizeShips = true; //анализить вражеские корабли
 						characters[iChar].location.from_sea = colonies[i].from_sea;
 
-						SetCaptanModelByEncType(chr, characters[iChar].Ship.Mode);//
+						SetCaptanModelByEncType(chr, characters[iChar].Ship.Mode); //
 
 						Fantom_SetCannons(chr, characters[iChar].Ship.Mode);
 						Fantom_SetBalls(chr, characters[iChar].Ship.Mode);
 						Fantom_SetGoods(chr, characters[iChar].Ship.Mode);
 						SetSeaFantomParam(chr, characters[iChar].Ship.Mode);
-
 
 						Ship_FlagRefresh(chr);
 					}
@@ -215,14 +229,14 @@ void PlaceCharacterShip(int iChar, int iNation, string sIslandID, int iColonyIdx
 
 	ref chr = GetCharacter(iChar);
 	ref FortChref = GetFortCommander(colonies[iColonyIdx].id);
-	string sGroup1 = "Fort_"+colonies[iColonyIdx].id;
+	string sGroup1 = "Fort_" + colonies[iColonyIdx].id;
 	Group_AddCharacter(sGroup1, FortChref.id);
 	Group_SetGroupCommander(sGroup1, FortChref.id);
 
 	string sGroup = "IslandGroup" + iChar;
 	string sLocatorGroup = "IslandShips" + iColonyNum;
-	string sLocator = "Ship_"+(rand(5)+1);
-	if(isFortDefender)
+	string sLocator = "Ship_" + (rand(5) + 1);
+	if (isFortDefender)
 	{
 		sLocator = "Ship_" + iCount;
 		iCount++;
@@ -237,7 +251,7 @@ void PlaceCharacterShip(int iChar, int iNation, string sIslandID, int iColonyIdx
 	 */
 	Group_AddCharacter(sGroup, characters[iChar].id);
 
-	if(isFortDefender)
+	if (isFortDefender)
 	{
 		//Group_SetGroupCommander(sGroup, FortChref.id);
 		Group_SetGroupCommander(sGroup, characters[defendersGroup].id);
@@ -253,7 +267,7 @@ void PlaceCharacterShip(int iChar, int iNation, string sIslandID, int iColonyIdx
 	//trace("sLocatorGroup is " + sLocatorGroup + " sLocator is " + sLocator);
 	int iTask = rand(1);
 	float x, z;
-	if(isFortDefender)
+	if (isFortDefender)
 	{
 		characters[iChar].WatchFort = true;
 		characters[iChar].fortDefender = 1;
@@ -285,7 +299,7 @@ void ClearIslandShips(string _city)
 {
 	if (!bSeaActive)
 	{
-		for (int i=GlobalCharacters; i<MAX_CHARACTERS; i++)
+		for (int i = GlobalCharacters; i < MAX_CHARACTERS; i++)
 		{
 			// отдельный код зачистки boal -->
 			if (CheckAttribute(&characters[i], "IslandShips") && characters[i].IslandShips == _city)

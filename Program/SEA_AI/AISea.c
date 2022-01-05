@@ -1,5 +1,5 @@
-object	Sea;
-object	ShipLights;
+object Sea;
+object ShipLights;
 
 extern void InitShipLights();
 
@@ -17,7 +17,11 @@ void DeleteSea()
 
 void CreateSea(int iExecuteLayer, int iRealizeLayer)
 {
-	if (IsEntity(&Sea)) { Trace("ERROR: Sea Already Loaded!!!"); return; }
+	if (IsEntity(&Sea))
+	{
+		Trace("ERROR: Sea Already Loaded!!!");
+		return;
+	}
 
 	CreateEntity(&Sea, "sea");
 	MoveSeaToLayers(iExecuteLayer, iRealizeLayer);
@@ -29,7 +33,8 @@ void CreateSea(int iExecuteLayer, int iRealizeLayer)
 		InitShipLights();
 		UnloadSegment("sea_ai\ShipLights.c");
 	}
-	CreateEntity(&ShipLights, "ShipLights");		ReloadProgressUpdate();
+	CreateEntity(&ShipLights, "ShipLights");
+	ReloadProgressUpdate();
 	LayerAddObject(iExecuteLayer, &ShipLights, 0);
 	LayerAddObject(iRealizeLayer, &ShipLights, -1);
 	LayerAddObject(SEA_SUNROAD, &ShipLights, -1);
@@ -48,12 +53,12 @@ void MoveSeaToLayers(int iExecuteLayer, int iRealizeLayer)
 	LayerAddObject(iRealizeLayer, &Sea, 65530);
 }
 
-#define SAIL_TO_LOCATOR			0
-#define SAIL_TO_CHARACTER		1
+#define SAIL_TO_LOCATOR 0
+#define SAIL_TO_CHARACTER 1
 
-object	SailToFader;
-int		iSailToType;
-string	sSailToString;
+object SailToFader;
+int iSailToType;
+string sSailToString;
 
 void SeaAI_SailToEndFade()
 {
@@ -64,29 +69,30 @@ void SeaAI_SailToEndFade()
 	AIBalls.Clear = "";
 
 	// reset all PLAYER_GROUP ship tracks
-	for (int i=0; i<iNumShips; i++)
+	for (int i = 0; i < iNumShips; i++)
 	{
 		int iCharIndex = Ships[i];
 		//Boyer fix
-		if (iCharIndex >= 0 && iCharIndex < TOTAL_CHARACTERS) { //Boyer fix
-			if (CheckAttribute(&Characters[iCharIndex], "SeaAI.Group.Name") && Characters[iCharIndex].SeaAI.Group.Name ==	PLAYER_GROUP) // fix
+		if (iCharIndex >= 0 && iCharIndex < TOTAL_CHARACTERS)
+		{																																//Boyer fix
+			if (CheckAttribute(&Characters[iCharIndex], "SeaAI.Group.Name") && Characters[iCharIndex].SeaAI.Group.Name == PLAYER_GROUP) // fix
 			{
 				SendMessage(&Characters[iCharIndex], "l", MSG_SHIP_RESET_TRACK);
 			}
 		}
 	}
-    // fix -->
+	// fix -->
 	ClearAllFire();
 	//PauseParticles(true);
-    // fix <--
+	// fix <--
 	switch (iSailToType)
 	{
-		case SAIL_TO_LOCATOR:
-			aref rIslLoc = FindIslandReloadLocator(pchar.Location, sSailToString);
-			SendMessage(&AISea,"lffff", AI_MESSAGE_SAIL_2_LOCATOR, stf(rIslLoc.x), stf(rIslLoc.y), stf(rIslLoc.z), stf(rIslLoc.ay));
+	case SAIL_TO_LOCATOR:
+		aref rIslLoc = FindIslandReloadLocator(pchar.Location, sSailToString);
+		SendMessage(&AISea, "lffff", AI_MESSAGE_SAIL_2_LOCATOR, stf(rIslLoc.x), stf(rIslLoc.y), stf(rIslLoc.z), stf(rIslLoc.ay));
 		break;
-		case SAIL_TO_CHARACTER:
-			SendMessage(&AISea, "laff", AI_MESSAGE_SAIL_2_CHARACTER, &Characters[sti(sSailToString)], 40.0 + frnd() * 60.0, frnd() * PIm2);
+	case SAIL_TO_CHARACTER:
+		SendMessage(&AISea, "laff", AI_MESSAGE_SAIL_2_CHARACTER, &Characters[sti(sSailToString)], 40.0 + frnd() * 60.0, frnd() * PIm2);
 		break;
 	}
 	//PauseParticles(false);
@@ -121,34 +127,33 @@ void SeaAI_SailToCharacter(int iCharacterIndex)
 // нигде не используется в скриптах
 void AISea_ReturnFromAbordage()
 {
-	MoveSeaToLayers(SEA_EXECUTE,SEA_REALIZE);
-	MoveWeatherToLayers(SEA_EXECUTE,SEA_REALIZE);
+	MoveSeaToLayers(SEA_EXECUTE, SEA_REALIZE);
+	MoveWeatherToLayers(SEA_EXECUTE, SEA_REALIZE);
 
-	LayerFreeze(REALIZE,true);
-	LayerFreeze(EXECUTE,true);
+	LayerFreeze(REALIZE, true);
+	LayerFreeze(EXECUTE, true);
 
-	LayerFreeze(SEA_EXECUTE,false);
-	LayerFreeze(SEA_REALIZE,false);
+	LayerFreeze(SEA_EXECUTE, false);
+	LayerFreeze(SEA_REALIZE, false);
 
-	Sea.MaxSeaHeight = fOldMaxSeaHeight;//50.0;
-
+	Sea.MaxSeaHeight = fOldMaxSeaHeight; //50.0;
 }
 
 void SeaAI_SwapShipsAttributes(ref refMyCharacter, ref refEnemyCharacter, bool SetShipNum) // to_do
 {
-	aref	arShipMy, arShipEnemy;
-	object	oTmp;
-	int 	curshipnum;
+	aref arShipMy, arShipEnemy;
+	object oTmp;
+	int curshipnum;
 
 	int iMyCharacterIndex = sti(refMyCharacter.index);
 	int iEnemyCharacterIndex = sti(refEnemyCharacter.index);
 
-	if(SetShipNum)
+	if (SetShipNum)
 	{
-		if (CheckAttribute(refMyCharacter,"curshipnum"))
+		if (CheckAttribute(refMyCharacter, "curshipnum"))
 		{
 			curshipnum = sti(refMyCharacter.curshipnum);
-			if (CheckAttribute(refEnemyCharacter,"curshipnum"))
+			if (CheckAttribute(refEnemyCharacter, "curshipnum"))
 			{
 				refMyCharacter.curshipnum = refEnemyCharacter.curshipnum;
 				Ships[sti(refMyCharacter.curshipnum)] = iMyCharacterIndex;
@@ -158,11 +163,11 @@ void SeaAI_SwapShipsAttributes(ref refMyCharacter, ref refEnemyCharacter, bool S
 		}
 		else
 		{
-			if (CheckAttribute(refEnemyCharacter,"curshipnum"))
+			if (CheckAttribute(refEnemyCharacter, "curshipnum"))
 			{
 				refMyCharacter.curshipnum = sti(refEnemyCharacter.curshipnum);
 				Ships[sti(refMyCharacter.curshipnum)] = sti(refMyCharacter.curshipnum);
-				DeleteAttribute(refEnemyCharacter,"curshipnum");
+				DeleteAttribute(refEnemyCharacter, "curshipnum");
 			}
 		}
 	}
@@ -171,11 +176,11 @@ void SeaAI_SwapShipsAttributes(ref refMyCharacter, ref refEnemyCharacter, bool S
 		if (CheckAttribute(refMyCharacter, "curshipnum") && CheckAttribute(refEnemyCharacter, "curshipnum"))
 		{
 			curshipnum = sti(refMyCharacter.curshipnum);
-			if (CheckAttribute(refEnemyCharacter,"curshipnum"))
+			if (CheckAttribute(refEnemyCharacter, "curshipnum"))
 			{
 				refMyCharacter.curshipnum = refEnemyCharacter.curshipnum;
 				Ships[sti(refMyCharacter.curshipnum)] = iMyCharacterIndex;
-				DeleteAttribute(refEnemyCharacter,"curshipnum");
+				DeleteAttribute(refEnemyCharacter, "curshipnum");
 			}
 		}
 	}
@@ -183,11 +188,11 @@ void SeaAI_SwapShipsAttributes(ref refMyCharacter, ref refEnemyCharacter, bool S
 	makearef(arShipMy, refMyCharacter.Ship);
 	makearef(arShipEnemy, refEnemyCharacter.Ship);
 
-	CopyAttributes(&oTmp,arShipMy);
-	DeleteAttribute(arShipMy,"");
-	CopyAttributes(arShipMy,arShipEnemy);
-	DeleteAttribute(arShipEnemy,"");
-	CopyAttributes(arShipEnemy,&oTmp);
+	CopyAttributes(&oTmp, arShipMy);
+	DeleteAttribute(arShipMy, "");
+	CopyAttributes(arShipMy, arShipEnemy);
+	DeleteAttribute(arShipEnemy, "");
+	CopyAttributes(arShipEnemy, &oTmp);
 	// оставляем старую команду на месте, иначе херилась мораль
 	/*float fExp = stf(refMyCharacter.ship.crew.experience);
 	float fMor = stf(refMyCharacter.ship.crew.morale);
@@ -207,7 +212,7 @@ bool SeaAI_SwapShipAfterAbordage(ref refMyCharacter, ref refEnemyCharacter)
 		//restore flags in case we had surrendered ship
 		Ship_FlagRefresh(&characters[sti(refMyCharacter.index)]);
 
-        Ship_FlagRefresh(&characters[sti(refEnemyCharacter.index)]);
+		Ship_FlagRefresh(&characters[sti(refEnemyCharacter.index)]);
 		RefreshBattleInterface();
 		NationUpdate();
 	}
@@ -216,8 +221,8 @@ bool SeaAI_SwapShipAfterAbordage(ref refMyCharacter, ref refEnemyCharacter)
 
 void SeaAI_SetCompanionEnemy(ref rCharacter)
 {
-	int		iCharacterIndex = sti(rCharacter.index);
-	string	sGroupName = "cmpenemy_" + rCharacter.index;
+	int iCharacterIndex = sti(rCharacter.index);
+	string sGroupName = "cmpenemy_" + rCharacter.index;
 
 	RemoveCharacterCompanion(pchar, rCharacter);
 
@@ -237,8 +242,8 @@ void SeaAI_SetCompanionEnemy(ref rCharacter)
 	Event("eSwitchPerks", "l", iCharacterIndex);
 	Event("eSwitchPerks", "l", nMainCharacterIndex);
 
-	Event(SHIP_UPDATE_PARAMETERS, "lf", iCharacterIndex, 1.0);				// Parameters
-	Event(SHIP_UPDATE_PARAMETERS, "lf", nMainCharacterIndex, 1.0);		// Parameters
+	Event(SHIP_UPDATE_PARAMETERS, "lf", iCharacterIndex, 1.0);	   // Parameters
+	Event(SHIP_UPDATE_PARAMETERS, "lf", nMainCharacterIndex, 1.0); // Parameters
 
 	UpdateRelations();
 	RefreshBattleInterface();
@@ -249,7 +254,7 @@ void SeaAI_SetCaptainFree(ref rCharacter, ref refEnemyCharacter)
 	// метод склейка SeaAI_SetOfficer2ShipAfterAbordage    и SeaAI_SetCompanionEnemy   - в начале назначим офа, потом его поругаем :)
 	if (bSeaActive)
 	{
-        int		iCharacterIndex = sti(rCharacter.index);
+		int iCharacterIndex = sti(rCharacter.index);
 		if (CheckAttribute(refEnemyCharacter, "SeaAI.Group.Name")) // fix 01/08/06 группы может не быть
 		{
 			Group_DelCharacter(refEnemyCharacter.SeaAI.Group.Name, refEnemyCharacter.id);
@@ -257,9 +262,9 @@ void SeaAI_SetCaptainFree(ref rCharacter, ref refEnemyCharacter)
 		SendMessage(&AISea, "laa", AI_MESSAGE_SET_OFFICER_2_SHIP, rCharacter, refEnemyCharacter);
 		// это мы назначили офа для ГГ, но он может бытьне оф по сути
 
-		string	sGroupName = "cmpenemy_" + rCharacter.index;
+		string sGroupName = "cmpenemy_" + rCharacter.index;
 
-        if (CheckAttribute(rCharacter, "SeaAI.Group.Name"))
+		if (CheckAttribute(rCharacter, "SeaAI.Group.Name"))
 		{
 			Group_DelCharacter(rCharacter.SeaAI.Group.Name, rCharacter.id);
 		}
@@ -275,7 +280,7 @@ void SeaAI_SetCaptainFree(ref rCharacter, ref refEnemyCharacter)
 		SetCharacterRelationBoth(iCharacterIndex, nMainCharacterIndex, RELATION_FRIEND);
 
 		Event("eSwitchPerks", "l", iCharacterIndex);
-		Event(SHIP_UPDATE_PARAMETERS, "lf", iCharacterIndex, 1.0);				// Parameters
+		Event(SHIP_UPDATE_PARAMETERS, "lf", iCharacterIndex, 1.0); // Parameters
 
 		UpdateRelations();
 		RefreshBattleInterface();
@@ -294,7 +299,7 @@ bool SeaAI_SetOfficer2ShipAfterAbordage(ref refMyCharacter, ref refEnemyCharacte
 		}
 		SendMessage(&AISea, "laa", AI_MESSAGE_SET_OFFICER_2_SHIP, refMyCharacter, refEnemyCharacter);
 		Event("eSwitchPerks", "l", iMyCharacterIndex);
-		Event(SHIP_UPDATE_PARAMETERS, "lf", iMyCharacterIndex, 1.0);		// Parameters
+		Event(SHIP_UPDATE_PARAMETERS, "lf", iMyCharacterIndex, 1.0); // Parameters
 		if (CheckAttribute(refMyCharacter, "curshipnum"))  DeleteAttribute(refMyCharacter, "curshipnum"));
 		refMyCharacter.curshipnum = sti(refEnemyCharacter.curshipnum);
 		DeleteAttribute(refEnemyCharacter, "curshipnum");
@@ -309,7 +314,7 @@ bool SeaAI_SetOfficer2ShipAfterAbordage(ref refMyCharacter, ref refEnemyCharacte
 
 int SeaAI_GetRelation(int iCharacterIndex1, int iCharacterIndex2)
 {
- 	int iRelation = RELATION_NEUTRAL;
+	int iRelation = RELATION_NEUTRAL;
 	/*if (bSeaActive)
 	{
 		SendMessage(&AISea, "laae", AI_MESSAGE_GET_RELATION, &Characters[iCharacterIndex1], &Characters[iCharacterIndex2], &iRelation);

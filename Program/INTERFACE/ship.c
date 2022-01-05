@@ -12,23 +12,23 @@ int iShipQty, iUnits, iCurGoodsIdx;
 string sMessageMode;
 void InitInterface_R(string iniName, ref _chr) // _chr нужно для читового просмотра НПС в море
 {
-    InterfaceStack.SelectMenu_node = "LaunchShipState"; // запоминаем, что звать по Ф2
+	InterfaceStack.SelectMenu_node = "LaunchShipState"; // запоминаем, что звать по Ф2
 	GameInterface.title = "titleShip";
 
 	xi_refCharacter = _chr;
 
 	FillShipsScroll();
 
-	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
-	SetEventHandler("InterfaceBreak","ProcessExitCancel",0);
-	SetEventHandler("exitCancel","ProcessExitCancel",0);
-    SetEventHandler("ievnt_command","ProcessCommandExecute",0);
-    SetEventHandler("frame","ProcessFrame",1);
-    SetEventHandler("confirmShipChangeName","confirmShipChangeName",0);
-	SetEventHandler("CheckForRename","CheckForRename",0);
-	SetEventHandler("ShowInfoWindow","ShowInfoWindow",0);
-	SetEventHandler("MouseRClickUp","HideInfoWindow",0);
+	SetEventHandler("InterfaceBreak", "ProcessExitCancel", 0);
+	SetEventHandler("exitCancel", "ProcessExitCancel", 0);
+	SetEventHandler("ievnt_command", "ProcessCommandExecute", 0);
+	SetEventHandler("frame", "ProcessFrame", 1);
+	SetEventHandler("confirmShipChangeName", "confirmShipChangeName", 0);
+	SetEventHandler("CheckForRename", "CheckForRename", 0);
+	SetEventHandler("ShowInfoWindow", "ShowInfoWindow", 0);
+	SetEventHandler("MouseRClickUp", "HideInfoWindow", 0);
 	SetEventHandler("TableSelectChange", "TableSelectChange", 0);
 	SetEventHandler("ShowItemInfo", "ShowItemInfo", 0);
 	SetEventHandler("GoodsExitCancel", "GoodsExitCancel", 0);
@@ -41,33 +41,33 @@ void InitInterface_R(string iniName, ref _chr) // _chr нужно для чит�
 	SetEventHandler("ExitCannonsMenu", "ExitCannonsMenu", 0);
 
 	SetEventHandler("ADD_ALL_BUTTON", "ADD_ALL_BUTTON", 0);
-	SetEventHandler("ADD_BUTTON","ADD_BUTTON",0);
+	SetEventHandler("ADD_BUTTON", "ADD_BUTTON", 0);
 	SetEventHandler("REMOVE_BUTTON", "REMOVE_BUTTON", 0);
 	SetEventHandler("REMOVE_ALL_BUTTON", "REMOVE_ALL_BUTTON", 0);
 	SetEventHandler("ExitPartitionWindow", "ExitPartitionWindow", 0);
 
-    XI_RegistryExitKey("IExit_F2");
-    //////////////////
-    EI_CreateFrame("SHIP_BIG_PICTURE_BORDER",156,78,366,313); // tak from SHIP_BIG_PICTURE
-    EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 161,284,361,1, 4);
-    EI_CreateFrame("SHIP_BIG_PICTURE_BORDER",20,85,134,199);
-    EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 8,225,147,1, 4);
-    EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 8,204,147,1, 4);
+	XI_RegistryExitKey("IExit_F2");
+	//////////////////
+	EI_CreateFrame("SHIP_BIG_PICTURE_BORDER", 156, 78, 366, 313); // tak from SHIP_BIG_PICTURE
+	EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 161, 284, 361, 1, 4);
+	EI_CreateFrame("SHIP_BIG_PICTURE_BORDER", 20, 85, 134, 199);
+	EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 8, 225, 147, 1, 4);
+	EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 8, 204, 147, 1, 4);
 
-    EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 657,214,789,1, 4);
-    SetNewGroupPicture("CREW_PICTURE", "SHIP_STATE_ICONS", "Crew");
-    SetNewGroupPicture("Money_PIC", "ICONS_CHAR", "Money");
+	EI_CreateHLine("SHIP_BIG_PICTURE_BORDER", 657, 214, 789, 1, 4);
+	SetNewGroupPicture("CREW_PICTURE", "SHIP_STATE_ICONS", "Crew");
+	SetNewGroupPicture("Money_PIC", "ICONS_CHAR", "Money");
 
-    SetNewGroupPicture("EXTRAHULLON", "SHIP_UPGRADES", "EXTRAHULLON");
-    SetNewGroupPicture("EXTRASAILON", "SHIP_UPGRADES", "EXTRASAILON");
-    SetNewGroupPicture("EXTRAGUNSON", "SHIP_UPGRADES", "EXTRAGUNSON");
-    SetNewGroupPicture("EXTRAHULLKRENGON", "SHIP_UPGRADES", "EXTRAHULLKRENGON");
-    SetNewGroupPicture("EXTRACAPACITYON", "SHIP_UPGRADES", "EXTRACAPACITYON");
-    SetNewGroupPicture("EXTRABIGSIDESON", "SHIP_UPGRADES", "EXTRABIGSIDESON");
+	SetNewGroupPicture("EXTRAHULLON", "SHIP_UPGRADES", "EXTRAHULLON");
+	SetNewGroupPicture("EXTRASAILON", "SHIP_UPGRADES", "EXTRASAILON");
+	SetNewGroupPicture("EXTRAGUNSON", "SHIP_UPGRADES", "EXTRAGUNSON");
+	SetNewGroupPicture("EXTRAHULLKRENGON", "SHIP_UPGRADES", "EXTRAHULLKRENGON");
+	SetNewGroupPicture("EXTRACAPACITYON", "SHIP_UPGRADES", "EXTRACAPACITYON");
+	SetNewGroupPicture("EXTRABIGSIDESON", "SHIP_UPGRADES", "EXTRABIGSIDESON");
 
-    SetFormatedText("Money_TEXT", MakeMoneyShow(sti(pchar.Money), MONEY_SIGN,MONEY_DELIVER));
+	SetFormatedText("Money_TEXT", MakeMoneyShow(sti(pchar.Money), MONEY_SIGN, MONEY_DELIVER));
 
-    GameInterface.TABLE_LIST.hr.td1.str = "Товары в трюме";
+	GameInterface.TABLE_LIST.hr.td1.str = "Товары в трюме";
 	GameInterface.TABLE_LIST.hr.td1.scale = 0.9;
 	GameInterface.TABLE_LIST.hr.td2.str = "Кол-во";
 	GameInterface.TABLE_LIST.hr.td2.scale = 0.9;
@@ -94,21 +94,21 @@ string GetShipsWeights()
 	int twaa = 0;
 	int tree = 0;
 	int cn, iShipType;
-	for(int i = 0; i < COMPANION_MAX; i++)
+	for (int i = 0; i < COMPANION_MAX; i++)
 	{
 		cn = GetCompanionIndex(xi_refCharacter, i);
-		if(cn != -1)
+		if (cn != -1)
 		{
 			iShipType = sti(characters[cn].ship.type);
-			if(iShipType != SHIP_NOTUSED)
+			if (iShipType != SHIP_NOTUSED)
 			{
-				unno += makeint(GetCargoMaxSpace(characters[cn])-GetCargoLoad(characters[cn]));
+				unno += makeint(GetCargoMaxSpace(characters[cn]) - GetCargoLoad(characters[cn]));
 				twaa += makeint(GetCargoLoad(characters[cn]));
 				tree += makeint(GetCargoMaxSpace(characters[cn]));
 			}
 		}
 	}
-	return "Дедвейт эскадры: Своб: "+unno+"ц. | Занято: "+twaa+"ц. | Макс: "+tree+"ц.";
+	return "Дедвейт эскадры: Своб: " + unno + "ц. | Занято: " + twaa + "ц. | Макс: " + tree + "ц.";
 }
 
 void ProcessExitCancel()
@@ -118,14 +118,14 @@ void ProcessExitCancel()
 
 void IDoExit(int exitCode)
 {
-	DelEventHandler("InterfaceBreak","ProcessExitCancel");
-	DelEventHandler("exitCancel","ProcessExitCancel");
-    DelEventHandler("ievnt_command","ProcessCommandExecute");
-    DelEventHandler("frame","ProcessFrame");
-    DelEventHandler("confirmShipChangeName","confirmShipChangeName");
-	DelEventHandler("CheckForRename","CheckForRename");
-	DelEventHandler("ShowInfoWindow","ShowInfoWindow");
-	DelEventHandler("MouseRClickUp","HideInfoWindow");
+	DelEventHandler("InterfaceBreak", "ProcessExitCancel");
+	DelEventHandler("exitCancel", "ProcessExitCancel");
+	DelEventHandler("ievnt_command", "ProcessCommandExecute");
+	DelEventHandler("frame", "ProcessFrame");
+	DelEventHandler("confirmShipChangeName", "confirmShipChangeName");
+	DelEventHandler("CheckForRename", "CheckForRename");
+	DelEventHandler("ShowInfoWindow", "ShowInfoWindow");
+	DelEventHandler("MouseRClickUp", "HideInfoWindow");
 	DelEventHandler("TableSelectChange", "TableSelectChange");
 	DelEventHandler("ShowItemInfo", "ShowItemInfo");
 	DelEventHandler("GoodsExitCancel", "GoodsExitCancel");
@@ -138,15 +138,15 @@ void IDoExit(int exitCode)
 	DelEventHandler("ExitCannonsMenu", "ExitCannonsMenu");
 
 	DelEventHandler("ADD_ALL_BUTTON", "ADD_ALL_BUTTON");
-	DelEventHandler("ADD_BUTTON","ADD_BUTTON");
+	DelEventHandler("ADD_BUTTON", "ADD_BUTTON");
 	DelEventHandler("REMOVE_BUTTON", "REMOVE_BUTTON");
 	DelEventHandler("REMOVE_ALL_BUTTON", "REMOVE_ALL_BUTTON");
 	DelEventHandler("ExitPartitionWindow", "ExitPartitionWindow");
 
 	interfaceResultCommand = exitCode;
-	if( CheckAttribute(&InterfaceStates,"ReloadMenuExit"))
+	if (CheckAttribute(&InterfaceStates, "ReloadMenuExit"))
 	{
-        DeleteAttribute(&InterfaceStates,"ReloadMenuExit");
+		DeleteAttribute(&InterfaceStates, "ReloadMenuExit");
 		EndCancelInterface(false);
 	}
 	else
@@ -154,212 +154,213 @@ void IDoExit(int exitCode)
 		EndCancelInterface(true);
 	}
 	//#20200329-01
-	if(bSeaActive) RefreshBattleInterface();
+	if (bSeaActive)
+		RefreshBattleInterface();
 }
 void ProcessCommandExecute()
 {
 	string comName = GetEventData();
 	string nodName = GetEventData();
-    switch(nodName)
+	switch (nodName)
 	{
-		/////  пушки -->
-        case "CANNONS_OK":
-			if(comName=="click")
-			{
-				HideCannonsMenu(); // применить уже сущ изменения
-				OnShipScrollChange();
-				Ship_ResearchCannons(xi_refCharacter);
-			}
+	/////  пушки -->
+	case "CANNONS_OK":
+		if (comName == "click")
+		{
+			HideCannonsMenu(); // применить уже сущ изменения
+			OnShipScrollChange();
+			Ship_ResearchCannons(xi_refCharacter);
+		}
 		break;
 
-		case "CANNONS_REMOVE_ALL":
-			if(comName=="click")
-			{
-			    CanonsRemoveAll();
-			}
+	case "CANNONS_REMOVE_ALL":
+		if (comName == "click")
+		{
+			CanonsRemoveAll();
+		}
 		break;
 
-		case "CANNONS_SET_ALL":
-			if(comName=="click")
-			{
-			    CanonsSetAll(xi_refCharacter);
-			}
+	case "CANNONS_SET_ALL":
+		if (comName == "click")
+		{
+			CanonsSetAll(xi_refCharacter);
+		}
 		break;
 
-		case "CANNONS_LEFT_F":
-			if(comName=="click")
-			{
-				ChangeCannonNum("fcannon", -1);
-			}
+	case "CANNONS_LEFT_F":
+		if (comName == "click")
+		{
+			ChangeCannonNum("fcannon", -1);
+		}
 		break;
-		case "CANNONS_RIGHT_F":
-			if(comName=="click")
-			{
-    			ChangeCannonNum("fcannon", 1);
-			}
-		break;
-
-		case "CANNONS_LEFT_B":
-			if(comName=="click")
-			{
-                ChangeCannonNum("bcannon", -1);
-			}
-		break;
-		case "CANNONS_RIGHT_B":
-			if(comName=="click")
-			{
-                ChangeCannonNum("bcannon", 1);
-			}
+	case "CANNONS_RIGHT_F":
+		if (comName == "click")
+		{
+			ChangeCannonNum("fcannon", 1);
+		}
 		break;
 
-		case "CANNONS_LEFT_R":
-			if(comName=="click")
-			{
-                ChangeCannonNum("rcannon", -1);
-			}
+	case "CANNONS_LEFT_B":
+		if (comName == "click")
+		{
+			ChangeCannonNum("bcannon", -1);
+		}
 		break;
-		case "CANNONS_RIGHT_R":
-			if(comName=="click")
-			{
-                ChangeCannonNum("rcannon", 1);
-			}
-		break;
-
-		case "CANNONS_LEFT_L":
-			if(comName=="click")
-			{
-                ChangeCannonNum("lcannon", -1);
-			}
-		break;
-		case "CANNONS_RIGHT_L":
-			if(comName=="click")
-			{
-                ChangeCannonNum("lcannon", 1);
-			}
-		break;
-		/////  пушки <--
-		case "CREW_MORALE_BUTTON":
-			if(comName=="click")
-			{
-			    ShowMoraleMessage();
-			}
+	case "CANNONS_RIGHT_B":
+		if (comName == "click")
+		{
+			ChangeCannonNum("bcannon", 1);
+		}
 		break;
 
-		case "PARTITION_OK":
-			if(comName=="click")
-			{
-			    DoPartitionPay();
-			}
+	case "CANNONS_LEFT_R":
+		if (comName == "click")
+		{
+			ChangeCannonNum("rcannon", -1);
+		}
+		break;
+	case "CANNONS_RIGHT_R":
+		if (comName == "click")
+		{
+			ChangeCannonNum("rcannon", 1);
+		}
 		break;
 
-		case "CREW_PARTITION":
-			if(comName=="click")
-			{
-			    ShowPartitionWindow();
-			}
+	case "CANNONS_LEFT_L":
+		if (comName == "click")
+		{
+			ChangeCannonNum("lcannon", -1);
+		}
+		break;
+	case "CANNONS_RIGHT_L":
+		if (comName == "click")
+		{
+			ChangeCannonNum("lcannon", 1);
+		}
+		break;
+	/////  пушки <--
+	case "CREW_MORALE_BUTTON":
+		if (comName == "click")
+		{
+			ShowMoraleMessage();
+		}
 		break;
 
-		case "RESORT":
-			if(comName=="click")
-			{
-				ReSortCompanions();
-			}
+	case "PARTITION_OK":
+		if (comName == "click")
+		{
+			DoPartitionPay();
+		}
 		break;
 
-		case "QTY_OK_BUTTON":
-			if(comName=="leftstep")
-			{
-	            ADD_BUTTON();
-			}
-			if(comName=="rightstep")
-			{
-	            REMOVE_BUTTON();
-			}
-			if(comName=="speedleft")
-			{
-	      		ADD_ALL_BUTTON();
-			}
-			if(comName=="speedright")
-			{
-	            REMOVE_ALL_BUTTON();
-			}
+	case "CREW_PARTITION":
+		if (comName == "click")
+		{
+			ShowPartitionWindow();
+		}
 		break;
 
-		case "QTY_CANCEL_BUTTON":
-			if(comName=="leftstep")
-			{
-	            ADD_BUTTON();
-			}
-			if(comName=="rightstep")
-			{
-	            REMOVE_BUTTON();
-			}
-			if(comName=="speedleft")
-			{
-	      		ADD_ALL_BUTTON();
-			}
-			if(comName=="speedright")
-			{
-	            REMOVE_ALL_BUTTON();
-			}
+	case "RESORT":
+		if (comName == "click")
+		{
+			ReSortCompanions();
+		}
 		break;
-		// мины 07.07.07
-		case "QTY_BOMB_BUTTON":
-			if(comName=="click")
-			{
-			    SetMineFree(xi_refCharacter, 1);
-			    iShipQty = GetCargoGoods(xi_refCharacter, GOOD_POWDER);
-			    OnShipScrollChange();
-			}
+
+	case "QTY_OK_BUTTON":
+		if (comName == "leftstep")
+		{
+			ADD_BUTTON();
+		}
+		if (comName == "rightstep")
+		{
+			REMOVE_BUTTON();
+		}
+		if (comName == "speedleft")
+		{
+			ADD_ALL_BUTTON();
+		}
+		if (comName == "speedright")
+		{
+			REMOVE_ALL_BUTTON();
+		}
 		break;
-		/////////////////////////////////////////////
-		case "I_CHARACTER_2":
-			if(comName=="click")
-			{
-			    nodName = "I_CHARACTER";
-			}
+
+	case "QTY_CANCEL_BUTTON":
+		if (comName == "leftstep")
+		{
+			ADD_BUTTON();
+		}
+		if (comName == "rightstep")
+		{
+			REMOVE_BUTTON();
+		}
+		if (comName == "speedleft")
+		{
+			ADD_ALL_BUTTON();
+		}
+		if (comName == "speedright")
+		{
+			REMOVE_ALL_BUTTON();
+		}
 		break;
-		case "I_SHIP_2":
-			if(comName=="click")
-			{
-			    nodName = "I_SHIP";
-			}
+	// мины 07.07.07
+	case "QTY_BOMB_BUTTON":
+		if (comName == "click")
+		{
+			SetMineFree(xi_refCharacter, 1);
+			iShipQty = GetCargoGoods(xi_refCharacter, GOOD_POWDER);
+			OnShipScrollChange();
+		}
 		break;
-		case "I_QUESTBOOK_2":
-			if(comName=="click")
-			{
-			    nodName = "I_QUESTBOOK";
-			}
+	/////////////////////////////////////////////
+	case "I_CHARACTER_2":
+		if (comName == "click")
+		{
+			nodName = "I_CHARACTER";
+		}
 		break;
-		case "I_TRADEBOOK_2":
-			if(comName=="click")
-			{
-			    nodName = "I_TRADEBOOK";
-			}
+	case "I_SHIP_2":
+		if (comName == "click")
+		{
+			nodName = "I_SHIP";
+		}
 		break;
-		case "I_NATIONS_2":
-			if(comName=="click")
-			{
-			    nodName = "I_NATIONS";
-			}
+	case "I_QUESTBOOK_2":
+		if (comName == "click")
+		{
+			nodName = "I_QUESTBOOK";
+		}
 		break;
-		case "I_ITEMS_2":
-			if(comName=="click")
-			{
-			    nodName = "I_ITEMS";
-			}
+	case "I_TRADEBOOK_2":
+		if (comName == "click")
+		{
+			nodName = "I_TRADEBOOK";
+		}
+		break;
+	case "I_NATIONS_2":
+		if (comName == "click")
+		{
+			nodName = "I_NATIONS";
+		}
+		break;
+	case "I_ITEMS_2":
+		if (comName == "click")
+		{
+			nodName = "I_ITEMS";
+		}
 		break;
 	}
 	// boal new menu 31.12.04 -->
 	if (nodName == "I_CHARACTER" || nodName == "I_SHIP" ||
-	    nodName == "I_QUESTBOOK" || nodName == "I_TRADEBOOK" ||
+		nodName == "I_QUESTBOOK" || nodName == "I_TRADEBOOK" ||
 		nodName == "I_NATIONS" || nodName == "I_ITEMS")
 	{
-		if(comName=="click")
+		if (comName == "click")
 		{
-            InterfaceStates.ReloadMenuExit = true;
+			InterfaceStates.ReloadMenuExit = true;
 			IDoExit(RC_INTERFACE_ANY_EXIT);
-			PostEvent("LaunchIAfterFrame",1,"sl", nodName, 2);
+			PostEvent("LaunchIAfterFrame", 1, "sl", nodName, 2);
 			return;
 		}
 	}
@@ -369,7 +370,7 @@ void ProcessCommandExecute()
 void FillShipsScroll()
 {
 	nCurScrollNum = -1;
-	if(!CheckAttribute(&GameInterface,"SHIPS_SCROLL.current"))
+	if (!CheckAttribute(&GameInterface, "SHIPS_SCROLL.current"))
 	{
 		GameInterface.SHIPS_SCROLL.current = 0;
 	}
@@ -384,39 +385,39 @@ void FillShipsScroll()
 	GameInterface.SHIPS_SCROLL.BadPic1 = "Not Used2";
 
 	int m = 0;
-	for(int i = 0; i < COMPANION_MAX; i++)
+	for (int i = 0; i < COMPANION_MAX; i++)
 	{
 		cn = GetCompanionIndex(xi_refCharacter, i);
-		if(cn != -1)
+		if (cn != -1)
 		{
 			iShipType = sti(characters[cn].ship.type);
-			if(iShipType != SHIP_NOTUSED)
+			if (iShipType != SHIP_NOTUSED)
 			{
-				attributeName = "pic" + (m+1);
+				attributeName = "pic" + (m + 1);
 				//Boyer change #20170430-03
 				//iShipType = sti(RealShips[iShipType].basetype);
 				//shipName = ShipsTypes[iShipType].Name;
 
 				ref rBaseShip = GetRealShip(iShipType);
 				iShipType = rBaseShip.basetype;
-                //#20170430-03 Companion ships are appended with a "1"
-                if(strlen(rBaseShip.Name)>2)
-                    shipName = strcut(rBaseShip.Name, 0, strlen(rBaseShip.Name)-2);
-                else
-                    shipName = "";
+				//#20170430-03 Companion ships are appended with a "1"
+				if (strlen(rBaseShip.Name) > 2)
+					shipName = strcut(rBaseShip.Name, 0, strlen(rBaseShip.Name) - 2);
+				else
+					shipName = "";
 				string shipClass = rBaseShip.Class;
 
 				GameInterface.SHIPS_SCROLL.(attributeName).character = cn;
 				//Boyer change #20170430-03
-				GameInterface.SHIPS_SCROLL.(attributeName).str1 = "#"+"Класс "+ShipsTypes[iShipType].Class;
+				GameInterface.SHIPS_SCROLL.(attributeName).str1 = "#" + "Класс " + ShipsTypes[iShipType].Class;
 				GameInterface.SHIPS_SCROLL.(attributeName).str2 = shipName;
 				GameInterface.SHIPS_SCROLL.(attributeName).img1 = "ship";
-				GameInterface.SHIPS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("SHIPS_SCROLL.ImagesGroup","SHIPS_"+shipName);
+				GameInterface.SHIPS_SCROLL.(attributeName).tex1 = FindFaceGroupNum("SHIPS_SCROLL.ImagesGroup", "SHIPS_" + shipName);
 				m++;
 			}
 			else
 			{
-				attributeName = "pic" + (m+1);
+				attributeName = "pic" + (m + 1);
 				GameInterface.SHIPS_SCROLL.(attributeName).character = cn;
 				GameInterface.SHIPS_SCROLL.(attributeName).str1 = "#";
 				GameInterface.SHIPS_SCROLL.(attributeName).str2 = "NoneBoat";
@@ -437,43 +438,43 @@ void ProcessFrame()
 	int iCharacter;
 
 	string sNode = GetCurrentNode();
-	if(sNode == "SHIPS_SCROLL")
+	if (sNode == "SHIPS_SCROLL")
 	{
-		if(sti(GameInterface.SHIPS_SCROLL.current)!= nCurScrollNum)
+		if (sti(GameInterface.SHIPS_SCROLL.current) != nCurScrollNum)
 		{
 			DeleteAttribute(&GameInterface, "TABLE_LIST.BackUp");
 			nCurScrollNum = sti(GameInterface.SHIPS_SCROLL.current);
 
-			attributeName = "pic" + (nCurScrollNum+1);
+			attributeName = "pic" + (nCurScrollNum + 1);
 
 			iCharacter = sti(GameInterface.SHIPS_SCROLL.(attributeName).character);
 
-			if(iCharacter > 0)
+			if (iCharacter > 0)
 			{
 				string sChrId = characters[iCharacter].id;
 
 				xi_refCharacter = characterFromID(sChrId);
-				shipIndex= nCurScrollNum+ 1;
-				if (shipIndex< 0)
+				shipIndex = nCurScrollNum + 1;
+				if (shipIndex < 0)
 				{
-					shipIndex= 0;
+					shipIndex = 0;
 				}
 				if (sti(xi_refCharacter.ship.type) == SHIP_NOTUSED)
 				{
-					shipIndex= -1;
+					shipIndex = -1;
 				}
 				// boal оптимизация скилов -->
-			    DelBakSkillAttr(xi_refCharacter);
-			    ClearCharacterExpRate(xi_refCharacter);
-			    RefreshCharacterSkillExpRate(xi_refCharacter);
+				DelBakSkillAttr(xi_refCharacter);
+				ClearCharacterExpRate(xi_refCharacter);
+				RefreshCharacterSkillExpRate(xi_refCharacter);
 
-			    SetEnergyToCharacter(xi_refCharacter);
-			    // boal оптимизация скилов <--
+				SetEnergyToCharacter(xi_refCharacter);
+				// boal оптимизация скилов <--
 				OnShipScrollChange();
 			}
 			else
 			{
-				shipIndex= -1;
+				shipIndex = -1;
 			}
 			return;
 		}
@@ -483,10 +484,10 @@ void OnShipScrollChange()
 {
 	SetNewPicture("MAIN_CHARACTER_PICTURE", "interfaces\portraits\128\face_" + xi_refCharacter.FaceId + ".tga");
 	SetFormatedText("HERO_NAME", GetFullName(xi_refCharacter));
-	SetFormatedText("HERO_RANK",xi_refCharacter.Rank);
+	SetFormatedText("HERO_RANK", xi_refCharacter.Rank);
 	// нулим все формы, тк корабля может не быть
-	SetFormatedText("SHIP_RANK","");
-	SetFormatedText("CREW_QTY","");
+	SetFormatedText("SHIP_RANK", "");
+	SetFormatedText("CREW_QTY", "");
 	SetFormatedText("FOOD", "");
 	SetFormatedText("FOOD_SHIP", "");
 	SetFormatedText("MONEY_SHIP", "");
@@ -497,19 +498,19 @@ void OnShipScrollChange()
 	Table_Clear("TABLE_OTHER", false, true, false);
 	Table_Clear("TABLE_CREW", false, true, false);
 	//Ship info window
-	SetFormatedText("Money_TEXT", MakeMoneyShow(sti(pchar.Money), MONEY_SIGN,MONEY_DELIVER));
+	SetFormatedText("Money_TEXT", MakeMoneyShow(sti(pchar.Money), MONEY_SIGN, MONEY_DELIVER));
 	int iShip = sti(xi_refCharacter.ship.type);
 
 	SetNodeUsing("CREW_PARTITION", false);
 	SetNodeUsing("RESORT", false);
 	if (iShip != SHIP_NOTUSED)
 	{
-        // xi_refCharacter.ship.sp = CalculateShipSP(xi_refCharacter);
+		// xi_refCharacter.ship.sp = CalculateShipSP(xi_refCharacter);
 		// оптимизация скилов -->
-	    DelBakSkillAttr(xi_refCharacter);
-	    ClearCharacterExpRate(xi_refCharacter);
-	    RefreshCharacterSkillExpRate(xi_refCharacter);
-	    // оптимизация скилов <--
+		DelBakSkillAttr(xi_refCharacter);
+		ClearCharacterExpRate(xi_refCharacter);
+		RefreshCharacterSkillExpRate(xi_refCharacter);
+		// оптимизация скилов <--
 
 		if (CheckAttribute(xi_refCharacter, "Ship.Cargo.RecalculateCargoLoad") && sti(xi_refCharacter.Ship.Cargo.RecalculateCargoLoad))
 		{
@@ -520,7 +521,9 @@ void OnShipScrollChange()
 		string sShip = refShip.BaseName;
 		SetNewPicture("SHIP_BIG_PICTURE", "interfaces\ships\" + sShip + ".tga.tx");
 		if (!CheckAttribute(refShip,"QuestShip")) SetNodeUsing("SHIP_BIG_PICTURE_VIDEO",false);
-		else {SetNodeUsing("SHIP_BIG_PICTURE_VIDEO",true); SetNewVideoPicture("SHIP_BIG_PICTURE_VIDEO","SHIP_"+sShip);}
+		else {
+			SetNodeUsing("SHIP_BIG_PICTURE_VIDEO", true);
+			SetNewVideoPicture("SHIP_BIG_PICTURE_VIDEO", "SHIP_" + sShip);}
 
 		GameInterface.edit_box.str = xi_refCharacter.ship.name;
 		SetFormatedText("SHIP_RANK", refShip.Class);
@@ -541,17 +544,17 @@ void OnShipScrollChange()
 		SetRumShipInfo(xi_refCharacter,"FOOD");
 		if (GetRemovable(xi_refCharacter)) // считаем только своих, а то вских сопровождаемых кормить!!!
 		{
-		    // для каждого корабля учитываем класс и считаем отдельно
-		    SetFormatedText("MONEY_SHIP", "Содержание корабля: " + NewStr() + FindRussianMoneyString(GetSalaryForShip(xi_refCharacter)));
+			// для каждого корабля учитываем класс и считаем отдельно
+			SetFormatedText("MONEY_SHIP", "Содержание корабля: " + NewStr() + FindRussianMoneyString(GetSalaryForShip(xi_refCharacter)));
 		}
 		SetFormatedText("CREW_QTY", ""+GetCrewQuantity(xi_refCharacter));
 		if (GetCrewQuantity(xi_refCharacter) > GetOptCrewQuantity(xi_refCharacter) || GetCrewQuantity(xi_refCharacter) < GetMinCrewQuantity(xi_refCharacter))
 		{
-			iColor = argb(255,255,64,64);
+			iColor = argb(255, 255, 64, 64);
 		}
 		else
 		{
-			iColor = argb(255,255,255,255);
+			iColor = argb(255, 255, 255, 255);
 		}
 		SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"CREW_QTY", 8,-1,iColor);
 		SetNewGroupPicture("CREW_MORALE_PIC", "MORALE_SMALL", GetMoraleGroupPicture(stf(xi_refCharacter.ship.crew.morale)));
@@ -572,7 +575,7 @@ void OnShipScrollChange()
     	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE, "BAR_CrewMoral", 0);
     	if (xi_refCharacter.id == pchar.id)
     	{
-    		SetNodeUsing("CREW_PARTITION", true);
+			SetNodeUsing("CREW_PARTITION", true);
 			SetNodeUsing("RESORT", true);
     	}
 
@@ -589,7 +592,8 @@ void OnShipScrollChange()
 		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.HighBort")) SetNewGroupPicture("ExtraBigSidesOn", "SHIP_UPGRADES", "ExtraBigSidesOn");
 		else SetNewGroupPicture("ExtraBigSidesOn", "SHIP_UPGRADES", "ExtraBigSidesOff");
 		float SoilS, SoilM;
-		if( !CheckAttribute(xi_refCharacter, "ship.soiling")){ xi_refCharacter.ship.soiling = 0;}
+		if( !CheckAttribute(xi_refCharacter, "ship.soiling")){
+			xi_refCharacter.ship.soiling = 0;}
 		SoilS = 100*(1 - ShipSpeedBonusFromSoiling(xi_refCharacter));
 		SoilM = 100*(1 - ShipTurnRateBonusFromSoiling(xi_refCharacter));
 		string sSoil = xi_refCharacter.ship.soiling +"%";
@@ -620,16 +624,18 @@ void OnShipScrollChange()
 
 void confirmShipChangeName()
 {
-	if (shipIndex== -1) return;
+	if (shipIndex == -1)
+		return;
 	xi_refcharacter.ship.name = GameInterface.edit_box.str;
 	GameInterface.edit_box.str = xi_refcharacter.ship.name;
 	//SetCurrentNode("SHIP_INFO_TEXT");
-	if(GameInterface.EDIT_BOX.lastkey != " ") SetCurrentNode("SHIPS_SCROLL");
+	if (GameInterface.EDIT_BOX.lastkey != " ")
+		SetCurrentNode("SHIPS_SCROLL");
 }
 
 void CheckForRename()
 {
-	if (GetShipRemovable(xi_refCharacter) == true && shipIndex!= -1)
+	if (GetShipRemovable(xi_refCharacter) == true && shipIndex != -1)
 	{
 		SetCurrentNode("EDIT_BOX");
 	}
@@ -652,193 +658,205 @@ void ShowInfoWindow()
 	int iShip;
 	ref refBaseShip;
 
-	bool  bShowHint = true;
+	bool bShowHint = true;
 	switch (sCurrentNode)
 	{
-		case "SHIP_BIG_PICTURE":
-			if (shipIndex != -1)
+	case "SHIP_BIG_PICTURE":
+		if (shipIndex != -1)
+		{
+			iShip = sti(xi_refCharacter.ship.type);
+			refBaseShip = GetRealShip(iShip);
+			sHeader = XI_ConvertString(refBaseShip.BaseName);
+			sText1 = GetConvertStr(refBaseShip.BaseName, "ShipsDescribe.txt");
+		}
+		else
+		{
+			sHeader = XI_Convertstring("NoneBoat");
+			sText1 = GetConvertStr("NoneBoat", "ShipsDescribe.txt");
+		}
+		break;
+
+	case "SHIPS_SCROLL":
+		if (shipIndex != -1)
+		{
+			iShip = sti(xi_refCharacter.ship.type);
+			refBaseShip = GetRealShip(iShip);
+			sHeader = XI_ConvertString(refBaseShip.BaseName);
+			sText1 = GetConvertStr(refBaseShip.BaseName, "ShipsDescribe.txt");
+			sText2 = GetRPGText("shipChoose_hint");
+		}
+		else
+		{
+			sHeader = XI_Convertstring("NoneBoat");
+			sText1 = GetConvertStr("NoneBoat", "ShipsDescribe.txt");
+		}
+		break;
+
+	case "MAIN_CHARACTER_PICTURE":
+		// отдельная форма
+		bShowHint = false;
+		ShowRPGHint();
+		break;
+
+	case "TABLE_LIST":
+		sHeader = XI_Convertstring("Goods");
+		sText1 = GetRPGText("GoodsCargo_hint");
+		break;
+
+	case "TABLE_CREW":
+		sHeader = GetConvertStr("Crew_Exp", "ShipsDescribe.txt");
+		sText1 = GetConvertStr("Crew_Exp_hint", "ShipsDescribe.txt");
+		break;
+
+	case "CLASS_ARMOR_ICON":
+		sHeader = GetConvertStr("Class_Armor", "ShipsDescribe.txt");
+		sText1 = GetConvertStr("Class_Armor_hint", "ShipsDescribe.txt");
+		break;
+
+	case "TABLE_OTHER":
+		sHeader = XI_ConvertString(GameInterface.(CurTable).(CurRow).UserData.ID);
+		sText1 = GetConvertStr(GameInterface.(CurTable).(CurRow).UserData.ID, "ShipsDescribe.txt");
+		if (GameInterface.(CurTable).(CurRow).UserData.ID == "CannonType" && sti(xi_refCharacter.Ship.Cannons.Type) != CANNON_TYPE_NONECANNON)
+		{
+			ref Cannon = GetCannonByType(sti(xi_refCharacter.Ship.Cannons.Type));
+			sText2 = "Тип: " + XI_ConvertString(GetCannonType(sti(xi_refCharacter.Ship.Cannons.Type)));
+			sText2 = sText2 + NewStr() + "Калибр: " + XI_ConvertString("caliber" + GetCannonCaliber(sti(xi_refCharacter.Ship.Cannons.Type)));
+			sText2 = sText2 + NewStr() + "Дальность: " + sti(Cannon.FireRange);
+			sText2 = sText2 + NewStr() + "Урон: x" + FloatToString(stf(Cannon.DamageMultiply), 1);
+			sText2 = sText2 + NewStr() + "Перезарядка: " + sti(GetCannonReloadTime(Cannon)) + " сек.";
+			sText2 = sText2 + NewStr() + "Вес: " + sti(Cannon.Weight) + " ц.";
+
+			sGroup = "GOODS";
+			sGroupPicture = GetCannonType(sti(xi_refCharacter.Ship.Cannons.Type)) + "_" + GetCannonCaliber(sti(xi_refCharacter.Ship.Cannons.Type));
+
+			sText3 = "Двойной клик или Enter по этому полю вызывает интерфейс экипировки орудий по бортам, где их можно снять или установить из запасов в трюме.";
+		}
+		if (GameInterface.(CurTable).(CurRow).UserData.ID == "Crew" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
+		{
+			sText2 = "Команды может быть больше максимальной, но это вызывает перегруз и условия жизни на корабле становятся ужасными, что влечет ежедневное падение морали. В среднем можно взять на борт до 25% больше матросов.";
+			sText2 = sText2 + NewStr() + "Максимальное количество экипажа с учетом перегруза: " + GetMaxCrewQuantity(xi_refCharacter);
+		}
+		// процент ремонта
+		if (GameInterface.(CurTable).(CurRow).UserData.ID == "Hull" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
+		{
+			if (GetHullPercent(xi_refCharacter) < 100.0)
 			{
-			    iShip = sti(xi_refCharacter.ship.type);
-			    refBaseShip = GetRealShip(iShip);
-				sHeader = XI_ConvertString(refBaseShip.BaseName);
-				sText1 = GetConvertStr(refBaseShip.BaseName, "ShipsDescribe.txt");
+				sText2 = "Ремонт " + FloatToString(GetHullRepairDay(xi_refCharacter, false), 2) + " % в день, расход " + makeint(GetHullRepairDay(xi_refCharacter, true)) + " шт. досок";
 			}
-			else
+			sText3 = xiStr("Hull") + ": " + FloatToString(GetHullPercent(xi_refCharacter), 1) + " %";
+		}
+		if (GameInterface.(CurTable).(CurRow).UserData.ID == "Sails" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
+		{
+			if (GetSailPercent(xi_refCharacter) < 100.0)
 			{
-				sHeader = XI_Convertstring("NoneBoat");
-				sText1  = GetConvertStr("NoneBoat", "ShipsDescribe.txt");
+				sText2 = "Ремонт " + FloatToString(GetSailRepairDay(xi_refCharacter, false), 2) + " % в день, расход " + makeint(GetSailRepairDay(xi_refCharacter, true)) + " шт. парусины";
 			}
+			sText3 = xiStr("Sails") + ": " + FloatToString(GetSailPercent(xi_refCharacter), 1) + " %";
+		}
+		// трюм
+		if (GameInterface.(CurTable).(CurRow).UserData.ID == "Capacity" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
+		{
+			sText3 = "Занято: " + FloatToString((stf(GetCargoLoad(xi_refCharacter)) / stf(GetCargoMaxSpace(xi_refCharacter))) * 100.0, 1) + " %";
+		}
+		break;
+	case "CREW_PARTITION":
+		sHeader = XI_Convertstring("PartitionCaption");
+		sText1 = GetRPGText("Partition_hint");
+		break;
+	case "RESORT":
+		sHeader = XI_Convertstring("RESORTCaption");
+		sText1 = GetRPGText("Resort_hint");
+		break;
+	case "Soil_TEXT":
+		sHeader = XI_ConvertString("Soil_Tooltip");
+		sText1 = XI_ConvertString("Soil_descr_Tooltip");
+		break;
+	case "SoilS_TEXT":
+		sHeader = XI_ConvertString("SoilS_Tooltip");
+		sText1 = XI_ConvertString("SoilS_descr_Tooltip");
+		break;
+	case "SoilM_TEXT":
+		sHeader = XI_ConvertString("SoilM_Tooltip");
+		sText1 = XI_ConvertString("SoilM_descr_Tooltip");
 		break;
 
-		case "SHIPS_SCROLL":
-			if (shipIndex != -1)
-			{
-			    iShip = sti(xi_refCharacter.ship.type);
-			    refBaseShip = GetRealShip(iShip);
-				sHeader = XI_ConvertString(refBaseShip.BaseName);
-				sText1 = GetConvertStr(refBaseShip.BaseName, "ShipsDescribe.txt");
-				sText2 = GetRPGText("shipChoose_hint");
-			}
-			else
-			{
-				sHeader = XI_Convertstring("NoneBoat");
-				sText1  = GetConvertStr("NoneBoat", "ShipsDescribe.txt");
-			}
-		break;
+	// LEO - чудим с доп инфой
+	case "EXTRAHULLON":
+		sHeader = XI_ConvertString("EXTRAHULLON");
+		sText1 = GetConvertStr("SUP_HULL_descr", "ShipsDescribe.txt");
 
-		case "MAIN_CHARACTER_PICTURE":
-			// отдельная форма
-			bShowHint = false;
-			ShowRPGHint();
+		sGroup = "SHIP_UPGRADES";
+		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)], "Tuning.HullSpecial"))
+			sGroupPicture = "EXTRAHULLON";
+		else
+			sGroupPicture = "EXTRAHULLOFF";
+		xx = 256;
+		yy = 256;
 		break;
+	case "EXTRASAILON":
+		sHeader = XI_ConvertString("EXTRASAILON");
+		sText1 = GetConvertStr("SUP_SAIL_descr", "ShipsDescribe.txt");
 
-		case "TABLE_LIST":
-			sHeader = XI_Convertstring("Goods");
-			sText1  = GetRPGText("GoodsCargo_hint");
+		sGroup = "SHIP_UPGRADES";
+		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)], "Tuning.SailsSpecial"))
+			sGroupPicture = "EXTRASAILON";
+		else
+			sGroupPicture = "EXTRASAILOFF";
+		xx = 256;
+		yy = 256;
 		break;
+	case "EXTRAGUNSON":
+		sHeader = XI_ConvertString("EXTRAGUNSON");
+		sText1 = GetConvertStr("SUP_CANNONS_descr", "ShipsDescribe.txt");
 
-		case "TABLE_CREW":
-			sHeader = GetConvertStr("Crew_Exp", "ShipsDescribe.txt");
-			sText1  = GetConvertStr("Crew_Exp_hint", "ShipsDescribe.txt");
+		sGroup = "SHIP_UPGRADES";
+		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)], "Tuning.CannonsSpecial"))
+			sGroupPicture = "EXTRAGUNSON";
+		else
+			sGroupPicture = "EXTRAGUNSOFF";
+		xx = 256;
+		yy = 256;
 		break;
+	case "EXTRAHULLKRENGON":
+		sHeader = XI_ConvertString("EXTRAHULLKRENGON");
+		sText1 = GetConvertStr("SUP_HULLCOPPER_descr", "ShipsDescribe.txt");
 
-		case "CLASS_ARMOR_ICON":
-			sHeader = GetConvertStr("Class_Armor", "ShipsDescribe.txt");
-			sText1  = GetConvertStr("Class_Armor_hint", "ShipsDescribe.txt");
+		sGroup = "SHIP_UPGRADES";
+		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)], "Tuning.CuBot"))
+			sGroupPicture = "EXTRAHULLKRENGON";
+		else
+			sGroupPicture = "EXTRAHULLKRENGOFF";
+		xx = 256;
+		yy = 256;
 		break;
+	case "EXTRACAPACITYON":
+		sHeader = XI_ConvertString("EXTRACAPACITYON");
+		sText1 = GetConvertStr("SUP_CAPACITY_descr", "ShipsDescribe.txt");
 
-		case "TABLE_OTHER":
-			sHeader = XI_ConvertString(GameInterface.(CurTable).(CurRow).UserData.ID);
-		    sText1  = GetConvertStr(GameInterface.(CurTable).(CurRow).UserData.ID, "ShipsDescribe.txt");
-		    if (GameInterface.(CurTable).(CurRow).UserData.ID == "CannonType" && sti(xi_refCharacter.Ship.Cannons.Type) != CANNON_TYPE_NONECANNON)
-		    {
-		    	ref Cannon = GetCannonByType(sti(xi_refCharacter.Ship.Cannons.Type));
-		    	sText2 = "Тип: " + XI_ConvertString(GetCannonType(sti(xi_refCharacter.Ship.Cannons.Type)));
-		    	sText2 = sText2 + NewStr() + "Калибр: " + XI_ConvertString("caliber" + GetCannonCaliber(sti(xi_refCharacter.Ship.Cannons.Type)));
-		    	sText2 = sText2 + NewStr() + "Дальность: "  + sti(Cannon.FireRange);
-		    	sText2 = sText2 + NewStr() + "Урон: x"  + FloatToString(stf(Cannon.DamageMultiply), 1);
-		    	sText2 = sText2 + NewStr() + "Перезарядка: "  + sti(GetCannonReloadTime(Cannon)) + " сек.";
-		    	sText2 = sText2 + NewStr() + "Вес: "  + sti(Cannon.Weight) + " ц.";
+		sGroup = "SHIP_UPGRADES";
+		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)], "Tuning.BotPack"))
+			sGroupPicture = "EXTRACAPACITYON";
+		else
+			sGroupPicture = "EXTRACAPACITYOFF";
+		xx = 256;
+		yy = 256;
+		break;
+	case "EXTRABIGSIDESON":
+		sHeader = XI_ConvertString("EXTRABIGSIDESON");
+		sText1 = GetConvertStr("SUP_BIGSIDES_descr", "ShipsDescribe.txt");
 
-		    	sGroup = "GOODS";
-				sGroupPicture = GetCannonType(sti(xi_refCharacter.Ship.Cannons.Type)) + "_" + GetCannonCaliber(sti(xi_refCharacter.Ship.Cannons.Type));
-
-				sText3 = "Двойной клик или Enter по этому полю вызывает интерфейс экипировки орудий по бортам, где их можно снять или установить из запасов в трюме.";
-		    }
-		    if (GameInterface.(CurTable).(CurRow).UserData.ID == "Crew" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
-			{
-				sText2 = "Команды может быть больше максимальной, но это вызывает перегруз и условия жизни на корабле становятся ужасными, что влечет ежедневное падение морали. В среднем можно взять на борт до 25% больше матросов.";
-				sText2 = sText2 + NewStr() + "Максимальное количество экипажа с учетом перегруза: " + GetMaxCrewQuantity(xi_refCharacter);
-			}
-			// процент ремонта
-			if (GameInterface.(CurTable).(CurRow).UserData.ID == "Hull" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
-			{
-                if (GetHullPercent(xi_refCharacter)<100.0 )
-                {
-					sText2 = "Ремонт " + FloatToString(GetHullRepairDay(xi_refCharacter, false),2) + " % в день, расход " + makeint(GetHullRepairDay(xi_refCharacter, true)) + " шт. досок";
-				}
-				sText3 = xiStr("Hull") + ": " + FloatToString(GetHullPercent(xi_refCharacter), 1)  + " %";
-			}
-			if (GameInterface.(CurTable).(CurRow).UserData.ID == "Sails" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
-			{
-                if (GetSailPercent(xi_refCharacter)<100.0 )
-                {
-					sText2 = "Ремонт " + FloatToString(GetSailRepairDay(xi_refCharacter, false),2) + " % в день, расход " + makeint(GetSailRepairDay(xi_refCharacter, true))+ " шт. парусины";
-				}
-				sText3 = xiStr("Sails") + ": " + FloatToString(GetSailPercent(xi_refCharacter), 1) + " %";
-			}
-			// трюм
-			if (GameInterface.(CurTable).(CurRow).UserData.ID == "Capacity" && sti(xi_refCharacter.ship.type) != SHIP_NOTUSED)
-			{
-				sText3 = "Занято: " + FloatToString((stf(GetCargoLoad(xi_refCharacter))  /  stf(GetCargoMaxSpace(xi_refCharacter))) * 100.0, 1)+ " %";
-			}
-		break;
-		case "CREW_PARTITION":
-			sHeader = XI_Convertstring("PartitionCaption");
-			sText1  = GetRPGText("Partition_hint");
-		break;
-		case "RESORT":
-			sHeader = XI_Convertstring("RESORTCaption");
-			sText1  = GetRPGText("Resort_hint");
-		break;
-		case "Soil_TEXT":
-			sHeader = XI_ConvertString("Soil_Tooltip");
-			sText1 = XI_ConvertString("Soil_descr_Tooltip");
-		break;
-		case "SoilS_TEXT":
-			sHeader = XI_ConvertString("SoilS_Tooltip");
-			sText1 = XI_ConvertString("SoilS_descr_Tooltip");
-		break;
-		case "SoilM_TEXT":
-			sHeader = XI_ConvertString("SoilM_Tooltip");
-			sText1 = XI_ConvertString("SoilM_descr_Tooltip");
-		break;
-
-		// LEO - чудим с доп инфой
-		case "EXTRAHULLON":
-			sHeader = XI_ConvertString("EXTRAHULLON");
-			sText1 = GetConvertStr("SUP_HULL_descr", "ShipsDescribe.txt");
-
-			sGroup = "SHIP_UPGRADES";
-			if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.HullSpecial")) sGroupPicture = "EXTRAHULLON";
-			else sGroupPicture = "EXTRAHULLOFF";
-			xx = 256;
-			yy = 256;
-		break;
-		case "EXTRASAILON":
-			sHeader = XI_ConvertString("EXTRASAILON");
-			sText1 = GetConvertStr("SUP_SAIL_descr", "ShipsDescribe.txt");
-
-			sGroup = "SHIP_UPGRADES";
-			if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.SailsSpecial")) sGroupPicture = "EXTRASAILON";
-			else sGroupPicture = "EXTRASAILOFF";
-			xx = 256;
-			yy = 256;
-		break;
-		case "EXTRAGUNSON":
-			sHeader = XI_ConvertString("EXTRAGUNSON");
-			sText1 = GetConvertStr("SUP_CANNONS_descr", "ShipsDescribe.txt");
-
-			sGroup = "SHIP_UPGRADES";
-			if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.CannonsSpecial")) sGroupPicture = "EXTRAGUNSON";
-			else sGroupPicture = "EXTRAGUNSOFF";
-			xx = 256;
-			yy = 256;
-		break;
-		case "EXTRAHULLKRENGON":
-			sHeader = XI_ConvertString("EXTRAHULLKRENGON");
-			sText1 = GetConvertStr("SUP_HULLCOPPER_descr", "ShipsDescribe.txt");
-
-			sGroup = "SHIP_UPGRADES";
-			if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.CuBot")) sGroupPicture = "EXTRAHULLKRENGON";
-			else sGroupPicture = "EXTRAHULLKRENGOFF";
-			xx = 256;
-			yy = 256;
-		break;
-		case "EXTRACAPACITYON":
-			sHeader = XI_ConvertString("EXTRACAPACITYON");
-			sText1 = GetConvertStr("SUP_CAPACITY_descr", "ShipsDescribe.txt");
-
-			sGroup = "SHIP_UPGRADES";
-			if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.BotPack")) sGroupPicture = "EXTRACAPACITYON";
-			else sGroupPicture = "EXTRACAPACITYOFF";
-			xx = 256;
-			yy = 256;
-		break;
-		case "EXTRABIGSIDESON":
-			sHeader = XI_ConvertString("EXTRABIGSIDESON");
-			sText1 = GetConvertStr("SUP_BIGSIDES_descr", "ShipsDescribe.txt");
-
-			sGroup = "SHIP_UPGRADES";
-			if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)],"Tuning.HighBort")) sGroupPicture = "EXTRABIGSIDESON";
-			else sGroupPicture = "EXTRABIGSIDESOFF";
-			xx = 256;
-			yy = 256;
+		sGroup = "SHIP_UPGRADES";
+		if (CheckAttribute(RealShips[sti(xi_refCharacter.Ship.Type)], "Tuning.HighBort"))
+			sGroupPicture = "EXTRABIGSIDESON";
+		else
+			sGroupPicture = "EXTRABIGSIDESOFF";
+		xx = 256;
+		yy = 256;
 		break;
 	}
 	if (bShowHint)
 	{
-		CreateTooltip("#" + sHeader, sText1, argb(255,255,255,255), sText2, argb(255,255,192,192), sText3, argb(255,192,255,192), "", argb(255,255,255,255), sPicture, sGroup, sGroupPicture, xx, yy);
+		CreateTooltip("#" + sHeader, sText1, argb(255, 255, 255, 255), sText2, argb(255, 255, 192, 192), sText3, argb(255, 192, 255, 192), "", argb(255, 255, 255, 255), sPicture, sGroup, sGroupPicture, xx, yy);
 	}
 }
 
@@ -852,11 +870,11 @@ void TableSelectChange()
 {
 	string sControl = GetEventData();
 	iSelected = GetEventData();
-    CurTable = sControl;
-    CurRow   =  "tr" + (iSelected);
-    NullSelectTable("TABLE_LIST");
-    NullSelectTable("TABLE_OTHER");
-    NullSelectTable("TABLE_CREW");
+	CurTable = sControl;
+	CurRow = "tr" + (iSelected);
+	NullSelectTable("TABLE_LIST");
+	NullSelectTable("TABLE_OTHER");
+	NullSelectTable("TABLE_CREW");
 }
 
 void ExitRPGHint()
@@ -873,8 +891,8 @@ void ExitRPGHint()
 void ShowRPGHint()
 {
 	SetSPECIALMiniTable("TABLE_SMALLSKILL", xi_refCharacter);
-    SetOTHERMiniTable("TABLE_SMALLOTHER", xi_refCharacter);
-    SetFormatedText("OFFICER_NAME", GetFullName(xi_refCharacter));
+	SetOTHERMiniTable("TABLE_SMALLOTHER", xi_refCharacter);
+	SetFormatedText("OFFICER_NAME", GetFullName(xi_refCharacter));
 
 	XI_WindowShow("RPG_WINDOW", true);
 	XI_WindowDisable("RPG_WINDOW", false);
@@ -894,15 +912,16 @@ void FillGoodsTable()
 	if (!CheckAttribute(&GameInterface, "TABLE_LIST.BackUp"))
 	{
 		GameInterface.TABLE_LIST.select = 0;
-		GameInterface.TABLE_LIST.top    = 0;
+		GameInterface.TABLE_LIST.top = 0;
 		GameInterface.TABLE_LIST.BackUp = true;
 	}
-    for (i = 0; i< GOODS_QUANTITY; i++)
+	for (i = 0; i < GOODS_QUANTITY; i++)
 	{
-        row = "tr" + n;
+		row = "tr" + n;
 		sGood = Goods[i].name;
 		qty = GetCargoGoods(xi_refCharacter, i);
-		if (qty <= 0) continue; // только не нули
+		if (qty <= 0)
+			continue; // только не нули
 
 		GameInterface.TABLE_LIST.(row).index = i;
 
@@ -911,7 +930,7 @@ void FillGoodsTable()
 		GameInterface.TABLE_LIST.(row).td4.str = Goods[i].Units;
 		GameInterface.TABLE_LIST.(row).td5.str = Goods[i].Weight;
 
-        GameInterface.TABLE_LIST.(row).td1.icon.group = "GOODS";
+		GameInterface.TABLE_LIST.(row).td1.icon.group = "GOODS";
 		GameInterface.TABLE_LIST.(row).td1.icon.image = sGood;
 		GameInterface.TABLE_LIST.(row).td1.icon.offset = "0, 0";
 		GameInterface.TABLE_LIST.(row).td1.icon.width = 20;
@@ -927,8 +946,8 @@ void NullSelectTable(string sControl)
 {
 	if (sControl != CurTable)
 	{
-	    GameInterface.(sControl).select = 0;
-	    Table_UpdateWindow(sControl);
+		GameInterface.(sControl).select = 0;
+		Table_UpdateWindow(sControl);
 	}
 }
 
@@ -936,35 +955,35 @@ void ShowItemInfo()
 {
 	if (CheckAttribute(&GameInterface, CurTable + "." + CurRow + ".index")) // нет товара вообще
 	{
-	    ShowGoodsInfo(sti(GameInterface.(CurTable).(CurRow).index));
+		ShowGoodsInfo(sti(GameInterface.(CurTable).(CurRow).index));
 		XI_WindowDisable("QTY_WINDOW", false);
 		XI_WindowShow("QTY_WINDOW", true);
 		XI_WindowDisable("MAIN_WINDOW", true);
 		SetCurrentNode("QTY_CANCEL_BUTTON");
 		if (GetRemovable(xi_refCharacter))
 		{
-		    SetSelectable("QTY_OK_BUTTON", true);
+			SetSelectable("QTY_OK_BUTTON", true);
 		}
 		else
 		{
-		    SetSelectable("QTY_OK_BUTTON", false);
+			SetSelectable("QTY_OK_BUTTON", false);
 		}
 		// мины
-	    if (sti(GameInterface.(CurTable).(CurRow).index) == GOOD_POWDER)
-	    {
-	        SetNodeUsing("QTY_BOMB_BUTTON", true);
-	        if (bSeaActive && !bAbordageStarted && GetRemovable(xi_refCharacter))
-	        {
-	            SetSelectable("QTY_BOMB_BUTTON", true);
-	        }
-	        else
-	        {
-	            SetSelectable("QTY_BOMB_BUTTON", false);
-	        }
+		if (sti(GameInterface.(CurTable).(CurRow).index) == GOOD_POWDER)
+		{
+			SetNodeUsing("QTY_BOMB_BUTTON", true);
+			if (bSeaActive && !bAbordageStarted && GetRemovable(xi_refCharacter))
+			{
+				SetSelectable("QTY_BOMB_BUTTON", true);
+			}
+			else
+			{
+				SetSelectable("QTY_BOMB_BUTTON", false);
+			}
 		}
 		else
 		{
-		    SetNodeUsing("QTY_BOMB_BUTTON", false);
+			SetNodeUsing("QTY_BOMB_BUTTON", false);
 		}
 	}
 }
@@ -991,35 +1010,35 @@ void ShowGoodsInfo(int iGoodIndex)
 	int lngFileID = LanguageOpenFile("GoodsDescribe.txt");
 	string sHeader = XI_ConvertString(GoodName);
 
-    iCurGoodsIdx = iGoodIndex;
-	string goodsDescr = GetAssembledString( LanguageConvertString(lngFileID,goodName+"_descr"), &Goods[iGoodIndex]);
-    goodsDescr += newStr() + XI_ConvertString("weight") + " " + Goods[iGoodIndex].weight + " " + XI_ConvertString("cwt") +
-	              ", пачка " + Goods[iGoodIndex].Units + " " + XI_ConvertString("units");
+	iCurGoodsIdx = iGoodIndex;
+	string goodsDescr = GetAssembledString(LanguageConvertString(lngFileID, goodName + "_descr"), &Goods[iGoodIndex]);
+	goodsDescr += newStr() + XI_ConvertString("weight") + " " + Goods[iGoodIndex].weight + " " + XI_ConvertString("cwt") +
+				  ", пачка " + Goods[iGoodIndex].Units + " " + XI_ConvertString("units");
 
-	iUnits  = sti(Goods[iGoodIndex].Units);
+	iUnits = sti(Goods[iGoodIndex].Units);
 	//fWeight = stf(Goods[iGoodIndex].weight);
-	if(checkAttribute(pchar, "ship.cargo.goods." + GoodName + ".isquest"))
+	if (checkAttribute(pchar, "ship.cargo.goods." + GoodName + ".isquest"))
 	{
 		string sTradeQ = pchar.ship.cargo.goods.(GoodName).isquest.quantity;
 		string sColony = pchar.ship.cargo.goods.(GoodName).isquest.colony;
-		goodsDescr += NewStr() + XI_ConvertString("YouNeedToDelivery") + sTradeQ + XI_ConvertString("QuantityOfGoodsToColony") + XI_ConvertString("Colony"+sColony) + ".";
+		goodsDescr += NewStr() + XI_ConvertString("YouNeedToDelivery") + sTradeQ + XI_ConvertString("QuantityOfGoodsToColony") + XI_ConvertString("Colony" + sColony) + ".";
 	}
 
-    SetFormatedText("QTY_TypeOperation", "Выкинуть?");
-    SetFormatedText("QTY_Result", "");
-    GameInterface.qty_edit.str = "0";
+	SetFormatedText("QTY_TypeOperation", "Выкинуть?");
+	SetFormatedText("QTY_Result", "");
+	GameInterface.qty_edit.str = "0";
 
 	SetNewGroupPicture("QTY_GOODS_PICTURE", "GOODS", GoodName);
-    SetFormatedText("QTY_CAPTION", sHeader);
-    SetFormatedText("QTY_GOODS_INFO", goodsDescr);
+	SetFormatedText("QTY_CAPTION", sHeader);
+	SetFormatedText("QTY_GOODS_INFO", goodsDescr);
 	LanguageCloseFile(lngFileID);
 
 	iShipQty = GetCargoGoods(xi_refCharacter, iGoodIndex);
-    SetFormatedText("QTY_INFO_SHIP_QTY", its(iShipQty))
-    SetFormatedText("QTY_INFO_STORE_QTY", its(GetGoodWeightByType(iGoodIndex, iShipQty)));
+	SetFormatedText("QTY_INFO_SHIP_QTY", its(iShipQty))
+		SetFormatedText("QTY_INFO_STORE_QTY", its(GetGoodWeightByType(iGoodIndex, iShipQty)));
 
-    SetFormatedText("QTY_INFO_STORE_PRICE", "Вес в трюме");
-    SetFormatedText("QTY_INFO_SHIP_PRICE",  "Количество в трюме");
+	SetFormatedText("QTY_INFO_STORE_PRICE", "Вес в трюме");
+	SetFormatedText("QTY_INFO_SHIP_PRICE", "Количество в трюме");
 }
 
 void TransactionOK()
@@ -1029,9 +1048,10 @@ void TransactionOK()
 
 	nTradeQuantity = sti(GameInterface.qty_edit.str);
 
-    SetCharacterGoods(xi_refCharacter, iCurGoodsIdx, iShipQty);
+	SetCharacterGoods(xi_refCharacter, iCurGoodsIdx, iShipQty);
 
-    if (!GetRemovable(xi_refCharacter)) return;
+	if (!GetRemovable(xi_refCharacter))
+		return;
 	if (nTradeQuantity > 0)
 	{
 		DropGoodsToSeaFromInterface(iCurGoodsIdx, nTradeQuantity); // остается плавать в море
@@ -1045,23 +1065,23 @@ void TransactionOK()
 void confirmChangeQTY_EDIT()
 {
 	ChangeQTY_EDIT();
-    SetCurrentNode("QTY_OK_BUTTON");
+	SetCurrentNode("QTY_OK_BUTTON");
 }
 
 void ChangeQTY_EDIT()
 {
-	int  iWeight;
-	GameInterface.qty_edit.str = abs(sti(GameInterface.qty_edit.str));  // приведение к числу
+	int iWeight;
+	GameInterface.qty_edit.str = abs(sti(GameInterface.qty_edit.str)); // приведение к числу
 
 	string GoodName = goods[iCurGoodsIdx].name;
 
-    // проверка на колво доступное -->
-    if (sti(GameInterface.qty_edit.str) > iShipQty)
-    {
-        GameInterface.qty_edit.str = iShipQty;
-    }
-    SetFormatedText("QTY_INFO_SHIP_QTY", its(iShipQty - sti(GameInterface.qty_edit.str)))
-	SetFormatedText("QTY_INFO_STORE_QTY", its(GetGoodWeightByType(iCurGoodsIdx, (iShipQty - sti(GameInterface.qty_edit.str)))));
+	// проверка на колво доступное -->
+	if (sti(GameInterface.qty_edit.str) > iShipQty)
+	{
+		GameInterface.qty_edit.str = iShipQty;
+	}
+	SetFormatedText("QTY_INFO_SHIP_QTY", its(iShipQty - sti(GameInterface.qty_edit.str)))
+		SetFormatedText("QTY_INFO_STORE_QTY", its(GetGoodWeightByType(iCurGoodsIdx, (iShipQty - sti(GameInterface.qty_edit.str)))));
 	// прикидываем место в трюме
 	iWeight = sti(GameInterface.qty_edit.str);
 	SetCharacterGoods(xi_refCharacter, iCurGoodsIdx, iShipQty);
@@ -1075,32 +1095,37 @@ void ChangeQTY_EDIT()
 	//Table_UpdateWindow("TABLE_OTHER");
 }
 
-void REMOVE_ALL_BUTTON()  // продать все
+void REMOVE_ALL_BUTTON() // продать все
 {
-	if (!GetRemovable(xi_refCharacter)) return;
+	if (!GetRemovable(xi_refCharacter))
+		return;
 	GameInterface.qty_edit.str = iShipQty;
 	ChangeQTY_EDIT();
 }
 
-void ADD_ALL_BUTTON()  // купить все
+void ADD_ALL_BUTTON() // купить все
 {
-	if (!GetRemovable(xi_refCharacter)) return;
+	if (!GetRemovable(xi_refCharacter))
+		return;
 	GameInterface.qty_edit.str = 0;
 	ChangeQTY_EDIT();
 }
 
-void REMOVE_BUTTON()  // продать
+void REMOVE_BUTTON() // продать
 {
-	if (!GetRemovable(xi_refCharacter)) return;
+	if (!GetRemovable(xi_refCharacter))
+		return;
 	GameInterface.qty_edit.str = (sti(GameInterface.qty_edit.str) + iUnits);
 	ChangeQTY_EDIT();
 }
 
-void ADD_BUTTON()  // купить
+void ADD_BUTTON() // купить
 {
-	if (!GetRemovable(xi_refCharacter)) return;
+	if (!GetRemovable(xi_refCharacter))
+		return;
 	GameInterface.qty_edit.str = (sti(GameInterface.qty_edit.str) - iUnits);
-	if (sti(GameInterface.qty_edit.str) < 0) GameInterface.qty_edit.str = 0;
+	if (sti(GameInterface.qty_edit.str) < 0)
+		GameInterface.qty_edit.str = 0;
 	ChangeQTY_EDIT();
 }
 
@@ -1111,22 +1136,22 @@ void DropGoodsToSeaFromInterface(int iGoodIndex, int iQuantity)
 
 	sGood = Goods[iGoodIndex].name;
 
-	if (CheckAttribute(xi_refCharacter, "Ship.Cargo.Goods."+sGood))
+	if (CheckAttribute(xi_refCharacter, "Ship.Cargo.Goods." + sGood))
 	{
 		RemoveCharacterGoods(xi_refCharacter, iGoodIndex, iQuantity);
-		if (bSeaActive && !bAbordageStarted)  // море, но не каюта
+		if (bSeaActive && !bAbordageStarted) // море, но не каюта
 		{
 			iQuantity = iQuantity / sti(Goods[iGoodIndex].Units);
 
-			int iSwimQuantity = makeint(iQuantity/3 + rand(makeint(iQuantity/3)) + rand(makeint(iQuantity/3)));
+			int iSwimQuantity = makeint(iQuantity / 3 + rand(makeint(iQuantity / 3)) + rand(makeint(iQuantity / 3)));
 
-			if(iSwimQuantity < 1)
+			if (iSwimQuantity < 1)
 			{
 				iSwimQuantity = 1;
 			}
 
 			RecalculateCargoLoad(xi_refCharacter);
-	        xi_refCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитались скорость и маневр
+			xi_refCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитались скорость и маневр
 
 			if (CheckAttribute(&Goods[iGoodIndex], "Swim"))
 			{
@@ -1197,11 +1222,11 @@ void ShowShipChangeMenu()
 
 bool GetShipEscape()
 {
-    if (CheckCharacterPerk(PChar, "ShipEscape") && GetHullPercent(PChar) <= 15.0)
-    {
-        return true;
-    }
-    return false;
+	if (CheckCharacterPerk(PChar, "ShipEscape") && GetHullPercent(PChar) <= 15.0)
+	{
+		return true;
+	}
+	return false;
 }
 
 void ShowOtherClick()
@@ -1227,13 +1252,13 @@ void GoToShipChange()
 		pchar.TransferChar = xi_refCharacter.index;
 		InterfaceStates.ReloadMenuExit = true;
 		IDoExit(RC_INTERFACE_ANY_EXIT);
-		PostEvent("LaunchIAfterFrame",1,"sl", "TransferMain", 2);
+		PostEvent("LaunchIAfterFrame", 1, "sl", "TransferMain", 2);
 	}
 }
 
 void ShowMoraleMessage()
 {
-	int  sum = GetCharacterRaiseCrewMoraleMoney(xi_refCharacter);
+	int sum = GetCharacterRaiseCrewMoraleMoney(xi_refCharacter);
 	SetFormatedText("REMOVE_WINDOW_CAPTION", XI_ConvertString("RaiseMorale"));
 	SetFormatedText("REMOVE_WINDOW_TEXT", XI_ConvertString("RaiseMoraleMoney") + FindRussianMoneyString(sum));
 
@@ -1257,13 +1282,13 @@ void ShowCannonsMenu()
 
 	SetCurrentNode("CANNONS_CANCEL");
 
-    SetBackupCannons(); // запомнить, для отката
+	SetBackupCannons(); // запомнить, для отката
 
-    bool bOk  = !bSeaActive && LAi_grp_alarmactive;
-    bool bOk2 = bAbordageStarted && !bCabinStarted; // в абордаже не жать пушки
+	bool bOk = !bSeaActive && LAi_grp_alarmactive;
+	bool bOk2 = bAbordageStarted && !bCabinStarted; // в абордаже не жать пушки
 	if (bDisableMapEnter || bOk || bOk2)
-    { // идет бой, запрет смены орудий
-    	SetSelectable("CANNONS_OK", false);
+	{ // идет бой, запрет смены орудий
+		SetSelectable("CANNONS_OK", false);
 	}
 	else
 	{
@@ -1273,15 +1298,15 @@ void ShowCannonsMenu()
 	{
 		SetSelectable("CANNONS_OK", false);
 	}
-    DeleteAttribute(&GameInterface, "CANNONS_TABLE.BackUp")
-    CannonsMenuRefresh();
+	DeleteAttribute(&GameInterface, "CANNONS_TABLE.BackUp")
+		CannonsMenuRefresh();
 }
 void CannonsMenuRefresh()
 {
 	int idx = GetCannonGoodsIdxByType(sti(xi_refCharacter.Ship.Cannons.Type));
 	if (idx != -1)
 	{
-	    SetNewGroupPicture("CANNONS_PIC", "GOODS", Goods[idx].Name);
+		SetNewGroupPicture("CANNONS_PIC", "GOODS", Goods[idx].Name);
 		SetFormatedText("CANNONS_TEXT", XI_ConvertString(Goods[idx].Name));
 
 		SetFormatedText("CANNONS_QTY_F", its(GetBortCannonsQty(xi_refCharacter, "fcannon")));
@@ -1322,28 +1347,35 @@ void HideCannonsMenu()
 /// установить орудия по борту (сперва расчитать дельту было стало - лишнее в запасы)
 void SetCannonsToBort(ref chr, string sBort, int iQty)
 {
-	int     curQty = GetBortCannonsQty(chr, sBort);
-	int     maxQty = GetBortCannonsMaxQty(chr, sBort);
-	int     i, delta;
-	string  attr;
-	int     center, left, right; // счетчики орудий для распределения
-	bool    bLeft; // направление хода
-	string  sBort_real;
+	int curQty = GetBortCannonsQty(chr, sBort);
+	int maxQty = GetBortCannonsMaxQty(chr, sBort);
+	int i, delta;
+	string attr;
+	int center, left, right; // счетчики орудий для распределения
+	bool bLeft;				 // направление хода
+	string sBort_real;
 
-	if(sBort == "rcannon") sBort_real = "cannonr";
-	if(sBort == "lcannon") sBort_real = "cannonl";
-	if(sBort == "fcannon") sBort_real = "cannonf";
-	if(sBort == "bcannon") sBort_real = "cannonb";
+	if (sBort == "rcannon")
+		sBort_real = "cannonr";
+	if (sBort == "lcannon")
+		sBort_real = "cannonl";
+	if (sBort == "fcannon")
+		sBort_real = "cannonf";
+	if (sBort == "bcannon")
+		sBort_real = "cannonb";
 
-	if (iQty > maxQty) iQty = maxQty;
-	if (iQty < 0) iQty = 0;
+	if (iQty > maxQty)
+		iQty = maxQty;
+	if (iQty < 0)
+		iQty = 0;
 
 	int idx = GetCannonGoodsIdxByType(sti(chr.Ship.Cannons.Type));
-    delta = iQty - curQty;
-    if (delta > 0)
-    {
-    	if (GetCargoGoods(chr, idx) < delta) iQty = curQty + GetCargoGoods(chr, idx);
-    }
+	delta = iQty - curQty;
+	if (delta > 0)
+	{
+		if (GetCargoGoods(chr, idx) < delta)
+			iQty = curQty + GetCargoGoods(chr, idx);
+	}
 	if (iQty > curQty)
 	{ // списать со склада
 		RemoveCharacterGoodsSelf(chr, idx, (iQty - curQty));
@@ -1351,7 +1383,7 @@ void SetCannonsToBort(ref chr, string sBort, int iQty)
 	else
 	{
 		if (iQty < curQty)
-		{// лишние на склад
+		{																			// лишние на склад
 			SetCharacterGoods(chr, idx, GetCargoGoods(chr, idx) + (curQty - iQty)); // этот метод, тк перегруз может быть, а  AddCharacterGoodsSimple режет перегруз
 		}
 	}
@@ -1359,15 +1391,15 @@ void SetCannonsToBort(ref chr, string sBort, int iQty)
 	for (i = 0; i < maxQty; i++)
 	{
 		attr = "c" + i;
-		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет ее
+		chr.Ship.Cannons.borts.(sBort).damages.(attr) = 1.0;	  // поломана на 100 процентов, не палит, те нет ее
 		chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 1.0; // поломана на 100 процентов, не палит, те нет ее
 	}
 	// распределяем
 	if (iQty > 0)
 	{
 		center = makeint(maxQty / 2); // целочисленное деление
-		left   = center - 1;
-		right  = center;
+		left = center - 1;
+		right = center;
 		i = 0; // сколько распределили уже
 		bLeft = true;
 		while (i < iQty)
@@ -1384,7 +1416,8 @@ void SetCannonsToBort(ref chr, string sBort, int iQty)
 					attr = "c" + right;
 					right++;
 				}
-				if (right < maxQty) bLeft = false;
+				if (right < maxQty)
+					bLeft = false;
 			}
 			else
 			{
@@ -1398,114 +1431,123 @@ void SetCannonsToBort(ref chr, string sBort, int iQty)
 					attr = "c" + left;
 					left--;
 				}
-				if (left >= 0) bLeft = true;
+				if (left >= 0)
+					bLeft = true;
 			}
-			chr.Ship.Cannons.borts.(sBort).damages.(attr) = 0.0; // новая, не битая
+			chr.Ship.Cannons.borts.(sBort).damages.(attr) = 0.0;	  // новая, не битая
 			chr.Ship.Cannons.borts.(sBort_real).damages.(attr) = 0.0; // новая, не битая
 			i++;
 		}
 	}
-	RecalculateCargoLoad(chr);  // пересчет, тк пушки снялись
+	RecalculateCargoLoad(chr); // пересчет, тк пушки снялись
 }
 
 void CanonsRemoveAll()
 {
-    SetCannonsToBort(xi_refCharacter, "fcannon", 0);
-    SetCannonsToBort(xi_refCharacter, "bcannon", 0);
-    SetCannonsToBort(xi_refCharacter, "rcannon", 0);
-    SetCannonsToBort(xi_refCharacter, "lcannon", 0);
-    OnShipScrollChange();
-    CannonsMenuRefresh();
+	SetCannonsToBort(xi_refCharacter, "fcannon", 0);
+	SetCannonsToBort(xi_refCharacter, "bcannon", 0);
+	SetCannonsToBort(xi_refCharacter, "rcannon", 0);
+	SetCannonsToBort(xi_refCharacter, "lcannon", 0);
+	OnShipScrollChange();
+	CannonsMenuRefresh();
 }
 
 // бакап значений, до применения
 void SetBackupCannons()
 {
-	aref    arTo, arFrom;
+	aref arTo, arFrom;
 	NullCharacter.ShipBak.Cannons = "";
-	NullCharacter.ShipBak.Cargo   = "";
+	NullCharacter.ShipBak.Cargo = "";
 
-	makearef(arTo,   NullCharacter.ShipBak.Cannons);
+	makearef(arTo, NullCharacter.ShipBak.Cannons);
 	makearef(arFrom, xi_refCharacter.Ship.Cannons);
 	CopyAttributes(arTo, arFrom);
 
-	makearef(arTo,   NullCharacter.ShipBak.Cargo);
+	makearef(arTo, NullCharacter.ShipBak.Cargo);
 	makearef(arFrom, xi_refCharacter.Ship.Cargo);
 	CopyAttributes(arTo, arFrom);
 }
 
 void GetBackupCannons()
 {
-	aref    arTo, arFrom;
+	aref arTo, arFrom;
 
-	makearef(arFrom,   NullCharacter.ShipBak.Cannons);
+	makearef(arFrom, NullCharacter.ShipBak.Cannons);
 	makearef(arTo, xi_refCharacter.Ship.Cannons);
 	CopyAttributes(arTo, arFrom);
 
-	makearef(arFrom,   NullCharacter.ShipBak.Cargo);
+	makearef(arFrom, NullCharacter.ShipBak.Cargo);
 	makearef(arTo, xi_refCharacter.Ship.Cargo);
 	CopyAttributes(arTo, arFrom);
 }
 
 void CanonsSetAll(ref chr)
 {
-    if (GetCannonQuantity(chr) <= 0) return;
-    //if (GetCannonQuantity(chr) <= GetCannonsNum(chr)) return;
+	if (GetCannonQuantity(chr) <= 0)
+		return;
+	//if (GetCannonQuantity(chr) <= GetCannonsNum(chr)) return;
 	// сначала все убрать
-    if (GetCannonsNum(chr) > 0)
-    {
+	if (GetCannonsNum(chr) > 0)
+	{
 		SetCannonsToBort(chr, "fcannon", 0);
-	    SetCannonsToBort(chr, "bcannon", 0);
-	    SetCannonsToBort(chr, "rcannon", 0);
-	    SetCannonsToBort(chr, "lcannon", 0);
-    }
-    //новый калибр назначить
-    if (CurTable == "CANNONS_TABLE" && CheckAttribute(&GameInterface, CurTable + "." + CurRow + ".index"))
-    {
+		SetCannonsToBort(chr, "bcannon", 0);
+		SetCannonsToBort(chr, "rcannon", 0);
+		SetCannonsToBort(chr, "lcannon", 0);
+	}
+	//новый калибр назначить
+	if (CurTable == "CANNONS_TABLE" && CheckAttribute(&GameInterface, CurTable + "." + CurRow + ".index"))
+	{
 		chr.Ship.Cannons.Type = sti(Goods[sti(GameInterface.(CurTable).(CurRow).index)].CannonIdx);
 	}
-    // потом все выставить раскидав по бортам
-    int idx = GetCannonGoodsIdxByType(sti(chr.Ship.Cannons.Type));
-    int fb, lb, rb, bb;
-    int qty;
+	// потом все выставить раскидав по бортам
+	int idx = GetCannonGoodsIdxByType(sti(chr.Ship.Cannons.Type));
+	int fb, lb, rb, bb;
+	int qty;
 
-    if (idx != -1)
-    {
-    	qty = GetCargoGoods(chr, idx);
+	if (idx != -1)
+	{
+		qty = GetCargoGoods(chr, idx);
 
-    	rb = GetBortCannonsMaxQty(chr, "rcannon");
+		rb = GetBortCannonsMaxQty(chr, "rcannon");
 
-    	if (rb  > (qty / 2)) rb = qty / 2;
-    	qty = qty - rb;
-    	if (qty < 0) qty = 0;
+		if (rb > (qty / 2))
+			rb = qty / 2;
+		qty = qty - rb;
+		if (qty < 0)
+			qty = 0;
 
-    	lb = GetBortCannonsMaxQty(chr, "lcannon");
-    	if (lb > qty) lb = qty;
-    	qty = qty - lb;
-    	if (qty < 0) qty = 0;
+		lb = GetBortCannonsMaxQty(chr, "lcannon");
+		if (lb > qty)
+			lb = qty;
+		qty = qty - lb;
+		if (qty < 0)
+			qty = 0;
 
-    	bb = GetBortCannonsMaxQty(chr, "bcannon");
-    	if (bb > qty) bb = qty;
-    	qty = qty - bb;
-    	if (qty < 0) qty = 0;
+		bb = GetBortCannonsMaxQty(chr, "bcannon");
+		if (bb > qty)
+			bb = qty;
+		qty = qty - bb;
+		if (qty < 0)
+			qty = 0;
 
-    	fb = GetBortCannonsMaxQty(chr, "fcannon");
-    	if (fb > qty) fb = qty;
+		fb = GetBortCannonsMaxQty(chr, "fcannon");
+		if (fb > qty)
+			fb = qty;
 
-    	SetCannonsToBort(chr, "fcannon", fb);
-	    SetCannonsToBort(chr, "bcannon", bb);
-	    SetCannonsToBort(chr, "rcannon", rb);
-	    SetCannonsToBort(chr, "lcannon", lb);
-    }
-    // рефреш
-    OnShipScrollChange();
-    CannonsMenuRefresh();
+		SetCannonsToBort(chr, "fcannon", fb);
+		SetCannonsToBort(chr, "bcannon", bb);
+		SetCannonsToBort(chr, "rcannon", rb);
+		SetCannonsToBort(chr, "lcannon", lb);
+	}
+	// рефреш
+	OnShipScrollChange();
+	CannonsMenuRefresh();
 }
 
 void ChangeCannonNum(string sBort, int add)
 {
-    SetCannonsToBort(xi_refCharacter, sBort, GetBortCannonsQty(xi_refCharacter, sBort) + add);
-    OnShipScrollChange();
+	SetCannonsToBort(xi_refCharacter, sBort, GetBortCannonsQty(xi_refCharacter, sBort) + add);
+	OnShipScrollChange();
 	CannonsMenuRefresh();
 }
 
@@ -1533,34 +1575,38 @@ void FillCannonsTable()
 	if (!CheckAttribute(&GameInterface, "CANNONS_TABLE.BackUp"))
 	{
 		GameInterface.CANNONS_TABLE.select = 0;
-		GameInterface.CANNONS_TABLE.top    = 0;
+		GameInterface.CANNONS_TABLE.top = 0;
 		GameInterface.CANNONS_TABLE.BackUp = true;
 	}
 	if (GetCannonQuantity(xi_refCharacter) > 0)
 	{
-	    for (i = 0; i< GOODS_QUANTITY; i++)
+		for (i = 0; i < GOODS_QUANTITY; i++)
 		{
-	        row = "tr" + n;
+			row = "tr" + n;
 			sGood = Goods[i].name;
 			qty = GetCargoGoods(xi_refCharacter, i);
-			if (qty <= 0) continue; // только не нули
+			if (qty <= 0)
+				continue; // только не нули
 
-	        if (!CheckAttribute(&Goods[i], "type")) continue;
-	        if (sti(Goods[i].type) != TRADE_TYPE_CANNONS) continue;
+			if (!CheckAttribute(&Goods[i], "type"))
+				continue;
+			if (sti(Goods[i].type) != TRADE_TYPE_CANNONS)
+				continue;
 
-	        if (GetCannonCaliber(sti(Goods[i].CannonIdx)) > GetMaximumCaliber(xi_refCharacter)) continue;
+			if (GetCannonCaliber(sti(Goods[i].CannonIdx)) > GetMaximumCaliber(xi_refCharacter))
+				continue;
 			GameInterface.CANNONS_TABLE.(row).index = i;
 
 			GameInterface.CANNONS_TABLE.(row).td2.str = qty;
 			GameInterface.CANNONS_TABLE.(row).td2.scale = 0.85;
 			GameInterface.CANNONS_TABLE.(row).td3.str = sti(Goods[i].FireRange);
 			GameInterface.CANNONS_TABLE.(row).td3.scale = 0.85;
-			GameInterface.CANNONS_TABLE.(row).td4.str = "x"+FloatToString(stf(Goods[i].DamageMultiply), 1);
+			GameInterface.CANNONS_TABLE.(row).td4.str = "x" + FloatToString(stf(Goods[i].DamageMultiply), 1);
 			GameInterface.CANNONS_TABLE.(row).td4.scale = 0.85;
 			GameInterface.CANNONS_TABLE.(row).td5.str = sti(Goods[i].ReloadTime);
 			GameInterface.CANNONS_TABLE.(row).td5.scale = 0.85;
 
-	        GameInterface.CANNONS_TABLE.(row).td1.icon.group = "GOODS";
+			GameInterface.CANNONS_TABLE.(row).td1.icon.group = "GOODS";
 			GameInterface.CANNONS_TABLE.(row).td1.icon.image = sGood;
 			GameInterface.CANNONS_TABLE.(row).td1.icon.offset = "0, 0";
 			GameInterface.CANNONS_TABLE.(row).td1.icon.width = 32;
@@ -1576,7 +1622,7 @@ void FillCannonsTable()
 
 void ShowPartitionWindow()
 {
-    string str;
+	string str;
 	string sTitul = "";
 	if (isMainCharacterPatented())
 	{
@@ -1584,21 +1630,21 @@ void ShowPartitionWindow()
 	}
 
 	str = "Текущая дата: " + GetDateString() + " " + GetTimeString() + NewStr();
-	if(CheckAttribute(pchar, "paymentdate"))
+	if (CheckAttribute(pchar, "paymentdate"))
 	{
 		str += "Дата предыдущего платежа: " + pchar.paymentdate + NewStr();
 	}
 	str += sTitul + " " + GetFullName(pchar) + NewStr() + XI_ConvertString("Rank") + ": " + sti(pchar.rank) + NewStr();
 	str += XI_ConvertString("m_Complexity") + ": " + GetLevelComplexity(MOD_SKILL_ENEMY_RATE) + NewStr() +
-			XI_ConvertString("OurMoney") + FindRussianMoneyString(sti(pchar.money)) + NewStr() + "*****" + NewStr();
-    str += "Доли в текущем месяце:" + NewStr() + "Доля капитана: " + GetPartitionAmount("Partition.MonthPart.Hero") + NewStr() +
-		  "Доля офицеров: " + GetPartitionAmount("Partition.MonthPart.Officers") + NewStr() +
-		  "Доля матросов: " + GetPartitionAmount("Partition.MonthPart.Crew") + NewStr() + // + "-----" + NewStr() +
-		  "Долг текущего месяца: " + GetPartitionAmount("Partition.MonthPart") + NewStr();
+		   XI_ConvertString("OurMoney") + FindRussianMoneyString(sti(pchar.money)) + NewStr() + "*****" + NewStr();
+	str += "Доли в текущем месяце:" + NewStr() + "Доля капитана: " + GetPartitionAmount("Partition.MonthPart.Hero") + NewStr() +
+		   "Доля офицеров: " + GetPartitionAmount("Partition.MonthPart.Officers") + NewStr() +
+		   "Доля матросов: " + GetPartitionAmount("Partition.MonthPart.Crew") + NewStr() + // + "-----" + NewStr() +
+		   "Долг текущего месяца: " + GetPartitionAmount("Partition.MonthPart") + NewStr();
 	str += "*****" + NewStr() + "Долг за прошлый месяц: " + GetPartitionAmount("CrewPayment");
 
 	SetFormatedText("PARTITION_WINDOW_TEXT", str);
-    SetSelectable("PARTITION_OK", false);
+	SetSelectable("PARTITION_OK", false);
 	if (GetPartitionAmount("Partition.MonthPart") > 0 || GetPartitionAmount("CrewPayment") > 0)
 	{
 		if (sti(Pchar.Money) > 0)
@@ -1627,23 +1673,26 @@ void DoPartitionPay()
 {
 	int sum = 0;
 	if (GetPartitionAmount("Partition.MonthPart") > 0 || GetPartitionAmount("CrewPayment") > 0)
-	if (GetPartitionAmount("CrewPayment") > 0)
-	{
-	    sum = GetPartitionAmount("CrewPayment");
-	    if (sti(Pchar.Money) < sum) sum = sti(Pchar.Money);
-        Pchar.CrewPayment = sti(Pchar.CrewPayment) - sum;
-        if (sti(Pchar.CrewPayment) <= 0) DeleteAttribute(Pchar, "CrewPayment");
-	}
-	else
-	{
-		if (GetPartitionAmount("Partition.MonthPart") > 0)
+		if (GetPartitionAmount("CrewPayment") > 0)
 		{
-		    sum = GetPartitionAmount("Partition.MonthPart");
-		    if (sti(Pchar.Money) < sum) sum = sti(Pchar.Money);
-	        Pchar.Partition.MonthPart = sti(Pchar.Partition.MonthPart) - sum;
-	        AddCrewMorale(xi_refCharacter, 2);
+			sum = GetPartitionAmount("CrewPayment");
+			if (sti(Pchar.Money) < sum)
+				sum = sti(Pchar.Money);
+			Pchar.CrewPayment = sti(Pchar.CrewPayment) - sum;
+			if (sti(Pchar.CrewPayment) <= 0)
+				DeleteAttribute(Pchar, "CrewPayment");
 		}
-	}
+		else
+		{
+			if (GetPartitionAmount("Partition.MonthPart") > 0)
+			{
+				sum = GetPartitionAmount("Partition.MonthPart");
+				if (sti(Pchar.Money) < sum)
+					sum = sti(Pchar.Money);
+				Pchar.Partition.MonthPart = sti(Pchar.Partition.MonthPart) - sum;
+				AddCrewMorale(xi_refCharacter, 2);
+			}
+		}
 	pchar.paymentdate = GetDateString() + " " + GetTimeString();
 	AddMoneyToCharacter(Pchar, -sum);
 	Statistic_AddValue(pchar, "PartitionPay", sum);
@@ -1653,48 +1702,55 @@ void DoPartitionPay()
 
 int GetPartitionAmount(string _param)
 {
-    if (!CheckAttribute(Pchar, _param)) return 0;
-    return sti(Pchar.(_param));
+	if (!CheckAttribute(Pchar, _param))
+		return 0;
+	return sti(Pchar.(_param));
 }
 
-int cpos[7]={0,0,0,0,0,0,0};
-int cpostotal[7]={0,0,0,0,0,0,0};
-int cindex[7]={0,0,0,0,0,0,0};
+int cpos[7] = {0, 0, 0, 0, 0, 0, 0};
+int cpostotal[7] = {0, 0, 0, 0, 0, 0, 0};
+int cindex[7] = {0, 0, 0, 0, 0, 0, 0};
 void ReSortCompanions()
 {
-	int cn,iShipType;
+	int cn, iShipType;
 	int cq = GetCompanionQuantity(pchar);
 	if (cq > 1)
 	{
-		for(int i = 1; i <= cq-1; i++)
+		for (int i = 1; i <= cq - 1; i++)
 		{
 			cn = GetCompanionIndex(pchar, i);
 			iShipType = sti(characters[cn].ship.type);
-			if(iShipType != SHIP_NOTUSED)
+			if (iShipType != SHIP_NOTUSED)
 			{
 				ref rBaseShip = GetRealShip(iShipType);
-				cpos[i-1] = makeint(stf(rBaseShip.speedrate)*100.0);
-				cindex[i-1] = GetCompanionIndex(pchar,i);
+				cpos[i - 1] = makeint(stf(rBaseShip.speedrate) * 100.0);
+				cindex[i - 1] = GetCompanionIndex(pchar, i);
 			}
 		}
 	}
-	else return;
-	for(i = 0; i < cq-1; i++)
+	else
+		return;
+	for (i = 0; i < cq - 1; i++)
 	{
 		int j = 0;
-		cpostotal[i] = cq-1;
-		while (j < cq-1)
+		cpostotal[i] = cq - 1;
+		while (j < cq - 1)
 		{
-			if (j == i) {j++; continue;}
-			if (cpos[i] > cpos[j]) cpostotal[i] -= 1;
+			if (j == i)
+			{
+				j++;
+				continue;
+			}
+			if (cpos[i] > cpos[j])
+				cpostotal[i] -= 1;
 			j++;
 		}
 	}
-	for(i = 1; i <= cq-1; i++)
+	for (i = 1; i <= cq - 1; i++)
 	{
-		string compName = "id"+cpostotal[i-1];
-		pchar.Fellows.Companions.(compName) = cindex[i-1];
-		Event(EVENT_CHANGE_COMPANIONS,"");
+		string compName = "id" + cpostotal[i - 1];
+		pchar.Fellows.Companions.(compName) = cindex[i - 1];
+		Event(EVENT_CHANGE_COMPANIONS, "");
 	}
 	IDoExit(RC_INTERFACE_TO_SHIP);
 }

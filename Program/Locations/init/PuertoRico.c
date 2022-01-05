@@ -14,7 +14,8 @@ int LocationInitPuertoRico(int n)
 	locations[n].islandId = "PuertoRico";
 
 	locations[n].filespath.models = "locations\Town_PuertoRico\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -39,7 +40,7 @@ int LocationInitPuertoRico(int n)
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.3;
@@ -56,7 +57,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PuertoRico";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -126,15 +127,15 @@ int LocationInitPuertoRico(int n)
 	locations[n].reload.gate.label = "ExitTown";
 
 	// --> Квествоые локации.
- 	locations[n].reload.l11.name = "houseSp6";
+	locations[n].reload.l11.name = "houseSp6";
 	locations[n].reload.l11.go = "SanJuan_houseSp6";
 	locations[n].reload.l11.emerge = "reload1";
 	locations[n].reload.l11.autoreload = "0";
 	locations[n].reload.l11.label = "House";
-	locations[n].reload.l11.disable= true; //закроем до встречи Атиллы
+	locations[n].reload.l11.disable = true;			   //закроем до встречи Атиллы
 	locations[n].locators_radius.item.detector1 = 6.0; //детектор
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS1";
 	locations[n].reload.l20.go = "CommonFlamHouse";
 	locations[n].reload.l20.emerge = "reload1";
@@ -160,67 +161,67 @@ int LocationInitPuertoRico(int n)
 	locations[n].reload.l23.autoreload = "0";
 	locations[n].reload.l23.label = "House";
 
- 	locations[n].reload.l24.name = "houseH2";
+	locations[n].reload.l24.name = "houseH2";
 	locations[n].reload.l24.go = "CommonRoom_MH3";
 	locations[n].reload.l24.emerge = "reload1";
 	locations[n].reload.l24.autoreload = "0";
 	locations[n].reload.l24.label = "House";
 
- 	locations[n].reload.l25.name = "houseF2";
+	locations[n].reload.l25.name = "houseF2";
 	locations[n].reload.l25.go = "CommonRoom_MH4";
 	locations[n].reload.l25.emerge = "reload1";
 	locations[n].reload.l25.autoreload = "0";
 	locations[n].reload.l25.label = "House";
 
- 	locations[n].reload.l26.name = "houseH1";
+	locations[n].reload.l26.name = "houseH1";
 	locations[n].reload.l26.go = "CommonRoom_MH9";
 	locations[n].reload.l26.emerge = "reload1";
 	locations[n].reload.l26.autoreload = "0";
 	locations[n].reload.l26.label = "House";
 
- 	locations[n].reload.l27.name = "houseSp2";
+	locations[n].reload.l27.name = "houseSp2";
 	locations[n].reload.l27.go = "CommonDoubleflourHouse_1";
 	locations[n].reload.l27.emerge = "reload1";
 	locations[n].reload.l27.autoreload = "0";
 	locations[n].reload.l27.label = "House";
 
- 	locations[n].reload.l28.name = "houseS3";
+	locations[n].reload.l28.name = "houseS3";
 	locations[n].reload.l28.go = "CommonPirateHouse";
 	locations[n].reload.l28.emerge = "reload1";
 	locations[n].reload.l28.autoreload = "0";
 	locations[n].reload.l28.label = "House";
 
- 	locations[n].reload.l29.name = "houseSp3";
+	locations[n].reload.l29.name = "houseSp3";
 	locations[n].reload.l29.go = "CommonRoom_MH10";
 	locations[n].reload.l29.emerge = "reload1";
 	locations[n].reload.l29.autoreload = "0";
 	locations[n].reload.l29.label = "House";
 
- 	locations[n].reload.l30.name = "houseH3";
+	locations[n].reload.l30.name = "houseH3";
 	locations[n].reload.l30.go = "CommonRoom_MH7";
 	locations[n].reload.l30.emerge = "reload1";
 	locations[n].reload.l30.autoreload = "0";
 	locations[n].reload.l30.label = "House";
 
- 	locations[n].reload.l31.name = "houseF1";
+	locations[n].reload.l31.name = "houseF1";
 	locations[n].reload.l31.go = "CommonRoom_MH5";
 	locations[n].reload.l31.emerge = "reload1";
 	locations[n].reload.l31.autoreload = "0";
 	locations[n].reload.l31.label = "House";
 
- 	locations[n].reload.l32.name = "houseSp5";
+	locations[n].reload.l32.name = "houseSp5";
 	locations[n].reload.l32.go = "CommonFlamHouse";
 	locations[n].reload.l32.emerge = "reload1";
 	locations[n].reload.l32.autoreload = "0";
 	locations[n].reload.l32.label = "House";
 
- 	locations[n].reload.l33.name = "houseSp4";
+	locations[n].reload.l33.name = "houseSp4";
 	locations[n].reload.l33.go = "CommonDoubleflourHouse_1";
 	locations[n].reload.l33.emerge = "reload1";
 	locations[n].reload.l33.autoreload = "0";
 	locations[n].reload.l33.label = "House";
 
- 	locations[n].reload.l34.name = "houseF3";
+	locations[n].reload.l34.name = "houseF3";
 	locations[n].reload.l34.go = "CommonRoom_MH2";
 	locations[n].reload.l34.emerge = "reload1";
 	locations[n].reload.l34.autoreload = "0";
@@ -233,7 +234,8 @@ int LocationInitPuertoRico(int n)
 	locations[n].id = "SanJuan_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\tavern03\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "SanJuan";
@@ -287,7 +289,7 @@ int LocationInitPuertoRico(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "SanJuan";
- 	locations[n].islandId = "PuertoRico";
+	locations[n].islandId = "PuertoRico";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\Tavern_room";
@@ -316,13 +318,14 @@ int LocationInitPuertoRico(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\store02\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "SanJuan";
 	locations[n].lockWeather = "Inside";
@@ -355,7 +358,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	locations[n].locators_radius.camdetector.camera1 = 5;
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -364,20 +367,21 @@ int LocationInitPuertoRico(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РОСТОВЩИК
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_Bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "SanJuan";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "SanJuan";
- 	locations[n].islandId = "PuertoRico";
+	locations[n].islandId = "PuertoRico";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Bank01_locators";
@@ -410,20 +414,21 @@ int LocationInitPuertoRico(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard01\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "SanJuan";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shipyard";
 	locations[n].fastreload = "SanJuan";
- 	locations[n].islandId = "PuertoRico";
+	locations[n].islandId = "PuertoRico";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Shipyard01_locators";
@@ -434,7 +439,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].models.always.window.level = 65539;
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
-    //Day
+	//Day
 	locations[n].models.day.charactersPatch = "Shipyard01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "Shipyard01_patch";
@@ -456,7 +461,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_townhall";
@@ -556,7 +561,7 @@ int LocationInitPuertoRico(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_PortOffice";
@@ -690,7 +695,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].id = "SanJuan_ExitTown";
 	locations[n].fastreload = "SanJuan";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "SanJuan";
 	//Sound
@@ -747,12 +752,12 @@ int LocationInitPuertoRico(int n)
 	locations[n].locators_radius.reload.reload1_back = 2;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "PuertoRico";
@@ -852,7 +857,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].reload.l2.emerge = "reload_2";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -860,7 +865,7 @@ int LocationInitPuertoRico(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_Jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "PuertoRico";
@@ -915,7 +920,7 @@ int LocationInitPuertoRico(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "PuertoRico";
@@ -965,7 +970,7 @@ int LocationInitPuertoRico(int n)
 	// Пещера
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_Cave";
-	locations[n].image = "loading\inside\Cave_"+(rand(1)+1)+".tga";
+	locations[n].image = "loading\inside\Cave_" + (rand(1) + 1) + ".tga";
 	locations[n].id.label = "Cave";
 	//Sound
 	locations[n].type = "cave";
@@ -983,7 +988,7 @@ int LocationInitPuertoRico(int n)
 
 	Locations[n].models.always.rays = "cavernMedium1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 
@@ -999,7 +1004,7 @@ int LocationInitPuertoRico(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "true";
 	locations[n].environment.weather.rain = false;
- 	//Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "SanJuan_CaveEntrance";
 	locations[n].reload.l1.emerge = "reload1";
@@ -1018,14 +1023,15 @@ int LocationInitPuertoRico(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "SanJuan_Jungle_03";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "PuertoRico";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle1\";
-	Locations[n].models.always.jungle = "jungle1";
+									Locations[n]
+										.models.always.jungle = "jungle1";
 	Locations[n].models.always.locators = "jungle1_lPuerto03";
 	Locations[n].models.always.grassPatch = "jungle1_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -1041,7 +1047,7 @@ int LocationInitPuertoRico(int n)
 
 	locations[n].models.always.well_small = "well_big";
 	Locations[n].models.always.well_small.locator.group = "reload";
-	Locations[n].models.always.well_small.locator.name ="reloadW_back";
+	Locations[n].models.always.well_small.locator.name = "reloadW_back";
 	Locations[n].models.always.well_small.tech = "DLightModel";
 	//Day
 	locations[n].models.day.charactersPatch = "jungle1_pPuerto03";
@@ -1123,9 +1129,8 @@ int LocationInitPuertoRico(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
-
 
 	return n;
 }

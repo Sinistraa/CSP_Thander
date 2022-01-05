@@ -8,33 +8,33 @@
 #include "weather\WhrAstronomy.c"
 #include "weather\WhrSeaPresets.c"
 
-#define WIND_NORMAL_POWER		20.0
+#define WIND_NORMAL_POWER 20.0
 
-#define MAX_WEATHERS   34
+#define MAX_WEATHERS 34
 
-object	Weather, WeatherParams, WhrCommonParams;
-int		iNextWeatherNum = -1;
-int		iCurWeatherNum = -1;
-int		iBlendWeatherNum = -1;
-int		iCurWeatherHour = -1;
-bool	bCurWeatherStorm = false;
-int		iTotalNumWeathers = 0;
-string	sLightingPath = "day";
-string	sLmLightingPath = "day";
-string	sInsideBack = "";
-int	iNewExecuteLayer, iNewRealizeLayer;
-string	sCurrentFog;
-float	fWeatherDelta = 0.0;
-float	fWeatherAngle, fWeatherSpeed;
-float	fFogDensity;
-int		iShadowDensity[2];
-int		iPrevWeather = -1;
-int		sunIsShine = true;
-bool	bWeatherLoaded = false;
-bool	bWeatherIsNight = false;
-bool	bWeatherIsLight = false;
-bool	bWeatherIsRain = false;
-bool	bWeatherIsStorm = false;
+object Weather, WeatherParams, WhrCommonParams;
+int iNextWeatherNum = -1;
+int iCurWeatherNum = -1;
+int iBlendWeatherNum = -1;
+int iCurWeatherHour = -1;
+bool bCurWeatherStorm = false;
+int iTotalNumWeathers = 0;
+string sLightingPath = "day";
+string sLmLightingPath = "day";
+string sInsideBack = "";
+int iNewExecuteLayer, iNewRealizeLayer;
+string sCurrentFog;
+float fWeatherDelta = 0.0;
+float fWeatherAngle, fWeatherSpeed;
+float fFogDensity;
+int iShadowDensity[2];
+int iPrevWeather = -1;
+int sunIsShine = true;
+bool bWeatherLoaded = false;
+bool bWeatherIsNight = false;
+bool bWeatherIsLight = false;
+bool bWeatherIsRain = false;
+bool bWeatherIsStorm = false;
 
 object Weathers[MAX_WEATHERS];
 
@@ -44,15 +44,18 @@ extern int InitWeather();
 #event_handler("EWhr_GetWindSpeed", "Whr_GetWindSpeed");
 #event_handler("EWhr_GetShadowDensity", "Whr_GetShadowDensity");
 #event_handler("EWhr_GetFogDensity", "Whr_GetFogDensity");
-#event_handler("WeatherTimeUpdate", "Whr_TimeUpdate" );
+#event_handler("WeatherTimeUpdate", "Whr_TimeUpdate");
 
 void SetNextWeather(string sWeatherID)
 {
 	// find weather
 	iNextWeatherNum = -1;
-	for (int i=0; i<MAX_WEATHERS; i++)
+	for (int i = 0; i < MAX_WEATHERS; i++)
 	{
-		if (!CheckAttribute(&Weathers[i], "id")) { continue; }
+		if (!CheckAttribute(&Weathers[i], "id"))
+		{
+			continue;
+		}
 		if (Weathers[i].id == sWeatherID)
 		{
 			iNextWeatherNum = i;
@@ -84,7 +87,7 @@ void DeleteWeatherEnvironment()
 	{
 		DeleteClass(&Weather);
 	}
-	DeleteAttribute(&Weather,"");
+	DeleteAttribute(&Weather, "");
 	//WeatherParams.Tornado = false;
 	//DeleteAttribute(&WeatherParams,"");
 
@@ -96,8 +99,8 @@ void DeleteWeatherEnvironment()
 	WhrDeleteSeaEnvironment();
 	WhrDeleteAstronomyEnvironment();
 
-	DelEventHandler(WEATHER_CALC_FOG_COLOR,"Whr_OnCalcFogColor");
-	DelEventHandler("frame","Whr_OnWindChange");
+	DelEventHandler(WEATHER_CALC_FOG_COLOR, "Whr_OnCalcFogColor");
+	DelEventHandler("frame", "Whr_OnWindChange");
 
 	bWeatherLoaded = false;
 }
@@ -109,7 +112,7 @@ aref GetCurrentWeather()
 		iCurWeatherNum = iTotalNumWeathers - 1;
 	//End fix
 	aref arWeather;
-	makearef(arWeather,Weathers[iCurWeatherNum]);
+	makearef(arWeather, Weathers[iCurWeatherNum]);
 	return arWeather;
 }
 
@@ -125,49 +128,57 @@ void CreateWeatherEnvironment()
 	bool bWhrTornado = false;
 	bool bRain = false;
 
+	if (CheckAttribute(&WeatherParams, "Storm"))
+	{
+		bWhrStorm = sti(WeatherParams.Storm);
+	}
+	if (CheckAttribute(&WeatherParams, "Tornado"))
+	{
+		bWhrTornado = sti(WeatherParams.Tornado);
+	}
 
-
-
-	if (CheckAttribute(&WeatherParams,"Storm")) { bWhrStorm = sti(WeatherParams.Storm); }
-	if (CheckAttribute(&WeatherParams,"Tornado")) { bWhrTornado = sti(WeatherParams.Tornado); }
-
-//navy --> Rain
+	//navy --> Rain
 	int iMonth = GetDataMonth();
 	int iTmp, iChance;
-	if (CheckAttribute(&WeatherParams,"Rain")) { bRain = sti(WeatherParams.Rain); }
-	if (!CheckAttribute(&WeatherParams, "Rain.ThisDay")) WeatherParams.Rain.ThisDay = false;
+	if (CheckAttribute(&WeatherParams, "Rain"))
+	{
+		bRain = sti(WeatherParams.Rain);
+	}
+	if (!CheckAttribute(&WeatherParams, "Rain.ThisDay"))
+		WeatherParams.Rain.ThisDay = false;
 
-    //Время проверяется, т.к. нет ночной погоды для дождя!!! Ее в ГПК дорисовали??
+	//Время проверяется, т.к. нет ночной погоды для дождя!!! Ее в ГПК дорисовали??
 	if (iHour >= 5 && iHour <= 15 && !sti(WeatherParams.Rain.ThisDay))
 	{
 		//шанс.
 		iChance = 0;
 		//Ха... эта строчка сезон дождей!!!! ифсЁ! Собственно 50/50 шансы, надо будет посмотреть - добавить/убрать
-		if (iMonth > 4 && iMonth < 9) iChance = 30;
+		if (iMonth > 4 && iMonth < 9)
+			iChance = 30;
 		//вот эта строчка ОТВЕЧАЕТ ЗА ДОЖДЬ! НЕ ТРОГАТЬ.
 		bRain = ((rand(50) + rand(50)) < (5 + iChance));
 
-        //второй параметр, аттрибут ГГ, ставится через дебаггер, чтобы тестить дождь.
+		//второй параметр, аттрибут ГГ, ставится через дебаггер, чтобы тестить дождь.
 		if (bRain || CheckAttribute(pchar, "questTemp.StartRain"))
 		{
 			//час начала...
-			WeatherParams.Rain.ThisDay   = true;
+			WeatherParams.Rain.ThisDay = true;
 			WeatherParams.Rain.StartTime = iHour + 2 + rand(2);
 			//продолжительность в минутах //1 час мин, иначе небо не успеет.
-			WeatherParams.Rain.Duration  = 60 + rand(120);
+			WeatherParams.Rain.Duration = 60 + rand(120);
 
 			iTmp = sti(WeatherParams.Rain.StartTime);
 
-			Weathers[iTmp].Bak.Fog.Color		= Weathers[iTmp].Fog.Color;
-			Weathers[iTmp].Bak.Fog.Height		= Weathers[iTmp].Fog.Height;
-			Weathers[iTmp].Bak.Fog.Density		= Weathers[iTmp].Fog.Density;
-			Weathers[iTmp].Bak.Fog.SeaDensity	= Weathers[iTmp].Fog.SeaDensity;
-			Weathers[iTmp].Bak.Fog.IslandDensity	= Weathers[iTmp].Fog.IslandDensity;
+			Weathers[iTmp].Bak.Fog.Color = Weathers[iTmp].Fog.Color;
+			Weathers[iTmp].Bak.Fog.Height = Weathers[iTmp].Fog.Height;
+			Weathers[iTmp].Bak.Fog.Density = Weathers[iTmp].Fog.Density;
+			Weathers[iTmp].Bak.Fog.SeaDensity = Weathers[iTmp].Fog.SeaDensity;
+			Weathers[iTmp].Bak.Fog.IslandDensity = Weathers[iTmp].Fog.IslandDensity;
 
-			Weathers[iTmp].Bak.Sun.Glow.Enable		= Weathers[iTmp].Sun.Glow.Enable;
-			Weathers[iTmp].Bak.Sun.Overflow.Enable	= Weathers[iTmp].Sun.Overflow.Enable;
+			Weathers[iTmp].Bak.Sun.Glow.Enable = Weathers[iTmp].Sun.Glow.Enable;
+			Weathers[iTmp].Bak.Sun.Overflow.Enable = Weathers[iTmp].Sun.Overflow.Enable;
 
-			Weathers[iTmp].Fog.Color = argb(0,50,60,65);
+			Weathers[iTmp].Fog.Color = argb(0, 50, 60, 65);
 			Weathers[iTmp].Fog.Height = 1000;
 			Weathers[iTmp].Fog.Density = 0.003;
 			Weathers[iTmp].Fog.SeaDensity = 0.0022;
@@ -183,7 +194,7 @@ void CreateWeatherEnvironment()
 	//принудительно убираем дождь, если время просрочено
 	if (bRain)
 	{
-		iTmp = sti(WeatherParams.Rain.StartTime) + (sti(WeatherParams.Rain.Duration)/60 + 0.5);
+		iTmp = sti(WeatherParams.Rain.StartTime) + (sti(WeatherParams.Rain.Duration) / 60 + 0.5);
 		if (iHour > iTmp)
 		{
 			bRain = false;
@@ -191,14 +202,16 @@ void CreateWeatherEnvironment()
 			WeatherParams.Rain.ThisDay = false;
 		}
 	}
-//navy <-- Rain
-
+	//navy <-- Rain
 
 	//Trace("bCurWeatherStorm = " + bCurWeatherStorm);
 
 	if (iNextWeatherNum != -1)
 	{
-		if (iPrevWeather == -1) { iPrevWeather = iCurWeatherNum; }
+		if (iPrevWeather == -1)
+		{
+			iPrevWeather = iCurWeatherNum;
+		}
 		iCurWeatherHour = iHour;
 		iCurWeatherNum = iNextWeatherNum;
 		iNextWeatherNum = -1;
@@ -207,7 +220,7 @@ void CreateWeatherEnvironment()
 	else
 	{
 		// search weather for hour
-		for (int i=0;i<MAX_WEATHERS;i++)
+		for (int i = 0; i < MAX_WEATHERS; i++)
 		{
 			//navy --> чистим текущую погоду от остатков предыдущего дождя... иначе сохранненный дождь пойдет...
 			//или нужно всю погоду инитить заново... но лучше наверно так.
@@ -218,40 +231,62 @@ void CreateWeatherEnvironment()
 			}
 			if (CheckAttribute(&WeatherParams, "Rain.ThisDay") && !sti(WeatherParams.Rain.ThisDay) && CheckAttribute(&Weathers[i], "Bak"))
 			{
-				Weathers[i].Fog.Color		= Weathers[i].Bak.Fog.Color;
-				Weathers[i].Fog.Height		= Weathers[i].Bak.Fog.Height;
-				Weathers[i].Fog.Density		= Weathers[i].Bak.Fog.Density;
-				Weathers[i].Fog.SeaDensity	= Weathers[i].Bak.Fog.SeaDensity;
-				Weathers[i].Fog.IslandDensity	= Weathers[i].Bak.Fog.IslandDensity;
+				Weathers[i].Fog.Color = Weathers[i].Bak.Fog.Color;
+				Weathers[i].Fog.Height = Weathers[i].Bak.Fog.Height;
+				Weathers[i].Fog.Density = Weathers[i].Bak.Fog.Density;
+				Weathers[i].Fog.SeaDensity = Weathers[i].Bak.Fog.SeaDensity;
+				Weathers[i].Fog.IslandDensity = Weathers[i].Bak.Fog.IslandDensity;
 
-				Weathers[i].Sun.Glow.Enable		= Weathers[i].Bak.Sun.Glow.Enable;
-				Weathers[i].Sun.Overflow.Enable	= Weathers[i].Bak.Sun.Overflow.Enable;
+				Weathers[i].Sun.Glow.Enable = Weathers[i].Bak.Sun.Glow.Enable;
+				Weathers[i].Sun.Overflow.Enable = Weathers[i].Bak.Sun.Overflow.Enable;
 
 				DeleteAttribute(&Weathers[i], "Bak");
 			}
-			if (!bRain) Weathers[i].Rainbow.Enable = false;
+			if (!bRain)
+				Weathers[i].Rainbow.Enable = false;
 			//navy <--
-			if (!CheckAttribute(&Weathers[i], "hour")) { continue; }
+			if (!CheckAttribute(&Weathers[i], "hour"))
+			{
+				continue;
+			}
 			if (CheckAttribute(&Weathers[i], "skip"))
 			{
-				if (sti(Weathers[i].skip)) { continue; }
+				if (sti(Weathers[i].skip))
+				{
+					continue;
+				}
 			}
 
 			bool bCanStorm = sti(Weathers[i].Storm);
 			bool bCanTornado = sti(Weathers[i].Tornado);
 			int iMin = sti(Weathers[i].Hour.Min);
 			int iMax = sti(Weathers[i].Hour.Max);
-			if (iMin == iMax && iMin != iHour) { continue; }
+			if (iMin == iMax && iMin != iHour)
+			{
+				continue;
+			}
 			if (iMin > iMax)
 			{
-				if (iHour < iMin && iHour > iMax) { continue; }
+				if (iHour < iMin && iHour > iMax)
+				{
+					continue;
+				}
 			}
 			if (iMin < iMax)
 			{
-				if (iHour < iMin || iHour > iMax) { continue; }
+				if (iHour < iMin || iHour > iMax)
+				{
+					continue;
+				}
 			}
-			if (bWhrStorm != bCanStorm) { continue; }
-			if (bWhrTornado == true && bWhrTornado != bCanTornado) { continue; }
+			if (bWhrStorm != bCanStorm)
+			{
+				continue;
+			}
+			if (bWhrTornado == true && bWhrTornado != bCanTornado)
+			{
+				continue;
+			}
 
 			iWeatherFound[iNumWeatherFound] = i;
 			iNumWeatherFound++;
@@ -266,57 +301,81 @@ void CreateWeatherEnvironment()
 		}
 		else
 		{
-			iCurWeatherNum = iWeatherFound[rand(iNumWeatherFound-1)];
+			iCurWeatherNum = iWeatherFound[rand(iNumWeatherFound - 1)];
 		}
 	}
 
 	int iCurLocation;
 	int iTestWeather;
 	bool bQuestlockWeather;
-    float fGetTime = GetTime();
+	float fGetTime = GetTime();
 
 	bQuestlockWeather = false;
 	sunIsShine = true;
 
-	if(CheckAttribute(pchar, "location"))
+	if (CheckAttribute(pchar, "location"))
 	{
 		iCurLocation = reload_location_index;
-		if(iCurLocation != -1)
+		if (iCurLocation != -1)
 		{
-			if(CheckAttribute(&locations[iCurLocation], "storm"))
+			if (CheckAttribute(&locations[iCurLocation], "storm"))
 			{
 				bWhrStorm = 1;
 			}
-			if(CheckAttribute(&locations[iCurLocation], "tornado"))
+			if (CheckAttribute(&locations[iCurLocation], "tornado"))
 			{
 				bWhrTornado = 1;
 			}
-			if(CheckAttribute(&locations[iCurLocation], "alwaysStorm"))
+			if (CheckAttribute(&locations[iCurLocation], "alwaysStorm"))
 			{
-				if (fGetTime >= 6.0 && fGetTime < 10.0) locations[iCurLocation].QuestlockWeather = "Storm01_add";
-				else { if (fGetTime >= 10.0 && fGetTime < 18.0) locations[iCurLocation].QuestlockWeather = "Storm02_add";
-				else { if (fGetTime >= 18.0 && fGetTime < 22.0) locations[iCurLocation].QuestlockWeather = "Storm03_add";
-				else { locations[iCurLocation].QuestlockWeather = "Storm04_add";
-				}}}
-				if (CheckAttribute(&locations[iCurLocation], "alwaysStorm.WaveHeigh")) locations[iCurLocation].MaxWaveHeigh = 2.5; //установим уровень воды
+				if (fGetTime >= 6.0 && fGetTime < 10.0)
+					locations[iCurLocation].QuestlockWeather = "Storm01_add";
+				else
+				{
+					if (fGetTime >= 10.0 && fGetTime < 18.0)
+						locations[iCurLocation].QuestlockWeather = "Storm02_add";
+					else
+					{
+						if (fGetTime >= 18.0 && fGetTime < 22.0)
+							locations[iCurLocation].QuestlockWeather = "Storm03_add";
+						else
+						{
+							locations[iCurLocation].QuestlockWeather = "Storm04_add";
+						}
+					}
+				}
+				if (CheckAttribute(&locations[iCurLocation], "alwaysStorm.WaveHeigh"))
+					locations[iCurLocation].MaxWaveHeigh = 2.5; //установим уровень воды
 			}
 			else
 			{
-				if(CheckAttribute(&locations[iCurLocation], "alwaysStorm_2")) //COAS escape
-                {
+				if (CheckAttribute(&locations[iCurLocation], "alwaysStorm_2")) //COAS escape
+				{
 					WeatherParams.Storm = "1";
-                    if (fGetTime >= 6.0 && fGetTime < 10.0) locations[iCurLocation].QuestlockWeather = "Storm01";
-                    else { if (fGetTime >= 10.0 && fGetTime < 18.0) locations[iCurLocation].QuestlockWeather = "Storm02";
-                    else { if (fGetTime >= 18.0 && fGetTime < 22.0) locations[iCurLocation].QuestlockWeather = "Storm03";
-                    else { locations[iCurLocation].QuestlockWeather = "Storm04";
-                    }}}
-                    if (CheckAttribute(&locations[iCurLocation], "alwaysStorm_2.WaveHeigh")) locations[iCurLocation].MaxWaveHeigh = 28.0; //40.0;
-                }
+					if (fGetTime >= 6.0 && fGetTime < 10.0)
+						locations[iCurLocation].QuestlockWeather = "Storm01";
+					else
+					{
+						if (fGetTime >= 10.0 && fGetTime < 18.0)
+							locations[iCurLocation].QuestlockWeather = "Storm02";
+						else
+						{
+							if (fGetTime >= 18.0 && fGetTime < 22.0)
+								locations[iCurLocation].QuestlockWeather = "Storm03";
+							else
+							{
+								locations[iCurLocation].QuestlockWeather = "Storm04";
+							}
+						}
+					}
+					if (CheckAttribute(&locations[iCurLocation], "alwaysStorm_2.WaveHeigh"))
+						locations[iCurLocation].MaxWaveHeigh = 28.0; //40.0;
+				}
 			}
-			if(CheckAttribute(&locations[iCurLocation], "QuestlockWeather"))
+			if (CheckAttribute(&locations[iCurLocation], "QuestlockWeather"))
 			{
 				iTestWeather = FindWeather(locations[iCurLocation].QuestlockWeather);
-				if(iTestWeather != -1)
+				if (iTestWeather != -1)
 				{
 					iCurWeatherNum = iTestWeather;
 					bQuestlockWeather = true;
@@ -330,28 +389,39 @@ void CreateWeatherEnvironment()
 		else
 		{
 			iCurLocation = FindIsland(pchar.location);
-			if(iCurLocation != -1)
+			if (iCurLocation != -1)
 			{
-				if(CheckAttribute(&Islands[iCurLocation], "storm"))
+				if (CheckAttribute(&Islands[iCurLocation], "storm"))
 				{
 					bWhrStorm = 1;
 				}
-				if(CheckAttribute(&Islands[iCurLocation], "tornado"))
+				if (CheckAttribute(&Islands[iCurLocation], "tornado"))
 				{
 					bWhrTornado = 1;
 				}
-				if(CheckAttribute(&Islands[iCurLocation], "alwaysStorm"))
+				if (CheckAttribute(&Islands[iCurLocation], "alwaysStorm"))
 				{
-					if (fGetTime >= 6.0 && fGetTime < 10.0) Islands[iCurLocation].QuestlockWeather = "Storm01";
-					else { if (fGetTime >= 10.0 && fGetTime < 18.0) Islands[iCurLocation].QuestlockWeather = "Storm02";
-					else { if (fGetTime >= 18.0 && fGetTime < 22.0) Islands[iCurLocation].QuestlockWeather = "Storm03";
-					else { Islands[iCurLocation].QuestlockWeather = "Storm04";
-					}}}
+					if (fGetTime >= 6.0 && fGetTime < 10.0)
+						Islands[iCurLocation].QuestlockWeather = "Storm01";
+					else
+					{
+						if (fGetTime >= 10.0 && fGetTime < 18.0)
+							Islands[iCurLocation].QuestlockWeather = "Storm02";
+						else
+						{
+							if (fGetTime >= 18.0 && fGetTime < 22.0)
+								Islands[iCurLocation].QuestlockWeather = "Storm03";
+							else
+							{
+								Islands[iCurLocation].QuestlockWeather = "Storm04";
+							}
+						}
+					}
 				}
-				if(CheckAttribute(&Islands[iCurLocation], "QuestlockWeather"))
+				if (CheckAttribute(&Islands[iCurLocation], "QuestlockWeather"))
 				{
 					iTestWeather = FindWeather(Islands[iCurLocation].QuestlockWeather);
-					if(iTestWeather != -1)
+					if (iTestWeather != -1)
 					{
 						iCurWeatherNum = iTestWeather;
 						bQuestlockWeather = true;
@@ -376,7 +446,7 @@ void CreateWeatherEnvironment()
 	if (bMainMenu)
 	{
 		iTestWeather = sti(InterfaceStates.mainmenuweather);
-		if(iTestWeather != -1)
+		if (iTestWeather != -1)
 		{
 			iCurWeatherNum = iTestWeather;
 			bQuestlockWeather = true;
@@ -385,7 +455,7 @@ void CreateWeatherEnvironment()
 	if (startGameWeather)
 	{
 		iTestWeather = sti(InterfaceStates.startGameWeather);
-		if(iTestWeather != -1)
+		if (iTestWeather != -1)
 		{
 			iCurWeatherNum = iTestWeather;
 			bQuestlockWeather = true;
@@ -394,7 +464,7 @@ void CreateWeatherEnvironment()
 	}
 
 	// create main module Weather
-	DeleteAttribute(&Weather,"");
+	DeleteAttribute(&Weather, "");
 	if (!isEntity(&Weather))
 	{
 		CreateEntity(&Weather, "Weather");
@@ -402,20 +472,20 @@ void CreateWeatherEnvironment()
 
 	aref aCurWeather = GetCurrentWeather();
 
-	sLightingPath = Whr_GetString(aCurWeather,"Lighting");
-	sLmLightingPath = Whr_GetString(aCurWeather,"LightingLm");
-	sInsideBack = Whr_GetString(aCurWeather,"InsideBack");
-	bWeatherIsNight = Whr_GetLong(aCurWeather,"Night");
-	bWeatherIsLight = Whr_GetLong(aCurWeather,"Lights");
+	sLightingPath = Whr_GetString(aCurWeather, "Lighting");
+	sLmLightingPath = Whr_GetString(aCurWeather, "LightingLm");
+	sInsideBack = Whr_GetString(aCurWeather, "InsideBack");
+	bWeatherIsNight = Whr_GetLong(aCurWeather, "Night");
+	bWeatherIsLight = Whr_GetLong(aCurWeather, "Lights");
 
-	if(CheckAttribute(pchar, "wind.angle"))
+	if (CheckAttribute(pchar, "wind.angle"))
 	{
 		Weather.Wind.Angle = pchar.wind.angle;
 		//DeleteAttribute(pchar, "wind.angle");
 	}
 	else
 	{
-		Weather.Wind.Angle = frand(PIm2);//  Блин!!! это не градусы!!!!! frand(180.0);//Whr_GetFloat(aCurWeather,"Wind.Angle");
+		Weather.Wind.Angle = frand(PIm2); //  Блин!!! это не градусы!!!!! frand(180.0);//Whr_GetFloat(aCurWeather,"Wind.Angle");
 		pchar.wind.angle = Weather.Wind.Angle;
 	}
 
@@ -426,7 +496,7 @@ void CreateWeatherEnvironment()
 	}
 	else
 	{
-		Weather.Wind.Speed = Whr_GetFloat(aCurWeather,"Wind.Speed");
+		Weather.Wind.Speed = Whr_GetFloat(aCurWeather, "Wind.Speed");
 		pchar.wind.speed = Weather.Wind.Speed;
 	}
 
@@ -436,7 +506,10 @@ void CreateWeatherEnvironment()
 	sCurrentFog = "Fog";
 	if (bSeaActive)
 	{
-		if (CheckAttribute(aCurWeather, "SpecialSeaFog")) { sCurrentFog = "SpecialSeaFog"; }
+		if (CheckAttribute(aCurWeather, "SpecialSeaFog"))
+		{
+			sCurrentFog = "SpecialSeaFog";
+		}
 	}
 
 	FillWeatherData(iCurWeatherNum, iBlendWeatherNum);
@@ -444,15 +517,17 @@ void CreateWeatherEnvironment()
 	if (iBlendWeatherNum < 0 || bQuestlockWeather)
 	{
 		Weather.Time.time = GetTime();
-		Weather.Time.speed = 350.0; // количество секунд на смену погоды
+		Weather.Time.speed = 350.0;		   // количество секунд на смену погоды
 		Weather.Time.updatefrequence = 12; // количество обновлений на смену погоды
-	} else {
+	}
+	else
+	{
 		Weather.Time.time = GetTime();
 		Weather.Time.speed = 450;
 		Weather.Time.updatefrequence = 15; // количество обновлений на смену погоды
 		if (bSeaActive && !bAbordageStarted)
 		{
-			if (iArcadeSails == 1)  // скорости в аркаде больше, время быстрее
+			if (iArcadeSails == 1) // скорости в аркаде больше, время быстрее
 			{
 				Weather.Time.speed = 250; // количество секунд на смену погоды
 				Weather.Time.updatefrequence = 10;
@@ -467,8 +542,8 @@ void CreateWeatherEnvironment()
 
 	Weather.isDone = "";
 
-	SetEventHandler(WEATHER_CALC_FOG_COLOR,"Whr_OnCalcFogColor",0);
-	SetEventHandler("frame","Whr_OnWindChange",0);
+	SetEventHandler(WEATHER_CALC_FOG_COLOR, "Whr_OnCalcFogColor", 0);
+	SetEventHandler("frame", "Whr_OnWindChange", 0);
 
 	fFogDensity = stf(Weather.Fog.Density);
 
@@ -477,11 +552,11 @@ void CreateWeatherEnvironment()
 	//fWeatherAngle = GetAngleY(stf(worldMap.WindX), stf(worldMap.WindZ));
 	fWeatherSpeed = stf(Weather.Wind.Speed);
 
-    // boal -->
+	// boal -->
 	bRain = true; // тут не работает Whr_isRainEnable(); из-за гл меню :(
-    string sLocation = pchar.location;
+	string sLocation = pchar.location;
 	int iLocation = FindLocation(sLocation);
-	if(iLocation != -1)
+	if (iLocation != -1)
 	{
 		ref rLoc;
 		rLoc = &Locations[iLocation];
@@ -499,12 +574,7 @@ void CreateWeatherEnvironment()
 			if (CheckAttribute(rLoc, "type"))
 			{
 				// тип помещение
-				if(rLoc.type == "residence"
-					|| rLoc.type == "tavern"
-					|| rLoc.type == "house"
-					|| rLoc.type == "shop"
-					|| rLoc.type == "shipyard"
-					|| rLoc.type == "church" )
+				if (rLoc.type == "residence" || rLoc.type == "tavern" || rLoc.type == "house" || rLoc.type == "shop" || rLoc.type == "shipyard" || rLoc.type == "church")
 				{
 					//нет дождя
 					bRain = false;
@@ -530,17 +600,20 @@ void CreateWeatherEnvironment()
 	WhrCreateSkyEnvironment();
 
 	string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-    WhrSetSeaPreset(iCurWeatherNum, sPreset);
+	WhrSetSeaPreset(iCurWeatherNum, sPreset);
 	WhrCreateSeaEnvironment();
 
-	if(iLocation != -1)
+	if (iLocation != -1)
 	{
-		if(CheckAttribute(&Locations[iLocation], "lockWeather"))
+		if (CheckAttribute(&Locations[iLocation], "lockWeather"))
 		{
 			bWhrTornado = false;
 		}
 	}
-	if (bWhrTornado) { WhrCreateTornadoEnvironment(); }
+	if (bWhrTornado)
+	{
+		WhrCreateTornadoEnvironment();
+	}
 
 	Particles.windpower = 0.05 * Clampf(Whr_GetWindSpeed() / WIND_NORMAL_POWER);
 	Particles.winddirection.x = sin(Whr_GetWindAngle());
@@ -560,10 +633,13 @@ void CreateWeatherEnvironment()
 
 void Whr_UpdateWeather()
 {
-	if (!isEntity(&Weather)) { return; }
+	if (!isEntity(&Weather))
+	{
+		return;
+	}
 
-//слишком много инитов
-//	WeatherInit();
+	//слишком много инитов
+	//	WeatherInit();
 
 	CreateWeatherEnvironment();
 	MoveWeatherToLayers(iNewExecuteLayer, iNewRealizeLayer);
@@ -571,7 +647,10 @@ void Whr_UpdateWeather()
 
 void Whr_LoadNextWeather(int nPlus)
 {
-	if (!isEntity(&Weather)) { return; }
+	if (!isEntity(&Weather))
+	{
+		return;
+	}
 	//WeatherInit();  //слишком много инитов
 
 	iCurWeatherHour = MakeInt(GetHour());
@@ -601,7 +680,7 @@ void Whr_LoadNextWeather(int nPlus)
 	CreateWeatherEnvironment();
 	MoveWeatherToLayers(iNewExecuteLayer, iNewRealizeLayer);
 
-	aref	aCurWeather = GetCurrentWeather();
+	aref aCurWeather = GetCurrentWeather();
 	iCurWeatherHour = sti(aCurWeather.Hour.Min);
 
 	SetCurrentTime(iCurWeatherHour, 0);
@@ -622,21 +701,21 @@ void Whr_OnWindChange()
 
 int Whr_OnCalcFogColor()
 {
-	int		iAlpha, iColor;
-	float	x, y, z;
+	int iAlpha, iColor;
+	float x, y, z;
 
 	x = GetEventData();
 	y = GetEventData();
 	z = GetEventData();
 
-	if( iBlendWeatherNum < 0 )
+	if (iBlendWeatherNum < 0)
 	{
 		aref aCurWeather = GetCurrentWeather();
 		iAlpha = 255 - MakeInt(255.0 * Clampf(y / stf(aCurWeather.(sCurrentFog).Height)));
 
 		//iColor = argb(0,0,0,0);
 		int iFogColor = sti(Weather.Fog.Color);
-		iColor = or(shl(iAlpha, 24), iFogColor);
+		iColor = or (shl(iAlpha, 24), iFogColor);
 	}
 	else
 	{
@@ -645,7 +724,7 @@ int Whr_OnCalcFogColor()
 		int iColorTmp = Whr_BlendColor(fBlend, sti(Weathers[iCurWeatherNum].(sCurrentFog).Color), sti(Weathers[iBlendWeatherNum].(sCurrentFog).Color));
 
 		iAlpha = 255 - MakeInt(255.0 * Clampf(y / fH));
-		iColor = or(shl(iAlpha, 24), iColorTmp);
+		iColor = or (shl(iAlpha, 24), iColorTmp);
 	}
 
 	return iColor;
@@ -653,32 +732,32 @@ int Whr_OnCalcFogColor()
 
 float Whr_BlendFloat(float fBlend, float f1, float f2)
 {
-	float f = f1 + fBlend * (f2-f1);
+	float f = f1 + fBlend * (f2 - f1);
 	return f;
 }
 
 int Whr_BlendLong(float fBlend, int i1, int i2)
 {
-	int i = makeint(i1 + fBlend * (i2-i1));
+	int i = makeint(i1 + fBlend * (i2 - i1));
 	return i;
 }
 
 int Whr_BlendColor(float fBlend, int col1, int col2)
 {
-	int r1 = shr(and(col1,16711680), 16); // get red color 1
-	int r2 = shr(and(col2,16711680), 16); // get red color 2
+	int r1 = shr(and(col1, 16711680), 16); // get red color 1
+	int r2 = shr(and(col2, 16711680), 16); // get red color 2
 
-	int g1 = shr(and(col1,65280), 8); // get green color 1
-	int g2 = shr(and(col2,65280), 8); // get green color 2
+	int g1 = shr(and(col1, 65280), 8); // get green color 1
+	int g2 = shr(and(col2, 65280), 8); // get green color 2
 
-	int b1 = and(col1,255); // get blue color 1
-	int b2 = and(col2,255); // get blue color 2
+	int b1 = and(col1, 255); // get blue color 1
+	int b2 = and(col2, 255); // get blue color 2
 
-	int r = r1 + MakeInt(fBlend * (r2-r1));
-	int g = g1 + MakeInt(fBlend * (g2-g1));
-	int b = b1 + MakeInt(fBlend * (b2-b1));
+	int r = r1 + MakeInt(fBlend * (r2 - r1));
+	int g = g1 + MakeInt(fBlend * (g2 - g1));
+	int b = b1 + MakeInt(fBlend * (b2 - b1));
 
-	return argb(0,r,g,b);
+	return argb(0, r, g, b);
 }
 
 void Whr_TimeUpdate()
@@ -690,27 +769,33 @@ void Whr_TimeUpdate()
 	Environment.time = fTime;
 	int nOldHour = sti(Environment.date.hour);
 	int nNewHour = makeint(fTime);
-	int nNewMin = makeint((fTime - nNewHour)*60);
-	int nNewSec = makeint(((fTime - nNewHour)*60 - nNewMin)*60);
+	int nNewMin = makeint((fTime - nNewHour) * 60);
+	int nNewSec = makeint(((fTime - nNewHour) * 60 - nNewMin) * 60);
 	Environment.date.min = nNewMin;
 	Environment.date.hour = nNewHour;
 	Environment.date.sec = nNewSec;
 	worldMap.date.hour = nNewHour;
-	worldMap.date.min  = nNewMin;
-	if( nNewHour < nOldHour ) // обновление дня переход с 23 в 0
+	worldMap.date.min = nNewMin;
+	if (nNewHour < nOldHour) // обновление дня переход с 23 в 0
 	{
-		AddDataToCurrent(0,0,1);
+		AddDataToCurrent(0, 0, 1);
 		Weather.Time.time = GetTime();
 	} // to_do время идет в CalcLocalTime
-	if( iBlendWeatherNum < 0 ) {return;}
+	if (iBlendWeatherNum < 0)
+	{
+		return;
+	}
 	//navy --> Rain
 	string sTmp;
 	int iTmp, iTime;
 	bool bRain = false;
-	if (CheckAttribute(&WeatherParams,"Rain")) { bRain = sti(WeatherParams.Rain); }
+	if (CheckAttribute(&WeatherParams, "Rain"))
+	{
+		bRain = sti(WeatherParams.Rain);
+	}
 	//navy <-- Rain
-	iCurWeatherNum = FindWeatherByHour( makeint(fTime) );
-	iBlendWeatherNum = FindBlendWeather( iCurWeatherNum );
+	iCurWeatherNum = FindWeatherByHour(makeint(fTime));
+	iBlendWeatherNum = FindBlendWeather(iCurWeatherNum);
 
 	//zagolski. динамическая смена тумана на островах и на море
 	if (bSeaActive)
@@ -721,7 +806,7 @@ void Whr_TimeUpdate()
 	}
 
 	//navy --> Rain
-	bool  bIsRainEnable = Whr_isRainEnable();
+	bool bIsRainEnable = Whr_isRainEnable();
 
 	if (bIsRainEnable) // не для локаций, где низя дождить
 	{
@@ -742,17 +827,17 @@ void Whr_TimeUpdate()
 				bRain = false;
 			}
 			//третья стадия.
-			if (iTime < (4*nRainDuration/5))
+			if (iTime < (4 * nRainDuration / 5))
 			{
 				iTmp = 2;
 			}
 			//вторая стадия.
-			if (iTime < (2*nRainDuration/3))
+			if (iTime < (2 * nRainDuration / 3))
 			{
 				iTmp = 1;
 			}
 			//первая стадия.
-			if (iTime < (nRainDuration/3))
+			if (iTime < (nRainDuration / 3))
 			{
 				iTmp = 0;
 			}
@@ -760,71 +845,71 @@ void Whr_TimeUpdate()
 			//в зависимости от заданной стадия моделируем дождь.
 			switch (iTmp)
 			{
-				case 0:
-					//ноль
-					WeatherParams.Rain.Sound = true;
-					break;
-				case 1:
-					//следующая стадия, начало мелкого дождя...
-					if (rand(100) < 40)
+			case 0:
+				//ноль
+				WeatherParams.Rain.Sound = true;
+				break;
+			case 1:
+				//следующая стадия, начало мелкого дождя...
+				if (rand(100) < 40)
+				{
+					Log_TestInfo("Starting the Lightning...");
+					Weathers[iCurWeatherNum].Lightning.Enable = true;
+					Weathers[iCurWeatherNum].Lightning.SubTexX = 4;
+					Weathers[iCurWeatherNum].Lightning.SubTexY = 1;
+					Weathers[iCurWeatherNum].Lightning.ScaleX = 0.7;
+					Weathers[iCurWeatherNum].Lightning.ScaleY = 1.0;
+					Weathers[iCurWeatherNum].Lightning.Flash.Texture = "Weather\lightning\flash.tga";
+				}
+				break;
+			case 2:
+				//3 стадия...
+				break;
+			case 3:
+				//заканчиваем...
+				if (CheckAttribute(&WeatherParams, "Rain.Sound") && sti(WeatherParams.Rain.Sound))
+				{
+					WeatherParams.Rain = false;
+					WeatherParams.Rain.Sound = false;
+					Whr_SetRainSound(false, sti(Weathers[iCurWeatherNum].Night));
+					Weathers[iCurWeatherNum].Lightning.Enable = false;
+					if (nNewHour > 5 && nNewHour < 20) //navy -- радуга по ночам. 5.03.07
 					{
-						Log_TestInfo("Starting the Lightning...");
-						Weathers[iCurWeatherNum].Lightning.Enable = true;
-						Weathers[iCurWeatherNum].Lightning.SubTexX = 4;
-						Weathers[iCurWeatherNum].Lightning.SubTexY = 1;
-						Weathers[iCurWeatherNum].Lightning.ScaleX = 0.7;
-						Weathers[iCurWeatherNum].Lightning.ScaleY = 1.0;
-						Weathers[iCurWeatherNum].Lightning.Flash.Texture = "Weather\lightning\flash.tga";
+						Weathers[iCurWeatherNum].Rainbow.Enable = true;
 					}
-					break;
-				case 2:
-					//3 стадия...
-					break;
-				case 3:
-					//заканчиваем...
-					if (CheckAttribute(&WeatherParams, "Rain.Sound") && sti(WeatherParams.Rain.Sound))
-					{
-						WeatherParams.Rain = false;
-						WeatherParams.Rain.Sound = false;
-						Whr_SetRainSound(false, sti(Weathers[iCurWeatherNum].Night));
-						Weathers[iCurWeatherNum].Lightning.Enable = false;
-						if (nNewHour > 5 && nNewHour < 20) //navy -- радуга по ночам. 5.03.07
-						{
-							Weathers[iCurWeatherNum].Rainbow.Enable = true;
-						}
 
-						DeleteAttribute(&WeatherParams, "Rain.StartTime");
-					}
-					WeatherParams.Rain.ThisDay = false;
-					break;
+					DeleteAttribute(&WeatherParams, "Rain.StartTime");
+				}
+				WeatherParams.Rain.ThisDay = false;
+				break;
 			}
 
 			if (iTmp != 0)
 			{
 				Weathers[iCurWeatherNum].Rain.NumDrops = 3500 + rand(1500);
 				Weathers[iCurWeatherNum].Rain.DropLength = 4 + rand(8);
-				Weathers[iCurWeatherNum].Rain.Color = argb(0,23,23,23);
+				Weathers[iCurWeatherNum].Rain.Color = argb(0, 23, 23, 23);
 			}
 
 			if (iTmp != 3)
 			{
 				Weathers[iBlendWeatherNum].Rain.NumDrops = 3500 + rand(1500);
 				Weathers[iBlendWeatherNum].Rain.DropLength = 4 + rand(8);
-				Weathers[iBlendWeatherNum].Rain.Color = argb(0,23,23,23);
+				Weathers[iBlendWeatherNum].Rain.Color = argb(0, 23, 23, 23);
 
 				if (!CheckAttribute(&Weathers[iBlendWeatherNum], "Bak"))
 				{
-					Weathers[iBlendWeatherNum].Bak.Fog.Color		= Weathers[iBlendWeatherNum].Fog.Color;
-					Weathers[iBlendWeatherNum].Bak.Fog.Height		= Weathers[iBlendWeatherNum].Fog.Height;
-					Weathers[iBlendWeatherNum].Bak.Fog.Density		= Weathers[iBlendWeatherNum].Fog.Density;
-					Weathers[iBlendWeatherNum].Bak.Fog.SeaDensity	= Weathers[iBlendWeatherNum].Fog.SeaDensity;
-					Weathers[iBlendWeatherNum].Bak.Fog.IslandDensity	= Weathers[iBlendWeatherNum].Fog.IslandDensity;
+					Weathers[iBlendWeatherNum].Bak.Fog.Color = Weathers[iBlendWeatherNum].Fog.Color;
+					Weathers[iBlendWeatherNum].Bak.Fog.Height = Weathers[iBlendWeatherNum].Fog.Height;
+					Weathers[iBlendWeatherNum].Bak.Fog.Density = Weathers[iBlendWeatherNum].Fog.Density;
+					Weathers[iBlendWeatherNum].Bak.Fog.SeaDensity = Weathers[iBlendWeatherNum].Fog.SeaDensity;
+					Weathers[iBlendWeatherNum].Bak.Fog.IslandDensity = Weathers[iBlendWeatherNum].Fog.IslandDensity;
 
-					Weathers[iBlendWeatherNum].Bak.Sun.Glow.Enable		= Weathers[iBlendWeatherNum].Sun.Glow.Enable;
-					Weathers[iBlendWeatherNum].Bak.Sun.Overflow.Enable	= Weathers[iBlendWeatherNum].Sun.Overflow.Enable;
+					Weathers[iBlendWeatherNum].Bak.Sun.Glow.Enable = Weathers[iBlendWeatherNum].Sun.Glow.Enable;
+					Weathers[iBlendWeatherNum].Bak.Sun.Overflow.Enable = Weathers[iBlendWeatherNum].Sun.Overflow.Enable;
 				}
 
-				Weathers[iBlendWeatherNum].Fog.Color = argb(0,50,60,65);
+				Weathers[iBlendWeatherNum].Fog.Color = argb(0, 50, 60, 65);
 				Weathers[iBlendWeatherNum].Fog.Height = 1000;
 				Weathers[iBlendWeatherNum].Fog.Density = 0.003;
 				Weathers[iBlendWeatherNum].Fog.SeaDensity = 0.0022;
@@ -843,20 +928,20 @@ void Whr_TimeUpdate()
 				//интенсивность.
 				Weathers[iBlendWeatherNum].Rain.NumDrops = 2000 + rand(3000);
 				Weathers[iBlendWeatherNum].Rain.DropLength = 2 + rand(10);
-				Weathers[iBlendWeatherNum].Rain.Color = argb(0,23,23,23);
+				Weathers[iBlendWeatherNum].Rain.Color = argb(0, 23, 23, 23);
 
 				if (!CheckAttribute(&Weathers[iBlendWeatherNum], "Bak"))
 				{
-					Weathers[iBlendWeatherNum].Bak.Fog.Color		= Weathers[iBlendWeatherNum].Fog.Color;
-					Weathers[iBlendWeatherNum].Bak.Fog.Height		= Weathers[iBlendWeatherNum].Fog.Height;
-					Weathers[iBlendWeatherNum].Bak.Fog.Density		= Weathers[iBlendWeatherNum].Fog.Density;
-					Weathers[iBlendWeatherNum].Bak.Fog.SeaDensity	= Weathers[iBlendWeatherNum].Fog.SeaDensity;
-					Weathers[iBlendWeatherNum].Bak.Fog.IslandDensity	= Weathers[iBlendWeatherNum].Fog.IslandDensity;
+					Weathers[iBlendWeatherNum].Bak.Fog.Color = Weathers[iBlendWeatherNum].Fog.Color;
+					Weathers[iBlendWeatherNum].Bak.Fog.Height = Weathers[iBlendWeatherNum].Fog.Height;
+					Weathers[iBlendWeatherNum].Bak.Fog.Density = Weathers[iBlendWeatherNum].Fog.Density;
+					Weathers[iBlendWeatherNum].Bak.Fog.SeaDensity = Weathers[iBlendWeatherNum].Fog.SeaDensity;
+					Weathers[iBlendWeatherNum].Bak.Fog.IslandDensity = Weathers[iBlendWeatherNum].Fog.IslandDensity;
 
-					Weathers[iBlendWeatherNum].Bak.Sun.Glow.Enable		= Weathers[iBlendWeatherNum].Sun.Glow.Enable;
-					Weathers[iBlendWeatherNum].Bak.Sun.Overflow.Enable	= Weathers[iBlendWeatherNum].Sun.Overflow.Enable;
+					Weathers[iBlendWeatherNum].Bak.Sun.Glow.Enable = Weathers[iBlendWeatherNum].Sun.Glow.Enable;
+					Weathers[iBlendWeatherNum].Bak.Sun.Overflow.Enable = Weathers[iBlendWeatherNum].Sun.Overflow.Enable;
 				}
-				Weathers[iBlendWeatherNum].Fog.Color = argb(0,50,60,65);
+				Weathers[iBlendWeatherNum].Fog.Color = argb(0, 50, 60, 65);
 				Weathers[iBlendWeatherNum].Fog.Height = 1000;
 				Weathers[iBlendWeatherNum].Fog.Density = 0.003;
 				Weathers[iBlendWeatherNum].Fog.SeaDensity = 0.0022;
@@ -877,7 +962,7 @@ void Whr_TimeUpdate()
 	}
 	//navy <-- Rain
 
-	if( nNewHour != nOldHour )
+	if (nNewHour != nOldHour)
 	{
 		Whr_UpdateWeatherHour();
 	}
@@ -911,8 +996,8 @@ void Whr_UpdateWeatherHour()
 	bool doLightChange = false;
 	int i;
 
-	bWeatherIsLight = Whr_GetLong(&Weathers[iCurWeatherNum],"Lights");
-	bWeatherIsNight = Whr_GetLong(&Weathers[iCurWeatherNum],"Night");
+	bWeatherIsLight = Whr_GetLong(&Weathers[iCurWeatherNum], "Lights");
+	bWeatherIsNight = Whr_GetLong(&Weathers[iCurWeatherNum], "Night");
 
 	//#20191020-01
 	aref aCurWeather = GetCurrentWeather();
@@ -923,72 +1008,78 @@ void Whr_UpdateWeatherHour()
 	Astronomy.isDone = true;
 	Astronomy.TimeUpdate = 1;
 
-	if( Whr_IsDay() != bOldIsDay )
+	if (Whr_IsDay() != bOldIsDay)
 	{ // меняем источники освещения
 		Whr_ChangeDayNight();
 		Event("eChangeDayNight");
 		//#20190211-01
-        doLightChange = true;
- 	}
- 	if (bSeaActive && !bAbordageStarted)
+		doLightChange = true;
+	}
+	if (bSeaActive && !bAbordageStarted)
 	{
-        bool isSeaEnt = false;
-	    if (IsEntity(&Sea))
-            isSeaEnt = true;
-        Whr_WindChange();
-		i = FindIsland(pchar.location)
-        if ( i != -1)
-        {
-            //#20190211-01
-            if (isSeaEnt) {
-                if(stf(Sea.MaxSeaHeight) != SetMaxSeaHeight(i))
+		bool isSeaEnt = false;
+		if (IsEntity(&Sea))
+			isSeaEnt = true;
+		Whr_WindChange();
+		i = FindIsland(pchar.location) if (i != -1)
+		{
+			//#20190211-01
+			if (isSeaEnt)
+			{
+				if (stf(Sea.MaxSeaHeight) != SetMaxSeaHeight(i))
 
 					string sPreset = WhrGetSeaPresetFromWind(fWeatherSpeed);
-					WhrSetSeaPreset(iCurWeatherNum, sPreset);
-                    WhrCreateSeaEnvironment(); // boal смена волн на лету
-	 		}
- 		}
- 		//#20190211-01
-        if(doLightChange && isSeaEnt) {
-            doShipLightChange(aCurWeather);
-        }
- 	}
+				WhrSetSeaPreset(iCurWeatherNum, sPreset);
+				WhrCreateSeaEnvironment(); // boal смена волн на лету
+			}
+		}
+		//#20190211-01
+		if (doLightChange && isSeaEnt)
+		{
+			doShipLightChange(aCurWeather);
+		}
+	}
 }
 
 void doShipLightChange(ref aCurWeather)
 {
-    int j, iCharIdx;
+	int j, iCharIdx;
 
-    ref rChar;
-    Sea.Lights = aCurWeather.Lights;
-    for(j = 0; j < iNumShips; j++) {
-        iCharIdx = Ships[j];
-        if (iCharIdx < 0 || iCharIdx >= TOTAL_CHARACTERS) continue;
-        rChar = GetCharacter(Ships[j]);
-        Ship_SetLightsAndFlares(rChar);
-        SendMessage(&characters[iCharIdx], "l", MSG_SHIP_LIGHTSRESET);
-    }
+	ref rChar;
+	Sea.Lights = aCurWeather.Lights;
+	for (j = 0; j < iNumShips; j++)
+	{
+		iCharIdx = Ships[j];
+		if (iCharIdx < 0 || iCharIdx >= TOTAL_CHARACTERS)
+			continue;
+		rChar = GetCharacter(Ships[j]);
+		Ship_SetLightsAndFlares(rChar);
+		SendMessage(&characters[iCharIdx], "l", MSG_SHIP_LIGHTSRESET);
+	}
 }
 
 void Whr_ChangeDayNight()
 {
 	int loadLocationIndex = FindLoadedLocation();
-	if( loadLocationIndex >= 0 )
+	if (loadLocationIndex >= 0)
 	{
 		LocationSetLights(&Locations[loadLocationIndex]);
-		if( Whr_IsDay() )
+		if (Whr_IsDay())
 		{
-			SendMessage( &Locations[loadLocationIndex], "ls", MSG_LOCATION_EX_MSG, "DelFlys" );
+			SendMessage(&Locations[loadLocationIndex], "ls", MSG_LOCATION_EX_MSG, "DelFlys");
 		}
 	}
 }
 
 void FillWeatherData(int nw1, int nw2)
 {
-	if( nw1<0 || nw1>=MAX_WEATHERS ) {return;}
+	if (nw1 < 0 || nw1 >= MAX_WEATHERS)
+	{
+		return;
+	}
 
 	string sCurFog = Whr_GetCurrentFog();
-	if( nw2<0)
+	if (nw2 < 0)
 	{
 		Weather.Fog.Enable = Whr_GetLong(&Weathers[nw1], sCurFog + ".Enable");
 		Weather.Fog.Start = Whr_GetFloat(&Weathers[nw1], sCurFog + ".Start");
@@ -997,37 +1088,49 @@ void FillWeatherData(int nw1, int nw2)
 		Weather.Fog.IslandDensity = Whr_GetFloat(&Weathers[nw1], sCurFog + ".IslandDensity");
 		Weather.Fog.SeaDensity = Whr_GetFloat(&Weathers[nw1], sCurFog + ".SeaDensity");
 
-		Weather.Sun.Color = Whr_GetColor(&Weathers[nw1],"Sun.Color");
-		Weather.Sun.HeightAngle = Whr_GetFloat(&Weathers[nw1],"Sun.HeightAngle");
-		Weather.Sun.AzimuthAngle = Whr_GetFloat(&Weathers[nw1],"Sun.AzimuthAngle");
-		Weather.Sun.Ambient = Whr_GetColor(&Weathers[nw1],"Sun.Ambient");
+		Weather.Sun.Color = Whr_GetColor(&Weathers[nw1], "Sun.Color");
+		Weather.Sun.HeightAngle = Whr_GetFloat(&Weathers[nw1], "Sun.HeightAngle");
+		Weather.Sun.AzimuthAngle = Whr_GetFloat(&Weathers[nw1], "Sun.AzimuthAngle");
+		Weather.Sun.Ambient = Whr_GetColor(&Weathers[nw1], "Sun.Ambient");
 	}
 	else
 	{
 		float fBlend = stf(Environment.Time) - sti(Environment.Time);
 		Weather.Fog.Enable = Whr_GetLong(&Weathers[nw1], sCurFog + ".Enable");
-		Weather.Fog.Start = Whr_BlendFloat( fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".Start"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".Start") );
-		Weather.Fog.Density = Whr_BlendFloat( fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".Density"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".Density") );
-		Weather.Fog.Color = Whr_BlendColor( fBlend, Whr_GetColor(&Weathers[nw1], sCurFog + ".Color"), Whr_GetColor(&Weathers[nw2], sCurFog + ".Color") );
-		Weather.Fog.IslandDensity = Whr_BlendFloat( fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".IslandDensity"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".IslandDensity") );
-		Weather.Fog.SeaDensity = Whr_BlendFloat( fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".SeaDensity"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".SeaDensity") );
+		Weather.Fog.Start = Whr_BlendFloat(fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".Start"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".Start"));
+		Weather.Fog.Density = Whr_BlendFloat(fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".Density"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".Density"));
+		Weather.Fog.Color = Whr_BlendColor(fBlend, Whr_GetColor(&Weathers[nw1], sCurFog + ".Color"), Whr_GetColor(&Weathers[nw2], sCurFog + ".Color"));
+		Weather.Fog.IslandDensity = Whr_BlendFloat(fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".IslandDensity"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".IslandDensity"));
+		Weather.Fog.SeaDensity = Whr_BlendFloat(fBlend, Whr_GetFloat(&Weathers[nw1], sCurFog + ".SeaDensity"), Whr_GetFloat(&Weathers[nw2], sCurFog + ".SeaDensity"));
 
-		Weather.Sun.Color = Whr_BlendColor( fBlend, Whr_GetColor(&Weathers[nw1],"Sun.Color"), Whr_GetColor(&Weathers[nw2],"Sun.Color") );
-		Weather.Sun.HeightAngle = Whr_BlendFloat( fBlend, Whr_GetFloat(&Weathers[nw1],"Sun.HeightAngle"), Whr_GetFloat(&Weathers[nw2],"Sun.HeightAngle") );
-		Weather.Sun.AzimuthAngle = Whr_BlendFloat( fBlend, Whr_GetFloat(&Weathers[nw1],"Sun.AzimuthAngle"), Whr_GetFloat(&Weathers[nw2],"Sun.AzimuthAngle") );
-		Weather.Sun.Ambient = Whr_BlendColor( fBlend, Whr_GetColor(&Weathers[nw1],"Sun.Ambient"), Whr_GetColor(&Weathers[nw2],"Sun.Ambient") );
+		Weather.Sun.Color = Whr_BlendColor(fBlend, Whr_GetColor(&Weathers[nw1], "Sun.Color"), Whr_GetColor(&Weathers[nw2], "Sun.Color"));
+		Weather.Sun.HeightAngle = Whr_BlendFloat(fBlend, Whr_GetFloat(&Weathers[nw1], "Sun.HeightAngle"), Whr_GetFloat(&Weathers[nw2], "Sun.HeightAngle"));
+		Weather.Sun.AzimuthAngle = Whr_BlendFloat(fBlend, Whr_GetFloat(&Weathers[nw1], "Sun.AzimuthAngle"), Whr_GetFloat(&Weathers[nw2], "Sun.AzimuthAngle"));
+		Weather.Sun.Ambient = Whr_BlendColor(fBlend, Whr_GetColor(&Weathers[nw1], "Sun.Ambient"), Whr_GetColor(&Weathers[nw2], "Sun.Ambient"));
 	}
 }
 
 int FindWeatherByHour(int nHour)
 {
-	for (int n=0; n<MAX_WEATHERS; n++)
+	for (int n = 0; n < MAX_WEATHERS; n++)
 	{
-		if (!CheckAttribute(&Weathers[n], "hour")) {continue;}
-		if (CheckAttribute(&Weathers[n], "skip") && sti(Weathers[n].skip)==true) {continue;}
-		if (CheckAttribute(&Weathers[n], "Storm") && sti(Weathers[n].Storm)==true) {continue;}
+		if (!CheckAttribute(&Weathers[n], "hour"))
+		{
+			continue;
+		}
+		if (CheckAttribute(&Weathers[n], "skip") && sti(Weathers[n].skip) == true)
+		{
+			continue;
+		}
+		if (CheckAttribute(&Weathers[n], "Storm") && sti(Weathers[n].Storm) == true)
+		{
+			continue;
+		}
 
-		if( sti(Weathers[n].hour.min) == nHour ) {return n;}
+		if (sti(Weathers[n].hour.min) == nHour)
+		{
+			return n;
+		}
 	}
 	return -1;
 }
@@ -1035,14 +1138,29 @@ int FindWeatherByHour(int nHour)
 int FindBlendWeather(int iWeatherNum)
 {
 	// чтоб вырубить return -1;
-	if( iWeatherNum<0 || iWeatherNum>=MAX_WEATHERS ) {return -1;}
+	if (iWeatherNum < 0 || iWeatherNum >= MAX_WEATHERS)
+	{
+		return -1;
+	}
 
-	if( !CheckAttribute(&Weathers[iWeatherNum], "hour") ) {return -1;}
-	if( CheckAttribute(&Weathers[iWeatherNum],"Storm") && sti(Weathers[iWeatherNum].Storm)==true ) {return -1;}
-	if( CheckAttribute(&Weathers[iWeatherNum],"skip") && sti(Weathers[iWeatherNum].skip)==true ) {return -1;}
+	if (!CheckAttribute(&Weathers[iWeatherNum], "hour"))
+	{
+		return -1;
+	}
+	if (CheckAttribute(&Weathers[iWeatherNum], "Storm") && sti(Weathers[iWeatherNum].Storm) == true)
+	{
+		return -1;
+	}
+	if (CheckAttribute(&Weathers[iWeatherNum], "skip") && sti(Weathers[iWeatherNum].skip) == true)
+	{
+		return -1;
+	}
 
 	int nBlendWeatherHour = sti(Weathers[iWeatherNum].hour.min) + 1;
-	if( nBlendWeatherHour>=24 ) {nBlendWeatherHour = 0;}
+	if (nBlendWeatherHour >= 24)
+	{
+		nBlendWeatherHour = 0;
+	}
 
 	return FindWeatherByHour(nBlendWeatherHour);
 }
@@ -1060,16 +1178,16 @@ void DeleteWeather()
 
 void MoveWeatherToLayers(int iExecuteLayer, int iRealizeLayer)
 {
-	LayerDelObject(EXECUTE,&Weather);
-	LayerDelObject(REALIZE,&Weather);
-	LayerDelObject(SEA_EXECUTE,&Weather);
-	LayerDelObject(SEA_REALIZE,&Weather);
+	LayerDelObject(EXECUTE, &Weather);
+	LayerDelObject(REALIZE, &Weather);
+	LayerDelObject(SEA_EXECUTE, &Weather);
+	LayerDelObject(SEA_REALIZE, &Weather);
 
 	iNewExecuteLayer = iExecuteLayer;
 	iNewRealizeLayer = iRealizeLayer;
 
-	LayerAddObject(iExecuteLayer,&Weather,1000000);
-	LayerAddObject(iRealizeLayer,&Weather,65530);
+	LayerAddObject(iExecuteLayer, &Weather, 1000000);
+	LayerAddObject(iRealizeLayer, &Weather, 65530);
 
 	MoveRainToLayers(iExecuteLayer, iRealizeLayer);
 	MoveLightningToLayers(iExecuteLayer, iRealizeLayer);
@@ -1082,71 +1200,77 @@ float Whr_GetFogDensity() { return fFogDensity; }
 
 float Whr_GetWindAngle()
 {
-	if (!CheckAttribute(&Weather,"Wind.Angle")) { return 0.0; }
+	if (!CheckAttribute(&Weather, "Wind.Angle"))
+	{
+		return 0.0;
+	}
 	return stf(Weather.Wind.Angle);
 }
 
 float Whr_GetWindSpeed()
 {
-	if (!CheckAttribute(&Weather,"Wind.Speed")) { return 3.0; }
+	if (!CheckAttribute(&Weather, "Wind.Speed"))
+	{
+		return 3.0;
+	}
 	return stf(Weather.Wind.Speed);
 }
 
 ref Whr_GetShadowDensity()
 {
-	aref	aCurWeather = GetCurrentWeather();
+	aref aCurWeather = GetCurrentWeather();
 
-	iShadowDensity[0] = argb(255,96,96,96);
-	iShadowDensity[1] = argb(255,96,96,64);
+	iShadowDensity[0] = argb(255, 96, 96, 96);
+	iShadowDensity[1] = argb(255, 96, 96, 64);
 
 	if (bWeatherLoaded)
 	{
-		iShadowDensity[0] = Whr_GetColor(aCurWeather,"Shadow.Density.Head");
-		iShadowDensity[1] = Whr_GetColor(aCurWeather,"Shadow.Density.Foot");
+		iShadowDensity[0] = Whr_GetColor(aCurWeather, "Shadow.Density.Head");
+		iShadowDensity[1] = Whr_GetColor(aCurWeather, "Shadow.Density.Foot");
 	}
 
 	return &iShadowDensity;
 }
 
-string	Whr_GetCurrentFog() { return sCurrentFog; }
+string Whr_GetCurrentFog() { return sCurrentFog; }
 
-string	Whr_GetInsideBack() { return sInsideBack; }
-string	GetLightingPath()
+string Whr_GetInsideBack() { return sInsideBack; }
+string GetLightingPath()
 {
-//navy -->
+	//navy -->
 	if (CheckAttribute(&WeatherParams, "Rain") && sti(WeatherParams.Rain))
 	{
 		return Whr_GetRainyLightningPath();
 	}
-//navy <--
+	//navy <--
 	return sLightingPath;
 }
-string	GetLmLightingPath()
+string GetLmLightingPath()
 {
-//navy -->
+	//navy -->
 	if (CheckAttribute(&WeatherParams, "Rain") && sti(WeatherParams.Rain))
 	{
 		return "storm";
 	}
-//navy <--
+	//navy <--
 	return sLmLightingPath;
 }
 
-bool	Whr_IsDay() { return !bWeatherIsNight; }
-bool	Whr_IsNight() { return bWeatherIsNight; }
-bool	Whr_IsLight() { return bWeatherIsLight; }
-bool	Whr_IsRain() { return bWeatherIsRain; }
-bool	Whr_IsStorm() { return bWeatherIsStorm; }
+bool Whr_IsDay() { return !bWeatherIsNight; }
+bool Whr_IsNight() { return bWeatherIsNight; }
+bool Whr_IsLight() { return bWeatherIsLight; }
+bool Whr_IsRain() { return bWeatherIsRain; }
+bool Whr_IsStorm() { return bWeatherIsStorm; }
 
 int FindWeather(string sWeatherID)
 {
-	for (int i=0;i<MAX_WEATHERS;i++)
+	for (int i = 0; i < MAX_WEATHERS; i++)
 	{
 		if (!CheckAttribute(&Weathers[i], "id"))
 		{
 			continue;
 		}
-		if(Weathers[i].id == sWeatherID)
+		if (Weathers[i].id == sWeatherID)
 		{
 			return i;
 		}
@@ -1157,7 +1281,7 @@ int FindWeather(string sWeatherID)
 //navy --> Rain вернул
 void Whr_SetRainSound(bool _set, bool _isNight)
 {
-//	return;
+	//	return;
 	// пока закрыл, тк работает метод CalcLocalTime, нужно понять где лучше и оставть один
 
 	string scheme = "land";
@@ -1188,12 +1312,12 @@ void Whr_SetRainSound(bool _set, bool _isNight)
 
 	//проверка - день/ночь
 	if (_isNight)
-    {
-		scheme = scheme+"_night";
-    }
+	{
+		scheme = scheme + "_night";
+	}
 	else
 	{
-		scheme = scheme+"_day";
+		scheme = scheme + "_day";
 	}
 
 	//если устанавливаем звук дождя
@@ -1218,18 +1342,19 @@ void Whr_WindChange()
 {
 	aref aCurWeather = GetCurrentWeather();
 
-    if(CheckAttribute(pchar, "wind.angle"))
-    {
-    	Weather.Wind.Angle = stf(pchar.wind.angle) +  frand((PI/4.0)) - (PI / 8.0);
-    	if (stf(Weather.Wind.Angle) < 0)  Weather.Wind.Angle = PIm2 + stf(Weather.Wind.Angle);
-    }
-    else
-    {
+	if (CheckAttribute(pchar, "wind.angle"))
+	{
+		Weather.Wind.Angle = stf(pchar.wind.angle) + frand((PI / 4.0)) - (PI / 8.0);
+		if (stf(Weather.Wind.Angle) < 0)
+			Weather.Wind.Angle = PIm2 + stf(Weather.Wind.Angle);
+	}
+	else
+	{
 		Weather.Wind.Angle = frand(PIm2);
 	}
 	pchar.wind.angle = Weather.Wind.Angle;
 
-	Weather.Wind.Speed = Whr_GetFloat(aCurWeather,"Wind.Speed");
+	Weather.Wind.Speed = Whr_GetFloat(aCurWeather, "Wind.Speed");
 	pchar.wind.speed = Weather.Wind.Speed;
 
 	pchar.quest.EraseWind.win_condition.l1 = "ExitFromSea";
@@ -1238,16 +1363,17 @@ void Whr_WindChange()
 	fWeatherAngle = stf(Weather.Wind.Angle);
 	fWeatherSpeed = stf(Weather.Wind.Speed);
 
-	if (InterfaceStates.IslandLoader) CheckIslandChange();
+	if (InterfaceStates.IslandLoader)
+		CheckIslandChange();
 }
 
 bool Whr_isRainEnable()
 {
-	bool bRain  = true;
+	bool bRain = true;
 	//ГГ в локации
-    if (CheckAttribute(GetMainCharacter(), "HeroParam") && IsEntity(&loadedLocation)) // pchar проверяется для гл меню
+	if (CheckAttribute(GetMainCharacter(), "HeroParam") && IsEntity(&loadedLocation)) // pchar проверяется для гл меню
 	{
-        if (CheckAttribute(&loadedLocation, "environment.weather.rain") && !sti(loadedLocation.environment.weather.rain))
+		if (CheckAttribute(&loadedLocation, "environment.weather.rain") && !sti(loadedLocation.environment.weather.rain))
 		{
 			bRain = false;
 		}
@@ -1272,7 +1398,7 @@ bool Whr_isRainEnable()
 	}
 	else
 	{
-		if (bSeaActive && bAbordageStarted ) // в море не срабатывает bLandInterfaceStart
+		if (bSeaActive && bAbordageStarted) // в море не срабатывает bLandInterfaceStart
 		{
 			if (IsEntity(&loadedLocation) && CheckAttribute(&loadedLocation, "environment.weather.rain") && !sti(loadedLocation.environment.weather.rain))
 			{

@@ -1,8 +1,8 @@
 void InitCharactersNames()
 {
-	int		n;
-// English
-// man names
+	int n;
+	// English
+	// man names
 	n = AddStr2Array(&sEnManNames, n, "Абель,Адам,Айдан,Алан,Ален,Альфред,Эндрю,Артур");
 	n = AddStr2Array(&sEnManNames, n, "Бернард,Бертрам,Бредан,Бренан,Брайан,Брок,Бенджамен,Чад,Чарльз,Кол,Колм");
 	n = AddStr2Array(&sEnManNames, n, "Керт,Корин,Данил,Давид,Дави,Дональд,Дугал,Дуэйн,Эмонн,Эд,Эдгар,Эдмонд,Эдмунд,Эдвард,Эдуард");
@@ -15,7 +15,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sEnManNames, n, "Роберт,Робин,Роджер,Рональд,Ронан,Роланд,Райс,Симпсон,Син,Симон,Саймон,Соломон,Стефан,Симонс");
 	n = AddStr2Array(&sEnManNames, n, "Терри,Томас,Тобиас,Тристан,Уолтер,Варейн,Вейт,Вотер,Вилфред,Вильям,Ян");
 
-// women names
+	// women names
 	n = 0;
 	n = AddStr2Array(&sEnWomenNames, n, "Аделина,Алиса,Элис,Аманда,Амелла,Эми,Анна,Астрид,Эдри,Ауэрелла,Аврора,Эвис");
 	n = AddStr2Array(&sEnWomenNames, n, "Белла,Камилла,Сесиллия,Селла,Клэр,Клаудиа,Диана,Эдит,Элоиз,Эмили,Эмма");
@@ -23,7 +23,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sEnWomenNames, n, "Мэри,Мэрри,Мери,Милдред,Мирабель,Моника,Надин,Надинн,Наталия,Сабина,Сабрина,Сарра,Серена,Симона");
 	n = AddStr2Array(&sEnWomenNames, n, "Сильвиа,Уна,Урсула,Валерия,Вивьен,Виолетта,Ивонн,Пэрис");
 
-// families
+	// families
 	n = 0;
 	n = AddStr2Array(&sEnFamilies, n, "Эбботт,Акум,Адин,Эдрин,Эгэйт,Агню, Агнью,Агилла,Агилар,Эдрендж,Эллэн,Амберт,Эмбер,Энкерс");
 	n = AddStr2Array(&sEnFamilies, n, "Апплин,Арчер,Арджент,Арлотт,Арролт,Армер,Армер,Аррам,Аккройд,Ардоу,Агрилл");
@@ -135,8 +135,8 @@ void InitCharactersNames()
 	n = AddStr2Array(&sEnFamilies, n, "Уиккен,Уайкер,Уиккерт,Уиллен,Уиллоуз,Уоудман,Уджерт,Вудман,Вудз,Вуддир");
 	n = AddStr2Array(&sEnFamilies, n, "Воулер,Вулеерс,Вулман,Уоркман,Уорт,Райт,Райтерс,Вайлам,Йоуман");
 
-// Holland
-// man names
+	// Holland
+	// man names
 	n = 0;
 	n = AddStr2Array(&sHoManNames, n, "Аарт,Абрам,Абрахам,Адам,Адриаен,Айлеуин,Айеркиин,Айеркийн,Айернд,Айернде,Аерне");
 	n = AddStr2Array(&sHoManNames, n, "Аернкен,Аернт,Аэрт,Агт,Алдерт,Алеуин,Алеуийн,Алеуйн,Андреас,Андрис,Андрес");
@@ -179,7 +179,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sHoManNames, n, "Вийтман,Виийтман,Виллаем,Виллам,Виллен,Виссе,Виссен,Витте,Улрик,Вольф");
 	n = AddStr2Array(&sHoManNames, n, "Волфарт,Волферт,Воутер,Вайтман,Йидем,Йедам,Йедамм,Йеуийн,Йиммен,Циммоен");
 
-// women names
+	// women names
 	n = 0;
 	n = AddStr2Array(&sHoWomenNames, n, "Адда,Эчет,Алтье,Агнеес,Агнес,Агнес,Алетта,Алиден,Алиид,Алиит,Алийд,Алийт,Алийт,Алта,Алиден");
 	n = AddStr2Array(&sHoWomenNames, n, "Ане,Анна,Аннатье,Анне,Аннеке,Аннекен,Аннен,Аннетие,Аннетйе,Антие,Антйе");
@@ -197,7 +197,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sHoWomenNames, n, "Тиетже,Тилетже,Тинеке,Тйаатйе,Трийн,Труде,Труде,Труден,Труи,Труитье,Тринтйе,Яаен");
 	n = AddStr2Array(&sHoWomenNames, n, "Иде,Йолент,Цоете,Цойтинк");
 
-// families
+	// families
 	n = 0;
 	n = AddStr2Array(&sHoFamilies, n, "Аарланд,Аартсе,Акер,Аерстен,Агеет,Агер,Алгер,Алиее");
 	n = AddStr2Array(&sHoFamilies, n, "Алйе,Алиеа,Амерман,Амиент,Андриес,Арбаух,Арендце,Аредсц,Арентц,Атен");
@@ -296,8 +296,8 @@ void InitCharactersNames()
 	n = AddStr2Array(&sHoFamilies, n, "Уоедер,Уоэлффс,Уоглом,Уолпе,Уоуда");
 	n = AddStr2Array(&sHoFamilies, n, "Уустген,Уайккофф,Йегер,Йонкман,Йост,Зенден,Зи,Цинк");
 
-// French
-// man names
+	// French
+	// man names
 	n = 0;
 	n = AddStr2Array(&sFrManNames, n, "Аберальд,Адемар,Адриен,Аймабл,Аймери,Альбан,Альбин,Альюм,Алеюм,Амадео,Амедее,Амелиен,Амьел,Амильс");
 	n = AddStr2Array(&sFrManNames, n, "Амильс,Амьон,Амьон,Анадей,Андре,Антуан,Ариберт,Арланд,Арно,Арно,Арнольд");
@@ -319,7 +319,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sFrManNames, n, "Ришард,Роберт,Ромен,Серж,Северин,Силвен,Сюльпис,Тьерри");
 	n = AddStr2Array(&sFrManNames, n, "Турпин,Виктор,Винсент,Виржиль,Виталь,Вагьен,Йон,Ив");
 
-// women names
+	// women names
 	n = 0;
 	n = AddStr2Array(&sFrWomenNames, n, "Аализ,Адализ,Аделин,Аднетт,Аелис,Аида,Алис,Алазе,Альбан,Алеста,Алгайа");
 	n = AddStr2Array(&sFrWomenNames, n, "Ализ,Амалон,Ами,Амиди,Амелин,Армо,Андре,Андрева");
@@ -340,7 +340,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sFrWomenNames, n, "Риксена,Роэзе,Роиз,Ромэн,Розали,Роз,Руссе,Руби,Сабинн,Саломе,Сара,Сирена");
 	n = AddStr2Array(&sFrWomenNames, n, "Сидони,Симоне,Соллен,Сюзанн,Сибилль,Сильви,Урсула,Валери,Иоланда");
 
-// families
+	// families
 	n = 0;
 	n = AddStr2Array(&sFrFamilies, n, "Абьелль,Або,Акре,Адам,Ажеран,Агилье,Алард,Альберт,Аленсон");
 	n = AddStr2Array(&sFrFamilies, n, "Аллард,Алларо,Аллут,Альфанд,Альтап,Амабль,Аманн,Амбре");
@@ -502,8 +502,8 @@ void InitCharactersNames()
 	n = AddStr2Array(&sFrFamilies, n, "Воллард,Войсье,Вуиттон,Валлемье,Вануа");
 	n = AddStr2Array(&sFrFamilies, n, "Ватто,Вавелетт,Вильмар,Ксавье,Йересс,Заббелье");
 
-// Spain
-// man names
+	// Spain
+	// man names
 	n = 0;
 	n = AddStr2Array(&sSpManNames, n, "Абаиб,Абдиас,Абейза,Аболюс,Абозам,Абрил");
 	n = AddStr2Array(&sSpManNames, n, "Адайюти,Адика,Адольфо,Адульфус,Аган,Ажило,Айас,Айлар,Аларио,Альберто,Альбето");
@@ -549,7 +549,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sSpManNames, n, "Висетне,Висенте,Вигилья,Вистия,Вито,Ксабе,Ксайн,Ксаме");
 	n = AddStr2Array(&sSpManNames, n, "Ксавьер,Ксемено,Зайд,Зайте,Зайтон,Заламма,Заниту,Заринус,Зеццон,Зониус");
 
-// women names
+	// women names
 	n = 0;
 	n = AddStr2Array(&sSpWomenNames, n, "Абриль,Аделита,Адонисия,Алетеа,Алисия,Альма,Альмеда,Амада,Амата,Ана,Ана,Ангела,Аника");
 	n = AddStr2Array(&sSpWomenNames, n, "Анита,Аргильо,Аурия,Ауро,Аврора,Беатрис,Бебе,Белен,Белисия,Белинда,Белита");
@@ -569,7 +569,7 @@ void InitCharactersNames()
 	n = AddStr2Array(&sSpWomenNames, n, "Сильвия,Сита,Соль,Соль,Сонья,Суэла,Сэсанна,Тареса,Тасия,Теода,Тереса,Триса,Уита,Уракка");
 	n = AddStr2Array(&sSpWomenNames, n, "Вида,Виолета,Ксандра,Инес,Йоланда,Зита");
 
-// families
+	// families
 	n = 0;
 	n = AddStr2Array(&sSpFamilies, n, "Абарка,Акарнос,Акосто,АдегаАгассис,Агия,Агуерро,Агуиллья,Агуилар,Агирре,Айкеда,Аламада,Алас");
 	n = AddStr2Array(&sSpFamilies, n, "Альбано,Альбо,Альдама,Альдей,Алегрия");

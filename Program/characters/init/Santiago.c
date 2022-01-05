@@ -7,14 +7,14 @@ int CreateSantiagoCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
+	makeref(ch, Characters[n]); //Губернатор
 	ch.id = "Santiago_Mayor";
-	ch.model	= "huber_spa";
-	ch.name 	= "Хосе";
+	ch.model = "huber_spa";
+	ch.name = "Хосе";
 	ch.lastname = "Санчо Хименес";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_townhall";
+	ch.location = "Santiago_townhall";
 	ch.greeting = "spa_gov_common";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
@@ -24,7 +24,7 @@ int CreateSantiagoCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -32,13 +32,13 @@ int CreateSantiagoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
+	makeref(ch, Characters[n]); //Священик
 	ch.id = "Santiago_Priest";
-	ch.model	= "priest_2";
+	ch.model = "priest_2";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_church";
+	ch.location = "Santiago_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -50,12 +50,12 @@ int CreateSantiagoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
+	makeref(ch, Characters[n]); // ОФициантка
 	ch.id = "Santiago_waitress";
-	ch.model	= "girl_2";
+	ch.model = "girl_2";
 	ch.sex = "woman";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_tavern";
+	ch.location = "Santiago_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -67,13 +67,13 @@ int CreateSantiagoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
+	makeref(ch, Characters[n]); //Трактирщик
 	ch.id = "Santiago_tavernkeeper";
-	ch.model	= "barmen_6";
+	ch.model = "barmen_6";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_Tavern";
+	ch.location = "Santiago_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -85,13 +85,13 @@ int CreateSantiagoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Торговец
+	makeref(ch, Characters[n]); //Торговец
 	ch.id = "Santiago_trader";
-	ch.model	= "trader_6";
+	ch.model = "trader_6";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_Store";
+	ch.location = "Santiago_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -103,13 +103,13 @@ int CreateSantiagoCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
+	makeref(ch, Characters[n]); //Корабел
 	ch.id = "Santiago_shipyarder";
-	ch.model	= "shipowner_6";
+	ch.model = "shipowner_6";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_Shipyard";
+	ch.location = "Santiago_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -118,7 +118,7 @@ int CreateSantiagoCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -126,12 +126,12 @@ int CreateSantiagoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "Santiago_usurer";
-	ch.model	= "usurer_3";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "Santiago_usurer";
+	ch.model = "usurer_3";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_Bank";
+	ch.location = "Santiago_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -144,12 +144,12 @@ int CreateSantiagoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "Santiago_PortMan";
-	ch.model	= "usurer_7";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "Santiago_PortMan";
+	ch.model = "usurer_7";
 	ch.sex = "man";
 	ch.City = "Santiago";
-	ch.location	= "Santiago_PortOffice";
+	ch.location = "Santiago_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -161,12 +161,12 @@ int CreateSantiagoCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "Santiago_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "Santiago_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

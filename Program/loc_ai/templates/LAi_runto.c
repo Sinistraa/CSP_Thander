@@ -1,6 +1,6 @@
 
 
-#define LAI_TMPL_RUNTO	"runto"
+#define LAI_TMPL_RUNTO "runto"
 
 /*
 	Возможные состояния:
@@ -14,13 +14,16 @@ bool LAi_tmpl_runto_InitTemplate(aref chr)
 	SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "LockFightMode", false);
 	CharacterPlayAction(chr, "");
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.tmpl"))
+	if (CheckAttribute(chr, "chr_ai.tmpl"))
 	{
-		if(chr.chr_ai.tmpl != LAI_TMPL_RUNTO) isNew = true;
-	}else{
+		if (chr.chr_ai.tmpl != LAI_TMPL_RUNTO)
+			isNew = true;
+	}
+	else
+	{
 		isNew = true;
 	}
-	if(isNew)
+	if (isNew)
 	{
 		DeleteAttribute(chr, "chr_ai.tmpl");
 		chr.chr_ai.tmpl = LAI_TMPL_RUNTO;
@@ -28,33 +31,40 @@ bool LAi_tmpl_runto_InitTemplate(aref chr)
 		chr.chr_ai.tmpl.wait = 0;
 		chr.chr_ai.tmpl.timeout = -1;
 		chr.chr_ai.tmpl.time = 0;
-		if(LAi_IsInitedAI) SetCharacterTask_Stay(chr);
-	}else{
+		if (LAi_IsInitedAI)
+			SetCharacterTask_Stay(chr);
+	}
+	else
+	{
 		isNew = true;
-		if(CheckAttribute(chr, "chr_ai.tmpl.group"))
+		if (CheckAttribute(chr, "chr_ai.tmpl.group"))
 		{
-			if(CheckAttribute(chr, "chr_ai.tmpl."))
+			if (CheckAttribute(chr, "chr_ai.tmpl."))
 			{
-				if(chr.chr_ai.tmpl.group != "")
+				if (chr.chr_ai.tmpl.group != "")
 				{
-					if(chr.chr_ai.tmpl.locator != "")
+					if (chr.chr_ai.tmpl.locator != "")
 					{
 						isNew = false;
 					}
 				}
 			}
 		}
-		if(isNew)
+		if (isNew)
 		{
 			chr.chr_ai.tmpl.group = "";
 			chr.chr_ai.tmpl.locator = "";
 			chr.chr_ai.tmpl.state = "stay";
-		}else{
+		}
+		else
+		{
 			chr.chr_ai.tmpl.state = "runto";
 		}
 		chr.chr_ai.tmpl.wait = "0";
-		if(!CheckAttribute(chr, "chr_ai.tmpl.timeout")) chr.chr_ai.tmpl.timeout = "-1";
-		if(!CheckAttribute(chr, "chr_ai.tmpl.time")) chr.chr_ai.tmpl.time = "0";
+		if (!CheckAttribute(chr, "chr_ai.tmpl.timeout"))
+			chr.chr_ai.tmpl.timeout = "-1";
+		if (!CheckAttribute(chr, "chr_ai.tmpl.time"))
+			chr.chr_ai.tmpl.time = "0";
 		LAi_tmpl_runto_Restart(chr);
 	}
 	return true;
@@ -74,7 +84,8 @@ void LAi_tmpl_runto_SetLocator(aref chr, string group, string locator, float tim
 
 bool LAi_tmpl_runto_IsStay(aref chr)
 {
-	if(chr.chr_ai.tmpl.state != "runto") return true;
+	if (chr.chr_ai.tmpl.state != "runto")
+		return true;
 	return false;
 }
 
@@ -83,36 +94,40 @@ void LAi_tmpl_runto_CharacterUpdate(aref chr, float dltTime)
 {
 	aref tmpl;
 	makearef(tmpl, chr.chr_ai.tmpl);
-	if(tmpl.state == "runto")
+	if (tmpl.state == "runto")
 	{
 
 		float time = stf(tmpl.wait);
-		if(time > 0.0)
+		if (time > 0.0)
 		{
 			//Персонаж ждёт
-			if(time > 1.0)
+			if (time > 1.0)
 			{
 				//Ещё ждём
 				tmpl.wait = time - dltTime;
-			}else{
+			}
+			else
+			{
 				//Пора идти
 				tmpl.wait = "0";
 				LAi_tmpl_runto_Restart(chr);
 			}
 		}
 		float timeout = stf(tmpl.timeout);
-		if(timeout > 0.0)
+		if (timeout > 0.0)
 		{
 			time = stf(tmpl.time) + dltTime;
 			tmpl.time = time;
-			if(time >= timeout)
+			if (time >= timeout)
 			{
 				//Экстренно переносим персонажа
 				//Trace("Template <runto> -> timeout for chr.id = " + chr.id);
-				if(LAi_tmpl_runto_Teleport(chr))
+				if (LAi_tmpl_runto_Teleport(chr))
 				{
 					LAi_tmpl_runto_Complite(chr);
-				}else{
+				}
+				else
+				{
 					chr.chr_ai.tmpl.state = "falure";
 					SetCharacterTask_Stay(chr);
 				}
@@ -131,15 +146,16 @@ void LAi_tmpl_runto_EndGoToPoint(aref chr)
 void LAi_tmpl_runto_FailureGoToPoint(aref chr)
 {
 	Trace("Template <runto> -> failure for chr.id = " + chr.id);
-	if(LAi_tmpl_runto_Teleport(chr))
+	if (LAi_tmpl_runto_Teleport(chr))
 	{
 		LAi_tmpl_runto_Complite(chr);
-	}else{
+	}
+	else
+	{
 		chr.chr_ai.tmpl.state = "falure";
 		SetCharacterTask_Stay(chr);
 	}
 }
-
 
 //Персонаж выполнил команду  run to point
 void LAi_tmpl_runto_EndRunToPoint(aref chr)
@@ -156,12 +172,12 @@ void LAi_tmpl_runto_FailureRunToPoint(aref chr)
 //Персонаж не может добраться до точки назначения
 void LAi_tmpl_runto_BusyPos(aref chr, float x, float y, float z)
 {
-	if(chr.chr_ai.tmpl.state == "runto")
+	if (chr.chr_ai.tmpl.state == "runto")
 	{
 		//Просим освободить локатор
 		LAi_Character_FreeLocator(chr, chr.chr_ai.tmpl.group, chr.chr_ai.tmpl.locator);
 		//Ждём
-		chr.chr_ai.tmpl.wait = 3.0 + rand(4)*0.5;
+		chr.chr_ai.tmpl.wait = 3.0 + rand(4) * 0.5;
 		SetCharacterTask_Stay(chr);
 	}
 }
@@ -183,7 +199,6 @@ void LAi_tmpl_runto_FailureFollow(aref chr)
 {
 	LAi_tmpl_runto_Restart(chr);
 }
-
 
 //Персонаж начал перемещение за другим
 void LAi_tmpl_runto_FightGo(aref chr)
@@ -215,7 +230,6 @@ bool LAi_tmpl_runto_IsFight(aref chr)
 	return false;
 }
 
-
 //Персонаж выполнил команду  escape
 void LAi_tmpl_runto_EndEscape(aref chr)
 {
@@ -234,12 +248,10 @@ void LAi_tmpl_runto_FailureEscape(aref chr)
 	LAi_tmpl_runto_Restart(chr);
 }
 
-
 //Персонаж толкается с другими персонажами
 void LAi_tmpl_runto_ColThreshold(aref chr)
 {
 }
-
 
 //Персонаж закончил проигрывать анимацию
 void LAi_tmpl_runto_EndAction(aref chr)
@@ -247,45 +259,50 @@ void LAi_tmpl_runto_EndAction(aref chr)
 	LAi_tmpl_runto_Restart(chr);
 }
 
-
 //Персонажа просят освободить место
 void LAi_tmpl_runto_FreePos(aref chr, aref who)
 {
 }
 
-
 //Перезапустить задачу
 void LAi_tmpl_runto_Restart(aref chr)
 {
-	if(chr.chr_ai.tmpl.state == "runto")
+	if (chr.chr_ai.tmpl.state == "runto")
 	{
-		if(LAi_IsInitedAI)
+		if (LAi_IsInitedAI)
 		{
-			if(stf(chr.chr_ai.tmpl.wait) < 1.0)
+			if (stf(chr.chr_ai.tmpl.wait) < 1.0)
 			{
-				if(SetCharacterTask_RuntoPoint(chr, chr.chr_ai.tmpl.group, chr.chr_ai.tmpl.locator) == false)
+				if (SetCharacterTask_RuntoPoint(chr, chr.chr_ai.tmpl.group, chr.chr_ai.tmpl.locator) == false)
 				{
 					Trace("Template <runto> -> path not found chr.id = " + chr.id);
-					if(LAi_tmpl_runto_Teleport(chr))
+					if (LAi_tmpl_runto_Teleport(chr))
 					{
 						LAi_tmpl_runto_Complite(chr);
-					}else{
+					}
+					else
+					{
 						chr.chr_ai.tmpl.state = "falure";
 						SetCharacterTask_Stay(chr);
 					}
 				}
-			}else{
+			}
+			else
+			{
 				SetCharacterTask_Stay(chr);
 			}
 		}
-	}else{
-		if(LAi_IsInitedAI) SetCharacterTask_Stay(chr);
+	}
+	else
+	{
+		if (LAi_IsInitedAI)
+			SetCharacterTask_Stay(chr);
 	}
 }
 
 bool LAi_tmpl_runto_Teleport(aref chr)
 {
-	if(stf(chr.chr_ai.tmpl.timeout) >= 0)
+	if (stf(chr.chr_ai.tmpl.timeout) >= 0)
 	{
 		//Trace("Template <runto> -> teleport chr.id = " + chr.id + " to <" + chr.chr_ai.tmpl.group + " : " + chr.chr_ai.tmpl.locator + ">");
 		TeleportCharacterToLocator(chr, chr.chr_ai.tmpl.group, chr.chr_ai.tmpl.locator);
@@ -297,7 +314,8 @@ bool LAi_tmpl_runto_Teleport(aref chr)
 //Завершить runto
 void LAi_tmpl_runto_Complite(aref chr)
 {
-	if(LAi_IsInitedAI) SetCharacterTask_Stay(chr);
+	if (LAi_IsInitedAI)
+		SetCharacterTask_Stay(chr);
 	chr.chr_ai.tmpl.group = "";
 	chr.chr_ai.tmpl.locator = "";
 	chr.chr_ai.tmpl.state = "stay";
@@ -306,4 +324,3 @@ void LAi_tmpl_runto_Complite(aref chr)
 	chr.chr_ai.tmpl.time = "0";
 	LAi_Character_TemplateComplite(chr, LAI_TMPL_RUNTO);
 }
-

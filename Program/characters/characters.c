@@ -4,10 +4,10 @@
 #include "characters\characters_face.c"
 #include "characters\characters.h"
 #include "characters\characterUtilite.c"
-#include "characters\RPGUtilite.c" //boal
+#include "characters\RPGUtilite.c"		 //boal
 #include "characters\GeneratorUtilite.c" //boal
-#include "characters\TravelMap.c" //navy
-#include "characters\QuestsUtilite.c" //boal
+#include "characters\TravelMap.c"		 //navy
+#include "characters\QuestsUtilite.c"	 //boal
 #include "characters\LSC_Q2Utilite.c"
 #include "characters\SeaQuestions.c" //02.02.08
 
@@ -16,7 +16,7 @@ bool isBoardingLoading = false;
 
 void CharactersInit()
 {
-    if(LoadSegment("characters\Characters_tables.c"))
+	if (LoadSegment("characters\Characters_tables.c"))
 	{
 		InitCharactersTables();
 		UnloadSegment("characters\Characters_tables.c");
@@ -24,67 +24,96 @@ void CharactersInit()
 	ReloadProgressUpdate();
 
 	string sPath = "characters\";
-	// + LanguageGetLanguage() + "\";
+		// + LanguageGetLanguage() + "\";
 
-	LoadSegment(sPath + "init\Antigua.c");			ReloadProgressUpdate();
+		LoadSegment(sPath + "init\Antigua.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Barbados.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Barbados.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Jamaica.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Jamaica.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Curacao.c");		ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Curacao.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Guadeloupe.c");			ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Guadeloupe.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Santiago.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Santiago.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Panama.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Panama.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\PuertoPrincipe.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\PuertoPrincipe.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Martinique.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Martinique.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Havana.c");	ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Havana.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Bermudes.c");		ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Bermudes.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Nevis.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Nevis.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\PuertoRico.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\PuertoRico.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\LaVega.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\LaVega.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\SantoDomingo.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\SantoDomingo.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\PortPax.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\PortPax.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\PortoBello.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\PortoBello.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Trinidad.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Trinidad.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\SentMartin.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\SentMartin.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Tortuga.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Tortuga.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Cartahena.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Cartahena.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Maracaibo.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Maracaibo.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Caracas.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Caracas.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Cumana.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Cumana.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Beliz.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Beliz.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\SantaCatalina.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\SantaCatalina.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\StoryCharacters.c");		ReloadProgressUpdate();
+	LoadSegment(sPath + "init\StoryCharacters.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Caiman.c");			ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Caiman.c");
+	ReloadProgressUpdate();
 
-	LoadSegment(sPath + "init\Other.c");				ReloadProgressUpdate();
+	LoadSegment(sPath + "init\Other.c");
+	ReloadProgressUpdate();
 
- 	if(LoadSegment("characters\characters_init.c"))
+	if (LoadSegment("characters\characters_init.c"))
 	{
 		CreateCharacters();
 		UnloadSegment("characters\characters_init.c");
@@ -92,7 +121,7 @@ void CharactersInit()
 
 	ReloadProgressUpdate();
 	sPath = "characters\";
-	UnloadSegment(sPath + "init\Antigua.c");
+		UnloadSegment(sPath + "init\Antigua.c");
 	UnloadSegment(sPath + "init\Barbados.c");
 	UnloadSegment(sPath + "init\Jamaica.c");
 	UnloadSegment(sPath + "init\Curacao.c");
@@ -130,27 +159,32 @@ void CharactersInit()
 
 bool CreateCharacter(ref character)
 {
-	if (CheckAttribute(character,"model.entity")) CreateEntity(&character, character.model.entity);
-	else {character.model.entity = "NPCharacter"; CreateEntity(&character, character.model.entity)}
-	if(!SendMessage(character, "lss", MSG_CHARACTER_SETMODEL, character.model, character.model.animation))
+	if (CheckAttribute(character, "model.entity"))
+		CreateEntity(&character, character.model.entity);
+	else
 	{
-		Trace("CreateCharacter -> character id = '" + character.id + "' idx = " + character.index +" can invalide model("+ character.model +") or animation(" + character.model.animation + ")");
+		character.model.entity = "NPCharacter";
+		CreateEntity(&character, character.model.entity)
+	}
+	if (!SendMessage(character, "lss", MSG_CHARACTER_SETMODEL, character.model, character.model.animation))
+	{
+		Trace("CreateCharacter -> character id = '" + character.id + "' idx = " + character.index + " can invalide model(" + character.model + ") or animation(" + character.model.animation + ")");
 		DeleteClass(&character);
 		return false;
 	}
 	float fCurCharge = 1000.0;
-	if ( actLoadFlag == 1 && //fix
-		CheckAttribute(character,"chr_ai.charge") )
+	if (actLoadFlag == 1 && //fix
+		CheckAttribute(character, "chr_ai.charge"))
 	{
 		fCurCharge = stf(character.chr_ai.charge);
 	}
 
-	if (CheckAttribute(character, "HeroModel") && !CheckAttribute(character,"ismushketer") && character.model != "protocusto" && !CheckAttribute(character,"Cirgnore")) ////добавил проверку на атрибут, блокирующий смену модели кирасной логикой
+	if (CheckAttribute(character, "HeroModel") && !CheckAttribute(character, "ismushketer") && character.model != "protocusto" && !CheckAttribute(character, "Cirgnore")) ////добавил проверку на атрибут, блокирующий смену модели кирасной логикой
 	{
 		int VisCir = sti(InterfaceStates.VISUAL_CIRASS);
-		if (VisCir==0) //всем хуй
+		if (VisCir == 0) //всем хуй
 		{
-			character.model = GetSubStringByNum(character.HeroModel,0);
+			character.model = GetSubStringByNum(character.HeroModel, 0);
 			Characters_RefreshModel(character);
 		}
 		else
@@ -160,85 +194,88 @@ bool CreateCharacter(ref character)
 			bool tok2 = false;
 			switch (VisCir)
 			{
-				case 1:
-					if (character.index == nMainCharacterIndex) //только гг
-					{
+			case 1:
+				if (character.index == nMainCharacterIndex) //только гг
+				{
+					ok = true;
+				}
+				break;
+			case 3:
+				if (character.index != nMainCharacterIndex && CheckAttribute(character, "chr_ai.group") && character.chr_ai.group == "player") //группа ГГ без ГГ
+				{
+					ok = true;
+				}
+				break;
+			case 4:
+				if (CheckAttribute(character, "chr_ai.group") && character.chr_ai.group == "player") //группа ГГ с ГГ
+				{
+					ok = true;
+				}
+				break;
+			case 5:
+				tok1 = (CheckAttribute(character, "chr_ai.group")) && character.chr_ai.group != "player"; //все кроме группы ГГ
+				if (tok1 || !CheckAttribute(character, "chr_ai.group"))
+				{
+					if (character.index != nMainCharacterIndex)
 						ok = true;
-					}
+				}
 				break;
-				case 3:
-					if (character.index != nMainCharacterIndex && CheckAttribute(character,"chr_ai.group") && character.chr_ai.group == "player") //группа ГГ без ГГ
-					{
+			case 6:
+				tok1 = (CheckAttribute(character, "chr_ai.group")) && character.chr_ai.group != "player"; //все и ГГ, без офицеров
+				tok2 = (character.index == nMainCharacterIndex);
+				if (tok1 || tok2 || !CheckAttribute(character, "chr_ai.group"))
+				{
+					ok = true;
+				}
+				break;
+			case 8:
+				tok1 = (CheckAttribute(character, "chr_ai.group")) && character.chr_ai.group != "player"; //все кроме ГГ
+				tok2 = (CheckAttribute(character, "chr_ai.group")) && character.chr_ai.group == "player";
+				if (tok1 || tok2 || !CheckAttribute(character, "chr_ai.group"))
+				{
+					if (character.index != nMainCharacterIndex)
 						ok = true;
-					}
+				}
 				break;
-				case 4:
-					if (CheckAttribute(character,"chr_ai.group") && character.chr_ai.group == "player") //группа ГГ с ГГ
-					{
-						ok = true;
-					}
-				break;
-				case 5:
-					tok1 = (CheckAttribute(character,"chr_ai.group")) && character.chr_ai.group != "player"; //все кроме группы ГГ
-					if (tok1 || !CheckAttribute(character,"chr_ai.group"))
-					{
-						if (character.index != nMainCharacterIndex) ok = true;
-					}
-				break;
-				case 6:
-					tok1 = (CheckAttribute(character,"chr_ai.group")) && character.chr_ai.group != "player"; //все и ГГ, без офицеров
-					tok2 = (character.index == nMainCharacterIndex);
-					if (tok1 || tok2 || !CheckAttribute(character,"chr_ai.group"))
-					{
-						ok = true;
-					}
-				break;
-				case 8:
-					tok1 = (CheckAttribute(character,"chr_ai.group")) && character.chr_ai.group != "player"; //все кроме ГГ
-					tok2 = (CheckAttribute(character,"chr_ai.group")) && character.chr_ai.group == "player";
-					if (tok1 || tok2 || !CheckAttribute(character,"chr_ai.group"))
-					{
-						if (character.index != nMainCharacterIndex)	ok = true;
-					}
-				break;
-				case 9:
-					ok = true;//все
+			case 9:
+				ok = true; //все
 				break;
 			}
 			if (ok)
 			{
-				if (CheckAttribute(character,"cirassId"))
+				if (CheckAttribute(character, "cirassId"))
 				{
-					character.model = GetSubStringByNum(character.HeroModel,sti(Items[sti(character.cirassId)].model));
+					character.model = GetSubStringByNum(character.HeroModel, sti(Items[sti(character.cirassId)].model));
 					Characters_RefreshModel(character);
 				}
 				else
 				{
-					if (GetSubStringByNum(character.HeroModel,0) != character.model)
+					if (GetSubStringByNum(character.HeroModel, 0) != character.model)
 					{
-						DeleteAttribute(character,"VISUAL_CIRASS");
+						DeleteAttribute(character, "VISUAL_CIRASS");
 						FaceMaker(character);
 					}
-					character.model = GetSubStringByNum(character.HeroModel,0);
+					character.model = GetSubStringByNum(character.HeroModel, 0);
 					Characters_RefreshModel(character);
 				}
 			}
 			else
 			{
-				character.model = GetSubStringByNum(character.HeroModel,0);
+				character.model = GetSubStringByNum(character.HeroModel, 0);
 				Characters_RefreshModel(character);
 			}
 		}
 	}
 
 	ExecuteCharacterEquip(character);
-	if( CheckAttribute(character,"chr_ai.charge") &&
-		fCurCharge<stf(character.chr_ai.charge) ) {
-			character.chr_ai.charge = fCurCharge;
+	if (CheckAttribute(character, "chr_ai.charge") &&
+		fCurCharge < stf(character.chr_ai.charge))
+	{
+		character.chr_ai.charge = fCurCharge;
 	}
 
 	//Set fight level
-	if(!CheckAttribute(&character, "sex"))
+	if (!CheckAttribute(&character, "sex"))
 	{
 		character.sex = "man";
 	}
@@ -255,39 +292,39 @@ bool CreateCharacter(ref character)
 	SetDefaultFight(character);
 	EndChangeCharacterActions(character);
 	//}
-	if (CheckAttribute(character,"quest.questflag.model"))
+	if (CheckAttribute(character, "quest.questflag.model"))
 	{
 		if (character.quest.questflag.model != "exclamationmarkY")
 		{
 			switch (character.quest.questflag.model)
 			{
-				case "FX_Blood":
-					if (!CheckAttribute(character,"chr_ai.blooding"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
+			case "FX_Blood":
+				if (!CheckAttribute(character, "chr_ai.blooding"))
+				{
+					character.quest.questflag.model = "";
+					character.quest.questflag.technique = "";
+				}
 				break;
-				case "FX_StanS":
-					if (!CheckAttribute(character,"chr_ai.Swift"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
+			case "FX_StanS":
+				if (!CheckAttribute(character, "chr_ai.Swift"))
+				{
+					character.quest.questflag.model = "";
+					character.quest.questflag.technique = "";
+				}
 				break;
-				case "FX_StanH":
-					if (!CheckAttribute(character,"chr_ai.understun"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
+			case "FX_StanH":
+				if (!CheckAttribute(character, "chr_ai.understun"))
+				{
+					character.quest.questflag.model = "";
+					character.quest.questflag.technique = "";
+				}
 				break;
-				case "FX_Travma":
-					if (!CheckAttribute(character,"chr_ai.Trauma"))
-					{
-						character.quest.questflag.model = "";
-						character.quest.questflag.technique = "";
-					}
+			case "FX_Travma":
+				if (!CheckAttribute(character, "chr_ai.Trauma"))
+				{
+					character.quest.questflag.model = "";
+					character.quest.questflag.technique = "";
+				}
 				break;
 			}
 		}
@@ -324,7 +361,8 @@ bool TeleportCharacterToLocator(ref character, string group, string locator)
 
 bool CheckLocationPosition(ref location, float x, float y, float z)
 {
-	if(IsEntity(loadedLocation) == false) return false;
+	if (IsEntity(loadedLocation) == false)
+		return false;
 	return (SendMessage(loadedLocation, "lfff", MSG_LOCATION_CHECKENTRY, x, y, z) != 0);
 }
 
@@ -338,15 +376,19 @@ object GetCharacterModel(ref character)
 bool GetCharacterPos(ref character, ref float_x, ref float_y, ref float_z)
 {
 	float cx, cy, cz;
-	if(SendMessage(character, "leee", MSG_CHARACTER_GETPOS, &cx, &cy, &cz) == 0) return false;
-	float_x = cx; float_y = cy; float_z = cz;
+	if (SendMessage(character, "leee", MSG_CHARACTER_GETPOS, &cx, &cy, &cz) == 0)
+		return false;
+	float_x = cx;
+	float_y = cy;
+	float_z = cz;
 	return true;
 }
 
 bool GetCharacterAy(ref character, ref float_ay)
 {
 	float ay = 0.0;
-	if(SendMessage(character, "le", MSG_CHARACTER_GETAY, &ay) == 0) return false;
+	if (SendMessage(character, "le", MSG_CHARACTER_GETAY, &ay) == 0)
+		return false;
 	float_ay = ay;
 	return true;
 }
@@ -469,78 +511,82 @@ void SetNoRun(ref character)
 // boal -->
 void SetOverloadNormWalk(ref character)
 {
-    if(GetItemsWeight(character) > GetMaxItemsWeight(character))
-    {
-        character.actions.walk = "walk";
-	    character.actions.backwalk = "back walk";
-	    character.actions.run = "walk";
-	    character.actions.backrun = "back run";
-        character.actions.stsUp = "stairs up";
-        character.actions.stsUpRun = "stairs up";
-        character.actions.stsDown = "stairs down";
-        character.actions.stsDownRun = "stairs down";
-    }
+	if (GetItemsWeight(character) > GetMaxItemsWeight(character))
+	{
+		character.actions.walk = "walk";
+		character.actions.backwalk = "back walk";
+		character.actions.run = "walk";
+		character.actions.backrun = "back run";
+		character.actions.stsUp = "stairs up";
+		character.actions.stsUpRun = "stairs up";
+		character.actions.stsDown = "stairs down";
+		character.actions.stsDownRun = "stairs down";
+	}
 }
 
 void SetOverloadFight(ref character)
 {
-    if(GetItemsWeight(character) > GetMaxItemsWeight(character))
-    {
-       character.actions.fightwalk = "fight walk";
-	   character.actions.fightbackwalk = "fight back walk";
-	   character.actions.fightrun = "fight walk";
-	   character.actions.fightbackrun = "fight back walk";
-    }
+	if (GetItemsWeight(character) > GetMaxItemsWeight(character))
+	{
+		character.actions.fightwalk = "fight walk";
+		character.actions.fightbackwalk = "fight back walk";
+		character.actions.fightrun = "fight walk";
+		character.actions.fightbackrun = "fight back walk";
+	}
 }
 void CheckAndSetOverloadMode(ref character)
 {
-	if (CheckAttribute(character,"chr_ai.HeavyTrauma")) {SetNoRun(character); return;}
+	if (CheckAttribute(character, "chr_ai.HeavyTrauma"))
+	{
+		SetNoRun(character);
+		return;
+	}
 	if (CheckAttribute(character, "actions")) // сундуки не трогаем
 	{
-        BeginChangeCharacterActions(character);
-        if(GetItemsWeight(character) > GetMaxItemsWeight(character))
-        {
-            character.actions.walk = "walk";
-	        character.actions.backwalk = "back walk";
-	        character.actions.run = "walk";
-	        character.actions.backrun = "back run";
-            character.actions.stsUp = "stairs up";
-            character.actions.stsUpRun = "stairs up";
-            character.actions.stsDown = "stairs down";
-            character.actions.stsDownRun = "stairs down";
+		BeginChangeCharacterActions(character);
+		if (GetItemsWeight(character) > GetMaxItemsWeight(character))
+		{
+			character.actions.walk = "walk";
+			character.actions.backwalk = "back walk";
+			character.actions.run = "walk";
+			character.actions.backrun = "back run";
+			character.actions.stsUp = "stairs up";
+			character.actions.stsUpRun = "stairs up";
+			character.actions.stsDown = "stairs down";
+			character.actions.stsDownRun = "stairs down";
 
-            character.actions.fightwalk = "fight walk";
-	        character.actions.fightbackwalk = "fight back walk";
-	        character.actions.fightrun = "fight walk";
-	        character.actions.fightbackrun = "fight back walk";
-        }
-        else
-        {
-            SetDefaultNormWalk(character);
-            SetDefaultFight(character);
-        }
-        EndChangeCharacterActions(character);
-    }
+			character.actions.fightwalk = "fight walk";
+			character.actions.fightbackwalk = "fight back walk";
+			character.actions.fightrun = "fight walk";
+			character.actions.fightbackrun = "fight back walk";
+		}
+		else
+		{
+			SetDefaultNormWalk(character);
+			SetDefaultFight(character);
+		}
+		EndChangeCharacterActions(character);
+	}
 }
 // boal <--
 void SetDefaultNormWalk(ref character)
 {
 
-//	if( character.id == pchar.id && CheckAttribute(&InterfaceStates,"alwaysrun") && sti(InterfaceStates.alwaysrun) )
-//	{
-		character.actions.walk = "walk";
-		character.actions.run = "run";
-		character.actions.backwalk = "back walk";
-		character.actions.backrun = "back run";
-		character.actions.stsUp = "stairs up";
-		character.actions.stsDown = "stairs down";
-		character.actions.stsUpBack = "back stairs up";
-		character.actions.stsDownBack = "back stairs down";
-		character.actions.stsUpRun = "run stairs up";
-		character.actions.stsDownRun = "run stairs down";
-		character.actions.stsUpRunBack = "back run stairs up";
-		character.actions.stsDownRunBack = "back run stairs down";
-/*	}
+	//	if( character.id == pchar.id && CheckAttribute(&InterfaceStates,"alwaysrun") && sti(InterfaceStates.alwaysrun) )
+	//	{
+	character.actions.walk = "walk";
+	character.actions.run = "run";
+	character.actions.backwalk = "back walk";
+	character.actions.backrun = "back run";
+	character.actions.stsUp = "stairs up";
+	character.actions.stsDown = "stairs down";
+	character.actions.stsUpBack = "back stairs up";
+	character.actions.stsDownBack = "back stairs down";
+	character.actions.stsUpRun = "run stairs up";
+	character.actions.stsDownRun = "run stairs down";
+	character.actions.stsUpRunBack = "back run stairs up";
+	character.actions.stsDownRunBack = "back run stairs down";
+	/*	}
 	else
 	{
 		character.actions.walk = "run";
@@ -557,7 +603,7 @@ void SetDefaultNormWalk(ref character)
 		character.actions.stsDownRunBack = "back stairs down";
 	}*/
 
-    // boal 21.01.2004 -->
+	// boal 21.01.2004 -->
 	SetOverloadNormWalk(character);
 	// boal 21.01.2004 <--
 
@@ -574,10 +620,10 @@ void SetDefaultFight(ref character)
 
 	//if( character.id == pchar.id && CheckAttribute(&InterfaceStates,"alwaysrun") && sti(InterfaceStates.alwaysrun) )
 	//{
-		character.actions.fightwalk = "fight walk";
-		character.actions.fightrun = "fight run";
-		character.actions.fightbackwalk = "fight back walk";
-		character.actions.fightbackrun = "fight back run";
+	character.actions.fightwalk = "fight walk";
+	character.actions.fightrun = "fight run";
+	character.actions.fightbackwalk = "fight back walk";
+	character.actions.fightbackrun = "fight back run";
 	/*}
 	else
 	{
@@ -588,8 +634,8 @@ void SetDefaultFight(ref character)
 	}*/
 
 	// boal 21.01.2004 -->
-    SetOverloadFight(character);
-    // boal 21.01.2004 <--
+	SetOverloadFight(character);
+	// boal 21.01.2004 <--
 
 	//Действия в режиме боя
 	//Fast (max 3) --------------------------------------------------
@@ -641,9 +687,9 @@ void SetDefaultFight(ref character)
 	character.actions.parry.p3 = "parry_3";
 	character.actions.parry.p4 = "parry_4";
 	//Strafes--------------------------------------------------------------------
-	character.actions.recoil = "recoil";					//Назад
-	character.actions.strafeleft = "straif_weapon_left";	//Влево
-	character.actions.straferight = "straif_weapon_right";	//Вправо
+	character.actions.recoil = "recoil";				   //Назад
+	character.actions.strafeleft = "straif_weapon_left";   //Влево
+	character.actions.straferight = "straif_weapon_right"; //Вправо
 	//Death
 	SetDefaultFightDead(character);
 	//Idle анимация в режиме боя

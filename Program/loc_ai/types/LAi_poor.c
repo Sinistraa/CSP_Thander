@@ -7,9 +7,7 @@
 		ani
 */
 
-
-#define LAI_TYPE_POOR		"poor"
-
+#define LAI_TYPE_POOR "poor"
 
 //Инициализация
 void LAi_type_poor_Init(aref chr)
@@ -43,7 +41,8 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 	int idx, num;
 	string sLoc;
 
-	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG) return; //режем диалог
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+		return; //режем диалог
 	if (chr.chr_ai.tmpl == LAI_TMPL_ANI)
 	{
 		if (chr.chr_ai.tmpl.animation != "")
@@ -51,19 +50,19 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 			return; //режем анимацию
 		}
 		else
-		{	//тут все действия после проигрывания анимаций
+		{ //тут все действия после проигрывания анимаций
 			if (sti(chr.chr_ai.type.SitState))
-			{	//сидим
+			{ //сидим
 				if (!CheckAttribute(chr, "chr_ai.type.StandAndGoExit"))
 				{
 					if (sti(chr.chr_ai.type.AttackIndex) > 0 && !sti(chr.chr_ai.type.GroundAfraid))
-					{	//после выполнения анимации быстрого вставания от удара
+					{														//после выполнения анимации быстрого вставания от удара
 						by = &characters[sti(chr.chr_ai.type.AttackIndex)]; //здесь помним индекс врага с прошлых тактов
 						LAi_tmpl_afraid_SetAfraidCharacter(chr, by, true);
 						chr.chr_ai.type.SitState = false; //теперь нпс будет стоячим нищий
 					}
 					else
-					{	//после выполнения анимации ground_afraid
+					{ //после выполнения анимации ground_afraid
 						LAi_tmpl_stay_InitTemplate(chr);
 						chr.chr_ai.type.GroundAfraid = false;
 					}
@@ -77,14 +76,14 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 					}
 					else
 					{
-						LAi_tmpl_goto_SetLocator(chr, "patrol",  LAi_FindRandomLocator("patrol"), -1);
+						LAi_tmpl_goto_SetLocator(chr, "patrol", LAi_FindRandomLocator("patrol"), -1);
 						DeleteAttribute(chr, "chr_ai.type.StandAndGoExit");
 					}
 					chr.chr_ai.type.SitState = false; //теперь нпс будет стоячим нищим
 				}
 			}
 			else
-			{	//стоим
+			{ //стоим
 				LAi_tmpl_stay_InitTemplate(chr);
 				chr.chr_ai.type.SitState = true; //теперь нпс будет сидячим нищим
 			}
@@ -106,16 +105,18 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 	{
 		num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.001, false, true);
 		//если люди в радиусе 5 метров
-		if(num > 0)
+		if (num > 0)
 		{
-			for(int i = 0; i < num; i++)
+			for (int i = 0; i < num; i++)
 			{
 				idx = sti(chrFindNearCharacters[i].index);
-				if(LAi_group_IsEnemy(chr, &Characters[idx])) break;
-				if(LAi_CheckFightMode(&Characters[idx])) break;
+				if (LAi_group_IsEnemy(chr, &Characters[idx]))
+					break;
+				if (LAi_CheckFightMode(&Characters[idx]))
+					break;
 			}
 			//есть враги
-			if(i < num)
+			if (i < num)
 			{
 				if (rand(1))
 				{
@@ -133,12 +134,12 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 			//нет врагов
 			else
 			{
-				if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
+				if (chr.chr_ai.tmpl != LAI_TMPL_STAY)
 				{
 					LAi_tmpl_stay_InitTemplate(chr);
 					LAi_SetDefaultDead(chr);
 				}
-				if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+				if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 				{
 					if (rand(50) == 49)
 					{
@@ -152,12 +153,12 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 		//никого нет вокруг
 		else
 		{
-			if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
+			if (chr.chr_ai.tmpl != LAI_TMPL_STAY)
 			{
 				LAi_tmpl_stay_InitTemplate(chr);
 				LAi_SetDefaultDead(chr);
 			}
-			if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+			if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 			{
 				if (rand(50) == 49)
 				{
@@ -173,9 +174,9 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 	// --> стоячий нищий
 	{
 		//если боимся
-		if(chr.chr_ai.tmpl == LAI_TMPL_AFRAID)
+		if (chr.chr_ai.tmpl == LAI_TMPL_AFRAID)
 		{
-			if(LAi_tmpl_afraid_IsNoActive(chr))
+			if (LAi_tmpl_afraid_IsNoActive(chr))
 			{
 				//команда идти и сесть в локатор
 				LAi_SetDefaultDead(chr);
@@ -194,10 +195,10 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 			}
 		}
 		//если идем к месту сидения
-		if(chr.chr_ai.tmpl == LAI_TMPL_GOTO)
+		if (chr.chr_ai.tmpl == LAI_TMPL_GOTO)
 		{
 			idx = LAi_type_poor_FindNearEnemy(chr);
-			if(idx >= 0)
+			if (idx >= 0)
 			{
 				LAi_tmpl_afraid_SetAfraidCharacter(chr, &Characters[idx], true);
 				LAi_SetAfraidDead(chr);
@@ -209,10 +210,10 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 			}
 		}
 		//если стоим ждем
-		if(chr.chr_ai.tmpl == LAI_TMPL_STAY)
+		if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
 		{
 			idx = LAi_type_poor_FindNearEnemy(chr);
-			if(idx >= 0)
+			if (idx >= 0)
 			{
 				LAi_tmpl_afraid_SetAfraidCharacter(chr, &Characters[idx], true);
 				LAi_SetAfraidDead(chr);
@@ -265,7 +266,8 @@ void LAi_type_poor_NeedDialog(aref chr, aref by)
 bool LAi_type_poor_CanDialog(aref chr, aref by)
 {
 	//Если уже говорим, то откажем
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG || chr.chr_ai.tmpl == LAI_TMPL_ANI) return false;
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG || chr.chr_ai.tmpl == LAI_TMPL_ANI)
+		return false;
 	//Согласимся на диалог
 	return true;
 }
@@ -293,36 +295,36 @@ void LAi_type_poor_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy
 {
 }
 
-
 //Персонаж атакован
 void LAi_type_poor_Attacked(aref chr, aref by)
 {
-
 }
 
 int LAi_type_poor_FindNearEnemy(aref chr)
 {
 	int i, idx;
 	int num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.001, false, true);
-	if(num <= 0)
+	if (num <= 0)
 	{
 		chrFindNearCharacters[0].index = "-1";
 		return -1;
 	}
-	if(LAi_grp_alarmactive == true)
+	if (LAi_grp_alarmactive == true)
 	{
-		for(i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) return idx;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				return idx;
 		}
 	}
 	else
 	{
-		for(i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_CheckFightMode(&Characters[idx])) return idx;
+			if (LAi_CheckFightMode(&Characters[idx]))
+				return idx;
 		}
 	}
 	return -1;

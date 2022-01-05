@@ -2,10 +2,10 @@
 #include "islands\Islands_init.c"
 void ExecuteConsole()
 {
-	//#include "Ships\Ships_init.c"
-	//#include "Locations\init\boarding.c"
+    //#include "Ships\Ships_init.c"
+    //#include "Locations\init\boarding.c"
 
-	/*
+    /*
 	InitShips(); // Updates ships to have the new cabins - is it really needed?
 
 	// This number is needed to reinit only boarding locations, avoiding unnecessary reinit of all locations
@@ -97,22 +97,22 @@ void ExecuteConsole()
     //CannonsInit();
     //ShipsInit();
 
-//ref rRealBloodShip = GetRealShip(sti(pchar.Ship.Type));
+    //ref rRealBloodShip = GetRealShip(sti(pchar.Ship.Type));
     //ref thischr = GetCharacter(GetCharacterIndex("PSHero_78"));
 
     //thischr.reputation = 30;
     // thischr.PGGAi.ActiveQuest = 1;
-//if(LoadSegment("store\initGoods.c"))
-		//{
-		  //  trace("Done.");
-			//InitGoods();
-			//UnloadSegment("store\initGoods.c");
-		//}
+    //if(LoadSegment("store\initGoods.c"))
+    //{
+    //  trace("Done.");
+    //InitGoods();
+    //UnloadSegment("store\initGoods.c");
+    //}
 
-	//ref  ch;
-	//ch = characterfromid("PsHero_78");
-	//ch.heroparam.herotype = 1;
-	//GetCharacter(NPC_GenerateCharacter("PsHero_78", "off_hol_2", "man", "man", 5, PIRATE, -1, true));
+    //ref  ch;
+    //ch = characterfromid("PsHero_78");
+    //ch.heroparam.herotype = 1;
+    //GetCharacter(NPC_GenerateCharacter("PsHero_78", "off_hol_2", "man", "man", 5, PIRATE, -1, true));
     /*ch.PGGAi.HeroNum = 79;
     ch.rank = 10;
     ch.faceid = 430;
@@ -125,15 +125,12 @@ void ExecuteConsole()
 	ch.PGGAi.location.town = "None";
 	ch.PGGAi.location = "Dead";
 	ch.RebirthPhantom = false;*/
-	//ch.reputation = 1;
+    //ch.reputation = 1;
 
-	//SetNationRelations();
+    //SetNationRelations();
 
     InitLocations();
     //InitIslands();
 
     Log_SetStringToLog("Operation successful! ");
 }
-
-
-

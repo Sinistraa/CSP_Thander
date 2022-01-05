@@ -8,7 +8,7 @@ void InitInterface(string iniName)
 {
 	GameInterface.title = "titleQuicklyTrade";
 
-    	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
 	GameInterface.PLANKS_STRING.str = 0;
 	GameInterface.SAILCLOTH_STRING.str = 0;
@@ -16,11 +16,11 @@ void InitInterface(string iniName)
 	SetPlanksInformation();
 	SetSailClothInformation();
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0);
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("PlanksTemp","PlanksTemp",0);
-	SetEventHandler("SailClothTemp","SailClothTemp",0);
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0);
+	SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("PlanksTemp", "PlanksTemp", 0);
+	SetEventHandler("SailClothTemp", "SailClothTemp", 0);
 }
 
 void ProcessBreakExit()
@@ -35,16 +35,16 @@ void ProcessCancelExit()
 
 void IDoExit(int exitCode)
 {
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("PlanksTemp","PlanksTemp");
-	DelEventHandler("SailClothTemp","SailClothTemp");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("PlanksTemp", "PlanksTemp");
+	DelEventHandler("SailClothTemp", "SailClothTemp");
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
 
-	if(PChar.GenerateShipWreck.GoodsChange == true)
+	if (PChar.GenerateShipWreck.GoodsChange == true)
 	{
 		ShipWreckBanditsChangeGoodsEnd();
 		PChar.GenerateShipWreck.GoodsChange = false;
@@ -56,102 +56,102 @@ void ProcCommand()
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	switch(nodName)
+	switch (nodName)
 	{
-		case "PLANKS_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("PLANKS", true, false);
-			}
+	case "PLANKS_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("PLANKS", true, false);
+		}
 		break;
 
-		case "PLANKS_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("PLANKS", false, false);
-			}
+	case "PLANKS_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("PLANKS", false, false);
+		}
 		break;
 
-		case "PLANKS_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("PLANKS", true, true);
-			}
+	case "PLANKS_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("PLANKS", true, true);
+		}
 		break;
 
-		case "PLANKS_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("PLANKS", false, true);
-			}
+	case "PLANKS_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("PLANKS", false, true);
+		}
 		break;
 
-		case "SAILCLOTH_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("SAILCLOTH", true, false);
-			}
+	case "SAILCLOTH_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("SAILCLOTH", true, false);
+		}
 		break;
 
-		case "SAILCLOTH_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("SAILCLOTH", false, false);
-			}
+	case "SAILCLOTH_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("SAILCLOTH", false, false);
+		}
 		break;
 
-		case "SAILCLOTH_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("SAILCLOTH", true, true);
-			}
+	case "SAILCLOTH_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("SAILCLOTH", true, true);
+		}
 		break;
 
-		case "SAILCLOTH_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				ChangeGoodQty("SAILCLOTH", false, true);
-			}
+	case "SAILCLOTH_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			ChangeGoodQty("SAILCLOTH", false, true);
+		}
 		break;
 
-		case "PLANKS_TRANSFER_RESET":
-			if(comName=="activate" || comName=="click")
-			{
-				Reset("PLANKS");
-			}
+	case "PLANKS_TRANSFER_RESET":
+		if (comName == "activate" || comName == "click")
+		{
+			Reset("PLANKS");
+		}
 		break;
 
-		case "SAILCLOTH_TRANSFER_RESET":
-			if(comName=="activate" || comName=="click")
-			{
-				Reset("SAILCLOTH");
-			}
+	case "SAILCLOTH_TRANSFER_RESET":
+		if (comName == "activate" || comName == "click")
+		{
+			Reset("SAILCLOTH");
+		}
 		break;
 
-		case "PLANKS_TRANSFER":
-			if(comName=="activate" || comName=="click")
-			{
-				Done("PLANKS");
-			}
+	case "PLANKS_TRANSFER":
+		if (comName == "activate" || comName == "click")
+		{
+			Done("PLANKS");
+		}
 		break;
 
-		case "SAILCLOTH_TRANSFER":
-			if(comName=="activate" || comName=="click")
-			{
-				Done("SAILCLOTH");
-			}
+	case "SAILCLOTH_TRANSFER":
+		if (comName == "activate" || comName == "click")
+		{
+			Done("SAILCLOTH");
+		}
 		break;
 	}
 }
 
 void SetPlanksInformation()
 {
-	CreateString(true,"PlanksHeader", "Доски", FONT_CAPTION, COLOR_NORMAL, 395,149,SCRIPT_ALIGN_CENTER,1.5);
+	CreateString(true, "PlanksHeader", "Доски", FONT_CAPTION, COLOR_NORMAL, 395, 149, SCRIPT_ALIGN_CENTER, 1.5);
 
-	CreateImage("PlanksQuantity", "GOODS", "Planks", 490,180,590,280);
+	CreateImage("PlanksQuantity", "GOODS", "Planks", 490, 180, 590, 280);
 
 	int iPlanksInShip = GetCargoGoods(PChar, GOOD_PLANKS);
-	CreateString(true,"PlanksQuantityInShip", iPlanksInShip, FONT_BOLD_NUMBERS, COLOR_NORMAL, 505,280,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "PlanksQuantityInShip", iPlanksInShip, FONT_BOLD_NUMBERS, COLOR_NORMAL, 505, 280, SCRIPT_ALIGN_LEFT, 1.0);
 
 	SetFormatedText("PLANKS_GOLD_TEXT", "0");
 }
@@ -159,12 +159,12 @@ void SetPlanksInformation()
 void SetSailClothInformation()
 {
 	// CreateImage("SailClothHeader", "MAIN_ICONS", "skillborder", 204,320,596,352);
-	CreateString(true,"SailClothHeader", "Парусина", FONT_CAPTION, COLOR_NORMAL, 395,314,SCRIPT_ALIGN_CENTER,1.5);
+	CreateString(true, "SailClothHeader", "Парусина", FONT_CAPTION, COLOR_NORMAL, 395, 314, SCRIPT_ALIGN_CENTER, 1.5);
 
-	CreateImage("SailClothQuantity", "GOODS", "SailCloth", 490,350,590,450);
+	CreateImage("SailClothQuantity", "GOODS", "SailCloth", 490, 350, 590, 450);
 
 	int iSailClothInShip = GetCargoGoods(PChar, GOOD_SAILCLOTH);
-	CreateString(true,"SailClothQuantityInShip", iSailClothInShip, FONT_BOLD_NUMBERS, COLOR_NORMAL, 505,455,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "SailClothQuantityInShip", iSailClothInShip, FONT_BOLD_NUMBERS, COLOR_NORMAL, 505, 455, SCRIPT_ALIGN_LEFT, 1.0);
 
 	SetFormatedText("SAILCLOTH_GOLD_TEXT", "0");
 }
@@ -176,7 +176,6 @@ void PlanksInformationUptade()
 
 	SetFormatedText("PLANKS_GOLD_TEXT", "" + iMoney);
 }
-
 
 void SailClothInformationUptade()
 {
@@ -191,17 +190,17 @@ void PlanksTemp()
 	int iMax = sti(PChar.GenerateShipWreck.MaxGoods);
 	int iOnShip = GetCargoGoods(PChar, GOOD_PLANKS);
 
-	if(sti(GameInterface.PLANKS_STRING.str) <= 0)
+	if (sti(GameInterface.PLANKS_STRING.str) <= 0)
 	{
 		GameInterface.PLANKS_STRING.str = 0;
 	}
 
-	if(sti(GameInterface.PLANKS_STRING.str) > iOnShip)
+	if (sti(GameInterface.PLANKS_STRING.str) > iOnShip)
 	{
 		GameInterface.PLANKS_STRING.str = iOnShip;
 	}
 
-	if(sti(GameInterface.PLANKS_STRING.str) > iMax)
+	if (sti(GameInterface.PLANKS_STRING.str) > iMax)
 	{
 		GameInterface.PLANKS_STRING.str = iMax;
 	}
@@ -214,17 +213,17 @@ void SailClothTemp()
 	int iMax = sti(PChar.GenerateShipWreck.MaxGoods) * 2;
 	int iOnShip = GetCargoGoods(PChar, GOOD_PLANKS);
 
-	if(sti(GameInterface.SAILCLOTH_STRING.str) <= 0)
+	if (sti(GameInterface.SAILCLOTH_STRING.str) <= 0)
 	{
 		GameInterface.SAILCLOTH_STRING.str = 0;
 	}
 
-	if(sti(GameInterface.SAILCLOTH_STRING.str) > iOnShip)
+	if (sti(GameInterface.SAILCLOTH_STRING.str) > iOnShip)
 	{
 		GameInterface.SAILCLOTH_STRING.str = iOnShip;
 	}
 
-	if(sti(GameInterface.SAILCLOTH_STRING.str) > iMax)
+	if (sti(GameInterface.SAILCLOTH_STRING.str) > iMax)
 	{
 		GameInterface.SAILCLOTH_STRING.str = iMax;
 	}
@@ -248,7 +247,7 @@ void ChangeGoodQty(string sGood, bool bLeft, bool bAll)
 
 	int iGood = 0;
 
-	if(sGood == "SAILCLOTH")
+	if (sGood == "SAILCLOTH")
 	{
 		iMax *= 2;
 		iGood = GOOD_SAILCLOTH;
@@ -260,9 +259,9 @@ void ChangeGoodQty(string sGood, bool bLeft, bool bAll)
 
 	int iGoodQty = GetCargoGoods(PChar, iGood);
 
-	if(bLeft)
+	if (bLeft)
 	{
-		if(bAll)
+		if (bAll)
 		{
 			GameInterface.(sString).str = 0;
 		}
@@ -273,7 +272,7 @@ void ChangeGoodQty(string sGood, bool bLeft, bool bAll)
 	}
 	else
 	{
-		if(bAll)
+		if (bAll)
 		{
 			GameInterface.(sString).str = iGoodQty;
 		}
@@ -283,17 +282,17 @@ void ChangeGoodQty(string sGood, bool bLeft, bool bAll)
 		}
 	}
 
-	if(sti(GameInterface.(sString).str) <= 0)
+	if (sti(GameInterface.(sString).str) <= 0)
 	{
 		GameInterface.(sString).str = 0;
 	}
 
-	if(sti(GameInterface.(sString).str) > iGoodQty)
+	if (sti(GameInterface.(sString).str) > iGoodQty)
 	{
 		GameInterface.(sString).str = iGoodQty;
 	}
 
-	if(sti(GameInterface.(sString).str) > iMax)
+	if (sti(GameInterface.(sString).str) > iMax)
 	{
 		GameInterface.(sString).str = iMax;
 	}
@@ -310,7 +309,7 @@ void Done(string sGood)
 	int iCost = 0;
 	int iGood = 0;
 
-	if(sGood == "PLANKS")
+	if (sGood == "PLANKS")
 	{
 		iCost = iPlanksCost;
 		iGood = GOOD_PLANKS;

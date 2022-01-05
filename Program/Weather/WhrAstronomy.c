@@ -12,8 +12,10 @@ void WhrDeleteAstronomyEnvironment()
 void WhrCreateAstronomyEnvironment()
 {
 	aref aCurWeather = GetCurrentWeather();
-	aref aStars;	makearef(aStars, aCurWeather.Stars);
-	aref aPlanets;	makearef(aPlanets, aCurWeather.Planets);
+	aref aStars;
+	makearef(aStars, aCurWeather.Stars);
+	aref aPlanets;
+	makearef(aPlanets, aCurWeather.Planets);
 
 	DeleteAttribute(&Astronomy, "");
 
@@ -53,7 +55,7 @@ void WhrCreateAstronomyEnvironment()
 
 	Astronomy.Planets.Planet.Mars.Distance = 1.52363;
 	Astronomy.Planets.Planet.Mars.Speed = 24.4;
-	Astronomy.Planets.Planet.Mars.Inclination =  1.85;
+	Astronomy.Planets.Planet.Mars.Inclination = 1.85;
 	Astronomy.Planets.Planet.Mars.Diameter = 6670.0;
 	Astronomy.Planets.Planet.Mars.Scale = 3.0;
 	Astronomy.Planets.Planet.Mars.Mag.Min = 1.6;
@@ -102,9 +104,10 @@ void WhrCreateAstronomyEnvironment()
 //#20191020-01
 void FillStars(ref aStars)
 {
-    if(!IsEntity(&Astronomy)) return;
+	if (!IsEntity(&Astronomy))
+		return;
 
-    Astronomy.Stars.Enable = Whr_GetLong(aStars, "Enable");
+	Astronomy.Stars.Enable = Whr_GetLong(aStars, "Enable");
 	if (sti(Astronomy.Stars.Enable))
 	{
 		Astronomy.Stars.Catalog = "hic.dat";
@@ -137,27 +140,35 @@ void FillStars(ref aStars)
 
 void FillAstronomyFadeValue()
 {
-	Astronomy.Planets.Enable = Whr_GetLong(&Weathers[iCurWeatherNum],"Planets.Enable");
+	Astronomy.Planets.Enable = Whr_GetLong(&Weathers[iCurWeatherNum], "Planets.Enable");
 	if (sti(Astronomy.Planets.Enable))
 	{
 		Astronomy.Planets.Scale = 1.0;
 		Astronomy.Planets.Speed = 10.0;
 
 		Astronomy.Planets.FadeValue = 1.0;
-		if( iBlendWeatherNum<0 || Whr_GetLong(&Weathers[iBlendWeatherNum],"Planets.Enable") ) {
+		if (iBlendWeatherNum < 0 || Whr_GetLong(&Weathers[iBlendWeatherNum], "Planets.Enable"))
+		{
 			Astronomy.Planets.FadeStartTime = -1.0;
-		} else {
+		}
+		else
+		{
 			Astronomy.Planets.FadeStartTime = makefloat(sti(Environment.Time)) + 0.2;
 		}
 		Astronomy.Planets.FadeTime = -0.2;
-	} else {
+	}
+	else
+	{
 		Astronomy.Planets.Scale = 1.0;
 		Astronomy.Planets.Speed = 10.0;
 
 		Astronomy.Planets.FadeValue = 0.0;
-		if( iBlendWeatherNum>=0 && Whr_GetLong(&Weathers[iBlendWeatherNum],"Planets.Enable") ) {
+		if (iBlendWeatherNum >= 0 && Whr_GetLong(&Weathers[iBlendWeatherNum], "Planets.Enable"))
+		{
 			Astronomy.Planets.FadeStartTime = makefloat(sti(Environment.Time)) + 0.6;
-		} else {
+		}
+		else
+		{
 			Astronomy.Planets.FadeStartTime = -1.0;
 		}
 		Astronomy.Planets.FadeTime = 0.2;
@@ -170,9 +181,12 @@ void FillAstronomyFadeValue()
 		Astronomy.Stars.HeightFade = Whr_GetFloat(&Weathers[iCurWeatherNum], "Stars.HeightFade");
 
 		Astronomy.Stars.FadeValue = 1.0;
-		if( iBlendWeatherNum<0 || Whr_GetLong(&Weathers[iBlendWeatherNum],"Stars.Enable") ) {
+		if (iBlendWeatherNum < 0 || Whr_GetLong(&Weathers[iBlendWeatherNum], "Stars.Enable"))
+		{
 			Astronomy.Stars.FadeStartTime = -1.0;
-		} else {
+		}
+		else
+		{
 			Astronomy.Stars.FadeStartTime = makefloat(sti(Environment.Time)) + 0.2;
 		}
 		Astronomy.Stars.FadeTime = -0.2;
@@ -180,9 +194,12 @@ void FillAstronomyFadeValue()
 	else
 	{
 		Astronomy.Stars.FadeValue = 0.0;
-		if( iBlendWeatherNum>=0 && Whr_GetLong(&Weathers[iBlendWeatherNum],"Stars.Enable") ) {
+		if (iBlendWeatherNum >= 0 && Whr_GetLong(&Weathers[iBlendWeatherNum], "Stars.Enable"))
+		{
 			Astronomy.Stars.FadeStartTime = makefloat(sti(Environment.Time)) + 0.6;
-		} else {
+		}
+		else
+		{
 			Astronomy.Stars.FadeStartTime = -1.0;
 		}
 		Astronomy.Stars.FadeTime = 0.2;
@@ -191,7 +208,7 @@ void FillAstronomyFadeValue()
 
 void MoveAstronomyToLayers(int iExecuteLayer, int iRealizeLayer)
 {
-/*	LayerDelObject(EXECUTE, &Astronomy);
+	/*	LayerDelObject(EXECUTE, &Astronomy);
 	LayerDelObject(REALIZE, &Astronomy);
 	LayerDelObject(SEA_EXECUTE, &Astronomy);
 	LayerDelObject(SEA_REALIZE, &Astronomy);

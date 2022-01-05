@@ -53,7 +53,8 @@ int LocationInitKhaelRoa(int n)
 	// -------------------------------------------------
 	Locations[n].id = "Temple_h";
 	Locations[n].filespath.models = "locations\Incas Temple\Temple\";
-	locations[n].DisableEncounters = true;
+									locations[n]
+										.DisableEncounters = true;
 	locations[n].islandId = "KhaelRoa";
 	//Sound
 	locations[n].type = "questisland";
@@ -70,7 +71,6 @@ int LocationInitKhaelRoa(int n)
 	//Night
 	Locations[n].models.night.charactersPatch = "Hram_p";
 	Locations[n].models.night.jumppatch = "hram_j";
-
 
 	//Environment
 	Locations[n].environment.weather = "true";
@@ -97,8 +97,9 @@ int LocationInitKhaelRoa(int n)
 	// -------------------------------------------------
 	Locations[n].id = "Labirint_1";
 	Locations[n].filespath.models = "locations\Incas Temple\Labirint\";
-	//Sound
-	Locations[n].image = "loading\inside\Labirint.tga";
+									//Sound
+									Locations[n]
+										.image = "loading\inside\Labirint.tga";
 	locations[n].id.label = "Labirint";
 	locations[n].type = "Labirint";
 	Locations[n].environment.weather = "true";
@@ -136,7 +137,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l22.emerge = "reload3";
 	Locations[n].reload.l22.autoreload = "1";
 
-    Locations[n].reload.l3.name = "reload11";
+	Locations[n].reload.l3.name = "reload11";
 	Locations[n].reload.l3.go = "labirint_2";
 	Locations[n].reload.l3.emerge = "Reload12";
 	Locations[n].reload.l3.autoreload = "1";
@@ -161,7 +162,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l6.emerge = "reload21";
 	Locations[n].reload.l6.autoreload = "1";
 
-    Locations[n].reload.l7.name = "reload23";
+	Locations[n].reload.l7.name = "reload23";
 	Locations[n].reload.l7.go = "labirint_2";
 	Locations[n].reload.l7.emerge = "Reload24";
 	Locations[n].reload.l7.autoreload = "1";
@@ -176,7 +177,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l28.emerge = "reload25";
 	Locations[n].reload.l28.autoreload = "1";
 
-    Locations[n].reload.l9.name = "reload1";
+	Locations[n].reload.l9.name = "reload1";
 	Locations[n].reload.l9.go = "labirint_3";
 	Locations[n].reload.l9.emerge = "Reload2";
 	Locations[n].reload.l9.autoreload = "1";
@@ -196,12 +197,12 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l20.emerge = "reload5";
 	Locations[n].reload.l20.autoreload = "1";
 
-    Locations[n].reload.l11.name = "reload7";
+	Locations[n].reload.l11.name = "reload7";
 	Locations[n].reload.l11.go = "labirint_3";
 	Locations[n].reload.l11.emerge = "Reload8";
 	Locations[n].reload.l11.autoreload = "1";
 
-    Locations[n].reload.l21.name = "reload7_back";
+	Locations[n].reload.l21.name = "reload7_back";
 	Locations[n].reload.l21.go = "labirint_3";
 	Locations[n].reload.l21.emerge = "Reload8";
 	Locations[n].reload.l21.autoreload = "1";
@@ -220,7 +221,8 @@ int LocationInitKhaelRoa(int n)
 	// -------------------------------------------------
 	Locations[n].id = "Labirint_2";
 	Locations[n].filespath.models = "locations\Incas Temple\Labirint\";
-	Locations[n].environment.weather = "true";
+									Locations[n]
+										.environment.weather = "true";
 	Locations[n].environment.sea = "false";
 	Locations[n].lockWeather = "Inside";
 	locations[n].environment.weather.rain = false;
@@ -255,7 +257,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l22.emerge = "reload4";
 	Locations[n].reload.l22.autoreload = "1";
 
-    Locations[n].reload.l3.name = "reload12";
+	Locations[n].reload.l3.name = "reload12";
 	Locations[n].reload.l3.go = "labirint_1";
 	Locations[n].reload.l3.emerge = "Reload11";
 	Locations[n].reload.l3.autoreload = "1";
@@ -270,7 +272,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l4.emerge = "reload17";
 	Locations[n].reload.l4.autoreload = "1";
 
-    Locations[n].reload.l5.name = "reload19";
+	Locations[n].reload.l5.name = "reload19";
 	Locations[n].reload.l5.go = "labirint_1";
 	Locations[n].reload.l5.emerge = "Reload20";
 	Locations[n].reload.l5.autoreload = "1";
@@ -280,7 +282,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l6.emerge = "reload22";
 	Locations[n].reload.l6.autoreload = "1";
 
-    Locations[n].reload.l7.name = "reload24";
+	Locations[n].reload.l7.name = "reload24";
 	Locations[n].reload.l7.go = "labirint_1";
 	Locations[n].reload.l7.emerge = "Reload23";
 	Locations[n].reload.l7.autoreload = "1";
@@ -295,7 +297,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l28.emerge = "reload26";
 	Locations[n].reload.l28.autoreload = "1";
 
-    Locations[n].reload.l9.name = "reload14";
+	Locations[n].reload.l9.name = "reload14";
 	Locations[n].reload.l9.go = "labirint_3";
 	Locations[n].reload.l9.emerge = "Reload13";
 	Locations[n].reload.l9.autoreload = "1";
@@ -314,13 +316,14 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l20.go = "labirint_3";
 	Locations[n].reload.l20.emerge = "reload15";
 	Locations[n].reload.l20.autoreload = "1";
-    n = n + 1;
+	n = n + 1;
 
 	// -------------------------------------------------
 	Locations[n].id = "Labirint_3";
 	Locations[n].filespath.models = "locations\Incas Temple\Labirint\";
-	//Sound
-	Locations[n].image = "loading\inside\Labirint.tga";
+									//Sound
+									Locations[n]
+										.image = "loading\inside\Labirint.tga";
 	locations[n].type = "Labirint";
 	locations[n].id.label = "Labirint";
 	Locations[n].environment.weather = "true";
@@ -352,14 +355,14 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l2.name = "reload13";
 	Locations[n].reload.l2.go = "labirint_2";
 	Locations[n].reload.l2.emerge = "reload14";
-    Locations[n].reload.l2.autoreload = "1";
+	Locations[n].reload.l2.autoreload = "1";
 
 	Locations[n].reload.l22.name = "reload13_back";
 	Locations[n].reload.l22.go = "labirint_2";
 	Locations[n].reload.l22.emerge = "reload14";
-    Locations[n].reload.l22.autoreload = "1";
+	Locations[n].reload.l22.autoreload = "1";
 
-    Locations[n].reload.l3.name = "reload15";
+	Locations[n].reload.l3.name = "reload15";
 	Locations[n].reload.l3.go = "labirint_2";
 	Locations[n].reload.l3.emerge = "Reload16";
 	Locations[n].reload.l3.autoreload = "1";
@@ -379,7 +382,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l24.emerge = "reload1";
 	Locations[n].reload.l24.autoreload = "1";
 
-    Locations[n].reload.l5.name = "reload5";
+	Locations[n].reload.l5.name = "reload5";
 	Locations[n].reload.l5.go = "labirint_1";
 	Locations[n].reload.l5.emerge = "Reload6";
 	Locations[n].reload.l5.autoreload = "1";
@@ -399,7 +402,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l26.emerge = "reload7";
 	Locations[n].reload.l26.autoreload = "1";
 
-    Locations[n].reload.l7.name = "reload10";
+	Locations[n].reload.l7.name = "reload10";
 	Locations[n].reload.l7.go = "labirint_1";
 	Locations[n].reload.l7.emerge = "Reload9";
 	Locations[n].reload.l7.autoreload = "1";
@@ -418,8 +421,9 @@ int LocationInitKhaelRoa(int n)
 	// -------------------------------------------------
 	Locations[n].id = "Treasure_Alcove";
 	Locations[n].filespath.models = "locations\Incas Temple\Alcove\";
-	//Sound
-	Locations[n].image = "loading\inside\Alcove.tga";
+									//Sound
+									Locations[n]
+										.image = "loading\inside\Alcove.tga";
 	locations[n].type = "Alcove";
 	locations[n].id.label = "Alcove";
 	Locations[n].environment.weather = "true";
@@ -477,7 +481,7 @@ int LocationInitKhaelRoa(int n)
 	Locations[n].reload.l2.name = "reload1";
 	Locations[n].reload.l2.go = "labirint_3";
 	Locations[n].reload.l2.emerge = "reload30";
-    Locations[n].reload.l2.autoreload = "1";
+	Locations[n].reload.l2.autoreload = "1";
 	n = n + 1;
 
 	return n;

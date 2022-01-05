@@ -14,10 +14,9 @@ void Sharp_StartGame(string qName)
 	pchar.questTemp.Sharp.Entered_Shore = true;
 	DoQuestCheckDelay("TalkSelf_Quest", 1.0);
 
-	pchar.quest.Sharp_MeetSiblings.win_condition.l1          = "location";
-    pchar.quest.Sharp_MeetSiblings.win_condition.l1.location = "Terks_Grot";
-    pchar.quest.Sharp_MeetSiblings.function                  = "Sharp_MeetSiblings";
-
+	pchar.quest.Sharp_MeetSiblings.win_condition.l1 = "location";
+	pchar.quest.Sharp_MeetSiblings.win_condition.l1.location = "Terks_Grot";
+	pchar.quest.Sharp_MeetSiblings.function = "Sharp_MeetSiblings";
 }
 
 void SharpAfterTreasure(string qName)
@@ -36,8 +35,8 @@ void Sharp_MeetSiblings(string qName)
 	for (i = 1; i <= PsHeroQty; i++)
 	{
 		sld = CharacterFromID("PsHero_" + i);
-		if(sld.FaceId == 1 || sld.FaceId == 522)
-		{//Его мы позже наймем оффом, так что убираем из ПГГ
+		if (sld.FaceId == 1 || sld.FaceId == 522)
+		{ //Его мы позже наймем оффом, так что убираем из ПГГ
 			sld.willDie = true;
 			LAi_KillCharacter(sld);
 		}
@@ -63,12 +62,12 @@ void Sharp_MeetSiblings(string qName)
 	//sld.greeting = "cit_common";
 	//Добавить звуки
 	LAi_SetStayTypeNoGroup(sld);
-   	LAi_SetImmortal(sld, true);
+	LAi_SetImmortal(sld, true);
 	sld.talker = 10;
-	weaponskill = 5* MOD_SKILL_ENEMY_RATE;
+	weaponskill = 5 * MOD_SKILL_ENEMY_RATE;
 	SetSelfSkill(sld, weaponskill, weaponskill, weaponskill, weaponskill, weaponskill);
 	if (MOD_SKILL_ENEMY_RATE == 10)
-	{//Сюрприз для невозможки
+	{ //Сюрприз для невозможки
 		SetCharacterPerk(sld, "Sliding");
 	}
 	LAi_SetHP(sld, 100.0, 100.0);
@@ -97,9 +96,9 @@ void SharleMary_StartGame(string qName)
 	pchar.questTemp.SharleMary.Entered_Shore = true;
 	DoQuestCheckDelay("TalkSelf_Quest", 1.0);
 
-	pchar.quest.SharleMary_Indians.win_condition.l1          = "location";
-    pchar.quest.SharleMary_Indians.win_condition.l1.location = "Common_jungle_01";
-    pchar.quest.SharleMary_Indians.function                  = "SharleMary_Indians";
+	pchar.quest.SharleMary_Indians.win_condition.l1 = "location";
+	pchar.quest.SharleMary_Indians.win_condition.l1.location = "Common_jungle_01";
+	pchar.quest.SharleMary_Indians.function = "SharleMary_Indians";
 
 	GiveItem2Character(pchar, "blade4");
 	GiveItem2Character(pchar, "blade6");
@@ -114,8 +113,8 @@ void SharleMary_Indians(string qName)
 	for (i = 1; i <= PsHeroQty; i++)
 	{
 		sld = CharacterFromID("PsHero_" + i);
-		if(sld.FaceId == 508 || sld.FaceId == 517)
-		{//Его мы позже наймем оффом, так что убираем из ПГГ
+		if (sld.FaceId == 508 || sld.FaceId == 517)
+		{ //Его мы позже наймем оффом, так что убираем из ПГГ
 			sld.willDie = true;
 			LAi_KillCharacter(sld);
 		}
@@ -126,25 +125,25 @@ void SharleMary_Indians(string qName)
 	string cnd;
 	int maxIndians = 2;
 	if (MOD_SKILL_ENEMY_RATE == 10)
-	{//Сюрприз для невозможки
+	{ //Сюрприз для невозможки
 		maxIndians++;
 	}
-	for (int i = 1; i<=maxIndians; i++)
+	for (int i = 1; i <= maxIndians; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("SMindian"+i, "Canib_"+(rand(5)+1), "man", "man", 1, PIRATE, 1, true));
+		sld = GetCharacter(NPC_GenerateCharacter("SMindian" + i, "Canib_" + (rand(5) + 1), "man", "man", 1, PIRATE, 1, true));
 		//SetFantomParamFromRank(sld, 1, true);
 		sld.name = "Калинаго";
 		sld.lastname = "";
 		DeleteAttribute(sld, "equip");
 		DeleteAttribute(sld, "items");
 		string _Blade = GiveRandomBladeByType("indian");
-		LAi_SetHP(sld, 10*MOD_SKILL_ENEMY_RATE, 10*MOD_SKILL_ENEMY_RATE);
-		weaponskill = 2* MOD_SKILL_ENEMY_RATE;
+		LAi_SetHP(sld, 10 * MOD_SKILL_ENEMY_RATE, 10 * MOD_SKILL_ENEMY_RATE);
+		weaponskill = 2 * MOD_SKILL_ENEMY_RATE;
 		SetSelfSkill(sld, weaponskill, weaponskill, weaponskill, weaponskill, weaponskill);
 		GiveItem2Character(sld, _Blade);
 		EquipCharacterbyItem(sld, _Blade);
 		if (MOD_SKILL_ENEMY_RATE == 10)
-		{//Сюрприз для невозможки
+		{ //Сюрприз для невозможки
 			//FantomMakeCoolFighter(sld, 15, 10, 10, _Blade, "", 0);
 			SetCharacterPerk(sld, "Sliding");
 			LAi_SetHP(sld, 150.0, 150.0);
@@ -155,7 +154,7 @@ void SharleMary_Indians(string qName)
 		ChangeCharacterAddressGroup(sld, PChar.location, "goto", "goto3");
 		cnd = "l" + i;
 		pchar.quest.SharleMary_Meeting.win_condition.(cnd) = "NPC_Death";
-		pchar.quest.SharleMary_Meeting.win_condition.(cnd).character ="SMindian"+i;
+		pchar.quest.SharleMary_Meeting.win_condition.(cnd).character = "SMindian" + i;
 	}
 	PChar.quest.SharleMary_Meeting.function = "SharleMary_Meeting";
 
@@ -179,8 +178,8 @@ void SharleMary_Indians(string qName)
 		sld.HeroModel = "PGG_ShMor_0,PGG_ShMor_1,PGG_ShMor_2,PGG_ShMor_3,PGG_ShMor_4,PGG_ShMor_5,PGG_ShMor_6,PGG_ShMor_7,PGG_ShMor_8";
 		sld.greeting = "Gr_Officer";
 	}
-	SetSelfSkill(sld,20, 20, 20, 20, 20);
-	sld.cirassId = Items_FindItemIdx("cirass4");  // предмета нет, но влияение есть
+	SetSelfSkill(sld, 20, 20, 20, 20, 20);
+	sld.cirassId = Items_FindItemIdx("cirass4"); // предмета нет, но влияение есть
 	TakeNItems(sld, "potion1", 10);
 	GiveItem2Character(sld, "blade8");
 	EquipCharacterbyItem(sld, "blade8");
@@ -193,7 +192,7 @@ void SharleMary_Indians(string qName)
 
 void SharleMary_Meeting(string qName)
 {
-	if(!LAi_IsDead(CharacterFromID("SharleMary")))
+	if (!LAi_IsDead(CharacterFromID("SharleMary")))
 	{
 		sld = characterFromID("SharleMary");
 		DeleteAttribute(sld, "chr_ai.poison");
@@ -207,12 +206,12 @@ void SharleMary_Meeting(string qName)
 		pchar.SharleMary.LowerIsDead = true;
 	}
 
-	pchar.quest.SharleMary_MeetCap.win_condition.l1          = "location";
-    pchar.quest.SharleMary_MeetCap.win_condition.l1.location = "Shore_ship2";
-    pchar.quest.SharleMary_MeetCap.function                  = "SharleMary_MeetCap";
+	pchar.quest.SharleMary_MeetCap.win_condition.l1 = "location";
+	pchar.quest.SharleMary_MeetCap.win_condition.l1.location = "Shore_ship2";
+	pchar.quest.SharleMary_MeetCap.function = "SharleMary_MeetCap";
 
 	setCharacterShipLocation(pchar, "Shore_ship2");
-    setWDMPointXZ("Shore_ship2");  // коорд на карте
+	setWDMPointXZ("Shore_ship2"); // коорд на карте
 }
 
 void SharleMary_MeetCap(string qName)
@@ -229,20 +228,20 @@ void SharleMary_MeetCap(string qName)
 	int maxPirates = 3;
 	string cnd;
 	if (MOD_SKILL_ENEMY_RATE == 10)
-	{//Сюрприз для невозможки
+	{ //Сюрприз для невозможки
 		maxPirates++;
 	}
 	pchar.SharleMary.maxPirates = maxPirates;
-	for (int i = 1; i<=maxPirates; i++)
+	for (int i = 1; i <= maxPirates; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("SMPirate"+i, "pirate_"+(rand(15)+1), "man", "man", 1, PIRATE, 1, true));
-		LAi_SetHP(sld, 10*MOD_SKILL_ENEMY_RATE, 10*MOD_SKILL_ENEMY_RATE);
+		sld = GetCharacter(NPC_GenerateCharacter("SMPirate" + i, "pirate_" + (rand(15) + 1), "man", "man", 1, PIRATE, 1, true));
+		LAi_SetHP(sld, 10 * MOD_SKILL_ENEMY_RATE, 10 * MOD_SKILL_ENEMY_RATE);
 		LAi_SetStayType(sld);
 		if (i == 1)
 		{
 			sld.model = "PGG_Yohang_0";
 			sld.dialog.filename = "Quest\MainheroPrologues\Prologue_SharleMary_dialog.c";
-			FantomMakeCoolFighter(sld, 10, 2*MOD_SKILL_ENEMY_RATE, 2*MOD_SKILL_ENEMY_RATE, "blade31", "", 6*MOD_SKILL_ENEMY_RATE);
+			FantomMakeCoolFighter(sld, 10, 2 * MOD_SKILL_ENEMY_RATE, 2 * MOD_SKILL_ENEMY_RATE, "blade31", "", 6 * MOD_SKILL_ENEMY_RATE);
 			sld.SaveItemsForDead = true;
 			sld.talker = 10;
 			LAi_SetStayType(sld);
@@ -251,7 +250,7 @@ void SharleMary_MeetCap(string qName)
 
 		cnd = "l" + i;
 		pchar.quest.SharleMary_MeetCrew.win_condition.(cnd) = "NPC_Death";
-		pchar.quest.SharleMary_MeetCrew.win_condition.(cnd).character ="SMPirate"+i;
+		pchar.quest.SharleMary_MeetCrew.win_condition.(cnd).character = "SMPirate" + i;
 	}
 	PChar.quest.SharleMary_MeetCrew.function = "SharleMary_MeetCrew";
 }
@@ -267,9 +266,9 @@ void SharleMary_FightPirates()
 	}
 	ref LocLoad = &locations[reload_location_index];
 	LAi_LocationFightDisable(locLoad, false);
-	for (int i = 1; i<= sti(pchar.SharleMary.maxPirates); i++)
+	for (int i = 1; i <= sti(pchar.SharleMary.maxPirates); i++)
 	{
-		sld = CharacterFromID("SMPirate"+i);
+		sld = CharacterFromID("SMPirate" + i);
 		LAi_SetWarriorTypeNoGroup(sld);
 		LAi_group_MoveCharacter(sld, "Jungle_indians");
 		LAi_SetImmortal(sld, false);
@@ -282,9 +281,9 @@ void SharleMary_FightPirates()
 void SharleMary_MeetCrew(string qName)
 {
 	bDisableLandEncounters = false;
-	for (int i = 1; i<=5; i++)
+	for (int i = 1; i <= 5; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("SMCrew"+i, "pirate_"+(rand(15)+1), "man", "man", 1, PIRATE, 0, true));
+		sld = GetCharacter(NPC_GenerateCharacter("SMCrew" + i, "pirate_" + (rand(15) + 1), "man", "man", 1, PIRATE, 0, true));
 		ChangeCharacterAddressGroup(sld, PChar.location, "officers", "sea_1");
 		LAi_SetImmortal(sld, true);
 		if (i == 1)
@@ -306,23 +305,23 @@ void SharleMary_MeetCrew(string qName)
 void Undead_StartGame(string qName)
 {
 	DeleteAttribute(Pchar, "ship");
-    DeleteAttribute(Pchar, "ShipSails.gerald_name");
-    Pchar.ship.type = SHIP_NOTUSED;
+	DeleteAttribute(Pchar, "ShipSails.gerald_name");
+	Pchar.ship.type = SHIP_NOTUSED;
 
-	WaitDate("",0,0,0,24 - sti(environment.time),5);
+	WaitDate("", 0, 0, 0, 24 - sti(environment.time), 5);
 
 	SetQuestsCharacters();
 
 	LAi_LockFightMode(Pchar, false);
 	LAi_LocationFightDisable(loadedLocation, true);
 	sld = GetCharacter(NPC_GenerateCharacter("DeadmansGod", "mictlantecuhtli", "skeleton", "man", 100, PIRATE, 0, true));
-    FantomMakeCoolFighter(sld, 50, 100, 100, "toporAZ", "pistol4", 3000); //дадим четырехствольник
+	FantomMakeCoolFighter(sld, 50, 100, 100, "toporAZ", "pistol4", 3000); //дадим четырехствольник
 	sld.name = "Миктлантекутли";
 	sld.lastname = "";
 	//sld.dialog.filename   = "Quest\Mictlantecuhtli.c";
-	sld.dialog.filename   = "Quest\MainheroPrologues\Prologue_Undead_dialog.c";
+	sld.dialog.filename = "Quest\MainheroPrologues\Prologue_Undead_dialog.c";
 	//sld.dialog.currentnode   = "ClimeUsurer";
-	sld.dialog.currentnode   = "DeadmansGod";
+	sld.dialog.currentnode = "DeadmansGod";
 	LAi_SetImmortal(sld, true);
 	ChangeCharacterAddressGroup(sld, "Temple_Skulls", "goto", "goto3");
 	LAi_SetActorType(sld);
@@ -335,15 +334,15 @@ void Undead_Start_Graveyard(string qName)
 }
 void Undead_Start_Graveyard_1(string qName)
 {
-	sld = GetCharacter(NPC_GenerateCharacter("Gravedigger", "panhandler_"+(rand(5)+1), "man", "man", 1, PIRATE, 0, true));
-	sld.dialog.filename   = "Quest\MainheroPrologues\Prologue_Undead_dialog.c";
-	sld.dialog.currentnode   = "Gravedigger";
+	sld = GetCharacter(NPC_GenerateCharacter("Gravedigger", "panhandler_" + (rand(5) + 1), "man", "man", 1, PIRATE, 0, true));
+	sld.dialog.filename = "Quest\MainheroPrologues\Prologue_Undead_dialog.c";
+	sld.dialog.currentnode = "Gravedigger";
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 	LAi_SetActorType(sld);
 	LAi_ActorDialog(sld, pchar, "", 5.0, 0);
 
 	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1 = "NPC_Death";
-	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1.character ="Gravedigger";
+	pchar.quest.Undead_Start_Graveyard_2.win_condition.l1.character = "Gravedigger";
 	PChar.quest.Undead_Start_Graveyard_2.function = "Undead_Start_Graveyard_3";
 }
 /*
@@ -374,24 +373,24 @@ void Undead_Start_Graveyard_4(string qName)
 	if (pchar.nation == ENGLAND)
 	{
 		startCrypt = "PortRoyal_";
-		setWDMPointXZ("PortRoyal_town");  // коорд на карте
+		setWDMPointXZ("PortRoyal_town"); // коорд на карте
 	}
 	if (pchar.nation == FRANCE)
 	{
 		startCrypt = "BasTer_";
-		setWDMPointXZ("BasTer_town");  // коорд на карте
+		setWDMPointXZ("BasTer_town"); // коорд на карте
 	}
 	if (pchar.nation == SPAIN)
 	{
 		startCrypt = "Havana_";
-		setWDMPointXZ("Havana_town");  // коорд на карте
+		setWDMPointXZ("Havana_town"); // коорд на карте
 	}
 	if (pchar.nation == HOLLAND)
 	{
 		startCrypt = "Villemstad_";
-		setWDMPointXZ("Villemstad_town");  // коорд на карте
+		setWDMPointXZ("Villemstad_town"); // коорд на карте
 	}
-	DoReloadCharacterToLocation(startCrypt+"cryptbig1", "reload", "reload2");
+	DoReloadCharacterToLocation(startCrypt + "cryptbig1", "reload", "reload2");
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   -- Нежить --     конец

@@ -8,23 +8,23 @@
 		goto
 */
 
-
-
-#define LAI_TYPE_GUARDIAN	"guardian"
-
+#define LAI_TYPE_GUARDIAN "guardian"
 
 //Инициализация
 void LAi_type_guardian_Init(aref chr)
 {
 	DeleteAttribute(chr, "location.follower");
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.type") == false)
+	if (CheckAttribute(chr, "chr_ai.type") == false)
 	{
 		isNew = true;
-	}else{
-		if(chr.chr_ai.type != LAI_TYPE_GUARDIAN) isNew = true;
 	}
-	if(isNew == true)
+	else
+	{
+		if (chr.chr_ai.type != LAI_TYPE_GUARDIAN)
+			isNew = true;
+	}
+	if (isNew == true)
 	{
 		//Новый тип
 		DeleteAttribute(chr, "chr_ai.type");
@@ -33,16 +33,20 @@ void LAi_type_guardian_Init(aref chr)
 		chr.chr_ai.type.etime = "0";
 		chr.chr_ai.type.wait = "";
 		chr.chr_ai.type.dlgwas = "0.0" //для таймера на инициализацию диалога. eddy
-		chr.chr_ai.type.bottle = rand(10)+2;
+								 chr.chr_ai.type.bottle = rand(10) + 2;
 		//Установим шаблон стояния
 		LAi_tmpl_stay_InitTemplate(chr);
-	}else{
+	}
+	else
+	{
 		//Востанавливаем состояние
-		if(chr.chr_ai.type.wait == "attack")
+		if (chr.chr_ai.type.wait == "attack")
 		{
 			LAi_type_guardian_CmdAttack(chr);
-		}else{
-			if(chr.chr_ai.type.wait == "return")
+		}
+		else
+		{
+			if (chr.chr_ai.type.wait == "return")
 			{
 				LAi_type_guardian_Return(chr);
 			}
@@ -52,21 +56,22 @@ void LAi_type_guardian_Init(aref chr)
 	bool isMusk = false;
 	string sAni = strcut(chr.model.animation, 0, 8);
 	if (sAni == "mushketer")
-        isMusk = true;
+		isMusk = true;
 	if (isMusk && !CheckAttribute(chr, "isMusketer.weapon") && chr.index != getmaincharacterindex() && !isOfficer(chr))
 	{
-        while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
-        {
-            TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
-        }
-        while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
-        {
-            TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
-        }
+		while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
+		{
+			TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
+		}
+		while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
+		{
+			TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
+		}
 		GiveItem2Character(chr, "unarmed");
 		EquipCharacterbyItem(chr, "unarmed");
 		string sMush = LAi_NPC_MushketerEquip(chr);
-		if (chr.model == "MusketeerEnglish_2") sMush = "mushket2x2";
+		if (chr.model == "MusketeerEnglish_2")
+			sMush = "mushket2x2";
 		GiveItem2Character(chr, sMush);
 		EquipCharacterbyItem(chr, sMush);
 		chr.items.bullet = 100;
@@ -93,18 +98,19 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 	float time, dist;
 	makearef(type, chr.chr_ai.type);
 	//Режим ожидания
-	if(type.wait != "") return;
+	if (type.wait != "")
+		return;
 
-    // boal  лечимся -->
+	// boal  лечимся -->
 	float fCheck = stf(chr.chr_ai.type.bottle) - dltTime;
-	if(fCheck < 0)
+	if (fCheck < 0)
 	{
 		chr.chr_ai.type.bottle = 5.0;
 		if (!LAi_IsBottleWork(chr) && MOD_SKILL_ENEMY_RATE > 2)
 		{
 			string btl = "";
 			float dhlt;
-			if(LAi_GetCharacterRelHP(chr) < 0.75)
+			if (LAi_GetCharacterRelHP(chr) < 0.75)
 			{
 				dhlt = LAi_GetCharacterMaxHP(chr) - LAi_GetCharacterHP(chr);
 				btl = FindHealthForCharacter(&Characters[sti(chr.index)], dhlt);
@@ -113,12 +119,13 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 			}
 		}
 	}
-	else chr.chr_ai.type.bottle = fCheck;
+	else
+		chr.chr_ai.type.bottle = fCheck;
 	// boal  лечимся <--
 
 	string food = "";
 	float dfood;
-	if(LAi_GetCharacterEnergy(chr) < 25)
+	if (LAi_GetCharacterEnergy(chr) < 25)
 	{
 		dfood = LAi_GetCharacterMaxEnergy(chr) - LAi_GetCharacterEnergy(chr);
 		food = FindFoodForCharacter(chr, dfood);
@@ -126,19 +133,20 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 	}
 	//Нормальная работа
 	string tmpl = chr.chr_ai.tmpl;
-	if(tmpl == LAI_TMPL_DIALOG) return;
-	if(tmpl == LAI_TMPL_FIGHT)
+	if (tmpl == LAI_TMPL_DIALOG)
+		return;
+	if (tmpl == LAI_TMPL_FIGHT)
 	{
 		bool isValidate = false;
 		trg = LAi_tmpl_fight_GetTarget(chr);
 		//Пробуем обновить оптимальную цель
 		time = stf(type.etime) - dltTime;
 		type.etime = time;
-		if(trg >= 0)
+		if (trg >= 0)
 		{
-			if(LAi_group_ValidateTarget(chr, &Characters[trg]))
+			if (LAi_group_ValidateTarget(chr, &Characters[trg]))
 			{
-				if(!LAi_tmpl_fight_LostTarget(chr))
+				if (!LAi_tmpl_fight_LostTarget(chr))
 				{
 					isValidate = true;
 					if (stf(LAi_grp_relations.distance) > 2.0 && time < 0) //цель далеко, попробуем сменить на ближайшую
@@ -149,34 +157,38 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 			}
 		}
 		//Если текущая цель не действительна, получим новую
-		if(!isValidate)
+		if (!isValidate)
 		{
 			//Ищем новую цель
 			trg = LAi_group_GetTarget(chr);
-			if(trg < 0)
+			if (trg < 0)
 			{
 				//Переходим в режим ожидания
 				LAi_tmpl_fight_SetWaitState(chr);
 				LAi_type_guardian_Return(chr);
-			}else{
+			}
+			else
+			{
 				//Натравливаем на новую цель
 				LAi_type_guardian_CmdAttack_Now(chr, trg);
-				if(rand(100) < 10)
+				if (rand(100) < 10)
 				{
 					LAi_CharacterPlaySound(chr, "warrior");
 				}
 			}
 		}
-	}else{
-		if(tmpl == LAI_TMPL_STAY)
+	}
+	else
+	{
+		if (tmpl == LAI_TMPL_STAY)
 		{
-			if(rand(1000) == 125)
+			if (rand(1000) == 125)
 			{
 				LAi_CharacterPlaySound(chr, "sigh");
 			}
 			//Проверим наличие врагов
 			trg = LAi_group_GetTarget(chr);
-			if(trg >= 0)
+			if (trg >= 0)
 			{
 				chr.chr_ai.type.enemy = trg;
 				LAi_type_guardian_CmdAttack(chr);
@@ -190,19 +202,19 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 					chr.chr_ai.type.dlgwas = time;
 					//Анализируем окружающих персонажей
 					int num = FindNearCharacters(chr, 4.0, -1.0, 180.0, 0.1, true, true);
-					if(num > 0)
+					if (num > 0)
 					{
-						for(int i = 0; i < num; i++)
+						for (int i = 0; i < num; i++)
 						{
-							if(nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
+							if (nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
 							{
 								break;
 							}
 						}
-						if(i < num)
+						if (i < num)
 						{
 							//Нашли главного персонажа
-							if(stf(chr.chr_ai.type.dlgwas) <= 0.0)
+							if (stf(chr.chr_ai.type.dlgwas) <= 0.0)
 							{
 								LAi_type_guardian_TestControl(chr);
 								return;
@@ -216,32 +228,42 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 				}
 				//Проверяем дистанцию до точки охраны
 				dist = -1.0;
-				if(GetCharacterDistByLoc(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator, &dist))
+				if (GetCharacterDistByLoc(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator, &dist))
 				{
-					if(dist > 1.0)
+					if (dist > 1.0)
 					{
 						LAi_tmpl_runto_InitTemplate(chr);
 						LAi_tmpl_runto_SetLocator(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator, -1.0);
-					}else{
+					}
+					else
+					{
 						CharacterTurnByLoc(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator);
 					}
-				}else{
+				}
+				else
+				{
 					CharacterTurnByLoc(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator);
 				}
 			}
-		}else{
+		}
+		else
+		{
 			//Проверим наличие врагов
 			trg = LAi_group_GetTarget(chr);
-			if(trg >= 0)
+			if (trg >= 0)
 			{
 				chr.chr_ai.type.enemy = trg;
 				LAi_type_guardian_CmdAttack(chr);
-			}else{
-				if(tmpl != LAI_TMPL_RUNTO)
+			}
+			else
+			{
+				if (tmpl != LAI_TMPL_RUNTO)
 				{
 					LAi_tmpl_stay_InitTemplate(chr);
-				}else{
-					if(LAi_tmpl_runto_IsStay(chr))
+				}
+				else
+				{
+					if (LAi_tmpl_runto_IsStay(chr))
 					{
 						LAi_tmpl_stay_InitTemplate(chr);
 					}
@@ -270,7 +292,6 @@ void LAi_type_guardian_TemplateComplite(aref chr, string tmpl)
 	CharacterTurnByLoc(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator);
 }
 
-
 //Сообщить о желании завести диалог
 void LAi_type_guardian_NeedDialog(aref chr, aref by)
 {
@@ -280,16 +301,18 @@ void LAi_type_guardian_NeedDialog(aref chr, aref by)
 bool LAi_type_guardian_CanDialog(aref chr, aref by)
 {
 	//Если просто стоим, то согласимся на диалог
-	if(chr.chr_ai.tmpl == LAI_TMPL_STAY)
+	if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
 	{
-		if(LAi_CanNearEnemy(chr, 5.0)) return false;
+		if (LAi_CanNearEnemy(chr, 5.0))
+			return false;
 		return true;
 	}
-	if(sti(by.index) == nMainCharacterIndex)
+	if (sti(by.index) == nMainCharacterIndex)
 	{
-		if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+		if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
 		{
-			if(LAi_tmpl_dialog_StopNPC(chr)) return true;
+			if (LAi_tmpl_dialog_StopNPC(chr))
+				return true;
 		}
 	}
 	return false;
@@ -314,32 +337,36 @@ void LAi_type_guardian_EndDialog(aref chr, aref by)
 //Персонаж выстрелил
 void LAi_type_guardian_Fire(aref chr, aref enemy, float kDist, bool isFindedEnemy)
 {
-
 }
 
 //Персонаж атакован
 void LAi_type_guardian_Attacked(aref chr, aref by)
 {
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
 	{
 		LAi_tmpl_dialog_StopNPC(chr);
 	}
 	//если наносящий удар уже таргет, нефиг крутить код и переназначать цель
-	if (LAi_tmpl_fight_GetTarget(chr) == sti(by.index)) return;
+	if (LAi_tmpl_fight_GetTarget(chr) == sti(by.index))
+		return;
 	//Своих пропускаем
-	if(!LAi_group_IsEnemy(chr, by)) return;
-    //boal fix ai -->
-    float dist = -1.0;
+	if (!LAi_group_IsEnemy(chr, by))
+		return;
+	//boal fix ai -->
+	float dist = -1.0;
 
-	if(!GetCharacterDistByChr3D(chr, by, &dist)) return;
-	if(dist < 0.0) return;
-	if(dist > 20.0) return;
+	if (!GetCharacterDistByChr3D(chr, by, &dist))
+		return;
+	if (dist < 0.0)
+		return;
+	if (dist > 20.0)
+		return;
 	//Натравливаем
 	LAi_tmpl_SetFight(chr, by);
-    // boal <--
-	if (rand(100) > 90)	LAi_CharacterPlaySound(chr, "warrior");
+	// boal <--
+	if (rand(100) > 90)
+		LAi_CharacterPlaySound(chr, "warrior");
 }
-
 
 //------------------------------------------------------------------------------------------
 //Внутреннии функции
@@ -348,36 +375,40 @@ void LAi_type_guardian_Attacked(aref chr, aref by)
 void LAi_type_guardian_CmdAttack(aref chr)
 {
 	chr.chr_ai.type.wait = "attack";
-	PostEvent("Event_type_guardian_Attacked", rand(5)*100, "i", chr);
-	if (rand(100) > 80 && !LAi_IsDead(chr) && !LAi_IsDead(pchar))	LAi_CharacterPlaySound(chr, "warrior");
+	PostEvent("Event_type_guardian_Attacked", rand(5) * 100, "i", chr);
+	if (rand(100) > 80 && !LAi_IsDead(chr) && !LAi_IsDead(pchar))
+		LAi_CharacterPlaySound(chr, "warrior");
 }
 
 #event_handler("Event_type_guardian_Attacked", "LAi_type_guardian_CmdAttack_Event");
 void LAi_type_guardian_CmdAttack_Event()
 {
 	aref chr = GetEventData();
-	if(!TestRef(chr)) return;
+	if (!TestRef(chr))
+		return;
 	chr.chr_ai.type.wait = "";
-	if(chr.chr_ai.type.enemy == "") return;
+	if (chr.chr_ai.type.enemy == "")
+		return;
 	int trg = sti(chr.chr_ai.type.enemy);
 	LAi_type_guardian_CmdAttack_Now(chr, trg);
 }
 
 bool LAi_type_guardian_CmdAttack_Now(aref chr, int trg)
 {
-	if(trg < 0)
+	if (trg < 0)
 	{
 		LAi_tmpl_stay_InitTemplate(chr);
 		return false;
 	}
 	chr.chr_ai.type.etime = 3 + rand(5);
-	if(!LAi_tmpl_SetFight(chr, &Characters[trg]))
+	if (!LAi_tmpl_SetFight(chr, &Characters[trg]))
 	{
 		//Несмогли инициировать шаблон
 		LAi_tmpl_stay_InitTemplate(chr);
 		return false;
 	}
-	if (rand(100) > 90 && !LAi_IsDead(chr) && !LAi_IsDead(pchar)) LAi_CharacterPlaySound(chr, "warrior");
+	if (rand(100) > 90 && !LAi_IsDead(chr) && !LAi_IsDead(pchar))
+		LAi_CharacterPlaySound(chr, "warrior");
 	return true;
 }
 
@@ -385,14 +416,15 @@ void LAi_type_guardian_Return(aref chr)
 {
 	chr.chr_ai.type.wait = "return";
 	chr.chr_ai.type.enemy = "";
-	PostEvent("Event_type_guardian_Return", rand(10)*100, "i", chr);
+	PostEvent("Event_type_guardian_Return", rand(10) * 100, "i", chr);
 }
 
 #event_handler("Event_type_guardian_Return", "LAi_type_guardian_Return_Event");
 void LAi_type_guardian_Return_Event()
 {
 	aref chr = GetEventData();
-	if(!TestRef(chr)) return;
+	if (!TestRef(chr))
+		return;
 	chr.chr_ai.type.wait = "";
 	chr.chr_ai.type.enemy = "";
 	LAi_tmpl_runto_InitTemplate(chr);
@@ -404,24 +436,27 @@ void LAi_type_guardian_TestControl(aref chr)
 {
 	bool bFightMode = LAi_CheckFightMode(pchar);
 	if (bFightMode && !LAi_group_IsActivePlayerAlarm())
-	{	//Пытаемся начать диалог
+	{ //Пытаемся начать диалог
 		LAi_SetFightMode(pchar, false);
-		if(LAi_Character_CanDialog(chr, pchar))
+		if (LAi_Character_CanDialog(chr, pchar))
 		{
-		chr.chr_ai.type.state = "dialog";
-		chr.Dialog.CurrentNode = "SoldierNotBlade";
-		LAi_tmpl_SetDialog(chr, pchar, -1.0);
+			chr.chr_ai.type.state = "dialog";
+			chr.Dialog.CurrentNode = "SoldierNotBlade";
+			LAi_tmpl_SetDialog(chr, pchar, -1.0);
 		}
 	}
 	if (!CheckAttribute(chr, "protector.CheckAlways")) //флаг "опрашивать всегда" через паузу, не один раз.
 	{
-		if (GetBaseHeroNation() == sti(chr.nation) && GetRelation2BaseNation(sti(chr.nation)) != RELATION_ENEMY && GetNationRelation2MainCharacter(sti(chr.nation)) != RELATION_ENEMY) return;
-		if (!CheckAttribute(pchar, "CheckStateOk")) pchar.CheckStateOk = true; //флаг "уже проверили на входе"
-		else return;
+		if (GetBaseHeroNation() == sti(chr.nation) && GetRelation2BaseNation(sti(chr.nation)) != RELATION_ENEMY && GetNationRelation2MainCharacter(sti(chr.nation)) != RELATION_ENEMY)
+			return;
+		if (!CheckAttribute(pchar, "CheckStateOk"))
+			pchar.CheckStateOk = true; //флаг "уже проверили на входе"
+		else
+			return;
 	}
 	//Пытаемся начать диалог
 	LAi_SetFightMode(pchar, false);
-	if(LAi_Character_CanDialog(chr, pchar))
+	if (LAi_Character_CanDialog(chr, pchar))
 	{
 		chr.chr_ai.type.state = "dialog";
 		LAi_tmpl_SetDialog(chr, pchar, -1.0);

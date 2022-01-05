@@ -1,7 +1,6 @@
 
 
-#define LAI_TYPE_CARRY	"carrier"
-
+#define LAI_TYPE_CARRY "carrier"
 
 //Инициализация
 void LAi_type_carrier_Init(aref chr)
@@ -11,11 +10,11 @@ void LAi_type_carrier_Init(aref chr)
 	//Установим анимацию персонажу
 	//LAi_SetDefaultStayAnimation(chr);
 	string sTemp = chr.model;
-	sTemp =	strcut(sTemp, 0, strlen(sTemp)-2);
+	sTemp = strcut(sTemp, 0, strlen(sTemp) - 2);
 	BeginChangeCharacterActions(chr);
 	//20180912-01 Fix idle
 	chr.actions.idle.i1 = sTemp + "Idle";
-	chr.actions.nfhit	= sTemp;
+	chr.actions.nfhit = sTemp;
 	chr.actions.walk = sTemp;
 	chr.actions.stsUp = "Stairs_" + sTemp;
 	chr.actions.stsDown = "Stairs_" + sTemp;
@@ -24,7 +23,7 @@ void LAi_type_carrier_Init(aref chr)
 	EndChangeCharacterActions(chr);
 	//Установим шаблон идти
 	chr.chr_ai.type = LAI_TYPE_CARRY;
-	chr.chr_ai.type.checkFight = rand(5)+2;
+	chr.chr_ai.type.checkFight = rand(5) + 2;
 	//определим маршрут и отправим в путь
 	if (CheckAttribute(chr, "gotoGroup") && CheckAttribute(chr, "gotoLocator"))
 	{
@@ -35,9 +34,9 @@ void LAi_type_carrier_Init(aref chr)
 	{
 		LAi_tmpl_stay_InitTemplate(chr);
 	}
-	chr.chr_ai.tmpl.wait = 0;  //таймер ожидания
+	chr.chr_ai.tmpl.wait = 0; //таймер ожидания
 	chr.chr_ai.tmpl.time = 0;
-	chr.chr_ai.tmpl.baseLocator = "";  //откуда идем
+	chr.chr_ai.tmpl.baseLocator = ""; //откуда идем
 	SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "SetFightWOWeapon", false);
 }
 
@@ -46,7 +45,7 @@ void LAi_type_carrier_CharacterUpdate(aref chr, float dltTime)
 {
 	float time;
 	float locx, locy, locz;
-	if(chr.chr_ai.tmpl == LAI_TMPL_GOTO)
+	if (chr.chr_ai.tmpl == LAI_TMPL_GOTO)
 	{
 		if (chr.chr_ai.tmpl.state == "goto" && CheckAttribute(chr, "checkMove"))
 		{
@@ -92,8 +91,8 @@ void LAi_type_carrier_CharacterUpdate(aref chr, float dltTime)
 			chr.chr_ai.tmpl.wait = time;
 			if (time > 40)
 			{
-				if(CheckAttribute(chr, "chr_ai.tmpl.baseLocator")) // Warship fix. Могло не быть
-				ChangeCharacterAddressGroup(chr, chr.location, "reload", chr.chr_ai.tmpl.baseLocator);
+				if (CheckAttribute(chr, "chr_ai.tmpl.baseLocator")) // Warship fix. Могло не быть
+					ChangeCharacterAddressGroup(chr, chr.location, "reload", chr.chr_ai.tmpl.baseLocator);
 				LAi_tmpl_goto_InitTemplate(chr);
 				LAi_type_carrier_GoTo(chr);
 			}
@@ -102,7 +101,7 @@ void LAi_type_carrier_CharacterUpdate(aref chr, float dltTime)
 		if (stf(chr.chr_ai.type.checkFight) < 0.0)
 		{
 			int num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.001, false, true);
-			for(int i = 0; i < num; i++)
+			for (int i = 0; i < num; i++)
 			{
 				int idx = sti(chrFindNearCharacters[i].index);
 				ref by = &Characters[idx];
@@ -128,7 +127,7 @@ void LAi_type_carrier_CharacterUpdate(aref chr, float dltTime)
 		//<-- проверяем не врагов, но дерущихся.
 	}
 	//не должно быть, но мало ли..
-	if(chr.chr_ai.tmpl == LAI_TMPL_STAY)
+	if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
 	{
 		time = stf(chr.chr_ai.tmpl.wait) + dltTime;
 		chr.chr_ai.tmpl.wait = time;
@@ -156,7 +155,6 @@ bool LAi_type_carrier_CharacterLogoff(aref chr)
 //Завершение работы темплейта
 void LAi_type_carrier_TemplateComplite(aref chr, string tmpl)
 {
-
 }
 
 //Сообщить о желании завести диалог
@@ -173,44 +171,39 @@ bool LAi_type_carrier_CanDialog(aref chr, aref by)
 //Начать диалог
 void LAi_type_carrier_StartDialog(aref chr, aref by)
 {
-
 }
 
 //Закончить диалог
 void LAi_type_carrier_EndDialog(aref chr, aref by)
 {
-
 }
 
 //Персонаж выстрелил
 void LAi_type_carrier_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
-
 }
-
 
 //Персонаж атакован
 void LAi_type_carrier_Attacked(aref chr, aref by)
 {
-
 }
-
 
 int LAi_type_carrier_FindNearEnemy(aref chr)
 {
-	if(LAi_grp_alarmactive == true)
+	if (LAi_grp_alarmactive == true)
 	{
 		int num = FindNearCharacters(chr, 15.0, -1.0, -1.0, 0.001, false, true);
-		if(num <= 0)
+		if (num <= 0)
 		{
 			chrFindNearCharacters[0].index = "-1";
 			return -1;
 		}
 		int cnt = 0;
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			int idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) return idx;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				return idx;
 		}
 	}
 	return -1;
@@ -248,15 +241,17 @@ string LAi_type_carrier_SetPath(aref chr)
 	locReload[5] = "reload10";
 	locReload[6] = "reload9";
 	//Boyer change #20170318-39
-	if(reload_location_index < 0) return locReload[rand(6)];
+	if (reload_location_index < 0)
+		return locReload[rand(6)];
 	ref loc = &locations[reload_location_index];
 	aref aLocator;
 	makearef(aLocator, loc.locators.reload);
 	int iNum;
-	for (int i=0; i<10; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		iNum = rand(6);
-		if (CheckAttribute(aLocator, locReload[iNum]) && locReload[iNum] != chr.location.locator) break;
+		if (CheckAttribute(aLocator, locReload[iNum]) && locReload[iNum] != chr.location.locator)
+			break;
 	}
 	return locReload[iNum];
 }

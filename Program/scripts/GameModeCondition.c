@@ -5,17 +5,29 @@
 #event_handler("frame", "CheckGameModeConditions");
 #event_handler("frame", "CheckItemsGameModeConditions");
 
-string GameModeConditions[MAX_GAMEMODE_CONDITIONS] = { "", "", "", "", "", "", "", "", "", "", };
+string GameModeConditions[MAX_GAMEMODE_CONDITIONS] = {
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+};
 string sCurGameModeCondition = "";
 
 void SetGameModeCondition(string _sQuest)
 {
 
-	for(int i=0; i<MAX_GAMEMODE_CONDITIONS; i++)
+	for (int i = 0; i < MAX_GAMEMODE_CONDITIONS; i++)
 	{
-		if(GameModeConditions[i] == _sQuest) return;
+		if (GameModeConditions[i] == _sQuest)
+			return;
 
-		if(GameModeConditions[i] == "")
+		if (GameModeConditions[i] == "")
 		{
 			SetEventHandler(_sQuest, _sQuest, 0); // Ставим евент
 			GameModeConditions[i] = _sQuest;
@@ -28,9 +40,10 @@ void SetGameModeCondition(string _sQuest)
 
 void CheckGameModeConditions() // Процессирование всего
 {
-	for(int i=0; i<MAX_GAMEMODE_CONDITIONS; i++)
+	for (int i = 0; i < MAX_GAMEMODE_CONDITIONS; i++)
 	{
-		if(GameModeConditions[i] == "") continue;
+		if (GameModeConditions[i] == "")
+			continue;
 		sCurGameModeCondition = GameModeConditions[i];
 		PostEvent(sCurGameModeCondition, 10);
 	}
@@ -39,18 +52,20 @@ void CheckGameModeConditions() // Процессирование всего
 // Работа с предметами -->
 void CheckItemsGameModeConditions() // Процессирование предметов
 {
-	if(iScriptItemCount == 0) return;
+	if (iScriptItemCount == 0)
+		return;
 	int i;
 	ref rItem;
 	string sItem;
-	for(i=iScriptItemStartNum; i<iScriptItemEndNum; i++)
+	for (i = iScriptItemStartNum; i < iScriptItemEndNum; i++)
 	{
 		rItem = &items[i];
-		if(!CheckAttribute(rItem, "ID")) continue;
+		if (!CheckAttribute(rItem, "ID"))
+			continue;
 		sItem = items[i].id;
-		if(CheckAttribute(rItem, "Script") && CheckCharacterItem(PChar, sItem))
+		if (CheckAttribute(rItem, "Script") && CheckCharacterItem(PChar, sItem))
 		{
-			Log_TestInfo("Игрок подобрал заскриптованный предмет. Скрипт - "+rItem.Script);
+			Log_TestInfo("Игрок подобрал заскриптованный предмет. Скрипт - " + rItem.Script);
 			SetGameModeCondition(rItem.Script);
 			DeleteGameModeConditionFromItem(sItem); // Удаляем скрипт с предмета
 		}
@@ -67,9 +82,9 @@ void DeleteGameModeConditionFromItem(string sItemID)
 
 void DeleteGameModeCondition(string _sQuest)
 {
-	for(int i=0; i<MAX_GAMEMODE_CONDITIONS; i++)
+	for (int i = 0; i < MAX_GAMEMODE_CONDITIONS; i++)
 	{
-		if(GameModeConditions[i] == _sQuest)
+		if (GameModeConditions[i] == _sQuest)
 		{
 			GameModeConditions[i] = "";
 			DelEventHandler(_sQuest, _sQuest); // Удалим евент

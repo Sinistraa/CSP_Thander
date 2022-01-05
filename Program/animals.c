@@ -27,14 +27,14 @@ void CreateAnimals(ref Location)
 			if (!Whr_IsStorm())
 			{
 				// seagulls
-				if(CheckAttribute(Location, "locators") && (Location.environment.weather == "true"))
+				if (CheckAttribute(Location, "locators") && (Location.environment.weather == "true"))
 				{
 					SendMessage(Animals, "l", MSG_ANIMALS_SEAGULLS_SHOW);
-					if(CheckAttribute(Location, "locators.seagull"))
+					if (CheckAttribute(Location, "locators.seagull"))
 					{
 						makearef(locator_group, location.locators.seagull);
 						num = GetAttributesNum(locator_group);
-						for(n = 0; n < num; n++)
+						for (n = 0; n < num; n++)
 						{
 							locator = GetAttributeN(locator_group, n);
 							//SendMessage(Animals, "lfff", MSG_ANIMALS_SEAGULLS_ADD, stf(locator.x), stf(locator.y), stf(locator.z));
@@ -44,7 +44,8 @@ void CreateAnimals(ref Location)
 				}
 
 				// butterflies
-				if(!CheckAttribute(Location, "type")) Log_SetStringToLog("В локации баг, нет типа id=" + Location.id );
+				if (!CheckAttribute(Location, "type"))
+					Log_SetStringToLog("В локации баг, нет типа id=" + Location.id);
 				if (Location.type == "jungle")
 				{
 					SendMessage(Animals, "l", MSG_ANIMALS_BUTTERFLIES_SHOW);
@@ -52,7 +53,6 @@ void CreateAnimals(ref Location)
 			}
 		}
 	}
-
 }
 
 void CreateSeaAnimals()
@@ -81,7 +81,6 @@ void CreateSeaAnimals()
 			}
 		}
 	}
-
 }
 
 void DeleteAnimals()
@@ -89,4 +88,3 @@ void DeleteAnimals()
 	if (IsEntity(Animals))
 		DeleteClass(Animals);
 }
-

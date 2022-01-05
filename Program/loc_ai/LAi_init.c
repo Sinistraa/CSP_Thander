@@ -16,7 +16,6 @@
 #include "Loc_ai\LAi_utilites.c"
 #include "Loc_ai\LAi_zLoadUtils.c"
 
-
 bool LAi_IsInitedAI = false;
 bool LAi_IsCapturedLocation = false;
 bool LAi_restoreStates = false;
@@ -25,12 +24,13 @@ bool LAi_IsBoarding = false;
 //Инициализация интелекта
 void LocAi_Init(ref loc)
 {
-    //#20190512-01
-    string sOfficerLoc;
-    aref rLocRoot, rOfcLocRef;
-    bool bCheck;
+	//#20190512-01
+	string sOfficerLoc;
+	aref rLocRoot, rOfcLocRef;
+	bool bCheck;
 	LAi_numloginedcharacters = 0;
-	if(LAi_group_Init() == false) Trace("Error: Characters group logic not inited!!!");
+	if (LAi_group_Init() == false)
+		Trace("Error: Characters group logic not inited!!!");
 	SetEventHandler("CharacterUpdate", "LAi_CharacterUpdate", 1);
 	SetEventHandler("CharactersStateUpdate", "LAi_Character_FrameUpdate", 1);
 	SetEventHandler("Location_CharacterEndTask", "LAi_CharacterEndTask", 0);
@@ -50,10 +50,10 @@ void LocAi_Init(ref loc)
 	SetEventHandler("Location_CharacterItemAction", "LAi_CharacterItemAction", 0);
 	LAi_IsInitedAI = true;
 	LAi_IsCapturedLocation = IsLocationCaptured(loc.id);
-	if(!actLoadFlag)
+	if (!actLoadFlag)
 	{
 		//Очистим фантомных персонажей
-		for(int i = 0; i < MAX_CHARS_IN_LOC; i++)
+		for (int i = 0; i < MAX_CHARS_IN_LOC; i++)
 		{
 			DeleteAttribute(&Characters[LOC_FANTOM_CHARACTERS + i], "");
 			Characters[LOC_FANTOM_CHARACTERS + i].index = LOC_FANTOM_CHARACTERS + i;
@@ -65,16 +65,18 @@ void LocAi_Init(ref loc)
 	}
 	//Выставим адреса офицерам главного персонажа
 	bool isBoarding = false;
-	if(CheckAttribute(loc, "boarding") == true)
+	if (CheckAttribute(loc, "boarding") == true)
 	{
-		if(loc.boarding == "true") isBoarding = true;
-		if(loc.boarding == "fort") isBoarding = true; // boal 21.01.05 fix!!!
+		if (loc.boarding == "true")
+			isBoarding = true;
+		if (loc.boarding == "fort")
+			isBoarding = true; // boal 21.01.05 fix!!!
 	}
 	LAi_IsBoarding = isBoarding;
-	if(!isBoarding)
+	if (!isBoarding)
 	{
 		int locIndex = 1;
-		if(LAi_restoreStates)
+		if (LAi_restoreStates)
 		{
 			LAi_SetCurHPMax(pchar);
 			LAi_UseAtidoteBottle(pchar);
@@ -87,16 +89,17 @@ void LocAi_Init(ref loc)
 		}
 		if (!CheckAttribute(loc, "DisableOfficers")) //eddy. офицерский флаг
 		{
-            bool bHasLocs = CheckAttribute(loc, "locators.officers");
-            float posX;
-		    float posY;
-		    float posZ;
-		    GetCharacterPos(pchar, &posX, &posY, &posZ);
-			for(i = 1; i <=MAX_NUM_FIGHTERS; i++)
+			bool bHasLocs = CheckAttribute(loc, "locators.officers");
+			float posX;
+			float posY;
+			float posZ;
+			GetCharacterPos(pchar, &posX, &posY, &posZ);
+			for (i = 1; i <= MAX_NUM_FIGHTERS; i++)
 			{
 				idx = GetOfficersIndex(pchar, i);
-				if(idx < 0) continue;
-				if(LAi_restoreStates)
+				if (idx < 0)
+					continue;
+				if (LAi_restoreStates)
 				{
 					LAi_SetCurHPMax(&Characters[idx]);
 					LAi_UseAtidoteBottle(&Characters[idx]);
@@ -105,24 +108,28 @@ void LocAi_Init(ref loc)
 				if (Characters[idx].location == pchar.location)) continue; // fix
 				DeleteAttribute(&Characters[idx], "location");
 				int k = locIndex % 3 + 1;
-				if(bHasLocs)
+				if (bHasLocs)
 				{
-                    Characters[idx].location = pchar.location;
-                    Characters[idx].location.group = "officers";
-                    sOfficerLoc = pchar.location.locator + "_" + k;
-                    bCheck = SendMessage(loc, "ls", MSG_LOCATION_LOC_EXISTS, sOfficerLoc);
-                    if(!bCheck) {
-                        sOfficerLoc = LAi_FindNearestFreeLocator("officers", posX, posY, posZ);
-                        if(sOfficerLoc == "") {
-                            makearef(rLocRoot, loc.locators.officers);
-                            k = GetAttributesNum(rLocRoot);
-                            rOfcLocRef = GetAttributeN(rLocRoot, rand(k-1));
-                            sOfficerLoc = GetAttributeName(rOfcLocRef);
-                        }
-                    }
-                    Characters[idx].location.locator = sOfficerLoc;
-                    locIndex = locIndex + 1;
-				}else{
+					Characters[idx].location = pchar.location;
+					Characters[idx].location.group = "officers";
+					sOfficerLoc = pchar.location.locator + "_" + k;
+					bCheck = SendMessage(loc, "ls", MSG_LOCATION_LOC_EXISTS, sOfficerLoc);
+					if (!bCheck)
+					{
+						sOfficerLoc = LAi_FindNearestFreeLocator("officers", posX, posY, posZ);
+						if (sOfficerLoc == "")
+						{
+							makearef(rLocRoot, loc.locators.officers);
+							k = GetAttributesNum(rLocRoot);
+							rOfcLocRef = GetAttributeN(rLocRoot, rand(k - 1));
+							sOfficerLoc = GetAttributeName(rOfcLocRef);
+						}
+					}
+					Characters[idx].location.locator = sOfficerLoc;
+					locIndex = locIndex + 1;
+				}
+				else
+				{
 					Characters[idx].location = "none";
 					Characters[idx].location.group = "";
 					Characters[idx].location.locator = "";
@@ -131,17 +138,20 @@ void LocAi_Init(ref loc)
 		}
 		else
 		{
-		    for(i = 1; i <=MAX_NUM_FIGHTERS; i++)
+			for (i = 1; i <= MAX_NUM_FIGHTERS; i++)
 			{
 				idx = GetOfficersIndex(pchar, i);
-				if(idx < 0) continue;
+				if (idx < 0)
+					continue;
 
 				Characters[idx].location = "none";
 				Characters[idx].location.group = "";
 				Characters[idx].location.locator = "";
 			}
 		}
-	}else{
+	}
+	else
+	{
 		LAi_restoreStates = false;
 	}
 	LAi_IsCapturedLocation = IsLocationCaptured(loc.id);
@@ -150,10 +160,10 @@ void LocAi_Init(ref loc)
 //Инициализация интелекта
 void LocAi_Release()
 {
-	for(int i = 0; i < LAi_numloginedcharacters; i++)
+	for (int i = 0; i < LAi_numloginedcharacters; i++)
 	{
 		int idx = LAi_loginedcharacters[i];
-		if(idx >= 0)
+		if (idx >= 0)
 		{
 			LAi_CharacterLogoff(&Characters[idx]);
 		}
@@ -179,7 +189,7 @@ void LocAi_Release()
 	DelEventHandler("Location_Character_EndAction", "LAi_Character_EndAction");
 	DelEventHandler("Location_CharacterItemAction", "LAi_CharacterItemAction");
 	//Очистим фантомных персонажей
-	for(i = 0; i < MAX_CHARS_IN_LOC; i++)
+	for (i = 0; i < MAX_CHARS_IN_LOC; i++)
 	{
 		DeleteAttribute(&Characters[LOC_FANTOM_CHARACTERS + i], "");
 		Characters[LOC_FANTOM_CHARACTERS + i].index = LOC_FANTOM_CHARACTERS + i;
@@ -192,14 +202,14 @@ void LocAi_Release()
 	}
 }
 
-
 void LocAi_PostInit(ref loc)
 {
-	if(!LAi_IsBoarding) LAi_CharacterPostLogin(loc);
-	for(int i = 0; i < LAi_numloginedcharacters; i++)
+	if (!LAi_IsBoarding)
+		LAi_CharacterPostLogin(loc);
+	for (int i = 0; i < LAi_numloginedcharacters; i++)
 	{
 		int idx = LAi_loginedcharacters[i];
-		if(idx >= 0)
+		if (idx >= 0)
 		{
 			LAi_PostLoginInit(&Characters[idx]);
 			//#20210221-01

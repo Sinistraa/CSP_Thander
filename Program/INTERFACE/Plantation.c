@@ -1,9 +1,9 @@
 
 void InitInterface(string iniName)
 {
-    	GameInterface.title = "titlePlantation";
+	GameInterface.title = "titlePlantation";
 
-    	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
 	ref PChar = GetMainCharacter();
 
@@ -20,44 +20,44 @@ void InitInterface(string iniName)
 
 	PlantationInformation();
 
-	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE,"INFO_TEXT",5);
+	SendMessage(&GameInterface, "lsl", MSG_INTERFACE_MSG_TO_NODE, "INFO_TEXT", 5);
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0);
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("evntDoPostExit","DoPostExit",0);
-	SetEventHandler("GuardiansTempUptade","GuardiansTempUptade",0);
-	SetEventHandler("SlavesTempUptade","SlavesTempUptade",0);
-	SetEventHandler("FoodTempUptade","FoodTempUptade",0);
-	SetEventHandler("MedicamentTempUptade","MedicamentTempUptade",0);
-	SetEventHandler("SugarTempUptade","SugarTempUptade",0);
-	SetEventHandler("CoffeeTempUptade","CoffeeTempUptade",0);
-	SetEventHandler("ItemsTempUptade","ItemsTempUptade",0);
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0);
+	SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("evntDoPostExit", "DoPostExit", 0);
+	SetEventHandler("GuardiansTempUptade", "GuardiansTempUptade", 0);
+	SetEventHandler("SlavesTempUptade", "SlavesTempUptade", 0);
+	SetEventHandler("FoodTempUptade", "FoodTempUptade", 0);
+	SetEventHandler("MedicamentTempUptade", "MedicamentTempUptade", 0);
+	SetEventHandler("SugarTempUptade", "SugarTempUptade", 0);
+	SetEventHandler("CoffeeTempUptade", "CoffeeTempUptade", 0);
+	SetEventHandler("ItemsTempUptade", "ItemsTempUptade", 0);
 }
 
 void ProcessBreakExit()
 {
-	IDoExit( RC_INTERFACE_SALARY_EXIT );
+	IDoExit(RC_INTERFACE_SALARY_EXIT);
 }
 
 void ProcessCancelExit()
 {
-	IDoExit( RC_INTERFACE_SALARY_EXIT );
+	IDoExit(RC_INTERFACE_SALARY_EXIT);
 }
 
 void IDoExit(int exitCode)
 {
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("evntDoPostExit","DoPostExit");
-	DelEventHandler("GuardiansTempUptade","GuardiansTempUptade");
-	DelEventHandler("SlavesTempUptade","SlavesTempUptade");
-	DelEventHandler("FoodTempUptade","FoodTempUptade");
-	DelEventHandler("MedicamentTempUptade","MedicamentTempUptade");
-	DelEventHandler("SugarTempUptade","SugarTempUptade");
-	DelEventHandler("CoffeeTempUptade","CoffeeTempUptade");
-	DelEventHandler("ItemsTempUptade","ItemsTempUptade");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("evntDoPostExit", "DoPostExit");
+	DelEventHandler("GuardiansTempUptade", "GuardiansTempUptade");
+	DelEventHandler("SlavesTempUptade", "SlavesTempUptade");
+	DelEventHandler("FoodTempUptade", "FoodTempUptade");
+	DelEventHandler("MedicamentTempUptade", "MedicamentTempUptade");
+	DelEventHandler("SugarTempUptade", "SugarTempUptade");
+	DelEventHandler("CoffeeTempUptade", "CoffeeTempUptade");
+	DelEventHandler("ItemsTempUptade", "ItemsTempUptade");
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
@@ -70,14 +70,14 @@ int GetCostForMoraleUp()
 	int iCost = 0;
 	int iLeaderShip = GetCharacterSkill(PChar, SKILL_LEADERSHIP);
 
-	if(sti(PChar.Plantation.Slaves.Quantity) <= 0)
+	if (sti(PChar.Plantation.Slaves.Quantity) <= 0)
 	{
 		return 0;
 	}
 
 	iCost = sti(PChar.Plantation.Slaves.Quantity) * 100 - (iLeaderShip * 10);
 
-	if(iCost <= 0)
+	if (iCost <= 0)
 	{
 		iCost = 1000;
 	}
@@ -87,7 +87,7 @@ int GetCostForMoraleUp()
 
 void MoraleUp(int iMoney)
 {
-	if(iMoney <= 0)
+	if (iMoney <= 0)
 	{
 		return;
 	}
@@ -125,7 +125,7 @@ void SelectHireGuardians(bool bLeft)
 	int iMaxTemp = sti(PChar.Plantation.Guardians.MaxQuantity) - sti(PChar.Plantation.Guardians.Quantity);
 	int iCrewInShip = GetCrewQuantity(PChar);
 
-	if(bLeft)
+	if (bLeft)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = sti(PChar.Plantation.Guardians.Temp.Quantity) + 10;
 	}
@@ -134,22 +134,22 @@ void SelectHireGuardians(bool bLeft)
 		PChar.Plantation.Guardians.Temp.Quantity = sti(PChar.Plantation.Guardians.Temp.Quantity) - 10;
 	}
 
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) > iCrewInShip)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) > iCrewInShip)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = iCrewInShip;
 	}
 
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) > iMaxTemp)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) > iMaxTemp)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = iMaxTemp;
 	}
 
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = 0;
 	}
 
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) <= 0)
 	{
 		SetSelectable("GUARDIANS_HIRE", false);
 	}
@@ -185,7 +185,7 @@ void SelectFoodQuantity(bool bAdd)
 	int iMaxStep = sti(PChar.Plantation.Food.MaxQuantity) - sti(PChar.Plantation.Food.Quantity);
 	int iCargo = GetCargoGoods(PChar, GOOD_FOOD);
 
-	if(bAdd)
+	if (bAdd)
 	{
 		PChar.Plantation.Food.Temp.Quantity = sti(PChar.Plantation.Food.Temp.Quantity) + 100;
 	}
@@ -194,17 +194,17 @@ void SelectFoodQuantity(bool bAdd)
 		PChar.Plantation.Food.Temp.Quantity = sti(PChar.Plantation.Food.Temp.Quantity) - 100;
 	}
 
-	if(sti(PChar.Plantation.Food.Temp.Quantity) > iCargo)
+	if (sti(PChar.Plantation.Food.Temp.Quantity) > iCargo)
 	{
 		PChar.Plantation.Food.Temp.Quantity = iCargo;
 	}
 
-	if(sti(PChar.Plantation.Food.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Food.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Food.Temp.Quantity = iMaxStep;
 	}
 
-	if(sti(PChar.Plantation.Food.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Food.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Food.Temp.Quantity = 0;
 	}
@@ -235,7 +235,7 @@ void SelectSlavesQuantity(bool bAdd)
 	int iMaxStep = sti(PChar.Plantation.Slaves.MaxQuantity) - sti(PChar.Plantation.Slaves.Quantity);
 	int iCargo = GetCargoGoods(PChar, GOOD_SLAVES);
 
-	if(bAdd)
+	if (bAdd)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = sti(PChar.Plantation.Slaves.Temp.Quantity) + 10;
 	}
@@ -244,17 +244,17 @@ void SelectSlavesQuantity(bool bAdd)
 		PChar.Plantation.Slaves.Temp.Quantity = sti(PChar.Plantation.Slaves.Temp.Quantity) - 10;
 	}
 
-	if(sti(PChar.Plantation.Slaves.Temp.Quantity) > iCargo)
+	if (sti(PChar.Plantation.Slaves.Temp.Quantity) > iCargo)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = iCargo;
 	}
 
-	if(sti(PChar.Plantation.Slaves.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Slaves.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = iMaxStep;
 	}
 
-	if(sti(PChar.Plantation.Slaves.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Slaves.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
 	}
@@ -285,7 +285,7 @@ void SelectMedicamentQuantity(bool bAdd)
 	int iMaxStep = sti(PChar.Plantation.Medicament.MaxQuantity) - sti(PChar.Plantation.Medicament.Quantity);
 	int iCargo = GetCargoGoods(PChar, GOOD_MEDICAMENT);
 
-	if(bAdd)
+	if (bAdd)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = sti(PChar.Plantation.Medicament.Temp.Quantity) + 100;
 	}
@@ -294,15 +294,15 @@ void SelectMedicamentQuantity(bool bAdd)
 		PChar.Plantation.Medicament.Temp.Quantity = sti(PChar.Plantation.Medicament.Temp.Quantity) - 100;
 	}
 
-	if(sti(PChar.Plantation.Medicament.Temp.Quantity) > iCargo)
+	if (sti(PChar.Plantation.Medicament.Temp.Quantity) > iCargo)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = iCargo;
 	}
-	if(sti(PChar.Plantation.Medicament.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Medicament.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = iMaxStep;
 	}
-	if(sti(PChar.Plantation.Medicament.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Medicament.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = 0;
 	}
@@ -331,7 +331,7 @@ void SelectSugarQuantity(bool bAdd)
 {
 	int iSugar = sti(PChar.Plantation.Sugar.Quantity);
 
-	if(bAdd)
+	if (bAdd)
 	{
 		PChar.Plantation.Sugar.Temp.Quantity = sti(PChar.Plantation.Sugar.Temp.Quantity) + 100;
 	}
@@ -340,28 +340,28 @@ void SelectSugarQuantity(bool bAdd)
 		PChar.Plantation.Sugar.Temp.Quantity = sti(PChar.Plantation.Sugar.Temp.Quantity) - 100;
 	}
 
-	if(sti(PChar.Plantation.Sugar.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Sugar.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Sugar.Temp.Quantity = 0;
 	}
 
-	if(sti(PChar.Plantation.Sugar.Temp.Quantity) > iSugar)
+	if (sti(PChar.Plantation.Sugar.Temp.Quantity) > iSugar)
 	{
 		PChar.Plantation.Sugar.Temp.Quantity = iSugar;
 	}
 
 	int iCargo = GetGoodWeightByType(GOOD_SUGAR, sti(PChar.Plantation.Sugar.Temp.Quantity));
-	if(iCargo > GetCargoFreeSpace(PChar))
+	if (iCargo > GetCargoFreeSpace(PChar))
 	{
 		PChar.Plantation.Sugar.Temp.Quantity = GetCharacterFreeSpace(PChar, GOOD_SUGAR);
 	}
 
-	if(GetCargoFreeSpace(PChar) <= 0)
+	if (GetCargoFreeSpace(PChar) <= 0)
 	{
 		PChar.Plantation.Sugar.Temp.Quantity = 0;
 	}
 
-	if(sti(PChar.Plantation.Sugar.Temp.Quantity) < 0)
+	if (sti(PChar.Plantation.Sugar.Temp.Quantity) < 0)
 	{
 		SetSelectable("SUGAR_GIVE", false);
 	}
@@ -403,7 +403,7 @@ void SelectCoffeeQuantity(bool bAdd)
 {
 	int iCoffee = sti(PChar.Plantation.Coffee.Quantity);
 
-	if(bAdd)
+	if (bAdd)
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = sti(PChar.Plantation.Coffee.Temp.Quantity) + 100;
 	}
@@ -412,28 +412,28 @@ void SelectCoffeeQuantity(bool bAdd)
 		PChar.Plantation.Coffee.Temp.Quantity = sti(PChar.Plantation.Coffee.Temp.Quantity) - 100;
 	}
 
-	if(sti(PChar.Plantation.Coffee.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Coffee.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = 0;
 	}
 
-	if(sti(PChar.Plantation.Coffee.Temp.Quantity) > iCoffee)
+	if (sti(PChar.Plantation.Coffee.Temp.Quantity) > iCoffee)
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = iCoffee;
 	}
 
 	int iCargo = GetGoodWeightByType(GOOD_COFFEE, sti(PChar.Plantation.Coffee.Temp.Quantity));
-	if(iCargo > GetCargoFreeSpace(PChar))
+	if (iCargo > GetCargoFreeSpace(PChar))
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = GetCharacterFreeSpace(PChar, GOOD_COFFEE);
 	}
 
-	if(GetCargoFreeSpace(PChar) <= 0)
+	if (GetCargoFreeSpace(PChar) <= 0)
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = 0;
 	}
 
-	if(sti(PChar.Plantation.Coffee.Temp.Quantity) < 0)
+	if (sti(PChar.Plantation.Coffee.Temp.Quantity) < 0)
 	{
 		SetSelectable("COFFEE_GIVE", false);
 	}
@@ -477,7 +477,7 @@ void SelectItemsQuantity(bool bAdd)
 	int iMaxStep = sti(PChar.Plantation.Items.MaxQuantity) - sti(PChar.Plantation.Items.Quantity);
 	int iCargo = GetCargoGoods(PChar, GOOD_TOOLS);
 
-	if(bAdd)
+	if (bAdd)
 	{
 		PChar.Plantation.Items.Temp.Quantity = sti(PChar.Plantation.Items.Temp.Quantity) + 10;
 	}
@@ -486,22 +486,22 @@ void SelectItemsQuantity(bool bAdd)
 		PChar.Plantation.Items.Temp.Quantity = sti(PChar.Plantation.Items.Temp.Quantity) - 10;
 	}
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) > iCargo)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) > iCargo)
 	{
 		PChar.Plantation.Items.Temp.Quantity = iCargo;
 	}
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Items.Temp.Quantity = iMaxStep;
 	}
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) <= 0)
 	{
 		SetSelectable("ITEMS_ADD", false);
 	}
@@ -533,36 +533,36 @@ void ItemsSbros()
 void SelectInstrument(bool bTrue)
 {
 	ref PChar = GetMainCharacter();
-	if(bTrue)
+	if (bTrue)
 	{
-		if(PChar.Plantation.Interface.Instrument == "Bad")
+		if (PChar.Plantation.Interface.Instrument == "Bad")
 		{
 			return;
 		}
 
-		if(PChar.Plantation.Interface.Instrument == "Normal")
+		if (PChar.Plantation.Interface.Instrument == "Normal")
 		{
 			PChar.Plantation.Interface.Instrument = "Bad";
 		}
 
-		if(PChar.Plantation.Interface.Instrument == "Good")
+		if (PChar.Plantation.Interface.Instrument == "Good")
 		{
 			PChar.Plantation.Interface.Instrument = "Normal";
 		}
 	}
 	else
 	{
-		if(PChar.Plantation.Interface.Instrument == "Good")
+		if (PChar.Plantation.Interface.Instrument == "Good")
 		{
 			return;
 		}
 
-		if(PChar.Plantation.Interface.Instrument == "Normal")
+		if (PChar.Plantation.Interface.Instrument == "Normal")
 		{
 			PChar.Plantation.Interface.Instrument = "Good";
 		}
 
-		if(PChar.Plantation.Interface.Instrument == "Bad")
+		if (PChar.Plantation.Interface.Instrument == "Bad")
 		{
 			PChar.Plantation.Interface.Instrument = "Normal";
 		}
@@ -577,11 +577,17 @@ int GetCostForInstruments(string sInstrument)
 	ref PChar = GetMainCharacter();
 	int iCost, iBonus;
 
-	switch(sInstrument)
+	switch (sInstrument)
 	{
-		case "Bad": iBonus = 700; break;
-		case "Normal": iBonus = 1300; break;
-		case "Good": iBonus = 2200; break;
+	case "Bad":
+		iBonus = 700;
+		break;
+	case "Normal":
+		iBonus = 1300;
+		break;
+	case "Good":
+		iBonus = 2200;
+		break;
 	}
 
 	iCost = sti(PChar.Plantation.Slaves.Quantity) * iBonus;
@@ -602,335 +608,335 @@ void ProcCommand()
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	switch(nodName)
+	switch (nodName)
 	{
-		case "MORALE_UP":
-			if(comName=="activate" || comName=="click")
-			{
-				MoraleUp(GetCostForMoraleUp());
-			}
+	case "MORALE_UP":
+		if (comName == "activate" || comName == "click")
+		{
+			MoraleUp(GetCostForMoraleUp());
+		}
 		break;
 
-		case "PLANTATION_UP":
-			if(comName=="activate" || comName=="click")
-			{
-				PlantationUp(sti(PChar.Plantation.ResizeMoney));
-			}
+	case "PLANTATION_UP":
+		if (comName == "activate" || comName == "click")
+		{
+			PlantationUp(sti(PChar.Plantation.ResizeMoney));
+		}
 		break;
 
-		case "GUARDIANS_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectHireGuardians(false);
-			}
+	case "GUARDIANS_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectHireGuardians(false);
+		}
 		break;
 
-		case "GUARDIANS_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectHireGuardians(true);
-			}
+	case "GUARDIANS_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectHireGuardians(true);
+		}
 		break;
 
-		case "GUARDIANS_HIRE":
-			if(comName=="activate" || comName=="click")
-			{
-				HireGuardians(sti(PChar.Plantation.Guardians.Temp.Quantity));
-			}
+	case "GUARDIANS_HIRE":
+		if (comName == "activate" || comName == "click")
+		{
+			HireGuardians(sti(PChar.Plantation.Guardians.Temp.Quantity));
+		}
 		break;
 
-		case "GUARDIANS_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Guardians", false);
-			}
+	case "GUARDIANS_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Guardians", false);
+		}
 		break;
 
-		case "GUARDIANS_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Guardians", true);
-			}
+	case "GUARDIANS_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Guardians", true);
+		}
 		break;
 
-		case "GUARDIANS_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				GuardiansSbros();
-			}
+	case "GUARDIANS_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			GuardiansSbros();
+		}
 		break;
 
-		case "SLAVES_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectSlavesQuantity(false);
-			}
+	case "SLAVES_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectSlavesQuantity(false);
+		}
 		break;
 
-		case "SLAVES_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectSlavesQuantity(true);
-			}
+	case "SLAVES_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectSlavesQuantity(true);
+		}
 		break;
 
-		case "SLAVES_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Slaves", false);
-			}
+	case "SLAVES_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Slaves", false);
+		}
 		break;
 
-		case "SLAVES_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Slaves", true);
-			}
+	case "SLAVES_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Slaves", true);
+		}
 		break;
 
-		case "SLAVES_TRANSFER":
-			if(comName=="activate" || comName=="click")
-			{
-				SlavesTransfer(sti(PChar.Plantation.Slaves.Temp.Quantity));
-			}
+	case "SLAVES_TRANSFER":
+		if (comName == "activate" || comName == "click")
+		{
+			SlavesTransfer(sti(PChar.Plantation.Slaves.Temp.Quantity));
+		}
 		break;
 
-		case "SLAVES_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				SlavesSbros();
-			}
+	case "SLAVES_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			SlavesSbros();
+		}
 		break;
 
-		case "FOOD_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectFoodQuantity(false);
-			}
+	case "FOOD_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectFoodQuantity(false);
+		}
 		break;
 
-		case "FOOD_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectFoodQuantity(true);
-			}
+	case "FOOD_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectFoodQuantity(true);
+		}
 		break;
 
-		case "FOOD_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Food", false);
-			}
+	case "FOOD_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Food", false);
+		}
 		break;
 
-		case "FOOD_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Food", true);
-			}
+	case "FOOD_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Food", true);
+		}
 		break;
 
-		case "FOOD_TRANSFER":
-			if(comName=="activate" || comName=="click")
-			{
-				FoodTransfer(sti(PChar.Plantation.Food.Temp.Quantity));
-			}
+	case "FOOD_TRANSFER":
+		if (comName == "activate" || comName == "click")
+		{
+			FoodTransfer(sti(PChar.Plantation.Food.Temp.Quantity));
+		}
 		break;
 
-		case "FOOD_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				FoodSbros();
-			}
+	case "FOOD_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			FoodSbros();
+		}
 		break;
 
-		case "MEDICAMENT_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectMedicamentQuantity(false);
-			}
+	case "MEDICAMENT_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectMedicamentQuantity(false);
+		}
 		break;
 
-		case "MEDICAMENT_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectMedicamentQuantity(true);
-			}
+	case "MEDICAMENT_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectMedicamentQuantity(true);
+		}
 		break;
 
-		case "MEDICAMENT_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Medicament", false);
-			}
+	case "MEDICAMENT_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Medicament", false);
+		}
 		break;
 
-		case "MEDICAMENT_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Medicament", true);
-			}
+	case "MEDICAMENT_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Medicament", true);
+		}
 		break;
 
-		case "MEDICAMENT_TRANSFER":
-			if(comName=="activate" || comName=="click")
-			{
-				MedicamentTransfer(sti(PChar.Plantation.Medicament.Temp.Quantity));
-			}
+	case "MEDICAMENT_TRANSFER":
+		if (comName == "activate" || comName == "click")
+		{
+			MedicamentTransfer(sti(PChar.Plantation.Medicament.Temp.Quantity));
+		}
 		break;
 
-		case "MEDICAMENT_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				MedicamentSbros();
-			}
+	case "MEDICAMENT_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			MedicamentSbros();
+		}
 		break;
 
-		case "SUGAR_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectSugarQuantity(false);
-			}
+	case "SUGAR_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectSugarQuantity(false);
+		}
 		break;
 
-		case "SUGAR_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectSugarQuantity(true);
-			}
+	case "SUGAR_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectSugarQuantity(true);
+		}
 		break;
 
-		case "SUGAR_GIVE":
-			if(comName=="activate" || comName=="click")
-			{
-				GiveSugar(sti(PChar.Plantation.Sugar.Temp.Quantity));
-			}
+	case "SUGAR_GIVE":
+		if (comName == "activate" || comName == "click")
+		{
+			GiveSugar(sti(PChar.Plantation.Sugar.Temp.Quantity));
+		}
 		break;
 
-		case "SUGAR_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Sugar", false);
-			}
+	case "SUGAR_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Sugar", false);
+		}
 		break;
 
-		case "SUGAR_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Sugar", true);
-			}
+	case "SUGAR_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Sugar", true);
+		}
 		break;
 
-		case "SUGAR_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				SugarSbros();
-			}
+	case "SUGAR_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			SugarSbros();
+		}
 		break;
 
-		case "COFFEE_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectCoffeeQuantity(false);
-			}
+	case "COFFEE_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectCoffeeQuantity(false);
+		}
 		break;
 
-		case "COFFEE_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectCoffeeQuantity(true);
-			}
+	case "COFFEE_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectCoffeeQuantity(true);
+		}
 		break;
 
-		case "COFFEE_GIVE":
-			if(comName=="activate" || comName=="click")
-			{
-				GiveCoffee(sti(PChar.Plantation.Coffee.Temp.Quantity));
-			}
+	case "COFFEE_GIVE":
+		if (comName == "activate" || comName == "click")
+		{
+			GiveCoffee(sti(PChar.Plantation.Coffee.Temp.Quantity));
+		}
 		break;
 
-		case "COFFEE_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Coffee", false);
-			}
+	case "COFFEE_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Coffee", false);
+		}
 		break;
 
-		case "COFFEE_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Coffee", true);
-			}
+	case "COFFEE_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Coffee", true);
+		}
 		break;
 
-		case "COFFEE_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				CoffeeSbros();
-			}
+	case "COFFEE_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			CoffeeSbros();
+		}
 		break;
 
-		case "INSTRUMENTS_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectInstrument(true);
-			}
+	case "INSTRUMENTS_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectInstrument(true);
+		}
 		break;
 
-		case "INSTRUMENTS_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectInstrument(false);
-			}
+	case "INSTRUMENTS_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectInstrument(false);
+		}
 		break;
 
-		case "INSTRUMENTS_INSTALL":
-			if(comName=="activate" || comName=="click")
-			{
-				InstallInstrument(PChar.Plantation.Interface.Instrument, sti(PChar.Plantation.Instrument.Price));
-			}
+	case "INSTRUMENTS_INSTALL":
+		if (comName == "activate" || comName == "click")
+		{
+			InstallInstrument(PChar.Plantation.Interface.Instrument, sti(PChar.Plantation.Instrument.Price));
+		}
 		break;
 
-		case "ITEMS_LEFT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectItemsQuantity(false);
-			}
+	case "ITEMS_LEFT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectItemsQuantity(false);
+		}
 		break;
 
-		case "ITEMS_RIGHT":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectItemsQuantity(true);
-			}
+	case "ITEMS_RIGHT":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectItemsQuantity(true);
+		}
 		break;
 
-		case "ITEMS_LEFT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Items", false);
-			}
+	case "ITEMS_LEFT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Items", false);
+		}
 		break;
 
-		case "ITEMS_RIGHT_ALL":
-			if(comName=="activate" || comName=="click")
-			{
-				SelectAll("Items", true);
-			}
+	case "ITEMS_RIGHT_ALL":
+		if (comName == "activate" || comName == "click")
+		{
+			SelectAll("Items", true);
+		}
 		break;
 
-		case "ITEMS_ADD":
-			if(comName=="activate" || comName=="click")
-			{
-				ItemsTransfer(sti(PChar.Plantation.Items.Temp.Quantity));
-			}
+	case "ITEMS_ADD":
+		if (comName == "activate" || comName == "click")
+		{
+			ItemsTransfer(sti(PChar.Plantation.Items.Temp.Quantity));
+		}
 		break;
 
-		case "ITEMS_SBROS":
-			if(comName=="activate" || comName=="click")
-			{
-				ItemsSbros();
-			}
+	case "ITEMS_SBROS":
+		if (comName == "activate" || comName == "click")
+		{
+			ItemsSbros();
+		}
 		break;
 	}
 }
@@ -939,160 +945,159 @@ void SelectAll(string sType, bool bAdd)
 {
 	ref PChar = GetMainCharacter();
 
-	switch(sType)
+	switch (sType)
 	{
-		case "Guardians":
-			int iGuardiansQuantity = sti(PChar.Plantation.Guardians.Quantity);
-			int iGuardiansMaxQuantity = sti(PChar.Plantation.Guardians.MaxQuantity);
-			int iGuardiansInShip = GetCrewQuantity(PChar);
+	case "Guardians":
+		int iGuardiansQuantity = sti(PChar.Plantation.Guardians.Quantity);
+		int iGuardiansMaxQuantity = sti(PChar.Plantation.Guardians.MaxQuantity);
+		int iGuardiansInShip = GetCrewQuantity(PChar);
 
-			if(!bAdd)
-			{
-				PChar.Plantation.Guardians.Temp.Quantity = 0;
-			}
-			else
-			{
-				PChar.Plantation.Guardians.Temp.Quantity = iGuardiansMaxQuantity - iGuardiansQuantity;
+		if (!bAdd)
+		{
+			PChar.Plantation.Guardians.Temp.Quantity = 0;
+		}
+		else
+		{
+			PChar.Plantation.Guardians.Temp.Quantity = iGuardiansMaxQuantity - iGuardiansQuantity;
 
-				if(sti(PChar.Plantation.Guardians.Temp.Quantity) > iGuardiansInShip)
-				{
-					PChar.Plantation.Guardians.Temp.Quantity = iGuardiansInShip;
-				}
+			if (sti(PChar.Plantation.Guardians.Temp.Quantity) > iGuardiansInShip)
+			{
+				PChar.Plantation.Guardians.Temp.Quantity = iGuardiansInShip;
 			}
+		}
 		break;
 
-		case "Slaves":
-			if(!bAdd)
-			{
-				PChar.Plantation.Slaves.Temp.Quantity = 0;
-			}
-			else
-			{
-				int iSlavesHoldQuantity = GetCargoGoods(PChar, GOOD_SLAVES);
-				int iSlavesQuantity = sti(PChar.Plantation.Slaves.Quantity);
-				int iSlavesMaxQuantity = sti(PChar.Plantation.Slaves.MaxQuantity);
+	case "Slaves":
+		if (!bAdd)
+		{
+			PChar.Plantation.Slaves.Temp.Quantity = 0;
+		}
+		else
+		{
+			int iSlavesHoldQuantity = GetCargoGoods(PChar, GOOD_SLAVES);
+			int iSlavesQuantity = sti(PChar.Plantation.Slaves.Quantity);
+			int iSlavesMaxQuantity = sti(PChar.Plantation.Slaves.MaxQuantity);
 
-				PChar.Plantation.Slaves.Temp.Quantity = (iSlavesMaxQuantity - iSlavesQuantity);
+			PChar.Plantation.Slaves.Temp.Quantity = (iSlavesMaxQuantity - iSlavesQuantity);
 
-				if(sti(PChar.Plantation.Slaves.Temp.Quantity) > iSlavesHoldQuantity)
-				{
-					PChar.Plantation.Slaves.Temp.Quantity = iSlavesHoldQuantity;
-				}
+			if (sti(PChar.Plantation.Slaves.Temp.Quantity) > iSlavesHoldQuantity)
+			{
+				PChar.Plantation.Slaves.Temp.Quantity = iSlavesHoldQuantity;
 			}
+		}
 		break;
 
-		case "Food":
-			if(!bAdd)
-			{
-				PChar.Plantation.Food.Temp.Quantity = 0;
-			}
-			else
-			{
-				int iFoodMaxStep = sti(PChar.Plantation.Food.MaxQuantity) - sti(PChar.Plantation.Food.Quantity);
-				int iFoodHoldQuantity = GetCargoGoods(PChar, GOOD_FOOD);
+	case "Food":
+		if (!bAdd)
+		{
+			PChar.Plantation.Food.Temp.Quantity = 0;
+		}
+		else
+		{
+			int iFoodMaxStep = sti(PChar.Plantation.Food.MaxQuantity) - sti(PChar.Plantation.Food.Quantity);
+			int iFoodHoldQuantity = GetCargoGoods(PChar, GOOD_FOOD);
 
-				PChar.Plantation.Food.Temp.Quantity = iFoodMaxStep;
+			PChar.Plantation.Food.Temp.Quantity = iFoodMaxStep;
 
-				if(sti(PChar.Plantation.Food.Temp.Quantity) > iFoodHoldQuantity)
-				{
-					PChar.Plantation.Food.Temp.Quantity = iFoodHoldQuantity;
-				}
+			if (sti(PChar.Plantation.Food.Temp.Quantity) > iFoodHoldQuantity)
+			{
+				PChar.Plantation.Food.Temp.Quantity = iFoodHoldQuantity;
 			}
+		}
 		break;
 
-		case "Medicament":
-			if(!bAdd)
-			{
-				PChar.Plantation.Medicament.Temp.Quantity = 0;
-			}
-			else
-			{
-				int iMedicamentMaxStep = sti(PChar.Plantation.Medicament.MaxQuantity) - sti(PChar.Plantation.Medicament.Quantity);
-				int iMedicamentHoldQuantity = GetCargoGoods(PChar, GOOD_MEDICAMENT);
+	case "Medicament":
+		if (!bAdd)
+		{
+			PChar.Plantation.Medicament.Temp.Quantity = 0;
+		}
+		else
+		{
+			int iMedicamentMaxStep = sti(PChar.Plantation.Medicament.MaxQuantity) - sti(PChar.Plantation.Medicament.Quantity);
+			int iMedicamentHoldQuantity = GetCargoGoods(PChar, GOOD_MEDICAMENT);
 
-				PChar.Plantation.Medicament.Temp.Quantity = iMedicamentMaxStep;
+			PChar.Plantation.Medicament.Temp.Quantity = iMedicamentMaxStep;
 
-				if(sti(PChar.Plantation.Medicament.Temp.Quantity) > iMedicamentHoldQuantity)
-				{
-					PChar.Plantation.Medicament.Temp.Quantity = iMedicamentHoldQuantity;
-				}
+			if (sti(PChar.Plantation.Medicament.Temp.Quantity) > iMedicamentHoldQuantity)
+			{
+				PChar.Plantation.Medicament.Temp.Quantity = iMedicamentHoldQuantity;
 			}
+		}
 		break;
 
-		case "Sugar":
-			if(!bAdd)
+	case "Sugar":
+		if (!bAdd)
+		{
+			PChar.Plantation.Sugar.Temp.Quantity = 0;
+		}
+		else
+		{
+			PChar.Plantation.Sugar.Temp.Quantity = sti(PChar.Plantation.Sugar.Quantity);
+
+			int iSugarCargo = GetGoodWeightByType(GOOD_SUGAR, sti(PChar.Plantation.Sugar.Temp.Quantity));
+
+			if (GetCargoFreeSpace(PChar) < 0)
 			{
 				PChar.Plantation.Sugar.Temp.Quantity = 0;
 			}
 			else
 			{
-				PChar.Plantation.Sugar.Temp.Quantity = sti(PChar.Plantation.Sugar.Quantity);
-
-				int iSugarCargo = GetGoodWeightByType(GOOD_SUGAR, sti(PChar.Plantation.Sugar.Temp.Quantity));
-
-				if(GetCargoFreeSpace(PChar) < 0)
+				if (iSugarCargo > GetCargoFreeSpace(PChar))
 				{
-					PChar.Plantation.Sugar.Temp.Quantity = 0;
-				}
-				else
-				{
-					if(iSugarCargo > GetCargoFreeSpace(PChar))
-					{
-						PChar.Plantation.Sugar.Temp.Quantity = GetCharacterFreeSpace(PChar, GOOD_SUGAR);
-					}
+					PChar.Plantation.Sugar.Temp.Quantity = GetCharacterFreeSpace(PChar, GOOD_SUGAR);
 				}
 			}
+		}
 		break;
 
-		case "Coffee":
-			if(!bAdd)
+	case "Coffee":
+		if (!bAdd)
+		{
+			PChar.Plantation.Coffee.Temp.Quantity = 0;
+		}
+		else
+		{
+			PChar.Plantation.Coffee.Temp.Quantity = sti(PChar.Plantation.Coffee.Quantity);
+
+			int iCoffeeCargo = GetGoodWeightByType(GOOD_COFFEE, sti(PChar.Plantation.Coffee.Temp.Quantity));
+
+			if (GetCargoFreeSpace(PChar) < 0)
 			{
 				PChar.Plantation.Coffee.Temp.Quantity = 0;
 			}
 			else
 			{
-				PChar.Plantation.Coffee.Temp.Quantity = sti(PChar.Plantation.Coffee.Quantity);
-
-				int iCoffeeCargo = GetGoodWeightByType(GOOD_COFFEE, sti(PChar.Plantation.Coffee.Temp.Quantity));
-
-				if(GetCargoFreeSpace(PChar) < 0)
+				if (iCoffeeCargo > GetCargoFreeSpace(PChar))
 				{
-					PChar.Plantation.Coffee.Temp.Quantity = 0;
-				}
-				else
-				{
-					if(iCoffeeCargo > GetCargoFreeSpace(PChar))
-					{
-						PChar.Plantation.Coffee.Temp.Quantity = GetCharacterFreeSpace(PChar, GOOD_COFFEE);
-					}
+					PChar.Plantation.Coffee.Temp.Quantity = GetCharacterFreeSpace(PChar, GOOD_COFFEE);
 				}
 			}
+		}
 		break;
 
-		case "Items":
-			if(!bAdd)
-			{
-				PChar.Plantation.Items.Temp.Quantity = 0;
-			}
-			else
-			{
-				int iItemsMaxStep = sti(PChar.Plantation.Items.MaxQuantity) - sti(PChar.Plantation.Items.Quantity);
-				int iItemsHoldQuantity = GetCargoGoods(PChar, GOOD_TOOLS);
+	case "Items":
+		if (!bAdd)
+		{
+			PChar.Plantation.Items.Temp.Quantity = 0;
+		}
+		else
+		{
+			int iItemsMaxStep = sti(PChar.Plantation.Items.MaxQuantity) - sti(PChar.Plantation.Items.Quantity);
+			int iItemsHoldQuantity = GetCargoGoods(PChar, GOOD_TOOLS);
 
-				PChar.Plantation.Items.Temp.Quantity = iItemsMaxStep;
+			PChar.Plantation.Items.Temp.Quantity = iItemsMaxStep;
 
-				if(sti(PChar.Plantation.Items.Temp.Quantity) > iItemsHoldQuantity)
-				{
-					PChar.Plantation.Items.Temp.Quantity = iItemsHoldQuantity;
-				}
+			if (sti(PChar.Plantation.Items.Temp.Quantity) > iItemsHoldQuantity)
+			{
+				PChar.Plantation.Items.Temp.Quantity = iItemsHoldQuantity;
 			}
+		}
 		break;
 	}
 
 	UptadeFields(sType);
 	PlantationInformation();
 }
-
 
 void GuardiansTempUptade()
 {
@@ -1102,15 +1107,15 @@ void GuardiansTempUptade()
 
 	PChar.Plantation.Guardians.Temp.Quantity = sti(GameInterface.HIRE_GUARDIANS_STRING.str);
 
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) > iGuardiansInShip)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) > iGuardiansInShip)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = iGuardiansInShip;
 	}
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) > iGuardiansMaxQuantity)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) > iGuardiansMaxQuantity)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = iGuardiansMaxQuantity;
 	}
-	if(sti(PChar.Plantation.Guardians.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Guardians.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = 0;
 	}
@@ -1126,15 +1131,15 @@ void SlavesTempUptade()
 
 	PChar.Plantation.Slaves.Temp.Quantity = sti(GameInterface.SLAVES_STRING.str);
 
-	if(sti(PChar.Plantation.Slaves.Temp.Quantity) > iHoldQuantity)
+	if (sti(PChar.Plantation.Slaves.Temp.Quantity) > iHoldQuantity)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = iHoldQuantity;
 	}
-	if(sti(PChar.Plantation.Slaves.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Slaves.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = iMaxStep;
 	}
-	if(sti(PChar.Plantation.Slaves.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Slaves.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
 	}
@@ -1150,15 +1155,15 @@ void FoodTempUptade()
 
 	PChar.Plantation.Food.Temp.Quantity = sti(GameInterface.FOOD_STRING.str);
 
-	if(sti(PChar.Plantation.Food.Temp.Quantity) > iHoldQuantity)
+	if (sti(PChar.Plantation.Food.Temp.Quantity) > iHoldQuantity)
 	{
 		PChar.Plantation.Food.Temp.Quantity = iHoldQuantity;
 	}
-	if(sti(PChar.Plantation.Food.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Food.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Food.Temp.Quantity = iMaxStep;
 	}
-	if(sti(PChar.Plantation.Food.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Food.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Food.Temp.Quantity = 0;
 	}
@@ -1174,15 +1179,15 @@ void MedicamentTempUptade()
 
 	PChar.Plantation.Medicament.Temp.Quantity = sti(GameInterface.MEDICAMENT_STRING.str);
 
-	if(sti(PChar.Plantation.Medicament.Temp.Quantity) > iHoldQuantity)
+	if (sti(PChar.Plantation.Medicament.Temp.Quantity) > iHoldQuantity)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = iHoldQuantity;
 	}
-	if(sti(PChar.Plantation.Medicament.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Medicament.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = iMaxStep;
 	}
-	if(sti(PChar.Plantation.Medicament.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Medicament.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = 0;
 	}
@@ -1195,7 +1200,7 @@ void SugarTempUptade()
 {
 	PChar.Plantation.Sugar.Temp.Quantity = sti(GameInterface.SUGAR_STRING.str);
 
-	if(sti(GameInterface.SUGAR_STRING.str) > sti(PChar.Plantation.Sugar.Quantity))
+	if (sti(GameInterface.SUGAR_STRING.str) > sti(PChar.Plantation.Sugar.Quantity))
 	{
 		GameInterface.SUGAR_STRING.str = sti(PChar.Plantation.Sugar.Quantity);
 		PChar.Plantation.Sugar.Temp.Quantity = sti(GameInterface.SUGAR_STRING.str);
@@ -1203,14 +1208,14 @@ void SugarTempUptade()
 
 	int iCargo = GetGoodWeightByType(GOOD_SUGAR, sti(GameInterface.SUGAR_STRING.str));
 
-	if(GetCargoFreeSpace(PChar) < 0)
+	if (GetCargoFreeSpace(PChar) < 0)
 	{
 		GameInterface.SUGAR_STRING.str = 0;
 		PChar.Plantation.Sugar.Temp.Quantity = sti(GameInterface.SUGAR_STRING.str);
 	}
 	else
 	{
-		if(iCargo > GetCargoFreeSpace(PChar))
+		if (iCargo > GetCargoFreeSpace(PChar))
 		{
 			GameInterface.SUGAR_STRING.str = GetCharacterFreeSpace(PChar, GOOD_SUGAR);
 			PChar.Plantation.Sugar.Temp.Quantity = sti(GameInterface.SUGAR_STRING.str);
@@ -1224,7 +1229,7 @@ void CoffeeTempUptade()
 {
 	PChar.Plantation.Coffee.Temp.Quantity = sti(GameInterface.COFFEE_STRING.str);
 
-	if(sti(GameInterface.COFFEE_STRING.str) > sti(PChar.Plantation.Coffee.Quantity))
+	if (sti(GameInterface.COFFEE_STRING.str) > sti(PChar.Plantation.Coffee.Quantity))
 	{
 		GameInterface.COFFEE_STRING.str = sti(PChar.Plantation.Coffee.Quantity);
 		PChar.Plantation.Coffee.Temp.Quantity = sti(GameInterface.COFFEE_STRING.str);
@@ -1232,14 +1237,14 @@ void CoffeeTempUptade()
 
 	int iCargo = GetGoodWeightByType(GOOD_COFFEE, sti(GameInterface.COFFEE_STRING.str));
 
-	if(GetCargoFreeSpace(PChar) <= 0)
+	if (GetCargoFreeSpace(PChar) <= 0)
 	{
 		GameInterface.COFFEE_STRING.str = 0;
 		PChar.Plantation.Coffee.Temp.Quantity = sti(GameInterface.COFFEE_STRING.str);
 	}
 	else
 	{
-		if(iCargo > GetCargoFreeSpace(PChar))
+		if (iCargo > GetCargoFreeSpace(PChar))
 		{
 			GameInterface.COFFEE_STRING.str = GetCharacterFreeSpace(PChar, GOOD_COFFEE);
 			PChar.Plantation.Coffee.Temp.Quantity = sti(GameInterface.COFFEE_STRING.str);
@@ -1256,17 +1261,17 @@ void ItemsTempUptade()
 
 	PChar.Plantation.Items.Temp.Quantity = sti(GameInterface.ITEMS_STRING.str);
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) > iMaxStep)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) > iMaxStep)
 	{
 		PChar.Plantation.Items.Temp.Quantity = iMaxStep;
 	}
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) > iHoldQuantity)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) > iHoldQuantity)
 	{
 		PChar.Plantation.Items.Temp.Quantity = iHoldQuantity;
 	}
 
-	if(sti(PChar.Plantation.Items.Temp.Quantity) <= 0)
+	if (sti(PChar.Plantation.Items.Temp.Quantity) <= 0)
 	{
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
@@ -1289,32 +1294,32 @@ void PlantationInformation()
 	string sPlantationGoods = "";
 	string sPlantationSlavesSpeed = "";
 
-	int iMoneyColor = argb(255,255,255,128);
+	int iMoneyColor = argb(255, 255, 255, 128);
 	int iColorSlavesSpeed = 0;
 
 	float fSpeed = PlantationGetExtractSpeed();
-	if(fSpeed >= 7.0)
+	if (fSpeed >= 7.0)
 	{
 		sPlantationSlavesSpeed = "Хорошая";
-		iColorSlavesSpeed = argb(255,128,255,128);
+		iColorSlavesSpeed = argb(255, 128, 255, 128);
 	}
-	if(fSpeed < 5.0 && fSpeed >= 2.0)
+	if (fSpeed < 5.0 && fSpeed >= 2.0)
 	{
 		sPlantationSlavesSpeed = "Нормальная";
-		iColorSlavesSpeed = argb(255,255,255,255);
+		iColorSlavesSpeed = argb(255, 255, 255, 255);
 	}
-	if(fSpeed < 2.0)
+	if (fSpeed < 2.0)
 	{
 		sPlantationSlavesSpeed = "Медленная";
-		iColorSlavesSpeed = argb(255,255,128,128);
+		iColorSlavesSpeed = argb(255, 255, 128, 128);
 	}
 
-	if(PChar.Plantation.Size == 1)
+	if (PChar.Plantation.Size == 1)
 	{
 		sPlantationSize = "Маленькая";
 		sPlantationGoods = "Сахар";
 	}
-	if(PChar.Plantation.Size == 2)
+	if (PChar.Plantation.Size == 2)
 	{
 		sPlantationSize = "Большая";
 		sPlantationGoods = "Сахар и Кофе";
@@ -1330,28 +1335,28 @@ void PlantationInformation()
 	// CreateImage("MedicamentHeader", "MAIN_ICONS", "skillborder", 279,406,531,438);
 	// CreateImage("ItemsHeader", "MAIN_ICONS", "skillborder", 14,393,266,424);
 
-	CreateString(true,"InfromationHeader", "Информация о плантации", FONT_CAPTION, COLOR_NORMAL, 138,40,SCRIPT_ALIGN_CENTER, 1.4);
-	CreateString(true,"SlavesHeader", "Рабы", FONT_CAPTION, COLOR_NORMAL, 400,39,SCRIPT_ALIGN_CENTER, 1.5);
-	CreateString(true,"SugarHeader", "Добыча сахара", FONT_CAPTION, COLOR_NORMAL, 665,39,SCRIPT_ALIGN_CENTER, 1.5);
-	CreateString(true,"CoffeeHeader", "Добыча кофе", FONT_CAPTION, COLOR_NORMAL, 665,329,SCRIPT_ALIGN_CENTER, 1.5);
-	CreateString(true,"GuardiansHeader", "Надсмотрщики", FONT_CAPTION, COLOR_NORMAL, 135,187,SCRIPT_ALIGN_CENTER, 1.5);
-	CreateString(true,"FoodHeader", "Провиант", FONT_CAPTION, COLOR_NORMAL, 400,223,SCRIPT_ALIGN_CENTER, 1.5);
-	CreateString(true,"MedicamentHeader", "Лекарства", FONT_CAPTION, COLOR_NORMAL, 400,407,SCRIPT_ALIGN_CENTER, 1.5);
-	CreateString(true,"InstrumentsHeader", "Инструменты", FONT_CAPTION, COLOR_NORMAL, 135,387,SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "InfromationHeader", "Информация о плантации", FONT_CAPTION, COLOR_NORMAL, 138, 40, SCRIPT_ALIGN_CENTER, 1.4);
+	CreateString(true, "SlavesHeader", "Рабы", FONT_CAPTION, COLOR_NORMAL, 400, 39, SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "SugarHeader", "Добыча сахара", FONT_CAPTION, COLOR_NORMAL, 665, 39, SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "CoffeeHeader", "Добыча кофе", FONT_CAPTION, COLOR_NORMAL, 665, 329, SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "GuardiansHeader", "Надсмотрщики", FONT_CAPTION, COLOR_NORMAL, 135, 187, SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "FoodHeader", "Провиант", FONT_CAPTION, COLOR_NORMAL, 400, 223, SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "MedicamentHeader", "Лекарства", FONT_CAPTION, COLOR_NORMAL, 400, 407, SCRIPT_ALIGN_CENTER, 1.5);
+	CreateString(true, "InstrumentsHeader", "Инструменты", FONT_CAPTION, COLOR_NORMAL, 135, 387, SCRIPT_ALIGN_CENTER, 1.5);
 
 	//CreateImage("CharacterMoney", "MAIN_ICONS", "skillborder", 279,568,531,587);
 	//CreateString(true,"CharacterMoney", "Ваше золото: " + sti(PChar.money), FONT_NORMAL, iMoneyColor, 400,570,SCRIPT_ALIGN_CENTER, 0.9);
 
 	//-----------------------------------------------------------------------------------------------------------------
 
-	CreateString(true,"PlantationSize", "Размер плантации: ", FONT_NORMAL, COLOR_NORMAL, 20,90,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"PlantationSizeContinue", sPlantationSize, FONT_NORMAL, COLOR_NORMAL, 170,90,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "PlantationSize", "Размер плантации: ", FONT_NORMAL, COLOR_NORMAL, 20, 90, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "PlantationSizeContinue", sPlantationSize, FONT_NORMAL, COLOR_NORMAL, 170, 90, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"PlantationGoods", "Добывает: ", FONT_NORMAL, COLOR_NORMAL, 20,120,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"PlantationGoodsContinue", sPlantationGoods, FONT_NORMAL, COLOR_NORMAL, 170,120,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "PlantationGoods", "Добывает: ", FONT_NORMAL, COLOR_NORMAL, 20, 120, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "PlantationGoodsContinue", sPlantationGoods, FONT_NORMAL, COLOR_NORMAL, 170, 120, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"PlantationSlavesSpeed", "Скорость добычи: ", FONT_NORMAL, COLOR_NORMAL, 20,150,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"PlantationSlavesSpeedContinue", sPlantationSlavesSpeed, FONT_NORMAL, iColorSlavesSpeed, 170,150,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "PlantationSlavesSpeed", "Скорость добычи: ", FONT_NORMAL, COLOR_NORMAL, 20, 150, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "PlantationSlavesSpeedContinue", sPlantationSlavesSpeed, FONT_NORMAL, iColorSlavesSpeed, 170, 150, SCRIPT_ALIGN_LEFT, 1.0);
 
 	/*
 	CreateString(true,"PlantationSlavesHealth", "Состояние рабов: ", FONT_NORMAL, COLOR_NORMAL, 20,155,SCRIPT_ALIGN_LEFT, 1.0);
@@ -1390,14 +1395,14 @@ void PlantationInformation()
 
 	GameInterface.HIRE_GUARDIANS_STRING.str = sti(PChar.Plantation.Guardians.Temp.Quantity);
 
-	CreateString(true,"GuardiansQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 20,230,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"GuardiansQuantityContinue", iGuardiansQuantity, FONT_NORMAL, COLOR_NORMAL, 170,230,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "GuardiansQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 20, 230, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "GuardiansQuantityContinue", iGuardiansQuantity, FONT_NORMAL, COLOR_NORMAL, 170, 230, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"GuardiansMaxQuantity", "Макс. количество: ", FONT_NORMAL, COLOR_NORMAL, 20,250,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"GuardiansMaxQuantityContinue", iGuardiansMaxQuantity, FONT_NORMAL, COLOR_NORMAL, 170,250,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "GuardiansMaxQuantity", "Макс. количество: ", FONT_NORMAL, COLOR_NORMAL, 20, 250, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "GuardiansMaxQuantityContinue", iGuardiansMaxQuantity, FONT_NORMAL, COLOR_NORMAL, 170, 250, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"GuardiansInShip", "Команды на корабле: ", FONT_NORMAL, COLOR_NORMAL, 20,270,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"GuardiansInShipContinue", "" + iGuardiansInShip, FONT_NORMAL, COLOR_NORMAL, 170,270,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "GuardiansInShip", "Команды на корабле: ", FONT_NORMAL, COLOR_NORMAL, 20, 270, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "GuardiansInShipContinue", "" + iGuardiansInShip, FONT_NORMAL, COLOR_NORMAL, 170, 270, SCRIPT_ALIGN_LEFT, 1.0);
 
 	//CreateImage("GuardiansTransfer", "MAIN_ICONS", "skillborder", 80,510,200,542);
 	//CreateString(true,"GuardiansHireQuantityTransfer", "" + iGuardiansTempQuantity, FONT_CAPTION, COLOR_NORMAL, 140,509,SCRIPT_ALIGN_CENTER, 1.5);
@@ -1411,14 +1416,14 @@ void PlantationInformation()
 
 	GameInterface.ITEMS_STRING.str = sti(PChar.Plantation.Items.Temp.Quantity);
 
-	CreateString(true,"ItemsQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 20,435,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"ItemsQuantityContinue", iItemsQuantity, FONT_NORMAL, COLOR_NORMAL, 170,435,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "ItemsQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 20, 435, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "ItemsQuantityContinue", iItemsQuantity, FONT_NORMAL, COLOR_NORMAL, 170, 435, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"ItemsMaxQuantity", "Макс. количество: ", FONT_NORMAL, COLOR_NORMAL, 20,455,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"ItemsMaxQuantityContinue", iItemsMaxQuantity, FONT_NORMAL, COLOR_NORMAL, 170,455,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "ItemsMaxQuantity", "Макс. количество: ", FONT_NORMAL, COLOR_NORMAL, 20, 455, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "ItemsMaxQuantityContinue", iItemsMaxQuantity, FONT_NORMAL, COLOR_NORMAL, 170, 455, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"ItemsInShip", "На корабле: ", FONT_NORMAL, COLOR_NORMAL, 20,475,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"ItemsInShipContinue", "" + iItemsInShip, FONT_NORMAL, COLOR_NORMAL, 170,475,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "ItemsInShip", "На корабле: ", FONT_NORMAL, COLOR_NORMAL, 20, 475, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "ItemsInShipContinue", "" + iItemsInShip, FONT_NORMAL, COLOR_NORMAL, 170, 475, SCRIPT_ALIGN_LEFT, 1.0);
 
 	//-----------------------------------------------------------------------------------------------------------------
 
@@ -1428,14 +1433,14 @@ void PlantationInformation()
 
 	GameInterface.SLAVES_STRING.str = sti(PChar.Plantation.Slaves.Temp.Quantity);
 
-	CreateString(true,"SlavesQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 285,80,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"SlavesQuantityContinue", "" + iSlavesQuantity, FONT_NORMAL, COLOR_NORMAL, 465,80,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "SlavesQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 285, 80, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "SlavesQuantityContinue", "" + iSlavesQuantity, FONT_NORMAL, COLOR_NORMAL, 465, 80, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"SlavesMaxQuantity", "Макс. количество: ", FONT_NORMAL, COLOR_NORMAL, 285,100,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"SlavesMaxQuantityContinue", "" + iSlavesMaxQuantity, FONT_NORMAL, COLOR_NORMAL, 465,100,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "SlavesMaxQuantity", "Макс. количество: ", FONT_NORMAL, COLOR_NORMAL, 285, 100, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "SlavesMaxQuantityContinue", "" + iSlavesMaxQuantity, FONT_NORMAL, COLOR_NORMAL, 465, 100, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"SlavesInHold", "Рабов в трюме: ", FONT_NORMAL, COLOR_NORMAL, 285,120,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"SlavesInHoldContinue", "" + GetCargoGoods(PChar, GOOD_SLAVES), FONT_NORMAL, COLOR_NORMAL, 465,120,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "SlavesInHold", "Рабов в трюме: ", FONT_NORMAL, COLOR_NORMAL, 285, 120, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "SlavesInHoldContinue", "" + GetCargoGoods(PChar, GOOD_SLAVES), FONT_NORMAL, COLOR_NORMAL, 465, 120, SCRIPT_ALIGN_LEFT, 1.0);
 
 	//CreateImage("SlavesTransfer", "MAIN_ICONS", "skillborder", 340,145,470,177);
 	//CreateString(true,"SlavesQuantityTransfer", "" + iSlavesTempQuantity, FONT_CAPTION, COLOR_NORMAL, 405,145,SCRIPT_ALIGN_CENTER, 1.5);
@@ -1451,13 +1456,13 @@ void PlantationInformation()
 
 	string sFoodDays = "Провианта на плантации на " + iFoodDays + " нед.";
 
-	CreateString(true,"FoodQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 285,260,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"FoodQuantityContinue", "" + iFoodQuantity + "/" + iFoodMax, FONT_NORMAL, COLOR_NORMAL, 465,260,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "FoodQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 285, 260, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "FoodQuantityContinue", "" + iFoodQuantity + "/" + iFoodMax, FONT_NORMAL, COLOR_NORMAL, 465, 260, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"FoodInHold", "Провианта в трюме: ", FONT_NORMAL, COLOR_NORMAL, 285,280,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"FoodInHoldContinue", "" + GetCargoGoods(PChar, GOOD_FOOD), FONT_NORMAL, COLOR_NORMAL, 465,280,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "FoodInHold", "Провианта в трюме: ", FONT_NORMAL, COLOR_NORMAL, 285, 280, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "FoodInHoldContinue", "" + GetCargoGoods(PChar, GOOD_FOOD), FONT_NORMAL, COLOR_NORMAL, 465, 280, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"FoodDays", sFoodDays, FONT_NORMAL, COLOR_NORMAL, 285,300,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "FoodDays", sFoodDays, FONT_NORMAL, COLOR_NORMAL, 285, 300, SCRIPT_ALIGN_LEFT, 1.0);
 
 	//CreateImage("FoodTransfer", "MAIN_ICONS", "skillborder", 340,322,470,354);
 	//CreateString(true,"FoodQuantityTransfer", "" + iFoodTempQuantity, FONT_CAPTION, COLOR_NORMAL, 405,320,SCRIPT_ALIGN_CENTER, 1.5);
@@ -1473,38 +1478,38 @@ void PlantationInformation()
 
 	string sMedicamentDays = "Лекарств на плантации на " + iMedicamentDays + " нед.";
 
-	CreateString(true,"MedicamentQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 285,440,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"MedicamentQuantityContinue", "" + iMedicamentQuantity + "/" + iMedicamentMax, FONT_NORMAL, COLOR_NORMAL, 465,440,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "MedicamentQuantity", "Количество: ", FONT_NORMAL, COLOR_NORMAL, 285, 440, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "MedicamentQuantityContinue", "" + iMedicamentQuantity + "/" + iMedicamentMax, FONT_NORMAL, COLOR_NORMAL, 465, 440, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"MedicamentInHold", "Лекарств в трюме: ", FONT_NORMAL, COLOR_NORMAL, 285,460,SCRIPT_ALIGN_LEFT, 1.0);
-	CreateString(true,"MedicamentInHoldContinue", "" + GetCargoGoods(PChar, GOOD_MEDICAMENT), FONT_NORMAL, COLOR_NORMAL, 465,460,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "MedicamentInHold", "Лекарств в трюме: ", FONT_NORMAL, COLOR_NORMAL, 285, 460, SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "MedicamentInHoldContinue", "" + GetCargoGoods(PChar, GOOD_MEDICAMENT), FONT_NORMAL, COLOR_NORMAL, 465, 460, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateString(true,"MedicamentDays", sMedicamentDays, FONT_NORMAL, COLOR_NORMAL, 285,480,SCRIPT_ALIGN_LEFT, 1.0);
+	CreateString(true, "MedicamentDays", sMedicamentDays, FONT_NORMAL, COLOR_NORMAL, 285, 480, SCRIPT_ALIGN_LEFT, 1.0);
 
 	//CreateImage("MedicamentTransfer", "MAIN_ICONS", "skillborder", 340,495,470,527);
 	//CreateString(true,"MedicamentQuantityTransfer", "" + iMedicamentTempQuantity, FONT_CAPTION, COLOR_NORMAL, 405,495,SCRIPT_ALIGN_CENTER, 1.5);
 
 	//-----------------------------------------------------------------------------------------------------------------
 
-	int iSugarWeightColor = argb(255,255,128,128);
-	int iCoffeeWeightColor = argb(255,255,128,128);
+	int iSugarWeightColor = argb(255, 255, 128, 128);
+	int iCoffeeWeightColor = argb(255, 255, 128, 128);
 
-	int iSugarSpaceColor = argb(255,128,255,128);
-	int iCoffeeSpaceColor = argb(255,128,255,128);
+	int iSugarSpaceColor = argb(255, 128, 255, 128);
+	int iCoffeeSpaceColor = argb(255, 128, 255, 128);
 
-	if(sti(PChar.Plantation.Sugar.Temp.Quantity) == 0)
+	if (sti(PChar.Plantation.Sugar.Temp.Quantity) == 0)
 	{
-		iSugarWeightColor = argb(255,255,255,255);
+		iSugarWeightColor = argb(255, 255, 255, 255);
 	}
-	if(sti(PChar.Plantation.Coffee.Temp.Quantity) == 0)
+	if (sti(PChar.Plantation.Coffee.Temp.Quantity) == 0)
 	{
-		iCoffeeWeightColor = argb(255,255,255,255);
+		iCoffeeWeightColor = argb(255, 255, 255, 255);
 	}
 
-	if(GetCargoFreeSpace(PChar) <= 1)
+	if (GetCargoFreeSpace(PChar) <= 1)
 	{
-		iSugarSpaceColor = argb(255,255,128,128);
-		iCoffeeSpaceColor = argb(255,255,128,128);
+		iSugarSpaceColor = argb(255, 255, 128, 128);
+		iCoffeeSpaceColor = argb(255, 255, 128, 128);
 	}
 
 	int iMaxSugarQuantity = sti(PChar.Plantation.Sugar.MaxQuantity);
@@ -1512,30 +1517,29 @@ void PlantationInformation()
 
 	//-----------------------------------------------------------------------------------------------------------------
 
-	CreateImage("SugarPicture", "GOODS", "Sugar", 550,78,582,110);
+	CreateImage("SugarPicture", "GOODS", "Sugar", 550, 78, 582, 110);
 
 	GameInterface.SUGAR_STRING.str = sti(PChar.Plantation.Sugar.Temp.Quantity);
 
 	int iSugarQuantity = sti(PChar.Plantation.Sugar.Quantity);
 	int iSugarTempQuantity = sti(PChar.Plantation.Sugar.Temp.Quantity);
 
-	CreateString(true,"SugarQuantity", iSugarQuantity + "/" + iMaxSugarQuantity, FONT_BOLD_NUMBERS, COLOR_MONEY, 610,83,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "SugarQuantity", iSugarQuantity + "/" + iMaxSugarQuantity, FONT_BOLD_NUMBERS, COLOR_MONEY, 610, 83, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateImage("SugarWeight", "ICONS", "weight icon", 550,114,582,146);
+	CreateImage("SugarWeight", "ICONS", "weight icon", 550, 114, 582, 146);
 	int iSugarCargo = GetGoodWeightByType(GOOD_SUGAR, iSugarTempQuantity);
 
-	CreateString(true,"SugarWeight", iSugarCargo, FONT_BOLD_NUMBERS, iSugarWeightColor, 610,120,SCRIPT_ALIGN_LEFT,1.0);
+	CreateString(true, "SugarWeight", iSugarCargo, FONT_BOLD_NUMBERS, iSugarWeightColor, 610, 120, SCRIPT_ALIGN_LEFT, 1.0);
 
-	CreateImage("Sugar_ShipCapacity", "ICONS", "ship capacity icon", 552,150,584,182);
-	CreateString(true,"Sugar_ShipCapacity", GetCargoFreeSpace(PChar) + "/" +  GetCargoMaxSpace(PChar), FONT_BOLD_NUMBERS, iSugarSpaceColor, 610,157,SCRIPT_ALIGN_LEFT,1.0);
-
+	CreateImage("Sugar_ShipCapacity", "ICONS", "ship capacity icon", 552, 150, 584, 182);
+	CreateString(true, "Sugar_ShipCapacity", GetCargoFreeSpace(PChar) + "/" + GetCargoMaxSpace(PChar), FONT_BOLD_NUMBERS, iSugarSpaceColor, 610, 157, SCRIPT_ALIGN_LEFT, 1.0);
 
 	//CreateImage("SugarTransfer", "MAIN_ICONS", "skillborder", 600,173,730,205);
 	//CreateString(true,"SugarQuantityTransfer", "" + iSugarTempQuantity, FONT_CAPTION, COLOR_NORMAL, 665,172,SCRIPT_ALIGN_CENTER, 1.5);
 
 	//-----------------------------------------------------------------------------------------------------------------
 
-	if(PChar.Plantation.Size == 2)
+	if (PChar.Plantation.Size == 2)
 	{
 		SetNodeUsing("BORDERS_2", true);
 
@@ -1544,18 +1548,17 @@ void PlantationInformation()
 		int iCoffeeQuantity = sti(PChar.Plantation.Coffee.Quantity);
 		int iCoffeeTempQuantity = sti(PChar.Plantation.Coffee.Temp.Quantity);
 
-		CreateImage("CoffeePicture", "GOODS", "Coffee", 550,368,582,400);
+		CreateImage("CoffeePicture", "GOODS", "Coffee", 550, 368, 582, 400);
 
-		CreateString(true,"CoffeeQuantity", iCoffeeQuantity + "/" + iMaxCoffeeQuantity, FONT_BOLD_NUMBERS, COLOR_MONEY, 610,375,SCRIPT_ALIGN_LEFT,1.0);
+		CreateString(true, "CoffeeQuantity", iCoffeeQuantity + "/" + iMaxCoffeeQuantity, FONT_BOLD_NUMBERS, COLOR_MONEY, 610, 375, SCRIPT_ALIGN_LEFT, 1.0);
 
-		CreateImage("CoffeeWeight", "ICONS", "weight icon", 550,405,582,437);
+		CreateImage("CoffeeWeight", "ICONS", "weight icon", 550, 405, 582, 437);
 		int iCoffeeCargo = GetGoodWeightByType(GOOD_COFFEE, iCoffeeTempQuantity);
 
-		CreateString(true,"CoffeeWeight", iCoffeeCargo, FONT_BOLD_NUMBERS, iCoffeeWeightColor, 610,412,SCRIPT_ALIGN_LEFT,1.0);
+		CreateString(true, "CoffeeWeight", iCoffeeCargo, FONT_BOLD_NUMBERS, iCoffeeWeightColor, 610, 412, SCRIPT_ALIGN_LEFT, 1.0);
 
-		CreateImage("Coffee_ShipCapacity", "ICONS", "ship capacity icon", 552,441,584,473);
-		CreateString(true,"Coffee_ShipCapacity", GetCargoFreeSpace(PChar) + "/" +  GetCargoMaxSpace(PChar), FONT_BOLD_NUMBERS, iCoffeeSpaceColor, 610,448,SCRIPT_ALIGN_LEFT,1.0);
-
+		CreateImage("Coffee_ShipCapacity", "ICONS", "ship capacity icon", 552, 441, 584, 473);
+		CreateString(true, "Coffee_ShipCapacity", GetCargoFreeSpace(PChar) + "/" + GetCargoMaxSpace(PChar), FONT_BOLD_NUMBERS, iCoffeeSpaceColor, 610, 448, SCRIPT_ALIGN_LEFT, 1.0);
 	}
 	else
 	{
@@ -1654,11 +1657,11 @@ int GetGoodsDaysForSlaves(bool bFood)
 	int iQuantity = 0;
 	int iSlavesQuantity = sti(PChar.Plantation.Slaves.Quantity);
 
-	if(bFood)
+	if (bFood)
 	{
 		int iFood = sti(PChar.Plantation.Food.Quantity);
 
-		if(iFood == 0)
+		if (iFood == 0)
 		{
 			iQuantity = 0;
 			return iQuantity;
@@ -1670,7 +1673,7 @@ int GetGoodsDaysForSlaves(bool bFood)
 	{
 		int iMedicament = sti(PChar.Plantation.Medicament.Quantity);
 
-		if(iMedicament == 0)
+		if (iMedicament == 0)
 		{
 			iQuantity = 0;
 			return iQuantity;
@@ -1679,7 +1682,7 @@ int GetGoodsDaysForSlaves(bool bFood)
 		iQuantity = iMedicament / (iSlavesQuantity / 8);
 	}
 
-	if(iQuantity < 0)
+	if (iQuantity < 0)
 	{
 		iQuantity = 0;
 	}
@@ -1697,7 +1700,7 @@ void UptadeFields(string sType)
 	int iCoffeeTempQuantity = sti(PChar.Plantation.Coffee.Temp.Quantity);
 	int iItemsTempQuantity = sti(PChar.Plantation.Items.Temp.Quantity);
 
-	if(sType == "Guardians")
+	if (sType == "Guardians")
 	{
 		PChar.Plantation.Guardians.Temp.Quantity = sti(PChar.Plantation.Guardians.Temp.Quantity);
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1708,7 +1711,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sType == "Slaves")
+	if (sType == "Slaves")
 	{
 		PChar.Plantation.Slaves.Temp.Quantity = sti(PChar.Plantation.Slaves.Temp.Quantity);
 		PChar.Plantation.Guardians.Temp.Quantity = 0;
@@ -1719,7 +1722,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sType == "Food")
+	if (sType == "Food")
 	{
 		PChar.Plantation.Food.Temp.Quantity = sti(PChar.Plantation.Food.Temp.Quantity);
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1730,7 +1733,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sType == "Medicament")
+	if (sType == "Medicament")
 	{
 		PChar.Plantation.Medicament.Temp.Quantity = sti(PChar.Plantation.Medicament.Temp.Quantity);
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1741,7 +1744,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sType == "Sugar")
+	if (sType == "Sugar")
 	{
 		PChar.Plantation.Sugar.Temp.Quantity = sti(PChar.Plantation.Sugar.Temp.Quantity);
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1752,7 +1755,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sType == "Coffee")
+	if (sType == "Coffee")
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = sti(PChar.Plantation.Coffee.Temp.Quantity);
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1763,7 +1766,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Items.Temp.Quantity = 0;
 	}
 
-	if(sType == "Items")
+	if (sType == "Items")
 	{
 		PChar.Plantation.Items.Temp.Quantity = sti(PChar.Plantation.Items.Temp.Quantity);
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1773,7 +1776,7 @@ void UptadeFields(string sType)
 		PChar.Plantation.Coffee.Temp.Quantity = 0;
 	}
 
-	if(sType == "All")
+	if (sType == "All")
 	{
 		PChar.Plantation.Coffee.Temp.Quantity = 0;
 		PChar.Plantation.Slaves.Temp.Quantity = 0;
@@ -1797,7 +1800,7 @@ void IsEnabledButtons()
 	int iCoffeeTempQuantity = sti(PChar.Plantation.Coffee.Temp.Quantity);
 	int iItemsTempQuantity = sti(PChar.Plantation.Items.Temp.Quantity);
 
-	if(iItemsTempQuantity == 0)
+	if (iItemsTempQuantity == 0)
 	{
 		SetSelectable("ITEMS_ADD", false);
 	}
@@ -1806,7 +1809,7 @@ void IsEnabledButtons()
 		SetSelectable("ITEMS_ADD", true);
 	}
 
-	if(iGuardiansTempQuantity == 0)
+	if (iGuardiansTempQuantity == 0)
 	{
 		SetSelectable("GUARDIANS_HIRE", false);
 	}
@@ -1815,7 +1818,7 @@ void IsEnabledButtons()
 		SetSelectable("GUARDIANS_HIRE", true);
 	}
 
-	if(iSlavesTempQuantity == 0)
+	if (iSlavesTempQuantity == 0)
 	{
 		SetSelectable("SLAVES_TRANSFER", false);
 	}
@@ -1824,7 +1827,7 @@ void IsEnabledButtons()
 		SetSelectable("SLAVES_TRANSFER", true);
 	}
 
-	if(iFoodTempQuantity == 0)
+	if (iFoodTempQuantity == 0)
 	{
 		SetSelectable("FOOD_TRANSFER", false);
 	}
@@ -1833,7 +1836,7 @@ void IsEnabledButtons()
 		SetSelectable("FOOD_TRANSFER", true);
 	}
 
-	if(iMedicamentTempQuantity == 0)
+	if (iMedicamentTempQuantity == 0)
 	{
 		SetSelectable("MEDICAMENT_TRANSFER", false);
 	}
@@ -1842,7 +1845,7 @@ void IsEnabledButtons()
 		SetSelectable("MEDICAMENT_TRANSFER", true);
 	}
 
-	if(iSugarTempQuantity == 0)
+	if (iSugarTempQuantity == 0)
 	{
 		SetSelectable("SUGAR_GIVE", false);
 	}
@@ -1851,7 +1854,7 @@ void IsEnabledButtons()
 		SetSelectable("SUGAR_GIVE", true);
 	}
 
-	if(iCoffeeTempQuantity == 0)
+	if (iCoffeeTempQuantity == 0)
 	{
 		SetSelectable("COFFEE_GIVE", false);
 	}

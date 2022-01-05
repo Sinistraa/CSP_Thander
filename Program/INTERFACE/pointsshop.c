@@ -3,8 +3,9 @@ int item_price, iCurGoodsIdx;
 float fWeight;
 float rate = 1500.0;
 
-void InitInterface(string iniName) {
-    StartAboveForm(true);
+void InitInterface(string iniName)
+{
+	StartAboveForm(true);
 
 	GameInterface.TABLE_LIST.hr.td1.str = "Наименование предметов";
 	GameInterface.TABLE_LIST.hr.td1.scale = 0.9;
@@ -44,10 +45,12 @@ void InitInterface(string iniName) {
 	SetFormatedText("STORECAPTION1", "Обмен очков достижений");
 }
 
-void TransactionOK() {
+void TransactionOK()
+{
 	confirmChangeQTY_EDIT();
 
-	if (sti(GameInterface.qty_edit.str) > 0) {
+	if (sti(GameInterface.qty_edit.str) > 0)
+	{
 		// PlaySound("Craft\ui_enchanting_learneffect_01.WAV");
 		Log_Info("Потрачено " + (item_price * sti(GameInterface.qty_edit.str)) + " очков достижений");
 		pchar.ach_points = sti(pchar.ach_points) - item_price * sti(GameInterface.qty_edit.str);
@@ -62,59 +65,64 @@ void ChangePosTable() {}
 
 void ProcessFrame() {}
 
-void OnTableClick() {
+void OnTableClick()
+{
 	string sControl = GetEventData();
 	int iRow = GetEventData();
 	int iColumn = GetEventData();
 	string sRow = "tr" + (iRow + 1);
 
-    Table_UpdateWindow(sControl);
+	Table_UpdateWindow(sControl);
 }
 
-void EndTooltip() {
+void EndTooltip()
+{
 	CloseTooltip();
-    GameInterface.qty_edit.str = 0;
+	GameInterface.qty_edit.str = 0;
 
 	SetFormatedText("OUR_GOLD", "Очков достижений: " + sti(pchar.ach_points));
 	SetCurrentNode("TABLE_LIST");
 
- 	XI_WindowDisable("QTY_WINDOW", true);
+	XI_WindowDisable("QTY_WINDOW", true);
 	XI_WindowShow("QTY_WINDOW", false);
 
 	bShowChangeWin = false;
 }
 
-void CS_TableSelectChange() {
+void CS_TableSelectChange()
+{
 	string sControl = GetEventData();
 	int iSelected = GetEventData();
-    string sRow = "tr" + (iSelected);
+	string sRow = "tr" + (iSelected);
 
 	SetFormatedText("OUR_GOLD", "Очков достижений: " + sti(pchar.ach_points));
-    ShowGoodsInfo(sti(GameInterface.TABLE_LIST.(sRow).index));
+	ShowGoodsInfo(sti(GameInterface.TABLE_LIST.(sRow).index));
 }
 
-void ShowGoodsInfo(int iGoodIndex) {
+void ShowGoodsInfo(int iGoodIndex)
+{
 	string GoodName = Items[iGoodIndex].name;
-	ref    arItm = &Items[iGoodIndex];
-	int    lngFileID = LanguageOpenFile("ItemsDescribe.txt");
+	ref arItm = &Items[iGoodIndex];
+	int lngFileID = LanguageOpenFile("ItemsDescribe.txt");
 	string sHeader = LanguageConvertString(lngFileID, GoodName);
 
-    iCurGoodsIdx = iGoodIndex;
+	iCurGoodsIdx = iGoodIndex;
 
-    string describeStr = GetItemDescribe(FindItem(Items[iGoodIndex].id));
+	string describeStr = GetItemDescribe(FindItem(Items[iGoodIndex].id));
 	fWeight = stf(Items[iGoodIndex].weight);
 
-    GameInterface.qty_edit.str = 0;
+	GameInterface.qty_edit.str = 0;
 	item_price = GetItemPrice(iGoodIndex);
 	ChangeQTY_EDIT();
 
 	SetNewGroupPicture("QTY_GOODS_PICTURE", Items[iCurGoodsIdx].picTexture, "itm" + Items[iCurGoodsIdx].picIndex);
-    SetFormatedText("QTY_CAPTION", sHeader);
-    SetFormatedText("QTY_GOODS_INFO", describeStr);
+	SetFormatedText("QTY_CAPTION", sHeader);
+	SetFormatedText("QTY_GOODS_INFO", describeStr);
 	LanguageCloseFile(lngFileID);
 }
 
-void AddToTable() {
+void AddToTable()
+{
 	int n = 1;
 	int i = 0;
 	int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
@@ -123,10 +131,12 @@ void AddToTable() {
 
 	Table_Clear("TABLE_LIST", false, true, false);
 
-	for (i = 0; i < ITEMS_QUANTITY; i++) {
-        row = "tr" + n;
+	for (i = 0; i < ITEMS_QUANTITY; i++)
+	{
+		row = "tr" + n;
 
-		if (CheckAttribute(&Items[i], "points_shop")) {
+		if (CheckAttribute(&Items[i], "points_shop"))
+		{
 			GameInterface.TABLE_LIST.(row).td1.icon.group = Items[i].picTexture;
 			GameInterface.TABLE_LIST.(row).td1.icon.image = "itm" + Items[i].picIndex;
 			GameInterface.TABLE_LIST.(row).td1.icon.offset = "-2,0";
@@ -148,7 +158,8 @@ void AddToTable() {
 	LanguageCloseFile(idLngFile);
 }
 
-int GetItemPrice(int itmIdx) {
+int GetItemPrice(int itmIdx)
+{
 	int itmprice = 0;
 
 	if (itmIdx < 0 || itmIdx > ITEMS_QUANTITY)
@@ -160,105 +171,120 @@ int GetItemPrice(int itmIdx) {
 	return itmprice;
 }
 
-void ProcessBreakExit() {
+void ProcessBreakExit()
+{
 	IDoExit(RC_INTERFACE_FOOD_INFO_EXIT);
 }
 
-void ProcessCancelExit() {
+void ProcessCancelExit()
+{
 	if (bShowChangeWin)
 		EndTooltip();
-	else IDoExit(RC_INTERFACE_FOOD_INFO_EXIT);
+	else
+		IDoExit(RC_INTERFACE_FOOD_INFO_EXIT);
 }
 
-void ProcCommand() {
+void ProcCommand()
+{
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	switch(nodName) {
-		case "QTY_OK_BUTTON":
-			if(comName=="leftstep")
-				ADD_BUTTON();
+	switch (nodName)
+	{
+	case "QTY_OK_BUTTON":
+		if (comName == "leftstep")
+			ADD_BUTTON();
 
-			if(comName=="rightstep")
-				REMOVE_BUTTON();
-			break;
+		if (comName == "rightstep")
+			REMOVE_BUTTON();
+		break;
 
-		case "QTY_CANCEL_BUTTON":
-			if(comName=="leftstep")
-				ADD_BUTTON();
+	case "QTY_CANCEL_BUTTON":
+		if (comName == "leftstep")
+			ADD_BUTTON();
 
-			if(comName=="rightstep")
-				REMOVE_BUTTON();
-			break;
+		if (comName == "rightstep")
+			REMOVE_BUTTON();
+		break;
 
-		case "TABLE_LIST":
-			if(comName=="leftstep")
-				ADD_BUTTON();
+	case "TABLE_LIST":
+		if (comName == "leftstep")
+			ADD_BUTTON();
 
-			if(comName=="rightstep")
-				REMOVE_BUTTON();
-			break;
+		if (comName == "rightstep")
+			REMOVE_BUTTON();
+		break;
 	}
 }
 
-void DoPostExit() {
+void DoPostExit()
+{
 	int exitCode = GetEventData();
 	IDoExit(exitCode);
 }
 
-void IDoExit(int exitCode) {
+void IDoExit(int exitCode)
+{
 	CheckAndSetOverloadMode(GetMainCharacter());
 	EndAboveForm(true);
 
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("evntDoPostExit","DoPostExit");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("evntDoPostExit", "DoPostExit");
 
 	DelEventHandler("OnTableClick", "OnTableClick");
-	DelEventHandler("MouseRClickUP","EndTooltip");
+	DelEventHandler("MouseRClickUP", "EndTooltip");
 	DelEventHandler("ShowItemInfo", "ShowItemInfo");
 	DelEventHandler("TableSelectChange", "CS_TableSelectChange");
-	DelEventHandler("frame","ProcessFrame");
+	DelEventHandler("frame", "ProcessFrame");
 	DelEventHandler("TransactionOK", "TransactionOK");
 	DelEventHandler("confirmChangeQTY_EDIT", "confirmChangeQTY_EDIT");
 
-	DelEventHandler("ADD_BUTTON","ADD_BUTTON");
+	DelEventHandler("ADD_BUTTON", "ADD_BUTTON");
 	DelEventHandler("REMOVE_BUTTON", "REMOVE_BUTTON");
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
 }
 
-void NextFrameRefreshTable() {
+void NextFrameRefreshTable()
+{
 	SetEventHandler("frame", "RefreshTableByFrameEvent", 0);
 }
 
-void RefreshTableByFrameEvent() {
+void RefreshTableByFrameEvent()
+{
 	DelEventHandler("frame", "RefreshTableByFrameEvent");
-	SendMessage(&GameInterface, "lsl", MSG_INTERFACE_MSG_TO_NODE,"TABLE_LIST", 0);
+	SendMessage(&GameInterface, "lsl", MSG_INTERFACE_MSG_TO_NODE, "TABLE_LIST", 0);
 }
 
-void REMOVE_BUTTON() {
-    if (!bShowChangeWin)
+void REMOVE_BUTTON()
+{
+	if (!bShowChangeWin)
 		return;
 
 	GameInterface.qty_edit.str = (sti(GameInterface.qty_edit.str) + 1);
 	ChangeQTY_EDIT();
 }
 
-void ADD_BUTTON() {
-    if (!bShowChangeWin)
+void ADD_BUTTON()
+{
+	if (!bShowChangeWin)
 		return;
 
 	GameInterface.qty_edit.str = (sti(GameInterface.qty_edit.str) - 1);
 	ChangeQTY_EDIT();
 }
 
-void ShowItemInfo() {
-	if (bShowChangeWin) {
-	    TransactionOK();
-	} else {
+void ShowItemInfo()
+{
+	if (bShowChangeWin)
+	{
+		TransactionOK();
+	}
+	else
+	{
 		GameInterface.qty_edit.str = 0;
 		ChangeQTY_EDIT();
 
@@ -268,12 +294,14 @@ void ShowItemInfo() {
 	}
 }
 
-void confirmChangeQTY_EDIT() {
+void confirmChangeQTY_EDIT()
+{
 	ChangeQTY_EDIT();
-    SetCurrentNode("QTY_OK_BUTTON");
+	SetCurrentNode("QTY_OK_BUTTON");
 }
 
-void ChangeQTY_EDIT() {
+void ChangeQTY_EDIT()
+{
 	float iWeight;
 
 	if (sti(GameInterface.qty_edit.str) < 0)
@@ -286,7 +314,7 @@ void ChangeQTY_EDIT() {
 
 	SetFormatedText("QTY_TypeOperation", "Обменять");
 	SetFormatedText("QTY_Result", "Очков за единицу: " + (item_price) + NewStr() + "Сумма: " + (item_price * sti(GameInterface.qty_edit.str)) +
-		", вес: " + FloatToString(iWeight, 1));
+									  ", вес: " + FloatToString(iWeight, 1));
 
-    SetFormatedText("OUR_GOLD", "Очков достижений: " + sti(pchar.ach_points));
+	SetFormatedText("OUR_GOLD", "Очков достижений: " + sti(pchar.ach_points));
 }

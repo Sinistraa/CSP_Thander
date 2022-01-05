@@ -21,7 +21,7 @@ void BS_SpawnEnemies(int iRnd, int iNation, string winFunction)
 		chr = SetFantomDefenceForts("goto", sLoc, iNation, "BS_SpawnEnemies");
 
 		chr.id = "pirate_" + i;
-		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+		FantomMakeCoolFighterWRankDepend(chr, sti(pchar.rank), 25 + rand(75), 25 + rand(75), 50);
 	}
 	//натравим.
 	LAi_group_SetHearRadius("BS_SpawnEnemies", 100.0);
@@ -41,7 +41,7 @@ void BSRepairShip(ref chr)
 	DeleteAttribute(chr, "ship.sails");
 	DeleteAttribute(chr, "ship.masts");
 	Fantom_SetBalls(chr, "war");
-	SetCharacterGoods(chr,GOOD_FOOD,1000);
+	SetCharacterGoods(chr, GOOD_FOOD, 1000);
 }
 
 void BS_ReplaceHostessWithMaks()
@@ -191,10 +191,12 @@ void BSOnTheHorizon_start(string qName)
 
 	for (i = 1; i < 4; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("Gatri_temp"+i, "head_pir", "man", "man", 1, PIRATE, -1, true));
-		if (i == 1) sld.model = "huber_fra";
-		if (i == 2) sld.model = "mansfield";
-		ChangeCharacterAddressGroup(sld, PChar.location, "officers", "reload3_"+i);
+		sld = GetCharacter(NPC_GenerateCharacter("Gatri_temp" + i, "head_pir", "man", "man", 1, PIRATE, -1, true));
+		if (i == 1)
+			sld.model = "huber_fra";
+		if (i == 2)
+			sld.model = "mansfield";
+		ChangeCharacterAddressGroup(sld, PChar.location, "officers", "reload3_" + i);
 		LAi_SetImmortal(sld, true);
 	}
 }
@@ -225,7 +227,7 @@ void BSOnTheHorizon_Flint();
 	sld.DeckDialogNode = "BS_CPNG_15";
 	LAi_SetImmortal(sld, true);
 	sld.Abordage.Enable = false;
-	Log_TestInfo("Флинт выходит из " + sColony + "  в " + pchar.questTemp.Flint.City+", дней до прибытия: "+daysQty);
+	Log_TestInfo("Флинт выходит из " + sColony + "  в " + pchar.questTemp.Flint.City + ", дней до прибытия: " + daysQty);
 }
 
 void MeetFlintCrew(string qName)
@@ -260,7 +262,7 @@ void BSOnTheHorizon_End(string qName)
 	sld = CharacterFromID("Flint");
 	LAi_SetImmortal(sld, false);
 	pchar.quest.BSCourtlyPassions_DontStart.win_condition.c1 = "NPC_Death";
-	pchar.quest.BSCourtlyPassions_DontStart.win_condition.c1.character ="Flint";
+	pchar.quest.BSCourtlyPassions_DontStart.win_condition.c1.character = "Flint";
 	PChar.quest.BSCourtlyPassions_DontStart.function = "BSCourtlyPassions_DontStart";
 
 	pchar.BSCPFlint_talk = true;
@@ -274,7 +276,7 @@ void BSOnTheHorizon_SeaBattle()
 	for (i = 1; i < 7; i++)
 	{
 
-		sld = GetCharacter(NPC_GenerateCharacter("BSOnTheHorizon_enemyfleet"+i, "off_eng_"+(rand(1)+1), "man", "man", 999, ENGLAND, 3, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BSOnTheHorizon_enemyfleet" + i, "off_eng_" + (rand(1) + 1), "man", "man", 999, ENGLAND, 3, true));
 		if (i == 1)
 		{
 			sld.Ship.Type = GenerateShipExt(SHIP_FASTFRIGATE, true, sld);
@@ -282,11 +284,16 @@ void BSOnTheHorizon_SeaBattle()
 			sld.Name = "Денуво";
 			sld.Lastname = "Антитампер";
 		}
-		if (i == 2) sld.Ship.Type = GenerateShipExt(SHIP_FR_ESSEX, true, sld);
-		if (i == 3) sld.Ship.Type = GenerateShipExt(SHIP_FEARLESS, true, sld);
-		if (i == 4) sld.Ship.Type = GenerateShipExt(SHIP_ALEXIS, true, sld);
-		if (i == 5) sld.Ship.Type = GenerateShipExt(SHIP_NL_FWZP, true, sld);
-		if (i == 6) sld.Ship.Type = GenerateShipExt(SHIP_OXFORD, true, sld);
+		if (i == 2)
+			sld.Ship.Type = GenerateShipExt(SHIP_FR_ESSEX, true, sld);
+		if (i == 3)
+			sld.Ship.Type = GenerateShipExt(SHIP_FEARLESS, true, sld);
+		if (i == 4)
+			sld.Ship.Type = GenerateShipExt(SHIP_ALEXIS, true, sld);
+		if (i == 5)
+			sld.Ship.Type = GenerateShipExt(SHIP_NL_FWZP, true, sld);
+		if (i == 6)
+			sld.Ship.Type = GenerateShipExt(SHIP_OXFORD, true, sld);
 		sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
 
 		sld.ship.Crew.Morale = 100;
@@ -306,7 +313,8 @@ void BSOnTheHorizon_SeaBattle()
 		sld.DontRansackCaptain = true;
 		sld.AlwaysSandbankManeuver = true;
 		Group_AddCharacter("BSOnTheHorizon_SeaBattle", sld.id);
-		if (i == 1) Group_SetGroupCommander("BSOnTheHorizon_SeaBattle", sld.id);
+		if (i == 1)
+			Group_SetGroupCommander("BSOnTheHorizon_SeaBattle", sld.id);
 		SetCharacterRelationBoth(sti(sld.index), GetMainCharacterIndex(), RELATION_ENEMY);
 
 		//Group_SetPursuitGroup("BSOnTheHorizon_SeaBattle", PLAYER_GROUP);
@@ -334,7 +342,7 @@ void BSCourtlyPassions_begin(string qName)
 {
 	ref sld, chr;
 
-	if(pchar.location == pchar.location.from_sea || HasSubStr(pchar.location,"_town" || HasSubStr(pchar.location,"shore")))
+	if (pchar.location == pchar.location.from_sea || HasSubStr(pchar.location, "_town" || HasSubStr(pchar.location, "shore")))
 	{
 		if (CheckAttribute(pchar, "BSCPFlint_talk") && !bSeaActive)
 		{
@@ -368,7 +376,7 @@ void BSCourtlyPassions_begin(string qName)
 
 void BSCourtlyPassions_begin_again(string _quest)
 {
-	if(CheckAttribute(pchar, "BSCPFlint_talk"))
+	if (CheckAttribute(pchar, "BSCPFlint_talk"))
 	{
 		pchar.quest.BSCourtlyPassions_begin.win_condition.l1 = "ExitFromLocation";
 		pchar.quest.BSCourtlyPassions_begin.function = "BSCourtlyPassions_begin";
@@ -377,7 +385,7 @@ void BSCourtlyPassions_begin_again(string _quest)
 
 void BSCourtlyPassions_sailor_begin(string qName)
 {
-	if(pchar.location == "LeFransua_port" || pchar.location == "FortFrance_town" ||  pchar.location == "Shore38" ||   pchar.location == "Shore39")
+	if (pchar.location == "LeFransua_port" || pchar.location == "FortFrance_town" || pchar.location == "Shore38" || pchar.location == "Shore39")
 	{
 		BSCourtlyPassions_sailor();
 	}
@@ -390,8 +398,8 @@ void BSCourtlyPassions_sailor_begin(string qName)
 ref BSTutorialSailor();
 {
 	sld = GetCharacter(NPC_GenerateCharacter("Sailor_1", "Pirate_9", "man", "man", 1, PIRATE, 0, false));
-	sld.name 	= "Сандро";
-	sld.lastname 	= "Торн";
+	sld.name = "Сандро";
+	sld.lastname = "Торн";
 	sld.greeting = "Teacher_pirat";
 	return sld;
 }
@@ -433,7 +441,7 @@ void BSCourtlyPassions_sailor()
 
 void BSCourtlyPassions_sailor_begin_again(string _quest)
 {
-	if(CheckAttribute(pchar, "BSCPSailor_talk") || CheckAttribute(pchar, "BSCPSilver_talk"))
+	if (CheckAttribute(pchar, "BSCPSailor_talk") || CheckAttribute(pchar, "BSCPSilver_talk"))
 	{
 		pchar.quest.BSCourtlyPassions_sailor_begin.win_condition.l1 = "ExitFromLocation";
 		pchar.quest.BSCourtlyPassions_sailor_begin.function = "BSCourtlyPassions_sailor_begin";
@@ -442,7 +450,7 @@ void BSCourtlyPassions_sailor_begin_again(string _quest)
 
 void BSCourtlyPassions_wait(string _quest)
 {
-	pchar.ContraInterruptWaiting = true;//Заблочить сон и отдых
+	pchar.ContraInterruptWaiting = true; //Заблочить сон и отдых
 	PChar.quest.BSCourtlyPassions_dungeon.win_condition.l1 = "location";
 	PChar.quest.BSCourtlyPassions_dungeon.win_condition.l1.location = "FortFrance_dungeon";
 	PChar.quest.BSCourtlyPassions_dungeon.function = "BSCourtlyPassions_dungeon";
@@ -461,13 +469,13 @@ void UnLockWeapons(string _quest)
 
 void BSCourtlyPassions_dungeon(string _quest)
 {
-	WaitDate("",0,0,0,24 - sti(environment.time),5);
-	LAi_LocationDisableMonGenTimer("FortFrance_dungeon", 3);//Лок спавна скелетов
+	WaitDate("", 0, 0, 0, 24 - sti(environment.time), 5);
+	LAi_LocationDisableMonGenTimer("FortFrance_dungeon", 3); //Лок спавна скелетов
 	DoQuestFunctionDelay("LockWeapons", 0);
 	chrDisableReloadToLocation = true;
 	sld = GetCharacter(NPC_GenerateCharacter("BS_Vein", "BS_Vein", "man", "man", 99, PIRATE, -1, true));
-	sld.name 	= "Чарльз";
-	sld.lastname 	= "Вейн";
+	sld.name = "Чарльз";
+	sld.lastname = "Вейн";
 	ChangeCharacterAddressGroup(sld, "FortFrance_dungeon", "monsters", "monster35");
 	LAi_SetStayTypeNoGroup(sld);
 	LAi_SetImmortal(sld, true);
@@ -489,7 +497,7 @@ void BSCourtlyPassions_spawn_podsos()
 	for (i = 1; i < maxPodsos; i++)
 	{
 
-		sld = GetCharacter(NPC_GenerateCharacter("BS_VeinPodsos"+i, "pirate_"+sti(rand(25)+1), "man", "man", 99, PIRATE, 3, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BS_VeinPodsos" + i, "pirate_" + sti(rand(25) + 1), "man", "man", 99, PIRATE, 3, true));
 		ChangeCharacterAddressGroup(sld, _location.id, "monsters", GetAttributeName(GetAttributeN(grp, i)));
 		LAi_group_MoveCharacter(sld, "EnemyFight");
 		LAi_SetWarriorTypeNoGroup(sld);
@@ -499,13 +507,12 @@ void BSCourtlyPassions_spawn_podsos()
 		//pchar.quest.BSCourtlyPassions_kill_podsos.win_condition.(cnd).character = sld.id;
 	}
 	//PChar.quest.BSCourtlyPassions_kill_podsos.function = "BSCourtlyPassions_kill_podsos";
-
 }
 
 void BSCourtlyPassions_kill_podsos(string _quest)
 {
 	chrDisableReloadToLocation = false;
-	Log_testinfo ("killed all");
+	Log_testinfo("killed all");
 	LocatorReloadEnterDisable("FortFrance_Brothel", "reload2_back", true);
 	LocatorReloadEnterDisable(pchar.location.from_sea, "boat", false);
 	BSCourtlyPassions_SeaBattle();
@@ -707,8 +714,8 @@ void BSChaseBegun()
 	SetCharacterRelationBoth(sti(sld.index), GetMainCharacterIndex(), RELATION_FRIEND);
 
 	sld = GetCharacter(NPC_GenerateCharacter("BS_Vein", "BS_Vein", "man", "man", 99, PIRATE, -1, true));
-	sld.name 	= "Чарльз";
-	sld.lastname 	= "Вейн";
+	sld.name = "Чарльз";
+	sld.lastname = "Вейн";
 	sld.dialog.filename = "Quest\BlackSails\Pogonya_Nachalas.c";
 	sld.DeckDialogNode = "BS_PN_shipV";
 	FantomMakeCoolestSailor(sld, SHIP_PDN, "Рейнджер", CANNON_TYPE_CANNON_LBS24, 100, 100, 100);
@@ -782,11 +789,11 @@ void BSChaseBegun_shore_fight()
 	//int maxPodsos = GetAttributesNum(grp);
 	string cnd, fnk;
 	Group_DeleteGroup("BSChaseBegun_shore_fight");
-	Group_FindOrCreateGroup("BSChaseBegun_shore_fight");//создать группу
-	Group_SetType("BSChaseBegun_shore_fight", "war");//тип группы
+	Group_FindOrCreateGroup("BSChaseBegun_shore_fight"); //создать группу
+	Group_SetType("BSChaseBegun_shore_fight", "war");	 //тип группы
 	for (i = 1; i < 10 + MOD_SKILL_ENEMY_RATE * 2; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("BSChaseBegun_shore_fight"+i, "pirate_"+sti(rand(25)+1), "man", "man", 99, PIRATE, 3, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BSChaseBegun_shore_fight" + i, "pirate_" + sti(rand(25) + 1), "man", "man", 99, PIRATE, 3, true));
 		ChangeCharacterAddressGroup(sld, "Shore_ship1", "reload", "reload1_back"));
 		LAi_group_MoveCharacter(sld, "BSChaseBegun_shore_fight");
 		sld.Ship.Type = GenerateShip(SHIP_TARTANE, false);
@@ -795,11 +802,11 @@ void BSChaseBegun_shore_fight()
 		cnd = "l" + i;
 		//pchar.quest.BSChaseBegun_shore_fight_end.win_condition.(cnd) = "NPC_Death";
 		//pchar.quest.BSChaseBegun_shore_fight_end.win_condition.(cnd).character = sld.id;
-		fnk = "BSChaseBegun_shore_fightRecheck"+i;
+		fnk = "BSChaseBegun_shore_fightRecheck" + i;
 		pchar.quest.(fnk).win_condition.(cnd) = "NPC_Death";
-		pchar.quest.(fnk).win_condition.(cnd).character = "BSChaseBegun_shore_fight"+sti(i);
+		pchar.quest.(fnk).win_condition.(cnd).character = "BSChaseBegun_shore_fight" + sti(i);
 		pchar.quest.(fnk).function = "BSChaseBegun_shore_fightReCheck";
-		Group_AddCharacter("BSChaseBegun_shore_fight", sld.id);//добавление в группу
+		Group_AddCharacter("BSChaseBegun_shore_fight", sld.id); //добавление в группу
 	}
 	Group_SetGroupCommander("BSChaseBegun_shore_fight", "BSChaseBegun_shore_fight1");
 	Group_SetTaskAttack("BSChaseBegun_shore_fight", PLAYER_GROUP);
@@ -808,7 +815,6 @@ void BSChaseBegun_shore_fight()
 	Group_LockTask("BSChaseBegun_shore_fight");
 }
 
-
 void BSChaseBegun_shore_fightReCheck(string qName)
 {
 	if (!CheckAttribute(pchar, "BSChaseBegun_shore_fightEnd"))
@@ -816,18 +822,18 @@ void BSChaseBegun_shore_fightReCheck(string qName)
 		int n = 1;
 		for (i = 1; i < 10 + MOD_SKILL_ENEMY_RATE * 2; i++)
 		{
-			sld = CharacterFromID("BSChaseBegun_shore_fight"+sti(i));
-			if(LAi_IsDead(sld))
+			sld = CharacterFromID("BSChaseBegun_shore_fight" + sti(i));
+			if (LAi_IsDead(sld))
 			{
 				n++;
 			}
 		}
-		if(n >= 8 + MOD_SKILL_ENEMY_RATE * 2)
+		if (n >= 8 + MOD_SKILL_ENEMY_RATE * 2)
 		{
 			for (i = 1; i < 10 + MOD_SKILL_ENEMY_RATE * 2; i++)
 			{
-				sld = CharacterFromID("BSChaseBegun_shore_fight"+sti(i));
-				if(!LAi_IsDead(sld))
+				sld = CharacterFromID("BSChaseBegun_shore_fight" + sti(i));
+				if (!LAi_IsDead(sld))
 				{
 					LAi_KillCharacter(sld);
 				}
@@ -856,13 +862,12 @@ void BSChaseBegun_shore_fight_end(string q)
 
 	LAi_SetActorType(sld);
 	LAi_ActorDialog(sld, pchar, "", -1, 0);
-
 }
 
 void BSChaseBegun_lock_shore(string q)
 {
 	DeleteAttribute(pchar, "BSChaseBegun_shore_fightEnd")
-	LocatorReloadEnterDisable("Bermudes_Cavern", "reload2_back", true);
+		LocatorReloadEnterDisable("Bermudes_Cavern", "reload2_back", true);
 	InterfaceStates.Buttons.Save.enable = true;
 	PChar.quest.BSChaseBegun_dungeon.win_condition.l1 = "location";
 	PChar.quest.BSChaseBegun_dungeon.win_condition.l1.location = "Bermudes_Dungeon";
@@ -925,7 +930,7 @@ void BS_spawn_dead_podsos()
 	string cnd;
 	for (i = 1; i < maxPodsos; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("BS_VeinPodsos"+i, "pirate_"+sti(rand(25)+1), "man", "man", 99, PIRATE, 3, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BS_VeinPodsos" + i, "pirate_" + sti(rand(25) + 1), "man", "man", 99, PIRATE, 3, true));
 		ChangeCharacterAddressGroup(sld, _location.id, "patrol", GetAttributeName(GetAttributeN(grp, i)));
 		LAi_group_MoveCharacter(sld, "EnemyFight");
 		LAi_SetWarriorTypeNoGroup(sld);
@@ -959,7 +964,8 @@ void BSChaseBegun_townhall(string q)
 	LAi_SetStayTypeNoGroup(chr);
 	chr.dialog.filename = "Quest\BlackSails\Pogonya_Nachalas.c";
 	chr.dialog.currentnode = "BS_PN_21";
-	if (!CheckAttribute(pchar, "BSChaseBegun_townhall_Flint"))	chr.talker = 10;
+	if (!CheckAttribute(pchar, "BSChaseBegun_townhall_Flint"))
+		chr.talker = 10;
 
 	chr = CharacterFromID("BS_Rakham");
 	ChangeCharacterAddressGroup(chr, "Pirates_townhall", "goto", "goto5");
@@ -999,7 +1005,7 @@ void BSChaseBegun_unlock_townhall()
 
 void BSChaseBegun_FewDeaysLater()
 {
-	WaitDate("",0,0,3,3,3);
+	WaitDate("", 0, 0, 3, 3, 3);
 	SetLaunchFrameFormParam("Несколько дней спустя...", "", 0.1, 2.0);
 	LaunchFrameForm();
 	DoQuestFunctionDelay("BSChaseBegun_FewDeaysLater_Reload", 2.0);
@@ -1008,10 +1014,10 @@ void BSChaseBegun_FewDeaysLater()
 void BSChaseBegun_FewDeaysLater_Reload(string q)
 {
 	ClearIslandShips("SantoDomingo");
-    Colonies[FindColony("SantoDomingo")].DontSetShipInPort = true;
-    Colonies[FindColony("SantoDomingo")].BSChaseBegun = true;
+	Colonies[FindColony("SantoDomingo")].DontSetShipInPort = true;
+	Colonies[FindColony("SantoDomingo")].BSChaseBegun = true;
 	BSChaseBegun_SeaBattle();
-	DoReloadCharacterToLocation("Pirates_townhall","goto","goto4");
+	DoReloadCharacterToLocation("Pirates_townhall", "goto", "goto4");
 }
 
 void BSChaseBegun_Hispaniola(string q)
@@ -1035,20 +1041,29 @@ void BSChaseBegun_Fail(string q)
 
 void EraseBSCharacters()
 {
-	sld = CharacterFromID("Flint");	sld.LifeDay = 0;
+	sld = CharacterFromID("Flint");
+	sld.LifeDay = 0;
 	RemoveCharacterCompanion(PChar, sld);
-	sld = CharacterFromID("gatri_temp");	sld.LifeDay = 0;
-	sld = CharacterFromID("BS_Vein");	sld.LifeDay = 0;
+	sld = CharacterFromID("gatri_temp");
+	sld.LifeDay = 0;
+	sld = CharacterFromID("BS_Vein");
+	sld.LifeDay = 0;
 	RemoveCharacterCompanion(PChar, sld);
-	sld = CharacterFromID("BS_Rakham");	sld.LifeDay = 0;
-	sld = CharacterFromID("BS_Bony");	sld.LifeDay = 0;
-	sld = CharacterFromID("BS_Silver");	sld.LifeDay = 0;
-	sld = CharacterFromID("BSUrka_enemyfleet");	sld.LifeDay = 0;
-	sld = CharacterFromID("BSUrka");	sld.LifeDay = 0;
+	sld = CharacterFromID("BS_Rakham");
+	sld.LifeDay = 0;
+	sld = CharacterFromID("BS_Bony");
+	sld.LifeDay = 0;
+	sld = CharacterFromID("BS_Silver");
+	sld.LifeDay = 0;
+	sld = CharacterFromID("BSUrka_enemyfleet");
+	sld.LifeDay = 0;
+	sld = CharacterFromID("BSUrka");
+	sld.LifeDay = 0;
 
 	for (i = 1; i < 7; i++)
 	{
-		sld = CharacterFromID("BSUrka_Curacao_enemyfleet"+i);	sld.LifeDay = 0;
+		sld = CharacterFromID("BSUrka_Curacao_enemyfleet" + i);
+		sld.LifeDay = 0;
 	}
 
 	DeleteAttribute(pchar, "LockMapReload");
@@ -1098,12 +1113,12 @@ void BSChaseBegun_SeaBattle()
 	Group_SetAddress("Flint_Group", "Hispaniola1", "Quest_ships", "quest_ship_5");
 
 	pchar.quest.BSChaseBegun_Fail.win_condition.c1 = "NPC_Death";
-	pchar.quest.BSChaseBegun_Fail.win_condition.c1.character ="Flint";
+	pchar.quest.BSChaseBegun_Fail.win_condition.c1.character = "Flint";
 	PChar.quest.BSChaseBegun_Fail.function = "BSChaseBegun_Fail";
 
 	for (i = 1; i < 9; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("BSChaseBegun_SeaBattle"+i, "off_spa_"+(rand(1)+1), "man", "man", 999, SPAIN, -1, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BSChaseBegun_SeaBattle" + i, "off_spa_" + (rand(1) + 1), "man", "man", 999, SPAIN, -1, true));
 		CreatePGG_War(sld, 2, chr);
 		sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS24;
 		sld.ship.Crew.Morale = 100;
@@ -1123,7 +1138,8 @@ void BSChaseBegun_SeaBattle()
 		sld.DontRansackCaptain = true;
 		sld.AlwaysSandbankManeuver = true;
 		Group_AddCharacter("BSChaseBegun_SeaBattle", sld.id);
-		if (i == 1) Group_SetGroupCommander("BSChaseBegun_SeaBattle", sld.id);
+		if (i == 1)
+			Group_SetGroupCommander("BSChaseBegun_SeaBattle", sld.id);
 		SetCharacterRelationBoth(sti(sld.index), GetMainCharacterIndex(), RELATION_ENEMY);
 
 		//Group_SetPursuitGroup("BSChaseBegun_SeaBattle", PLAYER_GROUP);
@@ -1180,7 +1196,7 @@ void BSBons_SeaBattle(bool bonsAdmiral)
 	Group_SetTaskAttackInMap(sGroup, PLAYER_GROUP);
 	for (int i = 0; i < 5; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("BSBons"+i, "off_eng_"+(rand(1)+1), "man", "man", 999, ENGLAND, 8, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BSBons" + i, "off_eng_" + (rand(1) + 1), "man", "man", 999, ENGLAND, 8, true));
 		FantomMakeCoolSailor(sld, SHIP_NL_PinnaceofWar47, "Морж", CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
 		sld.AlwaysEnemy = true;
 		sld.Ship.Type = GenerateShipExt(SHIP_FEARLESS, true, sld);
@@ -1189,56 +1205,56 @@ void BSBons_SeaBattle(bool bonsAdmiral)
 		if (i == 0)
 		{
 
-				Group_SetGroupCommander(sGroup, sld.id);
-				if (bonsAdmiral)
+			Group_SetGroupCommander(sGroup, sld.id);
+			if (bonsAdmiral)
+			{
+				if (!CheckAttribute(pchar, "BSBonsSpawned"))
 				{
-					if (!CheckAttribute(pchar, "BSBonsSpawned"))
-					{
-						FantomMakeCoolestSailor(sld, SHIP_FASTFRIGATE, "Фортуна", CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
-						sld.Name = "Билли";
-						sld.Lastname = "Бонс";
-						sld.Model = "BS_Billy";
-						sld.dialog.filename = "Quest\BlackSails\Neulovimaya_Urka.c";
-						sld.DeckDialogNode = "BS_CPNG_15";
-						FaceMaker(sld);
-						sld.SaveItemsForDead = true;
-						sld.money = 100000;
-						sld.items.jewelry1 = 10+rand(5);
-						sld.items.jewelry2 = 10+rand(5);
-						sld.items.jewelry3 = 10+rand(5);
-						sld.items.jewelry4 = 5+rand(5);
-						sld.items.jewelry6 = rand(20);
-						sld.items.jewelry7 = rand(50);
-						sld.items.jewelry10 = rand(20);
-						sld.items.jewelry14 = rand(20);
-						sld.items.jewelry15 = rand(5);
-						sld.items.jewelry18 = rand(50);
-					}
-					else
-					{
-						FantomMakeCoolestSailor(sld, SHIP_BATTLEMANOWAR, "Скарборо", CANNON_TYPE_CANNON_LBS42, 100, 100, 100);
-						FaceMaker(sld);
-						sScarboro = " со 'Скарборо' во главе";
-						FantomMakeCoolFighter(sld, 100, 100, 100, "blade33", "pistol4", 1000);
-						sld.name = "Френсис";
-						sld.lastname = "Ньюм";
-						sld.SaveItemsForDead = true;
-						sld.money = 300000;
-						sld.items.jewelry1 = 20+rand(5);
-						sld.items.jewelry2 = 20+rand(5);
-						sld.items.jewelry3 = 20+rand(5);
-						sld.items.jewelry4 = 11+rand(5);
-						sld.items.jewelry6 = rand(50);
-						sld.items.jewelry7 = rand(100);
-						sld.items.jewelry10 = rand(50);
-						sld.items.jewelry14 = rand(50);
-						sld.items.jewelry15 = rand(10);
-						sld.items.jewelry18 = rand(100);
-						pchar.quest.BSUrka_Scarboro.win_condition.l1 = "NPC_Death";
-						pchar.quest.BSUrka_Scarboro.win_condition.l1.character ="BSBons0";
-						PChar.quest.BSUrka_Scarboro.function = "BSUrka_Scarboro";
-					}
+					FantomMakeCoolestSailor(sld, SHIP_FASTFRIGATE, "Фортуна", CANNON_TYPE_CANNON_LBS32, 100, 100, 100);
+					sld.Name = "Билли";
+					sld.Lastname = "Бонс";
+					sld.Model = "BS_Billy";
+					sld.dialog.filename = "Quest\BlackSails\Neulovimaya_Urka.c";
+					sld.DeckDialogNode = "BS_CPNG_15";
+					FaceMaker(sld);
+					sld.SaveItemsForDead = true;
+					sld.money = 100000;
+					sld.items.jewelry1 = 10 + rand(5);
+					sld.items.jewelry2 = 10 + rand(5);
+					sld.items.jewelry3 = 10 + rand(5);
+					sld.items.jewelry4 = 5 + rand(5);
+					sld.items.jewelry6 = rand(20);
+					sld.items.jewelry7 = rand(50);
+					sld.items.jewelry10 = rand(20);
+					sld.items.jewelry14 = rand(20);
+					sld.items.jewelry15 = rand(5);
+					sld.items.jewelry18 = rand(50);
 				}
+				else
+				{
+					FantomMakeCoolestSailor(sld, SHIP_BATTLEMANOWAR, "Скарборо", CANNON_TYPE_CANNON_LBS42, 100, 100, 100);
+					FaceMaker(sld);
+					sScarboro = " со 'Скарборо' во главе";
+					FantomMakeCoolFighter(sld, 100, 100, 100, "blade33", "pistol4", 1000);
+					sld.name = "Френсис";
+					sld.lastname = "Ньюм";
+					sld.SaveItemsForDead = true;
+					sld.money = 300000;
+					sld.items.jewelry1 = 20 + rand(5);
+					sld.items.jewelry2 = 20 + rand(5);
+					sld.items.jewelry3 = 20 + rand(5);
+					sld.items.jewelry4 = 11 + rand(5);
+					sld.items.jewelry6 = rand(50);
+					sld.items.jewelry7 = rand(100);
+					sld.items.jewelry10 = rand(50);
+					sld.items.jewelry14 = rand(50);
+					sld.items.jewelry15 = rand(10);
+					sld.items.jewelry18 = rand(100);
+					pchar.quest.BSUrka_Scarboro.win_condition.l1 = "NPC_Death";
+					pchar.quest.BSUrka_Scarboro.win_condition.l1.character = "BSBons0";
+					PChar.quest.BSUrka_Scarboro.function = "BSUrka_Scarboro";
+				}
+			}
 		}
 		Group_LockTask(sGroup);
 		sld.mapEnc.type = "war";
@@ -1280,7 +1296,7 @@ void BSUrka_Pirates_town_residence(string q)
 	sld = CharacterFromID("BS_Maks");
 	ChangeCharacterAddressGroup(sld, "Pirates_Townhall", "goto", "goto3");
 
-	DoReloadCharacterToLocation("Pirates_townhall","goto","goto4");
+	DoReloadCharacterToLocation("Pirates_townhall", "goto", "goto4");
 	pchar.BSChaseBegun_townhall_Flint = true;
 	BSChaseBegun_townhall("q");
 	DeleteAttribute(pchar, "BSChaseBegun_townhall_Flint");
@@ -1311,7 +1327,7 @@ void BSUrka_Curacao_SeaBattle()
 	for (i = 1; i < 7; i++)
 	{
 
-		sld = GetCharacter(NPC_GenerateCharacter("BSUrka_Curacao_enemyfleet"+i, "off_spa_"+(rand(1)+1), "man", "man", 999, SPAIN, -1, true));
+		sld = GetCharacter(NPC_GenerateCharacter("BSUrka_Curacao_enemyfleet" + i, "off_spa_" + (rand(1) + 1), "man", "man", 999, SPAIN, -1, true));
 		if (i == 1)
 		{
 			sld.Ship.Type = GenerateShipExt(SHIP_GALEON50, true, sld);
@@ -1319,11 +1335,16 @@ void BSUrka_Curacao_SeaBattle()
 			//sld.Name = "Денуво";
 			//sld.Lastname = "Антитампер";
 		}
-		if (i == 2) sld.Ship.Type = GenerateShipExt(SHIP_FRIGATE_SAT, true, sld);
-		if (i == 3) sld.Ship.Type = GenerateShipExt(SHIP_WARSHIP, true, sld);
-		if (i == 4) sld.Ship.Type = GenerateShipExt(SHIP_ALEXIS, true, sld);
-		if (i == 5) sld.Ship.Type = GenerateShipExt(SHIP_SUPERBE, true, sld);
-		if (i == 6) sld.Ship.Type = GenerateShipExt(SHIP_LINK2, true, sld);
+		if (i == 2)
+			sld.Ship.Type = GenerateShipExt(SHIP_FRIGATE_SAT, true, sld);
+		if (i == 3)
+			sld.Ship.Type = GenerateShipExt(SHIP_WARSHIP, true, sld);
+		if (i == 4)
+			sld.Ship.Type = GenerateShipExt(SHIP_ALEXIS, true, sld);
+		if (i == 5)
+			sld.Ship.Type = GenerateShipExt(SHIP_SUPERBE, true, sld);
+		if (i == 6)
+			sld.Ship.Type = GenerateShipExt(SHIP_LINK2, true, sld);
 		sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
 
 		sld.ship.Crew.Morale = 100;
@@ -1344,7 +1365,8 @@ void BSUrka_Curacao_SeaBattle()
 		sld.AlwaysSandbankManeuver = true;
 		Group_AddCharacter("BSUrka_Curacao_SeaBattle", sld.id);
 		LAi_group_MoveCharacter(sld, "BSUrka_Curacao_Battle");
-		if (i == 1) Group_SetGroupCommander("BSUrka_Curacao_SeaBattle", sld.id);
+		if (i == 1)
+			Group_SetGroupCommander("BSUrka_Curacao_SeaBattle", sld.id);
 		SetCharacterRelationBoth(sti(sld.index), GetMainCharacterIndex(), RELATION_ENEMY);
 
 		//Group_SetPursuitGroup("BSUrka_Curacao_SeaBattle", PLAYER_GROUP);
@@ -1355,7 +1377,7 @@ void BSUrka_Curacao_SeaBattle()
 
 		cnd = "l" + i;
 		pchar.quest.BSUrka_Curacao_EndSeaBattle.win_condition.(cnd) = "NPC_Death";
-		pchar.quest.BSUrka_Curacao_EndSeaBattle.win_condition.(cnd).character ="BSUrka_Curacao_enemyfleet"+sti(i);
+		pchar.quest.BSUrka_Curacao_EndSeaBattle.win_condition.(cnd).character = "BSUrka_Curacao_enemyfleet" + sti(i);
 	}
 	PChar.quest.BSUrka_Curacao_EndSeaBattle.function = "BSUrka_Curacao_EndSeaBattle";
 
@@ -1379,9 +1401,9 @@ void BSUrka_Curacao_EndSeaBattle(string q)
 {
 	LAi_group_Delete("BSUrka_Curacao_Battle");
 	Sea_CabinStartNow();
-	pchar.quest.BSUrka_Curacao_Cabin.win_condition.l1          = "location";
+	pchar.quest.BSUrka_Curacao_Cabin.win_condition.l1 = "location";
 	pchar.quest.BSUrka_Curacao_Cabin.win_condition.l1.location = Get_My_Cabin();
-	pchar.quest.BSUrka_Curacao_Cabin.function             = "BSUrka_Curacao_CabinTalk";
+	pchar.quest.BSUrka_Curacao_Cabin.function = "BSUrka_Curacao_CabinTalk";
 }
 
 void BSUrka_Curacao_CabinTalk(string q)
@@ -1407,7 +1429,7 @@ void BSUrka_Curacao_Shore(string q)
 	ChangeCharacterAddressGroup(sld, pchar.location, "smugglers", "smugglerload");
 	LAi_SetStayType(sld);
 	sld.talker = 10;
-	sld = GetCharacter(NPC_GenerateCharacter("BSUrka_Prisoner", "off_spa_"+(rand(1)+1), "man", "man", 999, SPAIN, 3, true));
+	sld = GetCharacter(NPC_GenerateCharacter("BSUrka_Prisoner", "off_spa_" + (rand(1) + 1), "man", "man", 999, SPAIN, 3, true));
 	ChangeCharacterAddressGroup(sld, pchar.location, "smugglers", "smuggler01");
 	LAi_SetActorType(sld);
 	sld = CharacterFromID("BS_Bony");
@@ -1416,7 +1438,6 @@ void BSUrka_Curacao_Shore(string q)
 	sld = CharacterFromID("BS_Vein");
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto2");
 	LAi_SetActorType(sld);
-
 }
 
 void BSUrka_BonyHits(string qName)
@@ -1426,7 +1447,7 @@ void BSUrka_BonyHits(string qName)
 	LAi_SetActorTypeNoGroup(chr);
 	LAi_ActorTurnToCharacter(chr, sld);
 	LAi_ActorAnimation(chr, "Shot", "", 1.9);
-    DoQuestFunctionDelay("BSUrka_BonyHits_1", 0.8);
+	DoQuestFunctionDelay("BSUrka_BonyHits_1", 0.8);
 }
 void BSUrka_BonyHits_1(string qName)
 {
@@ -1434,7 +1455,7 @@ void BSUrka_BonyHits_1(string qName)
 	sld = CharacterFromId("BSUrka_Prisoner");
 	ref chr = CharacterFromId("BS_Bony");
 	LAi_KillCharacter(sld);
-    DoQuestFunctionDelay("BSUrka_BonyHits_2", 0.25);
+	DoQuestFunctionDelay("BSUrka_BonyHits_2", 0.25);
 }
 void BSUrka_BonyHits_2(string qName)
 {
@@ -1443,7 +1464,7 @@ void BSUrka_BonyHits_2(string qName)
 
 	sld = CharacterFromID("BS_Vein");
 	sld.dialog.filename = "Quest\BlackSails\Neulovimaya_Urka.c";
-	sld.dialog.currentnode   = "BS_NU_41";
+	sld.dialog.currentnode = "BS_NU_41";
 	pchar.InstantDialog = sld.id;
 	DoQuestFunctionDelay("InstantDialog", 1.3);
 
@@ -1462,7 +1483,7 @@ void BSUrka_PlaceUrka()
 	Group_SetType("BSUrka", "pirate");
 	string cnd;
 
-	sld = GetCharacter(NPC_GenerateCharacter("BSUrka", "off_spa_"+(rand(1)+1), "man", "man", 999, SPAIN, -1, true));
+	sld = GetCharacter(NPC_GenerateCharacter("BSUrka", "off_spa_" + (rand(1) + 1), "man", "man", 999, SPAIN, -1, true));
 
 	sld.Ship.Type = GenerateShipExt(SHIP_GALEON50, true, sld);
 	sld.Ship.Name = "Урка де Лима";
@@ -1481,7 +1502,7 @@ void BSUrka_PlaceUrka()
 	int iMast = 0;
 	int iMastQty = 4;
 	string sMast = "";
-	for(int m=1; m <= iMastQty; m++)
+	for (int m = 1; m <= iMastQty; m++)
 	{
 		sMast = "mast" + m;
 		sld.ship.masts.(sMast) = true;
@@ -1496,7 +1517,7 @@ void BSUrka_PlaceUrka()
 	Group_FindOrCreateGroup("BSUrka_SeaBattle");
 	Group_SetType("BSUrka_SeaBattle", "pirate");
 
-	sld = GetCharacter(NPC_GenerateCharacter("BSUrka_enemyfleet", "off_spa_"+(rand(1)+1), "man", "man", 999, SPAIN, -1, true));
+	sld = GetCharacter(NPC_GenerateCharacter("BSUrka_enemyfleet", "off_spa_" + (rand(1) + 1), "man", "man", 999, SPAIN, -1, true));
 	sld.Ship.Type = GenerateShipExt(SHIP_SP_SANFELIPE, true, sld);
 	sld.Ship.Cannons.Type = CANNON_TYPE_CANNON_LBS32;
 
@@ -1531,9 +1552,9 @@ void BSUrka_PlaceUrka()
 void BSUrka_SeaBattleEnded(string q)
 {
 	AddQuestRecord("BSUrka", "8_1");
-	pchar.quest.BSUrka_ShoreBattle.win_condition.l1          = "location";
+	pchar.quest.BSUrka_ShoreBattle.win_condition.l1 = "location";
 	pchar.quest.BSUrka_ShoreBattle.win_condition.l1.location = "Shore20";
-	pchar.quest.BSUrka_ShoreBattle.function             = "BSUrka_ShoreBattle";
+	pchar.quest.BSUrka_ShoreBattle.function = "BSUrka_ShoreBattle";
 
 	AddGeometryToLocation("Shore20", "smg");
 }
@@ -1551,31 +1572,31 @@ void BSUrka_ShoreBattle(string q)
 	chrDisableReloadToLocation = true;
 	//our
 	chr = CharacterFromID("Flint");
-	ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
+	ChangeCharacterAddressGroup(chr, pchar.location, "officers", "sea_1");
 	LAi_SetWarriorType(chr);
 	LAi_SetImmortal(chr, true);
 	LAi_group_MoveCharacter(chr, relation);
 
 	chr = CharacterFromID("BS_Vein");
-	ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
+	ChangeCharacterAddressGroup(chr, pchar.location, "officers", "sea_1");
 	LAi_SetWarriorType(chr);
 	LAi_SetImmortal(chr, true);
 	LAi_group_MoveCharacter(chr, relation);
 
 	chr = CharacterFromID("BS_Bony");
-	ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
+	ChangeCharacterAddressGroup(chr, pchar.location, "officers", "sea_1");
 	LAi_SetWarriorType(chr);
 	LAi_SetImmortal(chr, true);
 	LAi_group_MoveCharacter(chr, relation);
 
 	chr = CharacterFromID("BS_Silver");
-	ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
+	ChangeCharacterAddressGroup(chr, pchar.location, "officers", "sea_1");
 	LAi_SetWarriorType(chr);
 	LAi_SetImmortal(chr, true);
 	LAi_group_MoveCharacter(chr, relation);
 
 	chr = CharacterFromID("BS_Rakham");
-	ChangeCharacterAddressGroup(chr,pchar.location, "officers", "sea_1");
+	ChangeCharacterAddressGroup(chr, pchar.location, "officers", "sea_1");
 	LAi_SetWarriorType(chr);
 	LAi_SetImmortal(chr, true);
 	LAi_group_MoveCharacter(chr, relation);
@@ -1587,13 +1608,13 @@ void BSUrka_ShoreBattle(string q)
 	{
 		if (i % 3 != 0)
 		{
-		chr = SetFantomDefenceForts("officers", sLoc, PIRATE, relation);
+			chr = SetFantomDefenceForts("officers", sLoc, PIRATE, relation);
 		}
 		else
 		{
-		chr = SetFantomDefenceForts("enc02", "",PIRATE, relation);
+			chr = SetFantomDefenceForts("enc02", "", PIRATE, relation);
 		}
-		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+		FantomMakeCoolFighterWRankDepend(chr, sti(pchar.rank), 25 + rand(75), 25 + rand(75), 50);
 	}
 	Pchar.GenQuestFort.FarLocator = true;
 
@@ -1606,14 +1627,14 @@ void BSUrka_ShoreBattle(string q)
 	{
 		if (i % 2 == 0)
 		{
-		chr = SetFantomDefenceForts("goto", sLoc, iNation, "BSUrkaShore");
+			chr = SetFantomDefenceForts("goto", sLoc, iNation, "BSUrkaShore");
 		}
 		else
 		{
 			chr = SetFantomDefenceForts("smugglers", sLoc_2, iNation, "BSUrkaShore");
 		}
 		chr.id = "pirate_" + i;
-		FantomMakeCoolFighterWRankDepend(chr,sti(pchar.rank),25+rand(75),25+rand(75),50);
+		FantomMakeCoolFighterWRankDepend(chr, sti(pchar.rank), 25 + rand(75), 25 + rand(75), 50);
 	}
 	//натравим.
 	LAi_group_SetHearRadius("BSUrkaShore", 100.0);
@@ -1636,7 +1657,7 @@ void BSUrka_AfterShoreBattle()
 	chr = CharacterFromID("BSUrka");
 	chr.LifeDay = 0;
 	chr = CharacterFromID("Flint");
-	chr.dialog.currentnode   = "BS_NU_45";
+	chr.dialog.currentnode = "BS_NU_45";
 	DoQuestCheckDelay("hide_weapon", 2.0);
 	LAi_SetActorType(chr);
 	LAi_ActorDialog(chr, pchar, "", -1, 0);
@@ -1702,10 +1723,11 @@ void BSUrka_PoisonSelf(string q)
 void BSUrka_PoisonOfficers(string q)
 {
 	int idx;
-	for(int i=1; i<=MAX_NUM_FIGHTERS; i++)
+	for (int i = 1; i <= MAX_NUM_FIGHTERS; i++)
 	{
-		idx = GetOfficersIndex(PChar,i);
-		if (idx != -1) {
+		idx = GetOfficersIndex(PChar, i);
+		if (idx != -1)
+		{
 			ref offchar = GetCharacter(idx);
 			SetCharacterTask_Dead(offchar);
 		}
@@ -1758,7 +1780,7 @@ void BSUrka_Poison_Flint(string q)
 
 void BSUrka_FewDaysLater()
 {
-	WaitDate("",0,0,3,3,3);
+	WaitDate("", 0, 0, 3, 3, 3);
 	SetLaunchFrameFormParam("Несколько дней спустя...", "", 0.1, 2.0);
 	LaunchFrameForm();
 	DoQuestFunctionDelay("BSUrka_FewDaysLater_Reload", 2.0);
@@ -1766,10 +1788,10 @@ void BSUrka_FewDaysLater()
 
 void BSUrka_FewDaysLater_Reload(string q)
 {
-	DoReloadCharacterToLocation("Pirates_tavern_upstairs","goto","goto1");
-	pchar.quest.BSHangover_Start.win_condition.l1          = "location";
+	DoReloadCharacterToLocation("Pirates_tavern_upstairs", "goto", "goto1");
+	pchar.quest.BSHangover_Start.win_condition.l1 = "location";
 	pchar.quest.BSHangover_Start.win_condition.l1.location = "Pirates_tavern_upstairs";
-	pchar.quest.BSHangover_Start.function             = "BSHangover_Start";
+	pchar.quest.BSHangover_Start.function = "BSHangover_Start";
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   -- Неуловимая «Урка» --     конец
@@ -1789,9 +1811,9 @@ void BSHangover_Start(string q)
 	LocatorReloadEnterDisable("Pirates_townhall", "reload2", true);
 	LocatorReloadEnterDisable("Pirates_portoffice", "reload1", true);
 
-	pchar.quest.BSHangover_Downstairs.win_condition.l1          = "location";
+	pchar.quest.BSHangover_Downstairs.win_condition.l1 = "location";
 	pchar.quest.BSHangover_Downstairs.win_condition.l1.location = "Pirates_tavern";
-	pchar.quest.BSHangover_Downstairs.function             = "BSHangover_Downstairs";
+	pchar.quest.BSHangover_Downstairs.function = "BSHangover_Downstairs";
 
 	if (WhisperIsOfficer())
 	{
@@ -1840,18 +1862,17 @@ void BSHangover_RoyalVein(string q)
 	SaveOldDialog(sld);
 	sld.dialog.filename = "Quest\BlackSails\BS_Final_1.c";
 	sld.dialog.currentnode = "BS_F1_16";
-
 }
 
 void BSHangover_SearchStingerCheck()
 {
-	if(sti(pchar.BSSearchStinger) == 7)
+	if (sti(pchar.BSSearchStinger) == 7)
 	{
 		AddQuestRecord("BSHangover", "6");
 		LocatorReloadEnterDisable("Bridgetown_town", "gate_back", false);
-		pchar.quest.BSHangover_Jail.win_condition.l1          = "location";
+		pchar.quest.BSHangover_Jail.win_condition.l1 = "location";
 		pchar.quest.BSHangover_Jail.win_condition.l1.location = "Bridgetown_prison";
-		pchar.quest.BSHangover_Jail.function             = "BSHangover_Jail";
+		pchar.quest.BSHangover_Jail.function = "BSHangover_Jail";
 
 		if (WhisperIsHere())
 		{
@@ -1901,7 +1922,7 @@ void BSHangover_VeinFollows(string q)
 
 void BSHangover_FewDaysLater()
 {
-	WaitDate("",0,0,3,3,3);
+	WaitDate("", 0, 0, 3, 3, 3);
 	SetLaunchFrameFormParam("Несколько дней спустя...", "", 0.1, 2.0);
 	LaunchFrameForm();
 	DoQuestFunctionDelay("BSHangover_FewDaysLater_Reload", 2.0);
@@ -1909,10 +1930,10 @@ void BSHangover_FewDaysLater()
 
 void BSHangover_FewDaysLater_Reload(string q)
 {
-	DoReloadCharacterToLocation("Bridgetown_tavern_upstairs","goto","goto1");
-	pchar.quest.BSHangover_horse.win_condition.l1          = "location";
+	DoReloadCharacterToLocation("Bridgetown_tavern_upstairs", "goto", "goto1");
+	pchar.quest.BSHangover_horse.win_condition.l1 = "location";
 	pchar.quest.BSHangover_horse.win_condition.l1.location = "Bridgetown_tavern_upstairs";
-	pchar.quest.BSHangover_horse.function             = "BSHangover_horse";
+	pchar.quest.BSHangover_horse.function = "BSHangover_horse";
 }
 
 void BSHangover_horse(string q)
@@ -1920,7 +1941,7 @@ void BSHangover_horse(string q)
 	sld = CharacterFromID("BS_Vein");
 	Lai_SetStayTypeNoGroup(sld);
 	ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto1");
-	sld = GetCharacter(NPC_GenerateCharacter("BSHangover_horse", "horse0"+(rand(7)+1), "woman", "woman", 1, PIRATE, 0, false));
+	sld = GetCharacter(NPC_GenerateCharacter("BSHangover_horse", "horse0" + (rand(7) + 1), "woman", "woman", 1, PIRATE, 0, false));
 	ChangeCharacterAddressGroup(sld, PChar.location, "goto", "goto4");
 	sld.dialog.filename = "Quest\BlackSails\BS_Final_1.c";
 	sld.dialog.currentnode = "BS_F1_29";
@@ -1936,9 +1957,9 @@ void BSHangover_horse(string q)
 
 	pchar.LockMapReload = "Чёрта с два я уплыву отсюда без Флинта!";
 
-	pchar.quest.BSHangover_Cave.win_condition.l1          = "location";
+	pchar.quest.BSHangover_Cave.win_condition.l1 = "location";
 	pchar.quest.BSHangover_Cave.win_condition.l1.location = "barbados_cave";
-	pchar.quest.BSHangover_Cave.function             = "BSHangover_Cave";
+	pchar.quest.BSHangover_Cave.function = "BSHangover_Cave";
 
 	if (WhisperIsOfficer())
 	{
@@ -1964,7 +1985,7 @@ void BSHangover_Cave(string q)
 	string cnd;
 	for (int i = 1; i <= 12; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("DeSouzaHunter"+sti(i), "OZG_" + (rand(6) + 1), "man", "man", sti(pchar.rank)+MOD_SKILL_ENEMY_RATE * 2, PIRATE, 0, true));
+		sld = GetCharacter(NPC_GenerateCharacter("DeSouzaHunter" + sti(i), "OZG_" + (rand(6) + 1), "man", "man", sti(pchar.rank) + MOD_SKILL_ENEMY_RATE * 2, PIRATE, 0, true));
 
 		LAi_SetWarriorType(sld);
 		LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
@@ -1972,9 +1993,9 @@ void BSHangover_Cave(string q)
 
 		cnd = "l" + i;
 		pchar.quest.BSHangover_CaveAfterBattle.win_condition.(cnd) = "NPC_Death";
-		pchar.quest.BSHangover_CaveAfterBattle.win_condition.(cnd).character ="DeSouzaHunter"+sti(i);
+		pchar.quest.BSHangover_CaveAfterBattle.win_condition.(cnd).character = "DeSouzaHunter" + sti(i);
 
-		ChangeCharacterAddressGroup(sld, PChar.location, "goto", "goto"+i);
+		ChangeCharacterAddressGroup(sld, PChar.location, "goto", "goto" + i);
 	}
 	PChar.quest.BSHangover_CaveAfterBattle.function = "BSHangover_CaveAfterBattle";
 	LAi_group_SetRelation(LAI_GROUP_MONSTERS, LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
@@ -1983,13 +2004,13 @@ void BSHangover_Cave(string q)
 void BSHangover_CaveAfterBattle(string qName)
 {
 	sld = CharacterFromID("BS_Silver");
-	sld.dialog.currentnode   = "BS_F1_32";
-	if(LAi_IsDead(sld))
+	sld.dialog.currentnode = "BS_F1_32";
+	if (LAi_IsDead(sld))
 	{
 		DeleteCharacter(sld);
 		LAi_SetCurHPMax(sld);
 		DoQuestFunctionDelay("BSHangover_CaveAfterBattle_1", 0);
-		sld.dialog.currentnode   = "BS_F1_32_beaten";
+		sld.dialog.currentnode = "BS_F1_32_beaten";
 	}
 	else
 	{
@@ -1997,9 +2018,9 @@ void BSHangover_CaveAfterBattle(string qName)
 		LAi_ActorDialog(sld, pchar, "", -1, 0);
 	}
 
-	pchar.quest.BSHangover_CaveEntrance.win_condition.l1          = "location";
+	pchar.quest.BSHangover_CaveEntrance.win_condition.l1 = "location";
 	pchar.quest.BSHangover_CaveEntrance.win_condition.l1.location = "barbados_CaveEntrance";
-	pchar.quest.BSHangover_CaveEntrance.function             = "BSHangover_CaveEntrance";
+	pchar.quest.BSHangover_CaveEntrance.function = "BSHangover_CaveEntrance";
 }
 
 void BSHangover_CaveAfterBattle_1(string qName)
@@ -2033,10 +2054,14 @@ void BSHangover_CaveEntrance(string qName)
 
 	for (int i = 1; i <= 4; i++)
 	{
-		if(i == 1)	sld = CharacterFromID("BS_Vein");
-		if(i == 2)	sld = CharacterFromID("BS_Silver");
-		if(i == 3)	sld = CharacterFromID("BS_Rakham");
-		if(i == 4)	sld = CharacterFromID("BS_Bony");
+		if (i == 1)
+			sld = CharacterFromID("BS_Vein");
+		if (i == 2)
+			sld = CharacterFromID("BS_Silver");
+		if (i == 3)
+			sld = CharacterFromID("BS_Rakham");
+		if (i == 4)
+			sld = CharacterFromID("BS_Bony");
 		LAi_SetHP(sld, 1000 - MOD_SKILL_ENEMY_RATE * 50, 1000);
 		ChangeCharacterAddressGroup(sld, pchar.location, "enc01", "enc01_02");
 		LAi_SetWarriorType(sld);
@@ -2049,7 +2074,7 @@ void BSHangover_CaveEntrance(string qName)
 	string cnd;
 	for (i = 1; i <= 20; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("DeSouzaHunter"+sti(i), "OZG_" + (rand(6) + 1), "man", "man", sti(pchar.rank)+MOD_SKILL_ENEMY_RATE * 2, PIRATE, 0, true));
+		sld = GetCharacter(NPC_GenerateCharacter("DeSouzaHunter" + sti(i), "OZG_" + (rand(6) + 1), "man", "man", sti(pchar.rank) + MOD_SKILL_ENEMY_RATE * 2, PIRATE, 0, true));
 
 		LAi_SetWarriorType(sld);
 		LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
@@ -2057,9 +2082,9 @@ void BSHangover_CaveEntrance(string qName)
 
 		cnd = "l" + i;
 		pchar.quest.BSHangover_CaveEntranceAfterBattle.win_condition.(cnd) = "NPC_Death";
-		pchar.quest.BSHangover_CaveEntranceAfterBattle.win_condition.(cnd).character ="DeSouzaHunter"+sti(i);
+		pchar.quest.BSHangover_CaveEntranceAfterBattle.win_condition.(cnd).character = "DeSouzaHunter" + sti(i);
 
-		ChangeCharacterAddressGroup(sld, PChar.location, "monsters", "monster"+(rand(2)+1));
+		ChangeCharacterAddressGroup(sld, PChar.location, "monsters", "monster" + (rand(2) + 1));
 	}
 	PChar.quest.BSHangover_CaveEntranceAfterBattle.function = "BSHangover_CaveEntranceAfterBattle";
 	LAi_group_SetRelation(LAI_GROUP_MONSTERS, LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
@@ -2105,14 +2130,18 @@ void BSHangover_IsEveryoneOkay()
 {
 	for (int i = 1; i <= 4; i++)
 	{
-		if(i == 1)	sld = CharacterFromID("BS_Vein");
-		if(i == 2)	sld = CharacterFromID("BS_Silver");
-		if(i == 3)	sld = CharacterFromID("BS_Rakham");
-		if(i == 4)	sld = CharacterFromID("BS_Bony");
+		if (i == 1)
+			sld = CharacterFromID("BS_Vein");
+		if (i == 2)
+			sld = CharacterFromID("BS_Silver");
+		if (i == 3)
+			sld = CharacterFromID("BS_Rakham");
+		if (i == 4)
+			sld = CharacterFromID("BS_Bony");
 		Lai_SetActorTypeNoGroup(sld);
-		if(LAi_IsDead(sld))
+		if (LAi_IsDead(sld))
 		{
-			if(!CheckAttribute(pchar, "BSHangover_IsEveryoneOkay"))
+			if (!CheckAttribute(pchar, "BSHangover_IsEveryoneOkay"))
 			{
 				pchar.BSHangover_IsEveryoneOkay = true;
 				SetLaunchFrameFormParam("Битва окончена. Ваши компаньоны постепенно приходят в себя", "", 0.1, 2.0);
@@ -2126,11 +2155,11 @@ void BSHangover_IsEveryoneOkay()
 	}
 
 	pchar.quest.BSHangover_Fail1.win_condition.c1 = "NPC_Death";
-	pchar.quest.BSHangover_Fail1.win_condition.c1.character ="Flint";
+	pchar.quest.BSHangover_Fail1.win_condition.c1.character = "Flint";
 	PChar.quest.BSHangover_Fail1.function = "BSHangover_Fail";
 
 	pchar.quest.BSHangover_Fail1.win_condition.c1 = "BS_Vein";
-	pchar.quest.BSHangover_Fail1.win_condition.c1.character ="Flint";
+	pchar.quest.BSHangover_Fail1.win_condition.c1.character = "Flint";
 	PChar.quest.BSHangover_Fail1.function = "BSHangover_Fail";
 }
 
@@ -2138,15 +2167,19 @@ void BSHangover_IsEveryoneOkay_1(string q)
 {
 	for (int i = 1; i <= 4; i++)
 	{
-		if(i == 1)	sld = CharacterFromID("BS_Vein");
-		if(i == 2)	sld = CharacterFromID("BS_Silver");
-		if(i == 3)	sld = CharacterFromID("BS_Rakham");
-		if(i == 4)	sld = CharacterFromID("BS_Bony");
+		if (i == 1)
+			sld = CharacterFromID("BS_Vein");
+		if (i == 2)
+			sld = CharacterFromID("BS_Silver");
+		if (i == 3)
+			sld = CharacterFromID("BS_Rakham");
+		if (i == 4)
+			sld = CharacterFromID("BS_Bony");
 
-		if(CheckAttribute(sld, "RezMe"))
+		if (CheckAttribute(sld, "RezMe"))
 		{
 			DeleteAttribute(sld, "RezMe")
-			ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto1");
+				ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto1");
 		}
 	}
 }
@@ -2160,7 +2193,7 @@ void BSHangover_FlintFight()
 {
 	for (int i = 1; i <= 6; i++)
 	{
-		sld = GetCharacter(NPC_GenerateCharacter("FlintOff"+i, "officer_" + (rand(62)+2), "man", "man", sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, PIRATE, 0, true));
+		sld = GetCharacter(NPC_GenerateCharacter("FlintOff" + i, "officer_" + (rand(62) + 2), "man", "man", sti(pchar.rank) + MOD_SKILL_ENEMY_RATE, PIRATE, 0, true));
 		LAi_SetWarriorType(sld);
 		LAi_group_MoveCharacter(sld, LAI_GROUP_BRDENEMY);
 	}
@@ -2210,9 +2243,9 @@ void BSHangover_FlintFight_4(string q)
 void BSHangover_MaksOnShip(string q)
 {
 	BS_RestoreMaksHostess("");
-	pchar.quest.BSHangover_FlintEscaped.win_condition.l1          = "location";
+	pchar.quest.BSHangover_FlintEscaped.win_condition.l1 = "location";
 	pchar.quest.BSHangover_FlintEscaped.win_condition.l1.location = "pirates_town";
-	pchar.quest.BSHangover_FlintEscaped.function             = "BSHangover_FlintEscaped";
+	pchar.quest.BSHangover_FlintEscaped.function = "BSHangover_FlintEscaped";
 }
 void BSHangover_FlintEscaped(string q)
 {
@@ -2261,13 +2294,12 @@ void BSHangover_TownHall(string q)
 	LAi_SetActorType(chr);
 }
 
-
 void BSHangover_Cutscene(string q)
 {
-	FreeSitLocator("Pirates_tavern", "sit_front4");  // очистим стул
-	FreeSitLocator("Pirates_tavern", "sit_front1");  // очистим стул
-	FreeSitLocator("Pirates_tavern", "sit_base4");  // очистим стул
-	FreeSitLocator("Pirates_tavern", "sit_base1");  // очистим стул
+	FreeSitLocator("Pirates_tavern", "sit_front4"); // очистим стул
+	FreeSitLocator("Pirates_tavern", "sit_front1"); // очистим стул
+	FreeSitLocator("Pirates_tavern", "sit_base4");	// очистим стул
+	FreeSitLocator("Pirates_tavern", "sit_base1");	// очистим стул
 	ChangeCharacterAddressGroup(pchar, "Pirates_tavern", "sit", "sit_base4");
 
 	LAi_SetSitTypeNoGroup(pchar);
@@ -2287,7 +2319,7 @@ void BSHangover_Cutscene_1(string q)
 {
 	SetLaunchFrameFormParam("Прошло три часа", "", 0.1, 2.0);
 	LaunchFrameForm();
-	WaitDate("",0,0,0,3,3);
+	WaitDate("", 0, 0, 0, 3, 3);
 	if (WhisperIsHere())
 	{
 		SaveOldDialog(CharacterFromID(pchar.WhisperPGG));
@@ -2303,9 +2335,9 @@ void BSHangover_Cutscene_2(string q)
 	ChangeCharacterAddressGroup(pchar, "Pirates_tavern", "goto", "goto4");
 	LAi_SetPlayerType(pchar);
 	AddQuestRecord("BSHangover", "12");
-	pchar.quest.BSHangover_FirstEnding.win_condition.l1          = "location";
+	pchar.quest.BSHangover_FirstEnding.win_condition.l1 = "location";
 	pchar.quest.BSHangover_FirstEnding.win_condition.l1.location = "pirates_townhall";
-	pchar.quest.BSHangover_FirstEnding.function             = "BSHangover_FirstEnding";
+	pchar.quest.BSHangover_FirstEnding.function = "BSHangover_FirstEnding";
 }
 
 void BSHangover_FirstEnding(string q)

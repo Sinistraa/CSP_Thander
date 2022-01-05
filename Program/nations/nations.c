@@ -1,41 +1,44 @@
 extern void InitNations();
 
-#event_handler(GET_RELATION_EVENT,"GetRelationEvent");
+#event_handler(GET_RELATION_EVENT, "GetRelationEvent");
 
 void Nation_InitAfterLoading()
 {
-	int i,j;
+	int i, j;
 	// check version
 	int version_number = 099;
-	if( CheckAttribute(pchar,"version_number") ) {
+	if (CheckAttribute(pchar, "version_number"))
+	{
 		version_number = pchar.version_number;
 	}
 
-	if( version_number < 104 )
+	if (version_number < 104)
 	// делаем ресайз наций для добавления новой нации
 	{
 		// меняем таблицу наций
-		SetArraySize(&Nations,MAX_NATIONS);
-		if(LoadSegment("nations\nations_init.c"))
+		SetArraySize(&Nations, MAX_NATIONS);
+		if (LoadSegment("nations\nations_init.c"))
 		{
 			InitNations();
 			UnloadSegment("nations\nations_init.c");
 		}
 
 		// меняем таблицу отношений между нациями
-		SetArraySize(&NationsRelations,MAX_NATIONS_SQR);
-		for(i=MAX_NATIONS-2;i>=0;i--) {
-			for(j=MAX_NATIONS-2;j>=0;j--) {
-				NationsRelations[i * MAX_NATIONS + j] = NationsRelations[i * (MAX_NATIONS-1) + j];
+		SetArraySize(&NationsRelations, MAX_NATIONS_SQR);
+		for (i = MAX_NATIONS - 2; i >= 0; i--)
+		{
+			for (j = MAX_NATIONS - 2; j >= 0; j--)
+			{
+				NationsRelations[i * MAX_NATIONS + j] = NationsRelations[i * (MAX_NATIONS - 1) + j];
 			}
-			NationsRelations[i * MAX_NATIONS + MAX_NATIONS-1] = RELATION_FRIEND;
+			NationsRelations[i * MAX_NATIONS + MAX_NATIONS - 1] = RELATION_FRIEND;
 		}
 		//for(i=0; i<MAX_NATIONS; i++) {
 		//	NationsRelations[SMUGGLER * MAX_NATIONS + i] = RELATION_FRIEND;
 		//}
 
 		// меняем таблицу отношений наций к главному персонажу
-		SetArraySize(&NationsRelations2MainCharacter,MAX_NATIONS);
+		SetArraySize(&NationsRelations2MainCharacter, MAX_NATIONS);
 	}
 }
 
@@ -43,12 +46,12 @@ void Nations_SetAllFriends()
 {
 	int i;
 
-	for(i=0;i<MAX_NATIONS_SQR;i++)
+	for (i = 0; i < MAX_NATIONS_SQR; i++)
 	{
 		NationsRelations[i] = RELATION_FRIEND;
 	}
 
-	for(i=0;i<MAX_NATIONS;i++)
+	for (i = 0; i < MAX_NATIONS; i++)
 	{
 		NationsRelations2MainCharacter[i] = RELATION_FRIEND;
 	}
@@ -56,7 +59,7 @@ void Nations_SetAllFriends()
 
 void NationsInit()
 {
-	if(LoadSegment("nations\nations_init.c"))
+	if (LoadSegment("nations\nations_init.c"))
 	{
 		InitNations();
 		UnloadSegment("nations\nations_init.c");
@@ -67,18 +70,18 @@ void NationsInit()
 
 void SetNationRelation2MainCharacter(int iNation, int iRelationType)
 {
-     //#20200219-01
-    if(iRelationType == RELATION_ENEMY && iNation != PIRATE && iNation == sti(pchar.nation))
-        Log_SetStringToLog(xiStr("YouAreEnemy") + NationNameGenitive(sti(pchar.nation)));
+	//#20200219-01
+	if (iRelationType == RELATION_ENEMY && iNation != PIRATE && iNation == sti(pchar.nation))
+		Log_SetStringToLog(xiStr("YouAreEnemy") + NationNameGenitive(sti(pchar.nation)));
 	NationsRelations2MainCharacter[iNation] = iRelationType;
 }
 
 void SetNationRelationBoth(int iNation1, int iNation2, int iRelationType)
 {
-    if (iNation1 != iNation2)//fix
-    {
-        NationsRelations[iNation1 * MAX_NATIONS + iNation2] = iRelationType;
-    	NationsRelations[iNation2 * MAX_NATIONS + iNation1] = iRelationType;
+	if (iNation1 != iNation2) //fix
+	{
+		NationsRelations[iNation1 * MAX_NATIONS + iNation2] = iRelationType;
+		NationsRelations[iNation2 * MAX_NATIONS + iNation1] = iRelationType;
 	}
 }
 
@@ -112,10 +115,11 @@ void SetCharacterRelation(int iCharacterIndex1, int iCharacterIndex2, int iRelat
 // =================================================================================================
 int GetNationRelation(int iNation1, int iNation2)
 {
-    // boal fix 171004 на всяк случай
-    if (iNation1 == iNation2) return RELATION_FRIEND;
+	// boal fix 171004 на всяк случай
+	if (iNation1 == iNation2)
+		return RELATION_FRIEND;
 
-    return NationsRelations[iNation1 * MAX_NATIONS + iNation2];
+	return NationsRelations[iNation1 * MAX_NATIONS + iNation2];
 }
 
 int GetNationRelation2MainCharacter(int iNation)
@@ -127,10 +131,10 @@ int GetRelation2BaseNation(int iNation)
 {
 	if (iNation == GetBaseHeroNation())
 	{
-	    if (ChangeCharacterNationReputation(pchar, iNation, 0) <= -10)
-	    {
-	        return RELATION_ENEMY;
-	    }
+		if (ChangeCharacterNationReputation(pchar, iNation, 0) <= -10)
+		{
+			return RELATION_ENEMY;
+		}
 	}
 	return GetNationRelation(iNation, GetBaseHeroNation());
 }
@@ -161,9 +165,9 @@ int GetRelation(int iCharacterIndex1, int iCharacterIndex2)
 	int iMCI = GetMainCharacterIndex();
 
 	//Boyer fix
-	if(iCharacterIndex1 < 0 || iCharacterIndex1 >= TOTAL_CHARACTERS ||
-	   iCharacterIndex2 < 0 || iCharacterIndex2 >= TOTAL_CHARACTERS)
-		return RELATION_UNKNOWN;  //End Boyer fix
+	if (iCharacterIndex1 < 0 || iCharacterIndex1 >= TOTAL_CHARACTERS ||
+		iCharacterIndex2 < 0 || iCharacterIndex2 >= TOTAL_CHARACTERS)
+		return RELATION_UNKNOWN; //End Boyer fix
 
 	ref rCharacter1 = GetCharacter(iCharacterIndex1);
 	ref rCharacter2 = GetCharacter(iCharacterIndex2);
@@ -173,7 +177,10 @@ int GetRelation(int iCharacterIndex1, int iCharacterIndex2)
 	{
 		if (CheckAttribute(rCharacter1, "SeaAI.Group.Name") && CheckAttribute(rCharacter2, "SeaAI.Group.Name"))
 		{
-			if (rCharacter1.SeaAI.Group.Name == rCharacter2.SeaAI.Group.Name) { return RELATION_FRIEND; }
+			if (rCharacter1.SeaAI.Group.Name == rCharacter2.SeaAI.Group.Name)
+			{
+				return RELATION_FRIEND;
+			}
 		}
 	}
 
@@ -192,11 +199,14 @@ int GetRelation(int iCharacterIndex1, int iCharacterIndex2)
 		}
 	}
 
-	if (rCharacter1.index == rCharacter2.index) { return RELATION_FRIEND; }
+	if (rCharacter1.index == rCharacter2.index)
+	{
+		return RELATION_FRIEND;
+	}
 
 	// character 2 character relation
 	string sTemp = "relation." + rCharacter2.index;
-	if (CheckAttribute(&rCharacter1,sTemp))
+	if (CheckAttribute(&rCharacter1, sTemp))
 	{
 		return sti(rCharacter1.(sTemp));
 	}
@@ -233,15 +243,16 @@ int FindEnemyNation2Nation(int iNation)
 	int iNations[MAX_NATIONS];
 	int iNumNations = 0;
 
-	for (int i=0;i<MAX_NATIONS;i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
-		if (GetNationRelation(i,iNation) == RELATION_ENEMY)
+		if (GetNationRelation(i, iNation) == RELATION_ENEMY)
 		{
 			iNations[iNumNations] = i;
 			iNumNations++;
 		}
 	}
-	if (iNumNations == 0) return -1;
+	if (iNumNations == 0)
+		return -1;
 	return iNations[rand(iNumNations - 1)];
 }
 
@@ -250,33 +261,34 @@ int FindNonEnemyNation2Nation(int iNation)
 	int iNations[MAX_NATIONS];
 	int iNumNations = 0;
 
-	for (int i=0;i<MAX_NATIONS;i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
-		if (GetNationRelation(i,iNation) != RELATION_ENEMY && i != iNation)
+		if (GetNationRelation(i, iNation) != RELATION_ENEMY && i != iNation)
 		{
 			iNations[iNumNations] = i;
 			iNumNations++;
 		}
 	}
-	if (iNumNations == 0) return -1;
+	if (iNumNations == 0)
+		return -1;
 	return iNations[rand(iNumNations - 1)];
 }
-
 
 int FindNonEnemyNation2NationWithoutPirates(int iNation)
 {
 	int iNations[MAX_NATIONS];
 	int iNumNations = 0;
 
-	for (int i=0;i<PIRATE;i++)
+	for (int i = 0; i < PIRATE; i++)
 	{
-		if (GetNationRelation(i,iNation) != RELATION_ENEMY && i != iNation)
+		if (GetNationRelation(i, iNation) != RELATION_ENEMY && i != iNation)
 		{
 			iNations[iNumNations] = i;
 			iNumNations++;
 		}
 	}
-	if (iNumNations == 0) return -1;
+	if (iNumNations == 0)
+		return -1;
 	return iNations[rand(iNumNations - 1)];
 }
 
@@ -285,15 +297,16 @@ int FindEnemyNation2NationWithoutPirates(int iNation)
 	int iNations[MAX_NATIONS];
 	int iNumNations = 0;
 
-	for (int i=0;i<PIRATE;i++)
+	for (int i = 0; i < PIRATE; i++)
 	{
-		if (GetNationRelation(i,iNation) == RELATION_ENEMY)
+		if (GetNationRelation(i, iNation) == RELATION_ENEMY)
 		{
 			iNations[iNumNations] = i;
 			iNumNations++;
 		}
 	}
-	if (iNumNations == 0) return -1;
+	if (iNumNations == 0)
+		return -1;
 	return iNations[rand(iNumNations - 1)];
 }
 
@@ -302,7 +315,7 @@ int FindQuestNationWithoutPirates(int iNation)
 	int iNations[MAX_NATIONS];
 	int iNumNations = 0;
 
-	for (int i=0;i<PIRATE;i++)
+	for (int i = 0; i < PIRATE; i++)
 	{
 		if (i != iNation)
 		{
@@ -310,7 +323,8 @@ int FindQuestNationWithoutPirates(int iNation)
 			iNumNations++;
 		}
 	}
-	if (iNumNations == 0) return -1;
+	if (iNumNations == 0)
+		return -1;
 	return iNations[rand(iNumNations - 1)];
 }
 
@@ -319,7 +333,7 @@ int FindEnemyNation2Character(int iCharacterIndex)
 	int iNations[MAX_NATIONS];
 	int iNumNations = 0;
 
-	for (int i=0; i<MAX_NATIONS; i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
 		if (GetNationRelation2Character(i, iCharacterIndex) == RELATION_ENEMY)
 		{
@@ -327,15 +341,17 @@ int FindEnemyNation2Character(int iCharacterIndex)
 			iNumNations++;
 		}
 	}
-	if (iNumNations == 0) return -1;
+	if (iNumNations == 0)
+		return -1;
 	return iNations[rand(iNumNations - 1)];
 }
 
 int GetNationTypeByName(string nationName)
 {
-	for(int i=0; i<MAX_NATIONS; i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
-		if(Nations[i].Name==nationName) return i;
+		if (Nations[i].Name == nationName)
+			return i;
 	}
 	return -1;
 }
@@ -365,11 +381,17 @@ ref GetNationByType(int iNationType)
 
 string GetRelationName(int relationCode)
 {
-	switch(relationCode)
+	switch (relationCode)
 	{
-	case RELATION_FRIEND:	return "Friend"; break;
-	case RELATION_ENEMY:	return "Enemy"; break;
-	case RELATION_NEUTRAL:	return "Neutral"; break;
+	case RELATION_FRIEND:
+		return "Friend";
+		break;
+	case RELATION_ENEMY:
+		return "Enemy";
+		break;
+	case RELATION_NEUTRAL:
+		return "Neutral";
+		break;
 	}
 	return "Unknown";
 }
@@ -378,9 +400,9 @@ int FindNationExceptNationWithoutPirates(int iNation)
 {
 	object RandNations[MAX_NATIONS];
 	int m = 0;
-	for(int i = 0; i < MAX_NATIONS - 2; i++)
+	for (int i = 0; i < MAX_NATIONS - 2; i++)
 	{
-		if(i != iNation)
+		if (i != iNation)
 		{
 			RandNations[m].nation = i;
 			m++;
@@ -394,10 +416,10 @@ int FindNationExceptNationWithoutPirates(int iNation)
 bool IsStopMapFollowEncounters()
 {
 	int iRelation;
-	for(int i = 0; i < MAX_NATIONS; i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
 		iRelation = GetNationRelation2MainCharacter(i);
-		if(iRelation != RELATION_FRIEND)
+		if (iRelation != RELATION_FRIEND)
 		{
 			return false;
 		}
@@ -409,15 +431,15 @@ int GetEnemyNationToMainCharacter()
 {
 	object Relations[MAX_NATIONS];
 	int iStep = -1;
-	for(int i = 0; i < MAX_NATIONS; i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
-		if(GetNationRelation2MainCharacter(i) == RELATION_ENEMY)
+		if (GetNationRelation2MainCharacter(i) == RELATION_ENEMY)
 		{
 			iStep++;
 			Relations[iStep].nation = i;
 		}
 	}
-	if(iStep == -1)
+	if (iStep == -1)
 	{
 		trace("WARNING! NO ENEMY NATION!");
 		return -1;

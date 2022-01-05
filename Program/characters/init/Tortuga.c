@@ -7,12 +7,12 @@ int CreateTortugaCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
+	makeref(ch, Characters[n]); //Губернатор
 	ch.id = "Tortuga_Mayor";
-	ch.model	= "huber_fra";
+	ch.model = "huber_fra";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_townhall";
+	ch.location = "Tortuga_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -22,7 +22,7 @@ int CreateTortugaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -30,13 +30,13 @@ int CreateTortugaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
+	makeref(ch, Characters[n]); //Священик
 	ch.id = "Tortuga_Priest";
-	ch.model	= "priest_1";
-	ch.model.animation	= "man";
+	ch.model = "priest_1";
+	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_church";
+	ch.location = "Tortuga_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -48,12 +48,12 @@ int CreateTortugaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
+	makeref(ch, Characters[n]); // ОФициантка
 	ch.id = "Tortuga_waitress";
-	ch.model	= "girl_1";
+	ch.model = "girl_1";
 	ch.sex = "woman";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_tavern";
+	ch.location = "Tortuga_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -65,13 +65,13 @@ int CreateTortugaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
+	makeref(ch, Characters[n]); //Трактирщик
 	ch.id = "Tortuga_tavernkeeper";
-	ch.model	= "barmen_1";
+	ch.model = "barmen_1";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_Tavern";
+	ch.location = "Tortuga_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -83,14 +83,13 @@ int CreateTortugaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
+	makeref(ch, Characters[n]); //Торговец
 	ch.id = "Tortuga_trader";
-	ch.model	= "trader_1";
+	ch.model = "trader_1";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_Store";
+	ch.location = "Tortuga_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -102,13 +101,13 @@ int CreateTortugaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
+	makeref(ch, Characters[n]); //Корабел
 	ch.id = "Tortuga_shipyarder";
-	ch.model	= "shipowner_1";
+	ch.model = "shipowner_1";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_Shipyard";
+	ch.location = "Tortuga_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -117,7 +116,7 @@ int CreateTortugaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -125,12 +124,12 @@ int CreateTortugaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "Tortuga_usurer";
-	ch.model	= "usurer_3";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "Tortuga_usurer";
+	ch.model = "usurer_3";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_Bank";
+	ch.location = "Tortuga_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -142,12 +141,12 @@ int CreateTortugaCharacters(int n)
 	LAi_group_MoveCharacter(ch, "FRANCE_CITIZENS");
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "Tortuga_PortMan";
-	ch.model	= "usurer_5";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "Tortuga_PortMan";
+	ch.model = "usurer_5";
 	ch.sex = "man";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_PortOffice";
+	ch.location = "Tortuga_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -159,14 +158,13 @@ int CreateTortugaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Хозяйка борделя
-	ch.id		= "Tortuga_Hostess";
-	ch.name		= "Маргарита"
-	ch.lastname = "";
-	ch.model	= "lady02";
+	makeref(ch, Characters[n]); //Хозяйка борделя
+	ch.id = "Tortuga_Hostess";
+	ch.name = "Маргарита" ch.lastname = "";
+	ch.model = "lady02";
 	ch.sex = "woman";
 	ch.City = "Tortuga";
-	ch.location	= "Tortuga_SecBrRoom";
+	ch.location = "Tortuga_SecBrRoom";
 	ch.location.group = "goto";
 	ch.location.locator = "goto8";
 	ch.Dialog.Filename = "Common_Brothel.c";
@@ -177,12 +175,12 @@ int CreateTortugaCharacters(int n)
 	LAi_group_MoveCharacter(ch, "FRANCE_CITIZENS");
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "Tortuga_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "Tortuga_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

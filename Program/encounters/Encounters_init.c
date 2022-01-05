@@ -13,8 +13,10 @@ void Enc_AddShips(ref rEnc, string sEType, int iShipsMin, int iShipsMax)
 void Enc_AddClasses(ref rEnc, int iRank, int iMClassMin, int iMClassMax, int iWClassMin, int iWClassMax)
 {
 	string sRank = "Rank." + iRank;
-	rEnc.(sRank).0 = iMClassMin; rEnc.(sRank).1 = iMClassMax;
-	rEnc.(sRank).2 = iWClassMin; rEnc.(sRank).3 = iWClassMax;
+	rEnc.(sRank).0 = iMClassMin;
+	rEnc.(sRank).1 = iMClassMax;
+	rEnc.(sRank).2 = iWClassMin;
+	rEnc.(sRank).3 = iWClassMax;
 }
 
 void InitEncounters()
@@ -22,7 +24,7 @@ void InitEncounters()
 	int i;
 	ref rEnc;
 
-	for (i=0; i<MAX_ENCOUNTER_TYPES; i++)
+	for (i = 0; i < MAX_ENCOUNTER_TYPES; i++)
 	{
 		makeref(rEnc, EncountersTypes[i]);
 		rEnc.Index = i;
@@ -30,14 +32,16 @@ void InitEncounters()
 		rEnc.Skip = false;
 		rEnc.MinRank = 1;
 		rEnc.MaxRank = 1000;
-		rEnc.Merchant.ShipsMin = 0;		rEnc.Merchant.ShipsMax = 0;
-		rEnc.War.ShipsMin = 0;			rEnc.War.ShipsMax = 0;
+		rEnc.Merchant.ShipsMin = 0;
+		rEnc.Merchant.ShipsMax = 0;
+		rEnc.War.ShipsMin = 0;
+		rEnc.War.ShipsMax = 0;
 		rEnc.Type = ENCOUNTER_TRADE;
 	}
 	////  boal баг фикс для квестовых, а то генерились в К3
-    makeref(rEnc, EncountersTypes[ENCOUNTER_TYPE_ALONE]);
- 	rEnc.Chance = 0;
-	rEnc.Skip   = true;
+	makeref(rEnc, EncountersTypes[ENCOUNTER_TYPE_ALONE]);
+	rEnc.Chance = 0;
+	rEnc.Skip = true;
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 1-2 торговца 5-6 класса.
@@ -51,7 +55,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 4, 7, 0, 0);
-	Enc_AddClasses(rEnc, 1000,4, 7, 0, 0);
+	Enc_AddClasses(rEnc, 1000, 4, 7, 0, 0);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-4 торговца 5-6 класса.
@@ -65,7 +69,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 4, 6, 0, 0);
-	Enc_AddClasses(rEnc, 1000,4, 6, 0, 0);
+	Enc_AddClasses(rEnc, 1000, 4, 6, 0, 0);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-5 торговца 4-6 класса.
@@ -79,7 +83,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 3, 6, 0, 0);
-	Enc_AddClasses(rEnc, 1000,3, 6, 0, 0);
+	Enc_AddClasses(rEnc, 1000, 3, 6, 0, 0);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 1-3 торговца 5-6 класса плюс 1 корабль охраны
@@ -94,7 +98,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 4, 6, 4, 5);
-	Enc_AddClasses(rEnc, 1000,4, 6, 4, 5);
+	Enc_AddClasses(rEnc, 1000, 4, 6, 4, 5);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-3 торговца 5-6 класса плюс 1-2 корабля охраны
@@ -109,7 +113,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 3, 6, 2, 5);
-	Enc_AddClasses(rEnc, 1000,3, 6, 2, 5);
+	Enc_AddClasses(rEnc, 1000, 3, 6, 2, 5);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-5 торговца 4-6 класса плюс 1-2 корабля охраны
@@ -124,7 +128,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 2, 6, 1, 5);
-	Enc_AddClasses(rEnc, 1000,2, 6, 1, 5);
+	Enc_AddClasses(rEnc, 1000, 2, 6, 1, 5);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-3 торговца 3-4 класса плюс 1-2 корабля охраны
@@ -139,8 +143,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 2, 3, 4, 3, 4);
-	Enc_AddClasses(rEnc, 1000,3, 4, 3, 4);
-
+	Enc_AddClasses(rEnc, 1000, 3, 4, 3, 4);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-4 торговца 3-4 класса плюс 2-3 корабля охраны
@@ -155,7 +158,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 3, 3, 4, 2, 4);
-	Enc_AddClasses(rEnc, 1000,3, 4, 2, 4);
+	Enc_AddClasses(rEnc, 1000, 3, 4, 2, 4);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-5 торговца 3-4 класса плюс 2-4 корабля охраны
@@ -170,7 +173,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 4, 3, 4, 1, 3);
-	Enc_AddClasses(rEnc, 1000,3, 4, 1, 3);
+	Enc_AddClasses(rEnc, 1000, 3, 4, 1, 3);
 
 	// ======================== WAR ENCOUNTERS ========================
 
@@ -186,7 +189,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 1, 0, 0, 3, 5);
-	Enc_AddClasses(rEnc, 1000,0, 0, 3, 5);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 3, 5);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-4 военных корабля 3-5 класса
@@ -201,7 +204,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 2, 0, 0, 2, 5);
-	Enc_AddClasses(rEnc, 1000,0, 0, 2, 5);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 2, 5);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-5 военных корабля 3-4 класса
@@ -215,7 +218,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 3, 0, 0, 2, 4);
-	Enc_AddClasses(rEnc, 1000,0, 0, 2, 4);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 2, 4);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 1-2 пирата
@@ -232,7 +235,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, HOLLAND);
 
 	Enc_AddClasses(rEnc, 1, 0, 0, 5, 6);
-	Enc_AddClasses(rEnc, 1000,0, 0, 5, 6);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 5, 6);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-4 пирата
@@ -249,7 +252,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, HOLLAND);
 
 	Enc_AddClasses(rEnc, 2, 0, 0, 3, 6);
-	Enc_AddClasses(rEnc, 1000,0, 0, 3, 6);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 3, 6);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-6 пирата
@@ -266,7 +269,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, HOLLAND);
 
 	Enc_AddClasses(rEnc, 3, 0, 0, 2, 6);
-	Enc_AddClasses(rEnc, 1000,0, 0, 2, 6);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 2, 6);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-3 военных корабля 3-4 класса
@@ -280,7 +283,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 4, 0, 0, 2, 4);
-	Enc_AddClasses(rEnc, 1000,0, 0, 2, 4);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 2, 4);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-5 военных корабля 2-4 класса
@@ -294,7 +297,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 5, 0, 0, 1, 4);
-	Enc_AddClasses(rEnc, 1000,0, 0, 1, 4);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 1, 4);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 3-7 военных корабля 1-3 класса
@@ -309,7 +312,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 6, 0, 0, 1, 3);
-	Enc_AddClasses(rEnc, 1000,0, 0, 1, 3);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 1, 3);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// 2-4 военных корабля 1-3 класса
@@ -324,7 +327,7 @@ void InitEncounters()
 	Enc_ExcludeNation(rEnc, PIRATE);
 
 	Enc_AddClasses(rEnc, 6, 0, 0, 1, 3);
-	Enc_AddClasses(rEnc, 1000,0, 0, 1, 3);
+	Enc_AddClasses(rEnc, 1000, 0, 0, 1, 3);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	/// Бочонок

@@ -1,29 +1,29 @@
 // BOAL 09.09.03 Каюта капитана
-bool	bCabinStarted = false;
-bool	bDeckBoatStarted = false;
+bool bCabinStarted = false;
+bool bDeckBoatStarted = false;
 
 void Cabin_ReloadStartFade()
 {
 	int a = GetEventData();
 	aref reload_fader = GetEventData();
-	LayerFreeze(SEA_EXECUTE,true);
-	LayerFreeze(SEA_REALIZE,true);
-	LayerFreeze(SEA_REFLECTION2,true);
-	LayerFreeze(EXECUTE,false);
-	LayerFreeze(REALIZE,false);
+	LayerFreeze(SEA_EXECUTE, true);
+	LayerFreeze(SEA_REALIZE, true);
+	LayerFreeze(SEA_REFLECTION2, true);
+	LayerFreeze(EXECUTE, false);
+	LayerFreeze(REALIZE, false);
 
 	MoveWeatherToLayers(EXECUTE, REALIZE);
 	MoveSeaToLayers(EXECUTE, REALIZE);
 	HideGrass();
 
 	SendMessage(&AIBalls, "l", MSG_MODEL_RELEASE);
-    // fix -->
-    ClearAllFire();
-    // fix <--
+	// fix -->
+	ClearAllFire();
+	// fix <--
 	DelEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade");
 
 	fOldMaxSeaHeight = stf(Sea.MaxSeaHeight);
-	Sea.MaxSeaHeight = 1.2;						// set maxinum sea height for ship abordage
+	Sea.MaxSeaHeight = 1.2; // set maxinum sea height for ship abordage
 }
 
 void Cabin_ReloadEndFade()
@@ -31,11 +31,11 @@ void Cabin_ReloadEndFade()
 	// Delete current cannonballs
 	AIBalls.Clear = "";
 
- 	PauseParticles(true);
-    //DeleteParticles(); // boal fix костры нах
+	PauseParticles(true);
+	//DeleteParticles(); // boal fix костры нах
 
 	// start Cabin location
- 	int a = GetEventData();
+	int a = GetEventData();
 	aref reload_fader = GetEventData();
 
 	Cabin_Start();
@@ -48,30 +48,30 @@ void Sea_CabinStartNow()
 {
 	if (!bCabinStarted)
 	{
-        bSeaReloadStarted = true;
+		bSeaReloadStarted = true;
 
-        Set_My_Cabin();
+		Set_My_Cabin();
 
-    	object reload_fader;
-    	CreateEntity(&reload_fader, "fader");
-    	SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade", 0);
-    	SetEventHandler("FaderEvent_EndFade", "Cabin_ReloadEndFade", 0);
+		object reload_fader;
+		CreateEntity(&reload_fader, "fader");
+		SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade", 0);
+		SetEventHandler("FaderEvent_EndFade", "Cabin_ReloadEndFade", 0);
 
-    	SendMessage(&reload_fader, "ls", FADER_PICTURE, Get_My_Cabin_Pic());//"loading\Cabin.tga");
-    	SendMessage(&reload_fader, "lfl", FADER_OUT, 1.0, false);
-    	SendMessage(&reload_fader, "l", FADER_STARTFRAME);
+		SendMessage(&reload_fader, "ls", FADER_PICTURE, Get_My_Cabin_Pic()); //"loading\Cabin.tga");
+		SendMessage(&reload_fader, "lfl", FADER_OUT, 1.0, false);
+		SendMessage(&reload_fader, "l", FADER_STARTFRAME);
 
-    	PauseAllSounds();
-	     //ResetSoundScheme();
+		PauseAllSounds();
+		//ResetSoundScheme();
 		ResetSound(); // new
 
-    	bAbordageStarted = true;
-    	bCabinStarted = true;
-    	Sea.AbordageMode = true;
+		bAbordageStarted = true;
+		bCabinStarted = true;
+		Sea.AbordageMode = true;
 	}
 	else
 	{
-	   Return2SeaAfterCabin();
+		Return2SeaAfterCabin();
 	}
 }
 
@@ -79,7 +79,7 @@ void Sea_CabinStartNow()
 int cabin_officers;
 void Cabin_Start()
 {
- //ResetSoundScheme();
+	//ResetSoundScheme();
 	ResetSound(); // new
 	PauseAllSounds();
 	int i;
@@ -94,11 +94,11 @@ void Cabin_Start()
 
 	int locID = -1;
 	locID = FindLocation(deckID);
-	if(locID < 0)
+	if (locID < 0)
 	{
 		Trace("Cabin: ship location not found <" + deckID + ">, set default");
-	    deckID = "";
-	    return;
+		deckID = "";
+		return;
 	}
 	//Выставим  и запомним адреса
 	boarding_adr[0].location = mchr.location;
@@ -120,7 +120,7 @@ void Cabin_LoadLocation(string locationID)
 	//Ищем локацию
 	int locIndex = FindLocation(locationID);
 	Log_SetActiveAction("Nothing");
-	if(locIndex >= 0)
+	if (locIndex >= 0)
 	{
 		//Устанавливаем главного персонажа
 		ref mchr = GetMainCharacter();
@@ -131,16 +131,20 @@ void Cabin_LoadLocation(string locationID)
 		//Перегружаемся в локацию
 		boarding_location = locIndex;
 		Locations[locIndex].boarding = "true";
-		if(LoadLocation(&Locations[locIndex]))
+		if (LoadLocation(&Locations[locIndex]))
 		{
 			//Расставляем персонажей
-            SetOfficersInCabin();
+			SetOfficersInCabin();
 			//Запретим диалог
 			dialogDisable = false;
-		}else{
+		}
+		else
+		{
 			Trace("Boarding: Boarding location not loaded, current loc <" + locationID + ">");
 		}
-	}else{
+	}
+	else
+	{
 		Trace("Boarding: Boarding location not found, current loc <" + locationID + ">");
 	}
 	ReloadProgressEnd();
@@ -148,32 +152,34 @@ void Cabin_LoadLocation(string locationID)
 }
 void SetOfficersInCabin()
 {
-    //Устанавливаем офицеров, если такие есть
-    ref chr, mchr;
-    int i;
-    int idx;
+	//Устанавливаем офицеров, если такие есть
+	ref chr, mchr;
+	int i;
+	int idx;
 
-    mchr = GetMainCharacter();
-	for (i = 1; i <=MAX_NUM_FIGHTERS; i++)
+	mchr = GetMainCharacter();
+	for (i = 1; i <= MAX_NUM_FIGHTERS; i++)
 	{
 		idx = GetOfficersIndex(mchr, i);
-		if (idx < 1) continue;
+		if (idx < 1)
+			continue;
 		chr = &Characters[idx];
 		PlaceCharacter(chr, "rld", mchr.location);
 	}
 }
 void SetOfficersLocationToNone()
 {
-    //Устанавливаем офицеров, если такие есть
-    ref chr, mchr;
-    int i;
-    int idx;
+	//Устанавливаем офицеров, если такие есть
+	ref chr, mchr;
+	int i;
+	int idx;
 
-    mchr = GetMainCharacter();
-	for (i = 1; i <=MAX_NUM_FIGHTERS; i++)
+	mchr = GetMainCharacter();
+	for (i = 1; i <= MAX_NUM_FIGHTERS; i++)
 	{
 		idx = GetOfficersIndex(mchr, i);
-		if (idx < 1) continue;
+		if (idx < 1)
+			continue;
 		chr = &Characters[idx];
 		chr.location = "none";
 	}
@@ -183,9 +189,9 @@ void Return2SeaAfterCabin()
 {
 	Log_testInfo("Return2SeaAfterCabin");
 
- 	Return2SeaClearNPC();
+	Return2SeaClearNPC();
 
-    //Установить хендлеры для обработки
+	//Установить хендлеры для обработки
 	SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFadeAfter", 0);
 	SetEventHandler("FaderEvent_EndFade", "Cabin_ReloadEndFadeAfter", 0);
 	//Создаём фейдер и запускаем
@@ -198,23 +204,21 @@ void Return2SeaAfterCabin()
 	SendMessage(&boarding_fader, "l", FADER_STARTFRAME);
 }
 
-
 void Return2SeaClearNPC()
 {
 	if (bDeckBoatStarted)
-    {
-        // палуба
-    	DeleteNPCfromDeck();
+	{
+		// палуба
+		DeleteNPCfromDeck();
 	}
 	else
 	{
-    	SetOfficersLocationToNone(); // офицеры в сад
-    	SetPrisonerLocationToNone(); //пленных туда же
-    	SetOfficersInCampusToNone():
-		CompanionSaveTasks(); //компаньонов тоже.
-    	DeleteQuestAttribute("SetNPCInShipDeck");
-    	DeleteQuestAttribute("SetNPCInShipCabin");
-    	DeleteQuestAttribute("SetNPCInShipCampus");
+		SetOfficersLocationToNone();						// офицеры в сад
+		SetPrisonerLocationToNone();						//пленных туда же
+		SetOfficersInCampusToNone() : CompanionSaveTasks(); //компаньонов тоже.
+		DeleteQuestAttribute("SetNPCInShipDeck");
+		DeleteQuestAttribute("SetNPCInShipCabin");
+		DeleteQuestAttribute("SetNPCInShipCampus");
 	}
 	DeleteAttribute(pchar, "GenQuest.CaptainId");
 }
@@ -222,12 +226,13 @@ void Return2SeaClearNPC()
 void Cabin_ReloadStartFadeAfter()
 {
 	//Выгружаем локацию
- //ResetSoundScheme();
+	//ResetSoundScheme();
 	ResetSound(); // new
 	PauseAllSounds();
 
 	DelEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFadeAfter");
-	if(boarding_location >= 0) UnloadLocation(&Locations[boarding_location]);
+	if (boarding_location >= 0)
+		UnloadLocation(&Locations[boarding_location]);
 }
 
 void Cabin_ReloadEndFadeAfter()
@@ -247,15 +252,16 @@ void Cabin_ReloadEndFadeAfter()
 	// если бой, то ломаем корпус -->
 	if (bDisableMapEnter) //идет бой
 	{
-	    mchr.Ship.HP = makefloat(stf(mchr.Ship.HP) - GetCharacterShipHP(mchr) * 0.01);
-	    if (stf(mchr.Ship.HP) < 0) mchr.Ship.HP = 0;
+		mchr.Ship.HP = makefloat(stf(mchr.Ship.HP) - GetCharacterShipHP(mchr) * 0.01);
+		if (stf(mchr.Ship.HP) < 0)
+			mchr.Ship.HP = 0;
 	}
 	// если бой, то ломаем корпус <--
 
 	//Выгружаемся в интерфейс
 	LAi_boarding_process = false;
 
- 	LayerFreeze(EXECUTE, true);
+	LayerFreeze(EXECUTE, true);
 	LayerFreeze(REALIZE, true);
 
 	LayerFreeze(SEA_REFLECTION2, false);
@@ -266,9 +272,9 @@ void Cabin_ReloadEndFadeAfter()
 	MoveSeaToLayers(SEA_EXECUTE, SEA_REALIZE);
 	ShowGrass();
 
-	Sea.MaxSeaHeight = fOldMaxSeaHeight;		// restore old MaxSeaHeight
+	Sea.MaxSeaHeight = fOldMaxSeaHeight; // restore old MaxSeaHeight
 	bAbordageStarted = false;
-	bCabinStarted    = false;
+	bCabinStarted = false;
 	bDeckBoatStarted = false;
 	Sea.AbordageMode = false;
 
@@ -285,7 +291,7 @@ void Cabin_ReloadEndFadeAfter()
 	//#20190117-03
 	Ship_RecreateStaticSounds();
 	aref aCurWeather = GetCurrentWeather();
-    doShipLightChange(aCurWeather);
+	doShipLightChange(aCurWeather);
 	// <--
 	/*if (WeatherHour < (GetHour() - 3) || WeatherHour > (GetHour() + 21)) // меняем только в новом часе... а то часто и баг в каюте
 	{
@@ -309,16 +315,16 @@ void Cabin_ReloadEndFadeAfter()
 	// boal 24.04.04 ругаем группы тут -->
 	if (CheckAttribute(mchr, "StartBattleAfterDeck"))
 	{
-        Ship_NationAgressivePatent(characterFromID(mchr.StartBattleMainCaptanId));  //патент
-        Ship_FlagRefresh(characterFromID(mchr.StartBattleMainCaptanId)); //флаг на лету
-        SetCharacterRelationBoth(GetCharacterIndex(mchr.StartBattleMainCaptanId), GetMainCharacterIndex(), RELATION_ENEMY);
-	    Group_SetTaskAttack(mchr.StartBattleEncGroupName, PLAYER_GROUP);
+		Ship_NationAgressivePatent(characterFromID(mchr.StartBattleMainCaptanId)); //патент
+		Ship_FlagRefresh(characterFromID(mchr.StartBattleMainCaptanId));		   //флаг на лету
+		SetCharacterRelationBoth(GetCharacterIndex(mchr.StartBattleMainCaptanId), GetMainCharacterIndex(), RELATION_ENEMY);
+		Group_SetTaskAttack(mchr.StartBattleEncGroupName, PLAYER_GROUP);
 
-	    SetNationRelation2MainCharacter(sti(Characters[GetCharacterIndex(mchr.StartBattleMainCaptanId)].nation), RELATION_ENEMY);
-	    NationUpdate();
-	    RefreshBattleInterface();
-	    DeleteAttribute(mchr, "StartBattleAfterDeck"); // очищаем начало битвы
-	    DoQuestCheckDelay("NationUpdate", 3.0);
+		SetNationRelation2MainCharacter(sti(Characters[GetCharacterIndex(mchr.StartBattleMainCaptanId)].nation), RELATION_ENEMY);
+		NationUpdate();
+		RefreshBattleInterface();
+		DeleteAttribute(mchr, "StartBattleAfterDeck"); // очищаем начало битвы
+		DoQuestCheckDelay("NationUpdate", 3.0);
 	}
 	if (CheckAttribute(mchr, "GenQuest.DestroyPirate.FightAfterDeck")) //квест мэра на пирата
 	{
@@ -339,13 +345,13 @@ void Cabin_ReloadEndFadeAfter()
 		DeleteAttribute(sld, "AlwaysFriend");
 		sld.nation = PIRATE;
 		Ship_NationAgressivePatent(sld);
-//		Ship_FlagRefresh(sld); //флаг на лету
+		//		Ship_FlagRefresh(sld); //флаг на лету
 		SetCharacterRelationBoth(sti(sld.index), GetMainCharacterIndex(), RELATION_ENEMY);
 		Group_SetTaskAttack("Sea_CapComission_1", PLAYER_GROUP);
 		Group_LockTask("Sea_CapComission_1");
 		UpdateRelations();
 		RefreshBattleInterface();
-//		RefreshFlags();
+		//		RefreshFlags();
 		DoQuestCheckDelay("NationUpdate", 0.1);
 	}
 	// <-- ugeen
@@ -357,48 +363,47 @@ void Cabin_ReloadEndFadeAfter()
 	CreateParticleEntity();
 }
 
-
 /////////// диалог на палубе ////////////
 void Sea_DeckBoatStartNow(ref _iShipsCharacter)
 {
-	string boat_pic = "loading\boat_"+rand(2)+".tga";
-	if(CheckAttribute(pchar, "TownEscape")) boat_pic = "loading\StartGame.tga";
+	string boat_pic = "loading\boat_" + rand(2) + ".tga";
+	if (CheckAttribute(pchar, "TownEscape"))
+		boat_pic = "loading\StartGame.tga";
 
 	if (!bAbordageStarted)
 	{
-	    bSeaReloadStarted = true;
+		bSeaReloadStarted = true;
 
 		object reload_fader;
 		CreateEntity(&reload_fader, "fader");
-		SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade", 0);  // одинаковый с каютой
+		SetEventHandler("FaderEvent_StartFade", "Cabin_ReloadStartFade", 0); // одинаковый с каютой
 		SetEventHandler("FaderEvent_EndFade", "DeckBoat_ReloadEndFade", 0);
 
 		SendMessage(&reload_fader, "ls", FADER_PICTURE, boat_pic);
 		SendMessage(&reload_fader, "lfl", FADER_OUT, 1.0, false);
 		SendMessage(&reload_fader, "l", FADER_STARTFRAME);
 
-        MakeCloneShipDeck(_iShipsCharacter, false); // подмена палубы
+		MakeCloneShipDeck(_iShipsCharacter, false); // подмена палубы
 		SetSailorDeck_Ships(_iShipsCharacter);
 
 		PauseAllSounds();
-	 	//ResetSoundScheme();
+		//ResetSoundScheme();
 		ResetSound(); // new
 
-	    //PlaySound("interface\_Abandon0.wav");// шлюпки на воду!
+		//PlaySound("interface\_Abandon0.wav");// шлюпки на воду!
 
 		bAbordageStarted = true;
 		bDeckBoatStarted = true;
 		Sea.AbordageMode = true;
 	}
-
 }
 
 void DeckBoat_ReloadEndFade()
 {
 	// Delete current cannonballs
 	AIBalls.Clear = "";
- 	PauseParticles(true);
-    //DeleteParticles(); // boal fix костры нах
+	PauseParticles(true);
+	//DeleteParticles(); // boal fix костры нах
 
 	// start DeckBoat location
 	int a = GetEventData();
@@ -411,7 +416,7 @@ void DeckBoat_ReloadEndFade()
 }
 void DeckBoat_Start()
 {
- //ResetSoundScheme();
+	//ResetSoundScheme();
 	//ResetSound(); // new
 	//PauseAllSounds();
 	int i;
@@ -419,32 +424,32 @@ void DeckBoat_Start()
 	DeleteBattleInterface();
 	//#20180815-01 Fix per Dmitry
 	//StartBattleLandInterface();
-    PlayVoice("interface\_Abandon0.wav");// шлюпки на воду!
+	PlayVoice("interface\_Abandon0.wav"); // шлюпки на воду!
 	ref mchr = GetMainCharacter();
 
 	string DeckBoatID = "";
 	DeckBoatID = "Deck_Near_Ship";
 
-
 	int locID = -1;
 	locID = FindLocation(DeckBoatID);
-	if(locID < 0)
+	if (locID < 0)
 	{
 		Trace("Boarding: ship location not found <" + DeckBoatID + ">, set default");
-	    DeckBoatID = "";
-	    return;
+		DeckBoatID = "";
+		return;
 	}
 	//Выставим  и запомним адреса
 	boarding_adr[0].location = mchr.location;
 	boarding_adr[0].group = mchr.location.group;
 	boarding_adr[0].locator = mchr.location.locator;
-	for(i = 1; i <=MAX_NUM_FIGHTERS; i++)
+	for (i = 1; i <= MAX_NUM_FIGHTERS; i++)
 	{
 		int idx = GetOfficersIndex(GetMainCharacter(), i);
 		//Boyer mod
 		int k = i % 3;
-		if(k==0) k = 3;
-		if(idx < 0)
+		if (k == 0)
+			k = 3;
+		if (idx < 0)
 		{
 			boarding_adr[k].location = "";
 			boarding_adr[k].group = "";
@@ -470,7 +475,7 @@ void DeckBoat_LoadLocation(string locationID)
 	//Ищем локацию
 	int locIndex = FindLocation(locationID);
 	Log_SetActiveAction("Nothing");
-	if(locIndex >= 0)
+	if (locIndex >= 0)
 	{
 		//Устанавливаем главного персонажа
 		ref mchr = GetMainCharacter();
@@ -481,18 +486,21 @@ void DeckBoat_LoadLocation(string locationID)
 		mchr.location.group = "goto";
 		mchr.location.locator = "goto5";
 
-
 		//Перегружаемся в локацию
 		boarding_location = locIndex;
 		Locations[locIndex].boarding = "true";
-		if(LoadLocation(&Locations[locIndex]))
+		if (LoadLocation(&Locations[locIndex]))
 		{
 			//Запретим диалог
 			dialogDisable = false;
-		}else{
+		}
+		else
+		{
 			Trace("Boarding: Boarding location not loaded, current loc <" + locationID + ">");
 		}
-	}else{
+	}
+	else
+	{
 		Trace("Boarding: Boarding location not found, current loc <" + locationID + ">");
 	}
 	ReloadProgressEnd();
@@ -502,10 +510,14 @@ void DeckBoat_LoadLocation(string locationID)
 }
 void Sea_DeckBoatLoad(int ShipsCharacter)
 {
-	if (bSeaActive == false) { return; }
+	if (bSeaActive == false)
+	{
+		return;
+	}
 	ref rCharacter = GetCharacter(ShipsCharacter);
 
-	if (LAi_IsDead(rCharacter)) return;  // нефиг, а то в списке есть трупы
+	if (LAi_IsDead(rCharacter))
+		return; // нефиг, а то в списке есть трупы
 
 	Sea_DeckBoatStartNow(rCharacter);
 }
@@ -514,25 +526,25 @@ void SetSailorDeck_Ships(ref Chref)
 {
 	String characterID = Chref.id;
 	ref sld;
-    string  ani, model;
-    int cn, Rank = 10;
+	string ani, model;
+	int cn, Rank = 10;
 
 	//--> eddy. квест мэра, закрываем выход с палубы и ноду даем нужную
 	pchar.GenQuest.CaptainId = characterID; // boal заготовка для других квестов, обработка в диалоге
-	pchar.quest.Munity = ""; // закрыто для квестов на выход
+	pchar.quest.Munity = "";				// закрыто для квестов на выход
 	//<-- eddy. квест мэра, закрываем выход с палубы
 
 	// Warship 08.07.09 Пасхалка с бригантиной Мэри Селест
 	// Генерим нашего матроса, который скажет, что, мол, корабль пуст
-	if(characterID == "MaryCelesteCapitan")
+	if (characterID == "MaryCelesteCapitan")
 	{
 		model = LAi_GetBoardingModel(PChar, &ani);
 		sld = GetCharacter(NPC_GenerateCharacter("saylor_0" + i, model, "man", ani, Rank, sti(PChar.nation), 0, true));
-	    sld.name = "Матрос";
-	    sld.lastname = "";
-        sld.Dialog.Filename = "Quest\sailors_dialog.c";
-    	sld.Dialog.CurrentNode = "On_MaryCeleste_Deck";
-    	sld.greeting = "Gr_Soldier";
+		sld.name = "Матрос";
+		sld.lastname = "";
+		sld.Dialog.Filename = "Quest\sailors_dialog.c";
+		sld.Dialog.CurrentNode = "On_MaryCeleste_Deck";
+		sld.greeting = "Gr_Soldier";
 
 		LAi_SetActorType(sld);
 		LAi_ActorDialog(sld, PChar, "", 5.0, 0);
@@ -546,22 +558,22 @@ void SetSailorDeck_Ships(ref Chref)
 		return;
 	}
 
-	if(CheckAttribute(pchar,"questTemp.ReasonToFast.canSpeakSailor") || CheckAttribute(pchar,"GenQuest.CaptainComission.canSpeakBoatswain"))
+	if (CheckAttribute(pchar, "questTemp.ReasonToFast.canSpeakSailor") || CheckAttribute(pchar, "GenQuest.CaptainComission.canSpeakBoatswain"))
 	{
 		model = LAi_GetBoardingModel(PChar, &ani);
-		sld = GetCharacter(NPC_GenerateCharacter("saylor_0"+i, model, "man", ani, 10, sti(PChar.nation), 0, true));
+		sld = GetCharacter(NPC_GenerateCharacter("saylor_0" + i, model, "man", ani, 10, sti(PChar.nation), 0, true));
 		sld.name = "Боцман";
-	    sld.lastname = "";
+		sld.lastname = "";
 		sld.Dialog.Filename = "Quest\sailors_dialog.c";
-		if(CheckAttribute(pchar,"questTemp.ReasonToFast.canSpeakSailor"))
+		if (CheckAttribute(pchar, "questTemp.ReasonToFast.canSpeakSailor"))
 		{
 			sld.Dialog.CurrentNode = "On_MyShip_Deck";
 		}
-		if(CheckAttribute(pchar,"GenQuest.CaptainComission.canSpeakBoatswain"))
+		if (CheckAttribute(pchar, "GenQuest.CaptainComission.canSpeakBoatswain"))
 		{
 			sld.Dialog.CurrentNode = "CapComission_OnShipDeck";
 		}
-    	sld.greeting = "Gr_Soldier";
+		sld.greeting = "Gr_Soldier";
 
 		chrDisableReloadToLocation = true; // Чтобы нельзя было выйти до разговора
 
@@ -572,22 +584,22 @@ void SetSailorDeck_Ships(ref Chref)
 		return;
 	}
 
-	if(CheckAttribute(pchar,"GenQuest.Hold_GenQuest.canSpeakSailor"))
+	if (CheckAttribute(pchar, "GenQuest.Hold_GenQuest.canSpeakSailor"))
 	{
 		model = LAi_GetBoardingModel(PChar, &ani);
-		sld = GetCharacter(NPC_GenerateCharacter("saylor_0"+i, model, "man", ani, 10, sti(PChar.nation), 0, true));
+		sld = GetCharacter(NPC_GenerateCharacter("saylor_0" + i, model, "man", ani, 10, sti(PChar.nation), 0, true));
 		sld.name = "Боцман";
-	    sld.lastname = "";
+		sld.lastname = "";
 		sld.Dialog.Filename = "Quest\sailors_dialog.c";
-		if(pchar.GenQuest.Hold_GenQuest == "prisoner_escaped")
+		if (pchar.GenQuest.Hold_GenQuest == "prisoner_escaped")
 		{
 			sld.Dialog.CurrentNode = "Hold_GenQuest_OnShipDeck";
 		}
-		if(pchar.GenQuest.Hold_GenQuest == "prisoner_ransom")
+		if (pchar.GenQuest.Hold_GenQuest == "prisoner_ransom")
 		{
 			sld.Dialog.CurrentNode = "Hold_GenQuest_OnShipDeck4";
 		}
-    	sld.greeting = "Gr_Soldier";
+		sld.greeting = "Gr_Soldier";
 
 		chrDisableReloadToLocation = true; // Чтобы нельзя было выйти до разговора
 
@@ -598,7 +610,7 @@ void SetSailorDeck_Ships(ref Chref)
 		return;
 	}
 
-	if(CheckAttribute(pchar,"GenQuest.CaptainComission.canSpeakCaptain"))
+	if (CheckAttribute(pchar, "GenQuest.CaptainComission.canSpeakCaptain"))
 	{
 		sld = characterFromID("CapComission_1");
 		sld.dialog.currentnode = "CaptainComission_380";
@@ -612,77 +624,77 @@ void SetSailorDeck_Ships(ref Chref)
 	}
 
 	if (characterID == "MQPirate" || characterID == "CapComission_1") // to_do заменить на флаг, чтоб было всем квестовым
-	{  // клон для квестов
-	    ref CopyChref;
+	{																  // клон для квестов
+		ref CopyChref;
 
 		CopyChref = GetCharacter(NPC_GenerateCharacter("FantomDeckCap", "none", "man", "man", 1, PIRATE, 0, false));
 
-	    int NewCapIdx = sti(CopyChref.index);
+		int NewCapIdx = sti(CopyChref.index);
 		aref arToChar, arFromChar;
 
 		DeleteAttribute(CopyChref, "");
 
-	    makearef(arToChar, CopyChref);
-	    makearef(arFromChar, Chref);
-	    CopyAttributes(arToChar, arFromChar);
+		makearef(arToChar, CopyChref);
+		makearef(arFromChar, Chref);
+		CopyAttributes(arToChar, arFromChar);
 
 		CopyChref.index = NewCapIdx;
 		CopyChref.id = "FantomDeckCap";
 		CopyChref.lifeDay = 0;
 
-	    LAi_SetWarriorType(CopyChref);
+		LAi_SetWarriorType(CopyChref);
 		LAi_warrior_DialogEnable(CopyChref, true);
 		LAi_SetLoginTime(CopyChref, 0.0, 24.0); // фикс, чтоб были всегда
 		// запоминаем старый диалог
-		if (!CheckAttribute(CopyChref,"DeckDialogNode"))
-	    {
-	        CopyChref.Dialog.Filename = "Capitans_dialog.c";
-		    CopyChref.greeting = "Gr_Commander";
-		    CopyChref.Dialog.CurrentNode = "First time";
-	    }
-	    else
-	    {
-	        CopyChref.Dialog.CurrentNode = CopyChref.DeckDialogNode;
-	    }
-	    // boal кусок кода для запрета повторных наездов на капитана -->
-	    if (CheckAttribute(CopyChref, "talk_date_Go_away") && CopyChref.talk_date_Go_away == LastSpeakDate())
-	    {
-	        CopyChref.Dialog.CurrentNode = "Go_away";
-	    }
-	    // boal кусок кода для запрета повторных наездов на капитана <--
+		if (!CheckAttribute(CopyChref, "DeckDialogNode"))
+		{
+			CopyChref.Dialog.Filename = "Capitans_dialog.c";
+			CopyChref.greeting = "Gr_Commander";
+			CopyChref.Dialog.CurrentNode = "First time";
+		}
+		else
+		{
+			CopyChref.Dialog.CurrentNode = CopyChref.DeckDialogNode;
+		}
+		// boal кусок кода для запрета повторных наездов на капитана -->
+		if (CheckAttribute(CopyChref, "talk_date_Go_away") && CopyChref.talk_date_Go_away == LastSpeakDate())
+		{
+			CopyChref.Dialog.CurrentNode = "Go_away";
+		}
+		// boal кусок кода для запрета повторных наездов на капитана <--
 
 		ChangeCharacterAddressGroup(CopyChref, "Deck_Near_Ship", "goto", "goto9");
 	}
 	else
-	{   // здесь настоящий кэп, не клон
+	{ // здесь настоящий кэп, не клон
 		LAi_SetWarriorType(Chref);
 		LAi_warrior_DialogEnable(Chref, true);
 		LAi_SetLoginTime(Chref, 0.0, 24.0); // фикс, чтоб были всегда
 		// запоминаем старый диалог
 		if (CheckAttribute(Chref, "Dialog.Filename"))
-	    {
-	        Chref.Bak.Dialog.Filename    = Chref.Dialog.Filename;
-	        Chref.Bak.Dialog.CurrentNode = Chref.Dialog.CurrentNode;
-	    }
-	    else
-	    {
-	        Chref.Bak.Dialog.Filename    = "";
-	        Chref.Bak.Dialog.CurrentNode = "First time";
-	    }
-		if (!CheckAttribute(Chref,"DeckDialogNode"))
-	    {
-	        Chref.Dialog.Filename = "Capitans_dialog.c";
-		    Chref.greeting = "Gr_Commander";
-		    Chref.Dialog.CurrentNode = "First time";
-	    }
-	    else
-	    {
-	        Chref.Dialog.CurrentNode = Chref.DeckDialogNode;
-	    }
-	    // boal кусок кода для запрета повторных наездов на капитана -->
-	    if (CheckAttribute(Chref, "talk_date_Go_away") && Chref.talk_date_Go_away == LastSpeakDate())
-	    {
-			if(CheckAttribute(Chref,"surrendered"))
+		{
+			Chref.Bak.Dialog.Filename = Chref.Dialog.Filename;
+			Chref.Bak.Dialog.CurrentNode = Chref.Dialog.CurrentNode;
+		}
+		else
+		{
+			Chref.Bak.Dialog.Filename = "";
+			Chref.Bak.Dialog.CurrentNode = "First time";
+		}
+		if (!CheckAttribute(Chref, "DeckDialogNode"))
+		{
+			Chref.Dialog.Filename = "Capitans_dialog.c";
+			Chref.greeting = "Gr_Commander";
+			Chref.Dialog.CurrentNode = "First time";
+		}
+		else
+		{
+			Chref.Dialog.CurrentNode = Chref.DeckDialogNode;
+		}
+		// boal кусок кода для запрета повторных наездов на капитана -->
+		if (CheckAttribute(Chref, "talk_date_Go_away") && Chref.talk_date_Go_away == LastSpeakDate())
+		{
+			if (CheckAttribute(Chref, "surrendered"))
 			{
 				Chref.Dialog.CurrentNode = "surrender_goaway";
 			}
@@ -690,39 +702,40 @@ void SetSailorDeck_Ships(ref Chref)
 			{
 				Chref.Dialog.CurrentNode = "Go_away";
 			}
-	    }
-	    // boal кусок кода для запрета повторных наездов на капитана <--
+		}
+		// boal кусок кода для запрета повторных наездов на капитана <--
 
 		ChangeCharacterAddressGroup(Chref, "Deck_Near_Ship", "goto", "goto9");
 	}
 	int iQty = 5;
 
-	if(CheckAttribute(Chref, "ShipWreck") && PChar.GenerateShipWreck.State == "BanditsInShip")
+	if (CheckAttribute(Chref, "ShipWreck") && PChar.GenerateShipWreck.State == "BanditsInShip")
 	{
 		iQty = sti(PChar.GenerateShipWreck.ShipCrewQty) + 1;
 	}
 
 	int iRank = GetRank(PChar, 2) + MOD_SKILL_ENEMY_RATE;
 
-	if(!CheckAttribute(Chref, "ShipWreck"))
+	if (!CheckAttribute(Chref, "ShipWreck"))
 	{
 		iRank = 10;
 	}
 
-	if(CheckAttribute(pchar,"GenQuest.CaptainComission")) Rank = sti(pchar.rank) + rand(MOD_SKILL_ENEMY_RATE); // чтобы жизнь медом не казалась
+	if (CheckAttribute(pchar, "GenQuest.CaptainComission"))
+		Rank = sti(pchar.rank) + rand(MOD_SKILL_ENEMY_RATE); // чтобы жизнь медом не казалась
 
-    for (int i=1; i<5; i++)
-    {
-        model = LAi_GetBoardingModel(Chref, &ani);
+	for (int i = 1; i < 5; i++)
+	{
+		model = LAi_GetBoardingModel(Chref, &ani);
 		cn = NPC_GenerateCharacter("saylor_0" + i, model, "man", ani, Rank, sti(Chref.nation), 0, true);
 		sld = &Characters[cn];
-        LAi_SetWarriorType(sld); // участвуют в расстреле - переинитим тип
-    	LAi_warrior_DialogEnable(sld, true);
-	    sld.name    = "Матрос";
-	    sld.lastname = "";
-        sld.Dialog.Filename = "Quest\sailors_dialog.c";
-    	sld.Dialog.CurrentNode = "On_Deck";
-    	sld.greeting = "Gr_Soldier";
+		LAi_SetWarriorType(sld); // участвуют в расстреле - переинитим тип
+		LAi_warrior_DialogEnable(sld, true);
+		sld.name = "Матрос";
+		sld.lastname = "";
+		sld.Dialog.Filename = "Quest\sailors_dialog.c";
+		sld.Dialog.CurrentNode = "On_Deck";
+		sld.greeting = "Gr_Soldier";
 	}
 
 	ChangeCharacterAddressGroup(characterFromID("saylor_01"), "Deck_Near_Ship", "goto", "goto8");
@@ -731,19 +744,19 @@ void SetSailorDeck_Ships(ref Chref)
 	ChangeCharacterAddressGroup(characterFromID("saylor_04"), "Deck_Near_Ship", "goto", "goto7");
 	//--> eddy. квест мэра, закрываем выход с палубы и ноду даем нужную
 	pchar.GenQuest.CaptainId = Chref.id; // boal заготовка для других квестов, обработка в диалоге
-	pchar.quest.Munity = ""; // закрыто для квестов на выход
+	pchar.quest.Munity = "";			 // закрыто для квестов на выход
 	//<-- eddy. квест мэра, закрываем выход с палубы
-	if(CheckAttribute(Chref, "ShipWreck") && PChar.GenerateShipWreck.State == "BanditsInShip")
+	if (CheckAttribute(Chref, "ShipWreck") && PChar.GenerateShipWreck.State == "BanditsInShip")
 	{
 		iQty = sti(PChar.GenerateShipWreck.MyCrewQty);
-		for (i=1; i<=iQty; i++)
+		for (i = 1; i <= iQty; i++)
 		{
 			model = LAi_GetBoardingModel(PChar, &ani);
 			cn = NPC_GenerateCharacter("my_saylor_0" + i, model, "man", ani, iRank, sti(PChar.nation), 0, true);
 			sld = &Characters[cn];
 			LAi_SetWarriorType(sld);
 			LAi_warrior_DialogEnable(sld, false);
-			sld.name    = "Матрос";
+			sld.name = "Матрос";
 			sld.lastname = "";
 			sld.greeting = "pirat_guard";
 			ChangeCharacterAddressGroup(sld, "Deck_Near_Ship", "reload", "reload1");
@@ -760,7 +773,7 @@ void SetSailorDeck_Ships(ref Chref)
 
 		ChangeCharacterAddressGroup(dead, "Deck_Near_Ship", "goto", "goto1");
 
-		for(int b=0; b <= 4; b++)
+		for (int b = 0; b <= 4; b++)
 		{
 			LaunchBlood(dead, 5.0, true);
 		}
@@ -773,126 +786,126 @@ void SetSailorDeck_Ships(ref Chref)
 
 void DeleteNPCfromDeck()
 {
-    int i;
-    ref Cref;
-    //Log_TestInfo("DeleteNPCfromDeck");
-    for (i=0; i< TOTAL_CHARACTERS; i++)
-    {
-        Cref = GetCharacter(i);
+	int i;
+	ref Cref;
+	//Log_TestInfo("DeleteNPCfromDeck");
+	for (i = 0; i < TOTAL_CHARACTERS; i++)
+	{
+		Cref = GetCharacter(i);
 
-        if (CheckAttribute(Cref, "location"))
-        {
-            if (Cref.location == "Deck_Near_Ship")
-            {
-               Cref.location = "none";
-               //Log_TestInfo("DeleteNPCfromDeck " + Cref.id);
-               // диалог в зад
-               if (CheckAttribute(Cref, "Dialog.Filename") && Cref.Dialog.Filename == "Capitans_dialog.c")
-               {
-                   Cref.Dialog.Filename    = Cref.Bak.Dialog.Filename;
-                   Cref.Dialog.CurrentNode = Cref.Bak.Dialog.CurrentNode;
-               }
-            }
-        }
-    }
+		if (CheckAttribute(Cref, "location"))
+		{
+			if (Cref.location == "Deck_Near_Ship")
+			{
+				Cref.location = "none";
+				//Log_TestInfo("DeleteNPCfromDeck " + Cref.id);
+				// диалог в зад
+				if (CheckAttribute(Cref, "Dialog.Filename") && Cref.Dialog.Filename == "Capitans_dialog.c")
+				{
+					Cref.Dialog.Filename = Cref.Bak.Dialog.Filename;
+					Cref.Dialog.CurrentNode = Cref.Bak.Dialog.CurrentNode;
+				}
+			}
+		}
+	}
 }
 
 ///////////////// пленный в трюме //////////////////
 void SetPrisonerLocationToNone()
 {
-    ref offref;
-    int i, cn;
+	ref offref;
+	int i, cn;
 
-    ref mchr = GetMainCharacter();
+	ref mchr = GetMainCharacter();
 
-    for (i=0; i < GetPassengersQuantity(mchr); i++)
-    {
-        cn = GetPassenger(mchr,i);
-        if(cn != -1)
-        {
-            offref = GetCharacter(cn);
-            if(CheckAttribute(offref,"prisoned"))
-            {
-	            if(sti(offref.prisoned)==true && GetRemovable(offref)) // ставим только фантомов
-	            {
-			        offref.location = "none";
-                }
-            }
-        }
-    }
+	for (i = 0; i < GetPassengersQuantity(mchr); i++)
+	{
+		cn = GetPassenger(mchr, i);
+		if (cn != -1)
+		{
+			offref = GetCharacter(cn);
+			if (CheckAttribute(offref, "prisoned"))
+			{
+				if (sti(offref.prisoned) == true && GetRemovable(offref)) // ставим только фантомов
+				{
+					offref.location = "none";
+				}
+			}
+		}
+	}
 }
 
 void SetPrisonerInHold()
 {
-    //Устанавливаем пленных, если такие есть
+	//Устанавливаем пленных, если такие есть
 	ref offref;
-    int i, cn;
+	int i, cn;
 
-    ref mchr = GetMainCharacter();
+	ref mchr = GetMainCharacter();
 
-    for (i=0; i < GetPassengersQuantity(mchr); i++)
-    {
-        cn = GetPassenger(mchr,i);
-        if(cn != -1)
-        {
-            offref = GetCharacter(cn);
-            if(CheckAttribute(offref,"prisoned"))
-            {
-	            if(sti(offref.prisoned)==true && GetRemovable(offref)) // ставим только фантомов
-	            {
-                    PlaceCharacter(offref, "goto", mchr.location);
-                }
-            }
-        }
-    }
+	for (i = 0; i < GetPassengersQuantity(mchr); i++)
+	{
+		cn = GetPassenger(mchr, i);
+		if (cn != -1)
+		{
+			offref = GetCharacter(cn);
+			if (CheckAttribute(offref, "prisoned"))
+			{
+				if (sti(offref.prisoned) == true && GetRemovable(offref)) // ставим только фантомов
+				{
+					PlaceCharacter(offref, "goto", mchr.location);
+				}
+			}
+		}
+	}
 }
 //////////////////  кампус /////////////////
 void SetOfficersInCampusToNone()
 {
-    ref offref;
-    int i, cn;
+	ref offref;
+	int i, cn;
 
-    ref mchr = GetMainCharacter();
+	ref mchr = GetMainCharacter();
 
-    for (i=0; i < GetPassengersQuantity(mchr); i++)
-    {
-        cn = GetPassenger(mchr,i);
-        if(cn != -1)
-        {
-            offref = GetCharacter(cn);
-            if (!CheckAttribute(offref,"prisoned") || sti(offref.prisoned) == false)
-            {
-	            if (GetRemovable(offref) && !IsOfficer(offref))  // не боевики и квестовые
-	            {
-			        offref.location = "none";
-                }
-            }
-        }
-    }
+	for (i = 0; i < GetPassengersQuantity(mchr); i++)
+	{
+		cn = GetPassenger(mchr, i);
+		if (cn != -1)
+		{
+			offref = GetCharacter(cn);
+			if (!CheckAttribute(offref, "prisoned") || sti(offref.prisoned) == false)
+			{
+				if (GetRemovable(offref) && !IsOfficer(offref)) // не боевики и квестовые
+				{
+					offref.location = "none";
+				}
+			}
+		}
+	}
 }
 void SetOfficersInCampus()
 {
-    //Устанавливаем пассажиров офов, если такие есть
+	//Устанавливаем пассажиров офов, если такие есть
 	ref offref;
-    int i, cn;
+	int i, cn;
 
-    ref mchr = GetMainCharacter();
+	ref mchr = GetMainCharacter();
 
-    for (i=0; i < GetPassengersQuantity(mchr); i++)
-    {
-        cn = GetPassenger(mchr,i);
-        if(cn != -1)
-        {
-            offref = GetCharacter(cn);
-            if (!CheckAttribute(offref,"prisoned") || sti(offref.prisoned) == false)
-            {
-	            bool bWrick = CheckAttribute(offref, "ShipWrick") && !CheckAttribute(offref, "ShipWrickDel");
+	for (i = 0; i < GetPassengersQuantity(mchr); i++)
+	{
+		cn = GetPassenger(mchr, i);
+		if (cn != -1)
+		{
+			offref = GetCharacter(cn);
+			if (!CheckAttribute(offref, "prisoned") || sti(offref.prisoned) == false)
+			{
+				bool bWrick = CheckAttribute(offref, "ShipWrick") && !CheckAttribute(offref, "ShipWrickDel");
 				bool bOff = GetRemovable(offref) && !IsOfficer(offref);
-				if (bOff || bWrick)  // не боевики и квестовые
+				if (bOff || bWrick) // не боевики и квестовые
 				{
 					LAi_SetCitizenType(offref);
 
-					if(bWrick)
+					if (bWrick)
 					{
 						PlaceCharacter(offref, "rld", mchr.location);
 					}
@@ -901,13 +914,12 @@ void SetOfficersInCampus()
 						PlaceCharacter(offref, "goto", mchr.location);
 					}
 				}
-            }
-        }
-    }
-
+			}
+		}
+	}
 
 	//navy --> компаньоны
- 	if (!bDisableMapEnter) //не идет бой
+	if (!bDisableMapEnter) //не идет бой
 	{
 		for (i = 1; i < GetCompanionQuantity(PChar); i++)
 		{

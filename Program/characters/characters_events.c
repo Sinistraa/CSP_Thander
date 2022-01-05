@@ -13,7 +13,6 @@ void InitCharacterEvents()
 	SetEventHandler("Location_CharacterInLocator", "chrCharacterInLocator", 0);
 	SetEventHandler("Location_CharacterExitFromLocator", "chrCharacterExitFromLocator", 0);
 
-
 	lockedReloadLocator = "";
 	chrWaitReloadLocator = "";
 
@@ -46,26 +45,30 @@ void chrCharacterEntryToLocator()
 	ref mc = GetMainCharacter();
 	int result;
 
-	switch(group)
+	switch (group)
 	{
 	case "reload":
-		if( !chrCheckReloadLocatorSkip(loc,locator) )
+		if (!chrCheckReloadLocatorSkip(loc, locator))
 		{
 			chrWaitReloadIsNoLink = false;
-			if(sti(chr.index) != GetMainCharacterIndex()){ break; }
+			if (sti(chr.index) != GetMainCharacterIndex())
+			{
+				break;
+			}
 			chrWaitReloadLocator = locator;
 			chrWaitLocationRef = loc;
 			makearef(chrWaitReloadRef, loc.reload);
 			result = chrCheckReloadLink(loc, locator);
-			if(result != 1)
+			if (result != 1)
 			{
 				chrWaitReloadIsNoLink = true;
-				if(result == 0) Log_SetActiveAction("Closed");
+				if (result == 0)
+					Log_SetActiveAction("Closed");
 				break;
 			}
-			if(chrCheckAutoReload(loc, locator) == true)
+			if (chrCheckAutoReload(loc, locator) == true)
 			{
-				if(chrIsNowEnableReload() != true)
+				if (chrIsNowEnableReload() != true)
 				{
 					lockedReloadLocator = "";
 					Log_SetActiveAction("Closed");
@@ -74,22 +77,26 @@ void chrCharacterEntryToLocator()
 				Reload(chrWaitReloadRef, chrWaitReloadLocator, mc.location);
 				chrWaitReloadLocator = "";
 				chrWaitReloadIsNoLink = false;
-			}else{
+			}
+			else
+			{
 				lockedReloadLocator = "";
-				if(chrIsNowEnableReload() != true)
+				if (chrIsNowEnableReload() != true)
 				{
 					Log_SetActiveAction("Closed");
-				}else{
+				}
+				else
+				{
 					Log_SetActiveAction("Reload");
 				}
 			}
 		}
 		break;
 	case "camdetector":
-		if( !chrCheckCamLocatorSkip(loc,locator) )
+		if (!chrCheckCamLocatorSkip(loc, locator))
 		{
 			locAttr = "locators.camera." + locator;
-			if(CheckAttribute(loc, locAttr) != 0)
+			if (CheckAttribute(loc, locAttr) != 0)
 			{
 				x = MakeFloat(loc.(locAttr).x);
 				y = MakeFloat(loc.(locAttr).y);
@@ -118,72 +125,91 @@ void chrCharacterEntryToLocator()
 			bMainCharacterInFire = true;
 			aref locator_group;
 			makearef(locator_group, loc.locators.teleport.(locator));
-			CreateParticleSystem("shipfire",stf(locator_group.x),stf(locator_group.y),stf(locator_group.z),0,0,0,0);
-			CreateParticleSystem("shipfire",stf(locator_group.x)-1.4,stf(locator_group.y),stf(locator_group.z)-1.4,0,0,0,0);
-			CreateParticleSystem("shipfire",stf(locator_group.x)+1.4,stf(locator_group.y),stf(locator_group.z)-1.4,0,0,0,0);
-			CreateParticleSystem("shipfire",stf(locator_group.x)-1.4,stf(locator_group.y),stf(locator_group.z)+1.4,0,0,0,0);
-			CreateParticleSystem("shipfire",stf(locator_group.x)+1.4,stf(locator_group.y),stf(locator_group.z)+1.4,0,0,0,0);
+			CreateParticleSystem("shipfire", stf(locator_group.x), stf(locator_group.y), stf(locator_group.z), 0, 0, 0, 0);
+			CreateParticleSystem("shipfire", stf(locator_group.x) - 1.4, stf(locator_group.y), stf(locator_group.z) - 1.4, 0, 0, 0, 0);
+			CreateParticleSystem("shipfire", stf(locator_group.x) + 1.4, stf(locator_group.y), stf(locator_group.z) - 1.4, 0, 0, 0, 0);
+			CreateParticleSystem("shipfire", stf(locator_group.x) - 1.4, stf(locator_group.y), stf(locator_group.z) + 1.4, 0, 0, 0, 0);
+			CreateParticleSystem("shipfire", stf(locator_group.x) + 1.4, stf(locator_group.y), stf(locator_group.z) + 1.4, 0, 0, 0, 0);
 			loc.gotoFire = SendMessage(Sound, "lsllllllfff", MSG_SOUND_PLAY, "fortfire", SOUND_WAV_3D, VOLUME_FX, 0, 1, 0, 0, stf(locator_group.x), stf(locator_group.y), stf(locator_group.z));
-			float hp    = stf(chr.chr_ai.hp);
-			chr.chr_ai.hp = sti(chr.chr_ai.hp) - (15+MOD_SKILL_ENEMY_RATE);
+			float hp = stf(chr.chr_ai.hp);
+			chr.chr_ai.hp = sti(chr.chr_ai.hp) - (15 + MOD_SKILL_ENEMY_RATE);
 			LAi_CheckKillCharacter(chr);
-			SendMessage(chr, "lfff", MSG_CHARACTER_VIEWDAMAGE, (15+MOD_SKILL_ENEMY_RATE), MakeFloat(MakeInt(hp)), MakeFloat(MakeInt(chr.chr_ai.hp_max)));
+			SendMessage(chr, "lfff", MSG_CHARACTER_VIEWDAMAGE, (15 + MOD_SKILL_ENEMY_RATE), MakeFloat(MakeInt(hp)), MakeFloat(MakeInt(chr.chr_ai.hp_max)));
 		}
 		break;
 	}
 
-	if( CheckAttribute(chr,"Quests.LocatorCheck." + group) )
+	if (CheckAttribute(chr, "Quests.LocatorCheck." + group))
 	{
 		chr.Quests.LocatorCheck.(group) = locator;
 		QuestsCheck();
 	}
 }
 
-bool chrCheckReloadLocatorSkip(aref loc,string locator)
+bool chrCheckReloadLocatorSkip(aref loc, string locator)
 {
-	aref rl,at;
-	int n,num;
+	aref rl, at;
+	int n, num;
 	makearef(rl, loc.reload);
 	num = GetAttributesNum(rl);
-	for(n=0; n<num; n++)
+	for (n = 0; n < num; n++)
 	{
 		at = GetAttributeN(rl, n);
-		if( at.name == locator ) { break; }
-		if( at.name == locator+"_back" ) { break; }
+		if (at.name == locator)
+		{
+			break;
+		}
+		if (at.name == locator + "_back")
+		{
+			break;
+		}
 	}
 	// такого локатора нет в реале - значит скипаем его
-	if( n<num ) return false;
+	if (n < num)
+		return false;
 	return true;
 }
 
-bool chrCheckCamLocatorSkip(aref loc,string locator)
+bool chrCheckCamLocatorSkip(aref loc, string locator)
 {
-	aref rl,at;
-	int n,num;
+	aref rl, at;
+	int n, num;
 
 	//#20190327-01
 	//if(locGetCameraEyes() != 0) return true;
 	makearef(rl, loc.locators.reload);
 	num = GetAttributesNum(rl);
-	for(n=0; n<num; n++)
+	for (n = 0; n < num; n++)
 	{
 		at = GetAttributeN(rl, n);
 		// есть такой локатор для перегрузки
-		if(GetAttributeName(at) == locator) { break; }
+		if (GetAttributeName(at) == locator)
+		{
+			break;
+		}
 	}
 
-	if( n<num )
+	if (n < num)
 	{
 		makearef(rl, loc.reload);
 		num = GetAttributesNum(rl);
-		for(n=0; n<num; n++)
+		for (n = 0; n < num; n++)
 		{
 			at = GetAttributeN(rl, n);
-			if( at.name == locator ) { break; }
-			if( at.name == locator+"_back" ) { break; }
+			if (at.name == locator)
+			{
+				break;
+			}
+			if (at.name == locator + "_back")
+			{
+				break;
+			}
 		}
 		// такого локатора нет в реале - значит скипаем его
-		if( n==num ) {return true;}
+		if (n == num)
+		{
+			return true;
+		}
 	}
 
 	return false;
@@ -195,11 +221,12 @@ void chrCharacterInLocator()
 	{
 		aref loc = GetEventData();
 		aref chr = GetEventData();
-		if (LAi_IsDead(chr) && LAi_IsImmortal(chr)) return;
-		float hp    = stf(chr.chr_ai.hp);
-		chr.chr_ai.hp = sti(chr.chr_ai.hp) - (15+MOD_SKILL_ENEMY_RATE);
+		if (LAi_IsDead(chr) && LAi_IsImmortal(chr))
+			return;
+		float hp = stf(chr.chr_ai.hp);
+		chr.chr_ai.hp = sti(chr.chr_ai.hp) - (15 + MOD_SKILL_ENEMY_RATE);
 		LAi_CheckKillCharacter(chr);
-		SendMessage(chr, "lfff", MSG_CHARACTER_VIEWDAMAGE, (15+MOD_SKILL_ENEMY_RATE), MakeFloat(MakeInt(hp)), MakeFloat(MakeInt(chr.chr_ai.hp_max)));
+		SendMessage(chr, "lfff", MSG_CHARACTER_VIEWDAMAGE, (15 + MOD_SKILL_ENEMY_RATE), MakeFloat(MakeInt(hp)), MakeFloat(MakeInt(chr.chr_ai.hp_max)));
 	}
 	return;
 	string group = GetEventData();
@@ -215,13 +242,13 @@ void chrCharacterExitFromLocator()
 	string locator = GetEventData();
 	float timeInLocator = GetEventData();
 
-	switch(group)
+	switch (group)
 	{
 	case "reload":
 		Log_SetActiveAction("Nothing");
 		chrWaitReloadLocator = "";
 		chrWaitReloadIsNoLink = false;
-		if(locator == lockedReloadLocator)
+		if (locator == lockedReloadLocator)
 		{
 			lockedReloadLocator = "";
 			return;
@@ -245,13 +272,13 @@ void chrCharacterExitFromLocator()
 			DeleteParticles();
 			StopSound(sti(loc.gotoFire), 0);
 			//#20190402-03
-            //ReleaseSound(0);
+			//ReleaseSound(0);
 			bMainCharacterInFire = false;
 		}
 		break;
 	}
 
-	if( CheckAttribute(chr,"Quests.LocatorCheck." + group) )
+	if (CheckAttribute(chr, "Quests.LocatorCheck." + group))
 	{
 		chr.Quests.LocatorCheck.(group) = "";
 	}
@@ -260,18 +287,23 @@ void chrCharacterExitFromLocator()
 void chrCharacterKeys()
 {
 	string controlName = GetEventData();
-	if(controlName != "ChrAction") return;
+	if (controlName != "ChrAction")
+		return;
 	//Skip if interface active
-	if(sti(InterfaceStates.Launched)==true) return;
+	if (sti(InterfaceStates.Launched) == true)
+		return;
 	//Skip is disable reload
 	bool noReload = false;
-	if(chrIsNowEnableReload() != true) noReload = true;
+	if (chrIsNowEnableReload() != true)
+		noReload = true;
 	//Skip free links
-	if(chrWaitReloadIsNoLink != false) noReload = true;
-	if(chrWaitReloadLocator == "") noReload = true;
-	if(noReload)
+	if (chrWaitReloadIsNoLink != false)
+		noReload = true;
+	if (chrWaitReloadLocator == "")
+		noReload = true;
+	if (noReload)
 	{
-		if(chrWaitReloadLocator != "")
+		if (chrWaitReloadLocator != "")
 		{
 			PlayStereoSound("knock");
 		}
@@ -284,39 +316,45 @@ void chrCharacterKeys()
 	ref mc = GetMainCharacter();
 	// boal 05/04/05 -->
 	if (bCabinStarted)
-    {
-        // раставление НПС при переходах - миниквесты
-        BOAL_ReloadToLoc(chrWaitReloadRef, chrWaitReloadLocator);
-    }
-    else
-    // boal <--
-	Reload(chrWaitReloadRef, chrWaitReloadLocator, mc.location);
+	{
+		// раставление НПС при переходах - миниквесты
+		BOAL_ReloadToLoc(chrWaitReloadRef, chrWaitReloadLocator);
+	}
+	else
+		// boal <--
+		Reload(chrWaitReloadRef, chrWaitReloadLocator, mc.location);
 	chrWaitReloadLocator = "";
 	chrWaitReloadIsNoLink = false;
 }
 
 bool chrIsNowEnableReload()
 {
-    if (chrDisableReloadToLocation) return false; // boal
+	if (chrDisableReloadToLocation)
+		return false; // boal
 	//Skip if not set reload locator
-	if(chrWaitReloadLocator == "") return false;
+	if (chrWaitReloadLocator == "")
+		return false;
 	//Skip if active dialog
-	if(DialogRun != 0) return false;
+	if (DialogRun != 0)
+		return false;
 	//Skip
-	if(chrCheckReload(chrWaitLocationRef, chrWaitReloadLocator) == 0) return false;
+	if (chrCheckReload(chrWaitLocationRef, chrWaitReloadLocator) == 0)
+		return false;
 	//Skip if disabled in quest movie
-	if(chrIsEnableReload() != true) return false;
-	if (LAi_IsFightMode(GetMainCharacter())) return false; // boal запрет выхода с саблей
+	if (chrIsEnableReload() != true)
+		return false;
+	if (LAi_IsFightMode(GetMainCharacter()))
+		return false; // boal запрет выхода с саблей
 	return true;
 }
 
-#event_handler("EventStartQuestMovie","chrChangeReloadStateHndl");
-#event_handler("EndStartQuestMovie","chrChangeReloadStateHndl");
-#event_handler(EVENT_DIALOG_START,"chrChangeReloadStateHndl");
-#event_handler(EVENT_DIALOG_EXIT,"chrChangeReloadStateHndl");
-#event_handler("EnableReloadLocatorEvent","chrChangeReloadStateHndl");
-#event_handler("chrCheckChangeOpenStateEvent","chrCheckChangeOpenState");
-#event_handler("eGetWeaponID","funcGetWeaponID");
+#event_handler("EventStartQuestMovie", "chrChangeReloadStateHndl");
+#event_handler("EndStartQuestMovie", "chrChangeReloadStateHndl");
+#event_handler(EVENT_DIALOG_START, "chrChangeReloadStateHndl");
+#event_handler(EVENT_DIALOG_EXIT, "chrChangeReloadStateHndl");
+#event_handler("EnableReloadLocatorEvent", "chrChangeReloadStateHndl");
+#event_handler("chrCheckChangeOpenStateEvent", "chrCheckChangeOpenState");
+#event_handler("eGetWeaponID", "funcGetWeaponID");
 
 string g_strRetParam;
 ref funcGetWeaponID()
@@ -327,9 +365,12 @@ ref funcGetWeaponID()
 	if (iTemp != -1)
 	{
 		string bladeId;
-		if (CheckAttribute(&characters[iTemp],"equip.blade")) bladeId = characters[iTemp].equip.blade;
-		else return &g_strRetParam;
-		if (findsubstr(bladeId, "topor" , 0) != -1)	g_strRetParam = "topor";
+		if (CheckAttribute(&characters[iTemp], "equip.blade"))
+			bladeId = characters[iTemp].equip.blade;
+		else
+			return &g_strRetParam;
+		if (findsubstr(bladeId, "topor", 0) != -1)
+			g_strRetParam = "topor";
 	}
 	return &g_strRetParam;
 }
@@ -341,19 +382,23 @@ void chrChangeReloadStateHndl()
 
 void chrCheckChangeOpenState()
 {
-	if(chrWaitReloadLocator == "") return;
-	if(chrIsNowEnableReload() != true)
+	if (chrWaitReloadLocator == "")
+		return;
+	if (chrIsNowEnableReload() != true)
 	{
 		Log_SetActiveAction("Closed");
-	}else{
+	}
+	else
+	{
 		Log_SetActiveAction("Reload");
 	}
 }
 
 bool chrIsEnableReload()
 {
-	if(DialogRun != 0) return false;
-	if(qmIsNoReload() != false) return false;
+	if (DialogRun != 0)
+		return false;
+	if (qmIsNoReload() != false)
+		return false;
 	return true;
 }
-

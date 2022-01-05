@@ -3,7 +3,7 @@ extern void InitColonies();
 
 void ColoniesInit()
 {
-	if(LoadSegment("Colonies\Colonies_init.c"))
+	if (LoadSegment("Colonies\Colonies_init.c"))
 	{
 		InitColonies();
 		UnloadSegment("Colonies\Colonies_init.c");
@@ -12,9 +12,9 @@ void ColoniesInit()
 
 int FindColony(string sColony)
 {
-	for (int i=0; i<MAX_COLONIES; i++)
+	for (int i = 0; i < MAX_COLONIES; i++)
 	{
-		if(Colonies[i].id == sColony)
+		if (Colonies[i].id == sColony)
 		{
 			return i;
 		}
@@ -40,15 +40,19 @@ int GetDistanceToColony2D(string _sColony) // Дистанция до колон
 	string sColonyIslandID = rColony.Island;
 	string sColonyTown = _sColony + "_town";
 
-	if(_sColony == "FortOrange") sColonyTown = "Shore36";
-	if(_sColony == "LaVega") sColonyTown = "LaVega_Port";
-	if(_sColony == "Dominica") sColonyTown = "Shore27";
-	if(_sColony == "Terks") sColonyTown = "Shore56";
+	if (_sColony == "FortOrange")
+		sColonyTown = "Shore36";
+	if (_sColony == "LaVega")
+		sColonyTown = "LaVega_Port";
+	if (_sColony == "Dominica")
+		sColonyTown = "Shore27";
+	if (_sColony == "Terks")
+		sColonyTown = "Shore56";
 
-	float X1 = makefloat(worldMap.playerShipX)+1000;
-	float Z1 = -makefloat(worldMap.playerShipZ)+980;
-	float X2 = makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.x)+1000;
-	float Z2 = -makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.z)+1000;
+	float X1 = makefloat(worldMap.playerShipX) + 1000;
+	float Z1 = -makefloat(worldMap.playerShipZ) + 980;
+	float X2 = makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.x) + 1000;
+	float Z2 = -makefloat(worldMap.islands.(sColonyIslandID).(sColonyTown).position.z) + 1000;
 
 	return makeint(GetDistance2D(X1, Z1, X2, Z2));
 }

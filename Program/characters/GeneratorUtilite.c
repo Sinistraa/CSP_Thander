@@ -4,77 +4,135 @@
 int m_rank_bonus, e_rank_bonus;
 
 // генерим НПС приблизительного ранга
-void SetFantomParamFromRank(ref NPchar, int  rank, bool setEquip)
+void SetFantomParamFromRank(ref NPchar, int rank, bool setEquip)
 {
-    SetRandSPECIAL(Npchar);
-    CalculateSkillsFromRank(Npchar, rank);
-    SetFantomHP(NPchar);
-    if (setEquip)
-    {
-	    LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
-    }
-	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0)
+	SetRandSPECIAL(Npchar);
+	CalculateSkillsFromRank(Npchar, rank);
+	SetFantomHP(NPchar);
+	if (setEquip)
+	{
+		LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
+	}
+	if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4) == 0)
 	{
 		string cirnum;
 		switch (rand(4))
 		{
-			case 0: cirnum = "cirass1"; break;
-			case 1: cirnum = "cirass1"; break;
-			case 2: cirnum = "cirass2"; break;
-			case 3: cirnum = "cirass3"; break;
-			case 4: cirnum = "cirass4"; break;
+		case 0:
+			cirnum = "cirass1";
+			break;
+		case 1:
+			cirnum = "cirass1";
+			break;
+		case 2:
+			cirnum = "cirass2";
+			break;
+		case 3:
+			cirnum = "cirass3";
+			break;
+		case 4:
+			cirnum = "cirass4";
+			break;
 		}
 		if (CheckAttribute(NPchar, "HeroModel")) // все, у кого есть что одеть
-        {
+		{
 			switch (cirnum)
 			{
-				case "cirass1": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1); break;
-				case "cirass2": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 2); break;
-				case "cirass3": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 3); break;
-				case "cirass4": NPchar.model = GetSubStringByNum(NPchar.HeroModel, 4); break;
+			case "cirass1":
+				NPchar.model = GetSubStringByNum(NPchar.HeroModel, 1);
+				break;
+			case "cirass2":
+				NPchar.model = GetSubStringByNum(NPchar.HeroModel, 2);
+				break;
+			case "cirass3":
+				NPchar.model = GetSubStringByNum(NPchar.HeroModel, 3);
+				break;
+			case "cirass4":
+				NPchar.model = GetSubStringByNum(NPchar.HeroModel, 4);
+				break;
 			}
 		}
 		NPchar.cirassId = Items_FindItemIdx(cirnum);
-		Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
+		Log_TestInfo("Персонаж " + NPchar.name + " получил кирасу " + cirnum);
 	}
-	if (CheckAttribute(NPchar,"id"))
+	if (CheckAttribute(NPchar, "id"))
 	{
 		switch (NPchar.id)
 		{
-			case "Tichingitu": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "Andreas_Fickler": SetCharacterPerk(NPchar, "Trader"); break;
-			case "OfMush1": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "OfMush2": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "OffMushketer": SetCharacterPerk(NPchar, "Buccaneer"); break;
-			case "zpqCaptainOf": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "Daniel": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "W_Lejitos": SetCharacterPerk(NPchar, "Grunt"); break;
-			case "Jafarry": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Beatrice": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Angellica": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "SharpOf": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "W_Chinaman": SetCharacterPerk(NPchar, "SeaWolf"); break;
-			case "Mechanic1": SetCharacterPerk(NPchar, "Adventurer"); break;
-			case "DanielleOff": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "SharleMary": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "Sharp_Sibling": SetCharacterPerk(NPchar, "Fencer"); break;
-			case "James_Callow": SetCharacterPerk(NPchar, "Fencer"); break;
-			else {SetSpeciality(NPchar, PerksChars()); break;}
+		case "Tichingitu":
+			SetCharacterPerk(NPchar, "Buccaneer");
+			break;
+		case "Andreas_Fickler":
+			SetCharacterPerk(NPchar, "Trader");
+			break;
+		case "OfMush1":
+			SetCharacterPerk(NPchar, "Buccaneer");
+			break;
+		case "OfMush2":
+			SetCharacterPerk(NPchar, "Buccaneer");
+			break;
+		case "OffMushketer":
+			SetCharacterPerk(NPchar, "Buccaneer");
+			break;
+		case "zpqCaptainOf":
+			SetCharacterPerk(NPchar, "Adventurer");
+			break;
+		case "Daniel":
+			SetCharacterPerk(NPchar, "Grunt");
+			break;
+		case "W_Lejitos":
+			SetCharacterPerk(NPchar, "Grunt");
+			break;
+		case "Jafarry":
+			SetCharacterPerk(NPchar, "Fencer");
+			break;
+		case "Beatrice":
+			SetCharacterPerk(NPchar, "SeaWolf");
+			break;
+		case "Angellica":
+			SetCharacterPerk(NPchar, "SeaWolf");
+			break;
+		case "SharpOf":
+			SetCharacterPerk(NPchar, "SeaWolf");
+			break;
+		case "W_Chinaman":
+			SetCharacterPerk(NPchar, "SeaWolf");
+			break;
+		case "Mechanic1":
+			SetCharacterPerk(NPchar, "Adventurer");
+			break;
+		case "DanielleOff":
+			SetCharacterPerk(NPchar, "Fencer");
+			break;
+		case "SharleMary":
+			SetCharacterPerk(NPchar, "Fencer");
+			break;
+		case "Sharp_Sibling":
+			SetCharacterPerk(NPchar, "Fencer");
+			break;
+		case "James_Callow":
+			SetCharacterPerk(NPchar, "Fencer");
+			break;
+			else
+			{
+				SetSpeciality(NPchar, PerksChars());
+				break;
+			}
 		}
-
 	}
-	else SetSpeciality(NPchar, PerksChars());
+	else
+		SetSpeciality(NPchar, PerksChars());
 }
 
-void SetFantomParamFromRank_PPG(ref NPchar, int  rank, bool setEquip)   //WW
+void SetFantomParamFromRank_PPG(ref NPchar, int rank, bool setEquip) //WW
 {
-    SetRandSPECIAL_PGG(Npchar);
-    CalculateSkillsFromRank(Npchar, rank);
-    SetFantomHP(NPchar);
+	SetRandSPECIAL_PGG(Npchar);
+	CalculateSkillsFromRank(Npchar, rank);
+	SetFantomHP(NPchar);
 	if (setEquip)
-    {
-	    LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
-    }
+	{
+		LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
+	}
 	SetSpeciality(NPchar, PerksChars());
 	//SetCharacterPerk(NPchar, PerksChars());
 	/*if (IsCharacterPerkOn(NPchar, "Ciras") && rand(4)==0)
@@ -92,16 +150,37 @@ void SetFantomParamFromRank_PPG(ref NPchar, int  rank, bool setEquip)   //WW
 		Log_TestInfo("Персонаж "+NPchar.name+" получил кирасу "+cirnum);
 	} */
 }
-void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
+void Train_PPG(ref NPchar, bool setEquip bool increaseRank) //WW
 {
 	string prevPerk = "Adventurer";
-	if (IsCharacterPerkOn(NPchar, "Adventurer")) { prevPerk = "Adventurer";}
-	if (IsCharacterPerkOn(NPchar, "SeaWolf")) { prevPerk = "SeaWolf";}
-	if (IsCharacterPerkOn(NPchar, "Agent")) { prevPerk = "Agent";}
-	if (IsCharacterPerkOn(NPchar, "Grunt")) { prevPerk = "Grunt";}
-	if (IsCharacterPerkOn(NPchar, "Fencer")) { prevPerk = "Fencer";}
-	if (IsCharacterPerkOn(NPchar, "Trader")) { prevPerk = "Trader";}
-	if (IsCharacterPerkOn(NPchar, "Buccaneer")) { prevPerk = "Buccaneer";}
+	if (IsCharacterPerkOn(NPchar, "Adventurer"))
+	{
+		prevPerk = "Adventurer";
+	}
+	if (IsCharacterPerkOn(NPchar, "SeaWolf"))
+	{
+		prevPerk = "SeaWolf";
+	}
+	if (IsCharacterPerkOn(NPchar, "Agent"))
+	{
+		prevPerk = "Agent";
+	}
+	if (IsCharacterPerkOn(NPchar, "Grunt"))
+	{
+		prevPerk = "Grunt";
+	}
+	if (IsCharacterPerkOn(NPchar, "Fencer"))
+	{
+		prevPerk = "Fencer";
+	}
+	if (IsCharacterPerkOn(NPchar, "Trader"))
+	{
+		prevPerk = "Trader";
+	}
+	if (IsCharacterPerkOn(NPchar, "Buccaneer"))
+	{
+		prevPerk = "Buccaneer";
+	}
 
 	int rank, hp;
 	if (increaseRank)
@@ -109,11 +188,11 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 		if (!CheckAttribute(NPchar, "PGGAi.Boosted"))
 		{
 			rank = sti(NPchar.rank) + (sti(NPchar.rank) * 0.2) + MOD_SKILL_ENEMY_RATE;
-			NPchar.cirassId = Items_FindItemIdx("cirass"+(rand(3)+2));
+			NPchar.cirassId = Items_FindItemIdx("cirass" + (rand(3) + 2));
 			CalculateSkillsFromRank(Npchar, rank);
 			Npchar.rank = rank;
 			hp = LAi_GetCharacterMaxHP(NPchar);
-			LAi_SetHP(NPchar, hp*1.7, hp*1.7);
+			LAi_SetHP(NPchar, hp * 1.7, hp * 1.7);
 			SetCharacterPerk(NPchar, prevPerk);
 			NPchar.PGGAi.Boosted = true;
 		}
@@ -126,7 +205,7 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 		CalculateSkillsFromRank(Npchar, rank);
 		Npchar.rank = rank;
 		hp = LAi_GetCharacterMaxHP(NPchar);
-		LAi_SetHP(NPchar, hp*1.6, hp*1.6);
+		LAi_SetHP(NPchar, hp * 1.6, hp * 1.6);
 		SetCharacterPerk(NPchar, prevPerk);
 		NPchar.PGGAi.Boosted = true;
 		NPchar.money = 0;
@@ -137,11 +216,26 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 		LAi_NPC_Equip(NPchar, sti(NPchar.rank), true, true);
 	}
 
-	if (sti(NPchar.SPECIAL.Strength) < 10) {NPchar.SPECIAL.Strength   = sti(NPchar.SPECIAL.Strength)+rand(1);}
-	if (sti(NPchar.SPECIAL.Endurance) < 10) {NPchar.SPECIAL.Endurance  = sti(NPchar.SPECIAL.Endurance)+rand(1);}
-	if (sti(NPchar.SPECIAL.Intellect) < 10) {NPchar.SPECIAL.Intellect  = sti(NPchar.SPECIAL.Intellect)+rand(1);}
-	if (sti(NPchar.SPECIAL.Agility) < 10) {NPchar.SPECIAL.Agility    = sti(NPchar.SPECIAL.Agility)+rand(1);}
-	if (sti(NPchar.SPECIAL.Luck) < 10) {NPchar.SPECIAL.Luck       = sti(NPchar.SPECIAL.Luck)+rand(1);}
+	if (sti(NPchar.SPECIAL.Strength) < 10)
+	{
+		NPchar.SPECIAL.Strength = sti(NPchar.SPECIAL.Strength) + rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Endurance) < 10)
+	{
+		NPchar.SPECIAL.Endurance = sti(NPchar.SPECIAL.Endurance) + rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Intellect) < 10)
+	{
+		NPchar.SPECIAL.Intellect = sti(NPchar.SPECIAL.Intellect) + rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Agility) < 10)
+	{
+		NPchar.SPECIAL.Agility = sti(NPchar.SPECIAL.Agility) + rand(1);
+	}
+	if (sti(NPchar.SPECIAL.Luck) < 10)
+	{
+		NPchar.SPECIAL.Luck = sti(NPchar.SPECIAL.Luck) + rand(1);
+	}
 
 	NPchar.perks.list.AgileMan = "1";
 	ApplayNewSkill(NPchar, "AgileMan", 0);
@@ -149,7 +243,7 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 	if (increaseRank)
 	{
 		int sailing = sti(Npchar.skill.Sailing) + 20;
-		Npchar.rank = sti(Npchar.rank)+1;
+		Npchar.rank = sti(Npchar.rank) + 1;
 		if (sailing > 100)
 		{
 			Npchar.skill.Sailing = 100
@@ -162,68 +256,68 @@ void Train_PPG(ref NPchar, bool setEquip bool increaseRank)   //WW
 
 	TakeNItems(NPchar, "Food5", 5);
 	TakeNItems(NPchar, "potion2", 5);
-	AddBonusEnergyToCharacter (NPchar, 15);
+	AddBonusEnergyToCharacter(NPchar, 15);
 }
 
 // расчитать скилы заданного ранга, типа как от ГГ в будущем (ранг у НПС будет приблизительно, зависит от сложности)
-void CalculateSkillsFromRank(ref NPchar, int  rank)
+void CalculateSkillsFromRank(ref NPchar, int rank)
 {
-    float  iMiddleK;
+	float iMiddleK;
 	// вычислим средний скил к этому рангу
-	iMiddleK = 6 + rank*GetCharacterRankRate(GetMainCharacter()) / 14.0;
+	iMiddleK = 6 + rank * GetCharacterRankRate(GetMainCharacter()) / 14.0;
 
 	CalculateAppropriateSkillsParam(Npchar, iMiddleK, 5);
 }
 // расчет скилов от среднего скила
-void CalculateAppropriateSkillsParam(ref NPchar, float  MiddleK, int _complex)
+void CalculateAppropriateSkillsParam(ref NPchar, float MiddleK, int _complex)
 {
-    //trace("CalculateAppropriateSkillsParam " + NPchar.id);
-    float  fValue;
+	//trace("CalculateAppropriateSkillsParam " + NPchar.id);
+	float fValue;
 
-    fValue = (20 * _complex / 4.0);
-    Npchar.skill.FencingLight = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20* _complex / 3.2)) - 24));
-    Npchar.skill.Fencing      = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20* _complex / 3.0)) - 20));
-    Npchar.skill.FencingHeavy = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20* _complex / 3.5)) - 28));
-    Npchar.skill.Pistol       = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Fortune      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	fValue = (20 * _complex / 4.0);
+	Npchar.skill.FencingLight = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20 * _complex / 3.2)) - 24));
+	Npchar.skill.Fencing = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20 * _complex / 3.0)) - 20));
+	Npchar.skill.FencingHeavy = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20 * _complex / 3.5)) - 28));
+	Npchar.skill.Pistol = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Fortune = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
 
-    Npchar.skill.Leadership   = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Commerce     = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Sailing      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Accuracy     = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Cannons      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Grappling    = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Repair       = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Defence      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Sneak        = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Leadership = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Commerce = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Sailing = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Accuracy = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Cannons = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Grappling = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Repair = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Defence = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+	Npchar.skill.Sneak = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
 
-    CorrectSkillParam(Npchar);
+	CorrectSkillParam(Npchar);
 
-    SetRankFromSkill(Npchar);
+	SetRankFromSkill(Npchar);
 }
 void CalculateAppropriateSkills(ref NPchar)
 {
-    float   MiddleK;
-    bool    ok;
-    int     rank, i, j, k, sum, rank_bonus, base_rank;
-    string  sTemp;
+	float MiddleK;
+	bool ok;
+	int rank, i, j, k, sum, rank_bonus, base_rank;
+	string sTemp;
 
-    SetRandSPECIAL(Npchar);
-    if (false)
-    {
-    	MiddleK = GetMiddleMainSkill();
+	SetRandSPECIAL(Npchar);
+	if (false)
+	{
+		MiddleK = GetMiddleMainSkill();
 
-        CalculateAppropriateSkillsParam(Npchar, MiddleK, MOD_SKILL_ENEMY_RATE);
-    }
-    else
-    // setting NPC skills based on main char rank and MOD_SKILL_ENEMY_RATE (Gray 14.12.2004)
-    {
-        rank_bonus = 0;
-        sTemp = "";
+		CalculateAppropriateSkillsParam(Npchar, MiddleK, MOD_SKILL_ENEMY_RATE);
+	}
+	else
+	// setting NPC skills based on main char rank and MOD_SKILL_ENEMY_RATE (Gray 14.12.2004)
+	{
+		rank_bonus = 0;
+		sTemp = "";
 		if (CheckAttribute(NPchar, "RankBonus"))
 		{
 			rank_bonus = sti(NPchar.RankBonus);
-		    sTemp = "RankBonus: " + rank_bonus;
+			sTemp = "RankBonus: " + rank_bonus;
 		}
 
 		base_rank = 0;
@@ -233,145 +327,152 @@ void CalculateAppropriateSkills(ref NPchar)
 			sTemp += " BaseRank: " + base_rank;
 		}
 
-		if (sti(Pchar.rank) > base_rank) base_rank = sti(Pchar.rank);
+		if (sti(Pchar.rank) > base_rank)
+			base_rank = sti(Pchar.rank);
 
 		MiddleK = base_rank;
 
-        ok =  (MOD_SKILL_ENEMY_RATE > 5) && (bNewCodeOn);
-        if (!ok)
-        {
-        	ok =  (MOD_SKILL_ENEMY_RATE <= 5) && (!bNewCodeOn); // наоборот - есть - сложнее станет
-        }
-        ok =  (!CheckAttribute(NPchar, "OurMan")) || (ok);
-
-  		if (!CheckAttribute(NPchar, "BaseRank") && ok) // токо Компы и не двойной учет для моря
-  		{
-            MiddleK = MiddleK + (MOD_SKILL_ENEMY_RATE-5) * 1.5;
-            sTemp += " ComplexBonus = " + FloatToString((MOD_SKILL_ENEMY_RATE-5) * 1.5, 1);
-  		}
-  		rank = MakeInt(MiddleK + frandSmall(4) + frandSmall(4) + frandSmall(4) + frandSmall(4) - 8 + rank_bonus);
-
-		if (rank < 1) rank = 1;
-		if (rank > 300) rank = 300;
-
-    	NPchar.rank = rank;
-    	if (CheckAttribute(NPchar, "OurMan"))
-    	{
-            sTemp += " OurNPCRank: " + rank;
-    	}
-    	else
-    	{
-    	   sTemp += " NPCRank: " + rank;
-        }
-        //debug
-        if (CheckAttribute(NPchar, "RankBonus") || CheckAttribute(NPchar, "BaseRank") || CheckAttribute(NPchar, "OurMan"))
-        {
-    	   //Log_TestInfo("Fantom_gen: " + sTemp);
-    	}
-
-    	if (rank > (1400 / GetCharacterRankRate(Npchar)))
+		ok = (MOD_SKILL_ENEMY_RATE > 5) && (bNewCodeOn);
+		if (!ok)
 		{
-            SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
-            SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+			ok = (MOD_SKILL_ENEMY_RATE <= 5) && (!bNewCodeOn); // наоборот - есть - сложнее станет
+		}
+		ok = (!CheckAttribute(NPchar, "OurMan")) || (ok);
+
+		if (!CheckAttribute(NPchar, "BaseRank") && ok) // токо Компы и не двойной учет для моря
+		{
+			MiddleK = MiddleK + (MOD_SKILL_ENEMY_RATE - 5) * 1.5;
+			sTemp += " ComplexBonus = " + FloatToString((MOD_SKILL_ENEMY_RATE - 5) * 1.5, 1);
+		}
+		rank = MakeInt(MiddleK + frandSmall(4) + frandSmall(4) + frandSmall(4) + frandSmall(4) - 8 + rank_bonus);
+
+		if (rank < 1)
+			rank = 1;
+		if (rank > 300)
+			rank = 300;
+
+		NPchar.rank = rank;
+		if (CheckAttribute(NPchar, "OurMan"))
+		{
+			sTemp += " OurNPCRank: " + rank;
+		}
+		else
+		{
+			sTemp += " NPCRank: " + rank;
+		}
+		//debug
+		if (CheckAttribute(NPchar, "RankBonus") || CheckAttribute(NPchar, "BaseRank") || CheckAttribute(NPchar, "OurMan"))
+		{
+			//Log_TestInfo("Fantom_gen: " + sTemp);
+		}
+
+		if (rank > (1400 / GetCharacterRankRate(Npchar)))
+		{
+			SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+			SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
 			return;
 		}
-        CalculateSkillsFromRank(Npchar, rank);
-    }
+		CalculateSkillsFromRank(Npchar, rank);
+	}
 }
 
 void SetRankFromSkill(ref Npchar)
 {
-	if (CheckAttribute(NPchar,"indeprank")) return;
-    Npchar.rank = 1 + makeint( (sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
-                           sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
-                           sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
-                           sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
-                           sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar) );
-    if (sti(Npchar.rank) < 1)
-    {
-        Npchar.rank = 1;
-    }
+	if (CheckAttribute(NPchar, "indeprank"))
+		return;
+	Npchar.rank = 1 + makeint((sti(Npchar.skill.FencingLight) + sti(Npchar.skill.FencingHeavy) + sti(Npchar.skill.Fortune) +
+							   sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
+							   sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
+							   sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
+							   sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) /
+							  GetCharacterRankRate(Npchar));
+	if (sti(Npchar.rank) < 1)
+	{
+		Npchar.rank = 1;
+	}
 }
 
 void CorrectSkillParam(ref Npchar)
 {
-    int i;
-    string  skillName;
+	int i;
+	string skillName;
 
-    for (i=1; i<15; i++)
-    {
-        skillName = GetSkillNameByIdx(i);
-        if(sti(Npchar.skill.(skillName)) > SKILL_MAX) Npchar.skill.(skillName) = SKILL_MAX;
-        if(sti(Npchar.skill.(skillName)) < 1)         Npchar.skill.(skillName) = 1;
-    }
+	for (i = 1; i < 15; i++)
+	{
+		skillName = GetSkillNameByIdx(i);
+		if (sti(Npchar.skill.(skillName)) > SKILL_MAX)
+			Npchar.skill.(skillName) = SKILL_MAX;
+		if (sti(Npchar.skill.(skillName)) < 1)
+			Npchar.skill.(skillName) = 1;
+	}
 }
 float GetMiddleMainSkill()
 {
-    float MiddleK;
+	float MiddleK;
 
-    MiddleK = makefloat(GetSkillSum(Pchar) / 14.0) ;
+	MiddleK = makefloat(GetSkillSum(Pchar) / 14.0);
 
-    return  MiddleK;
+	return MiddleK;
 }
 int GetSkillSum(ref Npchar)
 {
-    int i, sum;
-    string  skillName;
+	int i, sum;
+	string skillName;
 
 	sum = 0;
-    for (i=1; i<15; i++)
-    {
-        skillName = GetSkillNameByIdx(i);
-        sum += sti(Npchar.skill.(skillName));
-    }
-    return sum;
+	for (i = 1; i < 15; i++)
+	{
+		skillName = GetSkillNameByIdx(i);
+		sum += sti(Npchar.skill.(skillName));
+	}
+	return sum;
 }
 
 int GetSPECIALSum(ref Npchar)
 {
-    int i, sum;
-    string  skillName;
+	int i, sum;
+	string skillName;
 
 	sum = 0;
-    for (i=15; i<22; i++)
-    {
-        skillName = GetSkillNameByIdx(i);
-        sum += sti(Npchar.SPECIAL.(skillName));
-    }
-    return sum;
+	for (i = 15; i < 22; i++)
+	{
+		skillName = GetSkillNameByIdx(i);
+		sum += sti(Npchar.SPECIAL.(skillName));
+	}
+	return sum;
 }
 // boal new formula 10.12.03 // очень важная раздача скилов, зависит от сложности <--
 
 void SetFantomParam(ref _pchar)
 {
-    SetFantomParamCommon(_pchar);
+	SetFantomParamCommon(_pchar);
 	SetSpeciality(_pchar, PerksChars());
 }
 
 void SetFantomParamCommon(ref _pchar)
 {
-    CalculateAppropriateSkills(_pchar);
-    SetFantomHP(_pchar);
-    // тут трем накопивщиеся сабли и корабли 290704 BOAL -->
-    DeleteAttribute(_pchar, "Items");
-    // тут трем накопивщиеся сабли и корабли 290704 BOAL <--
-    LAi_NPC_Equip(_pchar, sti(_pchar.rank), true, true);
-    //AntiCheat(_pchar);
+	CalculateAppropriateSkills(_pchar);
+	SetFantomHP(_pchar);
+	// тут трем накопивщиеся сабли и корабли 290704 BOAL -->
+	DeleteAttribute(_pchar, "Items");
+	// тут трем накопивщиеся сабли и корабли 290704 BOAL <--
+	LAi_NPC_Equip(_pchar, sti(_pchar.rank), true, true);
+	//AntiCheat(_pchar);
 }
 
-void SetFantomParamEncout(ref _pchar)  // выдача сабель и НР отдельно
+void SetFantomParamEncout(ref _pchar) // выдача сабель и НР отдельно
 {
-    CalculateAppropriateSkills(_pchar);
-    SetFantomHP(_pchar);
-    // тут трем накопивщиеся сабли и корабли 290704 BOAL -->
-    DeleteAttribute(_pchar, "Items");
-    DeleteAttribute(_pchar, "equip");
-    DeleteAttribute(_pchar, "perks.list");
-    //LAi_NPC_EquipPerk(_pchar, "fantom");
+	CalculateAppropriateSkills(_pchar);
+	SetFantomHP(_pchar);
+	// тут трем накопивщиеся сабли и корабли 290704 BOAL -->
+	DeleteAttribute(_pchar, "Items");
+	DeleteAttribute(_pchar, "equip");
+	DeleteAttribute(_pchar, "perks.list");
+	//LAi_NPC_EquipPerk(_pchar, "fantom");
 	//GiveItem2Character(_pchar, "unarmed");
 	//EquipCharacterByItem(_pchar, "unarmed");
-    // тут трем накопивщиеся сабли и корабли 290704 BOAL <--
-    //AntiCheat(_pchar);
+	// тут трем накопивщиеся сабли и корабли 290704 BOAL <--
+	//AntiCheat(_pchar);
 }
 
 void SetSeaFantomParam(ref _pchar, string type)
@@ -401,11 +502,11 @@ void Fantom_SetRandomSkills(ref rFantom, string sFantomType)
 	aref aFSkills;
 	int iSClass;
 
-    makearef(aFSkills, rFantom.Skill);
+	makearef(aFSkills, rFantom.Skill);
 
 	CalculateAppropriateSkills(rFantom);
 
-	if(sFantomType == "special")
+	if (sFantomType == "special")
 	{
 		iSClass = 2 + rand(4);
 	}
@@ -413,8 +514,8 @@ void Fantom_SetRandomSkills(ref rFantom, string sFantomType)
 	{
 		iSClass = GetCharacterShipClass(rFantom);
 	}
-    // boal 15.03.04 -->
-    /*
+	// boal 15.03.04 -->
+	/*
 			aFSkills.Commerce	= Fantom_CalcSkill(rFantom, SKILL_COMMERCE,	iSClass, 0, 1, 0, 0, 0, 0, 0, 0, 0);
 			aFSkills.Grappling	= Fantom_CalcSkill(rFantom, SKILL_GRAPPLING, iSClass, 0, 1, 0, 0, 0, 0, 0, 0, 0);
 			aFSkills.Fencing	= Fantom_CalcSkill(rFantom, SKILL_FENCING,	iSClass, 0, 1, 0, 0, 0, 0, 0, 0, 0);
@@ -422,42 +523,42 @@ void Fantom_SetRandomSkills(ref rFantom, string sFantomType)
 			aFSkills.Sneak		= Fantom_CalcSkill(rFantom, SKILL_SNEAK,	    iSClass, 0, 1, 0, 0, 0, 0, 0, 0, 0);
 			aFSkills.Pistol   	= Fantom_CalcSkill(rFantom, SKILL_PISTOL,	iSClass, 0, 1, 0, 0, 0, 0, 0, 0, 0);
     */
-    // boal 15.03.04 <--
+	// boal 15.03.04 <--
 	switch (sFantomType)
 	{
-		case "trade":
+	case "trade":
 		// комментируем лишеие - все равно ничего не меняют boal
-            // умножение на 10 идет внутри метода
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 2, 3, 4);
-            aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
-			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 1, 2, 3, 6, 7);
-			aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
+		// умножение на 10 идет внутри метода
+		aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP, iSClass, 0, 0, 0, 1, 1, 2, 2, 3, 4);
+		aFSkills.Accuracy = Fantom_CalcSkill(rFantom, SKILL_ACCURACY, iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
+		aFSkills.Cannons = Fantom_CalcSkill(rFantom, SKILL_CANNONS, iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
+		aFSkills.Sailing = Fantom_CalcSkill(rFantom, SKILL_SAILING, iSClass, 0, 0, 0, 1, 1, 2, 3, 6, 7);
+		aFSkills.Defence = Fantom_CalcSkill(rFantom, SKILL_DEFENCE, iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
 		break;
-		case "war":
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
-            aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
-			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 1, 2, 3, 4, 7, 8);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
-			aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 7);
+	case "war":
+		aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP, iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
+		aFSkills.Accuracy = Fantom_CalcSkill(rFantom, SKILL_ACCURACY, iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
+		aFSkills.Cannons = Fantom_CalcSkill(rFantom, SKILL_CANNONS, iSClass, 0, 0, 0, 1, 2, 3, 4, 7, 8);
+		aFSkills.Sailing = Fantom_CalcSkill(rFantom, SKILL_SAILING, iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
+		aFSkills.Defence = Fantom_CalcSkill(rFantom, SKILL_DEFENCE, iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 7);
 		break;
-		case "pirate":
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
-            aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
-			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
-            aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
+	case "pirate":
+		aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP, iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
+		aFSkills.Accuracy = Fantom_CalcSkill(rFantom, SKILL_ACCURACY, iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
+		aFSkills.Cannons = Fantom_CalcSkill(rFantom, SKILL_CANNONS, iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
+		aFSkills.Sailing = Fantom_CalcSkill(rFantom, SKILL_SAILING, iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
+		aFSkills.Defence = Fantom_CalcSkill(rFantom, SKILL_DEFENCE, iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
 		break;
-		case "special":
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
-            aFSkills.Accuracy	= Fantom_CalcSkill(rFantom, SKILL_ACCURACY,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
-			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
-			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
-            aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
+	case "special":
+		aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP, iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
+		aFSkills.Accuracy = Fantom_CalcSkill(rFantom, SKILL_ACCURACY, iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
+		aFSkills.Cannons = Fantom_CalcSkill(rFantom, SKILL_CANNONS, iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
+		aFSkills.Sailing = Fantom_CalcSkill(rFantom, SKILL_SAILING, iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
+		aFSkills.Defence = Fantom_CalcSkill(rFantom, SKILL_DEFENCE, iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
 		break;
 	}
-    //if (sti(rFantom.rank) < 50)
-    //{
+	//if (sti(rFantom.rank) < 50)
+	//{
 	SetRankFromSkill(rFantom);
 	//}
 }
@@ -483,7 +584,7 @@ void SetMonsterLoginHP(ref _pchar) // жизнь у монстров больш�
 	}
 	else
 	{
-		hp = LAI_DEFAULT_HP_MAX + makeint(sti(_pchar.rank)*(MOD_SKILL_ENEMY_RATE / 2.0 + 5.0)) + 10;
+		hp = LAI_DEFAULT_HP_MAX + makeint(sti(_pchar.rank) * (MOD_SKILL_ENEMY_RATE / 2.0 + 5.0)) + 10;
 		LAi_SetHP(_pchar, hp, hp);
 		LAi_SetCurHPMax(_pchar);
 	}
@@ -495,20 +596,22 @@ bool GetBoardingHP(ref mchr, ref echr, ref float_boarding_player_hp, ref float_b
 	float b_p_hp, b_e_hp;
 	float moral;
 	float exp;
-	b_p_hp = LAi_GetCharacterMaxHP(mchr) / 3.0;  // треть от НР кэпа идет в базу бонуса
+	b_p_hp = LAi_GetCharacterMaxHP(mchr) / 3.0; // треть от НР кэпа идет в базу бонуса
 
 	exp = GetCrewExp(mchr, "Soldiers") / GetCrewExpRate() - 0.7;
 	moral = 0;
-	if(CheckAttribute(mchr, "ship.crew.morale"))
+	if (CheckAttribute(mchr, "ship.crew.morale"))
 	{
-		moral = (stf(mchr.ship.crew.morale) - MORALE_NORMAL)/(MORALE_MAX - MORALE_MIN);
-		if(moral < -0.5) moral = -0.5;
-		if(moral > 0.5) moral = 0.5;
+		moral = (stf(mchr.ship.crew.morale) - MORALE_NORMAL) / (MORALE_MAX - MORALE_MIN);
+		if (moral < -0.5)
+			moral = -0.5;
+		if (moral > 0.5)
+			moral = 0.5;
 	}
-	exp = exp + moral;  // может быть минус
-	b_p_hp = b_p_hp*exp;
+	exp = exp + moral; // может быть минус
+	b_p_hp = b_p_hp * exp;
 
-	b_e_hp = 0;  // не будем рандом городить рандомом, опыт и еще скилы кэпа, все это не зависит от ГГ, а вот ГГ бонус от опыта даем
+	b_e_hp = 0; // не будем рандом городить рандомом, опыт и еще скилы кэпа, все это не зависит от ГГ, а вот ГГ бонус от опыта даем
 	/*
 	b_e_hp = LAi_GetCharacterMaxHP(echr) / 3.0;
 	exp = GetCrewExp(echr, "Soldiers") / GetCrewExpRate();
@@ -522,15 +625,16 @@ bool GetBoardingHP(ref mchr, ref echr, ref float_boarding_player_hp, ref float_b
 	exp = exp + moral;
 	b_e_hp = b_e_hp*exp;
 	 */
-	float_boarding_player_hp   =  b_p_hp;
-	float_boarding_enemy_hp    =  b_e_hp;
+	float_boarding_player_hp = b_p_hp;
+	float_boarding_enemy_hp = b_e_hp;
 
 	return true;
 }
 void AddCharHP(ref _pchar, int _bonus)
 {
 	int hp = LAi_GetCharacterMaxHP(_pchar) + _bonus;
-	if (hp < 1) hp = 1;
+	if (hp < 1)
+		hp = 1;
 	LAi_SetHP(_pchar, hp, hp);
 	LAi_SetCurHPMax(_pchar);
 }
@@ -541,13 +645,14 @@ void AddCharHP(ref _pchar, int _bonus)
 
 int GetBoarding_player_hp_Bonus(int mcrew, int ecrew) // бонус от перевеса, когда if (mcrew > ecrew)
 {
-    m_rank_bonus = 0;
-    e_rank_bonus = 0;
+	m_rank_bonus = 0;
+	e_rank_bonus = 0;
 
-    //Boyer fix divide by zero error
-    if(ecrew == 0) ecrew = 1;
-    if (true)
-	{    // только этот код
+	//Boyer fix divide by zero error
+	if (ecrew == 0)
+		ecrew = 1;
+	if (true)
+	{ // только этот код
 		if (mcrew > ecrew)
 		{
 			m_rank_bonus = makeint(0.5 * MOD_SKILL_ENEMY_RATE * makefloat((mcrew - ecrew) / makefloat(ecrew)));
@@ -563,11 +668,12 @@ int GetBoarding_player_hp_Bonus(int mcrew, int ecrew) // бонус от пер�
 
 int GetBoarding_enemy_hp_Bonus(int mcrew, int ecrew) // бонус от перевеса
 {
-    m_rank_bonus = 0;
-    e_rank_bonus = 0;
-	if (mcrew < 1) mcrew = 1;
-    if (true)
-	{    // только этот код
+	m_rank_bonus = 0;
+	e_rank_bonus = 0;
+	if (mcrew < 1)
+		mcrew = 1;
+	if (true)
+	{ // только этот код
 		if (ecrew > mcrew)
 		{
 			e_rank_bonus = makeint(2 * MOD_SKILL_ENEMY_RATE * makefloat((ecrew - mcrew) / makefloat(mcrew)));
@@ -588,7 +694,7 @@ float GetBoarding_player_hp(float b_p_hp) // итоговое здоровье �
 
 float GetBoarding_enemy_hp(float b_e_hp) // итоговое здоровье матроса врага
 {
-	return b_e_hp + 4*(MOD_SKILL_ENEMY_RATE - 5); // нафиг случайность + 6*rand(MOD_SKILL_ENEMY_RATE+1) - 20;
+	return b_e_hp + 4 * (MOD_SKILL_ENEMY_RATE - 5); // нафиг случайность + 6*rand(MOD_SKILL_ENEMY_RATE+1) - 20;
 }
 // наши на абордаде (далее применяется НР капитана)
 void SetFantomParamAbordOur(ref _pchar)
@@ -603,8 +709,8 @@ void SetMushketerParamAbordOur(ref _pchar)
 {
 	_pchar.RankBonus = m_rank_bonus;
 	_pchar.OurMan = true;
-    CalculateAppropriateSkills(_pchar);
-    SetFantomHP(_pchar);
+	CalculateAppropriateSkills(_pchar);
+	SetFantomHP(_pchar);
 	DeleteAttribute(_pchar, "RankBonus");
 	DeleteAttribute(_pchar, "OurMan");
 }
@@ -621,8 +727,8 @@ void SetMushketerParamFortOur(ref _pchar)
 {
 	_pchar.RankBonus = m_rank_bonus;
 	_pchar.OurMan = true;
-    CalculateAppropriateSkills(_pchar);
-    SetFantomHP(_pchar);
+	CalculateAppropriateSkills(_pchar);
+	SetFantomHP(_pchar);
 	DeleteAttribute(_pchar, "RankBonus");
 	DeleteAttribute(_pchar, "OurMan");
 }
@@ -651,8 +757,8 @@ void SetMushketerParamAbordEnemy(ref _pchar)
 		_pchar.BaseRank = MChar.EnemyRank;
 	}
 	_pchar.RankBonus = e_rank_bonus;
-    CalculateAppropriateSkills(_pchar);
-    SetFantomHP(_pchar);
+	CalculateAppropriateSkills(_pchar);
+	SetFantomHP(_pchar);
 	DeleteAttribute(_pchar, "BaseRank");
 	DeleteAttribute(_pchar, "RankBonus");
 }
@@ -681,8 +787,8 @@ void SetMushketerParamFortEnemy(ref _pchar)
 		_pchar.BaseRank = MChar.EnemyRank;
 	}
 	_pchar.RankBonus = e_rank_bonus;
-    CalculateAppropriateSkills(_pchar);
-    SetFantomHP(_pchar);
+	CalculateAppropriateSkills(_pchar);
+	SetFantomHP(_pchar);
 	DeleteAttribute(_pchar, "BaseRank");
 	DeleteAttribute(_pchar, "RankBonus");
 }
@@ -690,15 +796,15 @@ void SetMushketerParamFortEnemy(ref _pchar)
 //крутые парни -->
 void SetFantomParamHunter(ref sld)
 {
-    SetSeaFantomParam(sld, "war");
-    LAi_SetHP(sld, LAI_DEFAULT_HP_MAX + sti(sld.chr_ai.hp), LAI_DEFAULT_HP_MAX + sti(sld.chr_ai.hp));
-    TakeNItems(sld,"potion2", MOD_SKILL_ENEMY_RATE);
+	SetSeaFantomParam(sld, "war");
+	LAi_SetHP(sld, LAI_DEFAULT_HP_MAX + sti(sld.chr_ai.hp), LAI_DEFAULT_HP_MAX + sti(sld.chr_ai.hp));
+	TakeNItems(sld, "potion2", MOD_SKILL_ENEMY_RATE);
 }
 //крутые парни <--
 // boal 20.03.2004 <--
 void AntiCheat(ref _pchar)
 {
-    /*ref mc = GetMainCharacter();
+	/*ref mc = GetMainCharacter();
     if (sti(mc.chr_ai.hp) > 310)
     {
         LAi_SetHP(_pchar, 10000, 10000);
@@ -709,11 +815,11 @@ void AntiCheat(ref _pchar)
 
 void CheckAntiCheat()
 {
- 	if (CheckAttribute(PChar, "SystemInfo.CRC"))
- 	{
+	if (CheckAttribute(PChar, "SystemInfo.CRC"))
+	{
 		if (stf(PChar.SystemInfo.CRC) != GetCRCCheatSum(PChar))
 		{
-		    bPlayerIsCheater = true;
+			bPlayerIsCheater = true;
 		}
 	}
 }
@@ -732,7 +838,7 @@ float GetCRCCheatSum(ref _PChar)
 ////////////////////////////////////////
 float Sea_TurnRateMagicNumber();
 {
-    return 244.444; //162.962; //244.444; *2/3
+	return 244.444; //162.962; //244.444; *2/3
 }
 
 //#define WIND_NORMAL_POWER		18.0 // делитель для силы ветра на циферблате - влияет на мах скорость
@@ -740,23 +846,23 @@ float Sea_TurnRateMagicNumber();
 float Sea_ApplyMaxSpeedZ(aref arCharShip, float fWindDotShip) //float fTRFromSailDamage
 // arCharShip - корабль на НПС,  fTRFromSailDamage - паруса 0..1, fWindDotShip - направление ветра -1..1
 {
-    ref		rShip = GetRealShip(sti(arCharShip.Type)); // база
-    float   fMaxSpeedZ;
-    float   fWindAgainstSpeed;
-    //fMaxSpeedZ = (0.16 + fTRFromSailDamage / 1.2) * stf(arCharShip.MaxSpeedZ);
-    fMaxSpeedZ = stf(arCharShip.MaxSpeedZ);
-    fWindAgainstSpeed = stf(rShip.WindAgainstSpeed);// / 1.7; // мин fWindAgainstSpeed = 0.8 - мах 10.5
-    //#20180207-01
-    arCharShip.WindAgainstSpeed = rShip.WindAgainstSpeed;
-    arCharShip.SpeedRate = rShip.SpeedRate;
+	ref rShip = GetRealShip(sti(arCharShip.Type)); // база
+	float fMaxSpeedZ;
+	float fWindAgainstSpeed;
+	//fMaxSpeedZ = (0.16 + fTRFromSailDamage / 1.2) * stf(arCharShip.MaxSpeedZ);
+	fMaxSpeedZ = stf(arCharShip.MaxSpeedZ);
+	fWindAgainstSpeed = stf(rShip.WindAgainstSpeed); // / 1.7; // мин fWindAgainstSpeed = 0.8 - мах 10.5
+	//#20180207-01
+	arCharShip.WindAgainstSpeed = rShip.WindAgainstSpeed;
+	arCharShip.SpeedRate = rShip.SpeedRate;
 	if (fWindDotShip >= -0.1)
-    { //по ветру
-        fMaxSpeedZ = fMaxSpeedZ * (0.81 + fWindDotShip / (1.9 + pow(fWindAgainstSpeed, 0.33)));
-    }
-    else
-    { //против ветра
-        fMaxSpeedZ = fMaxSpeedZ * (0.75 - fWindDotShip/3.2 - pow(abs(fWindDotShip), fWindAgainstSpeed)); // тут есть влияние кода в ЕХЕ
-    }
+	{ //по ветру
+		fMaxSpeedZ = fMaxSpeedZ * (0.81 + fWindDotShip / (1.9 + pow(fWindAgainstSpeed, 0.33)));
+	}
+	else
+	{																									   //против ветра
+		fMaxSpeedZ = fMaxSpeedZ * (0.75 - fWindDotShip / 3.2 - pow(abs(fWindDotShip), fWindAgainstSpeed)); // тут есть влияние кода в ЕХЕ
+	}
 
-    return fMaxSpeedZ;
+	return fMaxSpeedZ;
 }

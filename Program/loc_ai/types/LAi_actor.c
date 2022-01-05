@@ -9,22 +9,22 @@
 		dialog
 */
 
-
-
-#define LAI_TYPE_ACTOR	"actor"
-
+#define LAI_TYPE_ACTOR "actor"
 
 //Инициализация
 void LAi_type_actor_Init(aref chr)
 {
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.type") == false)
+	if (CheckAttribute(chr, "chr_ai.type") == false)
 	{
 		isNew = true;
-	}else{
-		if(chr.chr_ai.type != LAI_TYPE_ACTOR) isNew = true;
 	}
-	if(isNew == true)
+	else
+	{
+		if (chr.chr_ai.type != LAI_TYPE_ACTOR)
+			isNew = true;
+	}
+	if (isNew == true)
 	{
 		//Новый тип
 		DeleteAttribute(chr, "chr_ai.type");
@@ -36,35 +36,44 @@ void LAi_type_actor_Init(aref chr)
 		chr.chr_ai.type.mode = "stay";
 		//Установим шаблон стояния
 		LAi_tmpl_stay_InitTemplate(chr);
-	}else{
+	}
+	else
+	{
 		//Востанавливаем состояние
-		if(!CheckAttribute(chr, "chr_ai.type.state")) chr.chr_ai.type.state = "wait";
-		if(!CheckAttribute(chr, "chr_ai.type.quest")) chr.chr_ai.type.quest = "";
-		if(!CheckAttribute(chr, "chr_ai.type.checkhp")) chr.chr_ai.type.checkhp = "";
-		if(!CheckAttribute(chr, "chr_ai.type.lock")) chr.chr_ai.type.lock = "0";
-		if(!CheckAttribute(chr, "chr_ai.type.mode")) chr.chr_ai.type.mode = "stay";
+		if (!CheckAttribute(chr, "chr_ai.type.state"))
+			chr.chr_ai.type.state = "wait";
+		if (!CheckAttribute(chr, "chr_ai.type.quest"))
+			chr.chr_ai.type.quest = "";
+		if (!CheckAttribute(chr, "chr_ai.type.checkhp"))
+			chr.chr_ai.type.checkhp = "";
+		if (!CheckAttribute(chr, "chr_ai.type.lock"))
+			chr.chr_ai.type.lock = "0";
+		if (!CheckAttribute(chr, "chr_ai.type.mode"))
+			chr.chr_ai.type.mode = "stay";
 	}
 	//Установим анимацию персонажу
 	bool isMusk = false;
-	if(CheckAttribute(chr, "model.animation") && strlen(chr.model.animation) > 8) {
-        string sAni = strcut(chr.model.animation, 0, 8);
-        if (sAni == "mushketer")
-            isMusk = true;
+	if (CheckAttribute(chr, "model.animation") && strlen(chr.model.animation) > 8)
+	{
+		string sAni = strcut(chr.model.animation, 0, 8);
+		if (sAni == "mushketer")
+			isMusk = true;
 	}
 	if (isMusk && !CheckAttribute(chr, "isMusketer.weapon") && chr.index != getmaincharacterindex() && chr != GetMainCharacter())
 	{
-        while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
-        {
-            TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
-        }
-        while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
-        {
-            TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
-        }
+		while (FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE) != "")
+		{
+			TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, BLADE_ITEM_TYPE));
+		}
+		while (FindCharacterItemByGroup(chr, GUN_ITEM_TYPE) != "")
+		{
+			TakeItemFromCharacter(chr, FindCharacterItemByGroup(chr, GUN_ITEM_TYPE));
+		}
 		GiveItem2Character(chr, "unarmed");
 		EquipCharacterbyItem(chr, "unarmed");
 		string sMush = LAi_NPC_MushketerEquip(chr);
-		if (chr.model == "MusketeerEnglish_2") sMush = "mushket2x2";
+		if (chr.model == "MusketeerEnglish_2")
+			sMush = "mushket2x2";
 		GiveItem2Character(chr, sMush);
 		EquipCharacterbyItem(chr, sMush);
 		chr.items.bullet = 100;
@@ -75,14 +84,18 @@ void LAi_type_actor_Init(aref chr)
 	}
 	else
 	{
-		if(chr.chr_ai.type.mode == "sit")
+		if (chr.chr_ai.type.mode == "sit")
 		{
 			LAi_ActorSetSitMode(chr);
-		}else{
-			if(chr.chr_ai.type.mode == "lay")
+		}
+		else
+		{
+			if (chr.chr_ai.type.mode == "lay")
 			{
 				LAi_ActorSetLayMode(chr);
-			}else{
+			}
+			else
+			{
 				LAi_ActorSetStayMode(chr);
 			}
 		}
@@ -95,13 +108,15 @@ void LAi_type_actor_CharacterUpdate(aref chr, float dltTime)
 {
 	aref type;
 	makearef(type, chr.chr_ai.type);
-	if(type.state == "dialogcan")
+	if (type.state == "dialogcan")
 	{
 		LAi_type_actor_CheckStartDialog(chr);
-	}else{
-		if(type.state == "attack")
+	}
+	else
+	{
+		if (type.state == "attack")
 		{
-			if(LAi_tmpl_fight_LostTarget(chr))
+			if (LAi_tmpl_fight_LostTarget(chr))
 			{
 				LAi_Character_TemplateComplite(chr, LAI_TMPL_FIGHT);
 			}
@@ -110,9 +125,9 @@ void LAi_type_actor_CharacterUpdate(aref chr, float dltTime)
 	if (CheckAttribute(chr, "reactionOnFightModeOn"))
 	{
 		int num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.01, true, true);
-		if(num > 0)
+		if (num > 0)
 		{
-			for(int i = 0; i < num; i++)
+			for (int i = 0; i < num; i++)
 			{
 				int idx = sti(chrFindNearCharacters[i].index);
 				ref by = &Characters[idx];
@@ -137,7 +152,8 @@ void LAi_type_actor_CharacterUpdate(aref chr, float dltTime)
 							GetCharacterDistByChr(sld, characterFromId(by.id), &dist);
 							if (by.id == chr.checkChrDistance.id && dist <= stf(chr.checkChrDistance))
 							{
-								if (CheckAttribute(chr, "checkChrDistance.node")) chr.dialog.currentnode = chr.checkChrDistance.node;
+								if (CheckAttribute(chr, "checkChrDistance.node"))
+									chr.dialog.currentnode = chr.checkChrDistance.node;
 								LAi_ActorDialog(chr, by, "", 0.0, 0);
 								chr.checkChrDistance.time = 10.0;
 							}
@@ -147,7 +163,6 @@ void LAi_type_actor_CharacterUpdate(aref chr, float dltTime)
 			}
 		}
 	}
-
 }
 
 //Загрузка персонажа в локацию
@@ -165,25 +180,27 @@ bool LAi_type_actor_CharacterLogoff(aref chr)
 //Завершение работы темплейта
 void LAi_type_actor_TemplateComplite(aref chr, string tmpl)
 {
-	if(chr.chr_ai.type != LAI_TYPE_ACTOR)
+	if (chr.chr_ai.type != LAI_TYPE_ACTOR)
 	{
 		return;
 	}
 	//Если уже сриботал квест, то просто скипаем
-	if(chr.chr_ai.type.state == "wait") return;
+	if (chr.chr_ai.type.state == "wait")
+		return;
 	//Если уже стоит новый шаблон, то тоже скипаем
-	if(chr.chr_ai.tmpl != tmpl) return;
+	if (chr.chr_ai.tmpl != tmpl)
+		return;
 	//Стоит ли квест на выполнение
 	string quest = chr.chr_ai.type.quest;
 	chr.chr_ai.type.quest = "";
-	if(chr.chr_ai.type.state == "dialoggo")
+	if (chr.chr_ai.type.state == "dialoggo")
 	{
 		//Пришли к персонажу, начинаем диалог
 		chr.chr_ai.type.lock = "0";
 		LAi_ActorDialogNow(chr, &Characters[sti(chr.chr_ai.type.dlgchr)], quest, stf(chr.chr_ai.type.dlgtime));
 		return;
 	}
-	if(chr.chr_ai.type.state == "exitfromloc")
+	if (chr.chr_ai.type.state == "exitfromloc")
 	{
 		//Дошли до локатора, перегружаемся в другую локацию
 		ChangeCharacterAddressGroup(chr, chr.chr_ai.type.location, chr.chr_ai.type.group, chr.chr_ai.type.locator);
@@ -192,22 +209,23 @@ void LAi_type_actor_TemplateComplite(aref chr, string tmpl)
 	chr.chr_ai.type.lock = "0";
 	//Если не следование, сбросим состояние
 	bool isResetActor = true;
-	if(tmpl == LAI_TMPL_FOLLOW)
+	if (tmpl == LAI_TMPL_FOLLOW)
 	{
 		isResetActor = false;
 	}
-	if(tmpl == LAI_TMPL_ANI)
+	if (tmpl == LAI_TMPL_ANI)
 	{
-		if(quest == "")
+		if (quest == "")
 		{
 			isResetActor = false;
 		}
 	}
-	if(isResetActor)
+	if (isResetActor)
 	{
 		LAi_type_actor_Reset(chr);
 	}
-	if(quest != "") CompleteQuestName(quest, "");
+	if (quest != "")
+		CompleteQuestName(quest, "");
 }
 
 //Сообщить о желании завести диалог
@@ -219,13 +237,17 @@ void LAi_type_actor_NeedDialog(aref chr, aref by)
 bool LAi_type_actor_CanDialog(aref chr, aref by)
 {
 	bool canDialog = false;
-	if(chr.chr_ai.type.state == "dialogwait")
+	if (chr.chr_ai.type.state == "dialogwait")
 	{
-		if(sti(chr.chr_ai.type.dlgchr) == sti(by.index)) canDialog = true;
-	}else{
-		if(chr.chr_ai.type.state == "dialoggo")
+		if (sti(chr.chr_ai.type.dlgchr) == sti(by.index))
+			canDialog = true;
+	}
+	else
+	{
+		if (chr.chr_ai.type.state == "dialoggo")
 		{
-			if(sti(chr.chr_ai.type.dlgchr) == sti(by.index)) canDialog = true;
+			if (sti(chr.chr_ai.type.dlgchr) == sti(by.index))
+				canDialog = true;
 		}
 	}
 	return canDialog;
@@ -234,21 +256,25 @@ bool LAi_type_actor_CanDialog(aref chr, aref by)
 //Начать диалог
 void LAi_type_actor_StartDialog(aref chr, aref by)
 {
-	if(chr.chr_ai.type.state == "dialogself")
+	if (chr.chr_ai.type.state == "dialogself")
 	{
 		LAi_tmpl_stay_InitTemplate(chr);
 		return;
-	}else{
-		if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+	}
+	else
+	{
+		if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 		{
 			//Если мы пасивны, запускаем шаблон без времени завершения
 			LAi_tmpl_SetActivatedDialog(chr, by);
 			chr.chr_ai.type.state = "dialog";
 		}
-		if(chr.chr_ai.type.mode == "stay")
+		if (chr.chr_ai.type.mode == "stay")
 		{
 			CharacterTurnByChr(chr, by);
-		}else{
+		}
+		else
+		{
 			LAi_tmpl_dialog_NoAni(chr);
 		}
 	}
@@ -257,12 +283,15 @@ void LAi_type_actor_StartDialog(aref chr, aref by)
 //Закончить диалог
 void LAi_type_actor_EndDialog(aref chr, aref by)
 {
-	if(chr.chr_ai.type.state == "dialogself")
+	if (chr.chr_ai.type.state == "dialogself")
 	{
 		LAi_tmpl_stay_InitTemplate(chr);
 		LAi_type_actor_TemplateComplite(chr, LAI_TMPL_STAY);
-	}else{
-		if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG) Trace("LAi_type_actor_EndDialog -> LAi_type_actor_Reset");
+	}
+	else
+	{
+		if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+			Trace("LAi_type_actor_EndDialog -> LAi_type_actor_Reset");
 		LAi_type_actor_TemplateComplite(chr, LAI_TMPL_DIALOG);
 	}
 }
@@ -270,7 +299,6 @@ void LAi_type_actor_EndDialog(aref chr, aref by)
 //Персонаж выстрелил
 void LAi_type_actor_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
-
 }
 
 //Персонаж атакован
@@ -297,13 +325,13 @@ bool LAi_type_actor_Error(aref chr, bool lockTest)
 	{
 		if (MOD_BETTATESTMODE == "On")
 		{
-		    Log_TestInfo("Actor error: character <" + chr.id + "> now is not actor, his have type <" + chr.chr_ai.type + ">");
+			Log_TestInfo("Actor error: character <" + chr.id + "> now is not actor, his have type <" + chr.chr_ai.type + ">");
 		}
 		return true;
 	}
-	if(lockTest)
+	if (lockTest)
 	{
-		if(sti(chr.chr_ai.type.lock) != 0)
+		if (sti(chr.chr_ai.type.lock) != 0)
 		{
 			Trace("Actor error: character <" + chr.id + "> now is do template <" + chr.chr_ai.tmpl + ">, his not is free for new task");
 			return true;
@@ -311,7 +339,6 @@ bool LAi_type_actor_Error(aref chr, bool lockTest)
 	}
 	return false;
 }
-
 
 //------------------------------------------------------------------------------------------
 //Scripters ai program interface
@@ -329,7 +356,8 @@ bool LAi_type_actor_Error(aref chr, bool lockTest)
 //Указать актёру стоять
 void LAi_ActorStay(aref chr)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "stay";
 	chr.chr_ai.type.quest = "";
 	LAi_tmpl_stay_InitTemplate(chr);
@@ -338,7 +366,8 @@ void LAi_ActorStay(aref chr)
 //Указать актёру идти в заданный локатор
 void LAi_ActorGoToLocator(aref chr, string group, string locator, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "goto";
 	chr.chr_ai.type.quest = quest;
 	LAi_tmpl_goto_InitTemplate(chr);
@@ -349,7 +378,8 @@ void LAi_ActorGoToLocator(aref chr, string group, string locator, string quest, 
 //Указать актёру бежать в заданный локатор
 void LAi_ActorRunToLocator(aref chr, string group, string locator, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "runto";
 	chr.chr_ai.type.quest = quest;
 	LAi_tmpl_runto_InitTemplate(chr);
@@ -360,7 +390,8 @@ void LAi_ActorRunToLocator(aref chr, string group, string locator, string quest,
 //Указать актёру идти в заданную локацию
 void LAi_ActorGoToLocation(aref chr, string groupExit, string locatorExit, string locID, string groupEnter, string locatorEnter, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "exitfromloc";
 	chr.chr_ai.type.quest = quest;
 	chr.chr_ai.type.location = locID;
@@ -374,7 +405,8 @@ void LAi_ActorGoToLocation(aref chr, string groupExit, string locatorExit, strin
 //Указать актёру бежать в заданную локацию
 void LAi_ActorRunToLocation(aref chr, string groupExit, string locatorExit, string locID, string groupEnter, string locatorEnter, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "exitfromloc";
 	chr.chr_ai.type.quest = quest;
 	chr.chr_ai.type.location = locID;
@@ -389,7 +421,8 @@ void LAi_ActorRunToLocation(aref chr, string groupExit, string locatorExit, stri
 //При первом подходе или истечении времени сработает квест
 void LAi_ActorFollow(aref chr, aref follow, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "follow";
 	chr.chr_ai.type.quest = quest;
 	LAi_tmpl_SetFollow(chr, follow, timeout);
@@ -400,7 +433,8 @@ void LAi_ActorFollow(aref chr, aref follow, string quest, float timeout)
 //При первом подходе или истечении времени сработает квест
 void LAi_ActorFollowEverywhere(aref chr, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.location.follower = "1";
 	LAi_ActorFollow(chr, pchar, quest, timeout);
 	chr.chr_ai.type.lock = "0";
@@ -409,7 +443,8 @@ void LAi_ActorFollowEverywhere(aref chr, string quest, float timeout)
 //Указать актёру на кого напасть
 void LAi_ActorAttack(aref chr, aref enemy, string quest)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "attack";
 	chr.chr_ai.type.quest = quest;
 	LAi_tmpl_SetFight(chr, enemy);
@@ -419,18 +454,19 @@ void LAi_ActorAttack(aref chr, aref enemy, string quest)
 //Указать актёру бояться другого персонажа
 void LAi_ActorAfraid(aref chr, aref by, bool canMove)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "afraid";
 	chr.chr_ai.type.quest = "";
 	LAi_tmpl_afraid_SetAfraidCharacter(chr, by, canMove);
 	chr.chr_ai.type.lock = "0";
 }
 
-
 //Активировать диалог между актёром и другим персонажем с подходом друг к другу
 void LAi_ActorDialog(aref chr, aref to, string quest, float timeout, float dlgTime)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "dialoggo";
 	chr.chr_ai.type.quest = quest;
 	chr.chr_ai.type.dlgtime = dlgTime;
@@ -442,7 +478,8 @@ void LAi_ActorDialog(aref chr, aref to, string quest, float timeout, float dlgTi
 //Активировать диалог между актёром и другим персонажем немедленно
 void LAi_ActorDialogNow(aref chr, aref to, string quest, float dlgTime)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "dialogcan";
 	chr.chr_ai.type.quest = quest;
 	chr.chr_ai.type.dlgtime = dlgTime;
@@ -455,16 +492,17 @@ void LAi_ActorDialogNow(aref chr, aref to, string quest, float dlgTime)
 //Активировать диалог между актёром и другим персонажем с задержкой. eddy.
 void LAi_ActorDialogDelay(aref chr, aref to, string quest, float delayTime)
 {
-    pchar.GenQuest.CallFunctionParam = "ActorDialogDelay";
-    pchar.GenQuest.CallFunctionParam.ActorDialogDelay.chrId = chr.id;
-    pchar.GenQuest.CallFunctionParam.ActorDialogDelay.chrToInd = to.index;
+	pchar.GenQuest.CallFunctionParam = "ActorDialogDelay";
+	pchar.GenQuest.CallFunctionParam.ActorDialogDelay.chrId = chr.id;
+	pchar.GenQuest.CallFunctionParam.ActorDialogDelay.chrToInd = to.index;
 	pchar.GenQuest.CallFunctionParam.ActorDialogDelay.quest = quest;
-    DoQuestCheckDelay("CallFunctionParam", delayTime);
+	DoQuestCheckDelay("CallFunctionParam", delayTime);
 }
-void ActorDialogDelay()    // относится к методу выше.
+void ActorDialogDelay() // относится к методу выше.
 {
 	ref chr = characterFromID(pchar.GenQuest.CallFunctionParam.ActorDialogDelay.chrId);
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "dialogcan";
 	chr.chr_ai.type.quest = pchar.GenQuest.CallFunctionParam.ActorDialogDelay.quest;
 	chr.chr_ai.type.dlgtime = "-1";
@@ -473,11 +511,11 @@ void ActorDialogDelay()    // относится к методу выше.
 	chr.chr_ai.type.lock = "1";
 }
 
-
 //Активировать диалог с самим собой
 void LAi_ActorSelfDialog(aref chr, string quest)
 {
-	if(LAi_type_actor_Error(chr, true)) return;
+	if (LAi_type_actor_Error(chr, true))
+		return;
 	chr.chr_ai.type.state = "dialogself";
 	chr.chr_ai.type.quest = quest;
 	LAi_tmpl_stay_InitTemplate(chr);
@@ -488,7 +526,8 @@ void LAi_ActorSelfDialog(aref chr, string quest)
 //Указать актёру стоять и ждать диалога от другого персонажа
 void LAi_ActorWaitDialog(aref chr, aref by)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "dialogwait";
 	chr.chr_ai.type.quest = "";
 	chr.chr_ai.type.dlgchr = by.index;
@@ -500,7 +539,8 @@ void LAi_ActorWaitDialog(aref chr, aref by)
 // не перебивает вызов квеста, забитого предыдущей командой!!!
 void LAi_Actor2WaitDialog(aref chr, aref by)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "dialogwait";
 	chr.chr_ai.type.dlgchr = by.index;
 	chr.chr_ai.type.lock = "1";
@@ -510,7 +550,8 @@ void LAi_Actor2WaitDialog(aref chr, aref by)
 //Если анимация зацикленна, то квест вызовется по истечению времени
 void LAi_ActorAnimation(aref chr, string animation, string quest, float timeout)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "animation";
 	chr.chr_ai.type.quest = quest;
 	LAi_tmpl_ani_PlayAnimation(chr, animation, timeout);
@@ -520,7 +561,8 @@ void LAi_ActorAnimation(aref chr, string animation, string quest, float timeout)
 //Ориентировать актёра на персонажа (одноразово)
 void LAi_ActorTurnToCharacter(aref chr, aref to)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "";
 	LAi_tmpl_stay_InitTemplate(chr);
 	CharacterTurnByChr(chr, to);
@@ -530,7 +572,8 @@ void LAi_ActorTurnToCharacter(aref chr, aref to)
 //Ориентировать актёра по локатору
 void LAi_ActorTurnByLocator(aref chr, string group, string locator)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "";
 	LAi_tmpl_stay_InitTemplate(chr);
 	CharacterTurnByLoc(chr, group, locator);
@@ -540,7 +583,8 @@ void LAi_ActorTurnByLocator(aref chr, string group, string locator)
 //Ориентировать актёра на локатор
 void LAi_ActorTurnToLocator(aref chr, string group, string locator)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.state = "";
 	LAi_tmpl_stay_InitTemplate(chr);
 	CharacterTurnToLoc(chr, group, locator);
@@ -550,7 +594,8 @@ void LAi_ActorTurnToLocator(aref chr, string group, string locator)
 //Установить анимацию стоячего персонажа
 void LAi_ActorSetStayMode(aref chr)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.mode = "stay";
 	LAi_SetDefaultStayAnimation(chr);
 }
@@ -558,7 +603,8 @@ void LAi_ActorSetStayMode(aref chr)
 //Установить анимацию сидячего персонажа
 void LAi_ActorSetSitMode(aref chr)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.mode = "sit";
 	LAi_SetDefaultSitAnimation(chr);
 }
@@ -566,7 +612,8 @@ void LAi_ActorSetSitMode(aref chr)
 //Установить анимацию лежачего персонажа
 void LAi_ActorSetLayMode(aref chr)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	chr.chr_ai.type.mode = "lay";
 	BeginChangeCharacterActions(chr);
 	chr.actions.idle.i1 = "Lay_1";
@@ -581,7 +628,8 @@ void LAi_ActorSetLayMode(aref chr)
 void LAi_type_actor_Reset(aref chr)
 {
 	DeleteAttribute(chr, "location.follower");
-	if(LAi_type_actor_Error(chr, false)) return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
 	LAi_tmpl_stay_InitTemplate(chr);
 	chr.chr_ai.type.state = "wait";
 	chr.chr_ai.type.lock = "0";
@@ -591,13 +639,14 @@ void LAi_type_actor_Reset(aref chr)
 //Начать по возможности диалог
 void LAi_type_actor_CheckStartDialog(aref chr)
 {
-	if(LAi_type_actor_Error(chr, false)) return;
-	if(chr.chr_ai.type.state != "dialogcan") return;
+	if (LAi_type_actor_Error(chr, false))
+		return;
+	if (chr.chr_ai.type.state != "dialogcan")
+		return;
 	int idx = sti(chr.chr_ai.type.dlgchr);
-	if(LAi_Character_CanDialog(chr, &Characters[idx]))
+	if (LAi_Character_CanDialog(chr, &Characters[idx]))
 	{
 		chr.chr_ai.type.state = "dialogwait";
 		LAi_tmpl_SetDialog(chr, &Characters[idx], stf(chr.chr_ai.type.dlgtime));
 	}
 }
-

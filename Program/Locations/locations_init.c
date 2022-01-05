@@ -40,7 +40,7 @@
 void InitLocations()
 {
 	ref loc;
-	for(int i = 0; i < MAX_LOCATIONS; i++)
+	for (int i = 0; i < MAX_LOCATIONS; i++)
 	{
 		makeref(loc, Locations[i]);
 		DeleteAttribute(loc, "");
@@ -93,7 +93,7 @@ void InitLocations()
 		loc.locators_radius.Genres = 1.0;
 
 		if (MOD_BETTATESTMODE == "On")
-		{// чтоб было видно в отладке Boal 18.08.06
+		{ // чтоб было видно в отладке Boal 18.08.06
 			loc.locators_radius.soldiers = 0.5;
 			loc.locators_radius.patrol = 0.5;
 			loc.locators_radius.Smugglers = 0.5;
@@ -137,22 +137,22 @@ void InitLocations()
 
 	//Init locations
 	int n = 0;
-	Locations[0].IslandsList.Antigua.begin = n;  //SentJons
+	Locations[0].IslandsList.Antigua.begin = n; //SentJons
 	n = LocationInitAntigua(n);
 	Locations[0].IslandsList.Antigua.end = n;
 	Trace("Antigua locations " + n);
 
-	Locations[0].IslandsList.Barbados.begin = n;  //Bridgetown
+	Locations[0].IslandsList.Barbados.begin = n; //Bridgetown
 	n = LocationInitBarbados(n);
 	Locations[0].IslandsList.Barbados.end = n;
 	Trace("Barbados locations " + n);
 
-	Locations[0].IslandsList.Curacao.begin = n;  //Villemstad
+	Locations[0].IslandsList.Curacao.begin = n; //Villemstad
 	n = LocationInitCuracao(n);
 	Locations[0].IslandsList.Curacao.end = n;
 	Trace("Curacao locations " + n);
 
-	Locations[0].IslandsList.LostShipsIsland.begin = n;  //ГПК
+	Locations[0].IslandsList.LostShipsIsland.begin = n; //ГПК
 	n = LocationInitLostShipsCity(n);
 	Locations[0].IslandsList.LostShipsIsland.end = n;
 	Trace("LostShipsIsland locations " + n);
@@ -276,7 +276,7 @@ void InitLocations()
 	Locations[0].IslandsList.Trinidad.begin = n; //PortSpein
 	n = LocationInitTrinidad(n);
 	Locations[0].IslandsList.Trinidad.end = n;
- 	Trace("Trinidad locations " + n);
+	Trace("Trinidad locations " + n);
 
 	Locations[0].IslandsList.SentMartin.begin = n;
 	n = LocationInitSentMartin(n);
@@ -303,7 +303,7 @@ void InitLocations()
 	Locations[0].IslandsList.Caiman.end = n;
 	Trace("Caiman locations " + n);
 
-// Старый всет -->
+	// Старый всет -->
 	Locations[0].IslandsList.OldWorld.begin = n;
 	n = LocationInitOldWorld(n);
 	Locations[0].IslandsList.OldWorld.end = n;

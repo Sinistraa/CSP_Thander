@@ -1,20 +1,22 @@
 
 
-#define LAI_TYPE_CITIZEN	"citizen"
-
+#define LAI_TYPE_CITIZEN "citizen"
 
 //Инициализация
 void LAi_type_citizen_Init(aref chr)
 {
 	DeleteAttribute(chr, "location.follower");
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.type") == false)
+	if (CheckAttribute(chr, "chr_ai.type") == false)
 	{
 		isNew = true;
-	}else{
-		if(chr.chr_ai.type != LAI_TYPE_CITIZEN) isNew = true;
 	}
-	if(isNew == true)
+	else
+	{
+		if (chr.chr_ai.type != LAI_TYPE_CITIZEN)
+			isNew = true;
+	}
+	if (isNew == true)
 	{
 		DeleteAttribute(chr, "chr_ai.type");
 		chr.chr_ai.type = LAI_TYPE_CITIZEN;
@@ -22,7 +24,7 @@ void LAi_type_citizen_Init(aref chr)
 		LAi_tmpl_walk_InitTemplate(chr);
 	}
 	chr.chr_ai.type.notalk = rand(10);
-	chr.chr_ai.type.checkFight = rand(5)+2;
+	chr.chr_ai.type.checkFight = rand(5) + 2;
 	//Установим анимацию персонажу
 	LAi_SetDefaultStayAnimation(chr);
 	SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "SetFightWOWeapon", false);
@@ -35,21 +37,25 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 	int trg = -1;
 	float time;
 	ref by;
-	if(chr.chr_ai.tmpl == LAI_TMPL_WALK)
+	if (chr.chr_ai.tmpl == LAI_TMPL_WALK)
 	{
 		trg = LAi_type_citizen_FindNearEnemy(chr);
-		if(trg >= 0)
+		if (trg >= 0)
 		{
-			if(LAi_IsSetBale(chr))
+			if (LAi_IsSetBale(chr))
 			{
 				//Переходим в боевой режим
 				LAi_tmpl_SetFight(chr, &Characters[trg]);
-			}else{
+			}
+			else
+			{
 				//Боимся
 				LAi_tmpl_afraid_SetAfraidCharacter(chr, &Characters[trg], true);
 				LAi_SetAfraidDead(chr);
 			}
-		}else{
+		}
+		else
+		{
 			//Думаем о возможности поговорить
 			time = stf(chr.chr_ai.type.notalk) - dltTime;
 			int num = FindNearCharacters(chr, 3.0, -1.0, -1.0, 0.001, true, true);
@@ -57,7 +63,7 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 
 			if (CheckAttribute(chr, "talker"))
 			{
-				if(InterfaceStates.EnabledQuestsMarks)
+				if (InterfaceStates.EnabledQuestsMarks)
 				{
 					chr.quest.questflag.model = "exclamationmarkY";
 					chr.quest.questflag.technique = "RandItem";
@@ -70,7 +76,7 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 			}
 			else
 			{
-				if(InterfaceStates.EnabledQuestsMarks)
+				if (InterfaceStates.EnabledQuestsMarks)
 				{
 					chr.quest.questflag.model = "";
 					chr.quest.questflag.technique = "";
@@ -79,7 +85,7 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 
 			if (CheckAttribute(chr, "talker") && time < 10.0)
 			{
-				for(i = 0; i < num; i++)
+				for (i = 0; i < num; i++)
 				{
 					idx = sti(chrFindNearCharacters[i].index);
 					if (idx == nMainCharacterIndex) //ищем ГГ
@@ -90,30 +96,32 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 							DeleteAttribute(chr, "talker");
 							break;
 						}
-						else time = 50.0;
+						else
+							time = 50.0;
 					}
 				}
 			}
 
 			//<-- если квестовый ситизен, задача которого поговорить с ГГ
 			//--> проверяем не врагов, но дерущихся.
-			if (stf(chr.chr_ai.type.checkFight) < 0.0 && !LAi_group_IsActivePlayerAlarm())//fix Lipsar не говорят во время тревоги
+			if (stf(chr.chr_ai.type.checkFight) < 0.0 && !LAi_group_IsActivePlayerAlarm()) //fix Lipsar не говорят во время тревоги
 			{
-				for(i = 0; i < num; i++)
+				for (i = 0; i < num; i++)
 				{
 					idx = sti(chrFindNearCharacters[i].index);
 					by = &Characters[idx];
 					chr.chr_ai.type.checkFight = 1.5;
-					if (LAi_CheckFightMode(by) && GetRelation(by, chr.index) != RELATION_FRIEND)//04.03 fix Lipsar проверяем на отношение к игроку, связано с ОЗГ
+					if (LAi_CheckFightMode(by) && GetRelation(by, chr.index) != RELATION_FRIEND) //04.03 fix Lipsar проверяем на отношение к игроку, связано с ОЗГ
 					{
 						if (LAi_IsSetBale(chr))
 						{
 							//Пытаемся начать диалог
 							LAi_SetFightMode(by, false);
-							if(LAi_Character_CanDialog(chr, by))
+							if (LAi_Character_CanDialog(chr, by))
 							{
 								chr.chr_ai.type.state = "dialog";
-								if (by.id == "Blaze") chr.Dialog.CurrentNode = "CitizenNotBlade";
+								if (by.id == "Blaze")
+									chr.Dialog.CurrentNode = "CitizenNotBlade";
 								LAi_tmpl_SetDialog(chr, by, -1.0);
 							}
 						}
@@ -129,21 +137,21 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 				chr.chr_ai.type.checkFight = stf(chr.chr_ai.type.checkFight) - dltTime;
 			}
 			//<-- проверяем не врагов, но дерущихся.
-			if(time <= 0.0)
+			if (time <= 0.0)
 			{
-				if(rand(100) < 10)
+				if (rand(100) < 10)
 				{
-					if (CheckAttribute(&chrFindNearCharacters[0], "index"))  //fix
+					if (CheckAttribute(&chrFindNearCharacters[0], "index")) //fix
 					{
 						idx = sti(chrFindNearCharacters[0].index);
-						if(idx >= 0)
+						if (idx >= 0)
 						{
 							by = &Characters[idx];
 							//Тип
-							if(CheckAttribute(by, "chr_ai.type"))
+							if (CheckAttribute(by, "chr_ai.type"))
 							{
 								bool isDialog = false;
-								switch(by.chr_ai.type)
+								switch (by.chr_ai.type)
 								{
 								case LAI_TYPE_CITIZEN:
 									isDialog = true;
@@ -164,17 +172,19 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 								}
 								//Дистанция
 								time = -1.0;
-								if(GetCharacterDistByChr(chr, by, &time))
+								if (GetCharacterDistByChr(chr, by, &time))
 								{
-									if(time < 0.0) isDialog = false;
-									if(time > 2.5) isDialog = false;
+									if (time < 0.0)
+										isDialog = false;
+									if (time > 2.5)
+										isDialog = false;
 								}
-								if(isDialog)
+								if (isDialog)
 								{
 									chr.chr_ai.type.notalk = 10.0 + rand(20);
-									if(LAi_Character_CanDialog(chr, by))
+									if (LAi_Character_CanDialog(chr, by))
 									{
-										if(!LAi_tmpl_SetDialog(chr, by, 3.0 + rand(10)))
+										if (!LAi_tmpl_SetDialog(chr, by, 3.0 + rand(10)))
 										{
 											LAi_tmpl_walk_InitTemplate(chr);
 										}
@@ -184,41 +194,49 @@ void LAi_type_citizen_CharacterUpdate(aref chr, float dltTime)
 						}
 					}
 				}
-			}else{
+			}
+			else
+			{
 				chr.chr_ai.type.notalk = time;
 			}
 		}
-	}else{
-		if(chr.chr_ai.tmpl == LAI_TMPL_FIGHT)
+	}
+	else
+	{
+		if (chr.chr_ai.tmpl == LAI_TMPL_FIGHT)
 		{
 			//Воюем, посматривая на убийство цели
 			bool isValidate = false;
 			trg = LAi_tmpl_fight_GetTarget(chr);
-			if(trg >= 0)
+			if (trg >= 0)
 			{
-				if(LAi_group_ValidateTarget(chr, &Characters[trg]))
+				if (LAi_group_ValidateTarget(chr, &Characters[trg]))
 				{
-					if(!LAi_tmpl_fight_LostTarget(chr))
+					if (!LAi_tmpl_fight_LostTarget(chr))
 					{
 						isValidate = true;
 					}
 				}
 			}
-			if(!isValidate)
+			if (!isValidate)
 			{
 				//Смотрим остальные цели
 				trg = LAi_type_citizen_FindNearEnemy(chr);
-				if(trg >= 0)
+				if (trg >= 0)
 				{
 					LAi_tmpl_SetFight(chr, &Characters[trg]);
-				}else{
+				}
+				else
+				{
 					LAi_tmpl_walk_InitTemplate(chr);
 				}
 			}
-		}else{
-			if(chr.chr_ai.tmpl == LAI_TMPL_AFRAID)
+		}
+		else
+		{
+			if (chr.chr_ai.tmpl == LAI_TMPL_AFRAID)
 			{
-				if(LAi_tmpl_afraid_IsNoActive(chr))
+				if (LAi_tmpl_afraid_IsNoActive(chr))
 				{
 					//Вернёмся к нормальной жизни
 					LAi_SetDefaultDead(chr);
@@ -244,7 +262,6 @@ bool LAi_type_citizen_CharacterLogoff(aref chr)
 //Завершение работы темплейта
 void LAi_type_citizen_TemplateComplite(aref chr, string tmpl)
 {
-
 }
 
 //Сообщить о желании завести диалог
@@ -255,14 +272,16 @@ void LAi_type_citizen_NeedDialog(aref chr, aref by)
 //Запрос на диалог, если возвратить true то в этот момент можно начать диалог
 bool LAi_type_citizen_CanDialog(aref chr, aref by)
 {
-	if(LAi_IsBoardingProcess()) return false;
-	if(LAi_CanNearEnemy(chr, 5.0)) return false;
+	if (LAi_IsBoardingProcess())
+		return false;
+	if (LAi_CanNearEnemy(chr, 5.0))
+		return false;
 	//Если просто стоим, то согласимся на диалог
-	if(chr.chr_ai.tmpl == LAI_TMPL_WALK)
+	if (chr.chr_ai.tmpl == LAI_TMPL_WALK)
 	{
-		if(sti(by.index) != nMainCharacterIndex)
+		if (sti(by.index) != nMainCharacterIndex)
 		{
-			if(stf(chr.chr_ai.type.notalk) <= 0.0)
+			if (stf(chr.chr_ai.type.notalk) <= 0.0)
 			{
 				return true;
 			}
@@ -270,12 +289,14 @@ bool LAi_type_citizen_CanDialog(aref chr, aref by)
 		}
 		return true;
 	}
-	if(chr.chr_ai.tmpl == LAI_TMPL_STAY) return true;
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+	if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
+		return true;
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
 	{
-		if(sti(by.index) == nMainCharacterIndex)
+		if (sti(by.index) == nMainCharacterIndex)
 		{
-			if(LAi_tmpl_dialog_StopNPC(chr)) return true;
+			if (LAi_tmpl_dialog_StopNPC(chr))
+				return true;
 		}
 	}
 	return false;
@@ -301,36 +322,34 @@ void LAi_type_citizen_EndDialog(aref chr, aref by)
 //Персонаж выстрелил
 void LAi_type_citizen_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
-
 }
-
 
 //Персонаж атакован
 void LAi_type_citizen_Attacked(aref chr, aref by)
 {
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
 	{
 		LAi_tmpl_dialog_StopNPC(chr);
 		LAi_type_citizen_CharacterUpdate(chr, 0.0);
 	}
 }
 
-
 int LAi_type_citizen_FindNearEnemy(aref chr)
 {
-	if(LAi_grp_alarmactive == true)
+	if (LAi_grp_alarmactive == true)
 	{
 		int num = FindNearCharacters(chr, 5.0, -1.0, -1.0, 0.001, false, true);
-		if(num <= 0)
+		if (num <= 0)
 		{
 			chrFindNearCharacters[0].index = "-1";
 			return -1;
 		}
 		int cnt = 0;
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			int idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) return idx;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				return idx;
 		}
 	}
 	return -1;

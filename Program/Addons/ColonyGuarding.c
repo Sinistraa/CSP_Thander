@@ -1,4 +1,4 @@
-							/* Охрана колонии с моря */
+/* Охрана колонии с моря */
 
 void SetStartColonyGuarding()
 {
@@ -7,7 +7,7 @@ void SetStartColonyGuarding()
 	PChar.Colony.Guardians.Hovernor = "";
 
 	string sShip = "";
-	for(int i=1; i <= 4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 		PChar.Colony.Guardians.(sShip) = -1;
@@ -24,18 +24,18 @@ void SetStartColonyGuarding()
 
 int FindCaimanGuardingNum(ref chr)
 {
-	if(!CheckAttribute(chr, "id"))
+	if (!CheckAttribute(chr, "id"))
 	{
 		return -1;
 	}
 
 	string sShip = "";
 
-	for(int i=1; i<=4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 
-		if(sti(PChar.Colony.Guardians.(sShip)) == GetCharacterIndex(chr.id))
+		if (sti(PChar.Colony.Guardians.(sShip)) == GetCharacterIndex(chr.id))
 		{
 			return i;
 		}
@@ -54,18 +54,18 @@ int GetCostForBaseCompletationAllGuards()
 	int iChar = 0;
 	int iClass = 7;
 
-	for(int i=1; i <= 4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 
-		if(PChar.Colony.Guardians.(sShip) != -1 && PChar.Colony.Guardians.(sShip).Active == true)
+		if (PChar.Colony.Guardians.(sShip) != -1 && PChar.Colony.Guardians.(sShip).Active == true)
 		{
 			iChar = sti(PChar.Colony.Guardians.(sShip));
 			chr = &Characters[iChar];
 			rShip = GetRealShip(sti(chr.Ship.Type));
 
 			iClass = 1;
-			if(CheckAttribute(rShip, "Class"))
+			if (CheckAttribute(rShip, "Class"))
 			{
 				iClass = sti(rShip.Class)
 			}
@@ -82,12 +82,12 @@ void BaseCompletationColonyGuards()
 {
 	RepairAllGuardShips();
 
-	if(PChar.Colony.Guardians.BaseComplete == false)
+	if (PChar.Colony.Guardians.BaseComplete == false)
 	{
 		return;
 	}
 
-	if(GetColonyGuardsShipsQuantity() < 1)
+	if (GetColonyGuardsShipsQuantity() < 1)
 	{
 		return;
 	}
@@ -95,7 +95,7 @@ void BaseCompletationColonyGuards()
 	int iCost = GetCostForBaseCompletationAllGuards();
 	int iColonyMoney = sti(PChar.ColonyBuilding.Money);
 
-	if(iColonyMoney < iCost)
+	if (iColonyMoney < iCost)
 	{
 		Log_InfoS("Ваша колония не имеет достаточных средств, чтобы обеспечить базовое комплектование кораблей охраны береговой линии.");
 		return;
@@ -111,11 +111,11 @@ void BaseCompletationColonyGuards()
 	ref chr;
 	int iChar = 0;
 
-	for(int i=1; i <= 4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 
-		if(PChar.Colony.Guardians.(sShip) != -1)
+		if (PChar.Colony.Guardians.(sShip) != -1)
 		{
 			iChar = sti(PChar.Colony.Guardians.(sShip));
 			chr = &Characters[iChar];
@@ -136,14 +136,14 @@ void BaseCompletationColonyGuards()
 
 void RepairAllGuardShips()
 {
-    	int iChar;
+	int iChar;
 	ref chr;
 	string sShip = "";
-	for (int i=1; i <= 4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 
-		if(PChar.Colony.Guardians.(sShip) != -1)
+		if (PChar.Colony.Guardians.(sShip) != -1)
 		{
 			iChar = sti(PChar.Colony.Guardians.(sShip));
 			chr = &Characters[iChar];
@@ -174,11 +174,11 @@ int GetColonyGuardsShipsQuantity()
 
 	string sShip = "";
 	string sCharacter = "";
-	for(int i=1; i <= 4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 
-		if(PChar.Colony.Guardians.(sShip) != -1)
+		if (PChar.Colony.Guardians.(sShip) != -1)
 		{
 			qty++;
 		}
@@ -195,28 +195,28 @@ void CheckDeadColonyGuard()
 	string sShip = "";
 	string sStepShip = "";
 	string sGroup = "";
-	for(i = 1; i <= 4; i++)
+	for (i = 1; i <= 4; i++)
 	{
 		sShip = "Ship" + i;
 		iCharacter = sti(PChar.Colony.Guardians.(sShip));
 
-		if(iCharacter != -1)
+		if (iCharacter != -1)
 		{
-			if(sti(Characters[iCharacter].Ship.Type) > REAL_SHIPS_QUANTITY || CheckAttribute(&Characters[iCharacter], "ship.shipsink"))
+			if (sti(Characters[iCharacter].Ship.Type) > REAL_SHIPS_QUANTITY || CheckAttribute(&Characters[iCharacter], "ship.shipsink"))
 			{
 				KillColonyGuarding(i);
 			}
 		}
 	}
 
-	for(i = 1; i <= 3; i++)
+	for (i = 1; i <= 3; i++)
 	{
 		sShip = "Ship" + i;
 		iCharacter = sti(PChar.Colony.Guardians.(sShip));
 
-		if(iCharacter == -1)
+		if (iCharacter == -1)
 		{
-			sStepShip = "Ship" + (i+1);
+			sStepShip = "Ship" + (i + 1);
 			PChar.Colony.Guardians.(sShip) = -1;
 			PChar.Colony.Guardians.(sShip) = sti(PChar.Colony.Guardians.(sStepShip));
 			PChar.Colony.Guardians.(sShip).Active = sti(PChar.Colony.Guardians.(sStepShip).Active);
@@ -225,20 +225,20 @@ void CheckDeadColonyGuard()
 		}
 	}
 
-	for(i = 1; i<=4; i++)
+	for (i = 1; i <= 4; i++)
 	{
 		sGroup = "InterfaceColonyGuardians_" + i;
 		sShip = "Ship" + i;
 		iCharacter = sti(PChar.Colony.Guardians.(sShip));
 
-		if(Group_FindGroup(sGroup) != -1)
+		if (Group_FindGroup(sGroup) != -1)
 		{
 			Group_DeleteGroup(sGroup);
 		}
 
 		Group_SetAddress(sGroup, "none", "none", "none");
 
-		if(iCharacter != -1)
+		if (iCharacter != -1)
 		{
 			SetCharacterRelationBoth(iCharacter, GetMainCharacterIndex(), RELATION_FRIEND);
 			SetCharacterShipLocation(&Characters[iCharacter], "LandGuardingPort");
@@ -249,7 +249,7 @@ void CheckDeadColonyGuard()
 			Group_AddCharacter(sGroup, Characters[iCharacter].id);
 			Group_SetGroupCommander(sGroup, Characters[iCharacter].id);
 
-			if(sti(PChar.Colony.Guardians.(sShip).Active) == true)
+			if (sti(PChar.Colony.Guardians.(sShip).Active) == true)
 			{
 				Group_SetAddress(sGroup, "Caiman", "Quest_Ships", "quest_ship_" + i);
 			}
@@ -262,7 +262,7 @@ void KillColonyGuarding(int iNum)
 	string sShip = "Ship" + iNum;
 
 	int iChar = PChar.Colony.Guardians.(sShip);
-	if(iChar == -1)
+	if (iChar == -1)
 	{
 		return;
 	}
@@ -271,7 +271,7 @@ void KillColonyGuarding(int iNum)
 	chr.LifeDay = 0;
 
 	string sGroup = "InterfaceColonyGuardians_" + iNum;
-	if(Group_FindGroup(sGroup) != -1)
+	if (Group_FindGroup(sGroup) != -1)
 	{
 		Group_DeleteGroup(sGroup);
 	}
@@ -287,9 +287,18 @@ void RemoveColonyGuardingFromSquadron(ref chr)
 	//chr.nation = sti(chr.nation.prev_nation);
 	chr.AlwaysEnemy = true;
 
-	if(CheckAttribute(chr, "AlwaysFriend")) 	{ DeleteAttribute(chr, "AlwaysFriend"); }
-	if(CheckAttribute(chr, "DontCheckFlag")) 	{ DeleteAttribute(chr, "DontCheckFlag"); }
-	if(CheckAttribute(chr, "ShipEnemyDisable")) 	{ DeleteAttribute(chr, "ShipEnemyDisable"); }
+	if (CheckAttribute(chr, "AlwaysFriend"))
+	{
+		DeleteAttribute(chr, "AlwaysFriend");
+	}
+	if (CheckAttribute(chr, "DontCheckFlag"))
+	{
+		DeleteAttribute(chr, "DontCheckFlag");
+	}
+	if (CheckAttribute(chr, "ShipEnemyDisable"))
+	{
+		DeleteAttribute(chr, "ShipEnemyDisable");
+	}
 
 	int iNum = FindCaimanGuardingNum(chr);
 
@@ -300,17 +309,17 @@ void RemoveColonyGuardingFromSquadron(ref chr)
 	SetCharacterShipLocation(chr, "None");
 
 	string sGroup = "InterfaceColonyGuardians_" + iNum;
-	if(Group_FindGroup(sGroup) != -1)
+	if (Group_FindGroup(sGroup) != -1)
 	{
 		Group_DeleteGroup(sGroup);
 	}
 
 	SetCharacterRelationBoth(GetCharacterIndex(chr.id), GetMainCharacterIndex(), RELATION_ENEMY);
 
-	for(int i=1; i<=4; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		sGroup = "InterfaceColonyGuardians_" + i;
-		if(Group_FindGroup(sGroup) != -1)
+		if (Group_FindGroup(sGroup) != -1)
 		{
 			Group_SetEnemyToCharacter(sGroup, GetCharacterIndex(chr.id));
 		}
@@ -329,9 +338,9 @@ void RepairCaimanGuardingShip(int iCharacter)
 	string attr;
 
 	cn = iCharacter;
-	if(cn != -1)
+	if (cn != -1)
 	{
-		if(sti(characters[cn].ship.type) != SHIP_NOTUSED)
+		if (sti(characters[cn].ship.type) != SHIP_NOTUSED)
 		{
 			characters[cn].ship.hp = Realships[sti(characters[cn].ship.type)].hp;
 			characters[cn].ship.sp = 100;
@@ -339,19 +348,27 @@ void RepairCaimanGuardingShip(int iCharacter)
 			{
 				switch (m)
 				{
-					case 0: sBort = "cannonf"; break;
-					case 1: sBort = "cannonb"; break;
-					case 2: sBort = "cannonl"; break;
-					case 3: sBort = "cannonr"; break;
+				case 0:
+					sBort = "cannonf";
+					break;
+				case 1:
+					sBort = "cannonb";
+					break;
+				case 2:
+					sBort = "cannonl";
+					break;
+				case 3:
+					sBort = "cannonr";
+					break;
 				}
 				makearef(arDamages, characters[cn].Ship.Cannons.Borts.(sBort).damages);
 
 				iNumRealCannons = GetAttributesNum(arDamages);
 
-				for (int k=0; k<iNumRealCannons; k++)
+				for (int k = 0; k < iNumRealCannons; k++)
 				{
 					attr = "c" + k;
-					if(arDamages.(attr) > 0.01)
+					if (arDamages.(attr) > 0.01)
 					{
 						arDamages.(attr) = 0.0;
 					}
@@ -367,18 +384,18 @@ void RepairCaimanGuardingShip(int iCharacter)
 ////////////////////////////////////////////////////////////////////////
 void ColonyGuardingAutoCrewHire(string sType)
 {
-	if(PChar.Colony.Guardians.Hovernor == "")
+	if (PChar.Colony.Guardians.Hovernor == "")
 	{
 		return;
 	}
 
-	if(PChar.Colony.Guardians.(sType).AutoCrewHire == false)
+	if (PChar.Colony.Guardians.(sType).AutoCrewHire == false)
 	{
 		return;
 	}
 
 	int iCost = ColonyGuardingGetCostForObject(sType, false);
-	if(iCost <= 0)
+	if (iCost <= 0)
 	{
 		return;
 	}
@@ -386,45 +403,45 @@ void ColonyGuardingAutoCrewHire(string sType)
 	int iQty = 0;
 	int iMaxQty = 0;
 	int iNeedQty = 0;
-	switch(sType)
+	switch (sType)
 	{
-		case "Colony":
-			if(GetMyColonyMoney() >= iCost)
-			{
-				iMaxQty = sti(PChar.ColonyBuilding.Soldiers.MaxQuantity);
-				iQty = sti(PChar.ColonyBuilding.Soldiers);
-				iNeedQty = iMaxQty - iQty;
+	case "Colony":
+		if (GetMyColonyMoney() >= iCost)
+		{
+			iMaxQty = sti(PChar.ColonyBuilding.Soldiers.MaxQuantity);
+			iQty = sti(PChar.ColonyBuilding.Soldiers);
+			iNeedQty = iMaxQty - iQty;
 
-				ChangeColonyMoney(-iCost, false);
-				ChangeColonySoldiers(iNeedQty, false);
-				Log_InfoS("Гарнизон колонии был пополнен " + iNeedQty + " солдатами за " + iCost + " золотых.");
-			}
+			ChangeColonyMoney(-iCost, false);
+			ChangeColonySoldiers(iNeedQty, false);
+			Log_InfoS("Гарнизон колонии был пополнен " + iNeedQty + " солдатами за " + iCost + " золотых.");
+		}
 		break;
 
-		case "Mines":
-			if(GetMyColonyMoney() >= iCost)
-			{
-				iMaxQty = sti(PChar.Mines.MaxGuardiansQuantity);
-				iQty = sti(PChar.Mines.GuardiansQuantity);
-				iNeedQty = iMaxQty - iQty;
+	case "Mines":
+		if (GetMyColonyMoney() >= iCost)
+		{
+			iMaxQty = sti(PChar.Mines.MaxGuardiansQuantity);
+			iQty = sti(PChar.Mines.GuardiansQuantity);
+			iNeedQty = iMaxQty - iQty;
 
-				ChangeColonyMoney(-iCost, false);
-				ChangeMinesSoldiers(iNeedQty, false);
-				Log_InfoS("Гарнизон рудников был пополнен " + iNeedQty + " солдатами за " + iCost + " золотых.");
-			}
+			ChangeColonyMoney(-iCost, false);
+			ChangeMinesSoldiers(iNeedQty, false);
+			Log_InfoS("Гарнизон рудников был пополнен " + iNeedQty + " солдатами за " + iCost + " золотых.");
+		}
 		break;
 
-		case "Plantation":
-			if(GetMyColonyMoney() >= iCost)
-			{
-				iMaxQty = sti(PChar.Plantation.Guardians.MaxQuantity);
-				iQty = sti(PChar.Plantation.Guardians.Quantity);
-				iNeedQty = iMaxQty - iQty;
+	case "Plantation":
+		if (GetMyColonyMoney() >= iCost)
+		{
+			iMaxQty = sti(PChar.Plantation.Guardians.MaxQuantity);
+			iQty = sti(PChar.Plantation.Guardians.Quantity);
+			iNeedQty = iMaxQty - iQty;
 
-				ChangeColonyMoney(-iCost, false);
-				ChangePlantationSoldiers(iNeedQty, false);
-				Log_InfoS("Гарнизон плантации был пополнен " + iNeedQty + " солдатами за " + iCost + " золотых.");
-			}
+			ChangeColonyMoney(-iCost, false);
+			ChangePlantationSoldiers(iNeedQty, false);
+			Log_InfoS("Гарнизон плантации был пополнен " + iNeedQty + " солдатами за " + iCost + " золотых.");
+		}
 		break;
 	}
 }
@@ -436,48 +453,48 @@ int ColonyGuardingGetCostForObject(string sType, bool bFull)
 	int iNeedQty = 0;
 	int iCost = 0;
 
-	switch(sType)
+	switch (sType)
 	{
-		case "Colony":
-			iMaxQty = sti(PChar.ColonyBuilding.Soldiers.MaxQuantity);
-			if(bFull)
-			{
-				iCost = ColonyGuardingAutoCrewHireCost() * iMaxQty;
-				return iCost;
-			}
-
-			iQty = sti(PChar.ColonyBuilding.Soldiers);
-			iNeedQty = iMaxQty - iQty;
-			iCost = ColonyGuardingAutoCrewHireCost() * iNeedQty;
+	case "Colony":
+		iMaxQty = sti(PChar.ColonyBuilding.Soldiers.MaxQuantity);
+		if (bFull)
+		{
+			iCost = ColonyGuardingAutoCrewHireCost() * iMaxQty;
 			return iCost;
+		}
+
+		iQty = sti(PChar.ColonyBuilding.Soldiers);
+		iNeedQty = iMaxQty - iQty;
+		iCost = ColonyGuardingAutoCrewHireCost() * iNeedQty;
+		return iCost;
 		break;
 
-		case "Mines":
-			iMaxQty = sti(PChar.Mines.MaxGuardiansQuantity);
-			if(bFull)
-			{
-				iCost = ColonyGuardingAutoCrewHireCost() * iMaxQty;
-				return iCost;
-			}
-
-			iQty = sti(PChar.Mines.GuardiansQuantity);
-			iNeedQty = iMaxQty - iQty;
-			iCost = ColonyGuardingAutoCrewHireCost() * iNeedQty;
+	case "Mines":
+		iMaxQty = sti(PChar.Mines.MaxGuardiansQuantity);
+		if (bFull)
+		{
+			iCost = ColonyGuardingAutoCrewHireCost() * iMaxQty;
 			return iCost;
+		}
+
+		iQty = sti(PChar.Mines.GuardiansQuantity);
+		iNeedQty = iMaxQty - iQty;
+		iCost = ColonyGuardingAutoCrewHireCost() * iNeedQty;
+		return iCost;
 		break;
 
-		case "Plantation":
-			iMaxQty = sti(PChar.Plantation.Guardians.MaxQuantity);
-			if(bFull)
-			{
-				iCost = ColonyGuardingAutoCrewHireCost() * iMaxQty;
-				return iCost;
-			}
-
-			iQty = sti(PChar.Plantation.Guardians.Quantity);
-			iNeedQty = iMaxQty - iQty;
-			iCost = ColonyGuardingAutoCrewHireCost() * iNeedQty;
+	case "Plantation":
+		iMaxQty = sti(PChar.Plantation.Guardians.MaxQuantity);
+		if (bFull)
+		{
+			iCost = ColonyGuardingAutoCrewHireCost() * iMaxQty;
 			return iCost;
+		}
+
+		iQty = sti(PChar.Plantation.Guardians.Quantity);
+		iNeedQty = iMaxQty - iQty;
+		iCost = ColonyGuardingAutoCrewHireCost() * iNeedQty;
+		return iCost;
 		break;
 	}
 
@@ -498,42 +515,38 @@ string ColonyGuardingAutoCrewHireGetWork()
 	bool bMines = PChar.Colony.Guardians.Mines.AutoCrewHire;
 	bool bPlantation = PChar.Colony.Guardians.Plantation.AutoCrewHire;
 
-	if(!bColony && !bMines && !bPlantation)
+	if (!bColony && !bMines && !bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_1");
 	}
-	if(bColony && !bMines && !bPlantation)
+	if (bColony && !bMines && !bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_2");
 	}
-	if(!bColony && bMines && !bPlantation)
+	if (!bColony && bMines && !bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_3");
 	}
-	if(!bColony && !bMines && bPlantation)
+	if (!bColony && !bMines && bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_4");
 	}
-	if(bColony && bMines && !bPlantation)
+	if (bColony && bMines && !bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_5");
 	}
-	if(bColony && !bMines && bPlantation)
+	if (bColony && !bMines && bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_6");
 	}
-	if(!bColony && bMines && bPlantation)
+	if (!bColony && bMines && bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_7");
 	}
-	if(bColony && bMines && bPlantation)
+	if (bColony && bMines && bPlantation)
 	{
 		return XI_ConvertString("HireGetWork_8");
 	}
 
 	return "bug";
 }
-
-
-
-

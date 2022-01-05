@@ -54,7 +54,7 @@ int LocationInitLaVega(int n)
 	locations[n].reload.l2.emerge = "reload_4";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ int LocationInitLaVega(int n)
 	locations[n].id = "LaVega_ExitTown";
 	locations[n].fastreload = "LaVega";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "LaVega";
 	//Sound
@@ -110,7 +110,7 @@ int LocationInitLaVega(int n)
 	locations[n].reload.l2.label = "LaVega Port";
 	locations[n].locators_radius.reload.reload1_back = 2.0;
 
-    Locations[n].reload.l3.name = "reload3";
+	Locations[n].reload.l3.name = "reload3";
 	Locations[n].reload.l3.go = "LaVega_town";
 	Locations[n].reload.l3.emerge = "reload1";
 	Locations[n].reload.l3.autoreload = "0";
@@ -204,15 +204,16 @@ int LocationInitLaVega(int n)
 	Locations[n].reload.l8.autoreload = "0";
 	Locations[n].reload.l8.label = "Store";
 	Locations[n].reload.l8.close_for_night = 1;
-    n = n + 1;
+	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Таверна Ла Вега
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 	locations[n].id = "LaVega_tavern";
+	locations[n].id = "LaVega_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern09\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "LaVega";
@@ -220,7 +221,7 @@ int LocationInitLaVega(int n)
 	//Sound
 	locations[n].type = "tavern";
 	locations[n].fastreload = "LaVega";
- 	locations[n].islandId = "Hispaniola";
+	locations[n].islandId = "Hispaniola";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "Tavern09";
@@ -241,7 +242,7 @@ int LocationInitLaVega(int n)
 	locations[n].reload.l1.go = "LaVega_town";
 	locations[n].reload.l1.emerge = "reload5";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
 	locations[n].reload.l2.name = "reload2_back";
 	locations[n].reload.l2.go = "LaVega_tavern_upstairs";
@@ -298,7 +299,7 @@ int LocationInitLaVega(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "LaVega_store";
 	locations[n].id.label = "Store";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+	locations[n].image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "LaVega";
 	locations[n].lockWeather = "Inside";
@@ -309,7 +310,8 @@ int LocationInitLaVega(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\StoreSmall\";
-	locations[n].models.always.locators = "StoreSmall_locators";
+									locations[n]
+										.models.always.locators = "StoreSmall_locators";
 	locations[n].models.always.store = "StoreSmall";
 	locations[n].models.always.window = "StoreSmall_window";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -328,9 +330,9 @@ int LocationInitLaVega(int n)
 	locations[n].reload.l1.go = "LaVega_town";
 	locations[n].reload.l1.emerge = "reload8";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "Street";
+	locations[n].reload.l1.label = "Street";
 
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonRoom_MH10";
 	locations[n].reload.l2.emerge = "reload1";

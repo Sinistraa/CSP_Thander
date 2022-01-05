@@ -17,14 +17,14 @@ bool SetCharacterTask_GotoPoint(ref character, string locatorGroup, string locat
 {
 	float x, y, z;
 	//Get current location
-	if(IsEntity(loadedLocation) == 0)
+	if (IsEntity(loadedLocation) == 0)
 	{
 		Trace("SetCharacterTask_GotoPoint -> location not created");
 		return false;
 	}
 	//Check locator by create
 	string slocator = "locators." + locatorGroup + "." + locatorName;
-	if(CheckAttribute(loadedLocation, slocator) == 0)
+	if (CheckAttribute(loadedLocation, slocator) == 0)
 	{
 		if (locatorName != "")
 		{
@@ -46,14 +46,14 @@ bool SetCharacterTask_RuntoPoint(ref character, string locatorGroup, string loca
 {
 	float x, y, z;
 	//Get current location
-	if(IsEntity(loadedLocation) == 0)
+	if (IsEntity(loadedLocation) == 0)
 	{
 		Trace("SetCharacterTask_GotoPoint -> location not created");
 		return false;
 	}
 	//Check locator by create
 	string slocator = "locators." + locatorGroup + "." + locatorName;
-	if(CheckAttribute(loadedLocation, slocator) == 0)
+	if (CheckAttribute(loadedLocation, slocator) == 0)
 	{
 		Trace("SetCharacterTask_GotoPoint -> locator '" + locatorName + "' in group '" + locatorGroup + "' not found");
 		return false;
@@ -126,8 +126,10 @@ bool CharacterTurnAy(ref character, float ay)
 bool GetCharacterDistByChr(ref character, ref byCharacter, ref float_dist2D)
 {
 	float d = -1.0;
-	if(SendMessage(character, "lie", MSG_CHARACTER_DIST2D, byCharacter, &d) == 0) return false;
-	if(d < 0) return false;
+	if (SendMessage(character, "lie", MSG_CHARACTER_DIST2D, byCharacter, &d) == 0)
+		return false;
+	if (d < 0)
+		return false;
 	float_dist2D = d;
 	return true;
 }
@@ -135,8 +137,10 @@ bool GetCharacterDistByChr(ref character, ref byCharacter, ref float_dist2D)
 bool GetCharacterDistByChr3D(ref character, ref byCharacter, ref float_dist3D)
 {
 	float d = -1.0;
-	if(SendMessage(character, "lie", MSG_CHARACTER_DIST3D, byCharacter, &d) == 0) return false;
-	if(d < 0) return false;
+	if (SendMessage(character, "lie", MSG_CHARACTER_DIST3D, byCharacter, &d) == 0)
+		return false;
+	if (d < 0)
+		return false;
 	float_dist3D = d;
 	return true;
 }
@@ -149,8 +153,10 @@ bool CharacterPlayAction(ref character, string actionName)
 bool GetCharacterDistByLoc(ref character, string group, string locator, ref float_dist3D)
 {
 	float d = -1.0;
-	if(SendMessage(character, "lssse", MSG_CHARACTER_EX_MSG, "DistToLocator", group, locator, &d) == 0) return false;
-	if(d < 0) return false;
+	if (SendMessage(character, "lssse", MSG_CHARACTER_EX_MSG, "DistToLocator", group, locator, &d) == 0)
+		return false;
+	if (d < 0)
+		return false;
 	float_dist3D = d;
 	return true;
 }
@@ -158,13 +164,15 @@ bool GetCharacterDistByLoc(ref character, string group, string locator, ref floa
 string FindCharacterOptLocator(aref character, string group)
 {
 	string str = "";
-	if(SendMessage(character, "lsse", MSG_CHARACTER_EX_MSG, "FindForvardLocator", group, &str) == 0) return "";
+	if (SendMessage(character, "lsse", MSG_CHARACTER_EX_MSG, "FindForvardLocator", group, &str) == 0)
+		return "";
 	return str;
 }
 
 string CharacterGetTask(ref character)
 {
 	string str = "";
-	if(SendMessage(character, "le", MSG_NPCHARACTER_GETTASK, &str) == 0) str = "";
+	if (SendMessage(character, "le", MSG_NPCHARACTER_GETTASK, &str) == 0)
+		str = "";
 	return str;
 }

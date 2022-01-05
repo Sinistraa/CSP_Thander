@@ -1,17 +1,17 @@
 
 
-#define LAI_TMPL_ANI	"ani"
-
+#define LAI_TMPL_ANI "ani"
 
 void LAi_tmpl_ani_PlayAnimation(aref chr, string actionName, float timeout)
 {
 	LAi_tmpl_ani_InitTemplate(chr);
 	chr.chr_ai.tmpl.animation = "";
 	chr.chr_ai.tmpl.time = "0";
-	if (timeout == -1) chr.chr_ai.tmpl.animation.playToEnd = true;
+	if (timeout == -1)
+		chr.chr_ai.tmpl.animation.playToEnd = true;
 	chr.chr_ai.tmpl.timeout = timeout;
 	chr.chr_ai.tmpl.animation = actionName;
-	if(LAi_IsInitedAI)
+	if (LAi_IsInitedAI)
 	{
 		SetCharacterTask_Stay(chr);
 		CharacterPlayAction(chr, actionName);
@@ -23,33 +23,39 @@ bool LAi_tmpl_ani_InitTemplate(aref chr)
 	SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "LockFightMode", false);
 	CharacterPlayAction(chr, "");
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.tmpl"))
+	if (CheckAttribute(chr, "chr_ai.tmpl"))
 	{
-		if(chr.chr_ai.tmpl != LAI_TMPL_ANI) isNew = true;
-	}else{
+		if (chr.chr_ai.tmpl != LAI_TMPL_ANI)
+			isNew = true;
+	}
+	else
+	{
 		isNew = true;
 	}
-	if(isNew)
+	if (isNew)
 	{
 		DeleteAttribute(chr, "chr_ai.tmpl");
 		chr.chr_ai.tmpl = LAI_TMPL_ANI;
 		chr.chr_ai.tmpl.animation = "";
 		chr.chr_ai.tmpl.time = "0";
 		chr.chr_ai.tmpl.timeout = "-1";
-		if(LAi_IsInitedAI) SetCharacterTask_Stay(chr);
-	}else{
+		if (LAi_IsInitedAI)
+			SetCharacterTask_Stay(chr);
+	}
+	else
+	{
 		chr.chr_ai.tmpl = LAI_TMPL_ANI;
-		if(CheckAttribute(chr, "chr_ai.tmpl.animation") == false)
+		if (CheckAttribute(chr, "chr_ai.tmpl.animation") == false)
 		{
 			chr.chr_ai.tmpl.animation = "";
 			chr.chr_ai.tmpl.time = "0";
 			chr.chr_ai.tmpl.timeout = "-1";
 		}
-		if(CheckAttribute(chr, "chr_ai.tmpl.time") == false)
+		if (CheckAttribute(chr, "chr_ai.tmpl.time") == false)
 		{
 			chr.chr_ai.tmpl.time = "0";
 		}
-		if(CheckAttribute(chr, "chr_ai.tmpl.timeout") == false)
+		if (CheckAttribute(chr, "chr_ai.tmpl.timeout") == false)
 		{
 			chr.chr_ai.tmpl.timeout = "-1";
 		}
@@ -61,14 +67,14 @@ bool LAi_tmpl_ani_InitTemplate(aref chr)
 //Процессирование шаблона персонажа
 void LAi_tmpl_ani_CharacterUpdate(aref chr, float dltTime)
 {
-	if(chr.chr_ai.tmpl.animation != "")
+	if (chr.chr_ai.tmpl.animation != "")
 	{
 		float timeout = stf(chr.chr_ai.tmpl.timeout);
-		if(timeout >= 0)
+		if (timeout >= 0)
 		{
 			float time = stf(chr.chr_ai.tmpl.time) + dltTime;
 			chr.chr_ai.tmpl.time = time;
-			if(time > timeout)
+			if (time > timeout)
 			{
 				chr.chr_ai.tmpl.timeout = "-1";
 				LAi_tmpl_ani_EndAnimation(chr);
@@ -88,7 +94,6 @@ void LAi_tmpl_ani_FailureGoToPoint(aref chr)
 {
 	LAi_tmpl_ani_UpdateState(chr);
 }
-
 
 //Персонаж выполнил команду  run to point
 void LAi_tmpl_ani_EndRunToPoint(aref chr)
@@ -126,7 +131,6 @@ void LAi_tmpl_ani_FailureFollow(aref chr)
 	LAi_tmpl_ani_UpdateState(chr);
 }
 
-
 //Персонаж начал перемещение за другим
 void LAi_tmpl_ani_FightGo(aref chr)
 {
@@ -157,7 +161,6 @@ bool LAi_tmpl_ani_IsFight(aref chr)
 	return false;
 }
 
-
 //Персонаж выполнил команду  escape
 void LAi_tmpl_ani_EndEscape(aref chr)
 {
@@ -176,22 +179,20 @@ void LAi_tmpl_ani_FailureEscape(aref chr)
 	LAi_tmpl_ani_UpdateState(chr);
 }
 
-
 //Персонаж толкается с другими персонажами
 void LAi_tmpl_ani_ColThreshold(aref chr)
 {
 	LAi_tmpl_ani_UpdateState(chr);
 }
 
-
 //Персонаж закончил проигрывать анимацию
 void LAi_tmpl_ani_EndAction(aref chr)
 {
-	if(chr.chr_ai.tmpl.animation == "") return;
+	if (chr.chr_ai.tmpl.animation == "")
+		return;
 	chr.chr_ai.tmpl.timeout = "-1"; //бага еще та!
 	LAi_tmpl_ani_EndAnimation(chr);
 }
-
 
 //Персонажа просят освободить место
 void LAi_tmpl_ani_FreePos(aref chr, aref who)
@@ -202,9 +203,9 @@ void LAi_tmpl_ani_FreePos(aref chr, aref who)
 //Обновить состояние шаблона
 void LAi_tmpl_ani_UpdateState(aref chr)
 {
-	if(LAi_IsInitedAI)
+	if (LAi_IsInitedAI)
 	{
-		if(CharacterGetTask(chr) != "stay")
+		if (CharacterGetTask(chr) != "stay")
 		{
 			SetCharacterTask_Stay(chr);
 		}
@@ -217,9 +218,10 @@ void LAi_tmpl_ani_EndAnimation(aref chr)
 {
 	chr.chr_ai.tmpl.animation = "";
 	//--> нужно только для нищего при смене айдлов сидеть-стоять
-	if (chr.chr_ai.type == LAI_TYPE_POOR) CharacterPlayAction(chr, "");
+	if (chr.chr_ai.type == LAI_TYPE_POOR)
+		CharacterPlayAction(chr, "");
 	//<-- нужно только для нищего при смене айдлов сидеть-стоять
-	if(stf(chr.chr_ai.tmpl.timeout) < 0.0 && !CheckAttribute(chr, "chr_ai.tmpl.animation.playToEnd"))
+	if (stf(chr.chr_ai.tmpl.timeout) < 0.0 && !CheckAttribute(chr, "chr_ai.tmpl.animation.playToEnd"))
 	{
 		LAi_Character_TemplateComplite(chr, LAI_TMPL_ANI);
 	}

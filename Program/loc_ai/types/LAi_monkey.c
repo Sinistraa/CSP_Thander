@@ -1,7 +1,6 @@
 
 
-#define LAI_TYPE_MONKEY		"monkey"
-
+#define LAI_TYPE_MONKEY "monkey"
 
 //Инициализация
 void LAi_type_monkey_Init(aref chr)
@@ -55,51 +54,57 @@ void LAi_type_monkey_Init(aref chr)
 void LAi_type_monkey_CharacterUpdate(aref chr, float dltTime)
 {
 	int trg = -1;
-	if(chr.chr_ai.tmpl == LAI_TMPL_FIGHT)
+	if (chr.chr_ai.tmpl == LAI_TMPL_FIGHT)
 	{
 		//Воюем
 		bool isValidate = false;
 		trg = LAi_tmpl_fight_GetTarget(chr);
-		if(trg >= 0)
+		if (trg >= 0)
 		{
-			if(LAi_group_ValidateTarget(chr, &Characters[trg]))
+			if (LAi_group_ValidateTarget(chr, &Characters[trg]))
 			{
-				if(!LAi_tmpl_fight_LostTarget(chr))
+				if (!LAi_tmpl_fight_LostTarget(chr))
 				{
 					isValidate = true;
 				}
 			}
 		}
-		if(!isValidate)
+		if (!isValidate)
 		{
 			//Ищем новую цель
 			trg = LAi_group_GetTarget(chr);
-			if(trg < 0)
+			if (trg < 0)
 			{
 				//Переходим в режим ожидания
 				LAi_type_monkey_Return(chr);
-			}else{
+			}
+			else
+			{
 				//Натравливаем на новую цель
 				LAi_tmpl_SetFight(chr, &Characters[trg]);
-				if(rand(100) < 50)
+				if (rand(100) < 50)
 				{
 					LAi_CharacterPlaySound(chr, "monkey");
 				}
 			}
-		}else{
-			if(rand(4000) == 1224)
+		}
+		else
+		{
+			if (rand(4000) == 1224)
 			{
 				LAi_CharacterPlaySound(chr, "monkey");
 			}
 		}
-	}else{
+	}
+	else
+	{
 		//Ищем новую цель
 		trg = LAi_group_GetTarget(chr);
-		if(trg >= 0)
+		if (trg >= 0)
 		{
 			//Нападаем на новую цель
 			LAi_tmpl_SetFight(chr, &Characters[trg]);
-			if(rand(100) < 90)
+			if (rand(100) < 90)
 			{
 				LAi_CharacterPlaySound(chr, "monkey");
 			}
@@ -122,12 +127,12 @@ bool LAi_type_monkey_CharacterLogoff(aref chr)
 //Завершение работы темплейта
 void LAi_type_monkey_TemplateComplite(aref chr, string tmpl)
 {
-	if(tmpl == "goto")
+	if (tmpl == "goto")
 	{
 		LAi_tmpl_stay_InitTemplate(chr);
-		if(CheckAttribute(chr, "location.group"))
+		if (CheckAttribute(chr, "location.group"))
 		{
-			if(CheckAttribute(chr, "location.locator"))
+			if (CheckAttribute(chr, "location.locator"))
 			{
 				CharacterTurnByLoc(chr, chr.location.group, chr.location.locator);
 			}
@@ -159,14 +164,15 @@ void LAi_type_monkey_EndDialog(aref chr, aref by)
 //Персонаж атаковал другого персонажа
 void LAi_type_monkey_Attack(aref attack, aref enemy, float attackDmg, float hitDmg)
 {
-	if(rand(1000) < 100)
+	if (rand(1000) < 100)
 	{
 		//Отравляем персонажа
 		float poison = 0.0;
-		if(CheckAttribute(enemy, "chr_ai.poison"))
+		if (CheckAttribute(enemy, "chr_ai.poison"))
 		{
 			poison = stf(enemy.chr_ai.poison);
-			if(poison < 1.0) poison = 1.0;
+			if (poison < 1.0)
+				poison = 1.0;
 		}
 		enemy.chr_ai.poison = poison + 30 + rand(20);
 		Log_SetStringToLog(XI_ConvertString("You've been poisoned"));
@@ -183,29 +189,29 @@ void LAi_type_monkey_Fire(aref attack, aref enemy, float kDist, bool isFindedEne
 {
 }
 
-
 //Персонаж атакован
 void LAi_type_monkey_Attacked(aref chr, aref by)
 {
-
 }
 
 void LAi_type_monkey_Return(aref chr)
 {
 	bool isSet = false;
-	if(CheckAttribute(chr, "location.group"))
+	if (CheckAttribute(chr, "location.group"))
 	{
-		if(CheckAttribute(chr, "location.locator"))
+		if (CheckAttribute(chr, "location.locator"))
 		{
 			isSet = true;
 			CharacterTurnByLoc(chr, chr.location.group, chr.location.locator);
 		}
 	}
-	if(isSet)
+	if (isSet)
 	{
 		LAi_tmpl_goto_InitTemplate(chr);
 		LAi_tmpl_goto_SetLocator(chr, chr.location.group, chr.location.locator, -1.0);
-	}else{
+	}
+	else
+	{
 		LAi_tmpl_stay_InitTemplate(chr);
 	}
 }

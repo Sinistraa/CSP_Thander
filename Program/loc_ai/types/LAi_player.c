@@ -6,23 +6,23 @@
 		dialog
 */
 
-
-
-#define LAI_TYPE_PLAYER		"player"
-
+#define LAI_TYPE_PLAYER "player"
 
 //Инициализация
 void LAi_type_player_Init(aref chr)
 {
 	DeleteAttribute(chr, "location.follower");
 	bool isNew = false;
-	if(CheckAttribute(chr, "chr_ai.type") == false)
+	if (CheckAttribute(chr, "chr_ai.type") == false)
 	{
 		isNew = true;
-	}else{
-		if(chr.chr_ai.type != LAI_TYPE_PLAYER) isNew = true;
 	}
-	if(isNew == true)
+	else
+	{
+		if (chr.chr_ai.type != LAI_TYPE_PLAYER)
+			isNew = true;
+	}
+	if (isNew == true)
 	{
 		//Новый тип
 		DeleteAttribute(chr, "chr_ai.type");
@@ -49,26 +49,29 @@ void LAi_type_player_CharacterUpdate(aref chr, float dltTime)
 			DeleteAttribute(chr, "showTimer");
 			DoQuestFunctionDelay("LSC_underwaterDeathTimer", 0.1);
 		}
-		else Log_SetEternalString("" + sti(chr.showTimer));
+		else
+			Log_SetEternalString("" + sti(chr.showTimer));
 	}
-	if(SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "IsActive") != 0)
+	if (SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "IsActive") != 0)
 	{
 		chr.chr_ai.type.weapontime = "0";
 	}
-	if(LAi_group_GetPlayerAlarm())
+	if (LAi_group_GetPlayerAlarm())
 	{
 		chr.chr_ai.type.weapontime = "0";
 	}
-	if(LAi_IsFightMode(chr))
+	if (LAi_IsFightMode(chr))
 	{
 		time = stf(chr.chr_ai.type.weapontime) + dltTime;
 		chr.chr_ai.type.weapontime = time;
-		if(time > 300.0)
+		if (time > 300.0)
 		{
 			chr.chr_ai.type.weapontime = "0";
 			SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", false);
 		}
-	}else{
+	}
+	else
+	{
 		chr.chr_ai.type.weapontime = "0";
 	}
 }
@@ -100,9 +103,11 @@ void LAi_type_player_NeedDialog(aref chr, aref by)
 bool LAi_type_player_CanDialog(aref chr, aref by)
 {
 	//Если уже говорим, то откажем
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG) return false;
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+		return false;
 	//Если сражаемся, то откажем
-	if(SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0) return false;
+	if (SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0)
+		return false;
 	//Согласимся на диалог
 	return true;
 }
@@ -124,17 +129,15 @@ void LAi_type_player_EndDialog(aref chr, aref by)
 	LAi_tmpl_player_InitTemplate(chr);
 }
 
-
 //Персонаж выстрелил и в кого-то попал
 void LAi_type_player_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
 	Log_TestInfo("Выстрелил персонаж с ID - " + attack.id + " и попал в персонажа с ID - " + enemy.id);
 	int iCurHP = enemy.chr_ai.hp;
 	int iMaxHP = LAi_GetCharacterMaxHP(enemy);
-	if(iCurHP > 0 && !LAi_IsImmortal(enemy))
+	if (iCurHP > 0 && !LAi_IsImmortal(enemy))
 		Log_Info("Осталось здоровья - " + iCurHP + " из " + iMaxHP);
 }
-
 
 //Персонаж атакован
 void LAi_type_player_Attacked(aref chr, aref by)

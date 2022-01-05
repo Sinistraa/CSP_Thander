@@ -8,7 +8,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Поселение ловцов жемчуга №1
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Locations[n].id = "Pearl_town_1";
+	Locations[n].id = "Pearl_town_1";
 	locations[n].id.label = "Village";
 	Locations[n].image = "loading\towns\pearl1.tga";
 	locations[n].pearlVillage = true;
@@ -103,7 +103,7 @@ int LocationInitPearl(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.always.mediumhouse02rand= "mediumhouse02_rand";
+	Locations[n].models.always.mediumhouse02rand = "mediumhouse02_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse02_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse02_patch";
@@ -177,7 +177,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_Jungle_01";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -218,7 +218,7 @@ int LocationInitPearl(int n)
 	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "1";
 	locations[n].reload.l2.label = "Shore49";
-    locations[n].locators_radius.reload.reload2_back = 2;
+	locations[n].locators_radius.reload.reload2_back = 2;
 
 	locations[n].reload.l3.name = "reload3_back";
 	locations[n].reload.l3.go = "Shore50";
@@ -282,12 +282,12 @@ int LocationInitPearl(int n)
     locations[n].locators_radius.reload.boat = 9.0;*/
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_Jungle_02";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -343,7 +343,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_Jungle_03";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -399,7 +399,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_GrotEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -451,7 +451,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_Grot";
 	locations[n].id.label = "Grot";
-    locations[n].image = "loading\inside\Grot_"+rand(2)+".tga";
+	locations[n].image = "loading\inside\Grot_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cave";
 	locations[n].islandId = "Mein";
@@ -470,7 +470,7 @@ int LocationInitPearl(int n)
 
 	Locations[n].models.always.rays = "grotto1_rays";
 	Locations[n].models.always.rays.level = 49;
-	Locations[n].models.always.rays.tech= "LocVisRays";
+	Locations[n].models.always.rays.tech = "LocVisRays";
 	Locations[n].models.always.rays.uvslide.u1 = -0.03;
 	Locations[n].models.always.rays.uvslide.v1 = -0.03;
 	//Day
@@ -493,17 +493,18 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "Pearl_Jungle_04";
+	locations[n].id = "Pearl_Jungle_04";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
 	locations[n].islandIdAreal = "Pearl";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle8\";
-	Locations[n].models.always.jungle = "jungle8";
+									Locations[n]
+										.models.always.jungle = "jungle8";
 	Locations[n].models.always.locators = "jungle8_locators";
 	Locations[n].models.always.grassPatch = "jungle8_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -525,7 +526,7 @@ int LocationInitPearl(int n)
 	locations[n].environment.sea = "false";
 	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
-	locations[n].reload.l1.go = "Tenotchitlan_Jungle_01";                    // на теночитлан
+	locations[n].reload.l1.go = "Tenotchitlan_Jungle_01"; // на теночитлан
 	locations[n].reload.l1.emerge = "reload1";
 	locations[n].reload.l1.autoreload = "1";
 	locations[n].reload.l1.label = "Jungle";
@@ -598,7 +599,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_Jungle_06";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	locations[n].DisableEncounters = true;
 	//Sound
 	locations[n].type = "jungle";
@@ -655,7 +656,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Pearl_CaveEntrance";
 	locations[n].id.label = "Cave entrance";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Mein";
@@ -705,7 +706,7 @@ int LocationInitPearl(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Поселение ловцов жемчуга №2
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Locations[n].id = "Pearl_town_2";
+	Locations[n].id = "Pearl_town_2";
 	locations[n].id.label = "Village";
 	locations[n].image = "loading\towns\pearl1.tga";
 	locations[n].pearlVillage = true;
@@ -796,7 +797,7 @@ int LocationInitPearl(int n)
 
 	locations[n].models.always.back = "..\inside_back";
 	//Day
-	Locations[n].models.always.mediumhouse02rand= "mediumhouse02_rand";
+	Locations[n].models.always.mediumhouse02rand = "mediumhouse02_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse02_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse02_patch";
@@ -839,14 +840,14 @@ int LocationInitPearl(int n)
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	Locations[n].models.always.mediumhouse01rand= "mediumhouse01_rand";
+	Locations[n].models.always.mediumhouse01rand = "mediumhouse01_rand";
 	locations[n].models.day.charactersPatch = "mediumhouse01_patch";
 	//Night
 	locations[n].models.night.charactersPatch = "mediumhouse01_patch";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "false";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1";
 	locations[n].reload.l1.go = "Pearl_town_2";
 	locations[n].reload.l1.emerge = "reload3";

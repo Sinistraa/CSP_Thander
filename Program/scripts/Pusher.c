@@ -1,12 +1,10 @@
 int SM_PusherSkipFrame = 0;
 
-
 void SM_PusherSwitch()
 {
 	pchar.CSM.CrowdPusher = 1;
 	SM_PusherEnable();
 }
-
 
 void SM_PusherEnable()
 {
@@ -19,12 +17,11 @@ void SM_PusherEnable()
 	if (!IsEntity(loadedLocation))
 		return;
 
-	if(bSeaActive && !isShipInside(pchar.location) && !HasSubStr(pchar.location, "BOARDING_"))
+	if (bSeaActive && !isShipInside(pchar.location) && !HasSubStr(pchar.location, "BOARDING_"))
 		return;
 
 	SetEventHandler("frame", "SM_PS_OnEnterFrame", 0);
 }
-
 
 void SM_PusherDisable()
 {
@@ -36,13 +33,11 @@ void SM_PusherDisable()
 	SM_PS_PushRevert(true);
 }
 
-
 void SM_PusherOnLoad()
 {
 	if (CheckAttribute(pchar, "CSM.CrowdPusher"))
 		SM_PusherEnable();
 }
-
 
 void SM_PS_OnLocationUnload()
 {
@@ -51,33 +46,46 @@ void SM_PS_OnLocationUnload()
 	SM_PS_PushRevert(true);
 }
 
-
 void SM_PS_OnLocationLoad()
 {
 	SetEventHandler("frame", "SM_PS_OnEnterFrame", 0);
 }
-
 
 void SM_PS_OnEnterFrame()
 {
 	SM_PS_PushAction();
 }
 
-
 void SM_PS_PushAction()
 {
 	int i, n;
 	float scanRadius, plocx, plocy, plocz, nlocx, nlocy, nlocz, scale;
-	if (!LAi_IsFightMode(pchar)) return;
-	if (LAi_IsFightMode(pchar)) {
+	if (!LAi_IsFightMode(pchar))
+		return;
+	if (LAi_IsFightMode(pchar))
+	{
 		switch (sti(pchar.CSM.CrowdPusher))
 		{
-			case 0: scanRadius = 1.3; scale = 0.04; break;
-			case 1: scanRadius = 1.6; scale = 0.06; break;
-			case 2: scanRadius = 1.7; scale = 0.09; break;
-			case 3: scanRadius = 1.8; scale = 0.12; break;
+		case 0:
+			scanRadius = 1.3;
+			scale = 0.04;
+			break;
+		case 1:
+			scanRadius = 1.6;
+			scale = 0.06;
+			break;
+		case 2:
+			scanRadius = 1.7;
+			scale = 0.09;
+			break;
+		case 3:
+			scanRadius = 1.8;
+			scale = 0.12;
+			break;
 		}
-	} else {
+	}
+	else
+	{
 		scanRadius = 1.2;
 		scale = 0.04;
 	}
@@ -96,8 +104,8 @@ void SM_PS_PushAction()
 		ref npc = GetCharacter(sti(chrFindNearCharacters[i].index));
 
 		if (npc.chr_ai.type == LAI_TYPE_CARRY ||
-		npc.chr_ai.type == LAI_TYPE_POOR ||
-		npc.chr_ai.type == LAI_TYPE_SIT)
+			npc.chr_ai.type == LAI_TYPE_POOR ||
+			npc.chr_ai.type == LAI_TYPE_SIT)
 			continue;
 
 		if (CheckAttribute(npc, "chr_ai.type.quest") && npc.chr_ai.type.quest != "")
@@ -116,8 +124,7 @@ void SM_PS_PushAction()
 				CheckAttribute(npc, "chr_ai.tmpl.group") &&
 				CheckAttribute(npc, "chr_ai.tmpl.locator") &&
 				CheckAttribute(npc, "chr_ai.tmpl.timeout") &&
-				npc.chr_ai.tmpl == LAI_TMPL_GOTO
-			)
+				npc.chr_ai.tmpl == LAI_TMPL_GOTO)
 			{
 				npc.CSM.Pushed.group = npc.chr_ai.tmpl.group;
 				npc.CSM.Pushed.locator = npc.chr_ai.tmpl.locator;
@@ -128,7 +135,6 @@ void SM_PS_PushAction()
 		TeleportCharacterToPos(npc, (nlocx - plocx) * scale + nlocx, nlocy, (nlocz - plocz) * scale + nlocz);
 	}
 }
-
 
 void SM_PS_PushRevert(bool revertImmediately)
 {

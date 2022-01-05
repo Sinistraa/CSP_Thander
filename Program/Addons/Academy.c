@@ -25,58 +25,80 @@ void AcademyLandInit()
 	PChar.AcademyLand.Temp.EnableFood = 0;
 	PChar.AcademyLand.RandPlace = rand(1);
 
-	if(!CheckAttribute(PChar, "AcademyLand.Count")) PChar.AcademyLand.Count = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.Count"))
+		PChar.AcademyLand.Count = 0;
 
-	if(!CheckAttribute(PChar, "AcademyLand.FCCount")) PChar.AcademyLand.FCCount = 0;
-	if(!CheckAttribute(PChar, "AcademyLand.FCCountLooserCount")) PChar.AcademyLand.FCCountLooserCount = 0;
-	if(!CheckAttribute(PChar, "AcademyLand.FCCountWinnerCount")) PChar.AcademyLand.FCCountWinnerCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.FCCount"))
+		PChar.AcademyLand.FCCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.FCCountLooserCount"))
+		PChar.AcademyLand.FCCountLooserCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.FCCountWinnerCount"))
+		PChar.AcademyLand.FCCountWinnerCount = 0;
 
-	if(!CheckAttribute(PChar, "AcademyLand.WWCount")) PChar.AcademyLand.WWCount = 0;
-	if(!CheckAttribute(PChar, "AcademyLand.WWCountLooserCount")) PChar.AcademyLand.WWCountLooserCount = 0;
-	if(!CheckAttribute(PChar, "AcademyLand.WWCountWinnerCount")) PChar.AcademyLand.WWCountWinnerCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.WWCount"))
+		PChar.AcademyLand.WWCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.WWCountLooserCount"))
+		PChar.AcademyLand.WWCountLooserCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.WWCountWinnerCount"))
+		PChar.AcademyLand.WWCountWinnerCount = 0;
 
-	if(!CheckAttribute(PChar, "AcademyLand.OOCount")) PChar.AcademyLand.OOCount = 0;
-	if(!CheckAttribute(PChar, "AcademyLand.OOCountLooserCount")) PChar.AcademyLand.OOCountLooserCount = 0;
-	if(!CheckAttribute(PChar, "AcademyLand.OOCountWinnerCount")) PChar.AcademyLand.OOCountWinnerCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.OOCount"))
+		PChar.AcademyLand.OOCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.OOCountLooserCount"))
+		PChar.AcademyLand.OOCountLooserCount = 0;
+	if (!CheckAttribute(PChar, "AcademyLand.OOCountWinnerCount"))
+		PChar.AcademyLand.OOCountWinnerCount = 0;
 }
 
 void AcademyLandGenerateEnd()
 {
 	int iType = 0;
 
-	if(CheckAttribute(PChar, "AcademyLand.TrainingType"))
+	if (CheckAttribute(PChar, "AcademyLand.TrainingType"))
 	{
 		iType = sti(PChar.AcademyLand.TrainingType);
 	}
 
-	switch(iType)
+	switch (iType)
 	{
-		case 0: LandAcademyPrepareFortCapture(); break;
-		case 1: LandAcademyPrepareWallOnWall(); break;
-		case 2: LandAcademyPrepareOneOnOne(); break;
+	case 0:
+		LandAcademyPrepareFortCapture();
+		break;
+	case 1:
+		LandAcademyPrepareWallOnWall();
+		break;
+	case 2:
+		LandAcademyPrepareOneOnOne();
+		break;
 	}
 }
 
 void SetTrainingStatictic(bool bWinner)
 {
 	int iType = 0;
-	if(CheckAttribute(PChar, "AcademyLand.TrainingType"))
+	if (CheckAttribute(PChar, "AcademyLand.TrainingType"))
 	{
 		iType = sti(PChar.AcademyLand.TrainingType);
 	}
 
 	string sType = "";
-	switch(iType)
+	switch (iType)
 	{
-		case 0: sType = "FCCount"; break;
-		case 1: sType = "WWCount"; break;
-		case 2: sType = "OOCount"; break;
+	case 0:
+		sType = "FCCount";
+		break;
+	case 1:
+		sType = "WWCount";
+		break;
+	case 2:
+		sType = "OOCount";
+		break;
 	}
 
 	PChar.AcademyLand.(sType) = sti(PChar.AcademyLand.(sType)) + 1;
 
 	string sEndType = "";
-	if(bWinner)
+	if (bWinner)
 	{
 		sEndType = "WinnerCount";
 	}
@@ -86,7 +108,7 @@ void SetTrainingStatictic(bool bWinner)
 	}
 	string sCount = sType + sEndType;
 
-	if(sCount == "")
+	if (sCount == "")
 	{
 		sCount = "OOCountLooserCount";
 	}
@@ -104,7 +126,7 @@ void AcademyLandTrainingPause()
 	string sCharacter;
 
 	ref chr;
-	for(i = 1; i <= iPlayerCrew; i++)
+	for (i = 1; i <= iPlayerCrew; i++)
 	{
 		sCharacter = "AcademyLandPlayer_" + i;
 		chr = &Characters[GetCharacterIndex(sCharacter)];
@@ -114,7 +136,7 @@ void AcademyLandTrainingPause()
 		LAi_group_MoveCharacter(chr, LAI_GROUP_ACTOR);
 	}
 
-	for(n = 1; n <= iEnemyCrew; n++)
+	for (n = 1; n <= iEnemyCrew; n++)
 	{
 		sCharacter = "AcademyLandEnemy_" + n;
 		chr = &Characters[GetCharacterIndex(sCharacter)];
@@ -148,12 +170,12 @@ void LandAcademyFortCapture(string _tmp)
 	string sLocator, sLocReload, sGroupReload, sGroupLocator;
 
 	int iDefenceType = 0;
-	if(CheckAttribute(PChar, "AcademyLand.DefenceType"))
+	if (CheckAttribute(PChar, "AcademyLand.DefenceType"))
 	{
 		iDefenceType = sti(PChar.AcademyLand.DefenceType);
 	}
 
-	if(iDefenceType == 0)
+	if (iDefenceType == 0)
 	{
 		sLocReload = "reload2_back";
 		sGroupReload = "reload";
@@ -169,11 +191,11 @@ void LandAcademyFortCapture(string _tmp)
 	iPlayerCrew = 29;
 	iEnemyCrew = 30;
 
-	if(CheckAttribute(PChar, "AcademyLand.Temp.PlayerCrew"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.PlayerCrew"))
 	{
 		iPlayerCrew = sti(PChar.AcademyLand.Temp.PlayerCrew);
 	}
-	if(CheckAttribute(PChar, "AcademyLand.Temp.EnemyCrew"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.EnemyCrew"))
 	{
 		iEnemyCrew = sti(PChar.AcademyLand.Temp.EnemyCrew);
 	}
@@ -181,27 +203,55 @@ void LandAcademyFortCapture(string _tmp)
 	ref chr;
 
 	int iRank, iSkill, iHp, iEnergy;
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Rank")) { iRank = sti(PChar.AcademyLand.Temp.Rank); } else { iRank = 5; }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Skill.Quantity")) { iSkill = sti(PChar.AcademyLand.Temp.Skill.Quantity); } else { iSkill = 20; }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.HP")) { iHp = sti(PChar.AcademyLand.Temp.HP); } else { iHp = 30; }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Energy")) { iEnergy = sti(PChar.AcademyLand.Temp.Energy); } else { iEnergy = 40; }
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Rank"))
+	{
+		iRank = sti(PChar.AcademyLand.Temp.Rank);
+	}
+	else
+	{
+		iRank = 5;
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Skill.Quantity"))
+	{
+		iSkill = sti(PChar.AcademyLand.Temp.Skill.Quantity);
+	}
+	else
+	{
+		iSkill = 20;
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.HP"))
+	{
+		iHp = sti(PChar.AcademyLand.Temp.HP);
+	}
+	else
+	{
+		iHp = 30;
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Energy"))
+	{
+		iEnergy = sti(PChar.AcademyLand.Temp.Energy);
+	}
+	else
+	{
+		iEnergy = 40;
+	}
 
 	string sSkill = "Fencing";
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Skill"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Skill"))
 	{
 		sSkill = PChar.AcademyLand.Temp.Skill;
 	}
 
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
 	{
 		sSaber = PChar.AcademyLand.Temp.Saber;
 	}
 
-	for(i = 1; i <= iPlayerCrew; i++)
+	for (i = 1; i <= iPlayerCrew; i++)
 	{
-		iChar = NPC_GenerateCharacterIndep("AcademyLandPlayer_" + i, "shipowner_2"+(rand(9)), "man", "man", iRank, PIRATE, 0, false);
+		iChar = NPC_GenerateCharacterIndep("AcademyLandPlayer_" + i, "shipowner_2" + (rand(9)), "man", "man", iRank, PIRATE, 0, false);
 		chr = &Characters[iChar];
 
 		// CreateModel(iChar, "pofficer", MAN);
@@ -232,7 +282,7 @@ void LandAcademyFortCapture(string _tmp)
 		LAi_NPC_EquipPerk(chr, "fantom");
 	}
 
-	for(n = 1; n <= iEnemyCrew; n++)
+	for (n = 1; n <= iEnemyCrew; n++)
 	{
 		iChar = NPC_GenerateCharacterIndep("AcademyLandEnemy_" + n, "pirate_1", "man", "man", iRank, PIRATE, 0, false);
 
@@ -289,13 +339,13 @@ void LandAcademyFortCapture(string _tmp)
 
 string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, bool bFortCapture, bool bRand)
 {
-	if(bFortCapture)
+	if (bFortCapture)
 	{
-		if(!bDefence)
+		if (!bDefence)
 		{
-			if(bPlayer)
+			if (bPlayer)
 			{
-				if(iNum >= 3 && iNum <= 10)
+				if (iNum >= 3 && iNum <= 10)
 				{
 					// return "reload2_back";
 					return "loc" + iNum;
@@ -307,7 +357,7 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 			}
 			else
 			{
-				if(iNum <= 15)
+				if (iNum <= 15)
 				{
 					return "aloc" + iNum;
 				}
@@ -320,9 +370,9 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 		}
 		else
 		{
-			if(bPlayer)
+			if (bPlayer)
 			{
-				if(iNum <= 15)
+				if (iNum <= 15)
 				{
 					return "aloc" + iNum;
 				}
@@ -334,7 +384,7 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 			}
 			else
 			{
-				if(iNum >= 3 && iNum <= 10)
+				if (iNum >= 3 && iNum <= 10)
 				{
 					// return "reload2_back";
 					return "loc" + iNum;
@@ -348,11 +398,11 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 	}
 	else
 	{
-		if(bPlayer)
+		if (bPlayer)
 		{
-			if(!bDefence)
+			if (!bDefence)
 			{
-				if(!bRand)
+				if (!bRand)
 				{
 					return "wall_player_" + iNum;
 				}
@@ -363,7 +413,7 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 			}
 			else
 			{
-				if(!bRand)
+				if (!bRand)
 				{
 					return "loc" + iNum;
 				}
@@ -375,9 +425,9 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 		}
 		else
 		{
-			if(!bDefence)
+			if (!bDefence)
 			{
-				if(bRand)
+				if (bRand)
 				{
 					return "wall_player_" + iNum;
 				}
@@ -388,7 +438,7 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 			}
 			else
 			{
-				if(bRand)
+				if (bRand)
 				{
 					return "loc" + iNum;
 				}
@@ -405,7 +455,7 @@ string GetLocatorAcademyLandFortCapture(int iNum, bool bDefence, bool bPlayer, b
 
 string GetLocatorGroupAcademyLandFortCapture(string sLocator)
 {
-	if(sLocator == "reload2_back" || sLocator == "reload4")
+	if (sLocator == "reload2_back" || sLocator == "reload4")
 	{
 		return "reload";
 	}
@@ -417,7 +467,7 @@ string GetLocatorGroupAcademyLandFortCapture(string sLocator)
 
 void AcademyLandSetLooser(ref chr)
 {
-	if(chr.id != PChar.id)
+	if (chr.id != PChar.id)
 	{
 		LAi_SetHP(chr, 5.0, 5.0);
 	}
@@ -431,7 +481,7 @@ void AcademyLandSetLooser(ref chr)
 	LAi_SetActorType(chr);
 
 	string sLocator = "";
-	if(PChar.location == "FencingTown_ExitTown")
+	if (PChar.location == "FencingTown_ExitTown")
 	{
 		sLocator = "reload3_back";
 	}
@@ -440,7 +490,7 @@ void AcademyLandSetLooser(ref chr)
 		sLocator = "reload1";
 	}
 
-	if(chr.id != PChar.id)
+	if (chr.id != PChar.id)
 	{
 		LAi_ActorRunToLocation(chr, "reload", sLocator, "none", "", "", "", -1);
 		//LogoffCharacter(chr);
@@ -464,11 +514,11 @@ void AcademyLandCheckLoosers()
 	int iPlayerCount = 0;
 	int iEnemyCount = 0;
 
-	for(i = 1; i <= iPlayerCrew; i++)
+	for (i = 1; i <= iPlayerCrew; i++)
 	{
 		sCharacter = "AcademyLandPlayer_" + i;
 
-		if(i == iPlayerCrew)
+		if (i == iPlayerCrew)
 		{
 			chr = GetMainCharacter();
 		}
@@ -477,24 +527,24 @@ void AcademyLandCheckLoosers()
 			chr = &Characters[GetCharacterIndex(sCharacter)];
 		}
 
-		if(CheckAttribute(chr, "LandAcademy.Dead"))
+		if (CheckAttribute(chr, "LandAcademy.Dead"))
 		{
 			iPlayerCount++;
 		}
 	}
 
-	for(n = 1; n <= iEnemyCrew; n++)
+	for (n = 1; n <= iEnemyCrew; n++)
 	{
 		sCharacter = "AcademyLandEnemy_" + n;
 		chr = &Characters[GetCharacterIndex(sCharacter)];
 
-		if(CheckAttribute(chr, "LandAcademy.Dead"))
+		if (CheckAttribute(chr, "LandAcademy.Dead"))
 		{
 			iEnemyCount++;
 		}
 	}
 
-	if(iPlayerCount == iPlayerCrew)
+	if (iPlayerCount == iPlayerCrew)
 	{
 		InterfaceStates.Buttons.Save.enable = true;
 
@@ -506,7 +556,7 @@ void AcademyLandCheckLoosers()
 		return;
 	}
 
-	if(iEnemyCount == iEnemyCrew)
+	if (iEnemyCount == iEnemyCrew)
 	{
 		InterfaceStates.Buttons.Save.enable = true;
 
@@ -523,7 +573,7 @@ void AcademyLandTrainingEnd(bool bWinner)
 	InterfaceStates.Buttons.Save.enable = true;
 
 	string sSaber = "blade1";
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
 	{
 		sSaber = PChar.AcademyLand.Temp.Saber;
 	}
@@ -544,12 +594,12 @@ void AcademyLandTrainingEnd(bool bWinner)
 	LAi_SetCurHPMax(PChar);
 	LAi_SetImmortal(PChar, false);
 
-	if(CheckAttribute(PChar, "perks.list.Energaiser"))
+	if (CheckAttribute(PChar, "perks.list.Energaiser"))
 	{
 		DeleteAttribute(PChar, "perks.list.Energaiser");
 	}
 
-	if(PChar.location == "FencingTown_ExitTown")
+	if (PChar.location == "FencingTown_ExitTown")
 	{
 		Locations[FindLocation(PChar.location)].reload.l2.disable = false;
 		Locations[FindLocation(PChar.location)].reload.l3.disable = false;
@@ -557,12 +607,12 @@ void AcademyLandTrainingEnd(bool bWinner)
 		DoQuestReloadToLocation("FencingTown_Fort", "reload", "reload1_back", "");
 	}
 
-	if(CheckAttribute(PChar, "LandAcademy"))
+	if (CheckAttribute(PChar, "LandAcademy"))
 	{
 		DeleteAttribute(PChar, "LandAcademy");
 	}
 
-	if(PChar.location == "FencingTown_Arena")
+	if (PChar.location == "FencingTown_Arena")
 	{
 		DoQuestReloadToLocation("FencingTown_ExitTown", "reload", "reload4", "");
 	}
@@ -604,16 +654,16 @@ void LandAcademyWallOnWall(string _tmp)
 	string sLocator, sLocReload, sGroupReload, sGroupLocator;
 
 	int iDefenceType = 0;
-	if(CheckAttribute(PChar, "AcademyLand.DefenceType"))
+	if (CheckAttribute(PChar, "AcademyLand.DefenceType"))
 	{
 		iDefenceType = sti(PChar.AcademyLand.DefenceType);
 	}
 
-	if(iDefenceType == 0)
+	if (iDefenceType == 0)
 	{
 		sLocReload = "wall_enemy_1";
 
-		if(iRandPlace == 0)
+		if (iRandPlace == 0)
 		{
 			sLocReload = "wall_player_1";
 		}
@@ -624,7 +674,7 @@ void LandAcademyWallOnWall(string _tmp)
 	{
 		sLocReload = "aloc1";
 
-		if(iRandPlace == 0)
+		if (iRandPlace == 0)
 		{
 			sLocReload = "loc1";
 		}
@@ -637,11 +687,11 @@ void LandAcademyWallOnWall(string _tmp)
 	iPlayerCrew = 9;
 	iEnemyCrew = 10;
 
-	if(CheckAttribute(PChar, "AcademyLand.Temp.PlayerCrew"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.PlayerCrew"))
 	{
 		iPlayerCrew = sti(PChar.AcademyLand.Temp.PlayerCrew);
 	}
-	if(CheckAttribute(PChar, "AcademyLand.Temp.EnemyCrew"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.EnemyCrew"))
 	{
 		iEnemyCrew = sti(PChar.AcademyLand.Temp.EnemyCrew);
 	}
@@ -649,27 +699,55 @@ void LandAcademyWallOnWall(string _tmp)
 	ref chr;
 
 	int iRank, iSkill, iHp, iEnergy;
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Rank")) { iRank = sti(PChar.AcademyLand.Temp.Rank); } else { iRank = 5; }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Skill.Quantity")) { iSkill = sti(PChar.AcademyLand.Temp.Skill.Quantity); } else { iSkill = 20; }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.HP")) { iHp = sti(PChar.AcademyLand.Temp.HP); } else { iHp = 30; }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Energy")) { iEnergy = sti(PChar.AcademyLand.Temp.Energy); } else { iEnergy = 40; }
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Rank"))
+	{
+		iRank = sti(PChar.AcademyLand.Temp.Rank);
+	}
+	else
+	{
+		iRank = 5;
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Skill.Quantity"))
+	{
+		iSkill = sti(PChar.AcademyLand.Temp.Skill.Quantity);
+	}
+	else
+	{
+		iSkill = 20;
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.HP"))
+	{
+		iHp = sti(PChar.AcademyLand.Temp.HP);
+	}
+	else
+	{
+		iHp = 30;
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Energy"))
+	{
+		iEnergy = sti(PChar.AcademyLand.Temp.Energy);
+	}
+	else
+	{
+		iEnergy = 40;
+	}
 
 	string sSkill = "Fencing";
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Skill"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Skill"))
 	{
 		sSkill = PChar.AcademyLand.Temp.Skill;
 	}
 
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
 	{
 		sSaber = PChar.AcademyLand.Temp.Saber;
 	}
 
-	for(i = 1; i <= iPlayerCrew; i++)
+	for (i = 1; i <= iPlayerCrew; i++)
 	{
-		iChar = NPC_GenerateCharacterIndep("AcademyLandPlayer_" + i, "shipowner_2"+(rand(9)), "man", "man", iRank, PIRATE, 0, false);
+		iChar = NPC_GenerateCharacterIndep("AcademyLandPlayer_" + i, "shipowner_2" + (rand(9)), "man", "man", iRank, PIRATE, 0, false);
 		chr = &Characters[iChar];
 
 		// CreateModel(iChar, "pofficer", MAN);
@@ -690,7 +768,7 @@ void LandAcademyWallOnWall(string _tmp)
 		GiveItem2Character(chr, sSaber);
 		EquipCharacterByItem(chr, sSaber);
 
-		sLocator = GetLocatorAcademyLandFortCapture((i+1), iDefenceType, true, false, iRandPlace);
+		sLocator = GetLocatorAcademyLandFortCapture((i + 1), iDefenceType, true, false, iRandPlace);
 		ChangeCharacterAddressGroup(chr, PChar.location, sGroupReload, sLocator);
 
 		LAi_SetWarriorType(chr);
@@ -699,7 +777,7 @@ void LandAcademyWallOnWall(string _tmp)
 		LAi_NPC_EquipPerk(chr, "fantom");
 	}
 
-	for(n = 1; n <= iEnemyCrew; n++)
+	for (n = 1; n <= iEnemyCrew; n++)
 	{
 		iChar = NPC_GenerateCharacterIndep("AcademyLandEnemy_" + n, "pirate_1", "man", "man", iRank, PIRATE, 0, false);
 
@@ -769,43 +847,99 @@ void LandAcademyOneOnOne(string _tmp)
 	string sPlayerLocator, sEnemyLocator, sGroupLocator;
 
 	int iDefenceType = 0;
-	if(CheckAttribute(PChar, "AcademyLand.DefenceType"))
+	if (CheckAttribute(PChar, "AcademyLand.DefenceType"))
 	{
 		iDefenceType = sti(PChar.AcademyLand.DefenceType);
 	}
 
-	if(iDefenceType == 0)
+	if (iDefenceType == 0)
 	{
-		if(iRandPlace == 0)
+		if (iRandPlace == 0)
 		{
 			sPlayerLocator = "aloc2";
 			sEnemyLocator = "aloc4";
-			if(rand(1) == 1) { sPlayerLocator = "aloc2"; } else { sPlayerLocator = "aloc3"; }
-			if(rand(1) == 1) { sEnemyLocator = "aloc4"; } else { sEnemyLocator = "aloc1"; }
+			if (rand(1) == 1)
+			{
+				sPlayerLocator = "aloc2";
+			}
+			else
+			{
+				sPlayerLocator = "aloc3";
+			}
+			if (rand(1) == 1)
+			{
+				sEnemyLocator = "aloc4";
+			}
+			else
+			{
+				sEnemyLocator = "aloc1";
+			}
 		}
 		else
 		{
 			sPlayerLocator = "aloc1";
 			sEnemyLocator = "aloc3";
-			if(rand(1) == 1) { sPlayerLocator = "aloc1"; } else { sPlayerLocator = "aloc4"; }
-			if(rand(1) == 1) { sEnemyLocator = "aloc3"; } else { sEnemyLocator = "aloc2"; }
+			if (rand(1) == 1)
+			{
+				sPlayerLocator = "aloc1";
+			}
+			else
+			{
+				sPlayerLocator = "aloc4";
+			}
+			if (rand(1) == 1)
+			{
+				sEnemyLocator = "aloc3";
+			}
+			else
+			{
+				sEnemyLocator = "aloc2";
+			}
 		}
 	}
 	else
 	{
-		if(iRandPlace == 0)
+		if (iRandPlace == 0)
 		{
 			sPlayerLocator = "aloc8";
 			sEnemyLocator = "aloc10";
-			if(rand(1) == 1) { sPlayerLocator = "aloc8"; } else { sPlayerLocator = "aloc9"; }
-			if(rand(1) == 1) { sEnemyLocator = "aloc10"; } else { sEnemyLocator = "aloc11"; }
+			if (rand(1) == 1)
+			{
+				sPlayerLocator = "aloc8";
+			}
+			else
+			{
+				sPlayerLocator = "aloc9";
+			}
+			if (rand(1) == 1)
+			{
+				sEnemyLocator = "aloc10";
+			}
+			else
+			{
+				sEnemyLocator = "aloc11";
+			}
 		}
 		else
 		{
 			sPlayerLocator = "aloc11";
 			sEnemyLocator = "aloc9";
-			if(rand(1) == 1) { sPlayerLocator = "aloc11"; } else { sPlayerLocator = "aloc10"; }
-			if(rand(1) == 1) { sEnemyLocator = "aloc9"; } else { sEnemyLocator = "aloc8"; }
+			if (rand(1) == 1)
+			{
+				sPlayerLocator = "aloc11";
+			}
+			else
+			{
+				sPlayerLocator = "aloc10";
+			}
+			if (rand(1) == 1)
+			{
+				sEnemyLocator = "aloc9";
+			}
+			else
+			{
+				sEnemyLocator = "aloc8";
+			}
 		}
 	}
 
@@ -813,22 +947,50 @@ void LandAcademyOneOnOne(string _tmp)
 	ref chr;
 
 	string sSkill = "Fencing";
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Skill"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Skill"))
 	{
 		sSkill = PChar.AcademyLand.Temp.Skill;
 	}
 
 	int iRank, iSkill, iHp, iEnergy;
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Rank")) { iRank = sti(PChar.AcademyLand.Temp.Rank); } else { iRank = sti(PChar.rank); }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Skill.Quantity")) { iSkill = sti(PChar.AcademyLand.Temp.Skill.Quantity); } else { iSkill = sti(PChar.skill.(sSkill)); }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.HP")) { iHp = sti(PChar.AcademyLand.Temp.HP); } else { iHp = sti(LAi_GetCharacterMaxHP(PChar)); }
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Energy")) { iEnergy = sti(PChar.AcademyLand.Temp.Energy); } else { iEnergy = 100; }
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Rank"))
+	{
+		iRank = sti(PChar.AcademyLand.Temp.Rank);
+	}
+	else
+	{
+		iRank = sti(PChar.rank);
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Skill.Quantity"))
+	{
+		iSkill = sti(PChar.AcademyLand.Temp.Skill.Quantity);
+	}
+	else
+	{
+		iSkill = sti(PChar.skill.(sSkill));
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.HP"))
+	{
+		iHp = sti(PChar.AcademyLand.Temp.HP);
+	}
+	else
+	{
+		iHp = sti(LAi_GetCharacterMaxHP(PChar));
+	}
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Energy"))
+	{
+		iEnergy = sti(PChar.AcademyLand.Temp.Energy);
+	}
+	else
+	{
+		iEnergy = 100;
+	}
 
-	iHp += 200 + rand(50)+50;
+	iHp += 200 + rand(50) + 50;
 
 	string sSaber = "blade1";
 
-	if(CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
+	if (CheckAttribute(PChar, "AcademyLand.Temp.Saber"))
 	{
 		sSaber = PChar.AcademyLand.Temp.Saber;
 	}
@@ -877,5 +1039,3 @@ void LandAcademyOneOnOne(string _tmp)
 	LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
 	Log_Info("Тренировка началась. Необходимо ликвидировать соперника!");
 }
-
-

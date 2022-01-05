@@ -2,11 +2,11 @@ void InitNations()
 {
 	ref rNation;
 	//England
-	makeref(rNation,Nations[ENGLAND]);
+	makeref(rNation, Nations[ENGLAND]);
 	rNation.Name = "England";
 	rNation.ShortName = "Eng";
 	rNation.worldMapShip = "british";
-	rNation.fort = 0;  // колво фортов у нации, заполняется само в начале, методом CreateColonyCommanders
+	rNation.fort = 0; // колво фортов у нации, заполняется само в начале, методом CreateColonyCommanders
 	//Location fantom models
 	rNation.fantomModel.m0 = "off_eng_1";
 	rNation.fantomModel.m1 = "off_eng_2";
@@ -19,9 +19,9 @@ void InitNations()
 	rNation.fantomModel.m8 = "sold_eng_7";
 	rNation.fantomModel.m9 = "sold_eng_8";
 	//Boarding models
-	rNation.boardingModel.enemy.m1 = "sold_eng_1";// "off_eng_1";
+	rNation.boardingModel.enemy.m1 = "sold_eng_1"; // "off_eng_1";
 	rNation.boardingModel.enemy.m1.ani = "man";
-	rNation.boardingModel.enemy.m2 = "sold_eng_2";// "off_eng_2";
+	rNation.boardingModel.enemy.m2 = "sold_eng_2"; // "off_eng_2";
 	rNation.boardingModel.enemy.m2.ani = "man";
 	rNation.boardingModel.enemy.m3 = "sold_eng_1";
 	rNation.boardingModel.enemy.m3.ani = "man";
@@ -40,10 +40,8 @@ void InitNations()
 	rNation.boardingModel.enemy.m10 = "sold_eng_8";
 	rNation.boardingModel.enemy.m10.ani = "man";
 
-
-
 	//France
-	makeref(rNation,Nations[FRANCE]);
+	makeref(rNation, Nations[FRANCE]);
 	rNation.Name = "France";
 	rNation.ShortName = "Fra";
 	rNation.worldMapShip = "french";
@@ -81,9 +79,8 @@ void InitNations()
 	rNation.boardingModel.enemy.m10 = "sold_fra_8";
 	rNation.boardingModel.enemy.m10.ani = "man";
 
-
 	//Spain
-	makeref(rNation,Nations[SPAIN]);
+	makeref(rNation, Nations[SPAIN]);
 	rNation.Name = "Spain";
 	rNation.ShortName = "Spa";
 	rNation.worldMapShip = "spanish";
@@ -122,7 +119,7 @@ void InitNations()
 	rNation.boardingModel.enemy.m10.ani = "man";
 
 	//Pirate
-	makeref(rNation,Nations[PIRATE]);
+	makeref(rNation, Nations[PIRATE]);
 	rNation.Name = "Pirate";
 	rNation.ShortName = "Pir";
 	rNation.worldMapShip = "pirates";
@@ -182,7 +179,7 @@ void InitNations()
 	rNation.boardingModel.enemy.m24.ani = "man";
 
 	//Holland
-	makeref(rNation,Nations[HOLLAND]);
+	makeref(rNation, Nations[HOLLAND]);
 	rNation.Name = "Holland";
 	rNation.ShortName = "Hol";
 	rNation.worldMapShip = "dutch";
@@ -220,12 +217,11 @@ void InitNations()
 	rNation.boardingModel.enemy.m10 = "sold_hol_8";
 	rNation.boardingModel.enemy.m10.ani = "man";
 
-
 	//Player boarding command
-	for(int i = 0; i < MAX_NATIONS; i++)
+	for (int i = 0; i < MAX_NATIONS; i++)
 	{
 		// --> LEO: Матросы ГГ
-		makeref(rNation,Nations[i]);
+		makeref(rNation, Nations[i]);
 		rNation.boardingModel.player.m0 = "shipowner_20";
 		rNation.boardingModel.player.m0.ani = "man";
 		rNation.boardingModel.player.m1 = "shipowner_21";
@@ -298,4 +294,3 @@ void InitNations()
 
 	//Trace("Init nations complete.");
 }
-

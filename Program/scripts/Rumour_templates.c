@@ -1,7 +1,7 @@
 //Здесь прописываются шаблоны цепочек слухов
 
-#define MAX_TEMPL 15 // количество шаблонов
-object templat[MAX_TEMPL];   // шаблонные слухи с развитием
+#define MAX_TEMPL 15	   // количество шаблонов
+object templat[MAX_TEMPL]; // шаблонные слухи с развитием
 
 void TemplateLoad()
 {
@@ -9,8 +9,8 @@ void TemplateLoad()
 	ref tpl;
 	n = 0;
 
-///////////////////////////////////////////GoldFleet////////////////////////////////////////
-//Испанский золотой конвой
+	///////////////////////////////////////////GoldFleet////////////////////////////////////////
+	//Испанский золотой конвой
 
 	makeref(tpl, templat[n]);
 	//снаряжение конвоя
@@ -38,8 +38,7 @@ void TemplateLoad()
 	tpl.starttime = 2;
 	tpl.actualtime = 20;
 	tpl.loginfo.begin = "Rumour_GoldFleet";
-	tpl.loginfo.textnum = "1"
-	tpl.event = "GoldFleet";
+	tpl.loginfo.textnum = "1" tpl.event = "GoldFleet";
 	tpl.next = "End_GoldFleet";
 	tpl.function = "";
 	n++;
@@ -53,8 +52,8 @@ void TemplateLoad()
 	tpl.rep = "none";
 	tpl.starttime = 0;
 	tpl.actualtime = 30;
-//	tpl.loginfo.end = "Rumour_GoldFleet";
-//	tpl.loginfo.textnum = "4"
+	//	tpl.loginfo.end = "Rumour_GoldFleet";
+	//	tpl.loginfo.textnum = "4"
 	tpl.event = "none";
 	tpl.next = "none";
 	tpl.function = "";
@@ -71,8 +70,7 @@ void TemplateLoad()
 	tpl.starttime = 0;
 	tpl.actualtime = 30;
 	tpl.loginfo.end = "Rumour_GoldFleet";
-	tpl.loginfo.text = "13"
-	tpl.event = "none";
+	tpl.loginfo.text = "13" tpl.event = "none";
 	tpl.next = "none";
 	tpl.function = "";
 	n++;
@@ -87,13 +85,12 @@ void TemplateLoad()
 	tpl.starttime = 0;
 	tpl.actualtime = 30;
 	tpl.loginfo.end = "Rumour_GoldFleet";
-	tpl.loginfo.textnum = "7"
-	tpl.event = "none";
+	tpl.loginfo.textnum = "7" tpl.event = "none";
 	tpl.next = "none";
 	tpl.function = "";
 	n++;
-///////////////////////////////////////////MerchantOnMap////////////////////////////////////////
-//Наводка на купца
+	///////////////////////////////////////////MerchantOnMap////////////////////////////////////////
+	//Наводка на купца
 
 	makeref(tpl, templat[n]);
 	//Наводка
@@ -123,7 +120,7 @@ void TemplateLoad()
 	tpl.function = "";
 	n++;
 
-////////////////////////////////////////Разные слухи///////////////////////////////////
+	////////////////////////////////////////Разные слухи///////////////////////////////////
 	makeref(tpl, templat[n]);
 	//Цены в магазине
 	tpl.name = "GetColonyPrices";
@@ -138,9 +135,8 @@ void TemplateLoad()
 	tpl.function = "";
 	n++;
 
-
-//////////////////////////////////////////Дуэли///////////////////////////////////////
-//Дуэль - трус.
+	//////////////////////////////////////////Дуэли///////////////////////////////////////
+	//Дуэль - трус.
 	makeref(tpl, templat[n]);
 	tpl.name = "DuelCoward";
 	tpl.texts = 3;
@@ -154,7 +150,7 @@ void TemplateLoad()
 	tpl.function = "OnInit_DuelCoward";
 	n++;
 
-//Дуэль - супергерой.
+	//Дуэль - супергерой.
 	makeref(tpl, templat[n]);
 	tpl.name = "DuelHero";
 	tpl.texts = 3;
@@ -168,8 +164,8 @@ void TemplateLoad()
 	tpl.function = "";
 	n++;
 
-///////////////////////////////////////////ПГГ////////////////////////////////////////
-//ПГГ - без корабля, в таверне тусуется.
+	///////////////////////////////////////////ПГГ////////////////////////////////////////
+	//ПГГ - без корабля, в таверне тусуется.
 	makeref(tpl, templat[n]);
 	tpl.name = "WaitInTavern";
 	tpl.texts = 3;
@@ -183,7 +179,7 @@ void TemplateLoad()
 	tpl.function = "PGG_OnInit_WaitInTavern";
 	n++;
 
-//ПГГ - пашет на мэра.
+	//ПГГ - пашет на мэра.
 	makeref(tpl, templat[n]);
 	tpl.name = "WorkOnMayor";
 	tpl.texts = 3;
@@ -197,7 +193,7 @@ void TemplateLoad()
 	tpl.function = "PGG_OnInit_WorkOnMayor";
 	n++;
 
-//ПГГ - на пути к острову.
+	//ПГГ - на пути к острову.
 	makeref(tpl, templat[n]);
 	tpl.name = "SailToIsland";
 	tpl.texts = 3;
@@ -211,7 +207,7 @@ void TemplateLoad()
 	tpl.function = "PGG_OnInit_SailToIsland";
 	n++;
 
-//ПГГ - перевозка груза.
+	//ПГГ - перевозка груза.
 	makeref(tpl, templat[n]);
 	tpl.name = "WorkOnStore";
 	tpl.texts = 3;
@@ -225,7 +221,7 @@ void TemplateLoad()
 	tpl.function = "PGG_OnInit_WorkOnStore";
 	n++;
 
-//ПГГ - с контрой.
+	//ПГГ - с контрой.
 	makeref(tpl, templat[n]);
 	tpl.name = "WorkWithContra";
 	tpl.texts = 3;
@@ -238,5 +234,5 @@ void TemplateLoad()
 	tpl.next = "none";
 	tpl.function = "PGG_OnInit_WorkWithContra";
 	n++;
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
 }

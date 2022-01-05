@@ -4,14 +4,14 @@
 
 //#include "scripts\utils.c"
 
-#define MAX_MAP_ENCOUNTERS		128
+#define MAX_MAP_ENCOUNTERS 128
 object MapEncounters[MAX_MAP_ENCOUNTERS];
 
 extern void InitEncounters();
 
 void EncountersInit()
 {
-	if(LoadSegment("Encounters\Encounters_init.c"))
+	if (LoadSegment("Encounters\Encounters_init.c"))
 	{
 		InitEncounters();
 		UnloadSegment("Encounters\Encounters_init.c");
@@ -27,15 +27,21 @@ int FindWarEncounter()
 	ref rCharacter = GetMainCharacter();
 	int iCharacterRank = sti(rCharacter.rank);
 
-	int iChance = rand(250);// boal 13.03.2004
+	int iChance = rand(250); // boal 13.03.2004
 
-	for (int i=0; i<MAX_ENCOUNTER_TYPES; i++)
+	for (int i = 0; i < MAX_ENCOUNTER_TYPES; i++)
 	{
 		if (sti(EncountersTypes[i].Type) == ENCOUNTER_WAR)
 		{
-			if (sti(EncountersTypes[i].Skip)) { continue; }
+			if (sti(EncountersTypes[i].Skip))
+			{
+				continue;
+			}
 			// check chance
-			if (iChance > sti(EncountersTypes[i].Chance)) { continue; }
+			if (iChance > sti(EncountersTypes[i].Chance))
+			{
+				continue;
+			}
 			// check MinRank / MaxRank
 			if (sti(EncountersTypes[i].MinRank) <= iCharacterRank && sti(EncountersTypes[i].MaxRank) >= iCharacterRank)
 			{
@@ -49,7 +55,7 @@ int FindWarEncounter()
 		//Trace("FindWarEncounter: not find any war encounters!");
 		return -1;
 	}
-	return iTypes[rand(iNumTypes-1)];
+	return iTypes[rand(iNumTypes - 1)];
 }
 
 int FindMerchantEncounter()
@@ -60,15 +66,19 @@ int FindMerchantEncounter()
 	ref rCharacter = GetMainCharacter();
 	int iCharacterRank = sti(rCharacter.rank);
 
-	int iChance = rand(250);// boal 13.03.2004
+	int iChance = rand(250); // boal 13.03.2004
 
-	for (int i=0; i<MAX_ENCOUNTER_TYPES; i++)
+	for (int i = 0; i < MAX_ENCOUNTER_TYPES; i++)
 	{
 		if (sti(EncountersTypes[i].Type) == ENCOUNTER_TRADE)
 		{
-            if (sti(EncountersTypes[i].Skip)) { continue; } // fix
+			if (sti(EncountersTypes[i].Skip))
+			{
+				continue;
+			} // fix
 			// check chance
-			if (iChance > sti(EncountersTypes[i].Chance)) continue;
+			if (iChance > sti(EncountersTypes[i].Chance))
+				continue;
 			// check MinRank / MaxRank
 			if (sti(EncountersTypes[i].MinRank) <= iCharacterRank && sti(EncountersTypes[i].MaxRank) >= iCharacterRank)
 			{
@@ -93,15 +103,19 @@ int FindSpecialEncounter()
 	ref rCharacter = GetMainCharacter();
 	int iCharacterRank = sti(rCharacter.rank);
 
-	int iChance = rand(200);// boal 13.03.2004
+	int iChance = rand(200); // boal 13.03.2004
 
-	for (int i=0; i<MAX_ENCOUNTER_TYPES; i++)
+	for (int i = 0; i < MAX_ENCOUNTER_TYPES; i++)
 	{
 		if (sti(EncountersTypes[i].Type) == ENCOUNTER_SPECIAL)
 		{
-            if (sti(EncountersTypes[i].Skip)) { continue; } // fix
+			if (sti(EncountersTypes[i].Skip))
+			{
+				continue;
+			} // fix
 			// check chance
-			if (iChance > sti(EncountersTypes[i].Chance)) continue;
+			if (iChance > sti(EncountersTypes[i].Chance))
+				continue;
 			// check MinRank / MaxRank
 			if (sti(EncountersTypes[i].MinRank) <= iCharacterRank && sti(EncountersTypes[i].MaxRank) >= iCharacterRank)
 			{
@@ -114,13 +128,14 @@ int FindSpecialEncounter()
 	{
 		return -1;
 	}
-	return iTypes[rand(iNumTypes-1)];
+	return iTypes[rand(iNumTypes - 1)];
 }
 
 bool Encounter_CanNation(int iEncounter, int iNation)
 {
 	string sNation = "Nation.Exclude." + Nations[iNation].Name;
-	if (!CheckAttribute(&EncountersTypes[iEncounter], sNation)) return true;
+	if (!CheckAttribute(&EncountersTypes[iEncounter], sNation))
+		return true;
 	return !sti(EncountersTypes[iEncounter].(sNation));
 }
 
@@ -128,8 +143,10 @@ bool Encounter_GetClassesFromRank(int iEncounter, int iRank, ref rMClassMin, ref
 {
 	ref rEnc = &EncountersTypes[iEncounter];
 
-	rMClassMin = 0; rMClassMax = 0;
-	rWClassMin = 0; rWClassMax = 0;
+	rMClassMin = 0;
+	rMClassMax = 0;
+	rWClassMin = 0;
+	rWClassMax = 0;
 
 	string sRank = "Rank." + iRank;
 	if (!CheckAttribute(rEnc, sRank))
@@ -140,9 +157,10 @@ bool Encounter_GetClassesFromRank(int iEncounter, int iRank, ref rMClassMin, ref
 			int iLastRank = -1;
 			int iBestRank = 1000;
 
-			aref aRanks; makearef(aRanks, rEnc.Rank);
+			aref aRanks;
+			makearef(aRanks, rEnc.Rank);
 			int iNumRanks = GetAttributesNum(aRanks);
-			for (int i=0; i<iNumRanks; i++)
+			for (int i = 0; i < iNumRanks; i++)
 			{
 				aref aRank = GetAttributeN(aRanks, i);
 				string sName = GetAttributeName(aRank);
@@ -153,7 +171,10 @@ bool Encounter_GetClassesFromRank(int iEncounter, int iRank, ref rMClassMin, ref
 					iLastRank = iCurRank;
 				}
 			}
-			if (iLastRank == -1) { return false; }
+			if (iLastRank == -1)
+			{
+				return false;
+			}
 			sRank = "Rank." + iLastRank;
 		}
 		else

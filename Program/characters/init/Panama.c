@@ -7,12 +7,12 @@ int CreatePanamaCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "Panama_Mayor";
-	ch.model	= "huber_hol";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "Panama_Mayor";
+	ch.model = "huber_hol";
 	ch.sex = "man";
 	ch.City = "Panama";
-	ch.location	= "Panama_townhall";
+	ch.location = "Panama_townhall";
 	ch.greeting = "spa_gov_common";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
@@ -22,7 +22,7 @@ int CreatePanamaCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -30,13 +30,13 @@ int CreatePanamaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "Panama_Priest";
-	ch.model	= "priest_4";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "Panama_Priest";
+	ch.model = "priest_4";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "Panama";
-	ch.location	= "Panama_church";
+	ch.location = "Panama_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -48,12 +48,12 @@ int CreatePanamaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "Panama_waitress";
-	ch.model	= "girl_4";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "Panama_waitress";
+	ch.model = "girl_4";
 	ch.sex = "woman";
 	ch.City = "Panama";
-	ch.location	= "Panama_tavern";
+	ch.location = "Panama_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -65,13 +65,13 @@ int CreatePanamaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "Panama_tavernkeeper";
-	ch.model	= "barmen_16";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "Panama_tavernkeeper";
+	ch.model = "barmen_16";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "Panama";
-	ch.location	= "Panama_Tavern";
+	ch.location = "Panama_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -83,14 +83,13 @@ int CreatePanamaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
-	ch.id		= "Panama_trader";
-	ch.model	= "trader_16";
+	makeref(ch, Characters[n]); //Торговец
+	ch.id = "Panama_trader";
+	ch.model = "trader_16";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "Panama";
-	ch.location	= "Panama_Store";
+	ch.location = "Panama_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -125,12 +124,12 @@ int CreatePanamaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;*/
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "Panama_usurer";
-	ch.model	= "usurer_6";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "Panama_usurer";
+	ch.model = "usurer_6";
 	ch.sex = "man";
 	ch.City = "Panama";
-	ch.location	= "Panama_Bank";
+	ch.location = "Panama_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -143,12 +142,12 @@ int CreatePanamaCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "Panama_PortMan";
-	ch.model	= "usurer_7";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "Panama_PortMan";
+	ch.model = "usurer_7";
 	ch.sex = "man";
 	ch.City = "Panama";
-	ch.location	= "Panama_PortOffice";
+	ch.location = "Panama_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -159,14 +158,14 @@ int CreatePanamaCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Хозяйка борделя
-	ch.id		= "Panama_Hostess";
-	ch.name		= "Симона";
+	makeref(ch, Characters[n]); //Хозяйка борделя
+	ch.id = "Panama_Hostess";
+	ch.name = "Симона";
 	ch.lastname = "";
-	ch.model	= "lady06";
+	ch.model = "lady06";
 	ch.sex = "woman";
 	ch.City = "Panama";
-	ch.location	= "Panama_SecBrRoom";
+	ch.location = "Panama_SecBrRoom";
 	ch.location.group = "goto";
 	ch.location.locator = "goto8";
 	ch.Dialog.Filename = "Common_Brothel.c";

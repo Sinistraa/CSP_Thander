@@ -7,12 +7,12 @@ int CreatePuertoRicoCharacters(int n)
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
 
-	makeref(ch,Characters[n]);			//Губернатор
+	makeref(ch, Characters[n]); //Губернатор
 	ch.id = "SanJuan_Mayor";
-	ch.model	= "huber_spa";
+	ch.model = "huber_spa";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_townhall";
+	ch.location = "SanJuan_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -22,7 +22,7 @@ int CreatePuertoRicoCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -30,13 +30,13 @@ int CreatePuertoRicoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Священик
+	makeref(ch, Characters[n]); //Священик
 	ch.id = "SanJuan_Priest";
-	ch.model	= "priest_4";
+	ch.model = "priest_4";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_church";
+	ch.location = "SanJuan_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -48,12 +48,12 @@ int CreatePuertoRicoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
+	makeref(ch, Characters[n]); // ОФициантка
 	ch.id = "SanJuan_waitress";
-	ch.model	= "girl_4";
+	ch.model = "girl_4";
 	ch.sex = "woman";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_tavern";
+	ch.location = "SanJuan_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -65,13 +65,13 @@ int CreatePuertoRicoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
+	makeref(ch, Characters[n]); //Трактирщик
 	ch.id = "SanJuan_tavernkeeper";
-	ch.model	= "barmen_12";
+	ch.model = "barmen_12";
 	ch.greeting = "Barmen_4";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_Tavern";
+	ch.location = "SanJuan_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -83,14 +83,13 @@ int CreatePuertoRicoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
+	makeref(ch, Characters[n]); //Торговец
 	ch.id = "SanJuan_trader";
-	ch.model	= "trader_12";
+	ch.model = "trader_12";
 	ch.greeting = "tra_common_4";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_Store";
+	ch.location = "SanJuan_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -102,13 +101,13 @@ int CreatePuertoRicoCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
+	makeref(ch, Characters[n]); //Корабел
 	ch.id = "SanJuan_shipyarder";
-	ch.model	= "shipowner_12";
+	ch.model = "shipowner_12";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_Shipyard";
+	ch.location = "SanJuan_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -117,7 +116,7 @@ int CreatePuertoRicoCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -125,12 +124,12 @@ int CreatePuertoRicoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "SanJuan_usurer";
-	ch.model	= "usurer_2";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "SanJuan_usurer";
+	ch.model = "usurer_2";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_Bank";
+	ch.location = "SanJuan_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -143,12 +142,12 @@ int CreatePuertoRicoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "SanJuan_PortMan";
-	ch.model	= "usurer_7";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "SanJuan_PortMan";
+	ch.model = "usurer_7";
 	ch.sex = "man";
 	ch.City = "SanJuan";
-	ch.location	= "SanJuan_PortOffice";
+	ch.location = "SanJuan_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -160,12 +159,12 @@ int CreatePuertoRicoCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "SanJuan_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "SanJuan_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

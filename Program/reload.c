@@ -1,6 +1,6 @@
 
-#define RELOAD_TIME_FADE_OUT	0.5
-#define RELOAD_TIME_FADE_IN		0.5
+#define RELOAD_TIME_FADE_OUT 0.5
+#define RELOAD_TIME_FADE_IN 0.5
 
 object reload_fader;
 object reload_locator_ref;
@@ -13,21 +13,21 @@ bool LoadMainCharacterInFirstLocation(string location_id, string emerge_locator,
 {
 	int lindex;
 	//Find ship location
-	if(ship_location != "")
+	if (ship_location != "")
 	{
 		lindex = FindLocation(ship_location);
-		if(lindex < 0)
+		if (lindex < 0)
 		{
 			Trace("Incorrect location id for location character's ship (location " + ship_location + " not found");
 		}
 	}
-	if(lindex >= 0)
+	if (lindex >= 0)
 	{
 		SetPlayerShipLocation(lindex);
 	}
 	//Find location
 	lindex = FindLocation(location_id);
-	if(lindex < 0)
+	if (lindex < 0)
 	{
 		Trace("Incorrect location id for first location (location " + location_id + " not found");
 		return false;
@@ -39,41 +39,45 @@ bool LoadMainCharacterInFirstLocation(string location_id, string emerge_locator,
 	makearef(reload_group, Locations[lindex].reload);
 
 	int num = GetAttributesNum(reload_group);
-	if(num == 0)
+	if (num == 0)
 	{
 		Trace("Location " + location_id + " not have reload groups!");
 		return false;
 	}
-	if(emerge_locator != "")
+	if (emerge_locator != "")
 	{
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
-            locator_ref = GetAttributeN(reload_group, i);
-			if(emerge_locator == locator_ref.name) break;
+			locator_ref = GetAttributeN(reload_group, i);
+			if (emerge_locator == locator_ref.name)
+				break;
 		}
-		if(i == num)
+		if (i == num)
 		{
 			Trace("Emerge locator " + emerge_locator + " in location " + location_id + " not found!");
 			locator_ref = GetAttributeN(reload_group, 0);
 			emerge_locator = locator_ref.name;
 			Trace("Character emerge on first locator (" + emerge_locator + ")");
 		}
-	}else{
+	}
+	else
+	{
 		locator_ref = GetAttributeN(reload_group, 0);
 		emerge_locator = locator_ref.name;
 	}
-    //  Eddy -->
-	if (findsubstr(emerge_locator, "_back" , 0) != -1)
+	//  Eddy -->
+	if (findsubstr(emerge_locator, "_back", 0) != -1)
 	{
-        emerge_locator = strcut(emerge_locator, 0, strlen(emerge_locator)-6);
+		emerge_locator = strcut(emerge_locator, 0, strlen(emerge_locator) - 6);
 	}
-    // <--  Eddy
+	// <--  Eddy
 	lockedReloadLocator = emerge_locator;
 	ref mc = GetMainCharacter();
 	mc.location = Locations[lindex].id;
 	mc.location.group = "reload";
 	mc.location.locator = emerge_locator;
-	if(IsEntity(&chrAnimationKipper) == false) CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
+	if (IsEntity(&chrAnimationKipper) == false)
+		CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
 	ReloadProgressUpdate();
 	LoadLocation(&Locations[lindex]);
 	//Fader
@@ -88,7 +92,7 @@ bool LoadMainCharacterInFirstLocationGroup(string location_id, string sGroup, st
 
 	//Find location
 	lindex = FindLocation(location_id);
-	if(lindex < 0)
+	if (lindex < 0)
 	{
 		Trace("Incorrect location id for first location (location " + location_id + " not found");
 		return false;
@@ -96,10 +100,11 @@ bool LoadMainCharacterInFirstLocationGroup(string location_id, string sGroup, st
 
 	lockedReloadLocator = emerge_locator;
 	ref mc = GetMainCharacter();
-	mc.location         = location_id;
-	mc.location.group   = sGroup;
+	mc.location = location_id;
+	mc.location.group = sGroup;
 	mc.location.locator = emerge_locator;
-	if(IsEntity(&chrAnimationKipper) == false) CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
+	if (IsEntity(&chrAnimationKipper) == false)
+		CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
 	ReloadProgressUpdate();
 	LoadLocation(&Locations[lindex]);
 	//Fader
@@ -110,7 +115,7 @@ bool LoadMainCharacterInFirstLocationGroup(string location_id, string sGroup, st
 void SetPlayerShipLocation(int location_index)
 {
 	//Main character
-	if(location_index < 0)
+	if (location_index < 0)
 	{
 		Trace("SetPlayerShipLocation - incorrect location index");
 		return;
@@ -118,7 +123,6 @@ void SetPlayerShipLocation(int location_index)
 	ref mc = GetMainCharacter();
 	mc.location.from_sea = Locations[location_index].id;
 }
-
 
 //reload_group = xxx.reload
 int Reload(aref reload_group, string locator_name, string current_location)
@@ -129,41 +133,46 @@ int Reload(aref reload_group, string locator_name, string current_location)
 	reload_xaddress.active = "false";
 	//Trace("locator_name = " + locator_name + " lockedReloadLocator = " + lockedReloadLocator);
 	//Check locked locator
-	if(locator_name == lockedReloadLocator)
+	if (locator_name == lockedReloadLocator)
 	{
 		lockedReloadLocator = "";
 		return -1;
 	}
 	//Find reload data
 	int num = GetAttributesNum(reload_group);
-	if(num == 0) return 0;
-	for(int i = 0; i < num; i++)
+	if (num == 0)
+		return 0;
+	for (int i = 0; i < num; i++)
 	{
 		//reload_locator_ref = GetAttributeN(reload_group, i);
-        CopyAttributes(&reload_locator_ref, GetAttributeN(reload_group, i));
-		if(!CheckAttribute(reload_locator_ref, "name")) { continue; }
-		if(locator_name == reload_locator_ref.name) break;
+		CopyAttributes(&reload_locator_ref, GetAttributeN(reload_group, i));
+		if (!CheckAttribute(reload_locator_ref, "name"))
+		{
+			continue;
+		}
+		if (locator_name == reload_locator_ref.name)
+			break;
 	}
-	if(i == num)
+	if (i == num)
 	{
 		Trace("Can't reload...");
 		Trace("Reload locator '" + locator_name + "' in current location not found!");
 		return 0;
 	}
 	//Check main attributes
-	if(CheckAttribute(reload_locator_ref, "name") == 0)
+	if (CheckAttribute(reload_locator_ref, "name") == 0)
 	{
 		Trace("Can't reload...");
 		Trace("Reload: attribute 'name' in " + GetAttributeName(reload_locator_ref) + " not accessible");
 		return 0;
 	}
-	if(CheckAttribute(reload_locator_ref, "go") == 0)
+	if (CheckAttribute(reload_locator_ref, "go") == 0)
 	{
 		Trace("Can't reload...");
 		Trace("Reload: attribute 'go' in " + GetAttributeName(reload_locator_ref) + " not accessible");
 		return 0;
 	}
-	if(CheckAttribute(reload_locator_ref, "emerge") == 0)
+	if (CheckAttribute(reload_locator_ref, "emerge") == 0)
 	{
 		Trace("Can't reload...");
 		Trace("Reload: attribute 'emerge' in " + GetAttributeName(reload_locator_ref) + " not accessible");
@@ -172,13 +181,13 @@ int Reload(aref reload_group, string locator_name, string current_location)
 	//Find current location
 	reload_cur_island_index = -1;
 	reload_cur_location_index = -1;
-	if(current_location != "")
+	if (current_location != "")
 	{
 		reload_cur_island_index = FindIsland(current_location);
-		if(reload_cur_island_index < 0)
+		if (reload_cur_island_index < 0)
 		{
 			reload_cur_location_index = FindLocation(current_location);
-			if(reload_cur_location_index < 0)
+			if (reload_cur_location_index < 0)
 			{
 				Trace("Can't unload currend location...");
 				Trace("Current location not found: id = " + current_location);
@@ -189,10 +198,10 @@ int Reload(aref reload_group, string locator_name, string current_location)
 	reload_island_index = -1;
 	reload_location_index = -1;
 	reload_island_index = FindIsland(reload_locator_ref.go);
-	if(reload_island_index < 0)
+	if (reload_island_index < 0)
 	{
 		reload_location_index = FindLocation(reload_locator_ref.go);
-		if(reload_location_index < 0)
+		if (reload_location_index < 0)
 		{
 			Trace("Can't reload...");
 			Trace("Location not found: id = " + reload_locator_ref.go);
@@ -203,12 +212,12 @@ int Reload(aref reload_group, string locator_name, string current_location)
 	//Main character
 	ref mc = GetMainCharacter();
 
-	if((reload_cur_island_index < 0) && (reload_island_index >= 0))
+	if ((reload_cur_island_index < 0) && (reload_island_index >= 0))
 	{
-		if(reload_cur_location_index >= 0)
+		if (reload_cur_location_index >= 0)
 		{
 			//From location to sea
-			if(Locations[reload_cur_location_index].id != mc.location.from_sea)
+			if (Locations[reload_cur_location_index].id != mc.location.from_sea)
 			{
 				Trace("Not reload to sea, no ships: cur:" + Locations[reload_cur_location_index].id + " from:" + mc.location.from_sea);
 				return -1;
@@ -220,35 +229,37 @@ int Reload(aref reload_group, string locator_name, string current_location)
 	SetEventHandler("FaderEvent_StartFade", "ReloadStartFade", 0);
 	SetEventHandler("FaderEvent_EndFade", "ReloadEndFade", 0);
 	CreateEntity(&reload_fader, "fader");
-	if(reload_island_index >= 0)
+	if (reload_island_index >= 0)
 	{
-		if(!CheckAttribute(mc, "todeck"))
+		if (!CheckAttribute(mc, "todeck"))
 		{
-			SendMessage(&reload_fader, "ls",FADER_PICTURE,"loading\seaStand_" + rand(13) + ".tga");
+			SendMessage(&reload_fader, "ls", FADER_PICTURE, "loading\seaStand_" + rand(13) + ".tga");
 		}
 		else
 		{
-			SendMessage(&reload_fader, "ls",FADER_PICTURE,"loading\cabine.tga");
+			SendMessage(&reload_fader, "ls", FADER_PICTURE, "loading\cabine.tga");
 		}
 	}
 	else
 	{
 		int loc_pict_index = reload_location_index;
-		if(loc_pict_index < 0) loc_pict_index = reload_cur_location_index;
-		if(loc_pict_index >= 0)
+		if (loc_pict_index < 0)
+			loc_pict_index = reload_cur_location_index;
+		if (loc_pict_index >= 0)
 		{
-			if(CheckAttribute(&Locations[loc_pict_index],"image"))
+			if (CheckAttribute(&Locations[loc_pict_index], "image"))
 			{
 				if (sGlobalTemp == "afterFDsink")
 				{
-				    //Boyer add #20170401-02
-                    pchar.loadscreen = "loading\rescue.tga";
-					SendMessage(&reload_fader, "ls",FADER_PICTURE,"loading\rescue.tga");
+					//Boyer add #20170401-02
+					pchar.loadscreen = "loading\rescue.tga";
+					SendMessage(&reload_fader, "ls", FADER_PICTURE, "loading\rescue.tga");
 					sGlobalTemp = "";
 				}
-				else {
-                    //Boyer add #20170401-02
-                    pchar.loadscreen = Locations[loc_pict_index].image;
+				else
+				{
+					//Boyer add #20170401-02
+					pchar.loadscreen = Locations[loc_pict_index].image;
 					SendMessage(&reload_fader, "ls", FADER_PICTURE, Locations[loc_pict_index].image);
 				}
 			}
@@ -257,35 +268,36 @@ int Reload(aref reload_group, string locator_name, string current_location)
 
 	bool IsMakeShot = true;
 	float fadeOutTime = RELOAD_TIME_FADE_OUT;
-	if((reload_cur_island_index < 0) && (reload_cur_location_index < 0))
+	if ((reload_cur_island_index < 0) && (reload_cur_location_index < 0))
 	{
-		fadeOutTime = 0.00001;	//Can't need fade out - no loaded location
+		fadeOutTime = 0.00001; //Can't need fade out - no loaded location
 		IsMakeShot = false;
 	}
 	SendMessage(&reload_fader, "lfl", FADER_OUT, fadeOutTime, false);
-	if(IsMakeShot == true) SendMessage(&reload_fader, "l", FADER_STARTFRAME);
+	if (IsMakeShot == true)
+		SendMessage(&reload_fader, "l", FADER_STARTFRAME);
 	//Set lockedReloadLocator
-	if(reload_cur_island_index < 0)
+	if (reload_cur_island_index < 0)
 	{
 		//From location
-		if(reload_island_index < 0)
-		{		//To location
+		if (reload_island_index < 0)
+		{ //To location
 			lockedReloadLocator = reload_locator_ref.emerge;
 		}
 		else
-		{	//To sea
+		{ //To sea
 			lockedReloadLocator = "";
 		}
 	}
 	else
 	{
 		//From sea
-		if(reload_island_index < 0)
-		{		//To location
+		if (reload_island_index < 0)
+		{ //To location
 			lockedReloadLocator = reload_locator_ref.emerge;
 		}
 		else
-		{	//To sea
+		{ //To sea
 			lockedReloadLocator = "";
 		}
 	}
@@ -295,8 +307,8 @@ int Reload(aref reload_group, string locator_name, string current_location)
 
 void ReloadStartFade()
 {
-    //#20191123-01 Fix
-    DialogExit();
+	//#20191123-01 Fix
+	DialogExit();
 	ApplayNewSkill(pchar, "", 0);
 	// ResetSoundScheme();
 	ResetSound(); // new
@@ -305,47 +317,56 @@ void ReloadStartFade()
 	//Trace("ReloadStartFade");
 	//Main character
 	ref mc = GetMainCharacter();
-	if(reload_cur_island_index < 0)
+	if (reload_cur_island_index < 0)
 	{
 		//From location
-		if(reload_island_index < 0)
+		if (reload_island_index < 0)
 		{
 			//To location
-			if(reload_cur_location_index >= 0) UnloadLocation(&Locations[reload_cur_location_index]);
+			if (reload_cur_location_index >= 0)
+				UnloadLocation(&Locations[reload_cur_location_index]);
 			return;
-		}else{
+		}
+		else
+		{
 			//To sea
-			if(reload_cur_location_index >= 0)
+			if (reload_cur_location_index >= 0)
 			{
 				UnloadLocation(&Locations[reload_cur_location_index]);
-			}else mc.location.from_sea = "";
+			}
+			else
+				mc.location.from_sea = "";
 			DeleteClass(&chrAnimationKipper);
 			return;
 		}
-	}else{
+	}
+	else
+	{
 		//From sea
-		if(reload_island_index < 0)
+		if (reload_island_index < 0)
 		{
 			//To location
 			DeleteSeaEnvironment();
 			mc.location.from_sea = reload_locator_ref.go;
 			return;
-		}else{
+		}
+		else
+		{
 			//To sea
 			DeleteSeaEnvironment();
 			mc.location.from_sea = "";
 			return;
 		}
-		Partition_SetValue("after");// Дележ добычи уход на сушу
+		Partition_SetValue("after"); // Дележ добычи уход на сушу
 	}
 }
 
 void ReloadEndFade()
 {
-    EmptyAllFantomCharacter(); // fix место тут!!!! а не выше, вот вам и баги по квестам, блин boal
-    PGG_DailyUpdateReload();
-    Siege_DailyUpdate();//homo осады 05/11/06
-    DetectBlades();
+	EmptyAllFantomCharacter(); // fix место тут!!!! а не выше, вот вам и баги по квестам, блин boal
+	PGG_DailyUpdateReload();
+	Siege_DailyUpdate(); //homo осады 05/11/06
+	DetectBlades();
 	dialogDisable = false;
 	ReloadProgressStart();
 	DelEventHandler("FaderEvent_EndFade", "ReloadEndFade");
@@ -354,10 +375,10 @@ void ReloadEndFade()
 	//Main character
 	ref mc = GetMainCharacter();
 	int iLoc;
-	if(reload_cur_island_index < 0)
+	if (reload_cur_island_index < 0)
 	{
 		//From location
-		if(reload_island_index < 0)
+		if (reload_island_index < 0)
 		{
 			//To location
 			ReloadToLocation(reload_location_index, reload_locator_ref);
@@ -371,7 +392,7 @@ void ReloadEndFade()
 	else
 	{
 		//From sea
-		if(reload_island_index < 0)
+		if (reload_island_index < 0)
 		{
 			//To location
 			ReloadToLocation(reload_location_index, reload_locator_ref);
@@ -390,19 +411,19 @@ void ReloadEndFade()
 string FindEmergeLocator(ref rObject, string emerge_str)
 {
 	aref arReload;
-	makearef(arReload,rObject.reload);
+	makearef(arReload, rObject.reload);
 	int n = GetAttributesNum(arReload);
-	for (int i=0;i<n;i++)
+	for (int i = 0; i < n; i++)
 	{
 		aref arLoc;
-		arLoc = GetAttributeN(arReload,i);
+		arLoc = GetAttributeN(arReload, i);
 		if (arLoc.name == emerge_str)
 		{
 			string loc_name = GetAttributeName(arLoc);
 			return loc_name;
 		}
 	}
- 	Trace("ERROR(no find emerge string): string FindEmergeLocator(ref rObject, string emerge_str) : " + emerge_str);
+	Trace("ERROR(no find emerge string): string FindEmergeLocator(ref rObject, string emerge_str) : " + emerge_str);
 	return "";
 }
 
@@ -414,60 +435,60 @@ int ReloadToLocation(int location_index, aref reload_data)
 	// boal переход в зашлушки, ставим дверь обратно-->
 	if (CheckAttribute(&Locations[location_index], "MustSetReloadBack"))
 	{
-	    //reload_data.name = "reload3_back";  - откуда идем
+		//reload_data.name = "reload3_back";  - откуда идем
 		//reload_data.go = "Antigua_townhall";  - куда идем
 		//reload_data.emerge = "reload1";  - локатор куда он же выход обратно
 		// reload_data.FromSea = true; - есть только на острове, ведет к пляжу заглушке
-		aref	arReload, arLocator;
+		aref arReload, arLocator;
 
 		makearef(arReload, Locations[location_index].reload);
-		int		iNumReload = GetAttributesNum(arReload);
+		int iNumReload = GetAttributesNum(arReload);
 		int i;
 		if (!CheckAttribute(reload_data, "FromSea"))
-		{   // переход суша-суша
-			for (i=0; i<iNumReload; i++)
+		{ // переход суша-суша
+			for (i = 0; i < iNumReload; i++)
 			{
 				arLocator = GetAttributeN(arReload, i);
 				if (arLocator.Name == reload_data.emerge)
 				{
-	                arLocator.go     = mc.location; // где был
-	                arLocator.emerge = reload_data.name; // откуда шагнул
-	                if (CheckAttribute(&Locations[reload_cur_location_index], "fastreload"))
-	                {
-	                    Locations[location_index].fastreload = Locations[reload_cur_location_index].fastreload;
-	                }
-	                else
-	                {
-	                    DeleteAttribute(&Locations[location_index], "fastreload");
-	                }
-	                if (CheckAttribute(&Locations[reload_cur_location_index], "id.label"))
-	                {
-	                	arLocator.label  = Locations[reload_cur_location_index].id.label; // как завать, куда вернуться
-	                }
-	                else
-	                {
-	                    arLocator.label  = "";
-	                }
-	                if (CheckAttribute(&Locations[reload_cur_location_index], "townsack"))
-	                {
-	                    Locations[location_index].townsack = Locations[reload_cur_location_index].townsack;
-	                }
-	                else
-	                {
-	                    DeleteAttribute(&Locations[location_index], "townsack");
-	                }
-	                if (CheckAttribute(&Locations[reload_cur_location_index], "islandId"))
-	                {
-	                    Locations[location_index].islandId = Locations[reload_cur_location_index].islandId;
-	                }
-	                else
-	                {
-	                    DeleteAttribute(&Locations[location_index], "islandId");
-	                }
-	                if (CheckAttribute(&Locations[reload_cur_location_index], "id.label") && locations[reload_cur_location_index].type != "town")
-	                {
-	                    Locations[location_index].id.label = Locations[reload_cur_location_index].id.label;
-	                }
+					arLocator.go = mc.location;			 // где был
+					arLocator.emerge = reload_data.name; // откуда шагнул
+					if (CheckAttribute(&Locations[reload_cur_location_index], "fastreload"))
+					{
+						Locations[location_index].fastreload = Locations[reload_cur_location_index].fastreload;
+					}
+					else
+					{
+						DeleteAttribute(&Locations[location_index], "fastreload");
+					}
+					if (CheckAttribute(&Locations[reload_cur_location_index], "id.label"))
+					{
+						arLocator.label = Locations[reload_cur_location_index].id.label; // как завать, куда вернуться
+					}
+					else
+					{
+						arLocator.label = "";
+					}
+					if (CheckAttribute(&Locations[reload_cur_location_index], "townsack"))
+					{
+						Locations[location_index].townsack = Locations[reload_cur_location_index].townsack;
+					}
+					else
+					{
+						DeleteAttribute(&Locations[location_index], "townsack");
+					}
+					if (CheckAttribute(&Locations[reload_cur_location_index], "islandId"))
+					{
+						Locations[location_index].islandId = Locations[reload_cur_location_index].islandId;
+					}
+					else
+					{
+						DeleteAttribute(&Locations[location_index], "islandId");
+					}
+					if (CheckAttribute(&Locations[reload_cur_location_index], "id.label") && locations[reload_cur_location_index].type != "town")
+					{
+						Locations[location_index].id.label = Locations[reload_cur_location_index].id.label;
+					}
 					break;
 				}
 			}
@@ -478,14 +499,14 @@ int ReloadToLocation(int location_index, aref reload_data)
 			// в Islands_init.c на локаторах входа в бухту-заглушку приписочка  .FromSea = true;
 			// на суше в Locations\init\ на локаторах выхода в море приписочка  .ToSea = true;
 			// на самой локации .MustSetReloadBack = true;
-		    for (i=0; i<iNumReload; i++)
+			for (i = 0; i < iNumReload; i++)
 			{
 				arLocator = GetAttributeN(arReload, i);
 				if (CheckAttribute(arLocator, "ToSea")) // признак, что локатор выхода в море
 				{
-	                arLocator.go     = mc.location; // где был
-	                arLocator.emerge = reload_data.name; // откуда шагнул
-                    // метка == море всегда
+					arLocator.go = mc.location;			 // где был
+					arLocator.emerge = reload_data.name; // откуда шагнул
+														 // метка == море всегда
 				}
 			}
 		}
@@ -499,7 +520,7 @@ int ReloadToLocation(int location_index, aref reload_data)
 	{
 		mc.location.locator = reload_data.emerge;
 	}
-	if(reload_xaddress.active == "true")
+	if (reload_xaddress.active == "true")
 	{
 		mc.location.group = reload_xaddress.group;
 		mc.location.locator = reload_xaddress.locator;
@@ -509,28 +530,30 @@ int ReloadToLocation(int location_index, aref reload_data)
 	{
 		if (locations[location_index].id.label == "TempleUnderwater")
 		{
-			if (CheckAttribute(mc,"ismushketer"))
+			if (CheckAttribute(mc, "ismushketer"))
 			{
 				mc.needmushreset = true;
 				SetMainCharacterToMushketer("", false);
 			}
-			mc.model.animation = MainChAnim+"_swim";
+			mc.model.animation = MainChAnim + "_swim";
 		}
 		else
 		{
-			if (CheckAttribute(mc,"needmushreset"))
+			if (CheckAttribute(mc, "needmushreset"))
 			{
 				SetMainCharacterToMushketer(mc.mushket, true);
-				DeleteAttribute(pchar,"needmushreset");
+				DeleteAttribute(pchar, "needmushreset");
 			}
 			else
 			{
-				if (CheckAttribute(mc,"ismushketer")) {}
+				if (CheckAttribute(mc, "ismushketer"))
+				{
+				}
 				else
 				{
 					if (CheckCharacterPerk(pchar, "AgileMan"))
 					{
-						mc.model.animation = MainChAnim+"_fast";
+						mc.model.animation = MainChAnim + "_fast";
 					}
 					else
 					{
@@ -545,41 +568,44 @@ int ReloadToLocation(int location_index, aref reload_data)
 	/*if(CheckAttribute(mc, "IsMushketer") && !CanEquipMushketOnLocation(locations[location_index].ID))
 	{
 		SetMainCharacterToMushketer("", false);
-	}*/ //мушкеты в тавернах - Gregg
-	if(IsEntity(&chrAnimationKipper) == false) CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
+	}*/
+	//мушкеты в тавернах - Gregg
+	if (IsEntity(&chrAnimationKipper) == false)
+		CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
 
-    // eddy --> открыть/закрыть двери в заглушках городов.
-    if (CheckNPCQuestDate(&Locations[location_index], "Common_date"))
-    {
-    	if (Locations[location_index].type == "town" && CheckAttribute(&locations[location_index], "houseEnc"))
-    	{
-            string  sName;
-            aref	arDis, arRld;
-    		makearef(arRld, Locations[location_index].reload);
-    		int		Qty = GetAttributesNum(arRld);
-            SetNPCQuestDate(&Locations[location_index], "Common_date");
-    		for (int a=0; a<Qty; a++)
-    		{
-    			arDis = GetAttributeN(arRld, a);
-				if (CheckAttribute(arDis,"go"))
+	// eddy --> открыть/закрыть двери в заглушках городов.
+	if (CheckNPCQuestDate(&Locations[location_index], "Common_date"))
+	{
+		if (Locations[location_index].type == "town" && CheckAttribute(&locations[location_index], "houseEnc"))
+		{
+			string sName;
+			aref arDis, arRld;
+			makearef(arRld, Locations[location_index].reload);
+			int Qty = GetAttributesNum(arRld);
+			SetNPCQuestDate(&Locations[location_index], "Common_date");
+			for (int a = 0; a < Qty; a++)
+			{
+				arDis = GetAttributeN(arRld, a);
+				if (CheckAttribute(arDis, "go"))
 				{
 					sName = arDis.go;
-					if (findsubstr(sName, "Common" , 0) != -1)
+					if (findsubstr(sName, "Common", 0) != -1)
 					{
 						if (CheckAttribute(arDis, "canEnter"))
 						{
 							arDis.disable = false;
 							DeleteAttribute(arDis, "canEnter"); //автосъем флага на открытую дверь
 						}
-						else arDis.disable = rand(1);
+						else
+							arDis.disable = rand(1);
 					}
 				}
-    		}
-    	}
-    }
+			}
+		}
+	}
 	//меняем радиусы детекторов энкаунтеров
 	Locations[location_index].locators_radius.encdetector = 8 + rand(10);
-    // <-- eddy
+	// <-- eddy
 	return LoadLocation(&Locations[location_index]);
 }
 
@@ -590,7 +616,7 @@ int ReloadToLocationEx(int location_index, string sLocator)
 	mc.location.group = "reload";
 	mc.location.locator = sLocator;
 
-	if(IsEntity(&chrAnimationKipper) == false)
+	if (IsEntity(&chrAnimationKipper) == false)
 	{
 		CreateEntity(&chrAnimationKipper, "CharacterAnimationKipper");
 	}
@@ -615,9 +641,9 @@ int ReloadToSea(int island_index, aref reload_data)
 
 	Login.Encounters = "";
 
-	string sLoc = FindEmergeLocator(rIsland,reload_data.emerge);
+	string sLoc = FindEmergeLocator(rIsland, reload_data.emerge);
 
-	Login.PlayerGroup.x = rIsland.reload.(sLoc).ships.l0.x;	// FIX-ME
+	Login.PlayerGroup.x = rIsland.reload.(sLoc).ships.l0.x; // FIX-ME
 	Login.PlayerGroup.z = rIsland.reload.(sLoc).ships.l0.z;
 	Login.PlayerGroup.ay = rIsland.reload.(sLoc).ships.l0.ay;
 	Login.FromCoast = true;
@@ -628,14 +654,14 @@ int ReloadToSea(int island_index, aref reload_data)
 	return 1;
 }
 
-
 bool TeleportCharacterFromCurLocationToLocation(string locatorExit, string group, string locator)
 {
 	reload_xaddress.group = group;
 	reload_xaddress.locator = locator;
 	aref reload_group;
 	makearef(reload_group, loadedLocation.reload);
-	if(Reload(reload_group, locatorExit, loadedLocation.id) == false) return false;
+	if (Reload(reload_group, locatorExit, loadedLocation.id) == false)
+		return false;
 	reload_xaddress.active = "true";
 	return true;
 }
@@ -644,48 +670,50 @@ bool TeleportCharacterFromCurLocationToLocation(string locatorExit, string group
 int BOAL_ReloadToLoc(aref reload_group, string locator_name)
 {
 	int num = GetAttributesNum(reload_group);
-	if(num == 0) return 0;
-	for(int i = 0; i < num; i++)
+	if (num == 0)
+		return 0;
+	for (int i = 0; i < num; i++)
 	{
 		//reload_locator_ref = GetAttributeN(reload_group, i);
-    CopyAttributes(&reload_locator_ref, GetAttributeN(reload_group, i));
-		if(locator_name == reload_locator_ref.name) break;
+		CopyAttributes(&reload_locator_ref, GetAttributeN(reload_group, i));
+		if (locator_name == reload_locator_ref.name)
+			break;
 	}
-	if(i == num)
+	if (i == num)
 	{
 		return 0;
 	}
 	//Check main attributes
-	if(CheckAttribute(reload_locator_ref, "name") == 0)
+	if (CheckAttribute(reload_locator_ref, "name") == 0)
 	{
 		return 0;
 	}
-	if(CheckAttribute(reload_locator_ref, "emerge") == 0)
+	if (CheckAttribute(reload_locator_ref, "emerge") == 0)
 	{
 		return 0;
 	}
-	if(CheckAttribute(reload_locator_ref, "go") == 0)  // нужна только эта проверка
+	if (CheckAttribute(reload_locator_ref, "go") == 0) // нужна только эта проверка
 	{
 		return 0;
 	}
 	//Main character
-	Pchar.quest.SetNPCInShipDeck.win_condition.l1          = "location";
+	Pchar.quest.SetNPCInShipDeck.win_condition.l1 = "location";
 	Pchar.quest.SetNPCInShipDeck.win_condition.l1.location = "My_Deck";
-	Pchar.quest.SetNPCInShipDeck.win_condition             = "SetNPCInShipDeck";
+	Pchar.quest.SetNPCInShipDeck.win_condition = "SetNPCInShipDeck";
 
-	Pchar.quest.SetQuestHoldBox.win_condition.l1          = "location";
+	Pchar.quest.SetQuestHoldBox.win_condition.l1 = "location";
 	Pchar.quest.SetQuestHoldBox.win_condition.l1.location = "My_Deck";
-	Pchar.quest.SetQuestHoldBox.win_condition             = "SetQuestHoldBox";
+	Pchar.quest.SetQuestHoldBox.win_condition = "SetQuestHoldBox";
 
-	Pchar.quest.SetNPCInShipCampus.win_condition.l1          = "location";
+	Pchar.quest.SetNPCInShipCampus.win_condition.l1 = "location";
 	Pchar.quest.SetNPCInShipCampus.win_condition.l1.location = "My_Campus";
-	Pchar.quest.SetNPCInShipCampus.win_condition             = "SetNPCInShipDeck";
+	Pchar.quest.SetNPCInShipCampus.win_condition = "SetNPCInShipDeck";
 
-	Pchar.quest.SetNPCInShipCabin.win_condition.l1          = "location";
+	Pchar.quest.SetNPCInShipCabin.win_condition.l1 = "location";
 	Pchar.quest.SetNPCInShipCabin.win_condition.l1.location = Get_My_Cabin();
-	Pchar.quest.SetNPCInShipCabin.win_condition             = "SetNPCInShipDeck";
+	Pchar.quest.SetNPCInShipCabin.win_condition = "SetNPCInShipDeck";
 
-	boarding_location  = FindLocation(reload_locator_ref.go); // че потом грохать
+	boarding_location = FindLocation(reload_locator_ref.go); // че потом грохать
 
 	//DoReloadCharacterToLocation(reload_locator_ref.go, "reload", reload_locator_ref.emerge);
 	Reload(reload_group, locator_name, Pchar.location);

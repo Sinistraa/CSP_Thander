@@ -11,10 +11,11 @@ int LocationInitHavana(int n)
 
 	locations[n].townsack = "Havana";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 
 	locations[n].filespath.models = "locations\Town_Havana\Town\";
-	locations[n].image = "loading\Town_"+rand(8)+".tga";
+									locations[n]
+										.image = "loading\Town_" + rand(8) + ".tga";
 	locations[n].citizens = true;
 	locations[n].soldiers = true;
 	locations[n].carrier = true;
@@ -39,20 +40,20 @@ int LocationInitHavana(int n)
 	//Fontain
 	locations[n].models.always.Waterfall1 = "fontain1";
 	locations[n].models.always.Waterfall1.uvslide.v0 = 0.5;
-    locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall1.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall1.level = 50;
 
 	locations[n].models.always.Waterfall2 = "fontain2";
 	locations[n].models.always.Waterfall2.uvslide.v0 = 0.2;
-    locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
+	locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	locations[n].models.always.Waterfall2.level = 49;
 
 	//WindMill Fan
 	locations[n].models.always.MillFan = "MillFan";
 	Locations[n].models.always.MillFan.locator.group = "WindMill";
-	Locations[n].models.always.MillFan.locator.name ="Fan";
+	Locations[n].models.always.MillFan.locator.name = "Fan";
 	Locations[n].models.always.MillFan.rotate.x = 0.0;
 	Locations[n].models.always.MillFan.rotate.y = 0.0;
 	Locations[n].models.always.MillFan.rotate.z = 0.2;
@@ -69,7 +70,7 @@ int LocationInitHavana(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 
-    // --> Типовые городские локации, четкая фиксация на 10 номеров.
+	// --> Типовые городские локации, четкая фиксация на 10 номеров.
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Cuba2";
 	locations[n].reload.l1.emerge = "reload_1";
@@ -145,7 +146,7 @@ int LocationInitHavana(int n)
 	locations[n].reload.gate.autoreload = "0";
 	locations[n].reload.gate.label = "ExitTown";
 
-    // --> Квестовые локации.
+	// --> Квестовые локации.
 	locations[n].reload.l11.name = "houseSp21";
 	locations[n].reload.l11.go = "Havana_houseSp2";
 	locations[n].reload.l11.emerge = "reload1";
@@ -165,7 +166,7 @@ int LocationInitHavana(int n)
 	locations[n].reload.l13.label = "Comendant's House";
 	//locations[n].reload.l13.close_for_night = 1;
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, загрушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS4";
 	locations[n].reload.l20.go = "CommonStoneHouse";
 	locations[n].reload.l20.emerge = "reload1";
@@ -233,7 +234,8 @@ int LocationInitHavana(int n)
 	locations[n].id = "Havana_tavern";
 	locations[n].id.label = "Tavern";
 	locations[n].filespath.models = "locations\inside\Tavern07\";
-	locations[n].image = "loading\inside\Tavern_"+rand(7)+".tga";
+									locations[n]
+										.image = "loading\inside\Tavern_" + rand(7) + ".tga";
 	locations[n].habitues = 1;
 	//Town sack
 	locations[n].townsack = "Havana";
@@ -241,7 +243,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "tavern";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "Tavern07";
@@ -288,7 +290,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Havana";
-  	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Tavern_room_locators";
@@ -316,20 +318,21 @@ int LocationInitHavana(int n)
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Havana_store";
 	locations[n].id.label = "Store";
 	locations[n].filespath.models = "locations\inside\store01\";
-	locations[n].image = "loading\inside\shop_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\shop_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Havana";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Store01_locators";
@@ -354,7 +357,7 @@ int LocationInitHavana(int n)
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Street";
 	locations[n].locators_radius.camdetector.camera1 = 5;
-    ////////////////////////==> комната в магазине
+	////////////////////////==> комната в магазине
 	locations[n].reload.l2.name = "reload2";
 	locations[n].reload.l2.go = "CommonPackhouse_1";
 	locations[n].reload.l2.emerge = "reload1";
@@ -363,20 +366,21 @@ int LocationInitHavana(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РОСТОВЩИК
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Havana_Bank";
 	locations[n].id.label = "Usurer House";
 	locations[n].filespath.models = "locations\inside\Bank01\";
-	locations[n].image = "loading\inside\bank_"+rand(3)+".tga";
+									locations[n]
+										.image = "loading\inside\bank_" + rand(3) + ".tga";
 	//Town sack
 	locations[n].townsack = "Havana";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shop";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Bank01_locators";
@@ -409,20 +413,21 @@ int LocationInitHavana(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ВЕРФЬ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Havana_Shipyard";
 	locations[n].id.label = "Shipyard";
 	locations[n].filespath.models = "locations\inside\Shipyard03\";
-	locations[n].image = "loading\inside\Shipyard_"+rand(4)+".tga";
+									locations[n]
+										.image = "loading\inside\Shipyard_" + rand(4) + ".tga";
 	//Town sack
 	locations[n].townsack = "Havana";
 	locations[n].lockWeather = "Inside";
 	//Sound
 	locations[n].type = "shipyard";
 	locations[n].fastreload = "Havana";
-  	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.locators = "Shipyard03_locators";
@@ -455,7 +460,7 @@ int LocationInitHavana(int n)
 	locations[n].locators_radius.item.item1 = 1.0;
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// РЕЗИДЕНЦИЯ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Havana_townhall";
@@ -468,8 +473,8 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "residence";
 	locations[n].fastreload = "Havana";
-  	locations[n].islandId = "Cuba";
-  	// стража
+	locations[n].islandId = "Cuba";
+	// стража
 	locations[n].soldiers = true;
 	LAi_LocationFantomsGen(&locations[n], true);
 	//Models
@@ -519,7 +524,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\BigHouseBack";
@@ -572,7 +577,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "church";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\churchInside3";
@@ -602,7 +607,7 @@ int LocationInitHavana(int n)
 	LAi_LocationFightDisable(&locations[n], true);
 	n = n + 1;
 
- 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ПОРТОВЫЙ ОФИС
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Havana_PortOffice";
@@ -614,7 +619,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\PortOffice";
@@ -657,7 +662,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "FlamHouse";
@@ -716,7 +721,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	//Always
 	locations[n].models.always.tavern = "CobHouse";
@@ -760,7 +765,7 @@ int LocationInitHavana(int n)
 	//Sound
 	locations[n].type = "house";
 	locations[n].fastreload = "Havana";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	//Models
 	locations[n].filespath.models = "locations\inside\bedRoom1";
 	locations[n].models.always.bedRoom1 = "bedRoom1";
@@ -788,7 +793,7 @@ int LocationInitHavana(int n)
 	locations[n].reload.l1.label = "Room";
 	locations[n].locators_radius.item.item1 = 1.0; //увеличиваем радиус проверочного локатора, иначем могет быть баг.
 	n = n + 1;
-/////////////////////////////////////////
+	/////////////////////////////////////////
 	// Кладбище
 	/////////////////////////////////////////
 
@@ -880,7 +885,8 @@ int LocationInitHavana(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\SmallHouse_inside\";
-    locations[n].models.always.SmallHouse = "SmallHouse_inside";
+									locations[n]
+										.models.always.SmallHouse = "SmallHouse_inside";
 	//locations[n].models.always.SmallHouse.level = 65538;
 	Locations[n].models.always.windows = "SmallHouse_inside_windows";
 	Locations[n].models.always.windows.tech = "LocationWindows";
@@ -917,8 +923,9 @@ int LocationInitHavana(int n)
 	locations[n].islandId = "Cuba";
 	//Models
 	locations[n].filespath.models = "locations\inside\church_IM\";
-	//Always
-	locations[n].models.always.church = "church_IM";
+									//Always
+									locations[n]
+										.models.always.church = "church_IM";
 	locations[n].models.always.locators = "church_IM_locators";
 	locations[n].models.always.window = "church_IM_window";
 	locations[n].models.always.window.tech = "LocationWindows";
@@ -956,7 +963,8 @@ int LocationInitHavana(int n)
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\inside\crypt_2_1_inside\";
-	locations[n].models.always.cryptbig = "crypt_2_1_inside";
+									locations[n]
+										.models.always.cryptbig = "crypt_2_1_inside";
 	locations[n].models.always.back = "..\inside_back";
 	//Day
 	locations[n].models.day.charactersPatch = "crypt_2_1_inside_patch";
@@ -994,12 +1002,12 @@ int LocationInitHavana(int n)
 	locations[n].id = "Havana_ExitTown";
 	locations[n].fastreload = "Havana";
 	locations[n].id.label = "ExitTown";
-	locations[n].image = "loading\Gate_"+rand(1)+".tga";
+	locations[n].image = "loading\Gate_" + rand(1) + ".tga";
 	//Town sack
 	locations[n].townsack = "Havana";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	locations[n].islandIdAreal = "Cuba2";
 	//Models
 	//Always
@@ -1065,10 +1073,10 @@ int LocationInitHavana(int n)
 	locations[n].id = "Mayak10";
 	locations[n].id.label = "Mayak10";
 	locations[n].worldmap = "Mayak10";
-	locations[n].image = "loading\outside\lighthouse_"+rand(1)+".tga";
+	locations[n].image = "loading\outside\lighthouse_" + rand(1) + ".tga";
 	//Sound
 	locations[n].type = "mayak";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	locations[n].islandIdAreal = "Cuba2";
 	//Models
 	//Always
@@ -1108,7 +1116,7 @@ int LocationInitHavana(int n)
 	Locations[n].models.day.glassonday.tech = "LocationWindows";
 	locations[n].models.day.glassonday.level = 66532;
 	//Night
-	locations[n].models.night.volumeLight= "lighthouse_volumeLight";
+	locations[n].models.night.volumeLight = "lighthouse_volumeLight";
 	locations[n].models.night.volumeLight.tech = "LighthouseLight";
 	locations[n].models.night.volumeLight.level = 66529;
 
@@ -1151,7 +1159,7 @@ int LocationInitHavana(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Cuba_Jungle_10";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Cuba";
@@ -1207,7 +1215,7 @@ int LocationInitHavana(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Cuba_jungle_11";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Cuba";
@@ -1309,7 +1317,7 @@ int LocationInitHavana(int n)
 	locations[n].reload.l2.emerge = "reload_5";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1317,10 +1325,10 @@ int LocationInitHavana(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "Cuba_jungle_12";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
 	//Sound
 	locations[n].type = "jungle";
- 	locations[n].islandId = "Cuba";
+	locations[n].islandId = "Cuba";
 	locations[n].islandIdAreal = "Cuba2";
 	//Models
 	//Always
@@ -1419,23 +1427,24 @@ int LocationInitHavana(int n)
 	locations[n].reload.l2.emerge = "reload_4";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Джунгли
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    locations[n].id = "Cuba_jungle_13";
+	locations[n].id = "Cuba_jungle_13";
 	locations[n].id.label = "Jungle";
-	locations[n].image = "loading\outside\Jungle_"+rand(5)+".tga";
- 	//Sound
+	locations[n].image = "loading\outside\Jungle_" + rand(5) + ".tga";
+	//Sound
 	locations[n].type = "jungle";
 	locations[n].islandId = "Cuba";
 	locations[n].islandIdAreal = "Cuba2";
 	//Models
 	//Always
 	locations[n].filespath.models = "locations\Outside\Jungles\jungle8\";
-	Locations[n].models.always.jungle = "jungle8";
+									Locations[n]
+										.models.always.jungle = "jungle8";
 	Locations[n].models.always.locators = "jungle8_locators";
 	Locations[n].models.always.grassPatch = "jungle8_grass";
 	Locations[n].models.always.grassPatch.texture = "grass\grassshore.tga.tx";
@@ -1522,7 +1531,7 @@ int LocationInitHavana(int n)
 	locations[n].reload.l2.emerge = "reload_3";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Sea";
-    locations[n].locators_radius.reload.boat = 9.0;
+	locations[n].locators_radius.reload.boat = 9.0;
 	n = n + 1;
 
 	return n;

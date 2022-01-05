@@ -13,14 +13,20 @@ void AIAttack_GroupAttack(string sGroupAttacker, string sGroupAttacked, bool bAt
 	//string sGroupType1 = Group_GetTypeR(rG1);
 	string sGroupType2 = Group_GetTypeR(rG2);
 
-    //fix вылетов - проверки -->
-    if (!CheckAttribute(rG1, "Task")) { return; }
-    //fix вылетов - проверки <--
+	//fix вылетов - проверки -->
+	if (!CheckAttribute(rG1, "Task"))
+	{
+		return;
+	}
+	//fix вылетов - проверки <--
 
 	// check for already attack
 	if (sti(rG1.Task) == AITASK_ATTACK)
 	{
-		if (rG1.Task.Target != sGroupAttacked) { return; }
+		if (rG1.Task.Target != sGroupAttacked)
+		{
+			return;
+		}
 		//return;
 	}
 	// ====================================================== set attack task to ships
@@ -38,20 +44,37 @@ void AIAttack_GroupAttack(string sGroupAttacker, string sGroupAttacked, bool bAt
 			int i = 0;
 			while (true)
 			{
-				int iCharacterIndex = Group_GetCharacterIndexR(rG1, i); i++;
-				if (iCharacterIndex < 0) { break; }
+				int iCharacterIndex = Group_GetCharacterIndexR(rG1, i);
+				i++;
+				if (iCharacterIndex < 0)
+				{
+					break;
+				}
 				//SetCharacterRelationBoth(sti(rCharacter2.index), iCharacterIndex, RELATION_ENEMY);
-				if (LAi_IsDead(&Characters[iCharacterIndex])) { continue; }
+				if (LAi_IsDead(&Characters[iCharacterIndex]))
+				{
+					continue;
+				}
 
 				int iCharacterVictim = -1;
 				while (iCharacterVictim < 0)
 				{
 					iCharacterVictim = Group_GetCharacterIndexR(rG2, iIndex);
-					if (iCharacterVictim < 0) { iIndex = 0; continue; }
-					if (LAi_IsDead(&Characters[iCharacterVictim])) { iCharacterVictim = -1; }
+					if (iCharacterVictim < 0)
+					{
+						iIndex = 0;
+						continue;
+					}
+					if (LAi_IsDead(&Characters[iCharacterVictim]))
+					{
+						iCharacterVictim = -1;
+					}
 					iIndex++;
 				}
-                if (CheckAttribute(&Characters[iCharacterIndex], "ShipTaskLock"))  { continue; } // boal eddy
+				if (CheckAttribute(&Characters[iCharacterIndex], "ShipTaskLock"))
+				{
+					continue;
+				} // boal eddy
 				//eddy. здесь тоже надо проверять.
 				if (CheckAttribute(&Characters[iCharacterIndex], "AnalizeShips"))
 				{
@@ -65,7 +88,7 @@ void AIAttack_GroupAttack(string sGroupAttacker, string sGroupAttacked, bool bAt
 					{
 						//форты ни при чем
 						if (stf(Characters[iCharacterIndex].ship.hp) > (stf(Characters[iCharacterVictim].ship.hp) / 2) || GetCrewQuantity(&Characters[iCharacterIndex]) > GetCrewQuantity(&Characters[iCharacterVictim]))
-						{	//если есть шанс победить, то проверим количественное соотношение - не лезть на большие эскадры
+						{ //если есть шанс победить, то проверим количественное соотношение - не лезть на большие эскадры
 							if (((iCharactersNum2 - iDeadCharactersNum2) / iCharactersNum1) >= 2.0 && sti(RealShips[sti(characters[iCharacterIndex].ship.type)].Class) > sti(RealShips[sti(characters[iCharacterVictim].ship.type)].Class))
 							{
 								Ship_SetTaskRunaway(SECONDARY_TASK, iCharacterIndex, iCharacterVictim);
@@ -76,7 +99,7 @@ void AIAttack_GroupAttack(string sGroupAttacker, string sGroupAttacked, bool bAt
 							}
 						}
 						else
-						{	//если анализатор слабей, то проверить - а не круче ли он по количеству
+						{ //если анализатор слабей, то проверить - а не круче ли он по количеству
 							if ((iCharactersNum1 / (iCharactersNum2 - iDeadCharactersNum2)) >= 2.2)
 							{
 								Ship_SetTaskAttack(SECONDARY_TASK, iCharacterIndex, iCharacterVictim);
@@ -99,16 +122,31 @@ void AIAttack_GroupAttack(string sGroupAttacker, string sGroupAttacked, bool bAt
 	// ====================================================== set attack task to ships
 	bool bTaskLock = false;
 
-	if (sGroupAttacked == PLAYER_GROUP) { return; }
-	if (!bAttackedTask) { return; }
+	if (sGroupAttacked == PLAYER_GROUP)
+	{
+		return;
+	}
+	if (!bAttackedTask)
+	{
+		return;
+	}
 
 	if (Group_isTaskLockR(rG2))
 	{
-        //fix вылетов - проверки -->
-	    if (!CheckAttribute(rG2, "Task")) { return; }
-	    //fix вылетов - проверки <--
-		if (sti(rG2.Task) != AITASK_ATTACK) { return; }
-		if (rG2.Task.Target != sGroupAttacker) { return; }
+		//fix вылетов - проверки -->
+		if (!CheckAttribute(rG2, "Task"))
+		{
+			return;
+		}
+		//fix вылетов - проверки <--
+		if (sti(rG2.Task) != AITASK_ATTACK)
+		{
+			return;
+		}
+		if (rG2.Task.Target != sGroupAttacker)
+		{
+			return;
+		}
 
 		bTaskLock = true;
 	}
@@ -133,7 +171,7 @@ void AIAttack_GroupAttack(string sGroupAttacker, string sGroupAttacked, bool bAt
 int AIAttack_SelectTask(string sGroupType, float fRatio)
 {
 	return AITASK_ATTACK; // boal все логика теперь по НПС, группа не тупит и всегде атакует, если ее проясят
-	/*
+						  /*
 	int iTask = AITASK_RUNAWAY;
 	switch (sGroupType)
 	{
@@ -162,7 +200,10 @@ void AIAttack_CheckTask(string sGroupID)
 	ref rCharacter1 = Group_GetGroupCommanderR(rG1);
 
 	// skip if group is player group
-	if (sGroupID == PLAYER_GROUP) { return; }
+	if (sGroupID == PLAYER_GROUP)
+	{
+		return;
+	}
 
 	// if group task is lock, check for task complete, if not - continue task
 	float fAng = frnd() * PIm2;
@@ -171,35 +212,35 @@ void AIAttack_CheckTask(string sGroupID)
 	string rG2name = "none_group_1"; // нет такой группы
 	if (CheckAttribute(rG1, "Task.Target"))
 	{
-        rG2name = rG1.Task.Target;
+		rG2name = rG1.Task.Target;
 	}
 	if (Group_isDead(rG2name))
 	{
 		switch (sGroupType1)
 		{
-			case "trade":
-			    if (CheckAttribute(rG1, "Task.Target.Pos.x")) // boal bug fix  TO_DO почему нет координат?
-				{
-					Group_SetTaskMove(sGroupID, stf(rG1.Task.Target.Pos.x), stf(rG1.Task.Target.Pos.z));
-				}
-				else
-				{
-				    Group_SetTaskMove(sGroupID, 10000.0 * sin(fAng) , 10000.0 * cos(fAng));
-				}
+		case "trade":
+			if (CheckAttribute(rG1, "Task.Target.Pos.x")) // boal bug fix  TO_DO почему нет координат?
+			{
+				Group_SetTaskMove(sGroupID, stf(rG1.Task.Target.Pos.x), stf(rG1.Task.Target.Pos.z));
+			}
+			else
+			{
+				Group_SetTaskMove(sGroupID, 10000.0 * sin(fAng), 10000.0 * cos(fAng));
+			}
 			break;
-			case "war":
-				Group_SetTaskMove(sGroupID, 10000.0 * sin(fAng) , 10000.0 * cos(fAng));
+		case "war":
+			Group_SetTaskMove(sGroupID, 10000.0 * sin(fAng), 10000.0 * cos(fAng));
 			break;
-			case "pirate":
-				Group_SetTaskMove(sGroupID, 10000.0 * sin(fAng) , 10000.0 * cos(fAng));
+		case "pirate":
+			Group_SetTaskMove(sGroupID, 10000.0 * sin(fAng), 10000.0 * cos(fAng));
 			break;
 		}
 		// find new task
 		return;
 	}
-    // boal проверка на наличие врага (вылеты от разборки наций) -->
-    rG2 = Group_GetGroupByID(rG1.Task.Target);
-    // boal проверка на наличие врага (вылеты от разборки наций) <--
+	// boal проверка на наличие врага (вылеты от разборки наций) -->
+	rG2 = Group_GetGroupByID(rG1.Task.Target);
+	// boal проверка на наличие врага (вылеты от разборки наций) <--
 	/*if (!Group_isTaskLockR(rG1))
 	{
 		// to_Do сомнительная логика - мерять НР кораблей
@@ -230,43 +271,67 @@ void AIAttack_CheckTask(string sGroupID)
 	int i = 0;
 	// navy -->
 	bool isDead = false;
-	int  newCommanderIndex = -1;
+	int newCommanderIndex = -1;
 	int iCharacterIndex;
 	// navy <--
 	//#20190421-01 fix
 	int nChar1Idx = -1;
-	if(CheckAttribute(rCharacter1, "index"))
-        nChar1Idx = sti(rCharacter1.index);
-    int nNumChar = Group_GetCharactersNumR(rG1);
+	if (CheckAttribute(rCharacter1, "index"))
+		nChar1Idx = sti(rCharacter1.index);
+	int nNumChar = Group_GetCharactersNumR(rG1);
 	while (true)
 	{
 		iCharacterIndex = Group_GetCharacterIndexR(rG1, i);
 		i++;
-		if (iCharacterIndex < 0) { break; }
+		if (iCharacterIndex < 0)
+		{
+			break;
+		}
 		ref rCharacter = GetCharacter(iCharacterIndex);
 		if (LAi_IsDead(rCharacter))
 		{
-   			if (iCharacterIndex == nChar1Idx || nChar1Idx < 0) {isDead = true;} //navy
+			if (iCharacterIndex == nChar1Idx || nChar1Idx < 0)
+			{
+				isDead = true;
+			} //navy
 			continue;
 		}
-		if (iCharacterIndex != nChar1Idx) newCommanderIndex = iCharacterIndex; //navy
+		if (iCharacterIndex != nChar1Idx)
+			newCommanderIndex = iCharacterIndex; //navy
 
 		if (CheckAttribute(rCharacter, "SeaAI.Task"))
 		{
-			if (sti(rCharacter.SeaAI.Task) != AITASK_ATTACK) { continue; }
-			if (!LAi_IsDead(&Characters[sti(rCharacter.SeaAI.Task.Target)])) { continue; }
+			if (sti(rCharacter.SeaAI.Task) != AITASK_ATTACK)
+			{
+				continue;
+			}
+			if (!LAi_IsDead(&Characters[sti(rCharacter.SeaAI.Task.Target)]))
+			{
+				continue;
+			}
 		}
 
 		int iCharacterVictim = -1;
 		while (iCharacterVictim < 0)
 		{
 			iCharacterVictim = Group_GetCharacterIndexR(rG2, iIndex);
-			if (iCharacterVictim < 0) { iIndex = 0; continue; }
-			if (LAi_IsDead(&Characters[iCharacterVictim])) { iCharacterVictim = -1; }
+			if (iCharacterVictim < 0)
+			{
+				iIndex = 0;
+				continue;
+			}
+			if (LAi_IsDead(&Characters[iCharacterVictim]))
+			{
+				iCharacterVictim = -1;
+			}
 			iIndex++;
 		}
-        if (CheckAttribute(&Characters[iCharacterIndex], "ShipTaskLock"))  { continue; } // boal eddy
+		if (CheckAttribute(&Characters[iCharacterIndex], "ShipTaskLock"))
+		{
+			continue;
+		} // boal eddy
 		Ship_SetTaskAttack(SECONDARY_TASK, iCharacterIndex, iCharacterVictim);
 	}
-	if (isDead && newCommanderIndex != -1) Group_SetGroupCommander(sGroupID, Characters[newCommanderIndex].id); //navy
+	if (isDead && newCommanderIndex != -1)
+		Group_SetGroupCommander(sGroupID, Characters[newCommanderIndex].id); //navy
 }

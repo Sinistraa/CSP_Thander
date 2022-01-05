@@ -2,7 +2,7 @@
 int LocationInitBoarding(int n)
 {
 	//// форт для абордажей, клон локаций городов
-    //ID
+	//ID
 	Locations[n].id = "BOARDING_FORT";
 	locations[n].type = "fort_attack";
 	Locations[n].image = "loading\FortShturm_" + rand(3) + ".tga";
@@ -101,7 +101,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "SentJons_fort";
 	locations[n].id.label = "SentJons Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].fastreload = "SentJons";
 	locations[n].townsack = "SentJons";
 	//Sound
@@ -129,11 +129,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortV_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortV_patch";
-	Locations[n].models.night.fortVBigNight= "fortV_fn";
+	Locations[n].models.night.fortVBigNight = "fortV_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "SentJons_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -149,11 +149,11 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "SentJons_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "SentJons";
 	locations[n].fastreload = "SentJons";
-    locations[n].parent_colony = "SentJons";
- 	locations[n].islandId = "Antigua";
+	locations[n].parent_colony = "SentJons";
+	locations[n].islandId = "Antigua";
 	//Sound
 	locations[n].type = "jail";
 	//Models
@@ -172,7 +172,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "SentJons_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -186,7 +186,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Bridgetown_fort";
 	locations[n].id.label = "Bridgetown Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Bridgetown";
 	locations[n].fastreload = "Bridgetown";
 	//Sound
@@ -214,11 +214,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Bridgetown_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -234,7 +234,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Bridgetown_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Bridgetown";
 	locations[n].parent_colony = "Bridgetown";
 	locations[n].fastreload = "Bridgetown";
@@ -257,7 +257,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Bridgetown_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -271,7 +271,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "PortRoyal_fort";
 	locations[n].id.label = "PortRoyal Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "PortRoyal";
 	//Sound
 	locations[n].type = "fort";
@@ -299,11 +299,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortV_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortV_patch";
-	Locations[n].models.night.fortVBigNight= "fortV_fn";
+	Locations[n].models.night.fortVBigNight = "fortV_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortRoyal_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -319,7 +319,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "PortRoyal_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "PortRoyal";
 	locations[n].parent_colony = "PortRoyal";
 	locations[n].fastreload = "PortRoyal";
@@ -342,7 +342,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "PortRoyal_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -356,7 +356,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Villemstad_fort";
 	locations[n].id.label = "Villemstad Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Villemstad";
 	//Sound
 	locations[n].type = "fort";
@@ -384,11 +384,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Villemstad_exitTown";
 	locations[n].reload.l1.emerge = "reload3";
@@ -404,7 +404,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Villemstad_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Villemstad";
 	locations[n].parent_colony = "Villemstad";
 	locations[n].fastreload = "Villemstad";
@@ -427,7 +427,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Villemstad_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -441,13 +441,13 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "BasTer_Fort";
 	locations[n].id.label = "BasTer Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "BasTer";
 	//Sound
 	locations[n].type = "fort";
 	locations[n].parent_colony = "BasTer";
 	locations[n].fastreload = "BasTer";
-    locations[n].islandId = "Guadeloupe";
+	locations[n].islandId = "Guadeloupe";
 	locations[n].soldiers = true;
 	LAi_LocationFantomsGen(&locations[n], true);
 	//Models
@@ -469,11 +469,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "BasTer_ExitTown";
 	locations[n].reload.l1.emerge = "reload3";
@@ -489,7 +489,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "BasTer_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "BasTer";
 	locations[n].parent_colony = "BasTer";
 	locations[n].fastreload = "BasTer";
@@ -512,7 +512,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "BasTer_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -526,7 +526,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Santiago_fort";
 	locations[n].id.label = "Santiago Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Santiago";
 	//Sound
 	locations[n].type = "fort";
@@ -554,11 +554,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Santiago_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -574,7 +574,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Santiago_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Santiago";
 	locations[n].parent_colony = "Santiago";
 	locations[n].fastreload = "Santiago";
@@ -597,7 +597,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Santiago_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -611,7 +611,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "FortFrance_fort";
 	locations[n].id.label = "FortFrance Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "FortFrance";
 	//Sound
 	locations[n].type = "fort";
@@ -639,11 +639,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "FortFrance_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -659,7 +659,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "FortFrance_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "FortFrance";
 	locations[n].parent_colony = "FortFrance";
 	locations[n].fastreload = "FortFrance";
@@ -682,7 +682,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "FortFrance_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -696,7 +696,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Havana_Fort";
 	locations[n].id.label = "Havana Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Havana";
 	//Sound
 	locations[n].type = "fort";
@@ -724,11 +724,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Havana_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -744,7 +744,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Havana_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Havana";
 	locations[n].parent_colony = "Havana";
 	locations[n].fastreload = "Havana";
@@ -767,7 +767,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Havana_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -781,7 +781,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Charles_fort";
 	locations[n].id.label = "Charles Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Charles";
 	//Sound
 	locations[n].type = "fort";
@@ -809,11 +809,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Charles_Jungle_05";
 	locations[n].reload.l1.emerge = "reload2";
@@ -829,7 +829,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Charles_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Charles";
 	locations[n].parent_colony = "Charles";
 	locations[n].fastreload = "Charles";
@@ -852,7 +852,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Charles_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -866,7 +866,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "SanJuan_fort";
 	locations[n].id.label = "SanJuan Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "SanJuan";
 	//Sound
 	locations[n].type = "fort";
@@ -894,11 +894,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortV_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortV_patch";
-	Locations[n].models.night.fortVBigNight= "fortV_fn";
+	Locations[n].models.night.fortVBigNight = "fortV_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "SanJuan_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -914,7 +914,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "SanJuan_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "SanJuan";
 	locations[n].parent_colony = "SanJuan";
 	locations[n].fastreload = "SanJuan";
@@ -937,7 +937,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "SanJuan_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -951,7 +951,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "SantoDomingo_Fort";
 	locations[n].id.label = "SantoDomingo Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "SantoDomingo";
 	//Sound
 	locations[n].type = "fort";
@@ -979,11 +979,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortV_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortV_patch";
-	Locations[n].models.night.fortVBigNight= "fortV_fn";
+	Locations[n].models.night.fortVBigNight = "fortV_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "SantoDomingo_ExitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -999,7 +999,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "SantoDomingo_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "SantoDomingo";
 	locations[n].parent_colony = "SantoDomingo";
 	locations[n].fastreload = "SantoDomingo";
@@ -1022,7 +1022,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "SantoDomingo_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1036,7 +1036,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Panama_fort";
 	locations[n].id.label = "Panama Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Panama";
 	//Sound
 	locations[n].type = "fort";
@@ -1064,11 +1064,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Panama_exitTown";
 	locations[n].reload.l1.emerge = "reload3";
@@ -1084,7 +1084,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Panama_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Panama";
 	locations[n].parent_colony = "Panama";
 	locations[n].fastreload = "Panama";
@@ -1107,7 +1107,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Panama_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1122,7 +1122,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "PortoBello_fort";
 	locations[n].id.label = "PortoBello Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "PortoBello";
 	//Sound
 	locations[n].type = "fort";
@@ -1150,11 +1150,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortoBello_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -1170,7 +1170,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "PortoBello_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "PortoBello";
 	locations[n].parent_colony = "PortoBello";
 	locations[n].fastreload = "PortoBello";
@@ -1193,7 +1193,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "PortoBello_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1207,7 +1207,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Cartahena_fort";
 	locations[n].id.label = "Cartahena Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Cartahena";
 	//Sound
 	locations[n].type = "fort";
@@ -1234,11 +1234,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Cartahena_exitTown";
 	locations[n].reload.l1.emerge = "reload3";
@@ -1254,7 +1254,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Cartahena_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Cartahena";
 	locations[n].parent_colony = "Cartahena";
 	locations[n].fastreload = "Cartahena";
@@ -1277,7 +1277,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Cartahena_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1291,7 +1291,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "PortSpein_Fort";
 	locations[n].id.label = "PortSpein Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "PortSpein";
 	//Sound
 	locations[n].type = "fort";
@@ -1319,11 +1319,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortV_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortV_patch";
-	Locations[n].models.night.fortVBigNight= "fortV_fn";
+	Locations[n].models.night.fortVBigNight = "fortV_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortSpein_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -1339,7 +1339,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "PortSpein_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "PortSpein";
 	locations[n].parent_colony = "PortSpein";
 	locations[n].fastreload = "PortSpein";
@@ -1362,7 +1362,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "PortSpein_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1376,7 +1376,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Marigo_fort";
 	locations[n].id.label = "Marigo Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Marigo";
 	//Sound
 	locations[n].type = "fort";
@@ -1403,11 +1403,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Marigo_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -1423,7 +1423,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Marigo_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Marigo";
 	locations[n].parent_colony = "Marigo";
 	locations[n].fastreload = "Marigo";
@@ -1446,7 +1446,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Marigo_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1460,7 +1460,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Tortuga_Fort";
 	locations[n].id.label = "Tortuga Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Tortuga";
 	//Sound
 	locations[n].type = "fort";
@@ -1488,11 +1488,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortV_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortV_patch";
-	Locations[n].models.night.fortVBigNight= "fortV_fn";
+	Locations[n].models.night.fortVBigNight = "fortV_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Tortuga_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -1508,7 +1508,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Tortuga_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Tortuga";
 	locations[n].parent_colony = "Tortuga";
 	locations[n].fastreload = "Tortuga";
@@ -1531,7 +1531,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Tortuga_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1545,7 +1545,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Maracaibo_Fort";
 	locations[n].id.label = "Maracaibo Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Maracaibo";
 	//Sound
 	locations[n].type = "fort";
@@ -1572,11 +1572,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Maracaibo_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -1592,7 +1592,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Maracaibo_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Maracaibo";
 	locations[n].parent_colony = "Maracaibo";
 	locations[n].fastreload = "Maracaibo";
@@ -1615,7 +1615,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Maracaibo_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1629,7 +1629,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Caracas_Fort";
 	locations[n].id.label = "Caracas Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Caracas";
 	//Sound
 	locations[n].type = "fort";
@@ -1656,11 +1656,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Caracas_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -1676,7 +1676,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Caracas_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Caracas";
 	locations[n].parent_colony = "Caracas";
 	locations[n].fastreload = "Caracas";
@@ -1699,7 +1699,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Caracas_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1713,7 +1713,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Cumana_Fort";
 	locations[n].id.label = "Cumana Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Cumana";
 	//Sound
 	locations[n].type = "fort";
@@ -1740,11 +1740,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Cumana_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -1760,7 +1760,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Cumana_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Cumana";
 	locations[n].parent_colony = "Cumana";
 	locations[n].fastreload = "Cumana";
@@ -1783,7 +1783,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Cumana_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1797,7 +1797,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "SantaCatalina_Fort";
 	locations[n].id.label = "SantaCatalina Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "SantaCatalina";
 	//Sound
 	locations[n].type = "fort";
@@ -1824,11 +1824,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "SantaCatalina_exitTown";
 	locations[n].reload.l1.emerge = "reload1";
@@ -1844,7 +1844,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "SantaCatalina_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "SantaCatalina";
 	locations[n].parent_colony = "SantaCatalina";
 	locations[n].fastreload = "SantaCatalina";
@@ -1867,7 +1867,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "SantaCatalina_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1881,7 +1881,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Beliz_Fort";
 	locations[n].id.label = "Beliz Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "Beliz";
 	//Sound
 	locations[n].type = "fort";
@@ -1908,11 +1908,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "Beliz_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -1928,7 +1928,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "Beliz_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "Beliz";
 	locations[n].parent_colony = "Beliz";
 	locations[n].fastreload = "Beliz";
@@ -1951,7 +1951,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "Beliz_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -1965,7 +1965,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "PortPax_Fort";
 	locations[n].id.label = "PortPax Fort";
 	//Info
-	Locations[n].image = "loading\outside\Fort_"+rand(3)+".tga";
+	Locations[n].image = "loading\outside\Fort_" + rand(3) + ".tga";
 	locations[n].townsack = "PortPax";
 	//Sound
 	locations[n].type = "fort";
@@ -1992,11 +1992,11 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.fortVFonarsDay = "fortVRight_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "fortVRight_patch";
-	Locations[n].models.night.fortVBigNight= "fortVRight_fn";
+	Locations[n].models.night.fortVBigNight = "fortVRight_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
-    //Reload map
+	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortPax_exitTown";
 	locations[n].reload.l1.emerge = "reload2";
@@ -2012,7 +2012,7 @@ int LocationInitBoarding(int n)
 	////////////////////// prison ////////////////////////////
 	Locations[n].id = "PortPax_prison";
 	locations[n].id.label = "Prison";
-	Locations[n].image = "loading\inside\prison_"+rand(6)+".tga";
+	Locations[n].image = "loading\inside\prison_" + rand(6) + ".tga";
 	locations[n].townsack = "PortPax";
 	locations[n].parent_colony = "PortPax";
 	locations[n].fastreload = "PortPax";
@@ -2035,7 +2035,7 @@ int LocationInitBoarding(int n)
 	Locations[n].QuestlockWeather = "23 Hour";
 	locations[n].environment.sea = "false";
 	locations[n].environment.weather.rain = false;
-    //Reload map
+	//Reload map
 	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "PortPax_fort";
 	Locations[n].reload.l1.emerge = "reload2";
@@ -2045,13 +2045,13 @@ int LocationInitBoarding(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// КАЮТА КАПИТАНА
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// каюты для абордажа, отличие от наших - сундуки генерятся
 	// -------------------------------------------------
-    Locations[n].id = "Cabin";   // каюта большая
-    locations[n].id.label = "cabine";
+	Locations[n].id = "Cabin"; // каюта большая
+	locations[n].id.label = "cabine";
 	locations[n].filespath.models = "locations\inside\cabin01";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 	//Models
@@ -2081,14 +2081,14 @@ int LocationInitBoarding(int n)
 	Locations[n].CabinType = true;
 	locations[n].environment.weather.rain = false;
 	Locations[n].boarding.Loc.Hero = "loc0";
-    Locations[n].boarding.Loc.Capt = "aloc2";
+	Locations[n].boarding.Loc.Capt = "aloc2";
 	n = n + 1;
 
 	//абордажная каюта ЛГ
-  	Locations[n].id = "CabineFDM";
-    locations[n].id.label = "cabine";
+	Locations[n].id = "CabineFDM";
+	locations[n].id.label = "cabine";
 	locations[n].filespath.models = "locations\inside\cabinFDM";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 	//Models
@@ -2115,14 +2115,14 @@ int LocationInitBoarding(int n)
 	Locations[n].CabinType = true;
 	locations[n].environment.weather.rain = false;
 	Locations[n].boarding.Loc.Hero = "loc0";
-    Locations[n].boarding.Loc.Capt = "aloc2";
+	Locations[n].boarding.Loc.Capt = "aloc2";
 	n = n + 1;
 
-    ////////////////////////////////////
-    Locations[n].id = "Cabin_Huge";   // совсем большая
-    locations[n].id.label = "cabine2";
+	////////////////////////////////////
+	Locations[n].id = "Cabin_Huge"; // совсем большая
+	locations[n].id.label = "cabine2";
 	locations[n].filespath.models = "locations\inside\cabin02";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 	//Models
@@ -2151,13 +2151,13 @@ int LocationInitBoarding(int n)
 	Locations[n].CabinType = true;
 	locations[n].environment.weather.rain = false;
 	Locations[n].boarding.Loc.Hero = "loc0";
-    Locations[n].boarding.Loc.Capt = "aloc1";
+	Locations[n].boarding.Loc.Capt = "aloc1";
 	n = n + 1;
 
 	Locations[n].id = "Cabin_Small";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capsm";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 	//Models
@@ -2184,30 +2184,30 @@ int LocationInitBoarding(int n)
 
 	Locations[n].locators_radius.box.box2 = 1.1;
 
-    Locations[n].locators_radius.randitem.randitem1 = 0.7;
-    Locations[n].locators_radius.randitem.randitem2 = 0.7;
+	Locations[n].locators_radius.randitem.randitem1 = 0.7;
+	Locations[n].locators_radius.randitem.randitem2 = 0.7;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
 	Locations[n].locators_radius.rld.loc2 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
 	Locations[n].locators_radius.rld.aloc2 = 0.5;
 
 	Locations[n].boarding = "true";
 	Locations[n].boarding.nextdeck = "";
 	Locations[n].camshuttle = 1;
 	Locations[n].boarding.locatorNum = 1;
-    Locations[n].CabinType = true;
-    locations[n].environment.weather.rain = false;
-    Locations[n].boarding.Loc.Hero = "aloc0";
-    Locations[n].boarding.Loc.Capt = "aloc1";
+	Locations[n].CabinType = true;
+	locations[n].environment.weather.rain = false;
+	Locations[n].boarding.Loc.Hero = "aloc0";
+	Locations[n].boarding.Loc.Capt = "aloc1";
 	n = n + 1;
 
 	Locations[n].id = "Cabin_Medium";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capmd";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 	//Models
@@ -2232,15 +2232,15 @@ int LocationInitBoarding(int n)
 	Locations[n].environment.sea = "true";
 	Locations[n].environment.weather = "true";
 
-    Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].locators_radius.randitem.randitem2 = 1;
+	Locations[n].locators_radius.randitem.randitem1 = 1;
+	Locations[n].locators_radius.randitem.randitem2 = 1;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
 
 	Locations[n].boarding = "true";
 	Locations[n].boarding.nextdeck = "";
@@ -2249,14 +2249,14 @@ int LocationInitBoarding(int n)
 	Locations[n].CabinType = true;
 	locations[n].environment.weather.rain = false;
 	Locations[n].boarding.Loc.Hero = "loc2";
-    Locations[n].boarding.Loc.Capt = "loc0";
+	Locations[n].boarding.Loc.Capt = "loc0";
 
 	n = n + 1;
 
 	Locations[n].id = "Cabin_Medium2";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capmd_2";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 	//Models
@@ -2289,16 +2289,16 @@ int LocationInitBoarding(int n)
 	locations[n].box4 = Items_MakeTime(0, 1, 1, 2013);
 	locations[n].box5 = Items_MakeTime(0, 1, 1, 2013);
 
-    Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].locators_radius.randitem.randitem2 = 1;
+	Locations[n].locators_radius.randitem.randitem1 = 1;
+	Locations[n].locators_radius.randitem.randitem2 = 1;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
 	Locations[n].locators_radius.rld.loc3 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
 	Locations[n].locators_radius.rld.aloc3 = 0.5;
 
 	Locations[n].items.randitem2 = "";
@@ -2311,14 +2311,14 @@ int LocationInitBoarding(int n)
 	Locations[n].CabinType = true;
 	locations[n].environment.weather.rain = false;
 	Locations[n].boarding.Loc.Hero = "loc2";
-    Locations[n].boarding.Loc.Capt = "loc0";
+	Locations[n].boarding.Loc.Capt = "loc0";
 
 	n = n + 1;
 
 	Locations[n].id = "Cabin_Quest";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capquest";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "residence";
 	//Models
@@ -2343,19 +2343,19 @@ int LocationInitBoarding(int n)
 	Locations[n].environment.sea = "true";
 	Locations[n].environment.weather = "true";
 
-    Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].locators_radius.randitem.randitem2 = 1;
+	Locations[n].locators_radius.randitem.randitem1 = 1;
+	Locations[n].locators_radius.randitem.randitem2 = 1;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
 	Locations[n].locators_radius.rld.loc3 = 0.5;
-    Locations[n].locators_radius.rld.loc4 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.loc4 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
 	Locations[n].locators_radius.rld.aloc3 = 0.5;
-    Locations[n].locators_radius.rld.aloc4 = 0.5;
+	Locations[n].locators_radius.rld.aloc4 = 0.5;
 
 	Locations[n].items.randitem2 = "";
 	Locations[n].items.randitem1 = "";
@@ -2367,7 +2367,7 @@ int LocationInitBoarding(int n)
 	Locations[n].boarding.locatorNum = 1;
 	Locations[n].CabinType = true;
 	Locations[n].boarding.Loc.Hero = "loc2";
-    Locations[n].boarding.Loc.Capt = "loc0";
+	Locations[n].boarding.Loc.Capt = "loc0";
 
 	n = n + 1;
 
@@ -2377,7 +2377,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "New_Cabin1";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\nc_cabin1";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 
@@ -2402,19 +2402,19 @@ int LocationInitBoarding(int n)
 	Locations[n].environment.sea = "true";
 	Locations[n].environment.weather = "true";
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
 
 	Locations[n].boarding = "true";
 	Locations[n].boarding.nextdeck = "";
 	Locations[n].camshuttle = 1;
 	Locations[n].boarding.locatorNum = 1;
-    Locations[n].CabinType = true;
-    locations[n].environment.weather.rain = false;
-    Locations[n].boarding.Loc.Hero = "aloc0";
-    Locations[n].boarding.Loc.Capt = "aloc1";
+	Locations[n].CabinType = true;
+	locations[n].environment.weather.rain = false;
+	Locations[n].boarding.Loc.Hero = "aloc0";
+	Locations[n].boarding.Loc.Capt = "aloc1";
 
 	n = n + 1;
 
@@ -2422,7 +2422,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_New_Cabin1";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\nc_cabin1";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine"; // nc_mod
 
@@ -2449,14 +2449,14 @@ int LocationInitBoarding(int n)
 
 	locations[n].box1 = Items_MakeTime(0, 1, 1, 2003);
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2471,7 +2471,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "New_Cabin2"; // Cabin2 fight
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\nc_cabin2";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "boarding_cabine";
 
@@ -2497,14 +2497,14 @@ int LocationInitBoarding(int n)
 
 	Locations[n].locators_radius.box.box1 = 0.75;
 
-    Locations[n].boarding = "true";
+	Locations[n].boarding = "true";
 	Locations[n].boarding.nextdeck = "";
 	Locations[n].camshuttle = 1;
 	Locations[n].boarding.locatorNum = 1;
 	Locations[n].CabinType = true;
 	locations[n].environment.weather.rain = false;
 	Locations[n].boarding.Loc.Hero = "loc0";
-    Locations[n].boarding.Loc.Capt = "loc1";
+	Locations[n].boarding.Loc.Capt = "loc1";
 
 	n = n + 1;
 
@@ -2512,7 +2512,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_New_Cabin2"; // Cabin2 peace
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\nc_cabin2";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine"; // nc_mod
 
@@ -2542,15 +2542,15 @@ int LocationInitBoarding(int n)
 	locations[n].box3 = Items_MakeTime(0, 1, 1, 2013);
 
 	Locations[n].locators_radius.reload.reload1 = 0.75;
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
-    Locations[n].locators_radius.box.box2 = 0.5;
-    Locations[n].locators_radius.box.box3 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.box.box2 = 0.5;
+	Locations[n].locators_radius.box.box3 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2565,11 +2565,11 @@ int LocationInitBoarding(int n)
 
 	/////////////////////////////////////////////
 	//  каюты для ГГ
-    // -------------------------------------------------
-    Locations[n].id = "My_Cabin";   // наша каюта
-    locations[n].id.label = "cabine";
+	// -------------------------------------------------
+	Locations[n].id = "My_Cabin"; // наша каюта
+	locations[n].id.label = "cabine";
 	locations[n].filespath.models = "locations\inside\cabin01";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "residence";
 	//Models
@@ -2600,9 +2600,9 @@ int LocationInitBoarding(int n)
 	locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
 	locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 	Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2613,10 +2613,11 @@ int LocationInitBoarding(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// КАЮТА НА ЛЕТУЧЕМ ГОЛЛАНДЦЕ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  	Locations[n].id = "My_CabineFDM";
-    locations[n].id.label = "cabine";
+	Locations[n].id = "My_CabineFDM";
+	locations[n].id.label = "cabine";
 	locations[n].filespath.models = "locations\inside\cabinFDM\";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+									Locations[n]
+										.image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2644,9 +2645,9 @@ int LocationInitBoarding(int n)
 	locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
 	locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 	Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2654,10 +2655,10 @@ int LocationInitBoarding(int n)
 	locations[n].environment.weather.rain = false;
 	n = n + 1;
 
-	Locations[n].id = "My_Cabin_Huge";   // совсем большая
-    locations[n].id.label = "cabine2";
+	Locations[n].id = "My_Cabin_Huge"; // совсем большая
+	locations[n].id.label = "cabine2";
 	locations[n].filespath.models = "locations\inside\cabin02";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2687,9 +2688,9 @@ int LocationInitBoarding(int n)
 	locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
 	locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 	Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2700,7 +2701,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_Cabin_Small";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capsm";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2730,19 +2731,19 @@ int LocationInitBoarding(int n)
 
 	Locations[n].locators_radius.box.box2 = 1.1;
 
-    Locations[n].locators_radius.randitem.randitem1 = 0.7;
-    Locations[n].locators_radius.randitem.randitem2 = 0.7;
+	Locations[n].locators_radius.randitem.randitem1 = 0.7;
+	Locations[n].locators_radius.randitem.randitem2 = 0.7;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
 	Locations[n].locators_radius.rld.loc2 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
 	Locations[n].locators_radius.rld.aloc2 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2759,7 +2760,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_Cabin_Medium";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capmd";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2787,19 +2788,19 @@ int LocationInitBoarding(int n)
 	locations[n].box1 = Items_MakeTime(0, 1, 1, 2013);
 	locations[n].box2 = Items_MakeTime(0, 1, 1, 2013);
 
-    Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].locators_radius.randitem.randitem2 = 1;
+	Locations[n].locators_radius.randitem.randitem1 = 1;
+	Locations[n].locators_radius.randitem.randitem2 = 1;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2816,7 +2817,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_Cabin_Medium2";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capmd_2";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2849,21 +2850,21 @@ int LocationInitBoarding(int n)
 	locations[n].box4 = Items_MakeTime(0, 1, 1, 2013);
 	locations[n].box5 = Items_MakeTime(0, 1, 1, 2013);
 
-    Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].locators_radius.randitem.randitem2 = 1;
+	Locations[n].locators_radius.randitem.randitem1 = 1;
+	Locations[n].locators_radius.randitem.randitem2 = 1;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
 	Locations[n].locators_radius.rld.loc3 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
 	Locations[n].locators_radius.rld.aloc3 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2880,7 +2881,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_Cabin_Quest";
 	Locations[n].id.label = "cabine";
 	Locations[n].filespath.models = "locations\decks\capquest";
-    Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
+	Locations[n].image = "loading\Capdeck_" + rand(6) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2910,23 +2911,23 @@ int LocationInitBoarding(int n)
 	locations[n].box3 = Items_MakeTime(0, 1, 1, 2013);
 	locations[n].box4 = Items_MakeTime(0, 1, 1, 2013);
 
-    Locations[n].locators_radius.randitem.randitem1 = 1;
-    Locations[n].locators_radius.randitem.randitem2 = 1;
+	Locations[n].locators_radius.randitem.randitem1 = 1;
+	Locations[n].locators_radius.randitem.randitem2 = 1;
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
 	Locations[n].locators_radius.rld.loc3 = 0.5;
-    Locations[n].locators_radius.rld.loc4 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.loc4 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
 	Locations[n].locators_radius.rld.aloc3 = 0.5;
-    Locations[n].locators_radius.rld.aloc4 = 0.5;
+	Locations[n].locators_radius.rld.aloc4 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Deck";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.label = "Deck.";
@@ -2943,7 +2944,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "My_Campus";
 	Locations[n].id.label = "My_Campus";
 	Locations[n].filespath.models = "locations\decks\camp_deck";
-    Locations[n].image = "loading\Campdeck_" + rand(2) + ".tga";
+	Locations[n].image = "loading\Campdeck_" + rand(2) + ".tga";
 	//Sound
 	locations[n].type = "cap_cabine";
 	//Models
@@ -2970,18 +2971,18 @@ int LocationInitBoarding(int n)
 
 	locations[n].box1 = Items_MakeTime(0, 1, 1, 2013);
 
-    Locations[n].locators_radius.rld.loc0 = 0.5;
-    Locations[n].locators_radius.rld.loc1 = 0.5;
-    Locations[n].locators_radius.rld.loc2 = 0.5;
-    Locations[n].locators_radius.rld.loc3 = 0.5;
-    Locations[n].locators_radius.rld.aloc0 = 0.5;
-    Locations[n].locators_radius.rld.aloc1 = 0.5;
-    Locations[n].locators_radius.rld.aloc2 = 0.5;
-    Locations[n].locators_radius.rld.aloc3 = 0.5;
+	Locations[n].locators_radius.rld.loc0 = 0.5;
+	Locations[n].locators_radius.rld.loc1 = 0.5;
+	Locations[n].locators_radius.rld.loc2 = 0.5;
+	Locations[n].locators_radius.rld.loc3 = 0.5;
+	Locations[n].locators_radius.rld.aloc0 = 0.5;
+	Locations[n].locators_radius.rld.aloc1 = 0.5;
+	Locations[n].locators_radius.rld.aloc2 = 0.5;
+	Locations[n].locators_radius.rld.aloc3 = 0.5;
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload2";
+	Locations[n].reload.l1.name = "reload2";
 	Locations[n].reload.l1.go = "My_Deck_Medium";
 	Locations[n].reload.l1.emerge = "reload_camp";
 	Locations[n].reload.l1.label = "Deck.";
@@ -3021,14 +3022,14 @@ int LocationInitBoarding(int n)
 
 	Locations[n].boarding = "true";
 
-    locations[n].box1 = Items_MakeTime(0, 1, 1, 2003);
+	locations[n].box1 = Items_MakeTime(0, 1, 1, 2003);
 	locations[n].box2 = Items_MakeTime(0, 1, 1, 2003);
-    locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
-    locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
+	locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
+	locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload_cabin";
+	Locations[n].reload.l1.name = "reload_cabin";
 	Locations[n].reload.l1.go = "My_Cabin";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.autoreload = "0";
@@ -3049,9 +3050,9 @@ int LocationInitBoarding(int n)
 	locations[n].environment.weather.rain = false;
 	n = n + 1;
 
-    // boal 20.03.2004 -->
-    //ID
-	Locations[n].id = "My_Deck";    // Наш трюм
+	// boal 20.03.2004 -->
+	//ID
+	Locations[n].id = "My_Deck"; // Наш трюм
 	Locations[n].id.label = "My_Deck";
 	//Info
 	Locations[n].filespath.models = "locations\decks\hold";
@@ -3076,12 +3077,12 @@ int LocationInitBoarding(int n)
 
 	locations[n].box1 = Items_MakeTime(0, 1, 1, 2003);
 	locations[n].box2 = Items_MakeTime(0, 1, 1, 2003);
-    locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
-    locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
+	locations[n].box3 = Items_MakeTime(0, 1, 1, 2003);
+	locations[n].box4 = Items_MakeTime(0, 1, 1, 2003);
 
-    LAi_LocationFightDisable(&Locations[n], true);
+	LAi_LocationFightDisable(&Locations[n], true);
 
-    Locations[n].reload.l1.name = "reload1";
+	Locations[n].reload.l1.name = "reload1";
 	Locations[n].reload.l1.go = "My_Cabin";
 	Locations[n].reload.l1.emerge = "reload1";
 	Locations[n].reload.l1.autoreload = "0";
@@ -3091,14 +3092,14 @@ int LocationInitBoarding(int n)
 	Locations[n].camshuttle = 1;
 	locations[n].environment.weather.rain = false;
 
-    // boal 20.03.2004 <--
+	// boal 20.03.2004 <--
 	n = n + 1;
 
-    ////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////
 	/// Корабельная палуба  для море - море
 	////////////////////////////////////////////////////////////
-    //ID
-	Locations[n].id = "Deck_Near_Ship_Medium";   // выслать туда шлюпку
+	//ID
+	Locations[n].id = "Deck_Near_Ship_Medium"; // выслать туда шлюпку
 	Locations[n].id.label = "Boarding deck";
 	//Info
 	Locations[n].image = "loading\Quarter_" + rand(2) + ".tga";
@@ -3117,7 +3118,7 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckMediumFonarsDay = "deckMedium_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckMedium_patch";
-	Locations[n].models.night.deckMediumFonarsNight= "deckMedium_fn";
+	Locations[n].models.night.deckMediumFonarsNight = "deckMedium_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
@@ -3125,8 +3126,8 @@ int LocationInitBoarding(int n)
 	LAi_LocationFightDisable(&Locations[n], true);
 	n = n + 1;
 
-    //ID
-	Locations[n].id = "Deck_Near_Ship_Big";   // выслать туда шлюпку
+	//ID
+	Locations[n].id = "Deck_Near_Ship_Big"; // выслать туда шлюпку
 	Locations[n].id.label = "Boarding deck";
 	//Info
 	Locations[n].image = "loading\Quarter_" + rand(2) + ".tga";
@@ -3145,7 +3146,7 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckBigFonarsDay = "deckBig_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckBig_patch";
-	Locations[n].models.night.deckMediumBigNight= "deckBig_fn";
+	Locations[n].models.night.deckMediumBigNight = "deckBig_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
@@ -3153,7 +3154,7 @@ int LocationInitBoarding(int n)
 	LAi_LocationFightDisable(&Locations[n], true);
 	n = n + 1;
 
-	Locations[n].id = "Deck_Near_Ship_Low";   // выслать туда шлюпку
+	Locations[n].id = "Deck_Near_Ship_Low"; // выслать туда шлюпку
 	Locations[n].id.label = "Boarding deck";
 	//Info
 	Locations[n].image = "loading\Quarter_" + rand(2) + ".tga";
@@ -3172,7 +3173,7 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckBigFonarsDay = "deckLow_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckLow_patch";
-	Locations[n].models.night.deckMediumBigNight= "deckLow_fn";
+	Locations[n].models.night.deckMediumBigNight = "deckLow_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
@@ -3200,7 +3201,7 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckFonarsDay = "deckFrigate_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckFrigate_patch";
-	Locations[n].models.night.deckFonarsNight= "deckFrigate_fn";
+	Locations[n].models.night.deckFonarsNight = "deckFrigate_fn";
 	Locations[n].locators_radius.camdetector.goto5 = 0.02;
 	//Environment
 	locations[n].environment.weather = "true";
@@ -3228,7 +3229,7 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckFonarsDay = "deckLineship_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckLineship_patch";
-	Locations[n].models.night.deckFonarsNight= "deckLineship_fn";
+	Locations[n].models.night.deckFonarsNight = "deckLineship_fn";
 	Locations[n].locators_radius.camdetector.goto5 = 0.02;
 	//Environment
 	locations[n].environment.weather = "true";
@@ -3259,15 +3260,15 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckMediumFonarsDay = "deckMedium_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckMedium_patch";
-	Locations[n].models.night.deckMediumFonarsNight= "deckMedium_fn";
+	Locations[n].models.night.deckMediumFonarsNight = "deckMedium_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 
 	locations[n].box1 = Items_MakeTime(0, 0, 1, 2003);
 	locations[n].box2 = Items_MakeTime(0, 0, 1, 2003);
-    locations[n].box3 = Items_MakeTime(0, 0, 1, 2003);
-    locations[n].box4 = Items_MakeTime(0, 0, 1, 2003);
+	locations[n].box3 = Items_MakeTime(0, 0, 1, 2003);
+	locations[n].box4 = Items_MakeTime(0, 0, 1, 2003);
 	n = n + 1;
 	///////////////////////////////
 	Locations[n].id = "Ship_deck_Big";
@@ -3277,7 +3278,7 @@ int LocationInitBoarding(int n)
 	Locations[n].type = "deck";
 	Locations[n].lockCamAngle = 0.4;
 	Locations[n].camshuttle = 1;
- 	//Models
+	//Models
 	//Always
 	Locations[n].filespath.models = "locations\decks\deckBig";
 	Locations[n].models.always.deckBig = "deckBig";
@@ -3287,15 +3288,15 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckBigFonarsDay = "deckBig_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckBig_patch";
-	Locations[n].models.night.deckMediumBigNight= "deckBig_fn";
+	Locations[n].models.night.deckMediumBigNight = "deckBig_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 
 	locations[n].box1 = Items_MakeTime(0, 0, 1, 2003);
 	locations[n].box2 = Items_MakeTime(0, 0, 1, 2003);
-    locations[n].box3 = Items_MakeTime(0, 0, 1, 2003);
-    locations[n].box4 = Items_MakeTime(0, 0, 1, 2003);
+	locations[n].box3 = Items_MakeTime(0, 0, 1, 2003);
+	locations[n].box4 = Items_MakeTime(0, 0, 1, 2003);
 	n = n + 1;
 	///////////////////////
 	Locations[n].id = "Ship_deck_Low";
@@ -3305,9 +3306,9 @@ int LocationInitBoarding(int n)
 	Locations[n].type = "deck";
 	Locations[n].lockCamAngle = 0.4;
 	Locations[n].camshuttle = 1;
- 	//Models
+	//Models
 	//Always
- 	Locations[n].filespath.models = "locations\decks\deckLow";
+	Locations[n].filespath.models = "locations\decks\deckLow";
 	Locations[n].models.always.deckLow = "deckLow";
 	Locations[n].models.always.locators = "deckLow_locators";
 	//Day
@@ -3315,15 +3316,15 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckBigFonarsDay = "deckLow_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckLow_patch";
-	Locations[n].models.night.deckMediumBigNight= "deckLow_fn";
+	Locations[n].models.night.deckMediumBigNight = "deckLow_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
 
 	locations[n].box1 = Items_MakeTime(0, 0, 1, 2003);
 	locations[n].box2 = Items_MakeTime(0, 0, 1, 2003);
-    locations[n].box3 = Items_MakeTime(0, 0, 1, 2003);
-    locations[n].box4 = Items_MakeTime(0, 0, 1, 2003);
+	locations[n].box3 = Items_MakeTime(0, 0, 1, 2003);
+	locations[n].box4 = Items_MakeTime(0, 0, 1, 2003);
 	n = n + 1;
 
 	// палубы для всех по типам boal 03.01.05 ------------------------------------------------------->
@@ -3347,7 +3348,7 @@ int LocationInitBoarding(int n)
 	Locations[n].models.day.deckBigFonarsDay = "deckLowVSMedium_fd";
 	//Night
 	locations[n].models.night.charactersPatch = "deckLowVSMedium_patch";
-	Locations[n].models.night.deckMediumBigNight= "deckLowVSMedium_fn";
+	Locations[n].models.night.deckMediumBigNight = "deckLowVSMedium_fn";
 	//Environment
 	locations[n].environment.weather = "true";
 	locations[n].environment.sea = "true";
@@ -3458,7 +3459,7 @@ int LocationInitBoarding(int n)
 	Locations[n].UpDeckType = true;
 
 	n = n + 1;
-    //End change
+	//End change
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Jason ------------------------ внутренние абордажные локации кораблей ------------------------------
@@ -3488,7 +3489,7 @@ int LocationInitBoarding(int n)
 	Locations[n].environment.weather = "true";
 	Locations[n].environment.sea = "false";
 
-    Locations[n].boarding = "true";
+	Locations[n].boarding = "true";
 	Locations[n].boarding.locatorNum = 15;
 	Locations[n].boarding.nextdeck = "";
 	Locations[n].InsideDeckType = true;
@@ -3501,7 +3502,7 @@ int LocationInitBoarding(int n)
 	Locations[n].id = "Boarding_Campus";
 	Locations[n].id.label = "Orlop deck";
 	Locations[n].filespath.models = "locations\decks\oldeck";
-    Locations[n].image = "loading\OrplopDeck_0.tga";
+	Locations[n].image = "loading\OrplopDeck_0.tga";
 	//Sound
 	locations[n].type = "deck_fight";
 	//Models

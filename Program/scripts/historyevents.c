@@ -1,5 +1,5 @@
 // Philippe, de AoP1
-#define MAX_STORY_EVENTS	100;
+#define MAX_STORY_EVENTS 100;
 
 object HistoryEvents[MAX_STORY_EVENTS];
 
@@ -10,7 +10,7 @@ void ActivateHistoryEvents()
 
 	string sQuest = "";
 	int iday, imonth, iyear;
-	for(int i = 0; i<MAX_STORY_EVENTS; i++)
+	for (int i = 0; i < MAX_STORY_EVENTS; i++)
 	{
 		if (CheckAttribute(&HistoryEvents[i], "text"))
 		{
@@ -34,7 +34,7 @@ void CheckHistoryEvent(string sQuest)
 {
 	int iNumber = sti(pchar.quest.(sQuest).number);
 	//GenerateRumour("history_event", iNumber, 0, 0);//<<== Rumours.c
-    GenerateRumour();
+	GenerateRumour();
 }
 
 void FillHistoryEvents()
@@ -160,5 +160,4 @@ void FillHistoryEvents()
 	HistoryEvents[n].month = 1;
 	HistoryEvents[n].year = 1665;
 	n++;
-
 }

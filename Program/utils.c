@@ -1,4 +1,4 @@
-#define PARSE_STRING	"PARSE_STRING"
+#define PARSE_STRING "PARSE_STRING"
 
 #event_handler(PARSE_STRING, "ParseString");
 
@@ -14,29 +14,31 @@ string GetSubStringByNum(string sStr, int iSelect)
 {
 	string sTemp;
 	int iFindPos = findSubStr(&sStr, ",", 0);
-	if (iFindPos < 0) return sStr;	// one word in string
+	if (iFindPos < 0)
+		return sStr; // one word in string
 	int iNumFind = 1;
-    while (iFindPos > 0)
+	while (iFindPos > 0)
 	{
 		iNumFind++;
 		iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
 	}
 	if (iNumFind <= iSelect)
 	{
-        return GetSubStringByNum(sStr, 0);
+		return GetSubStringByNum(sStr, 0);
 	}
-	int	iLastPos = 0;
+	int iLastPos = 0;
 	iFindPos = 0;
-	for (int i=0; i<iNumFind; i++)
+	for (int i = 0; i < iNumFind; i++)
 	{
 		iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
 		if (i == iSelect)
 		{
 			if (iFindPos < 0)
-            {
-                iFindPos = strlen(&sStr);
-            }
-            if (iLastPos >=  iFindPos) iFindPos = iLastPos + 2;
+			{
+				iFindPos = strlen(&sStr);
+			}
+			if (iLastPos >= iFindPos)
+				iFindPos = iLastPos + 2;
 			sTemp = strcut(&sStr, iLastPos, iFindPos - 1);
 			return sTemp;
 		}
@@ -49,52 +51,56 @@ string GetSubStringByNum(string sStr, int iSelect)
 string GetRandSubString(string strInput)
 {
 	string sTemp;
-    string sStr = strInput;
+	string sStr = strInput;
 
-    if (strlen(sStr) > 0)//fix
-    {
-    	//int iFindPos = findSubStr(&sStr, ",", 0);
-    	int iFindPos = findSubStr(sStr, ",", 0);
-    	if (iFindPos < 0) return sStr;	// one word in string
-    	int iNumFind = 1;
-    	while (iFindPos > 0)
-    	{
-    		iNumFind++;
-    		//iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
-    		iFindPos = findSubStr(sStr, ",", iFindPos + 1);
-    	}
-    	int iSelect = rand(iNumFind - 1);
-    	int	iLastPos = 0;
-    	iFindPos = 0; // вот где собака порылась!!!!! считай я убил Вано :) Boal
-    	for (int i=0; i<iNumFind; i++)
-    	{
-    		//iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
-    		iFindPos = findSubStr(sStr, ",", iFindPos + 1);
-    		if (i == iSelect)
-    		{
-    			if (iFindPos == -1)
-                {
-                    //iFindPos = strlen(&sStr);
-                    iFindPos = strlen(sStr);
-                }
-                // заколебало!!!
-                 if (iLastPos >=  iFindPos) return "";
-    			//sTemp = strcut(&sStr, iLastPos, iFindPos - 1);
-    			sTemp = strcut(sStr, iLastPos, iFindPos - 1);
-    			return sTemp;
-    		}
-    		iLastPos = iFindPos + 1;
-    	}
-    	return "ERROR: bad string return";
+	if (strlen(sStr) > 0) //fix
+	{
+		//int iFindPos = findSubStr(&sStr, ",", 0);
+		int iFindPos = findSubStr(sStr, ",", 0);
+		if (iFindPos < 0)
+			return sStr; // one word in string
+		int iNumFind = 1;
+		while (iFindPos > 0)
+		{
+			iNumFind++;
+			//iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
+			iFindPos = findSubStr(sStr, ",", iFindPos + 1);
+		}
+		int iSelect = rand(iNumFind - 1);
+		int iLastPos = 0;
+		iFindPos = 0; // вот где собака порылась!!!!! считай я убил Вано :) Boal
+		for (int i = 0; i < iNumFind; i++)
+		{
+			//iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
+			iFindPos = findSubStr(sStr, ",", iFindPos + 1);
+			if (i == iSelect)
+			{
+				if (iFindPos == -1)
+				{
+					//iFindPos = strlen(&sStr);
+					iFindPos = strlen(sStr);
+				}
+				// заколебало!!!
+				if (iLastPos >= iFindPos)
+					return "";
+				//sTemp = strcut(&sStr, iLastPos, iFindPos - 1);
+				sTemp = strcut(sStr, iLastPos, iFindPos - 1);
+				return sTemp;
+			}
+			iLastPos = iFindPos + 1;
+		}
+		return "ERROR: bad string return";
 	}
-	return   "";
+	return "";
 }
 
 // Warship 06.08.09 Строка от -999 до 999 прописью
 String GetRussianNumberString(int _num)
 {
-	if(_num < -999 || _num > 999) return "Error";
-	if(_num == 0) return XI_ConvertString("zero");
+	if (_num < -999 || _num > 999)
+		return "Error";
+	if (_num == 0)
+		return XI_ConvertString("zero");
 
 	String numString = its(abs(_num));
 
@@ -106,12 +112,12 @@ String GetRussianNumberString(int _num)
 
 	numString = "";
 
-	if(_num < 0)
+	if (_num < 0)
 	{
 		numString = XI_ConvertString("minus") + " ";
 	}
 
-	if(tens == "10")
+	if (tens == "10")
 	{
 		tens = "";
 		ones = "1" + ones;
@@ -119,12 +125,12 @@ String GetRussianNumberString(int _num)
 
 	ones = XI_ConvertString(ones);
 
-	if(tens != "")
+	if (tens != "")
 	{
 		tens = XI_ConvertString(tens) + " ";
 	}
 
-	if(hundreds != "")
+	if (hundreds != "")
 	{
 		hundreds = XI_ConvertString(hundreds) + " ";
 	}
@@ -133,18 +139,18 @@ String GetRussianNumberString(int _num)
 }
 float GetDotProduct(float fA1, float fA2)
 {
-    return cos(fA2 - fA1);  // boal бешенная оптимизация моря
+	return cos(fA2 - fA1); // boal бешенная оптимизация моря
 }
 
 void ParseString()
 {
-	int		i, iLen;
-	string	sParams[2];
-	string	sDst = "";
+	int i, iLen;
+	string sParams[2];
+	string sDst = "";
 
 	aref aRes = GetEventData();
 	string rSourceString = GetEventData();
-	int	iNumParameters = GetEventData();
+	int iNumParameters = GetEventData();
 
 	//Trace("parser started: " + rSourceString + ", params = " + iNumParameters);
 
@@ -155,10 +161,13 @@ void ParseString()
 	}
 
 	SetArraySize(&sParams, iNumParameters + 1);
-	for (i=0; i<iNumParameters; i++) { sParams[i] = GetEventData();	}
+	for (i = 0; i < iNumParameters; i++)
+	{
+		sParams[i] = GetEventData();
+	}
 
 	iLen = strlen(&rSourceString);
-	for (i=0; i<iLen; i++)
+	for (i = 0; i < iLen; i++)
 	{
 		string sChar = GetSymbol(&rSourceString, i);
 		if (sChar == "%")
@@ -175,11 +184,15 @@ void ParseString()
 			while (i < iLen)
 			{
 				string sTmp = GetSymbol(&rSourceString, i);
-				if (!isDigit(&sTmp, 0)) { break; }
+				if (!isDigit(&sTmp, 0))
+				{
+					break;
+				}
 				sNumber = sNumber + sTmp;
 				i++;
 			}
-			sDst = sDst + sParams[sti(sNumber) - 1]; i--;
+			sDst = sDst + sParams[sti(sNumber) - 1];
+			i--;
 			continue;
 		}
 		sDst = sDst + sChar;
@@ -224,28 +237,31 @@ int Tonnes2CWT(int iTonnes)
 
 int i_min(int a1, int a2)
 {
-	if (a1 < a2) { return a1; }
+	if (a1 < a2)
+	{
+		return a1;
+	}
 	return a2;
 }
 
 string GetVerNum()
 {
- 	string  VERSION_STR = VERSION_NUMBER2;
+	string VERSION_STR = VERSION_NUMBER2;
 
-    if (MOD_BETTATESTMODE == "On")
-    {
-       VERSION_STR = VERSION_STR + "  DEV";
-    }
-    if (MOD_BETTATESTMODE == "Test")
-    {
-       VERSION_STR = VERSION_STR + "  TST";
-    }
-    return VERSION_STR;
+	if (MOD_BETTATESTMODE == "On")
+	{
+		VERSION_STR = VERSION_STR + "  DEV";
+	}
+	if (MOD_BETTATESTMODE == "Test")
+	{
+		VERSION_STR = VERSION_STR + "  TST";
+	}
+	return VERSION_STR;
 }
 
 void Log_Info(string _str)
 {
-    Log_SetStringToLog(_str);
+	Log_SetStringToLog(_str);
 }
 
 void Log_TestInfo(string logtext)
@@ -258,7 +274,7 @@ void Log_TestInfo(string logtext)
 }
 void Log_QuestInfo(string _info)
 {
-    if (bQuestLogShow)
+	if (bQuestLogShow)
 	{
 		Log_SetStringToLog(_info);
 	}
@@ -266,32 +282,32 @@ void Log_QuestInfo(string _info)
 
 string NewStr()
 {
-    int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
-    string sTemp;
-    sTemp = LanguageConvertString(idLngFile,"new_string");
-    LanguageCloseFile(idLngFile);
+	int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
+	string sTemp;
+	sTemp = LanguageConvertString(idLngFile, "new_string");
+	LanguageCloseFile(idLngFile);
 
-    return sTemp;
+	return sTemp;
 }
 
 Object objGrass;
 
-void CreateGrass(string sDataFile, string sTextureFile, float fScale, float fW,float fH, float fMinDist,float fMaxDist, float fMinLod)
+void CreateGrass(string sDataFile, string sTextureFile, float fScale, float fW, float fH, float fMinDist, float fMaxDist, float fMinLod)
 {
-	CreateEntity(&objGrass,"Grass");
-	if( bSeaActive && !bAbordageStarted )
+	CreateEntity(&objGrass, "Grass");
+	if (bSeaActive && !bAbordageStarted)
 	{
-		LayerAddObject(SEA_EXECUTE,&objGrass,1000);
-		LayerAddObject(SEA_REALIZE,&objGrass,1000);
+		LayerAddObject(SEA_EXECUTE, &objGrass, 1000);
+		LayerAddObject(SEA_REALIZE, &objGrass, 1000);
 	}
 	else
 	{
-		LayerAddObject(EXECUTE,&objGrass,1000);
-		LayerAddObject(REALIZE,&objGrass,1000);
+		LayerAddObject(EXECUTE, &objGrass, 1000);
+		LayerAddObject(REALIZE, &objGrass, 1000);
 	}
-	SendMessage(objGrass,"ls",41666, sTextureFile); // #define MSG_GRASS_SET_TEXTURE 41666
-	SendMessage(objGrass,"lffffff",42666, fScale, fW,fH, fMinDist,fMaxDist, fMinLod); // #define MSG_GRASS_SET_PARAM 42666
-	SendMessage(objGrass,"ls",40666, sDataFile); // #define MSG_GRASS_LOAD_DATA 40666
+	SendMessage(objGrass, "ls", 41666, sTextureFile);									  // #define MSG_GRASS_SET_TEXTURE 41666
+	SendMessage(objGrass, "lffffff", 42666, fScale, fW, fH, fMinDist, fMaxDist, fMinLod); // #define MSG_GRASS_SET_PARAM 42666
+	SendMessage(objGrass, "ls", 40666, sDataFile);										  // #define MSG_GRASS_LOAD_DATA 40666
 }
 
 void DeleteGrass()
@@ -307,7 +323,7 @@ void HideGrass()
 {
 	if (IsEntity(&objGrass))
 	{
-        LayerDelObject(EXECUTE, &objGrass);
+		LayerDelObject(EXECUTE, &objGrass);
 		LayerDelObject(REALIZE, &objGrass);
 		LayerDelObject(SEA_EXECUTE, &objGrass);
 		LayerDelObject(SEA_REALIZE, &objGrass);
@@ -318,7 +334,7 @@ void ShowGrass()
 {
 	if (IsEntity(&objGrass))
 	{
-        LayerAddObject(SEA_EXECUTE, &objGrass, 1000);
+		LayerAddObject(SEA_EXECUTE, &objGrass, 1000);
 		LayerAddObject(SEA_REALIZE, &objGrass, 1000);
 	}
 }
@@ -332,16 +348,16 @@ void CalcLocalTime(float _inc)
 		{
 			//вызов уже внутри метода времени PostEvent("NextDay", 20); // наступил новый день
 		}        */
-        locTmpTime = 0.0;
-        /*if (hour != GetHour() && !bStorm && !bTornado && !bDisableMapEnter && !LAi_grp_alarmactive) // не в бою
+		locTmpTime = 0.0;
+		/*if (hour != GetHour() && !bStorm && !bTornado && !bDisableMapEnter && !LAi_grp_alarmactive) // не в бою
 		{
             RefreshWeather();
 		} */
-    }
+	}
 }
 void RefreshWeather()
 {
-    Whr_UpdateWeather();
+	Whr_UpdateWeather();
 	// звуки
 	/*
 	if (bSeaActive && !bAbordageStarted)
@@ -360,25 +376,31 @@ void RefreshWeather()
 }
 void RefreshLandTime()
 {
-    objLandInterface.textinfo.datatext.text = XI_convertString("Date:") + GetQuestBookData();
+	objLandInterface.textinfo.datatext.text = XI_convertString("Date:") + GetQuestBookData();
 }
 // boal 16.03.2004 <--
 string stripblank(string str)
 {
 	string retstr = "";
 	int iMax = strlen(str);
-	for(int i = 0; i < iMax; i++) {
-		if(GetSymbol(str,i) != " ") { retstr += GetSymbol(str,i); }}
+	for (int i = 0; i < iMax; i++)
+	{
+		if (GetSymbol(str, i) != " ")
+		{
+			retstr += GetSymbol(str, i);
+		}
+	}
 	return retstr;
 }
 // boal <--
 
 void ResetTimeScale()
 {
-    SetTimeScale(1.0);
+	SetTimeScale(1.0);
 	TimeScaleCounter = 0;
-	if(IsPerkIntoList("TimeSpeed"))
-	{	DelPerkFromActiveList("TimeSpeed");
+	if (IsPerkIntoList("TimeSpeed"))
+	{
+		DelPerkFromActiveList("TimeSpeed");
 	}
 }
 
@@ -387,60 +409,68 @@ void FreeChangeFlagMode(string _tmp)
 	DeleteAttribute(pchar, "DisableChangeFlagMode");
 }
 
-string  xiStr(string _str) // просто сокращение
+string xiStr(string _str) // просто сокращение
 {
 	return XI_ConvertString(_str);
 }
 
-string  xiDStr(string _str) // просто сокращение
+string xiDStr(string _str) // просто сокращение
 {
 	return GetConvertStr(_str, "DialogSource.txt");
 }
 
 void Dev_Trace(string _str) // логи только в дев версии
 {
-    if (MOD_BETTATESTMODE	==	"On")	Trace(_str);
+	if (MOD_BETTATESTMODE == "On")
+		Trace(_str);
 }
 
 // Warship -->
 String FindStringAfterChar(string _string, string _char)
 {
-	int i = FindSubStr(_string, _char , 0);
-	if(i == -1) return "";
-	string sRetStr = strcut(_string, i+1, strlen(_string)-1);
+	int i = FindSubStr(_string, _char, 0);
+	if (i == -1)
+		return "";
+	string sRetStr = strcut(_string, i + 1, strlen(_string) - 1);
 	return sRetStr;
 }
 
 String FindStringBeforeChar(string _string, string _char) // Поиск строки перед символом
 {
-	int i = FindSubStr(_string, _char , 0);
-	if(i == -1) return "";
-	string sRetStr = strcut(_string, 0, i-1);
+	int i = FindSubStr(_string, _char, 0);
+	if (i == -1)
+		return "";
+	string sRetStr = strcut(_string, 0, i - 1);
 	return sRetStr;
 }
 
 float retMin(float x, float y)
 {
-	x = makefloat(x); y = makefloat(y);
-	if(x<y) return x;
+	x = makefloat(x);
+	y = makefloat(y);
+	if (x < y)
+		return x;
 	return y;
 }
 
 float retMax(float x, float y)
 {
-	if(x>y) return makefloat(x);
+	if (x > y)
+		return makefloat(x);
 	return makefloat(y);
 }
 
 int iretMin(int x, int y)
 {
-	if(x<y) return x;
+	if (x < y)
+		return x;
 	return y;
 }
 
 int iretMax(int x, int y)
 {
-	if(x>y) return x;
+	if (x > y)
+		return x;
 	return y;
 }
 // Просто сокращения
@@ -484,16 +514,18 @@ void TraceAndLog(string ltext) //to log _and_ trace info
 
 float pow2(float num, float exp) // supports exponents of less than one via sqrt and a loop.
 {
-	if(exp == 1.0) return num; // NK 05-03-30 add this check
-	if(exp > 1.0) return pow(num, exp);
+	if (exp == 1.0)
+		return num; // NK 05-03-30 add this check
+	if (exp > 1.0)
+		return pow(num, exp);
 	int sqrtx = 0;
-	while(exp < 1.0)
+	while (exp < 1.0)
 	{
 		exp *= 2;
 		sqrtx++;
 	}
 	num = pow(num, exp);
-	for(int i = 0; i < sqrtx; i++)
+	for (int i = 0; i < sqrtx; i++)
 	{
 		num = sqrt(num);
 	}
@@ -516,7 +548,6 @@ int GetCurrentModelrNumber()
 	return n;
 }
 
-
 bool HasSubStr(string basestr, string findstr)
 {
 	return findSubStr(basestr, findstr, 0) != -1;
@@ -526,13 +557,16 @@ bool HasSubStr(string basestr, string findstr)
 string strreplace(string strSource, string from, string into)
 {
 	int pos = findSubStr(strSource, from, 0);
-	if (pos < 0) return strSource;
-	if (HasSubStr(into, from)) return strSource;
+	if (pos < 0)
+		return strSource;
+	if (HasSubStr(into, from))
+		return strSource;
 	string ret = "";
-	if (pos > 0) ret = strcut(strSource, 0, pos - 1);
+	if (pos > 0)
+		ret = strcut(strSource, 0, pos - 1);
 	ret += into;
-	if (pos + strlen(from) <= strlen(strSource) - 1) ret += strcut(strSource, pos + strlen(from), strlen(strSource) - 1);
+	if (pos + strlen(from) <= strlen(strSource) - 1)
+		ret += strcut(strSource, pos + strlen(from), strlen(strSource) - 1);
 	return strreplace(ret, from, into);
 }
 // <-- KK
-

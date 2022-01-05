@@ -8,15 +8,16 @@ void WhrDeleteSkyEnvironment()
 	{
 		DeleteClass(&Sky);
 	}
-	DeleteAttribute(&Sky,"");
+	DeleteAttribute(&Sky, "");
 }
 
 void WhrCreateSkyEnvironment()
 {
 	aref aCurWeather = GetCurrentWeather();
-	aref aSky; makearef(aSky,aCurWeather.Sky);
+	aref aSky;
+	makearef(aSky, aCurWeather.Sky);
 
-	DeleteAttribute(&Sky,"");
+	DeleteAttribute(&Sky, "");
 	if (!isEntity(&Sky))
 	{
 		CreateEntity(&Sky, "Sky");
@@ -26,25 +27,27 @@ void WhrCreateSkyEnvironment()
 	FillSkyDir(&Sky);
 	//Sky.Dir = Whr_GetString(aSky,"Dir");
 
-	Sky.Color = Whr_GetColor(aSky,"Color");
-	Sky.RotateSpeed = Whr_GetFloat(aSky,"Rotate");
-	Sky.Angle = Whr_GetFloat(aSky,"Angle");
-	Sky.Size = Whr_GetFloat(aSky,"Size");
-    //#20180615-01
+	Sky.Color = Whr_GetColor(aSky, "Color");
+	Sky.RotateSpeed = Whr_GetFloat(aSky, "Rotate");
+	Sky.Angle = Whr_GetFloat(aSky, "Angle");
+	Sky.Size = Whr_GetFloat(aSky, "Size");
+	//#20180615-01
 
-    if(bSeaActive) {
-        Sky.Size = Whr_GetFloat(aSky, "Size");
-        Sky.techSky = "Sky";
-        Sky.techSkyBlend = "SkyBlend";
-        Sky.techskyAlpha = "skyblend_alpha";
-        Sky.techSkyFog = "SkyFog";
+	if (bSeaActive)
+	{
+		Sky.Size = Whr_GetFloat(aSky, "Size");
+		Sky.techSky = "Sky";
+		Sky.techSkyBlend = "SkyBlend";
+		Sky.techskyAlpha = "skyblend_alpha";
+		Sky.techSkyFog = "SkyFog";
 	}
-	else {
-	    Sky.Size = 2048; // == 512.0 * 4;
-	    Sky.techSky = "SkyLand";
-        Sky.techSkyBlend = "SkyBlendLand";
-        Sky.techskyAlpha = "skyblend_alphaLand";
-        Sky.techSkyFog = "SkyFogLand";
+	else
+	{
+		Sky.Size = 2048; // == 512.0 * 4;
+		Sky.techSky = "SkyLand";
+		Sky.techSkyBlend = "SkyBlendLand";
+		Sky.techskyAlpha = "skyblend_alphaLand";
+		Sky.techSkyFog = "SkyFogLand";
 	}
 
 	Sky.isDone = "";
@@ -56,7 +59,7 @@ void UpdateSky()
 	float timeScale = 1.0 + TimeScaleCounter * 0.25; // Текущее ускорение времени
 
 	// Вычисление делител¤ дл¤ ускорения, чтоб на x8 бешенно не крутились
-	if(timeScale <= 2)
+	if (timeScale <= 2)
 	{
 		timeScale = 1;
 	}
@@ -65,7 +68,7 @@ void UpdateSky()
 		timeScale /= 2;
 	}
 
-	if(CheckAttribute(Weather, "Wind.Speed"))
+	if (CheckAttribute(Weather, "Wind.Speed"))
 	{
 		windSpeed = stf(Weather.Wind.Speed);
 	}
@@ -81,33 +84,47 @@ void FillSkyDir(aref aSky)
 	aref aCurWeather = GetCurrentWeather();
 	string sDir;
 
-	DeleteAttribute(aSky,"Dir");
-	if( iBlendWeatherNum < 0 )
+	DeleteAttribute(aSky, "Dir");
+	if (iBlendWeatherNum < 0)
 	{
 		aSky.Dir.d1 = aCurWeather.Sky.Dir;
 		aSky.Dir = GetHour();
-	} else {
-		for (i=0;i<MAX_WEATHERS;i++)
+	}
+	else
+	{
+		for (i = 0; i < MAX_WEATHERS; i++)
 		{
-			if (!CheckAttribute(&Weathers[i], "Hour")) {continue;}
-			if (CheckAttribute(&Weathers[i], "Skip") && sti(Weathers[i].Skip)==true) {continue;}
-			if (CheckAttribute(&Weathers[i], "Storm")&& sti(Weathers[i].Storm)==true) {continue;}
+			if (!CheckAttribute(&Weathers[i], "Hour"))
+			{
+				continue;
+			}
+			if (CheckAttribute(&Weathers[i], "Skip") && sti(Weathers[i].Skip) == true)
+			{
+				continue;
+			}
+			if (CheckAttribute(&Weathers[i], "Storm") && sti(Weathers[i].Storm) == true)
+			{
+				continue;
+			}
 
 			satr = "d" + sti(Weathers[i].Hour.Min);
-			if( satr=="d24" ) {continue;}
+			if (satr == "d24")
+			{
+				continue;
+			}
 
-//navy -->
+			//navy -->
 			sDir = Weathers[i].Sky.Dir;
 			if (CheckAttribute(&WeatherParams, "Rain.ThisDay") && sti(WeatherParams.Rain.ThisDay))
 			{
 				nStart = sti(WeatherParams.Rain.StartTime);
-				nDur = MakeInt(sti(WeatherParams.Rain.Duration)/60 + 0.5);
-				if (sti(Weathers[i].Hour.Min) >= nStart  && sti(Weathers[i].Hour.Max) <= (nStart + nDur))
+				nDur = MakeInt(sti(WeatherParams.Rain.Duration) / 60 + 0.5);
+				if (sti(Weathers[i].Hour.Min) >= nStart && sti(Weathers[i].Hour.Max) <= (nStart + nDur))
 				{
 					sDir = "weather\skies\Storm01\";
 				}
 			}
-//navy <--
+			//navy <--
 			aSky.Dir.(satr) = sDir;
 		}
 		aSky.Dir = GetTime();
@@ -116,11 +133,11 @@ void FillSkyDir(aref aSky)
 
 void MoveSkyToLayers(int iExecuteLayer, int iRealizeLayer)
 {
-	LayerDelObject(EXECUTE,&Sky);
-	LayerDelObject(REALIZE,&Sky);
-	LayerDelObject(SEA_EXECUTE,&Sky);
-	LayerDelObject(SEA_REALIZE,&Sky);
+	LayerDelObject(EXECUTE, &Sky);
+	LayerDelObject(REALIZE, &Sky);
+	LayerDelObject(SEA_EXECUTE, &Sky);
+	LayerDelObject(SEA_REALIZE, &Sky);
 
-	LayerAddObject(iExecuteLayer,&Sky,2);
-    LayerAddObject(iRealizeLayer,&Sky,3);
+	LayerAddObject(iExecuteLayer, &Sky, 2);
+	LayerAddObject(iRealizeLayer, &Sky, 3);
 }

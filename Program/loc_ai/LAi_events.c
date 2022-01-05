@@ -19,17 +19,19 @@ void LAi_CharacterUpdate()
 	//Параметры
 	aref chr = GetEventData();
 	float dltTime = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterUpdate") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterUpdate") == false)
+		return;
 	//Процессируем соответствующий тип
 	string func = chr.chr_ai.type;
-	if(func != "")
+	if (func != "")
 	{
 		func = "LAi_type_" + func + "_CharacterUpdate";
 		call func(chr, dltTime);
 	}
 	//Процессируем соответствующий шаблон
 	func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	func = "LAi_tmpl_" + func + "_CharacterUpdate";
 	call func(chr, dltTime);
 }
@@ -43,12 +45,14 @@ void LAi_CharacterEndTask()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterEndTask") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterEndTask") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Определяем отработавшую задачу
 	bool isProcessed = false;
-	switch(endTask)
+	switch (endTask)
 	{
 	case "Goto point":
 		func = "LAi_tmpl_" + func + "_EndGoToPoint";
@@ -63,10 +67,12 @@ void LAi_CharacterEndTask()
 		isProcessed = true;
 		break;
 	}
-	if(isProcessed != false)
+	if (isProcessed != false)
 	{
 		call func(chr);
-	}else{
+	}
+	else
+	{
 		Trace("LAi_CharacterEndTask -> unknow end task <" + endTask + ">");
 	}
 }
@@ -80,12 +86,14 @@ void LAi_CharacterTaskFailure()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterTaskFailure") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterTaskFailure") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Определяем невыполнившиюся задачу
 	bool isProcessed = false;
-	switch(endTask)
+	switch (endTask)
 	{
 	case "Goto point":
 		func = "LAi_tmpl_" + func + "_FailureGoToPoint";
@@ -108,10 +116,12 @@ void LAi_CharacterTaskFailure()
 		isProcessed = true;
 		break;
 	}
-	if(isProcessed != false)
+	if (isProcessed != false)
 	{
 		call func(chr);
-	}else{
+	}
+	else
+	{
 		Trace("LAi_CharacterTaskFailure -> unknow failure task <" + endTask + ">");
 	}
 }
@@ -123,13 +133,14 @@ void LAi_CharacterBusyPos()
 	float x = GetEventData();
 	float y = GetEventData();
 	float z = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterTaskFailure") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterTaskFailure") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	func = "LAi_tmpl_" + func + "_BusyPos";
 	call func(chr, x, y, z);
 }
-
 
 //==========================================================================================
 //Follow character's events
@@ -140,9 +151,11 @@ void LAi_CharacterFollowGo()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterFollowGo") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterFollowGo") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_FollowGo";
 	call func(chr);
@@ -153,9 +166,11 @@ void LAi_CharacterFollowStay()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterFollowStay") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterFollowStay") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_FollowStay";
 	call func(chr);
@@ -170,9 +185,11 @@ void LAi_CharacterFightGo()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterFightGo") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterFightGo") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_FightGo";
 	call func(chr);
@@ -183,9 +200,11 @@ void LAi_CharacterFightStay()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterFightStay") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterFightStay") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_FightStay";
 	call func(chr);
@@ -275,17 +294,17 @@ void LAi_CharacterAttack()
 			if(attackType == "break" && blckTime > DEFAULT_BLK_THRESH) blockSave = false;
 		}
 	}*/
-	if(isBlocked == true)  // to_do
-    {
-        if(CheckCharacterPerk(attack, "sliding"))
-        {
-            int iRand = rand(100);
-            if(iRand < 20)
-            {
-                isBlocked = false;
-            }
-        }
-    }
+	if (isBlocked == true) // to_do
+	{
+		if (CheckCharacterPerk(attack, "sliding"))
+		{
+			int iRand = rand(100);
+			if (iRand < 20)
+			{
+				isBlocked = false;
+			}
+		}
+	}
 	//Реакция груп на атаку
 	LAi_group_Attack(attack, enemy);
 	//Начисление повреждений
@@ -293,12 +312,12 @@ void LAi_CharacterAttack()
 	//Обновим цель сразу
 	LAi_group_UpdateTargets(enemy);
 	string func = enemy.chr_ai.type;
-	if(func == "") return;
+	if (func == "")
+		return;
 	func = "LAi_type_" + func + "_Attacked";
 	call func(enemy, attack);
 	func = "LAi_type_" + enemy.chr_ai.type + "_CharacterUpdate";
 	call func(enemy, 0.0001);
-
 }
 
 void LAi_CharacterFire()
@@ -306,30 +325,31 @@ void LAi_CharacterFire()
 	string sBullet, sGunPowder;
 	aref attack = GetEventData();
 	aref enemy = GetEventData();
-	float kDist = GetEventData();	//0..1
+	float kDist = GetEventData(); //0..1
 	int isFindedEnemy = GetEventData();
 	//Заряд персонажа
-	if(!CheckAttribute(attack, "chr_ai.charge")) attack.chr_ai.charge = "0";
-	if (attack.chr_ai.sgun == "pistol_grapebok" && stf(attack.chr_ai.charge) < 3) return;
+	if (!CheckAttribute(attack, "chr_ai.charge"))
+		attack.chr_ai.charge = "0";
+	if (attack.chr_ai.sgun == "pistol_grapebok" && stf(attack.chr_ai.charge) < 3)
+		return;
 	float charge = stf(attack.chr_ai.charge) - 1.0;
 	// boal gun bullet убираем пулю после выстрела -->
 	sBullet = LAi_GetCharacterBulletType(attack);
 	TakeItemFromCharacter(attack, sBullet);
 	// boal gun bullet убираем пулю после выстрела <--
 	sGunPowder = LAi_GetCharacterGunpowderType(attack);
-	if(sGunPowder != "")
+	if (sGunPowder != "")
 	{
 		RemoveItems(attack, sGunPowder, 1); // Warship. Забираем порох
 	}
 	if (attack.chr_ai.sgun == "pistol_grapebok")
 	{
-		RemoveItems(attack, sBullet, sti(attack.chr_ai.charge)-1);
-		RemoveItems(attack, sGunPowder, sti(attack.chr_ai.charge)-1);
+		RemoveItems(attack, sBullet, sti(attack.chr_ai.charge) - 1);
+		RemoveItems(attack, sGunPowder, sti(attack.chr_ai.charge) - 1);
 		attack.chr_ai.charge = 0.0;
 		charge = 0.0
-
 	}
-	if(charge <= 0.0)
+	if (charge <= 0.0)
 	{
 		charge = 0.0;
 		attack.chr_ai.chargeprc = "1";
@@ -339,7 +359,7 @@ void LAi_CharacterFire()
 	// boal <--
 	attack.chr_ai.charge = charge;
 	//Если промахнулись, то ничего не делаем
-	if(isFindedEnemy == 0)
+	if (isFindedEnemy == 0)
 	{
 		//здесь можно поднимать тревогу в случае близкого выстрела
 		return;
@@ -350,7 +370,7 @@ void LAi_CharacterFire()
 	aref weapon;
 	Items_FindItem(weaponID, &weapon);
 
-	if(CheckAttribute(attack, "chr_ai.explosion" ) && sti(attack.chr_ai.explosion) > 0)
+	if (CheckAttribute(attack, "chr_ai.explosion") && sti(attack.chr_ai.explosion) > 0)
 	{
 		float x, y, z;
 		GetCharacterPos(enemy, &x, &y, &z);
@@ -358,44 +378,47 @@ void LAi_CharacterFire()
 		PlayStereoSound("Sea Battles\cannon_fire_03.wav");
 	}
 
-	if(CheckAttribute(attack, "chr_ai.multidmg") && sti(attack.chr_ai.multidmg) > 0)
+	if (CheckAttribute(attack, "chr_ai.multidmg") && sti(attack.chr_ai.multidmg) > 0)
 	{
 		int num = FindNearCharacters(enemy, 2.5, -1.0, -1.0, 0.001, false, true);
 		for (int j = 0; j < num; j++)
 		{
 			int idx = -1;
-			if(CheckAttribute(chrFindNearCharacters[j], "index")) idx = sti(chrFindNearCharacters[j].index);
-			if(idx == -1) continue;
+			if (CheckAttribute(chrFindNearCharacters[j], "index"))
+				idx = sti(chrFindNearCharacters[j].index);
+			if (idx == -1)
+				continue;
 			ref findCh;
 			findCh = GetCharacter(idx);
-			if(findCh.chr_ai.group != LAI_GROUP_PLAYER)
+			if (findCh.chr_ai.group != LAI_GROUP_PLAYER)
 			{
-				LAi_ApplyCharacterFireDamage(attack, &Characters[idx], kDist );
+				LAi_ApplyCharacterFireDamage(attack, &Characters[idx], kDist);
 				// Log_Info(Characters[idx].name);
 			}
 
-			if(CheckAttribute(attack, "chr_ai.stun" ) && sti(attack.chr_ai.stun) > 0 && !LAi_IsFightMode(enemy) && !IsMainCharacter(enemy))
+			if (CheckAttribute(attack, "chr_ai.stun") && sti(attack.chr_ai.stun) > 0 && !LAi_IsFightMode(enemy) && !IsMainCharacter(enemy))
 			{
-				if(CheckAttribute(enemy, "cirassId"))
+				if (CheckAttribute(enemy, "cirassId"))
 				{
-					if(sti(attack.chr_ai.Stun_C) > 0)
+					if (sti(attack.chr_ai.Stun_C) > 0)
 					{
 						LAi_Stunned_StunCharacter(enemy, 10, true);
 					}
 				}
 				else
 				{
-					if(sti(attack.chr_ai.Stun_NC) > 0)
+					if (sti(attack.chr_ai.Stun_NC) > 0)
 					{
 						LAi_Stunned_StunCharacter(enemy, 10, true);
 					}
 				}
 			}
 
-			if( CheckAttribute(attack, "chr_ai.selfdmg" ) && sti(attack.chr_ai.selfdmg) > 0 && findCh.id == attack.id && rand(4) == 1)
+			if (CheckAttribute(attack, "chr_ai.selfdmg") && sti(attack.chr_ai.selfdmg) > 0 && findCh.id == attack.id && rand(4) == 1)
 			{
-				LAi_ApplyCharacterDamage( &Characters[idx], 10 + rand(sti(weapon.dmg_min) - 10));
-				if(stf(attack.chr_ai.hp) < 1.0) attack.chr_ai.hp = 1 + makeint(rand(10));
+				LAi_ApplyCharacterDamage(&Characters[idx], 10 + rand(sti(weapon.dmg_min) - 10));
+				if (stf(attack.chr_ai.hp) < 1.0)
+					attack.chr_ai.hp = 1 + makeint(rand(10));
 			}
 		}
 	}
@@ -404,34 +427,37 @@ void LAi_CharacterFire()
 	LAi_group_Attack(attack, enemy);
 	//Начисление повреждений
 	LAi_ApplyCharacterFireDamage(attack, enemy, kDist);
-	if(CheckAttribute(attack, "chr_ai.multidmg") && sti(attack.chr_ai.multidmg) > 0)
+	if (CheckAttribute(attack, "chr_ai.multidmg") && sti(attack.chr_ai.multidmg) > 0)
 	{
-		if(stf(enemy.chr_ai.hp) < 1.0 && enemy.chr_ai.group == LAI_GROUP_PLAYER) enemy.chr_ai.hp = 5;
-		LAi_CheckKillCharacter( enemy );
+		if (stf(enemy.chr_ai.hp) < 1.0 && enemy.chr_ai.group == LAI_GROUP_PLAYER)
+			enemy.chr_ai.hp = 5;
+		LAi_CheckKillCharacter(enemy);
 	}
 
 	//Исполнение типа
 	string func = attack.chr_ai.type;
-	if(func == "") return;
+	if (func == "")
+		return;
 	func = "LAi_type_" + func + "_Fire";
 	call func(attack, enemy, kDist, isFindedEnemy != 0);
 	//Обновим цель сразу
 	LAi_group_UpdateTargets(enemy);
 	func = enemy.chr_ai.type;
-	if(func == "") return;
+	if (func == "")
+		return;
 	func = "LAi_type_" + func + "_Attacked";
 	call func(enemy, attack);
 	func = "LAi_type_" + enemy.chr_ai.type + "_CharacterUpdate";
 	call func(enemy, 0.0001);
 }
 
-
 bool LAi_tmp_return_bool;
 bool LAi_CharacterIsFire()
 {
 	aref chr = GetEventData();
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_IsFire";
 	LAi_tmp_return_bool = call func(chr);
@@ -442,7 +468,8 @@ bool LAi_CharacterIsFight()
 {
 	aref chr = GetEventData();
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_IsFight";
 	LAi_tmp_return_bool = call func(chr);
@@ -458,9 +485,11 @@ void LAi_CharacterEscapeSlide()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterEscapeSlide") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterEscapeSlide") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_EscapeSlide";
 	call func(chr);
@@ -475,9 +504,11 @@ void LAi_CharacterColThreshold()
 	//Параметры
 	string endTask = GetEventData();
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_CharacterColThreshold") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_CharacterColThreshold") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_ColThreshold";
 	call func(chr);
@@ -491,14 +522,15 @@ void LAi_Character_EndAction()
 {
 	//Параметры
 	aref chr = GetEventData();
-	if(LAi_CheckCharacter(chr, "LAi_Character_EndAction") == false) return;
+	if (LAi_CheckCharacter(chr, "LAi_Character_EndAction") == false)
+		return;
 	string func = chr.chr_ai.tmpl;
-	if(func == "") return;
+	if (func == "")
+		return;
 	//Исполнение
 	func = "LAi_tmpl_" + func + "_EndAction";
 	call func(chr);
 }
-
 
 //==========================================================================================
 //Dead event
@@ -508,21 +540,21 @@ void LAi_Character_Dead_Process(aref chr)
 {
 	DialogExit();
 	LAi_CharacterLogoff(chr);
-	if(sti(chr.index) != nMainCharacterIndex)
+	if (sti(chr.index) != nMainCharacterIndex)
 	{
-//navy --> смерть ПГГ
+		//navy --> смерть ПГГ
 		if (CheckAttribute(chr, "PGGAi"))
 		{
 			PGG_CheckDead(chr);
 		}
-//navy <--
+		//navy <--
 		//Подождём, а затем удалим персонажа
 		// boal трупы не убирать
-        if (MOD_DEAD_CLEAR == "On" && !CheckAttribute(chr, "DontClearDead"))
-        {
-            PostEvent("LAi_event_Character_Dead", MOD_DEAD_CLEAR_TIME * 1000, "i", chr);
-        }
-        // убираем совместителя в CharacterDeadProcess
+		if (MOD_DEAD_CLEAR == "On" && !CheckAttribute(chr, "DontClearDead"))
+		{
+			PostEvent("LAi_event_Character_Dead", MOD_DEAD_CLEAR_TIME * 1000, "i", chr);
+		}
+		// убираем совместителя в CharacterDeadProcess
 
 		//Реинкарнируем
 		LAi_GenerateFantomFromMe(chr);
@@ -532,7 +564,7 @@ void LAi_Character_Dead_Process(aref chr)
 	else
 	{
 		//Доигрались...
-		if(!LAi_IsBoardingProcess())
+		if (!LAi_IsBoardingProcess())
 		{
 			if (loadedLocation.type == "town")
 				PostEvent("LAi_event_GameOver", 5000, "s", "town");
@@ -555,7 +587,7 @@ void LAi_Character_Dead_Process(aref chr)
 void LAi_Character_Dead_Event()
 {
 	aref chr = GetEventData();
-	if (IsEntity(chr))  //fix
+	if (IsEntity(chr)) //fix
 	{
 		// boal dead can be searched 14.12.2003 -->
 		Dead_DelLoginedCharacter(chr); // трем
@@ -571,8 +603,6 @@ void LAi_GameOver()
 	GameOver(str);
 }
 
-
-
 //==========================================================================================
 //Internal events
 //==========================================================================================
@@ -586,7 +616,6 @@ void LAi_Character_TemplateComplite(aref chr, string tmplName)
 
 	int index = sti(chr.index);
 	PostEvent("LAi_event_Character_TemplateComplite", 1, "ls", index, tmplName);
-
 }
 
 #event_handler("LAi_event_Character_TemplateComplite", "LAi_Character_TemplateComplite_Event");
@@ -597,12 +626,12 @@ void LAi_Character_TemplateComplite_Event()
 	ref chr = &Characters[index];
 	// boal fix -->
 	string func = "";
-	if ( CheckAttribute(chr, "chr_ai.type"))
+	if (CheckAttribute(chr, "chr_ai.type"))
 	{
-	    func = chr.chr_ai.type;
+		func = chr.chr_ai.type;
 	}
 	// boal fix <--
-	if(func != "")
+	if (func != "")
 	{
 		func = "LAi_type_" + func + "_TemplateComplite";
 		call func(chr, tmpl);
@@ -625,20 +654,21 @@ void LAi_Character_FreePos_Event()
 	int index = GetEventData();
 	string group = GetEventData();
 	string locator = GetEventData();
-	for(int i = 0; i < LAi_numloginedcharacters; i++)
+	for (int i = 0; i < LAi_numloginedcharacters; i++)
 	{
 		int idx = LAi_loginedcharacters[i];
-		if(idx >= 0)
+		if (idx >= 0)
 		{
-			if(idx != index)
+			if (idx != index)
 			{
 				float dist;
-				if(GetCharacterDistByLoc(&Characters[idx], group, locator, &dist))
+				if (GetCharacterDistByLoc(&Characters[idx], group, locator, &dist))
 				{
-					if(dist < 0.8)
+					if (dist < 0.8)
 					{
 						string func = Characters[idx].chr_ai.tmpl;
-						if(func == "") return;
+						if (func == "")
+							return;
 						//Исполнение
 						func = "LAi_tmpl_" + func + "_FreePos";
 						call func(&Characters[idx], &Characters[index]);
@@ -649,17 +679,16 @@ void LAi_Character_FreePos_Event()
 	}
 }
 
-
 //------------------------------------------------------------------------------------------
 //Запрос на диалог
 //------------------------------------------------------------------------------------------
 
 void LAi_Character_NeedDialog(aref chr, aref by)
 {
-	if(IsEntity(by))
+	if (IsEntity(by))
 	{
 		string func = chr.chr_ai.type;
-		if(func != "")
+		if (func != "")
 		{
 			func = "LAi_type_" + func + "_NeedDialog";
 			call func(by, chr);
@@ -670,17 +699,18 @@ void LAi_Character_NeedDialog(aref chr, aref by)
 //Запрос на диалог, если возвратить true то в этот момент можно начать диалог
 bool LAi_Character_CanDialog(aref chr, aref by)
 {
-	if(IsEntity(by))
+	if (IsEntity(by))
 	{
 		bool isDisable = false;
-		if(CheckAttribute(chr, "chr_ai.disableDlg"))
+		if (CheckAttribute(chr, "chr_ai.disableDlg"))
 		{
-			if(sti(chr.chr_ai.disableDlg) != 0) isDisable = true;
+			if (sti(chr.chr_ai.disableDlg) != 0)
+				isDisable = true;
 		}
-		if(isDisable == false)
+		if (isDisable == false)
 		{
 			string func = by.chr_ai.type;
-			if(func != "")
+			if (func != "")
 			{
 				func = "LAi_type_" + func + "_CanDialog";
 				return call func(by, chr);
@@ -693,10 +723,10 @@ bool LAi_Character_CanDialog(aref chr, aref by)
 //Начать диалог
 void LAi_Character_StartDialog(aref chr, aref by)
 {
-	if(IsEntity(by))
+	if (IsEntity(by))
 	{
 		string func = by.chr_ai.type;
-		if(func != "")
+		if (func != "")
 		{
 			func = "LAi_type_" + func + "_StartDialog";
 			call func(by, chr);
@@ -707,10 +737,10 @@ void LAi_Character_StartDialog(aref chr, aref by)
 //Закончить диалог
 void LAi_Character_EndDialog(aref chr, aref by)
 {
-	if(IsEntity(by))
+	if (IsEntity(by))
 	{
 		string func = by.chr_ai.type;
-		if(func != "")
+		if (func != "")
 		{
 			func = "LAi_type_" + func + "_EndDialog";
 			call func(by, chr);
@@ -724,31 +754,39 @@ void LAi_CharacterItemAction()
 	string sActionName = GetEventData();
 	int nItemIndex = GetEventData();
 
-	switch(sActionName)
+	switch (sActionName)
 	{
-	case "reset": LAi_UntieItemFromCharacter(chr,nItemIndex); break;
-	case "set": LAi_TieItemToCharacter(chr,nItemIndex); break;
+	case "reset":
+		LAi_UntieItemFromCharacter(chr, nItemIndex);
+		break;
+	case "set":
+		LAi_TieItemToCharacter(chr, nItemIndex);
+		break;
 	}
 }
 void LAi_UntieItemFromCharacter(aref chr, int nItemIndex)
 {
-	if( nItemIndex<0 ) return;
+	if (nItemIndex < 0)
+		return;
 	SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "UntieItem", nItemIndex);
 }
 void LAi_TieItemToCharacter(aref chr, int nItemIndex)
 {
-	if( nItemIndex<0 ) return;
+	if (nItemIndex < 0)
+		return;
 
 	string sModel = "HandsItems\cup";
 	string sLocator = "Saber_hand";
 
-	string sitm = "TiedItems.itm"+nItemIndex;
-	if( CheckAttribute(chr,sitm) )
+	string sitm = "TiedItems.itm" + nItemIndex;
+	if (CheckAttribute(chr, sitm))
 	{
-		if( CheckAttribute(chr,sitm+".model") ) {
+		if (CheckAttribute(chr, sitm + ".model"))
+		{
 			sModel = chr.(sitm).model;
 		}
-		if( CheckAttribute(chr,sitm+".locator") ) {
+		if (CheckAttribute(chr, sitm + ".locator"))
+		{
 			sLocator = chr.(sitm).locator;
 		}
 	}

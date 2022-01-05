@@ -5,7 +5,7 @@ void WhrDeleteTornadoEnvironment()
 	if (isEntity(&Tornado))
 	{
 		DeleteClass(&Tornado);
-		DeleteAttribute(&Tornado,"");
+		DeleteAttribute(&Tornado, "");
 	}
 }
 
@@ -13,13 +13,14 @@ void WhrCreateTornadoEnvironment()
 {
 	aref aCurWeather = GetCurrentWeather();
 
-	DeleteAttribute(&Tornado,"");
+	DeleteAttribute(&Tornado, "");
 
-	if (sti(aCurWeather.Tornado) != true) return;
+	if (sti(aCurWeather.Tornado) != true)
+		return;
 
 	if (!isEntity(&Tornado))
 	{
-		CreateEntity(&Tornado,"Tornado");
+		CreateEntity(&Tornado, "Tornado");
 	}
 
 	Tornado.x = 10000.0;
@@ -29,4 +30,3 @@ void WhrCreateTornadoEnvironment()
 	LayerAddObject(SEA_EXECUTE, &Tornado, 65535);
 	LayerAddObject(SEA_REALIZE, &Tornado, 65535);
 }
-

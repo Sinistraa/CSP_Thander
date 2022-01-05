@@ -1,6 +1,6 @@
-#define MINE_POWDER          200 // 07.07.07 мины
+#define MINE_POWDER 200 // 07.07.07 мины
 
-object	AISeaGoods;
+object AISeaGoods;
 
 void DeleteSeaGoodsEnvironment()
 {
@@ -28,21 +28,31 @@ void AISeaGoods_ShipDead()
 {
 	ref rCharacter = GetCharacter(GetEventData());
 
-	aref aGoods; makearef(aGoods, rCharacter.Ship.Cargo.Goods);
+	aref aGoods;
+	makearef(aGoods, rCharacter.Ship.Cargo.Goods);
 	int iNumGoods;
 	iNumGoods = GetAttributesNum(aGoods); // оптимизация
-	for (int i=0; i<iNumGoods; i++)
+	for (int i = 0; i < iNumGoods; i++)
 	{
 		aref aGood = GetAttributeN(aGoods, i);
-		int	iQuantity = sti(GetAttributeValue(aGood));
-		ref	rGood = GetGoodByID(GetAttributeName(aGood));
+		int iQuantity = sti(GetAttributeValue(aGood));
+		ref rGood = GetGoodByID(GetAttributeName(aGood));
 
-		if (!CheckAttribute(rGood, "Swim")) { continue; }
+		if (!CheckAttribute(rGood, "Swim"))
+		{
+			continue;
+		}
 
 		iQuantity = iQuantity / sti(rGood.Units);
-		if (iQuantity <= 1) { continue; }
+		if (iQuantity <= 1)
+		{
+			continue;
+		}
 
-		if (rand(100) > 95) { continue; }
+		if (rand(100) > 95)
+		{
+			continue;
+		}
 
 		int iSwimQuantity = 0;
 		iSwimQuantity = MakeInt(1 + iQuantity / 3 + rand(MakeInt(iQuantity / 2)));
@@ -66,16 +76,17 @@ void AISeaGoods_ShipDead()
 
 void AISeaGoods_AddGood(ref rCharacter, string sGood, string sModel, float fTime, int iQuantity)
 {
-	if (!bSeaActive) return;
+	if (!bSeaActive)
+		return;
 
 	//Trace("Add good : " + sGood + ", rCharacter.id = " + rCharacter.id + ", iQuantity = " + iQuantity);
 
 	// calculate random position
-		float fAng = stf(rCharacter.Ship.Ang.y) + PI + (frnd() - 0.5) * PI/2;
-		float fDist = stf(rCharacter.Ship.BoxSize.z) / 2.0 + frnd() * 10.0;
-		//float x = (frnd() - 0.5) * 20.0;
-		//float z = (frnd() - 0.5) * 40.0;
-		//RotateAroundY(&x, &z, cos(fAng), sin(fAng));
+	float fAng = stf(rCharacter.Ship.Ang.y) + PI + (frnd() - 0.5) * PI / 2;
+	float fDist = stf(rCharacter.Ship.BoxSize.z) / 2.0 + frnd() * 10.0;
+	//float x = (frnd() - 0.5) * 20.0;
+	//float z = (frnd() - 0.5) * 40.0;
+	//RotateAroundY(&x, &z, cos(fAng), sin(fAng));
 
 	AISeaGoods.Good = sGood;
 	AISeaGoods.Pos.x = stf(rCharacter.Ship.Pos.x) + fDist * sin(fAng);
@@ -90,7 +101,8 @@ void AISeaGoods_AddGood(ref rCharacter, string sGood, string sModel, float fTime
 // ugeen --> выкидываем либо бочку со спецпредметом либо шлюпку с кораблекрушенцем
 void AISeaGoods_AddGood_Special(ref rCharacter, string sGood, string sModel, float fTime, int iQuantity)
 {
-	if (!bSeaActive) return;
+	if (!bSeaActive)
+		return;
 
 	float fAng = stf(pchar.Ship.Ang.y) + PI + (frnd() - 0.5) * PI;
 	float fDist = stf(pchar.Ship.BoxSize.z) / 2.0 + 20.0 + makefloat(rand(30));
@@ -111,7 +123,7 @@ bool AISeaGoods_ShipEatGood()
 	object oRes;
 
 	int iCharacterIndex = GetEventData();
-	int iGoodCharacterIndex = GetEventData();  // с кого товар
+	int iGoodCharacterIndex = GetEventData(); // с кого товар
 	string sGood = GetEventData();
 	int iQuantity = GetEventData();
 
@@ -124,64 +136,64 @@ bool AISeaGoods_ShipEatGood()
 
 	switch (sGood)
 	{
-		case "boat":   //homo 22/06/07 если подобрали шлюпку и ГГ
-			if (iCharacterIndex == sti(pchar.index))
-			{
-				pchar.GenQuest.Survive_In_SeaOfficerIdx = iGoodCharacterIndex;
-	            DoQuestCheckDelay("Survive_In_SeaOfficer", 1.0);
-	            return true;
-			}
-			else
-			{
-				DeleteAttribute(Pchar, "GenQuest.Survive_In_SeaOfficerIdx");
-				return true;
-			}
+	case "boat": //homo 22/06/07 если подобрали шлюпку и ГГ
+		if (iCharacterIndex == sti(pchar.index))
+		{
+			pchar.GenQuest.Survive_In_SeaOfficerIdx = iGoodCharacterIndex;
+			DoQuestCheckDelay("Survive_In_SeaOfficer", 1.0);
+			return true;
+		}
+		else
+		{
+			DeleteAttribute(Pchar, "GenQuest.Survive_In_SeaOfficerIdx");
+			return true;
+		}
 		break;
 
-		case "enemy_boat":   //homo 22/06/07 если подобрали шлюпку
-	        if (iCharacterIndex == sti(pchar.index))
-			{
-				pchar.GenQuest.Survive_In_SeaPrisonerIdx = iGoodCharacterIndex;
-	            DoQuestCheckDelay("Survive_In_SeaPrisoner", 1.0);
-	            return true;
-			}
-			else
-			{
-				return true;
-			}
+	case "enemy_boat": //homo 22/06/07 если подобрали шлюпку
+		if (iCharacterIndex == sti(pchar.index))
+		{
+			pchar.GenQuest.Survive_In_SeaPrisonerIdx = iGoodCharacterIndex;
+			DoQuestCheckDelay("Survive_In_SeaPrisoner", 1.0);
+			return true;
+		}
+		else
+		{
+			return true;
+		}
 		break;
 
-		case "unknown_boat":
-			if (iCharacterIndex == sti(pchar.index))
-			{
-				Log_TestInfo("Подобрали шлюпку с потерпевшим кораблекрушение");
-				pchar.GenQuest.Survive_In_SeaPrisonerIdx = iGoodCharacterIndex;
-				DoQuestCheckDelay("Survive_In_SeaPrisoner", 1.0);
-			}
-			return true;
+	case "unknown_boat":
+		if (iCharacterIndex == sti(pchar.index))
+		{
+			Log_TestInfo("Подобрали шлюпку с потерпевшим кораблекрушение");
+			pchar.GenQuest.Survive_In_SeaPrisonerIdx = iGoodCharacterIndex;
+			DoQuestCheckDelay("Survive_In_SeaPrisoner", 1.0);
+		}
+		return true;
 		break;
-		// мины 07.07.07
-		case "powder1":
-		    MakeMineBoom(iCharacterIndex, iGoodCharacterIndex, 600.0);
-			return true;
-		break;
-
-		case "powder2":
-		    MakeMineBoom(iCharacterIndex, iGoodCharacterIndex, 1000.0);
-			return true;
+	// мины 07.07.07
+	case "powder1":
+		MakeMineBoom(iCharacterIndex, iGoodCharacterIndex, 600.0);
+		return true;
 		break;
 
-		case "powder3":
-		    MakeMineBoom(iCharacterIndex, iGoodCharacterIndex, 1500.0);
-			return true;
+	case "powder2":
+		MakeMineBoom(iCharacterIndex, iGoodCharacterIndex, 1000.0);
+		return true;
 		break;
 
-		case "barrel_treasure":
-			Log_TestInfo("Подобрали бочку с неизвестным содержимым");
-			DoQuestCheckDelay("Get_TreasureBarrel", 1.0);
-			return true;
+	case "powder3":
+		MakeMineBoom(iCharacterIndex, iGoodCharacterIndex, 1500.0);
+		return true;
 		break;
-    }
+
+	case "barrel_treasure":
+		Log_TestInfo("Подобрали бочку с неизвестным содержимым");
+		DoQuestCheckDelay("Get_TreasureBarrel", 1.0);
+		return true;
+		break;
+	}
 
 	if (iGoodCharacterIndex == iCharacterIndex)
 	{
@@ -209,7 +221,7 @@ bool AISeaGoods_ShipEatGood()
 	}
 	*/
 
-	if(iMaxGoodAllow == 0)
+	if (iMaxGoodAllow == 0)
 	{
 		return false;
 	}
@@ -231,7 +243,7 @@ bool AISeaGoods_ShipEatGood()
 
 	if (iCharacterIndex == nMainCharacterIndex)
 	{
-        PlayVoice("INTERFACE\_Gotcha.wav"); // boal
+		PlayVoice("INTERFACE\_Gotcha.wav"); // boal
 		string sGoodQuantity = iQuantity * iGoodWeight;
 		string sShipGotGood = LanguageConvertString(iSeaSectionLang, "Ship_got_good");
 		Event(PARSE_STRING, "aslss", &oRes, sShipGotGood, 2, sGoodQuantity, sGoodName);
@@ -248,21 +260,21 @@ bool AISeaGoods_ShipEatGood()
 // мины boal 07.07.07
 void MakeMineBoom(int iCharacterIndex, int iGoodCharacterIndex, float damg)
 {
-    ref rCharacter = GetCharacter(iCharacterIndex);
+	ref rCharacter = GetCharacter(iCharacterIndex);
 
-    // если ГГ или компаньон пустили бочку и был мир
-    if (isCompanion(GetCharacter(iGoodCharacterIndex)) && GetNationRelation2MainCharacter(sti(rCharacter.nation)) != RELATION_ENEMY)
-    {
-        if (!isCompanion(rCharacter) && !CheckAttribute(rCharacter, "Coastal_Captain")) // по своим можно палить таможня пофиг
-        {
-            Ship_NationAgressive(rCharacter, rCharacter);
-            DoQuestCheckDelay("NationUpdate", 0.7);
-        }
-    }
-    Ship_ApplyHullHitpoints(rCharacter, damg, KILL_BY_BALL, iGoodCharacterIndex);
+	// если ГГ или компаньон пустили бочку и был мир
+	if (isCompanion(GetCharacter(iGoodCharacterIndex)) && GetNationRelation2MainCharacter(sti(rCharacter.nation)) != RELATION_ENEMY)
+	{
+		if (!isCompanion(rCharacter) && !CheckAttribute(rCharacter, "Coastal_Captain")) // по своим можно палить таможня пофиг
+		{
+			Ship_NationAgressive(rCharacter, rCharacter);
+			DoQuestCheckDelay("NationUpdate", 0.7);
+		}
+	}
+	Ship_ApplyHullHitpoints(rCharacter, damg, KILL_BY_BALL, iGoodCharacterIndex);
 
-    if (bBettaTestMode)  // дает вылет :(
-    {
+	if (bBettaTestMode) // дает вылет :(
+	{
 		int iRandStartTime = rand(1000);
 		float fTotalFireTime = Ship_GetTotalFireTime(rCharacter);
 
@@ -275,8 +287,8 @@ void MakeMineBoom(int iCharacterIndex, int iGoodCharacterIndex, float damg)
 
 void SetMineFree(ref xi_refCharacter, int type)
 {
-    AISeaGoods_AddGood(xi_refCharacter, "powder" + type, "barrel", 600.0, 1);
-    PlaySound("Ships\jakor_002.wav");
-    RemoveCharacterGoods(xi_refCharacter, GOOD_POWDER, type * MINE_POWDER);
-    xi_refCharacter.Tmp.SpeedRecall = 0;  // чтоб пересчитались скорость и маневр
+	AISeaGoods_AddGood(xi_refCharacter, "powder" + type, "barrel", 600.0, 1);
+	PlaySound("Ships\jakor_002.wav");
+	RemoveCharacterGoods(xi_refCharacter, GOOD_POWDER, type * MINE_POWDER);
+	xi_refCharacter.Tmp.SpeedRecall = 0; // чтоб пересчитались скорость и маневр
 }

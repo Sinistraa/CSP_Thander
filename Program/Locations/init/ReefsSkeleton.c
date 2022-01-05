@@ -30,13 +30,13 @@ int LocationInitReefs(int n)
 
 	Locations[n].models.always.Waterfall1 = "WaterFall1";
 	Locations[n].models.always.Waterfall1.uvslide.v0 = 0.6;
-    Locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
+	Locations[n].models.always.Waterfall1.uvslide.v1 = 0.0;
 	Locations[n].models.always.Waterfall1.tech = "LocationWaterFall";
 	Locations[n].models.always.Waterfall1.level = 50;
 
 	Locations[n].models.always.Waterfall2 = "WaterFall2";
 	Locations[n].models.always.Waterfall2.uvslide.v0 = 0.3;
-    Locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
+	Locations[n].models.always.Waterfall2.uvslide.v1 = 0.0;
 	Locations[n].models.always.Waterfall2.tech = "LocationWaterFall";
 	Locations[n].models.always.Waterfall2.level = 49;
 	locations[n].alwaysStorm = true; //живем в штормах
@@ -52,10 +52,10 @@ int LocationInitReefs(int n)
 	locations[n].environment.sea = "true";
 	//Reload map
 	Locations[n].reload.l1.name = "reload1_back";
-    Locations[n].reload.l1.go = "Reefs";
-    Locations[n].reload.l1.emerge = "reload_2";
-    Locations[n].reload.l1.autoreload = "0";
-    Locations[n].reload.l1.label = "Sea";
+	Locations[n].reload.l1.go = "Reefs";
+	Locations[n].reload.l1.emerge = "reload_2";
+	Locations[n].reload.l1.autoreload = "0";
+	Locations[n].reload.l1.label = "Sea";
 	Locations[n].locators_radius.reload.reload1_back = 2.5;
 
 	Locations[n].locators_radius.item.splash1 = 1.0;
@@ -75,7 +75,7 @@ int LocationInitReefs(int n)
 	locations[n].image = "loading\outside\DeckWithReefs.tga";
 	//Sound
 	locations[n].type = "DeckWithReefs";
- 	locations[n].islandId = "Reefs";
+	locations[n].islandId = "Reefs";
 	locations[n].DisableEncounters = true;
 	locations[n].onUninhabitedIsland = true;
 	locations[n].Chestgennot = true; // не генерить сундуки
@@ -123,21 +123,21 @@ int LocationInitReefs(int n)
 	locations[n].reload.l2.go = "Reefs_Chapter";
 	locations[n].reload.l2.emerge = "reload2";
 	locations[n].reload.l2.autoreload = "0";
-    locations[n].reload.l2.label = "";
+	locations[n].reload.l2.label = "";
 	locations[n].reload.l2.disable = true;
 
 	// locations[n].DisableOfficers = "1";
 
 	string sloc;
 	int i;
-	for (i=1; i<=95; i++)
+	for (i = 1; i <= 95; i++)
 	{
-		sloc = "fire"+i;
+		sloc = "fire" + i;
 		locations[n].locators_radius.item.(sloc) = 1.0;
 	}
-	for (i=1; i<=4; i++)
+	for (i = 1; i <= 4; i++)
 	{
-		sloc = "incasfire"+i;
+		sloc = "incasfire" + i;
 		locations[n].locators_radius.item.(sloc) = 1.5;
 	}
 	Locations[n].locators_radius.item.item1 = 1.5;
@@ -177,7 +177,7 @@ int LocationInitReefs(int n)
 	locations[n].reload.l1.go = "DeckWithReefs";
 	locations[n].reload.l1.emerge = "reload2_back";
 	locations[n].reload.l1.autoreload = "0";
-    locations[n].reload.l1.label = "DeckWithReefs";
+	locations[n].reload.l1.label = "DeckWithReefs";
 
 	LAi_LocationFightDisable(&locations[n], true);
 
@@ -185,7 +185,7 @@ int LocationInitReefs(int n)
 	// locations[n].reload.l2.go = "FortFrance_town";
 	// locations[n].reload.l2.emerge = "basement1";
 	// locations[n].reload.l2.autoreload = "0";
-    // locations[n].reload.l2.label = "Street";
+	// locations[n].reload.l2.label = "Street";
 
 	n = n + 1;
 

@@ -3,9 +3,9 @@ void ProcessDialogEvent()
 	ref NPChar;
 	aref Link, NextDiag;
 
-	DeleteAttribute(&Dialog,"Links");
+	DeleteAttribute(&Dialog, "Links");
 
-	makeref(NPChar,CharacterRef);
+	makeref(NPChar, CharacterRef);
 	makearef(Link, Dialog.Links);
 	makearef(NextDiag, NPChar.Dialog);
 
@@ -19,36 +19,36 @@ void ProcessDialogEvent()
 	int iSlaves = sti(PChar.BuildingColony.Slaves);
 	int iFood = sti(PChar.BuildingColony.Food);
 
-	switch(Dialog.CurrentNode)
+	switch (Dialog.CurrentNode)
 	{
-		case "First time":
-			dialog.text = "Чем могу быть полезен, господин капитан " + sName + "?";
-			if(PChar.ColonyBuilding.Stage != "2" && PChar.ColonyBuilding.Action != true)
-			{
-				link.l1 = "Пожалуй, я заинтересован в ваших услугах.";
-				link.l1.go = "Building";
-			}
-			link.l2 = "Просто зашёл вас повидать.";
-			link.l2.go = "exit";
-			NextDiag.TempNode = "First time";
+	case "First time":
+		dialog.text = "Чем могу быть полезен, господин капитан " + sName + "?";
+		if (PChar.ColonyBuilding.Stage != "2" && PChar.ColonyBuilding.Action != true)
+		{
+			link.l1 = "Пожалуй, я заинтересован в ваших услугах.";
+			link.l1.go = "Building";
+		}
+		link.l2 = "Просто зашёл вас повидать.";
+		link.l2.go = "exit";
+		NextDiag.TempNode = "First time";
 		break;
 
-		case "Hi1":
-			dialog.text = "Приветствую, капитан! Нуждаетесь в моих услугах?";
-			link.l1 = "Здравствуйте. В каких услугах?";
-			link.l1.go = "Hi";
-			NextDiag.TempNode = "First time";
+	case "Hi1":
+		dialog.text = "Приветствую, капитан! Нуждаетесь в моих услугах?";
+		link.l1 = "Здравствуйте. В каких услугах?";
+		link.l1.go = "Hi";
+		NextDiag.TempNode = "First time";
 		break;
 
-		case "Hi":
-			dialog.text = "Ах, вы наверное не знаете. Я - известный в этом архипелаге архитектор. Я могу начать строительство колонии на одном из необитаемых островов. За моими плечами очень большой опыт, поверьте.";
-			link.l1 = "Вот как? Достаточно интересно.";
-			link.l1.go = "First time";
+	case "Hi":
+		dialog.text = "Ах, вы наверное не знаете. Я - известный в этом архипелаге архитектор. Я могу начать строительство колонии на одном из необитаемых островов. За моими плечами очень большой опыт, поверьте.";
+		link.l1 = "Вот как? Достаточно интересно.";
+		link.l1.go = "First time";
 		break;
 
-		case "Exit":
-			NextDiag.CurrentNode = NextDiag.TempNode;
-			DialogExit();
+	case "Exit":
+		NextDiag.CurrentNode = NextDiag.TempNode;
+		DialogExit();
 		break;
 	}
 }

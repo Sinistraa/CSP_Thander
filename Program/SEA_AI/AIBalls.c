@@ -1,5 +1,5 @@
-object	AIBalls;
-aref	Grapes, Knippels, Balls, Bombs;
+object AIBalls;
+aref Grapes, Knippels, Balls, Bombs;
 
 void DeleteBallsEnvironment()
 {
@@ -29,23 +29,31 @@ void CreateBallsEnvironment()
 	AIBalls.SubTexX = 2;
 	AIBalls.SubTexY = 2;
 
-	makearef(Grapes,AIBalls.Balls.Grapes);
-	makearef(Knippels,AIBalls.Balls.Knippels);
-	makearef(Balls,AIBalls.Balls.Balls);
-	makearef(Bombs,AIBalls.Balls.Bombs);
+	makearef(Grapes, AIBalls.Balls.Grapes);
+	makearef(Knippels, AIBalls.Balls.Knippels);
+	makearef(Balls, AIBalls.Balls.Balls);
+	makearef(Bombs, AIBalls.Balls.Bombs);
 
 	// Bombs
-	Bombs.SubTexIndex = 0;		Bombs.Size = 0.3;		Bombs.GoodIndex = GOOD_BOMBS;
+	Bombs.SubTexIndex = 0;
+	Bombs.Size = 0.3;
+	Bombs.GoodIndex = GOOD_BOMBS;
 	Bombs.Particle = "bomb_smoke";
 
 	// Grapes
-	Grapes.SubTexIndex = 1;		Grapes.Size = 0.2;		Grapes.GoodIndex = GOOD_GRAPES;
+	Grapes.SubTexIndex = 1;
+	Grapes.Size = 0.2;
+	Grapes.GoodIndex = GOOD_GRAPES;
 
 	// Balls
-	Balls.SubTexIndex = 2;		Balls.Size = 0.2;		Balls.GoodIndex = GOOD_BALLS;
+	Balls.SubTexIndex = 2;
+	Balls.Size = 0.2;
+	Balls.GoodIndex = GOOD_BALLS;
 
 	// Knippels
-	Knippels.SubTexIndex = 3;	Knippels.Size = 0.2;	Knippels.GoodIndex = GOOD_KNIPPELS;
+	Knippels.SubTexIndex = 3;
+	Knippels.Size = 0.2;
+	Knippels.GoodIndex = GOOD_KNIPPELS;
 
 	AIBalls.isDone = 1;
 
@@ -74,28 +82,28 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 {
 	int iCannonType = sti(aCharacter.Ship.Cannons.Type);
 	ref rCannon = GetCannonByType(iCannonType);
-	float fCannonHeightMultiply = stf(rCannon.HeightMultiply)-(0.02*GetCharacterSPECIALSimple(aCharacter, SPECIAL_P));
+	float fCannonHeightMultiply = stf(rCannon.HeightMultiply) - (0.02 * GetCharacterSPECIALSimple(aCharacter, SPECIAL_P));
 
 	EntityUpdate(0);
 	AIBalls.CannonType = iCannonType;
 	AIBalls.x = fX;
 	AIBalls.y = fY;
 	AIBalls.z = fZ;
-	AIBalls.CharacterIndex    = aCharacter.Index;
+	AIBalls.CharacterIndex = aCharacter.Index;
 	AIBalls.Type = Goods[sti(aCharacter.Ship.Cannons.Charge.Type)].Name;
-	AIBalls.HeightMultiply    = fCannonHeightMultiply;
-	AIBalls.SizeMultiply      = rCannon.SizeMultiply;
+	AIBalls.HeightMultiply = fCannonHeightMultiply;
+	AIBalls.SizeMultiply = rCannon.SizeMultiply;
 	AIBalls.TimeSpeedMultiply = rCannon.TimeSpeedMultiply;
-	AIBalls.MaxFireDistance   = fMaxFireDistance;
+	AIBalls.MaxFireDistance = fMaxFireDistance;
 
 	float fTempDispersionY = Degree2Radian(5.0); // LEO: Важные параметры разброса снарядов - (15.0)
 	float fTempDispersionX = Degree2Radian(5.0); // (5.0)
 
 	//float fDamage2Cannons = 100.0;
 
-    float fAccuracy = 1.2 - stf(aCharacter.TmpSkill.Accuracy);
+	float fAccuracy = 1.2 - stf(aCharacter.TmpSkill.Accuracy);
 
-	float fCannons = stf(aCharacter.TmpSkill.Cannons)*10;
+	float fCannons = stf(aCharacter.TmpSkill.Cannons) * 10;
 
 	fCannons = 15.0 + MOD_SKILL_ENEMY_RATE - fCannons;
 
@@ -103,8 +111,8 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	{
 		if (fCannons > rand(100) && !IsEquipCharacterByArtefact(aCharacter, "talisman3"))
 		{
-            fCannons = (rand(4) + 2.0*(1.65 - stf(aCharacter.TmpSkill.Cannons))) * 10;
-			SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, aCharacter, fCannons, fx, fy, fz);  // fDamage2Cannons  там много делителей, потому много
+			fCannons = (rand(4) + 2.0 * (1.65 - stf(aCharacter.TmpSkill.Cannons))) * 10;
+			SendMessage(&AISea, "laffff", AI_MESSAGE_CANNONS_BOOM_CHECK, aCharacter, fCannons, fx, fy, fz); // fDamage2Cannons  там много делителей, потому много
 		}
 	}
 
@@ -119,12 +127,12 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 	EntityUpdate(1);
 	AIBalls.Add = "";
 
-	string sParticleName = "cancloud_fire";		// if (sti(aCharacter.ship.type) < SHIP_CORVETTE)
+	string sParticleName = "cancloud_fire"; // if (sti(aCharacter.ship.type) < SHIP_CORVETTE)
 
 	if (iCannonType >= CANNON_TYPE_CANNON_LBS48)
-    {
-        sParticleName = "Bombard";
-    }
+	{
+		sParticleName = "Bombard";
+	}
 	else
 	{
 		if (iCannonType >= CANNON_TYPE_CANNON_LBS24)
@@ -151,8 +159,8 @@ void Ball_AddBall(aref aCharacter, float fX, float fY, float fZ, float fSpeedV0,
 
 void Ball_WaterHitEvent()
 {
-	int		iCharacterIndex;
-	float	x, y, z, vx, vy, vz;
+	int iCharacterIndex;
+	float x, y, z, vx, vy, vz;
 
 	iCharacterIndex = GetEventData();
 	x = GetEventData();
@@ -165,9 +173,9 @@ void Ball_WaterHitEvent()
 		//Missing splash_big.xps
 		ref rCannon = GetCannonByType(nBallType);
 		if (CheckAttribute(rCannon, "BigBall") && sti(rCannon.BigBall))
-            CreateParticleSystem("splash_big", X, Y, Z, 0.0, 0.0, 0.0, 5);
+			CreateParticleSystem("splash_big", X, Y, Z, 0.0, 0.0, 0.0, 5);
 		else
-            CreateParticleSystem("splash", X, Y, Z, 0.0, 0.0, 0.0, 5);
+			CreateParticleSystem("splash", X, Y, Z, 0.0, 0.0, 0.0, 5);
 	}
 	else
 	{
@@ -179,8 +187,8 @@ void Ball_WaterHitEvent()
 
 void Ball_FortHit()
 {
-	int		iCharacterIndex;
-	float	x, y, z;
+	int iCharacterIndex;
+	float x, y, z;
 
 	iCharacterIndex = GetEventData();
 
@@ -188,14 +196,15 @@ void Ball_FortHit()
 	y = GetEventData();
 	z = GetEventData();
 
-	if (rand(4) == 1) CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0); // boal fix
+	if (rand(4) == 1)
+		CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0); // boal fix
 	SendMessage(&AIFort, "llfff", AI_MESSAGE_FORT_HIT, iCharacterIndex, x, y, z);
 }
 
 void Ball_IslandHit()
 {
-	int		iCharacterIndex;
-	float	x, y, z;
+	int iCharacterIndex;
+	float x, y, z;
 
 	iCharacterIndex = GetEventData();
 
@@ -203,7 +212,8 @@ void Ball_IslandHit()
 	y = GetEventData();
 	z = GetEventData();
 
-	if (rand(2) == 1) CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0); // boal fix
+	if (rand(2) == 1)
+		CreateParticleSystem("blast", x, y, z, 0.0, 0.0, 0.0, 0); // boal fix
 
 	//Ship_SetLightsOff(&Characters[1], 15.0, true, true, false);
 }

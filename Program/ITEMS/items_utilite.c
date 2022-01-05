@@ -2,12 +2,12 @@ int FindFoodFromChr(ref chref, ref arFind, int startIdx)
 {
 	int i;
 	aref arItm;
-	for(i=startIdx; i<ITEMS_QUANTITY; i++)
+	for (i = startIdx; i < ITEMS_QUANTITY; i++)
 	{
-		if (i!= -1)
+		if (i != -1)
 		{
-			makearef(arItm,Items[i]);
-			if( CheckAttribute(arItm,"Food") && GetCharacterItem(chref,Items[i].id)>0 )
+			makearef(arItm, Items[i]);
+			if (CheckAttribute(arItm, "Food") && GetCharacterItem(chref, Items[i].id) > 0)
 			{
 				arFind = arItm;
 				return i;
@@ -20,16 +20,16 @@ int FindFoodFromChr(ref chref, ref arFind, int startIdx)
 bool EnableFoodUsing(ref mc, aref arItm)
 {
 	bool bEnableUse = false;
-	if(CheckAttribute(arItm,"Food.energy") && !CheckAttribute(mc,"chr_ai.noeat"))
+	if (CheckAttribute(arItm, "Food.energy") && !CheckAttribute(mc, "chr_ai.noeat"))
 	{
-		if(LAi_GetCharacterEnergy(mc) < LAi_GetCharacterMaxEnergy(mc))
+		if (LAi_GetCharacterEnergy(mc) < LAi_GetCharacterMaxEnergy(mc))
 		{
 			return true;
 		}
 	}
-	if(CheckAttribute(mc,"chr_ai.noeat"))
+	if (CheckAttribute(mc, "chr_ai.noeat"))
 	{
-		if(sti(mc.index)==GetMainCharacterIndex() && !CheckAttribute(pchar, "autofood") && !CheckAttribute(pchar, "query_delay"))
+		if (sti(mc.index) == GetMainCharacterIndex() && !CheckAttribute(pchar, "autofood") && !CheckAttribute(pchar, "query_delay"))
 		{
 			if (CheckAttribute(pchar, "pressedFoodButton"))
 			{
@@ -40,21 +40,18 @@ bool EnableFoodUsing(ref mc, aref arItm)
 					pchar.foodquery = 1;
 					pchar.query_delay = 0.1;
 					Log_SetStringToLog("Потребление еды поставлено в очередь.");
-					Log_SetStringToLog("Очередь:"+pchar.foodquery);
+					Log_SetStringToLog("Очередь:" + pchar.foodquery);
 				}
 				else
 				{
-					pchar.foodquery = sti(pchar.foodquery)+1;
+					pchar.foodquery = sti(pchar.foodquery) + 1;
 					pchar.query_delay = 0.1;
 					Log_SetStringToLog("Потребление еды поставлено в очередь.");
-					Log_SetStringToLog("Очередь:"+pchar.foodquery);
+					Log_SetStringToLog("Очередь:" + pchar.foodquery);
 				}
 			}
-
 		}
 	}
-
-
 
 	return false;
 }
@@ -62,72 +59,85 @@ bool EnableFoodUsing(ref mc, aref arItm)
 void DoCharacterUsedFood(ref chref, string itmID)
 {
 	aref arItm;
-	if( Items_FindItem(itmID,&arItm)<0 ) return;
-	TakeItemFromCharacter(chref,itmID);
+	if (Items_FindItem(itmID, &arItm) < 0)
+		return;
+	TakeItemFromCharacter(chref, itmID);
 
-	if( CheckAttribute(arItm,"Food.energy") )
+	if (CheckAttribute(arItm, "Food.energy"))
 	{
 		chref.chr_ai.noeat = 10.0;
-		LAi_UseEnergyBottle(chref,stf(arItm.Food.energy));
-		if(sti(chref.index)==GetMainCharacterIndex())
+		LAi_UseEnergyBottle(chref, stf(arItm.Food.energy));
+		if (sti(chref.index) == GetMainCharacterIndex())
 		{
 			Log_SetStringToLog(XI_ConvertString("Energy Up"));
-			PlaySound("interface\_Hrust_"+rand(3)+".wav");
+			PlaySound("interface\_Hrust_" + rand(3) + ".wav");
 			pchar.questTemp.foodcount = sti(pchar.questTemp.foodcount) + 1;
 			// Открываем достижения
-			if(sti(pchar.questTemp.foodcount) >= 50) UnlockAchievement("AchFood", 1);
-			if(sti(pchar.questTemp.foodcount) >= 150) UnlockAchievement("AchFood", 2);
-			if(sti(pchar.questTemp.foodcount) >= 300) UnlockAchievement("AchFood", 3);
+			if (sti(pchar.questTemp.foodcount) >= 50)
+				UnlockAchievement("AchFood", 1);
+			if (sti(pchar.questTemp.foodcount) >= 150)
+				UnlockAchievement("AchFood", 2);
+			if (sti(pchar.questTemp.foodcount) >= 300)
+				UnlockAchievement("AchFood", 3);
 		}
 	}
 }
 bool IsQuestUsedItem(string itmID)
 {
 	aref arItm;
-	if( Items_FindItem(itmID,&arItm)<0 ) return false;
-	if( CheckAttribute(arItm,"price") && sti(arItm.price)>0 ) return false;
+	if (Items_FindItem(itmID, &arItm) < 0)
+		return false;
+	if (CheckAttribute(arItm, "price") && sti(arItm.price) > 0)
+		return false;
 	return true;
 }
 
 void DoCharacterUsedItem(ref chref, string itmID)
 {
 	aref arItm;
-	if( Items_FindItem(itmID,&arItm)<0 ) return;
-	TakeItemFromCharacter(chref,itmID);
+	if (Items_FindItem(itmID, &arItm) < 0)
+		return;
+	TakeItemFromCharacter(chref, itmID);
 
-	 // Warship 13.06.09 fix - если только отравлен, а жизни полные (а такое бывает), то нечего и строку в лог выводить об прибавлении жизней
-	if(CheckAttribute(arItm,"potion.health") && LAi_GetCharacterHP(chref) < LAi_GetCharacterMaxHP(chref))
+	// Warship 13.06.09 fix - если только отравлен, а жизни полные (а такое бывает), то нечего и строку в лог выводить об прибавлении жизней
+	if (CheckAttribute(arItm, "potion.health") && LAi_GetCharacterHP(chref) < LAi_GetCharacterMaxHP(chref))
 	{
-		LAi_UseHealthBottle(chref,stf(arItm.potion.health));
-		if(sti(chref.index)==GetMainCharacterIndex()) {
-			Log_SetStringToLog( XI_ConvertString("Health Up")+" ("+GetConvertStr(arItm.name, "ItemsDescribe.txt")+")");
-			PlaySound("interface\_Glotok_"+rand(3)+".wav");
+		LAi_UseHealthBottle(chref, stf(arItm.potion.health));
+		if (sti(chref.index) == GetMainCharacterIndex())
+		{
+			Log_SetStringToLog(XI_ConvertString("Health Up") + " (" + GetConvertStr(arItm.name, "ItemsDescribe.txt") + ")");
+			PlaySound("interface\_Glotok_" + rand(3) + ".wav");
 		}
 		// boal
-		if( CheckAttribute(arItm,"potion.health.speed") )
+		if (CheckAttribute(arItm, "potion.health.speed"))
 		{
 			LAi_UseHealthBottleSpeed(chref, stf(arItm.potion.health.speed));
 		}
-		if(sti(chref.index)==GetMainCharacterIndex())
+		if (sti(chref.index) == GetMainCharacterIndex())
 		{
 			pchar.questTemp.healcount = sti(pchar.questTemp.healcount) + 1;
 
 			// Открываем достижения
-			if(sti(pchar.questTemp.healcount) >= 50) UnlockAchievement("heal_bottles", 1);
-			if(sti(pchar.questTemp.healcount) >= 100) UnlockAchievement("heal_bottles", 2);
-			if(sti(pchar.questTemp.healcount) >= 200) UnlockAchievement("heal_bottles", 3);
+			if (sti(pchar.questTemp.healcount) >= 50)
+				UnlockAchievement("heal_bottles", 1);
+			if (sti(pchar.questTemp.healcount) >= 100)
+				UnlockAchievement("heal_bottles", 2);
+			if (sti(pchar.questTemp.healcount) >= 200)
+				UnlockAchievement("heal_bottles", 3);
 		}
 	}
 
 	// Warship 13.06.09 fix - если не отравлен, то нечего и строку в лог выводить
-	if(CheckAttribute(arItm,"potion.antidote") && LAi_IsPoison(chref))
+	if (CheckAttribute(arItm, "potion.antidote") && LAi_IsPoison(chref))
 	{
 		LAi_UseAtidoteBottle(chref);
-		if(sti(chref.index)==GetMainCharacterIndex()) {
-			Log_SetStringToLog( XI_ConvertString("You are cured from poison") );
+		if (sti(chref.index) == GetMainCharacterIndex())
+		{
+			Log_SetStringToLog(XI_ConvertString("You are cured from poison"));
 		}
-		else{
-			Log_SetStringToLog(GetFullName(chref) + XI_ConvertString("are cured from poison") );
+		else
+		{
+			Log_SetStringToLog(GetFullName(chref) + XI_ConvertString("are cured from poison"));
 		}
 	}
 
@@ -135,13 +145,13 @@ void DoCharacterUsedItem(ref chref, string itmID)
 	if (CheckAttribute(arItm, "potion.drunk"))
 	{
 		LAi_AlcoholSetDrunk(chref, stf(arItm.potion.drunk), stf(arItm.potion.drunk.time));
-		if(sti(chref.index)==GetMainCharacterIndex())
+		if (sti(chref.index) == GetMainCharacterIndex())
 		{
-			Log_SetStringToLog( XI_ConvertString("You're get drunk") );
+			Log_SetStringToLog(XI_ConvertString("You're get drunk"));
 		}
 	}
 	//<--
-	if( CheckAttribute(arItm,"potion.sound") )
+	if (CheckAttribute(arItm, "potion.sound"))
 	{
 		PlaySound(arItm.potion.sound);
 	}
@@ -152,21 +162,23 @@ float MinHealthPotionForCharacter(ref chref)
 	float ftmp;
 	bool isFinded = false;
 
-	for(int n=0; n<ITEMS_QUANTITY; n++)
+	for (int n = 0; n < ITEMS_QUANTITY; n++)
 	{
-		if( CheckAttribute(&Items[n],"potion") )
+		if (CheckAttribute(&Items[n], "potion"))
 		{
-			if(CheckAttribute(&Items[n],"potion.health"))
+			if (CheckAttribute(&Items[n], "potion.health"))
 			{
-				if( GetCharacterItem(chref,Items[n].id)>0 )
+				if (GetCharacterItem(chref, Items[n].id) > 0)
 				{
-					if(isFinded)
+					if (isFinded)
 					{
-						if( stf(Items[n].potion.health)<ftmp )
+						if (stf(Items[n].potion.health) < ftmp)
 						{
 							ftmp = stf(Items[n].potion.health);
 						}
-					}else{
+					}
+					else
+					{
 						ftmp = stf(Items[n].potion.health);
 						isFinded = true;
 					}
@@ -174,28 +186,35 @@ float MinHealthPotionForCharacter(ref chref)
 			}
 		}
 	}
-	if(!isFinded) return 0.0;
+	if (!isFinded)
+		return 0.0;
 	return ftmp;
 }
 
-string FindHealthForCharacter(ref chref,float fHealth)
+string FindHealthForCharacter(ref chref, float fHealth)
 {
 	string sret = "";
 	float fdelta = fHealth + 100.0;
 	float ftmp;
 
-	for(int n=0; n<ITEMS_QUANTITY; n++)
+	for (int n = 0; n < ITEMS_QUANTITY; n++)
 	{
-		if( CheckAttribute(&Items[n],"potion") )
+		if (CheckAttribute(&Items[n], "potion"))
 		{
-			if( CheckAttribute(&Items[n],"potion.health") )
+			if (CheckAttribute(&Items[n], "potion.health"))
 			{
-				if( GetCharacterItem(chref,Items[n].id)>0 )
+				if (GetCharacterItem(chref, Items[n].id) > 0)
 				{
 					ftmp = stf(Items[n].potion.health);
-					if( ftmp<fHealth )	{ftmp = fHealth - ftmp;}
-					else	{ftmp = ftmp - fHealth;}
-					if(ftmp<fdelta)
+					if (ftmp < fHealth)
+					{
+						ftmp = fHealth - ftmp;
+					}
+					else
+					{
+						ftmp = ftmp - fHealth;
+					}
+					if (ftmp < fdelta)
 					{
 						fdelta = ftmp;
 						sret = Items[n].id;
@@ -208,24 +227,30 @@ string FindHealthForCharacter(ref chref,float fHealth)
 	return sret;
 }
 
-string FindFoodForCharacter(ref chref,float fHealth)
+string FindFoodForCharacter(ref chref, float fHealth)
 {
 	string sret = "";
 	float fdelta = fHealth + 100.0;
 	float ftmp;
 
-	for(int n=0; n<ITEMS_QUANTITY; n++)
+	for (int n = 0; n < ITEMS_QUANTITY; n++)
 	{
-		if( CheckAttribute(&Items[n],"Food") )
+		if (CheckAttribute(&Items[n], "Food"))
 		{
-			if( CheckAttribute(&Items[n],"Food.energy") )
+			if (CheckAttribute(&Items[n], "Food.energy"))
 			{
-				if( GetCharacterItem(chref,Items[n].id)>0 )
+				if (GetCharacterItem(chref, Items[n].id) > 0)
 				{
 					ftmp = stf(Items[n].Food.energy);
-					if( ftmp<fHealth )	{ftmp = fHealth - ftmp;}
-					else	{ftmp = ftmp - fHealth;}
-					if(ftmp<fdelta)
+					if (ftmp < fHealth)
+					{
+						ftmp = fHealth - ftmp;
+					}
+					else
+					{
+						ftmp = ftmp - fHealth;
+					}
+					if (ftmp < fdelta)
 					{
 						fdelta = ftmp;
 						sret = Items[n].id;
@@ -240,10 +265,10 @@ int FindPotionFromChr(ref chref, ref arFind, int startIdx)
 {
 	int i;
 	aref arItm;
-	for(i=startIdx; i<ITEMS_QUANTITY; i++)
+	for (i = startIdx; i < ITEMS_QUANTITY; i++)
 	{
-		makearef(arItm,Items[i]);
-		if( CheckAttribute(arItm,"potion") && GetCharacterItem(chref,Items[i].id)>0 )
+		makearef(arItm, Items[i]);
+		if (CheckAttribute(arItm, "potion") && GetCharacterItem(chref, Items[i].id) > 0)
 		{
 			arFind = arItm;
 			return i;
@@ -261,49 +286,48 @@ int UseBestPotion(ref chref, bool needAntidote)
 	bool potionTooGood = false;
 	bool bValidPot;
 	int reqHealAmt = LAi_GetCharacterMaxHP(chref) - LAi_GetCharacterHP(chref);
-	reqHealAmt = makeint(MakeFloat(reqHealAmt) * 1.2)
-	if (reqHealAmt <=0 && !needAntidote)
+	reqHealAmt = makeint(MakeFloat(reqHealAmt) * 1.2) if (reqHealAmt <= 0 && !needAntidote)
 	{
 		return -1;
 	}
 
 	aref arItm;
-	for(i=1; i<ITEMS_QUANTITY; i++)
+	for (i = 1; i < ITEMS_QUANTITY; i++)
 	{
-		makearef(arItm,Items[i]);
+		makearef(arItm, Items[i]);
 		bValidPot = false;
 
-		if (CheckAttribute(pchar,"usepotionbest"))
+		if (CheckAttribute(pchar, "usepotionbest"))
 		{
-			if (!needAntidote && CheckAttribute(arItm,"potion.health"))
+			if (!needAntidote && CheckAttribute(arItm, "potion.health"))
 			{
 				bValidPot = true;
 			}
-			if (needAntidote && CheckAttribute(arItm,"potion.antidote"))
+			if (needAntidote && CheckAttribute(arItm, "potion.antidote"))
 			{
 				bValidPot = true;
 			}
 		}
 		else
 		{
-			if (!needAntidote && CheckAttribute(arItm,"potion.health") && !CheckAttribute(arItm,"potion.antidote"))
+			if (!needAntidote && CheckAttribute(arItm, "potion.health") && !CheckAttribute(arItm, "potion.antidote"))
 			{
 				bValidPot = true;
 			}
 			else
 			{
-				if (needAntidote && CheckAttribute(arItm,"potion.antidote"))
+				if (needAntidote && CheckAttribute(arItm, "potion.antidote"))
 				{
 					bValidPot = true;
 				}
 			}
 		}
 
-		if( bValidPot && (GetCharacterItem(chref,arItm.id) > 0))
+		if (bValidPot && (GetCharacterItem(chref, arItm.id) > 0))
 		{
-			if (CheckAttribute(pchar,"usepotionbest"))
+			if (CheckAttribute(pchar, "usepotionbest"))
 			{
-				if (CheckAttribute(arItm,"potion.health"))
+				if (CheckAttribute(arItm, "potion.health"))
 					newPotionHealAmt = arItm.potion.health;
 				else
 					newPotionHealAmt = 0;
@@ -316,7 +340,7 @@ int UseBestPotion(ref chref, bool needAntidote)
 			}
 			else
 			{
-				if (CheckAttribute(arItm,"potion.health"))
+				if (CheckAttribute(arItm, "potion.health"))
 					newPotionHealAmt = arItm.potion.health;
 				else
 					newPotionHealAmt = 0;
@@ -353,7 +377,8 @@ int UseBestPotion(ref chref, bool needAntidote)
 		DoCharacterUsedItem(pchar, Items[curPotionID].id);
 		return 1;
 	}
-	else return 0;
+	else
+		return 0;
 }
 
 int FindQuestUsableItem(ref arFind, int startIdx)
@@ -362,13 +387,14 @@ int FindQuestUsableItem(ref arFind, int startIdx)
 	aref arItm;
 	bool bSeaInterface = bSeaActive && !bAbordageStarted;
 
-	if(startIdx<0) startIdx=0;
-	for(i=startIdx; i<ITEMS_QUANTITY; i++)
+	if (startIdx < 0)
+		startIdx = 0;
+	for (i = startIdx; i < ITEMS_QUANTITY; i++)
 	{
-		makearef(arItm,Items[i]);
-		if( CheckAttribute(arItm,"quest") && CheckAttribute(arItm,"quest.tex"))// boal 16.03.2004
+		makearef(arItm, Items[i]);
+		if (CheckAttribute(arItm, "quest") && CheckAttribute(arItm, "quest.tex")) // boal 16.03.2004
 		{
-			if( bSeaInterface && arItm.quest.tex=="QuestCommands" )
+			if (bSeaInterface && arItm.quest.tex == "QuestCommands")
 			{
 				arFind = arItm;
 				return i;
@@ -381,8 +407,10 @@ int FindQuestUsableItem(ref arFind, int startIdx)
 
 bool EnablePotionUsing(ref mc, aref arItm)
 {
-	if( CheckAttribute(arItm,"potion.health") ) {
-		if( LAi_GetCharacterHP(mc)<LAi_GetCharacterMaxHP(mc) ) {
+	if (CheckAttribute(arItm, "potion.health"))
+	{
+		if (LAi_GetCharacterHP(mc) < LAi_GetCharacterMaxHP(mc))
+		{
 			return true;
 		}
 	}
@@ -393,7 +421,7 @@ bool EnablePotionUsing(ref mc, aref arItm)
 // Warship 13.06.09 Для противоядий
 bool EnableAntidoteUsing(ref _char, aref _item)
 {
-	if(CheckAttribute(_item, "potion.antidote") && LAi_IsPoison(_char) && CheckCharacterItem(_char, _item.Id))
+	if (CheckAttribute(_item, "potion.antidote") && LAi_IsPoison(_char) && CheckCharacterItem(_char, _item.Id))
 	{
 		return true;
 	}
@@ -406,11 +434,11 @@ bool FindCharacterAntidote(ref _char, ref _itemId)
 	int itemIndex;
 	ref item;
 
-	for(itemIndex = 0; itemIndex < ITEMS_QUANTITY; itemIndex++)
+	for (itemIndex = 0; itemIndex < ITEMS_QUANTITY; itemIndex++)
 	{
 		item = &Items[itemIndex];
 
-		if(EnableAntidoteUsing(_char, item))
+		if (EnableAntidoteUsing(_char, item))
 		{
 			_itemID = item.ID;
 			return true;
@@ -422,7 +450,7 @@ bool FindCharacterAntidote(ref _char, ref _itemId)
 
 int FindItem(string sItemID)
 {
-/*
+	/*
 	for(int i = 0; i < TOTAL_ITEMS; i++)
 	{
 		if(CheckAttribute(Items[i], "ID") && Items[i].id == sItemID)
@@ -445,12 +473,12 @@ void GenerateGenerableItems()
 {
 	ref itemRef;
 
-	for(int i = 0; i < ITEMS_QUANTITY; i++)
+	for (int i = 0; i < ITEMS_QUANTITY; i++)
 	{
 		itemRef = &Items[i];
-		if(CheckAttribute(itemRef, "id") && CheckAttribute(itemRef, "Generation.Qty") && !CheckAttribute(itemRef, "GeneratedAll"))
+		if (CheckAttribute(itemRef, "id") && CheckAttribute(itemRef, "Generation.Qty") && !CheckAttribute(itemRef, "GeneratedAll"))
 		{
-			for(int j = 0; j < sti(itemRef.Generation.Qty); j++)
+			for (int j = 0; j < sti(itemRef.Generation.Qty); j++)
 			{
 				GenerateItem(itemRef.id);
 			}
@@ -466,21 +494,21 @@ string GetGeneratedItem(string _itemId)
 	int itemsQty = 0;
 	String generatedItems[TOTAL_ITEMS];
 
-	if(!IsGenerableItem(_itemId)) // Генерящийся ли предмет
+	if (!IsGenerableItem(_itemId)) // Генерящийся ли предмет
 	{
 		return _itemID;
 	}
 
-	for(int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
+	for (int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
 	{
-		if(CheckAttribute(&Items[i], "DefItemID") && Items[i].DefItemID == _itemId)
+		if (CheckAttribute(&Items[i], "DefItemID") && Items[i].DefItemID == _itemId)
 		{
 			generatedItems[itemsQty] = Items[i].ID;
 			itemsQty++;
 		}
 	}
 
-	if(itemsQty == 0)
+	if (itemsQty == 0)
 	{
 		return _itemId; // Ничего не нашлось
 	}
@@ -494,21 +522,21 @@ string GetGeneratedItemNum(string _itemId, int Num)
 	int itemsQty = 0;
 	String generatedItems[TOTAL_ITEMS];
 
-	if(!IsGenerableItem(_itemId)) // Генерящийся ли предмет
+	if (!IsGenerableItem(_itemId)) // Генерящийся ли предмет
 	{
 		return _itemID;
 	}
 
-	for(int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
+	for (int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
 	{
-		if(CheckAttribute(&Items[i], "DefItemID") && Items[i].DefItemID == _itemId)
+		if (CheckAttribute(&Items[i], "DefItemID") && Items[i].DefItemID == _itemId)
 		{
 			generatedItems[itemsQty] = Items[i].ID;
 			itemsQty++;
 		}
 	}
 
-	if(itemsQty == 0 || itemsQty < Num)
+	if (itemsQty == 0 || itemsQty < Num)
 	{
 		return _itemId; // Ничего не нашлось
 	}
@@ -521,21 +549,21 @@ void SetItemPrice(String _itemId)
 	int priceMod;
 	ref item = &Items[GetItemIndex(_itemId)];
 
-	switch(item.FencingType)
+	switch (item.FencingType)
 	{
-		case "FencingLight": // Легкое оружие
-			priceMod = 4;
+	case "FencingLight": // Легкое оружие
+		priceMod = 4;
 		break;
 
-		case "Fencing": // Среднее оружие
-			priceMod = 5;
+	case "Fencing": // Среднее оружие
+		priceMod = 5;
 		break;
 
-		case "FencingHeavy": // Тяжелое оружие
-			priceMod = 7;
+	case "FencingHeavy": // Тяжелое оружие
+		priceMod = 7;
 		break;
 	}
-	if(CheckAttribute(item, "Weight") && stf(item.Weight) > 0.0)
+	if (CheckAttribute(item, "Weight") && stf(item.Weight) > 0.0)
 	{
 		item.price = priceMod * (stf(item.dmg_min) * stf(item.dmg_max)) / stf(item.Weight);
 	}
@@ -551,23 +579,23 @@ String GenerateItem(String _itemId)
 	ref item, realItem;
 	String generatedItems[TOTAL_ITEMS];
 
-	if(!IsGenerableItem(_itemId)) // Генерящийся ли предмет
+	if (!IsGenerableItem(_itemId)) // Генерящийся ли предмет
 	{
 		return _itemID;
 	}
 
-	if(itemIndex == -1) // Нету свободных слотов - вернем случайный существующий
+	if (itemIndex == -1) // Нету свободных слотов - вернем случайный существующий
 	{
-		for(i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
+		for (i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
 		{
-			if(CheckAttribute(&Items[i], "DefItemID") && Items[i].DefItemID == _itemId)
+			if (CheckAttribute(&Items[i], "DefItemID") && Items[i].DefItemID == _itemId)
 			{
 				generatedItems[itemsQty] = Items[i].ID;
 				itemsQty++;
 			}
 		}
 
-		if(itemsQty == 0)
+		if (itemsQty == 0)
 		{
 			return _itemId; // Ничего не нашлось
 		}
@@ -602,31 +630,31 @@ String GenerateItem(String _itemId)
 	realItem.Weight = curWeight;
 
 	// Определяем модификатор цены от типа оружия
-	switch(item.FencingType)
+	switch (item.FencingType)
 	{
-		case "FencingLight": // Легкое оружие
-			priceMod = 4;
+	case "FencingLight": // Легкое оружие
+		priceMod = 4;
 		break;
 
-		case "Fencing": // Среднее оружие
-			priceMod = 5;
+	case "Fencing": // Среднее оружие
+		priceMod = 5;
 		break;
 
-		case "FencingHeavy": // Тяжелое оружие
-			priceMod = 7;
+	case "FencingHeavy": // Тяжелое оружие
+		priceMod = 7;
 		break;
 	}
 
 	// Генерим цену, если нужно
-	if(CheckAttribute(item, "Generation.price"))
+	if (CheckAttribute(item, "Generation.price"))
 	{
 		realItem.price = priceMod * (curMinDmg * curMaxDmg) / curWeight;
 	}
 
 	realItem.ID = _itemId + "_" + itemIndex; // Новый АйДи предмету
-	realItem.Index = itemIndex; // Новый индекс
-	realItem.Generated = true; // Сгенерированный предмет
-	realItem.DefItemID = _itemId; // Запомним АйДи и индекс начального предмета
+	realItem.Index = itemIndex;				 // Новый индекс
+	realItem.Generated = true;				 // Сгенерированный предмет
+	realItem.DefItemID = _itemId;			 // Запомним АйДи и индекс начального предмета
 	realItem.DefItemIndex = defItemIndex;
 
 	return realItem.ID;
@@ -635,9 +663,9 @@ String GenerateItem(String _itemId)
 // Найдем первый пустой слот для предмета
 int FindFirstEmptyItem()
 {
-	for(int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
+	for (int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
 	{
-		if(!CheckAttribute(&Items[i], "ID") || Items[i].ID == "0")
+		if (!CheckAttribute(&Items[i], "ID") || Items[i].ID == "0")
 		{
 			return i;
 		}
@@ -652,17 +680,18 @@ void RefreshGeneratedItems()
 	ref item;
 	int curLastIndex = FindFirstEmptyItem();
 
-	for(int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
+	for (int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
 	{
 		item = &Items[i];
 
-		if(!CheckAttribute(item, "ID")) continue; // Пустой слот
+		if (!CheckAttribute(item, "ID"))
+			continue; // Пустой слот
 
 		RefreshGeneratedItem(item.ID);
 	}
 
 	trace("Произведено удаление пустых предметов");
-	trace("Первый свободный элемент (было/стало) == (" + curLastIndex + "/"+ FindFirstEmptyItem() + ")");
+	trace("Первый свободный элемент (было/стало) == (" + curLastIndex + "/" + FindFirstEmptyItem() + ")");
 }
 
 // Метод рефреша для конкретного предмета. Вернет булево значение - удалился предмет или нет
@@ -673,52 +702,55 @@ bool RefreshGeneratedItem(String _itemID)
 	String curSimpleBox, curPrivateBox;
 	ref reference;
 
-	if(itemIndex == -1) return false;
+	if (itemIndex == -1)
+		return false;
 
-	for(i = 0; i < nLocationsNum; i++)
+	for (i = 0; i < nLocationsNum; i++)
 	{
 		reference = &Locations[i];
 
-		for(j = 1; j < MAX_HANDLED_BOXES; j++)
+		for (j = 1; j < MAX_HANDLED_BOXES; j++)
 		{
 			curSimpleBox = "box" + j;
 			curPrivateBox = "private" + j;
-			if (reference.id == "Caiman_StoreHouse" || reference.id == "Reefs_chapter") break;
+			if (reference.id == "Caiman_StoreHouse" || reference.id == "Reefs_chapter")
+				break;
 
-			if(!CheckAttribute(reference, curSimpleBox) && !CheckAttribute(reference, curPrivateBox)) break;
+			if (!CheckAttribute(reference, curSimpleBox) && !CheckAttribute(reference, curPrivateBox))
+				break;
 
 			// Симпл боксы
-			if(CheckAttribute(reference, curSimpleBox + ".Items." + _itemID))
+			if (CheckAttribute(reference, curSimpleBox + ".Items." + _itemID))
 			{
 				return false;
 			}
 
 			// Приваты
-			if(CheckAttribute(reference, curPrivateBox + ".Items." + _itemID))
+			if (CheckAttribute(reference, curPrivateBox + ".Items." + _itemID))
 			{
 				return false;
 			}
 		}
 	}
 
-	for(i = 0; i < TOTAL_CHARACTERS; i++)
+	for (i = 0; i < TOTAL_CHARACTERS; i++)
 	{
 		reference = &Characters[i];
 
 		// Проверка на торговца, у которого уже можно отобрать предметы
-		if(CheckAttribute(reference, "Merchant") && CheckNPCQuestDate(reference, "Item_date"))
+		if (CheckAttribute(reference, "Merchant") && CheckNPCQuestDate(reference, "Item_date"))
 		{
 			DeleteAttribute(reference, "items");
 			continue;
 		}
 
-		if(CheckAttribute(reference, "Items." + _itemID))
+		if (CheckAttribute(reference, "Items." + _itemID))
 		{
 			return false;
 		}
 	}
 
-//	DeleteAttribute(&Items[itemIndex], ""); // Потрем все аттрибуты
+	//	DeleteAttribute(&Items[itemIndex], ""); // Потрем все аттрибуты
 	return true;
 }
 
@@ -728,14 +760,14 @@ bool IsGenerableItem(String _itemID)
 	int itemIndex = GetItemIndex(_itemID);
 	ref itemRef;
 
-	if(itemIndex == -1)
+	if (itemIndex == -1)
 	{
 		return false;
 	}
 
 	itemRef = &Items[itemIndex];
 
-	if(CheckAttribute(itemRef, "Generation") && !CheckAttribute(itemRef, "Generated"))
+	if (CheckAttribute(itemRef, "Generation") && !CheckAttribute(itemRef, "Generated"))
 	{
 		return true;
 	}
@@ -753,16 +785,16 @@ bool IsBlade(String _itemID)
 	int itemIndex = GetItemIndex(_itemID);
 	ref item;
 
-	if(itemIndex == -1)
+	if (itemIndex == -1)
 	{
 		return false;
 	}
 
 	item = &Items[itemIndex];
 
-	if(CheckAttribute(&item, "groupID"))
+	if (CheckAttribute(&item, "groupID"))
 	{
-		if(item.groupID == BLADE_ITEM_TYPE)
+		if (item.groupID == BLADE_ITEM_TYPE)
 		{
 			return true;
 		}
@@ -785,34 +817,33 @@ ref ItemsFromID(string _Items)
 
 void ChangeItemDescribe(string _Items, string _Describe)
 {
-    Items[GetItemIndex(_Items)].describe = _Describe;
+	Items[GetItemIndex(_Items)].describe = _Describe;
 }
 
 void BackItemDescribe(string _Items)
 {
-    ref ItemAR = ItemsFromID(_Items);
-    ItemAR.describe = "itmdescr_" + ItemAR.id;
+	ref ItemAR = ItemsFromID(_Items);
+	ItemAR.describe = "itmdescr_" + ItemAR.id;
 }
 
 void ChangeItemName(string _Items, string _Name)
 {
-    Items[GetItemIndex(_Items)].name = _Name;
+	Items[GetItemIndex(_Items)].name = _Name;
 }
 
 void BackItemName(string _Items)
 {
-    ref ItemAR = ItemsFromID(_Items);
-    ItemAR.name = "itmname_" + ItemAR.id;
+	ref ItemAR = ItemsFromID(_Items);
+	ItemAR.name = "itmname_" + ItemAR.id;
 }
 ///////////////////////  Items-методы <--
-
 
 void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<проверка вхождения ГГ в локаторы группы Item.<<<
 {
 	ref sld;
 	int i;
 	//======> Генератор инквизиции.
-	if (_location.id == "Santiago_Incquisitio" && CheckNPCQuestDate(_location, "AttackGuard_date") && sti(Colonies[FindColony(_location.fastreload)].nation) == SPAIN && findsubstr(_locator, "detector" , 0) != -1)
+	if (_location.id == "Santiago_Incquisitio" && CheckNPCQuestDate(_location, "AttackGuard_date") && sti(Colonies[FindColony(_location.fastreload)].nation) == SPAIN && findsubstr(_locator, "detector", 0) != -1)
 	{
 		SetNPCQuestDate(_location, "AttackGuard_date"); //одна засада в день.
 
@@ -828,17 +859,18 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 		}
 
 		//==>фр.линейка, квест №7. Рок Бразилец, даем диалог.
-		if (pchar.questTemp.State == "Fr7RockBras_toSeekPlace") LAi_ActorWaitDialog(characterFromId("RockBrasilian"), pchar);
+		if (pchar.questTemp.State == "Fr7RockBras_toSeekPlace")
+			LAi_ActorWaitDialog(characterFromId("RockBrasilian"), pchar);
 	}
 	//=======> Квест Изабеллы, детектор на скрипт базара Сальватора с братом
 	if (_location.id == "SanJuan_town" && pchar.RomanticQuest == "SeeTalkNearHouse")
 	{
-        pchar.quest.Romantic_DeadBrother_Cancel.over = "yes"; //убираем таймер на вовремя не явлился
+		pchar.quest.Romantic_DeadBrother_Cancel.over = "yes"; //убираем таймер на вовремя не явлился
 		StartQuestMovie(true, true, true);
 		pchar.RomanticQuest = "BrotherIsDead";
 		LAi_SetActorType(pchar);
 		SetMainCharacterIndex(GetCharacterIndex("Husband"));
-        locCameraToPos(40.585, 6.0, -47.549, false);
+		locCameraToPos(40.585, 6.0, -47.549, false);
 		LAi_SetActorType(PChar);
 		PChar.BaseNation = SPAIN; //скрипт в городе, иначе глючит опрос патрулями
 		PChar.RomanticQuest = "";
@@ -868,22 +900,23 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 	if (_location.id == "Mayak3")
 	{
 		int iNation = GetCityNation(GetCityNameByIsland(GiveArealByLocation(_location)));
-		if(iNation == -1) return;
-		string sGroup = GetNationNameByType(iNation)  + "_mayak";
+		if (iNation == -1)
+			return;
+		string sGroup = GetNationNameByType(iNation) + "_mayak";
 		LAi_group_AttackGroup(sGroup, LAI_GROUP_PLAYER);
 	}
 	//======> Генератор монстров при входе в локатор духов
 	if (_locator == "duhi1" && CheckAttribute(_location, "locators.monsters") && !bMonstersGen)
 	{
 		//проверяем флаг запрещения генерации
-		if(LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen() && _location.id != "Treasure_alcove")
+		if (LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen() && _location.id != "Treasure_alcove")
 		{
 			SetSkeletonsToLocation(_location);
 		}
 	}
 	if (_locator == "spawndeadsmangod")
 	{
-		if (!CheckAttribute(pchar,"UmSamil") && CheckAttribute(pchar,"UmSamilGuardsDefeated"))
+		if (!CheckAttribute(pchar, "UmSamil") && CheckAttribute(pchar, "UmSamilGuardsDefeated"))
 		{
 			LoginDeadmansGod2();
 			pchar.UmSamil = true;
@@ -892,9 +925,10 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 	if (_locator == "fire3" && _location.id == "MountainPath")
 	{
 		//проверяем флаг запрещения генерации
-		if(LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen())
+		if (LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen())
 		{
-			if (makeint(environment.time) >= 22.0 || makeint(environment.time) < 6.0) SetReefSkeletonsToLocation(_location, "MountainPath");
+			if (makeint(environment.time) >= 22.0 || makeint(environment.time) < 6.0)
+				SetReefSkeletonsToLocation(_location, "MountainPath");
 		}
 	}
 	if (_location.id == "DeckWithReefs")
@@ -902,16 +936,17 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 		if (_locator == "fire56")
 		{
 			//проверяем флаг запрещения генерации
-			if(LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen())
+			if (LAi_LocationIsMonstersGen(_location) && LAi_grp_playeralarm == 0 && GenQuest_CheckMonstersGen())
 			{
-				if (makeint(environment.time) >= 22.0 || makeint(environment.time) < 6.0) SetReefSkeletonsToLocation(_location, "DeckWithReefs");
+				if (makeint(environment.time) >= 22.0 || makeint(environment.time) < 6.0)
+					SetReefSkeletonsToLocation(_location, "DeckWithReefs");
 			}
 		}
-		if (_locator == "item1" && !CheckAttribute(pchar,"talismangot") && CheckAttribute(pchar,"talismanpreget"))
+		if (_locator == "item1" && !CheckAttribute(pchar, "talismangot") && CheckAttribute(pchar, "talismanpreget"))
 		{
 			PlayStereoSound("notebook");
 			log_info("Вы получили оберег ''Святая Чаша''.");
-			TakeNItems(pchar,"talisman9",1);
+			TakeNItems(pchar, "talisman9", 1);
 			pchar.talismangot = true;
 		}
 	}
@@ -929,13 +964,13 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 	//======> установка метки нахождения в локаторе item1 в погребке
 	if (pchar.questTemp.LSC == "toInterception" && _location.id == "FleuronTavern" && _locator == "detector1")
 	{
-        pchar.questTemp.LSC.itemState = true;
+		pchar.questTemp.LSC.itemState = true;
 	}
 	//======> скафандр
 	if (pchar.questTemp.LSC == "toUnderwater" && _location.id == "FenixPlatform")
 	{
 		if (pchar.model == "protocusto")
-		{	//смена со скафандра на норму
+		{ //смена со скафандра на норму
 			bDisableFastReload = false;
 			i = FindLocation("FenixPlatform");
 			Locations[i].models.always.inside = "FenixPlatform";
@@ -946,7 +981,7 @@ void QuestCheckEnterLocItem(aref _location, string _locator) /// <<<провер
 			DoQuestReloadToLocation("LostShipsCity_town", "reload", "reload72", "");
 		}
 		else
-		{	//смена с нормы на скафандр
+		{ //смена с нормы на скафандр
 			if (sti(pchar.questTemp.LSC.immersions.pay))
 			{
 				bDisableFastReload = true;
@@ -966,22 +1001,22 @@ void QuestCheckExitLocItem(aref _location, string _locator) /// <<<провер�
 {
 	//=======> Испанская линейка, квест №4. В спальне нашел возле комода нашел недописанное письмо
 	if (_location.id == "Havana_houseS1Bedroom" && pchar.questTemp.State == "Sp4Detection_toMirderPlace" && CheckCharacterItem(pchar, "letter_notes"))
-    {
-        DoQuestCheckDelay("TalkSelf_Quest", 0.1); //диалог сам-на-сам
-    }
+	{
+		DoQuestCheckDelay("TalkSelf_Quest", 0.1); //диалог сам-на-сам
+	}
 	//=======> Квест Аскольда, нашли гробницу.
-    if (_location.id == "Guadeloupe_Cave" && _locator == "detector1")
-    {
-        if (pchar.questTemp.Ascold == "Ascold_SeekGrave" || pchar.questTemp.Ascold == "Ascold_CantSeekGrave")
-        {
-            Log_QuestInfo("Прерывание на нахождение входа в пещеру сработало.");
-            pchar.questTemp.Ascold = "Ascold_NotEnterFoundGrave";
-    		DoQuestCheckDelay("TalkSelf_Quest", 0.1); //диалог сам-на-сам
-        }
-    }
+	if (_location.id == "Guadeloupe_Cave" && _locator == "detector1")
+	{
+		if (pchar.questTemp.Ascold == "Ascold_SeekGrave" || pchar.questTemp.Ascold == "Ascold_CantSeekGrave")
+		{
+			Log_QuestInfo("Прерывание на нахождение входа в пещеру сработало.");
+			pchar.questTemp.Ascold = "Ascold_NotEnterFoundGrave";
+			DoQuestCheckDelay("TalkSelf_Quest", 0.1); //диалог сам-на-сам
+		}
+	}
 	//=======> Квест Аскольда, ГГ добрался до мумии, но бутылки еще не имеет. Вместо прерывания на локатор.
-    if (_location.id == "Guadeloupe_Cave" && _locator == "button02")
-    {
+	if (_location.id == "Guadeloupe_Cave" && _locator == "button02")
+	{
 		if (pchar.questTemp.Ascold == "Ascold_SeekRockLetter" || pchar.questTemp.Ascold == "Ascold_EnterGrave")
 		{
 			pchar.questTemp.Ascold = "Ascold_FoundMummy";
@@ -989,35 +1024,35 @@ void QuestCheckExitLocItem(aref _location, string _locator) /// <<<провер�
 		}
 	}
 	//=======> Энкаунтеры заманухи в пещеру, открываем закрытый релоад на колодце.
-    if (_locator == "CheckReload1" && CheckAttribute(pchar, "GenQuest.OpenTheRopeExit") && pchar.GenQuest.OpenTheRopeExit == pchar.location)
-    {
+	if (_locator == "CheckReload1" && CheckAttribute(pchar, "GenQuest.OpenTheRopeExit") && pchar.GenQuest.OpenTheRopeExit == pchar.location)
+	{
 		DeleteAttribute(pchar, "GenQuest.OpenTheRopeExit");
 		LocatorReloadEnterDisable(pchar.location, "reload2", false);
 	}
 	//=======> Изабелла, в доме начало скрипта с братом
-    if (_location.id == "SanJuan_houseSp6" && pchar.RomanticQuest == "exitFromDetector")
-    {
+	if (_location.id == "SanJuan_houseSp6" && pchar.RomanticQuest == "exitFromDetector")
+	{
 		pchar.RomanticQuest = "executeFromDetector";
 		StartQuestMovie(true, true, true);
 		// ГГ теперь Сальватор
 		//sGlobalTemp = GetMainCharacterIndex();
 		SetMainCharacterIndex(GetCharacterIndex("MigelDeValdes"));
-        PChar   = GetMainCharacter();
+		PChar = GetMainCharacter();
 		locCameraToPos(-2.41, 2.35, -2.41, false);
 		SetActorDialogAny2Pchar("Isabella", "", 3.0, 0.0);
 		LAi_ActorFollow(PChar, CharacterFromID("Isabella"), "ActorDialog_Any2Pchar", 4.0);
 	}
 	//=======> Изабелла, в доме Роситы после смерти мужа
-    if (_location.id == "Beliz_houseS4" && pchar.RomanticQuest == "Beliz_exitFromDetector")
-    {
+	if (_location.id == "Beliz_houseS4" && pchar.RomanticQuest == "Beliz_exitFromDetector")
+	{
 		pchar.RomanticQuest = "Beliz_executeFromDetector";
 		StartQuestMovie(true, true, true);
-        // ГГ теперь Изабелла
-		ChangeCharacterAddressGroup(CharacterFromID("Isabella"), pchar.location, "goto",  "goto3");
-		ChangeCharacterAddressGroup(CharacterFromID("Rosita"), pchar.location, "goto",  "goto1");
-        SetMainCharacterIndex(GetCharacterIndex("Isabella"));
-        PChar   = GetMainCharacter();
-        locCameraToPos(-3.84, 2.35, 0.85, false);
+		// ГГ теперь Изабелла
+		ChangeCharacterAddressGroup(CharacterFromID("Isabella"), pchar.location, "goto", "goto3");
+		ChangeCharacterAddressGroup(CharacterFromID("Rosita"), pchar.location, "goto", "goto1");
+		SetMainCharacterIndex(GetCharacterIndex("Isabella"));
+		PChar = GetMainCharacter();
+		locCameraToPos(-3.84, 2.35, 0.85, false);
 		LAi_SetActorType(CharacterFromID("Rosita"));
 		LAi_SetActorType(pchar);
 		PChar.BaseNation = SPAIN; //скрипт в городе, иначе глючит опрос патрулями
@@ -1025,12 +1060,12 @@ void QuestCheckExitLocItem(aref _location, string _locator) /// <<<провер�
 		LAi_ActorFollow(PChar, CharacterFromID("Rosita"), "ActorDialog_Any2Pchar", 0.0);
 	}
 	//=======> Пиратка, квест №5
-    if (_location.id == "Pirates_houseS1" && pchar.questTemp.piratesLine == "PL5Hunter_exitReload")
-    {
+	if (_location.id == "Pirates_houseS1" && pchar.questTemp.piratesLine == "PL5Hunter_exitReload")
+	{
 		pchar.questTemp.piratesLine = "PL5Hunter_executeReload";
 		StartQuestMovie(true, true, true);
 		SetMainCharacterIndex(GetCharacterIndex("Orry"));
-        PChar   = GetMainCharacter();
+		PChar = GetMainCharacter();
 		locCameraToPos(1.34, 2.1, 1.68, false);
 		LAi_SetActorType(CharacterFromID("Aivory"));
 		LAi_SetActorType(pchar);
@@ -1046,41 +1081,41 @@ void QuestCheckExitLocItem(aref _location, string _locator) /// <<<провер�
 
 void QuestCheckUseButton(aref _location, string _locator, string _itemId) /// <<< квестовые действия при установке предметов в button <<<
 {
-    //==> Квест Аскольда, установка скрижалей для открытия входа в пещеру к гробнице.
-    if (_location.id == "Guadeloupe_Cave" && _locator == "button01")
-    {
+	//==> Квест Аскольда, установка скрижалей для открытия входа в пещеру к гробнице.
+	if (_location.id == "Guadeloupe_Cave" && _locator == "button01")
+	{
 		//==> перебиваем иниты пещеры Гваделупы
 		_location.reload.l1.name = "reload3_back";
 		locations[FindLocation("Guadeloupe_CaveEntrance")].reload.l1.emerge = "reload3";
 		//==> перемещаемся на reload5
 		DoQuestFunctionDelay("Ascold_OpenTheGrave", 1.5);
-    }
-    //==> Квест Аскольда, вскрытие гробницы кочергой.
-    if (_location.id == "Guadeloupe_Cave" && _locator == "button02" && pchar.questTemp.Ascold == "Ascold_WateringMummy")
-    {
-        ref sld;
-		for (int i=1; i<=3; i++)
-        {
-			sld = GetCharacter(NPC_GenerateCharacter("Enemy_"+i, "Skel"+i, "skeleton", "skeleton", 30, PIRATE, 0, true));
+	}
+	//==> Квест Аскольда, вскрытие гробницы кочергой.
+	if (_location.id == "Guadeloupe_Cave" && _locator == "button02" && pchar.questTemp.Ascold == "Ascold_WateringMummy")
+	{
+		ref sld;
+		for (int i = 1; i <= 3; i++)
+		{
+			sld = GetCharacter(NPC_GenerateCharacter("Enemy_" + i, "Skel" + i, "skeleton", "skeleton", 30, PIRATE, 0, true));
 			FantomMakeCoolFighter(sld, 30, 85, 85, "topor2", "pistol3", 100);
-            LAi_SetWarriorType(sld);
+			LAi_SetWarriorType(sld);
 			LAi_group_MoveCharacter(sld, "EnemyFight");
-            ChangeCharacterAddressGroup(sld, pchar.location, "goto",  "goto"+i);
-        }
-        LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
-        LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
-        LAi_group_SetCheck("EnemyFight", "Ascold_InGraveAfterFight");
-        chrDisableReloadToLocation = true;
-    }
-    //==> Квест Аскольда, вскрытие лампы и появление Аззи на верфи
-    if (_location.id == (pchar.questTemp.Ascold.ShipyarderColony + "_shipyard") && _locator == "button01")
-    {
+			ChangeCharacterAddressGroup(sld, pchar.location, "goto", "goto" + i);
+		}
+		LAi_group_SetRelation("EnemyFight", LAI_GROUP_PLAYER, LAI_GROUP_ENEMY);
+		LAi_group_FightGroups("EnemyFight", LAI_GROUP_PLAYER, true);
+		LAi_group_SetCheck("EnemyFight", "Ascold_InGraveAfterFight");
+		chrDisableReloadToLocation = true;
+	}
+	//==> Квест Аскольда, вскрытие лампы и появление Аззи на верфи
+	if (_location.id == (pchar.questTemp.Ascold.ShipyarderColony + "_shipyard") && _locator == "button01")
+	{
 		LAi_SetActorType(PChar);
 		DoQuestCheckDelay("TalkSelf_Quest", 0.2);
-    }
+	}
 	//==> Пиратка, квест №7
-    if (_location.id == "PuertoPrincipe_town" && _locator == "button01")
-    {
+	if (_location.id == "PuertoPrincipe_town" && _locator == "button01")
+	{
 		ref loc = &locations[FindLocation("PuertoPrincipe_townhall")];
 		loc.reload.l2.name = "reload2";
 		loc.reload.l2.go = "PuertoPrincipe_town";
@@ -1090,14 +1125,14 @@ void QuestCheckUseButton(aref _location, string _locator, string _itemId) /// <<
 		DoQuestFunctionDelay("PQ7_loadToRecidence", 2.0);
 	}
 	//установки тотемов в храмах
-    if (findsubstr(_itemId, "Totem_" , 0) != -1)
-    {
+	if (findsubstr(_itemId, "Totem_", 0) != -1)
+	{
 		SetItemModelOnLocation(_location, _itemId, _locator);
 		SetAztecUsedTotem(_location, _itemId, _locator);
 	}
 	//открываем доступ в храм к шотгану
-    if (_itemId == "KnifeAztec")
-    {
+	if (_itemId == "KnifeAztec")
+	{
 		SetItemModelOnLocation(_location, _itemId, _locator);
 		LocatorReloadEnterDisable("Tenochtitlan", "reloadTemple31", false);
 	}
@@ -1122,7 +1157,7 @@ void QuestCheckTakeItem(aref _location, string _itemId)
 	{
 		ReOpenQuestHeader("GiveShipLetters");
 		AddQuestRecord("GiveShipLetters", "1");
-		AddQuestUserData("GiveShipLetters", "sSex", GetSexPhrase("","а"));
+		AddQuestUserData("GiveShipLetters", "sSex", GetSexPhrase("", "а"));
 	}
 	//квест поиски кольца мэра в борделях
 	if (_itemId == "MayorsRing")
@@ -1135,7 +1170,8 @@ void QuestCheckTakeItem(aref _location, string _itemId)
 	{
 		string sTitle = _location.townsack + "UsurersJewel";
 		AddQuestRecordEx(sTitle, "SeekUsurersJewel", "2");
-		if (drand(1)==0) SpawnGreedyBastards();
+		if (drand(1) == 0)
+			SpawnGreedyBastards();
 	}
 	//пиратка, квест №7
 	if (_itemId == "OpenBook")
@@ -1144,13 +1180,13 @@ void QuestCheckTakeItem(aref _location, string _itemId)
 		SaveCurrentQuestDateParam("questTemp.piratesLine");
 		pchar.questTemp.piratesLine = "Soukins_catchBattleship";
 		Pchar.quest.PQ7_setBattleShip.win_condition.l1 = "MapEnter";
-	    Pchar.quest.PQ7_setBattleShip.function = "PQ7_setBattleShip";
+		Pchar.quest.PQ7_setBattleShip.function = "PQ7_setBattleShip";
 	}
 	//линейка ГПК, разборки с представителем в Мариго
 	if (_itemId == "letter_LSC")
 	{
 		AddQuestRecord("ISS_PoorsMurder", "11");
-		AddQuestUserData("ISS_PoorsMurder", "sSex", GetSexPhrase("ся","ась"));
+		AddQuestUserData("ISS_PoorsMurder", "sSex", GetSexPhrase("ся", "ась"));
 		AddQuestUserData("ISS_PoorsMurder", "sName", pchar.questTemp.LSC.poorName);
 		pchar.questTemp.LSC = "readyGoLSC";
 		DeleteAttribute(pchar, "questTemp.LSC.poorName");
@@ -1200,14 +1236,14 @@ void QuestCheckTakeItem(aref _location, string _itemId)
 void StartIncquisitioAttack()
 {
 	ref sld;
-    for (int i=1; i<=5; i++)
-    {
-		sld = GetCharacter(NPC_GenerateCharacter("IncqAddGuard_"+i, "sold_spa_"+(rand(7)+1), "man", "man", 35, SPAIN, 1, true));
-		FantomMakeCoolFighter(sld, sti(pchar.rank)+MOD_SKILL_ENEMY_RATE+8, 80, 70, BLADE_LONG, "pistol4", 50);
-        LAi_SetWarriorType(sld);
-        LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
-        ChangeCharacterAddressGroup(sld, "Santiago_Incquisitio", "goto", LAi_FindRandomLocator("goto"));
-    }
+	for (int i = 1; i <= 5; i++)
+	{
+		sld = GetCharacter(NPC_GenerateCharacter("IncqAddGuard_" + i, "sold_spa_" + (rand(7) + 1), "man", "man", 35, SPAIN, 1, true));
+		FantomMakeCoolFighter(sld, sti(pchar.rank) + MOD_SKILL_ENEMY_RATE + 8, 80, 70, BLADE_LONG, "pistol4", 50);
+		LAi_SetWarriorType(sld);
+		LAi_group_MoveCharacter(sld, "SPAIN_CITIZENS");
+		ChangeCharacterAddressGroup(sld, "Santiago_Incquisitio", "goto", LAi_FindRandomLocator("goto"));
+	}
 }
 
 void SetItemModelOnLocation(ref loc, string model, string locator)

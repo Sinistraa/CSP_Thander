@@ -9,10 +9,7 @@
 		ani
 */
 
-
-
-#define LAI_TYPE_PRIEST		"priest"
-
+#define LAI_TYPE_PRIEST "priest"
 
 //Инициализация
 void LAi_type_priest_Init(aref chr)
@@ -36,26 +33,26 @@ void LAi_type_priest_Init(aref chr)
 void LAi_type_priest_CharacterUpdate(aref chr, float dltTime)
 {
 	float time, tw;
-	if(chr.chr_ai.tmpl == LAI_TMPL_ANI || chr.chr_ai.tmpl == LAI_TMPL_GOTO)
+	if (chr.chr_ai.tmpl == LAI_TMPL_ANI || chr.chr_ai.tmpl == LAI_TMPL_GOTO)
 	{
 		//chr.chr_ai.type.time = "0";
 		chr.chr_ai.type.who = "-1";
 		chr.chr_ai.type.timewait = "3";
 		return;
 	}
-	if(chr.chr_ai.tmpl == LAI_TMPL_STAY)
+	if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
 	{
 		//Смотрим близко проходящих персонажей
 		time = stf(chr.chr_ai.type.time) + dltTime;
 		chr.chr_ai.type.time = time;
 		int num = FindNearCharacters(chr, 4.0, -1.0, -1.0, 0.001, false, true);
-		if(num > 0)
+		if (num > 0)
 		{
-			if(LAi_type_priest_FindEnemy(chr, num) < 0)
+			if (LAi_type_priest_FindEnemy(chr, num) < 0)
 			{
 				int ichr = sti(chrFindNearCharacters[0].index);
 				//Трепимся с подошедшим
-				if(stf(chr.chr_ai.type.who) != ichr)
+				if (stf(chr.chr_ai.type.who) != ichr)
 				{
 					chr.chr_ai.type.time = "0";
 					chr.chr_ai.type.who = ichr;
@@ -63,11 +60,11 @@ void LAi_type_priest_CharacterUpdate(aref chr, float dltTime)
 				tw = stf(chr.chr_ai.type.timewait);
 				tw = tw + dltTime;
 				chr.chr_ai.type.timewait = tw;
-				if(time < 60.0)
+				if (time < 60.0)
 				{
-					if(tw > 6.0)
+					if (tw > 6.0)
 					{
-						if(rand(100) < 30)
+						if (rand(100) < 30)
 						{
 							//Запустим режим заманивания покупателей
 							LAi_type_priest_Ask(chr);
@@ -75,23 +72,29 @@ void LAi_type_priest_CharacterUpdate(aref chr, float dltTime)
 							CharacterTurnByChr(chr, &Characters[ichr]);
 						}
 					}
-				}else{
+				}
+				else
+				{
 					LAi_type_priest_RestoreAngle(chr);
-					if(time > 200.0)
+					if (time > 200.0)
 					{
 						chr.chr_ai.type.time = "0";
 					}
 				}
-			}else{
+			}
+			else
+			{
 				//Боимся
 				chr.chr_ai.type.afraid = "1";
 				LAi_tmpl_ani_PlayAnimation(chr, "afraid", -1.0);
 				LAi_SetAfraidDead(chr);
 				LAi_type_priest_RestoreAngle(chr);
 			}
-		}else{
+		}
+		else
+		{
 			//Иногда молимся молиться
-			if(time > 4.0 && time < 15.0 && rand(100) < 10 && chr.chr_ai.type.locator == "stay")
+			if (time > 4.0 && time < 15.0 && rand(100) < 10 && chr.chr_ai.type.locator == "stay")
 			{
 				LAi_CharacterPlaySound(chr, "priest_bead");
 				LAi_tmpl_ani_PlayAnimation(chr, "bead", 5.0 + rand(15));
@@ -112,20 +115,25 @@ void LAi_type_priest_CharacterUpdate(aref chr, float dltTime)
 				}
 			}
 		}
-	}else{
+	}
+	else
+	{
 		//Смотрим близко проходящих персонажей
 		time = stf(chr.chr_ai.type.time);
 		num = FindNearCharacters(chr, 5.5, -1.0, -1.0, 0.001, false, false);
-		if(num > 0)
+		if (num > 0)
 		{
-			if(LAi_type_priest_FindEnemy(chr, num) < 0) num = 0;
+			if (LAi_type_priest_FindEnemy(chr, num) < 0)
+				num = 0;
 		}
-		if(num <= 0)
+		if (num <= 0)
 		{
 			chr.chr_ai.type.afraid = "0";
 			LAi_SetDefaultDead(chr);
 			LAi_tmpl_stay_InitTemplate(chr);
-		}else{
+		}
+		else
+		{
 			LAi_SetAfraidDead(chr);
 		}
 	}
@@ -146,7 +154,7 @@ bool LAi_type_priest_CharacterLogoff(aref chr)
 //Завершение работы темплейта
 void LAi_type_priest_TemplateComplite(aref chr, string tmpl)
 {
-	switch(chr.chr_ai.type.state)
+	switch (chr.chr_ai.type.state)
 	{
 	case "goto":
 		//Дадим новое задание
@@ -167,9 +175,12 @@ void LAi_type_priest_NeedDialog(aref chr, aref by)
 bool LAi_type_priest_CanDialog(aref chr, aref by)
 {
 	//Согласимся на диалог
-	if(chr.chr_ai.type.afraid == "1") return false;
-	if(chr.chr_ai.tmpl == LAI_TMPL_STAY) return true;
-	if(chr.chr_ai.tmpl == LAI_TMPL_ANI) return true;
+	if (chr.chr_ai.type.afraid == "1")
+		return false;
+	if (chr.chr_ai.tmpl == LAI_TMPL_STAY)
+		return true;
+	if (chr.chr_ai.tmpl == LAI_TMPL_ANI)
+		return true;
 	return false;
 }
 
@@ -189,18 +200,14 @@ void LAi_type_priest_EndDialog(aref chr, aref by)
 	LAi_CharacterRestoreAy(chr);
 }
 
-
 //Персонаж выстрелил
 void LAi_type_priest_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
-
 }
-
 
 //Персонаж атакован
 void LAi_type_priest_Attacked(aref chr, aref by)
 {
-
 }
 
 //Проиграть анимацию зазывания покупанелей
@@ -208,7 +215,7 @@ void LAi_type_priest_Ask(aref chr)
 {
 	//Выбираем анимацию
 	string animation;
-	switch(rand(2))
+	switch (rand(2))
 	{
 	case 0:
 		animation = "dialog_stay3";
@@ -222,7 +229,7 @@ void LAi_type_priest_Ask(aref chr)
 	}
 	LAi_tmpl_ani_PlayAnimation(chr, animation, -1.0);
 	//Выбираем проигрываемый звук
-	if(bCharVoice) // LEO
+	if (bCharVoice) // LEO
 	{
 		LAi_CharacterPlaySound(chr, "Gr_Church");
 	}
@@ -237,12 +244,13 @@ void LAi_type_priest_RestoreAngle(aref chr)
 //Найти врага
 int LAi_type_priest_FindEnemy(aref chr, int num)
 {
-	if(LAi_grp_playeralarm > 0)
+	if (LAi_grp_playeralarm > 0)
 	{
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			int idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) return idx;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				return idx;
 		}
 	}
 	return -1;
@@ -251,10 +259,12 @@ int LAi_type_priest_FindEnemy(aref chr, int num)
 //Отправить священника в другой локатор
 void LAi_type_priest_SetGoto(aref chr)
 {
-	if(chr.chr_ai.type.locator == "stay")
+	if (chr.chr_ai.type.locator == "stay")
 	{
-		chr.chr_ai.type.locator = "bar" + (rand(1)+1);
-	}else{
+		chr.chr_ai.type.locator = "bar" + (rand(1) + 1);
+	}
+	else
+	{
 		chr.chr_ai.type.locator = "stay";
 	}
 	LAi_tmpl_goto_InitTemplate(chr);

@@ -11,7 +11,7 @@ void InitShipLights()
 	ShipLights.CoronaTechnique = "coronas";
 	ShipLights.SunRoadFlareSize = 4.0;
 
-    makearef(rlights, ShipLights.LightTypes);
+	makearef(rlights, ShipLights.LightTypes);
 
 	// default light emitter for ship
 	rlights.default.light.r = 1.0;
@@ -33,9 +33,7 @@ void InitShipLights()
 	rlights.default.corona.g = 1.0;
 	rlights.default.corona.b = 1.0;
 	rlights.default.corona.subtexture = 0;
-	rlights.default.corona.Range = 5.0
-	rlights.default.corona.Size = 1.0
-	rlights.default.SunRoadFlareFadeDistance = 600.0;
+	rlights.default.corona.Range = 5.0 rlights.default.corona.Size = 1.0 rlights.default.SunRoadFlareFadeDistance = 600.0;
 
 	// cannon default light emitter
 	rlights.cannondefault.light.r = 2.0;
@@ -70,7 +68,5 @@ void InitShipLights()
 	rlights.flare.corona.g = 1.0;
 	rlights.flare.corona.b = 1.0;
 	rlights.flare.corona.subtexture = 0;
-	rlights.flare.corona.Range = 5.0
-	rlights.flare.corona.Size = 1.0
-	rlights.flare.SunRoadFlareFadeDistance = 600.0;
+	rlights.flare.corona.Range = 5.0 rlights.flare.corona.Size = 1.0 rlights.flare.SunRoadFlareFadeDistance = 600.0;
 }

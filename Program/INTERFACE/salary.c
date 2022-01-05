@@ -3,34 +3,33 @@ int nMoraleDecreaseQ;
 
 void InitInterface(string iniName)
 {
-    // лочим квест и карту
-    bQuestCheckProcessFreeze = true;
-    if(IsEntity(worldMap))
-    {
-    	wdmLockReload            = true;
-    }
+	// лочим квест и карту
+	bQuestCheckProcessFreeze = true;
+	if (IsEntity(worldMap))
+	{
+		wdmLockReload = true;
+	}
 
- 	StartAboveForm(true);
+	StartAboveForm(true);
 
 	GameInterface.title = "titleSalary";
 
-	SendMessage(&GameInterface,"ls",MSG_INTERFACE_INIT,iniName);
-
+	SendMessage(&GameInterface, "ls", MSG_INTERFACE_INIT, iniName);
 
 	int tmpLangFileID = LanguageOpenFile("interface_strings.txt");
-	SetFormatedText("INFO_TEXT1",LanguageConvertString(tmpLangFileID,"Salary info"));
+	SetFormatedText("INFO_TEXT1", LanguageConvertString(tmpLangFileID, "Salary info"));
 	//SetFormatedText("INFO_TEXT2",LanguageConvertString(tmpLangFileID,"Officer info"));
-	SetFormatedText("INFO_TEXT3",LanguageConvertString(tmpLangFileID,"All info"));
+	SetFormatedText("INFO_TEXT3", LanguageConvertString(tmpLangFileID, "All info"));
 	LanguageCloseFile(tmpLangFileID);
-	SendMessage(&GameInterface,"lsl",MSG_INTERFACE_MSG_TO_NODE,"INFO_TEXT",5);
-	SetNewPicture("INFO_PICTURE", "loading\salary_"+rand(6)+".tga");
+	SendMessage(&GameInterface, "lsl", MSG_INTERFACE_MSG_TO_NODE, "INFO_TEXT", 5);
+	SetNewPicture("INFO_PICTURE", "loading\salary_" + rand(6) + ".tga");
 
-    CalculateInfoData();
+	CalculateInfoData();
 
-	SetEventHandler("InterfaceBreak","ProcessBreakExit",0)
-	SetEventHandler("exitCancel","ProcessCancelExit",0);
-	SetEventHandler("ievnt_command","ProcCommand",0);
-	SetEventHandler("evntDoPostExit","DoPostExit",0);
+	SetEventHandler("InterfaceBreak", "ProcessBreakExit", 0)
+		SetEventHandler("exitCancel", "ProcessCancelExit", 0);
+	SetEventHandler("ievnt_command", "ProcCommand", 0);
+	SetEventHandler("evntDoPostExit", "DoPostExit", 0);
 
 	// EI_CreateFrame("INFO_BORDERS", 250,152,550,342);
 }
@@ -38,27 +37,27 @@ void InitInterface(string iniName)
 void ProcessBreakExit()
 {
 	SkipSailorPayment();
-	IDoExit( RC_INTERFACE_SALARY_EXIT );
+	IDoExit(RC_INTERFACE_SALARY_EXIT);
 }
 
 void ProcessCancelExit()
 {
 	SkipSailorPayment();
-	IDoExit( RC_INTERFACE_SALARY_EXIT );
+	IDoExit(RC_INTERFACE_SALARY_EXIT);
 }
 
 void IDoExit(int exitCode)
 {
- 	EndAboveForm(true);
+	EndAboveForm(true);
 
-	DelEventHandler("InterfaceBreak","ProcessBreakExit");
-	DelEventHandler("exitCancel","ProcessCancelExit");
-	DelEventHandler("ievnt_command","ProcCommand");
-	DelEventHandler("evntDoPostExit","DoPostExit");
+	DelEventHandler("InterfaceBreak", "ProcessBreakExit");
+	DelEventHandler("exitCancel", "ProcessCancelExit");
+	DelEventHandler("ievnt_command", "ProcCommand");
+	DelEventHandler("evntDoPostExit", "DoPostExit");
 
 	interfaceResultCommand = exitCode;
 	EndCancelInterface(true);
-	PostEvent("StopQuestCheckProcessFreeze", 1000);//boal 230804 заморозка проверки квестов
+	PostEvent("StopQuestCheckProcessFreeze", 1000); //boal 230804 заморозка проверки квестов
 }
 
 void ProcCommand()
@@ -66,35 +65,38 @@ void ProcCommand()
 	string comName = GetEventData();
 	string nodName = GetEventData();
 
-	switch(nodName)
+	switch (nodName)
 	{
 	case "B_OK":
-		if(comName=="activate" || comName=="click")
+		if (comName == "activate" || comName == "click")
 		{
 			ExecuteSailorPayment();
-   			IDoExit(RC_INTERFACE_SALARY_EXIT);
+			IDoExit(RC_INTERFACE_SALARY_EXIT);
 		}
-	break;
+		break;
 
 	case "B_CANCEL":
-		if(comName=="activate" || comName=="click")
+		if (comName == "activate" || comName == "click")
 		{
 			SkipSailorPayment();
 			IDoExit(RC_INTERFACE_SALARY_EXIT);
 		}
-		if(comName=="upstep")
+		if (comName == "upstep")
 		{
-			if(GetSelectable("B_OK"))	{SetCurrentNode("B_OK");}
+			if (GetSelectable("B_OK"))
+			{
+				SetCurrentNode("B_OK");
+			}
 		}
-	break;
+		break;
 	}
 }
 
 void ExecuteSailorPayment()
 {
-	AddMoneyToCharacter(GetMainCharacter(),-nPaymentQ);
+	AddMoneyToCharacter(GetMainCharacter(), -nPaymentQ);
 	Statistic_AddValue(GetMainCharacter(), "PartitionPay", nPaymentQ);
-	DeleteAttribute(GetMainCharacter(),"CrewPayment");
+	DeleteAttribute(GetMainCharacter(), "CrewPayment");
 }
 
 void SkipSailorPayment()
@@ -105,44 +107,44 @@ void SkipSailorPayment()
 
 	int cn;
 	ref chref;
-	for(int i=0; i<COMPANION_MAX; i++)
+	for (int i = 0; i < COMPANION_MAX; i++)
 	{
-		cn = GetCompanionIndex(mchref,i);
-		if(cn>=0)
+		cn = GetCompanionIndex(mchref, i);
+		if (cn >= 0)
 		{
-            chref = &Characters[cn];
+			chref = &Characters[cn];
 			AddCrewMorale(chref, -nMoraleDecreaseQ);
 			if (i > 0 && CheckAttribute(chref, "loyality") && !CheckAttribute(chref, "OfficerWantToGo.DontGo"))
 			{
-			    chref.loyality = makeint(chref.loyality) - 1;
+				chref.loyality = makeint(chref.loyality) - 1;
 			}
 		}
 	}
 	int iPassenger;
-    for (int io = 0; io<GetPassengersQuantity(pchar); io++)
-	{   // любой пассажир у кого есть пристрастие может свалить если наши дела ему не по душе
+	for (int io = 0; io < GetPassengersQuantity(pchar); io++)
+	{ // любой пассажир у кого есть пристрастие может свалить если наши дела ему не по душе
 		iPassenger = GetPassenger(pchar, io);
 		if (iPassenger != -1)
 		{
-            chref = &Characters[iPassenger];
+			chref = &Characters[iPassenger];
 			if (CheckAttribute(chref, "loyality") && !CheckAttribute(chref, "OfficerWantToGo.DontGo"))
 			{
-    			chref.loyality = makeint(chref.loyality) - 1;
+				chref.loyality = makeint(chref.loyality) - 1;
 			}
 		}
 	}
 
-	if(AddCrewMorale(mchref, 0)<=I_MIN_MORALE)
-    {
+	if (AddCrewMorale(mchref, 0) <= I_MIN_MORALE)
+	{
 		if (IsEntity(worldMap) && GetCrewQuantity(mchref) > 0)
-    	{
-            MunityOnShip("ShipMunity");
-        }
+		{
+			MunityOnShip("ShipMunity");
+		}
 		else
-        {
-            mchref.quest.Munity_on_Ship_Map.win_condition.l1 = "MapEnter";
-            mchref.quest.Munity_on_Ship_Map.win_condition    = "Munity_on_Ship_Map";
-        }
+		{
+			mchref.quest.Munity_on_Ship_Map.win_condition.l1 = "MapEnter";
+			mchref.quest.Munity_on_Ship_Map.win_condition = "Munity_on_Ship_Map";
+		}
 	}
 }
 
@@ -154,12 +156,12 @@ void DoPostExit()
 
 void CalculateInfoData()
 {
-	int i,cn;
-	ref mchref,chref;
+	int i, cn;
+	ref mchref, chref;
 
 	mchref = GetMainCharacter();
 	// boal новый учет зп -->
-	float nLeaderShip = GetSummonSkillFromNameToOld(mchref,SKILL_LEADERSHIP);
+	float nLeaderShip = GetSummonSkillFromNameToOld(mchref, SKILL_LEADERSHIP);
 	// перенес расчет в CharacterUtilite int nCommerce   = GetSummonSkillFromName(mchref,SKILL_COMMERCE);
 
 	nPaymentQ = 0;
@@ -177,19 +179,20 @@ void CalculateInfoData()
 		}
 	} */
 
-	if( CheckAttribute(mchref,"CrewPayment") )
-    {
+	if (CheckAttribute(mchref, "CrewPayment"))
+	{
 		nPaymentQ += makeint(mchref.CrewPayment); // а тут помним все до копейки!
 	}
-    // boal новый учет зп <--
-	nMoraleDecreaseQ = 40-nLeaderShip;
-	if( CheckOfficersPerk(mchref,"IronWill") ) nMoraleDecreaseQ /= 2; // у офицеров тоже нужно смотреть!!!
+	// boal новый учет зп <--
+	nMoraleDecreaseQ = 40 - nLeaderShip;
+	if (CheckOfficersPerk(mchref, "IronWill"))
+		nMoraleDecreaseQ /= 2; // у офицеров тоже нужно смотреть!!!
 
 	//CreateString(true,"payment",""+nPaymentQ,FONT_NORMAL,COLOR_NORMAL,320,390,SCRIPT_ALIGN_CENTER,1.0);
-    SetFormatedText("INFO_TEXT3",MakeMoneyShow(nPaymentQ, MONEY_SIGN,MONEY_DELIVER));
-	if( sti(mchref.Money) < nPaymentQ )
+	SetFormatedText("INFO_TEXT3", MakeMoneyShow(nPaymentQ, MONEY_SIGN, MONEY_DELIVER));
+	if (sti(mchref.Money) < nPaymentQ)
 	{
-		SetSelectable("B_OK",false);
+		SetSelectable("B_OK", false);
 		SetCurrentNode("B_CANCEL");
 	}
 }

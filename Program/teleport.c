@@ -1,17 +1,17 @@
 int nTeleportShowData;
 object objTeleport;
 
-#event_handler("QuickTeleport","StartQuickTeleport");
-#event_handler(EVENT_LOCATION_LOAD,"WQuickTeleport");
+#event_handler("QuickTeleport", "StartQuickTeleport");
+#event_handler(EVENT_LOCATION_LOAD, "WQuickTeleport");
 
 void InitTeleport()
 {
 	nTeleportShowData = 0;
-	CreateEntity(&objTeleport,"TMPTELEPORT");
-	LayerAddObject(EXECUTE,&objTeleport,-1);
-	LayerAddObject(REALIZE,&objTeleport,-1);
-	SetEventHandler("TeleportChoose","DoTeleportChoose",0);
-	SetEventHandler("TeleportStart","DoTeleportStart",0);
+	CreateEntity(&objTeleport, "TMPTELEPORT");
+	LayerAddObject(EXECUTE, &objTeleport, -1);
+	LayerAddObject(REALIZE, &objTeleport, -1);
+	SetEventHandler("TeleportChoose", "DoTeleportChoose", 0);
+	SetEventHandler("TeleportStart", "DoTeleportStart", 0);
 }
 
 void DoTeleportStart()
@@ -21,28 +21,30 @@ void DoTeleportStart()
 
 void DoTeleportChoose()
 {
-	aref datRef,selRef;
+	aref datRef, selRef;
 	int chooseNum = GetEventData();
-	string attrName = "id"+chooseNum;
+	string attrName = "id" + chooseNum;
 	ref rch = GetMainCharacter();
 	int n;
-	aref ar1,ar2;
+	aref ar1, ar2;
 
 	ref tmp_chref;
 
-	switch(nTeleportShowData)
+	switch (nTeleportShowData)
 	{
 	case 0:
-		teleportType=chooseNum;
-		if(chooseNum==2)
-		{	SetTeleportData(10);
+		teleportType = chooseNum;
+		if (chooseNum == 2)
+		{
+			SetTeleportData(10);
 		}
 		else
-		{	SetTeleportData(1);
+		{
+			SetTeleportData(1);
 		}
 		break;
 	case 1:
-		if(CheckAttribute(objTeleport,"data."+attrName))
+		if (CheckAttribute(objTeleport, "data." + attrName))
 		{
 			tel_location_id = objTeleport.data.(attrName);
 		}
@@ -51,11 +53,11 @@ void DoTeleportChoose()
 			tel_location_id = "";
 		}
 		sTeleportLocName = tel_location_id;
-		if(teleportType==1)
+		if (teleportType == 1)
 		{
-			SetCharacterShipLocation(rch,sTeleportLocName);
+			SetCharacterShipLocation(rch, sTeleportLocName);
 			n = FindIslandBySeaLocation(sTeleportLocName);
-			if(n!=-1)
+			if (n != -1)
 			{
 				/* Commented by Max -> WorlMap is changed
 				wdmCurrentIsland = Islands[n].id;
@@ -72,7 +74,7 @@ void DoTeleportChoose()
 				}
 				*/
 			}
-			DoReloadCharacterToLocation(rch.location,rch.location.group,rch.location.locator);
+			DoReloadCharacterToLocation(rch.location, rch.location.group, rch.location.locator);
 		}
 		else
 		{
@@ -80,13 +82,13 @@ void DoTeleportChoose()
 		}
 		break;
 	case 2:
-		makearef(datRef,objTeleport.data);
-		attrName = GetAttributeName(GetAttributeN(datRef,chooseNum));
+		makearef(datRef, objTeleport.data);
+		attrName = GetAttributeName(GetAttributeN(datRef, chooseNum));
 		locatorGroup = objTeleport.data.(attrName);
 		SetTeleportData(3);
 		break;
 	case 3:
-		if(CheckAttribute(objTeleport,"data."+attrName))
+		if (CheckAttribute(objTeleport, "data." + attrName))
 		{
 			locatorName = objTeleport.data.(attrName);
 		}
@@ -94,7 +96,7 @@ void DoTeleportChoose()
 		{
 			locatorName = "";
 		}
-		DoReloadCharacterToLocation(tel_location_id,locatorGroup,locatorName);
+		DoReloadCharacterToLocation(tel_location_id, locatorGroup, locatorName);
 		break;
 
 	case 10:
@@ -105,9 +107,9 @@ void DoTeleportChoose()
 	case 11:
 		tel_dialogNodeName = objTeleport.data.(attrName);
 		n = GetCharacterIndex("DilogChecking");
-		if( n<0 || !IsEntity(&Characters[n]) )
+		if (n < 0 || !IsEntity(&Characters[n]))
 		{
-			tmp_chref = LAi_CreateFantomCharacter("Man6_1","","");
+			tmp_chref = LAi_CreateFantomCharacter("Man6_1", "", "");
 			LAi_SetStayType(tmp_chref);
 			tmp_chref.id = "DilogChecking";
 			tmp_chref.lastname = "";
@@ -136,19 +138,19 @@ string locatorName = "";
 
 void SetTeleportData(int tshowType)
 {
-	string attrName,locName;
+	string attrName, locName;
 	ref locatorRef;
 	int locationNum;
-	aref groupRef,locRef;
-	int i,n;
+	aref groupRef, locRef;
+	int i, n;
 
 	aref arList;
 	aref arData;
 
 	nTeleportShowData = tshowType;
-	DeleteAttribute(&objTeleport,"");
+	DeleteAttribute(&objTeleport, "");
 
-	switch(tshowType)
+	switch (tshowType)
 	{
 	case 0: // Выбор телепорт персонажа или корабля
 		objTeleport.data.id1 = "character teleport";
@@ -156,58 +158,58 @@ void SetTeleportData(int tshowType)
 		objTeleport.data.id3 = "character dialog";
 		break;
 	case 1: // Выбор локации
-		for(i = 0; i < MAX_LOCATIONS; i++)
+		for (i = 0; i < MAX_LOCATIONS; i++)
 		{
-			if(Locations[i].id != "")
+			if (Locations[i].id != "")
 			{
-				attrName = "id"+i;
+				attrName = "id" + i;
 				objTeleport.data.(attrName) = Locations[i].id;
 			}
 		}
 		break;
 	case 2: // Выбор группы локаторов
 		locationNum = FindLocation(tel_location_id);
-		if(locationNum!=-1)
+		if (locationNum != -1)
 		{
-			makeref(locatorRef,Locations[locationNum]);
-			if(CheckAttribute(locatorRef,"boarding") && locatorRef.boarding=="true")
+			makeref(locatorRef, Locations[locationNum]);
+			if (CheckAttribute(locatorRef, "boarding") && locatorRef.boarding == "true")
 			{
-				DoReloadCharacterToLocation(tel_location_id,"rld","loc0");
+				DoReloadCharacterToLocation(tel_location_id, "rld", "loc0");
 				nTeleportShowData = 0;
 				return;
 			}
-			if(CheckAttribute(locatorRef,"reload"))
+			if (CheckAttribute(locatorRef, "reload"))
 			{
 				objTeleport.data.id1 = "reload";
 			}
-			if(CheckAttribute(locatorRef,"camdetector"))
+			if (CheckAttribute(locatorRef, "camdetector"))
 			{
 				objTeleport.data.id2 = "camdetector";
 			}
-			if(CheckAttribute(locatorRef,"characters"))
+			if (CheckAttribute(locatorRef, "characters"))
 			{
 				objTeleport.data.id3 = "characters";
 			}
-			if(CheckAttribute(locatorRef,"goto"))
+			if (CheckAttribute(locatorRef, "goto"))
 			{
 				objTeleport.data.id4 = "goto";
 			}
 		}
 		break;
 	case 3: // Выбор локатора
-		Trace("~~~~~~~ loc id = "+tel_location_id + " group id = "+locatorGroup);
+		Trace("~~~~~~~ loc id = " + tel_location_id + " group id = " + locatorGroup);
 		locationNum = FindLocation(tel_location_id);
-		if(locationNum!=-1)
+		if (locationNum != -1)
 		{
-			makeref(locatorRef,Locations[locationNum]);
-			if(CheckAttribute(locatorRef,locatorGroup))
+			makeref(locatorRef, Locations[locationNum]);
+			if (CheckAttribute(locatorRef, locatorGroup))
 			{
-				makearef(groupRef,locatorRef.(locatorGroup));
+				makearef(groupRef, locatorRef.(locatorGroup));
 				n = GetAttributesNum(groupRef);
-				for(i=0; i<n; i++)
+				for (i = 0; i < n; i++)
 				{
-					attrName = "id"+i;
-					locRef = GetAttributeN(groupRef,i);
+					attrName = "id" + i;
+					locRef = GetAttributeN(groupRef, i);
 					//locName = GetAttributeName(locRef);
 					objTeleport.data.(attrName) = locRef.name;
 				}
@@ -218,35 +220,35 @@ void SetTeleportData(int tshowType)
 		object objFileFinder;
 		objFileFinder.dir = "PROGRAM\DIALOGS";
 		objFileFinder.mask = "*.c";
-		CreateEntity(&objFileFinder,"FINDFILESINTODIRECTORY");
-		makearef(arList,objFileFinder.filelist);
-		if( GetAttributesNum(arList)>0 )
+		CreateEntity(&objFileFinder, "FINDFILESINTODIRECTORY");
+		makearef(arList, objFileFinder.filelist);
+		if (GetAttributesNum(arList) > 0)
 		{
-			makearef(arData,objTeleport.data);
-			CopyAttributes(arData,arList);
+			makearef(arData, objTeleport.data);
+			CopyAttributes(arData, arList);
 		}
 		break;
 	case 11: // Выбор нода
 		object objNodeFinder;
 		objNodeFinder.file = "PROGRAM\DIALOGS\" + tel_dialogFileName;
-		CreateEntity(&objNodeFinder,"FINDDIALOGNODES");
-		makearef(arList,objNodeFinder.nodelist);
-		if( GetAttributesNum(arList)>0 )
+			CreateEntity(&objNodeFinder, "FINDDIALOGNODES");
+		makearef(arList, objNodeFinder.nodelist);
+		if (GetAttributesNum(arList) > 0)
 		{
-			makearef(arData,objTeleport.data);
-			CopyAttributes(arData,arList);
+			makearef(arData, objTeleport.data);
+			CopyAttributes(arData, arList);
 		}
 		break;
 	}
 
-	makearef(locRef,objTeleport.data);
-	SendMessage(&objTeleport,"la",42222,locRef);
+	makearef(locRef, objTeleport.data);
+	SendMessage(&objTeleport, "la", 42222, locRef);
 }
 
 void StartQuickTeleport()
 {
-	if(tel_location_id!="" && locatorGroup!="" && locatorName!="")
-		DoReloadCharacterToLocation(tel_location_id,locatorGroup,locatorName);
+	if (tel_location_id != "" && locatorGroup != "" && locatorName != "")
+		DoReloadCharacterToLocation(tel_location_id, locatorGroup, locatorName);
 }
 
 void WQuickTeleport()

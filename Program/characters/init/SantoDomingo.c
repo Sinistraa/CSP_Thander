@@ -6,12 +6,12 @@ int CreateSantoDomingoCharacters(int n)
 	///////////////////////////////////////////////////////////////////////////////
 	// ОСНОВНЫЕ ПЕРСОНАЖИ
 	///////////////////////////////////////////////////////////////////////////////
-	makeref(ch,Characters[n]);			//Губернатор
-	ch.id		= "SantoDomingo_Mayor";
-	ch.model	= "huber_spa";
+	makeref(ch, Characters[n]); //Губернатор
+	ch.id = "SantoDomingo_Mayor";
+	ch.model = "huber_spa";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_townhall";
+	ch.location = "SantoDomingo_townhall";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Mayor.c";
@@ -21,7 +21,7 @@ int CreateSantoDomingoCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -29,14 +29,13 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Священик
-	ch.id		= "SantoDomingo_Priest";
-	ch.model	= "priest_1";
+	makeref(ch, Characters[n]); //Священик
+	ch.id = "SantoDomingo_Priest";
+	ch.model = "priest_1";
 	ch.model.animation = "man";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_church";
+	ch.location = "SantoDomingo_church";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_church.c";
@@ -48,12 +47,12 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);		// ОФициантка
-	ch.id		= "SantoDomingo_waitress";
-	ch.model	= "girl_1";
+	makeref(ch, Characters[n]); // ОФициантка
+	ch.id = "SantoDomingo_waitress";
+	ch.model = "girl_1";
 	ch.sex = "woman";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_tavern";
+	ch.location = "SantoDomingo_tavern";
 	ch.location.group = "waitress";
 	ch.location.locator = "barmen";
 	ch.Dialog.Filename = "Waitress_dialog.c";
@@ -65,13 +64,13 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Трактирщик
-	ch.id		= "SantoDomingo_tavernkeeper";
-	ch.model	= "barmen_13";
+	makeref(ch, Characters[n]); //Трактирщик
+	ch.id = "SantoDomingo_tavernkeeper";
+	ch.model = "barmen_13";
 	ch.greeting = "Gr_Barmen";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_Tavern";
+	ch.location = "SantoDomingo_Tavern";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Tavern.c";
@@ -83,14 +82,13 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-
-	makeref(ch,Characters[n]);			//Торговец
-	ch.id		= "SantoDomingo_trader";
-	ch.model	= "trader_13";
+	makeref(ch, Characters[n]); //Торговец
+	ch.id = "SantoDomingo_trader";
+	ch.model = "trader_13";
 	ch.greeting = "tra_common";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_Store";
+	ch.location = "SantoDomingo_Store";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Common_Store.c";
@@ -102,13 +100,13 @@ int CreateSantoDomingoCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Корабел
-	ch.id		= "SantoDomingo_shipyarder";
-	ch.model	= "shipowner_13";
+	makeref(ch, Characters[n]); //Корабел
+	ch.id = "SantoDomingo_shipyarder";
+	ch.model = "shipowner_13";
 	ch.greeting = "Gr_shipyarder";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_Shipyard";
+	ch.location = "SantoDomingo_Shipyard";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Shipyard.c";
@@ -117,7 +115,7 @@ int CreateSantoDomingoCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "topor1");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+	SetSelfSkill(ch, 90, 90, 90, 60, 70);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);
@@ -125,12 +123,12 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Банкир
-	ch.id		= "SantoDomingo_usurer";
-	ch.model	= "usurer_6";
+	makeref(ch, Characters[n]); //Банкир
+	ch.id = "SantoDomingo_usurer";
+	ch.model = "usurer_6";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_Bank";
+	ch.location = "SantoDomingo_Bank";
 	ch.location.group = "barmen";
 	ch.location.locator = "stay";
 	ch.Dialog.Filename = "Usurer_dialog.c";
@@ -143,12 +141,12 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_SetImmortal(ch, true);
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Начальник порта
-	ch.id		= "SantoDomingo_PortMan";
-	ch.model	= "usurer_5";
+	makeref(ch, Characters[n]); //Начальник порта
+	ch.id = "SantoDomingo_PortMan";
+	ch.model = "usurer_5";
 	ch.sex = "man";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_PortOffice";
+	ch.location = "SantoDomingo_PortOffice";
 	ch.location.group = "sit";
 	ch.location.locator = "sit1";
 	ch.Dialog.Filename = "Common_Portman.c";
@@ -160,14 +158,13 @@ int CreateSantoDomingoCharacters(int n)
 	ch.item_date = "";
 	n = n + 1;
 
-	makeref(ch,Characters[n]);			//Хозяйка борделя
-	ch.id		= "SantoDomingo_Hostess";
-	ch.name		= "Милантра"
-	ch.lastname = "";
-	ch.model	= "lady03";
+	makeref(ch, Characters[n]); //Хозяйка борделя
+	ch.id = "SantoDomingo_Hostess";
+	ch.name = "Милантра" ch.lastname = "";
+	ch.model = "lady03";
 	ch.sex = "woman";
 	ch.City = "SantoDomingo";
-	ch.location	= "SantoDomingo_SecBrRoom";
+	ch.location = "SantoDomingo_SecBrRoom";
 	ch.location.group = "goto";
 	ch.location.locator = "goto8";
 	ch.Dialog.Filename = "Common_Brothel.c";
@@ -178,12 +175,12 @@ int CreateSantoDomingoCharacters(int n)
 	LAi_group_MoveCharacter(ch, "SPAIN_CITIZENS");
 	n = n + 1;
 
-    makeref(ch,Characters[n]);
-	ch.name 	= "Контрабандист";
+	makeref(ch, Characters[n]);
+	ch.name = "Контрабандист";
 	ch.lastname = "";
-	ch.id		= "SantoDomingo_Smuggler";
-	ch.model    = "pirate_1";
-	ch.sex      = "man";
+	ch.id = "SantoDomingo_Smuggler";
+	ch.model = "pirate_1";
+	ch.sex = "man";
 	LAi_SetLoginTime(ch, 0.0, 24.0);
 	ch.nation = PIRATE;
 	GiveItem2Character(ch, BLADE_SABER);

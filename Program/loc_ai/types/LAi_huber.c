@@ -6,10 +6,7 @@
 		dialog
 */
 
-
-
-#define LAI_TYPE_HUBER		"huber"
-
+#define LAI_TYPE_HUBER "huber"
 
 //Инициализация
 void LAi_type_huber_Init(aref chr)
@@ -35,9 +32,9 @@ void LAi_type_huber_CharacterUpdate(aref chr, float dltTime)
 		if (iNumEnemy > 0) //есть враги
 		{
 			GetCharacterPos(chr, &locx, &locy, &locz);
-            Pchar.quest.MayorSitBack.win_condition.l1 = "ExitFromLocation";
-            Pchar.quest.MayorSitBack.win_condition.l1.location = pchar.location;
-            Pchar.quest.MayorSitBack.function = "MayorSitBack";
+			Pchar.quest.MayorSitBack.win_condition.l1 = "ExitFromLocation";
+			Pchar.quest.MayorSitBack.win_condition.l1.location = pchar.location;
+			Pchar.quest.MayorSitBack.function = "MayorSitBack";
 			Pchar.quest.MayorSitBack.mayorId = chr.id;
 			Pchar.quest.MayorSitBack.locationName = chr.location;
 			Pchar.quest.MayorSitBack.locatorName = chr.location.locator;
@@ -46,16 +43,17 @@ void LAi_type_huber_CharacterUpdate(aref chr, float dltTime)
 			LAi_SetWarriorTypeNoGroup(chr); //ребрендинг и вперед на врага
 			ChangeCharacterAddressGroup(chr, chr.location, "goto", LAi_FindNearestFreeLocator("goto", locx, locy, locz));
 			LAi_group_Attack(chr, &characters[iNumEnemy]);
-			if (CheckAttribute(chr, "standUp.exitDisable")) chrDisableReloadToLocation = true;
+			if (CheckAttribute(chr, "standUp.exitDisable"))
+				chrDisableReloadToLocation = true;
 		}
 	}
 	//слежение залезания ГГ в боксы
-	if (CheckAttribute(chr, "watchBoxes")&& chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+	if (CheckAttribute(chr, "watchBoxes") && chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 	{
 		num = FindNearCharacters(chr, 10.0, -1.0, 180.0, 0.01, true, true);
-		for(int i = 0; i < num; i++)
+		for (int i = 0; i < num; i++)
 		{
-			if(nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
+			if (nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
 			{
 				//нашли ГГ, проверяем, не в сундуке ли.
 				if (bMainCharacterInBox)
@@ -65,14 +63,15 @@ void LAi_type_huber_CharacterUpdate(aref chr, float dltTime)
 					LAi_SetWarriorTypeNoGroup(chr); //ребрендинг и вперед на врага
 					ChangeCharacterAddressGroup(chr, chr.location, "goto", LAi_FindNearestFreeLocator("goto", locx, locy, locz));
 					LAi_group_Attack(chr, pchar);
-					if (CheckAttribute(chr, "watchBoxes.exitDisable")) chrDisableReloadToLocation = true;
+					if (CheckAttribute(chr, "watchBoxes.exitDisable"))
+						chrDisableReloadToLocation = true;
 				}
 			}
 		}
 	}
-	if(chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
+	if (chr.chr_ai.tmpl != LAI_TMPL_DIALOG)
 	{
-		if(rand(1000) == 313)
+		if (rand(1000) == 313)
 		{
 			LAi_CharacterPlaySound(chr, "governor");
 		}
@@ -106,7 +105,8 @@ void LAi_type_huber_NeedDialog(aref chr, aref by)
 bool LAi_type_huber_CanDialog(aref chr, aref by)
 {
 	//Если уже говорим, то откажем
-	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG) return false;
+	if (chr.chr_ai.tmpl == LAI_TMPL_DIALOG)
+		return false;
 	//Согласимся на диалог
 	return true;
 }
@@ -133,34 +133,34 @@ void LAi_type_huber_Fire(aref attack, aref enemy, float kDist, bool isFindedEnem
 {
 }
 
-
 //Персонаж атакован
 void LAi_type_huber_Attacked(aref chr, aref by)
 {
-
 }
 
 //Найти врага
 int LAi_type_huber_FindEnemy(aref chr, int num)
 {
-	if(num <= 0) return -1;
+	if (num <= 0)
+		return -1;
 	int i, idx;
-	if(LAi_grp_playeralarm > 0)
+	if (LAi_grp_playeralarm > 0)
 	{
-		for(i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_group_IsEnemy(chr, &Characters[idx])) return idx;
+			if (LAi_group_IsEnemy(chr, &Characters[idx]))
+				return idx;
 		}
 	}
 	else
 	{
-		for(i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
 		{
 			idx = sti(chrFindNearCharacters[i].index);
-			if(LAi_CheckFightMode(&Characters[idx])) return idx;
+			if (LAi_CheckFightMode(&Characters[idx]))
+				return idx;
 		}
 	}
 	return -1;
 }
-

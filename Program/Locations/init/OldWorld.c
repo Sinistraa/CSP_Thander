@@ -14,11 +14,11 @@ int LocationInitOldWorld(int n)
 	rLoc.id.label = "Street";
 	rLoc.worldmap = "PortRoyal";
 
-	rLoc.townsack = "PortRoyal"; // id города
+	rLoc.townsack = "PortRoyal";   // id города
 	rLoc.fastreload = "PortRoyal"; // id города
-	rLoc.islandId = "OldWorld"; // id острова
+	rLoc.islandId = "OldWorld";	   // id острова
 
-	rLoc.image = "loading\Town_"+rand(8)+".tga";
+	rLoc.image = "loading\Town_" + rand(8) + ".tga";
 	rLoc.citizens = true;
 	rLoc.soldiers = true;
 	/*rLoc.carrier = true;*/
@@ -26,26 +26,26 @@ int LocationInitOldWorld(int n)
 	//Sound
 	rLoc.type = "town";
 	LAi_LocationFantomsGen(rLoc, true);
-//	rLoc.houseEnc = true; //для энкаунтеров в домах
-//	rLoc.DisableEncounters = true;
+	//	rLoc.houseEnc = true; //для энкаунтеров в домах
+	//	rLoc.DisableEncounters = true;
 
 	//Models
 	rLoc.filespath.models = "Locations\OldWorld\Town_Port\";
-	rLoc.models.always.Town_Port = "Town_Port";
+							rLoc.models.always.Town_Port = "Town_Port";
 	rLoc.models.always.seabed = "Town_Port_sb";
 	rLoc.models.always.Town_Part1.tech = "DLightModel";
-	rLoc.models.always.locators = "Town_Port_l"; // локаторы
+	rLoc.models.always.locators = "Town_Port_l";   // локаторы
 	rLoc.models.always.grassPatch = "Town_Port_g"; // патч травы
 	rLoc.models.always.grassPatch.texture = "grass\grassshore.tga.tx";
 
 	//Day
-//	rLoc.models.day.jumpPatch = "Town_Port_j"; // патч прыжков
-	rLoc.models.day.rinok = "Town_Port_Rinok"; // рынок
-	rLoc.models.day.fonar = "Town_Port_fd"; // дневные фонари
+	//	rLoc.models.day.jumpPatch = "Town_Port_j"; // патч прыжков
+	rLoc.models.day.rinok = "Town_Port_Rinok";		  // рынок
+	rLoc.models.day.fonar = "Town_Port_fd";			  // дневные фонари
 	rLoc.models.day.charactersPatch = "Town_Port_pd"; // патч ходьбы днем
 	//Night
-//	rLoc.models.night.jumpPatch = "Town_Port_j"; // патч прыжков
-	rLoc.models.night.fonar = "Town_Part1_fn"; // ночные фонари
+	//	rLoc.models.night.jumpPatch = "Town_Port_j"; // патч прыжков
+	rLoc.models.night.fonar = "Town_Part1_fn";			// ночные фонари
 	rLoc.models.night.charactersPatch = "Town_Port_pn"; // патч ходьбы ночью
 	//Environment
 	rLoc.environment.weather = "true";
@@ -67,11 +67,11 @@ int LocationInitOldWorld(int n)
 	rLoc.id.label = "Street";
 	rLoc.worldmap = "PortRoyal";
 
-	rLoc.townsack = "PortRoyal"; //
+	rLoc.townsack = "PortRoyal";   //
 	rLoc.fastreload = "PortRoyal"; //
-	rLoc.islandId = "Jamaica"; //
+	rLoc.islandId = "Jamaica";	   //
 
-	rLoc.image = "loading\Town_"+rand(8)+".tga";
+	rLoc.image = "loading\Town_" + rand(8) + ".tga";
 	rLoc.citizens = true;
 	/*rLoc.soldiers = true;
 	rLoc.carrier = true;*/
@@ -79,13 +79,13 @@ int LocationInitOldWorld(int n)
 	//Sound
 	rLoc.type = "town";
 	LAi_LocationFantomsGen(rLoc, true);
-//	rLoc.houseEnc = true; //для энкаунтеров в домах
-//	rLoc.DisableEncounters = true;
+	//	rLoc.houseEnc = true; //для энкаунтеров в домах
+	//	rLoc.DisableEncounters = true;
 
 	//Models
 	//Always
 	rLoc.filespath.models = "Locations\OldWorld\Town_Part1\";
-	rLoc.models.always.Town_Part1 = "Town_Part1";
+							rLoc.models.always.Town_Part1 = "Town_Part1";
 	rLoc.models.always.Town_Part1.tech = "DLightModel";
 	rLoc.models.always.locators = "Town_Part1_l";
 
@@ -124,11 +124,11 @@ int LocationInitOldWorld(int n)
 	rLoc.id.label = "Street";
 	rLoc.worldmap = "PortRoyal";
 
-	rLoc.townsack = "PortRoyal"; //
+	rLoc.townsack = "PortRoyal";   //
 	rLoc.fastreload = "PortRoyal"; //
-	rLoc.islandId = "OldWorld"; //
+	rLoc.islandId = "OldWorld";	   //
 
-	rLoc.image = "loading\Town_"+rand(8)+".tga";
+	rLoc.image = "loading\Town_" + rand(8) + ".tga";
 	rLoc.citizens = true;
 	rLoc.soldiers = true;
 	/*rLoc.carrier = true;*/
@@ -136,13 +136,13 @@ int LocationInitOldWorld(int n)
 	//Sound
 	rLoc.type = "town";
 	LAi_LocationFantomsGen(rLoc, true);
-//	rLoc.houseEnc = true; //для энкаунтеров в домах
-//	rLoc.DisableEncounters = true;
+	//	rLoc.houseEnc = true; //для энкаунтеров в домах
+	//	rLoc.DisableEncounters = true;
 
 	//Models
 	//Always
 	rLoc.filespath.models = "Locations\OldWorld\Town_Part2\";
-	rLoc.models.always.Town_Part2 = "Town_Part2";
+							rLoc.models.always.Town_Part2 = "Town_Part2";
 	rLoc.models.always.Town_Part2.tech = "DLightModel";
 	rLoc.models.always.locators = "Town_Part2_l";
 
@@ -176,11 +176,11 @@ int LocationInitOldWorld(int n)
 	rLoc.id.label = "Street";
 	rLoc.worldmap = "PortRoyal";
 
-	rLoc.townsack = "PortRoyal"; //
+	rLoc.townsack = "PortRoyal";   //
 	rLoc.fastreload = "PortRoyal"; //
-	rLoc.islandId = "OldWorld"; //
+	rLoc.islandId = "OldWorld";	   //
 
-	rLoc.image = "loading\Town_"+rand(8)+".tga";
+	rLoc.image = "loading\Town_" + rand(8) + ".tga";
 	rLoc.citizens = true;
 	rLoc.soldiers = true;
 	/*rLoc.carrier = true;*/
@@ -188,13 +188,13 @@ int LocationInitOldWorld(int n)
 	//Sound
 	rLoc.type = "town";
 	LAi_LocationFantomsGen(rLoc, true);
-//	rLoc.houseEnc = true; //для энкаунтеров в домах
-//	rLoc.DisableEncounters = true;
+	//	rLoc.houseEnc = true; //для энкаунтеров в домах
+	//	rLoc.DisableEncounters = true;
 
 	//Models
 	//Always
 	rLoc.filespath.models = "Locations\OldWorld\Town_Part3\";
-	rLoc.models.always.Town_Part3 = "Town_Part3";
+							rLoc.models.always.Town_Part3 = "Town_Part3";
 	rLoc.models.always.Town_Part3.tech = "DLightModel";
 	rLoc.models.always.locators = "Town_Part3_l";
 
@@ -231,11 +231,11 @@ int LocationInitOldWorld(int n)
 	rLoc.id.label = "Street";
 	rLoc.worldmap = "PortRoyal";
 
-	rLoc.townsack = "PortRoyal"; //
+	rLoc.townsack = "PortRoyal";   //
 	rLoc.fastreload = "PortRoyal"; //
-	rLoc.islandId = "OldWorld"; //
+	rLoc.islandId = "OldWorld";	   //
 
-	rLoc.image = "loading\Town_"+rand(8)+".tga";
+	rLoc.image = "loading\Town_" + rand(8) + ".tga";
 	rLoc.citizens = true;
 	rLoc.soldiers = true;
 	/*rLoc.carrier = true;*/
@@ -243,13 +243,13 @@ int LocationInitOldWorld(int n)
 	//Sound
 	rLoc.type = "town";
 	LAi_LocationFantomsGen(rLoc, true);
-//	rLoc.houseEnc = true; //для энкаунтеров в домах
-//	rLoc.DisableEncounters = true;
+	//	rLoc.houseEnc = true; //для энкаунтеров в домах
+	//	rLoc.DisableEncounters = true;
 
 	//Models
 	//Always
 	rLoc.filespath.models = "Locations\OldWorld\Town_Part4\";
-	rLoc.models.always.Town_Part4 = "Town_Part4";
+							rLoc.models.always.Town_Part4 = "Town_Part4";
 	rLoc.models.always.Town_Part4.tech = "DLightModel";
 	rLoc.models.always.locators = "Town_Part4_l";
 
@@ -283,11 +283,11 @@ int LocationInitOldWorld(int n)
 	rLoc.id.label = "ExitTown";
 	rLoc.worldmap = "PortRoyal";
 
-	rLoc.townsack = "PortRoyal"; //
+	rLoc.townsack = "PortRoyal";   //
 	rLoc.fastreload = "PortRoyal"; //
-	rLoc.islandId = "OldWorld"; //
+	rLoc.islandId = "OldWorld";	   //
 
-	rLoc.image = "loading\Gate_"+rand(1)+".tga";
+	rLoc.image = "loading\Gate_" + rand(1) + ".tga";
 	/*rLoc.citizens = true;
 	rLoc.soldiers = true;
 	rLoc.carrier = true;*/
@@ -295,13 +295,13 @@ int LocationInitOldWorld(int n)
 	//Sound
 	rLoc.type = "town";
 	LAi_LocationFantomsGen(rLoc, true);
-//	rLoc.houseEnc = true; //для энкаунтеров в домах
-//	rLoc.DisableEncounters = true;
+	//	rLoc.houseEnc = true; //для энкаунтеров в домах
+	//	rLoc.DisableEncounters = true;
 
 	//Models
 	//Always
 	rLoc.filespath.models = "Locations\OldWorld\Town_Exit\";
-	rLoc.models.always.Town_Exit = "Town_Exit";
+							rLoc.models.always.Town_Exit = "Town_Exit";
 	rLoc.models.always.Town_Exit.tech = "DLightModel";
 	rLoc.models.always.locators = "Town_Exit_l";
 
@@ -311,7 +311,6 @@ int LocationInitOldWorld(int n)
 	Location_AddNewModel(sLocID, "", "", "plan_1", "always", "LocationModelBlend", 9, false);
 	Location_AddNewModel(sLocID, "", "", "plan_2", "always", "LocationModelBlend", 8, false);
 	Location_AddNewModel(sLocID, "", "", "plan_3", "always", "LocationModelBlend", 7, false);
-
 
 	//Day
 	rLoc.models.day.fonar = "Town_Exit_fd";

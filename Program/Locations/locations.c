@@ -20,7 +20,7 @@ native void SetReloadNextTipsImage();
 void LocationInit()
 {
 	locCameraInit();
-	if(LoadSegment("locations\locations_init.c"))
+	if (LoadSegment("locations\locations_init.c"))
 	{
 		InitLocations();
 		UnloadSegment("locations\locations_init.c");
@@ -58,7 +58,8 @@ bool VisibleLocatorsGroup(string group, float kRadius, float viewLabelsDist, int
 {
 
 	int i = FindLoadedLocation();
-	if(i < 0) return false;
+	if (i < 0)
+		return false;
 	int color = argb(a, r, g, b);
 	return SendMessage(&Locations[i], "lsffl", MSG_LOCATION_VIEWLGROUP, group, kRadius, viewLabelsDist, color);
 }
@@ -66,7 +67,8 @@ bool VisibleLocatorsGroup(string group, float kRadius, float viewLabelsDist, int
 void HideLocatorsGroup(string group)
 {
 	int i = FindLoadedLocation();
-	if(i < 0) return;
+	if (i < 0)
+		return;
 	SendMessage(&Locations[i], "ls", MSG_LOCATION_HIDELGROUP, group);
 }
 
@@ -84,7 +86,7 @@ void LocationWaitNightEndFadeOut()
 {
 	bool isFadeIn = GetEventData();
 	aref fader = GetEventData();
-	if(isFadeIn == false)
+	if (isFadeIn == false)
 	{
 		SendMessage(&fader, "lfl", FADER_IN, 1.0, true);
 	}
@@ -96,11 +98,11 @@ void LocationWaitNightEndFadeIn()
 {
 	bool isFadeIn = GetEventData();
 	aref fader = GetEventData();
-	if(isFadeIn != false)
+	if (isFadeIn != false)
 	{
 		DelEventHandler("FaderEvent_EndFadeIn", "LocationWaitNightEndFadeIn");
 		int i = FindLoadedLocation();
-		if(i >= 0)
+		if (i >= 0)
 		{
 			SendMessage(&Locations[i], "ll", MSG_LOCATION_PAUSE, false);
 		}
@@ -125,8 +127,8 @@ void LocationMakeClone(string _locId)
 	rClone.id = "Clone_location";
 	rClone.type = "clone";
 	rClone.index = iClone;
-//а так не работает... :) проверка только на аттрибут ;)
-//	rClone.habitues = false;
+	//а так не работает... :) проверка только на аттрибут ;)
+	//	rClone.habitues = false;
 	DeleteAttribute(rClone, "habitues");
 
 	pchar.questTemp.LocationClone = true;
@@ -139,28 +141,33 @@ void LocationMakeClone(string _locId)
 // Ввел доп. проверки в иф, чтобы можно было этим методом "прилеплять" к локации модели еще при инициализации
 bool Location_AddNewModel(String _LocID, String _GroupName, String _LocatorName, String _Model, String _Type, String _Tech, int _Level, bool _Now)
 {
-	int iLoc =  FindLocation(_LocID);
-	if(iLoc == -1) return false;
+	int iLoc = FindLocation(_LocID);
+	if (iLoc == -1)
+		return false;
 	ref rLoc = &locations[iLoc];
 	rLoc.models.(_Type).(_Model) = _Model; // Название модели
-	if(_GroupName != "" && _LocatorName != "")
+	if (_GroupName != "" && _LocatorName != "")
 	{
-		rLoc.models.(_Type).(_Model).locator.group = _GroupName; // Название группы локаторов, куда грузим модель
+		rLoc.models.(_Type).(_Model).locator.group = _GroupName;  // Название группы локаторов, куда грузим модель
 		rLoc.models.(_Type).(_Model).locator.name = _LocatorName; // Название локатора, где будет модель
 	}
-	if(_Tech != "") rLoc.models.(_Type).(_Model).tech = _Tech; // Техника
-	if(_Level > 0) rLoc.models.(_Type).(_Model).level = _Level; // Порядок загрузки
-	if(_Now) LocLoadModel(rLoc, "models." + _Type + "." +_Model, ""); // Грузим модель динамически!
+	if (_Tech != "")
+		rLoc.models.(_Type).(_Model).tech = _Tech; // Техника
+	if (_Level > 0)
+		rLoc.models.(_Type).(_Model).level = _Level; // Порядок загрузки
+	if (_Now)
+		LocLoadModel(rLoc, "models." + _Type + "." + _Model, ""); // Грузим модель динамически!
 	return true;
 }
 
 // Удалить модель из локации (удалится токо позле перегруза локации)
 bool Location_DeleteModel(String _LocID, String sType, String _Model)
 {
-	int iLoc =  FindLocation(_LocID);
-	if(iLoc == -1) return false;
+	int iLoc = FindLocation(_LocID);
+	if (iLoc == -1)
+		return false;
 	ref rLoc = &locations[iLoc];
-	DeleteAttribute(rLoc, "models." + sType + "." +_Model);
+	DeleteAttribute(rLoc, "models." + sType + "." + _Model);
 	return true;
 }
 
@@ -168,23 +175,25 @@ bool Location_DeleteModel(String _LocID, String sType, String _Model)
 bool IsCharacterInLocator(ref rChar, string LocGroup, string LocName)
 {
 	float fx, fy, fz;
-	if(GetCharacterPos(rChar, &fx, &fy, &fz))
+	if (GetCharacterPos(rChar, &fx, &fy, &fz))
 	{
-		if(CheckCurLocator(LocGroup, LocName, fx, fy, fz)) return true;
+		if (CheckCurLocator(LocGroup, LocName, fx, fy, fz))
+			return true;
 	}
 	return false;
 }
 
 bool Location_AddReload(string _LocID, int iNum, string _name, string _go, string _emerge, bool _autoreload, string _label, float _radius)
 {
-	int iLoc =  FindLocation(_LocID);
-	if(iLoc == -1) return false;
+	int iLoc = FindLocation(_LocID);
+	if (iLoc == -1)
+		return false;
 	ref rLoc = &locations[iLoc];
-	string sNum = "l"+iNum;
+	string sNum = "l" + iNum;
 	rLoc.reload.(sNum).name = _name;
 	rLoc.reload.(sNum).go = _go;
 	rLoc.reload.(sNum).emerge = _emerge;
-	if(_autoreload)
+	if (_autoreload)
 		rLoc.reload.(sNum).autoreload = "1";
 	else
 		rLoc.reload.(sNum).autoreload = "0";

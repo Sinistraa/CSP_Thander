@@ -48,49 +48,48 @@ void initReInit(bool bAll)
 	*/
 	//End Boyer fix
 
-Trace("Reinitializing");
+	Trace("Reinitializing");
 
-
-//Re-init things that can change via the options screen
-	SetArraySize(&Cannon,CANNON_TYPES_QUANTITY)
-	InitCannons();
-	SetArraySize(&Goods,GOODS_QUANTITY);
+	//Re-init things that can change via the options screen
+	SetArraySize(&Cannon, CANNON_TYPES_QUANTITY)
+		InitCannons();
+	SetArraySize(&Goods, GOODS_QUANTITY);
 	InitGoods();
-	SetArraySize(&EncountersTypes,MAX_ENCOUNTER_TYPES);
+	SetArraySize(&EncountersTypes, MAX_ENCOUNTER_TYPES);
 	InitEncounters();
-	SetArraySize(&SailsColors,SAILS_COLOR_QUANTITY);
+	SetArraySize(&SailsColors, SAILS_COLOR_QUANTITY);
 	InitSailsColors();
 
+	if (bAll)
+	{
+		//reinit all.  Note this could break some stuff
+		//Boyer add #20170301-6
+		SetArraySize(&randItemModels, MAX_LOADED_RANDITEMS);
+		SetArraySize(&RandItems, RANDITEMS_QUANTITY);
+		SetArraySize(&Items, ITEMS_QUANTITY);
+		InitItems();
+		SetArraySize(&stores, STORE_QUANTITY);
+		StoreInit();
+		InitCharactersTables();
+		SetArraySize(&ShipsTypes, SHIP_TYPES_QUANTITY_WITH_FORT);
+		InitShips();
+		SetArraySize(&Weathers, MAX_WEATHERS);
+		InitWeather();
+		InitNations();
+		SetArraySize(&Locations, MAX_LOCATIONS);
+		InitLocations();
+		InitColonies();
+		CreateColonyCommanders();
+		SetGovenourToCity(ENGLAND, "PortRoyal");
+		SetGovenourToCity(SPAIN, "Havana");
+		SetGovenourToCity(FRANCE, "Tortuga");
+		SetGovenourToCity(HOLLAND, "Villemstad");
+		extrnInitPerks();
+		//	QuestsInit();
+		//	InitIslands();
+		//	wdmInitWorldMap();
 
-if (bAll) {
-	//reinit all.  Note this could break some stuff
-	//Boyer add #20170301-6
-	SetArraySize(&randItemModels,MAX_LOADED_RANDITEMS);
-	SetArraySize(&RandItems, RANDITEMS_QUANTITY);
-	SetArraySize(&Items,ITEMS_QUANTITY);
-	InitItems();
-	SetArraySize(&stores,STORE_QUANTITY);
-	StoreInit();
-	InitCharactersTables();
-	SetArraySize(&ShipsTypes, SHIP_TYPES_QUANTITY_WITH_FORT);
-	InitShips();
-	SetArraySize(&Weathers,MAX_WEATHERS);
-	InitWeather();
-	InitNations();
-	SetArraySize(&Locations,MAX_LOCATIONS);
-	InitLocations();
-	InitColonies();
-	CreateColonyCommanders();
-	SetGovenourToCity(ENGLAND, "PortRoyal");
-	SetGovenourToCity(SPAIN, "Havana");
-	SetGovenourToCity(FRANCE, "Tortuga");
-	SetGovenourToCity(HOLLAND, "Villemstad");
-	extrnInitPerks();
-//	QuestsInit();
-//	InitIslands();
-//	wdmInitWorldMap();
-
-	ClearAllFantomShips();
+		ClearAllFantomShips();
 	}
 }
 
@@ -151,15 +150,12 @@ void RemoveShipFromShipyard(ref NPChar)
 
 */
 
-
 /*
 for (int i = 1; i<=14; i++)
 {
 	AddDataToCurrent(0, 0, 1);
 }
 */
-
-
 
 /*
 	if(LoadSegment("items\initItems.c"))

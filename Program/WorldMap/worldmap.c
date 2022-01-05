@@ -58,9 +58,7 @@
 #include "worldmap\worldmap_encgen.c"
 #include "worldmap\worldmap_coords.c"
 
-
 //=========================================================================================
-
 
 #event_handler("WorldMap_EncounterCreate", "wdmEvent_EncounterCreate");
 #event_handler("WorldMap_PlayerInStorm", "wdmEvent_PlayerInStorm");
@@ -71,11 +69,9 @@
 
 #event_handler("EventTimeUpdate", "wdmTimeUpdate");
 
-
 //=========================================================================================
 // Programm interface
 //=========================================================================================
-
 
 void wdmCreateMap(float x, float z, float ay)
 {
@@ -85,18 +81,16 @@ void wdmCreateMap(float x, float z, float ay)
 	float ShipX, ShipZ;
 	//Находим новыве координаты на карте
 	int scale = WDM_MAP_TO_SEA_SCALE;
-	if (worldMap.island == "Cuba1" || worldMap.island == "Cuba2" || worldMap.island == "Beliz" || worldMap.island == "SantaCatalina"
-		|| worldMap.island == "PortoBello" || worldMap.island == "Cartahena" || worldMap.island == "Maracaibo"
-		|| worldMap.island == "Caracas" || worldMap.island == "Cumana")
+	if (worldMap.island == "Cuba1" || worldMap.island == "Cuba2" || worldMap.island == "Beliz" || worldMap.island == "SantaCatalina" || worldMap.island == "PortoBello" || worldMap.island == "Cartahena" || worldMap.island == "Maracaibo" || worldMap.island == "Caracas" || worldMap.island == "Cumana")
 	{
 		scale = 25;
 	}
-	shipX = (x/scale) + zeroX;
-	shipZ = (z/scale) + zeroZ;
-	worldMap.playerShipX = (x/scale) + zeroX;
-	worldMap.playerShipZ = (z/scale) + zeroZ;
+	shipX = (x / scale) + zeroX;
+	shipZ = (z / scale) + zeroZ;
+	worldMap.playerShipX = (x / scale) + zeroX;
+	worldMap.playerShipZ = (z / scale) + zeroZ;
 	worldMap.playerShipAY = ay;
-//	trace(" X :" + x + " Z :" + z + " scale :" + scale + " ZeroX :" + zeroX + " ZeroZ:" + zeroZ + " WDMShipX:"+worldMap.playerShipX + " WDMShipZ:" + worldMap.playerShipZ + " ShipX:" + ShipX + " ShipZ:" + ShipZ);
+	//	trace(" X :" + x + " Z :" + z + " scale :" + scale + " ZeroX :" + zeroX + " ZeroZ:" + zeroZ + " WDMShipX:"+worldMap.playerShipX + " WDMShipZ:" + worldMap.playerShipZ + " ShipX:" + ShipX + " ShipZ:" + ShipZ);
 	//Загружаем карту
 	wdmCreateWorldMap();
 }
@@ -112,7 +106,7 @@ void wdmTimeUpdate()
 
 void wdmCreateWorldMap()
 {
-    float fHtRatio = stf(Render.screen_y) / screenscaling;
+	float fHtRatio = stf(Render.screen_y) / screenscaling;
 	wdmLockReload = false;
 	//Уберём все сообщения для игрока
 	ClearAllLogStrings();
@@ -133,29 +127,30 @@ void wdmCreateWorldMap()
 	worldMap.date.monthnames.m12 = XI_ConvertString("target_month_12");
 	worldMap.date.font = "normal";
 	worldMap.showFlag.count = 10;
-	worldMap.showFlag.texture = "flagallWDM" + iFlagAllWdm + ".tga";  //path to texture if not in root: "WorldMap\Interfaces\texturename.tga.tx"
+	worldMap.showFlag.texture = "flagallWDM" + iFlagAllWdm + ".tga"; //path to texture if not in root: "WorldMap\Interfaces\texturename.tga.tx"
 	//#20200226-03
 	worldMap.outputRum = true;
 	worldMap.resizeRatio = fHtRatio;
 	//Удалим все устаревшие энкаунтеры
 	wdmRemoveOldEncounters();
-//	Trace("Save check ---------------================--------------")
-//	DumpAttributes(&worldMap);
-//	Trace("Save check ###########----================--------------")
+	//	Trace("Save check ---------------================--------------")
+	//	DumpAttributes(&worldMap);
+	//	Trace("Save check ###########----================--------------")
 	worldMap.playerInStorm = "0";
 	//Сбросим счётчики генерации энкоунтеров
 	wdmReset();
 	//Создаём карту
-	CreateEntity(&worldMap,"worldmap");
+	CreateEntity(&worldMap, "worldmap");
 	worldMap.isLoaded = "true";
 	//Обновляем параметры
 	worldMap.update = "";
 	//Фейдер
 	CreateEntity(&wdm_fader, "fader");
-	if(IsEntity(wdm_fader) == 0) Trace("Fader not created!!!");
+	if (IsEntity(wdm_fader) == 0)
+		Trace("Fader not created!!!");
 	float fadeInTime = 0.5;
 	SendMessage(&wdm_fader, "lfl", FADER_IN, fadeInTime, true);
-	SendMessage(&wdm_fader, "ls",FADER_PICTURE0,"loading\sea_" + rand(31) + ".tga");
+	SendMessage(&wdm_fader, "ls", FADER_PICTURE0, "loading\sea_" + rand(31) + ".tga");
 	//Установим звуковую схему
 	SetSchemeForMap();
 	//Сообщим, что загрузились
@@ -185,17 +180,17 @@ void wdmRemoveOldEncounters()
 	object forDelete;
 	string attr, encID;
 	int count = 0;
-	for(int i = 0; i < num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		aref enc = GetAttributeN(encs, i);
-		if(CheckAttribute(enc, "needDelete") != 0)
+		if (CheckAttribute(enc, "needDelete") != 0)
 		{
 			attr = "del" + count;
 			forDelete.(attr) = GetAttributeName(enc);
 			count = count + 1;
 		}
 	}
-	for(i = 0; i < count; i++)
+	for (i = 0; i < count; i++)
 	{
 		attr = "del" + i;
 		encID = "encounters." + forDelete.(attr);
@@ -206,16 +201,18 @@ void wdmRemoveOldEncounters()
 float wdmGetDays(int year, int month, int day, int hour)
 {
 	//Считаем дни по годам
-	if(year < 0) year = 0;
-	if(year > 3000) year = 3000;
-	year = year*365;
+	if (year < 0)
+		year = 0;
+	if (year > 3000)
+		year = 3000;
+	year = year * 365;
 	//Считаем целые дни
-	for(int i = 1; i < month; i++)
+	for (int i = 1; i < month; i++)
 	{
 		day = day + GetMonthDays(i, year);
 	}
 	//Считаем полные дни
-	float days = year + day + (hour/24.0);
+	float days = year + day + (hour / 24.0);
 	return days;
 }
 
@@ -232,51 +229,59 @@ void wdmMarkDeleteEncounters()
 	aref encs;
 	makearef(encs, worldMap.encounters);
 	int num = GetAttributesNum(encs);
-	for(int i = 0; i < num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		aref enc = GetAttributeN(encs, i);
-		if(CheckAttribute(enc, "Quest") != 0)
+		if (CheckAttribute(enc, "Quest") != 0)
 		{
 			continue;
 		}
 		bool deleteMe = false;
-		if(CheckAttribute(enc, "year") != 0)
+		if (CheckAttribute(enc, "year") != 0)
 		{
 			encYear = sti(enc.year);
-		}else{
+		}
+		else
+		{
 			deleteMe = true;
 		}
-		if(CheckAttribute(enc, "month") != 0)
+		if (CheckAttribute(enc, "month") != 0)
 		{
 			encMonth = sti(enc.month);
-		}else{
+		}
+		else
+		{
 			deleteMe = true;
 		}
-		if(CheckAttribute(enc, "day") != 0)
+		if (CheckAttribute(enc, "day") != 0)
 		{
 			encDay = sti(enc.day);
-		}else{
+		}
+		else
+		{
 			deleteMe = true;
 		}
-		if(CheckAttribute(enc, "hour") != 0)
+		if (CheckAttribute(enc, "hour") != 0)
 		{
 			encHour = sti(enc.hour);
-		}else{
+		}
+		else
+		{
 			deleteMe = true;
 		}
-		if(deleteMe != true)
+		if (deleteMe != true)
 		{
 			float deltaDays = wdmGetDays(encYear, encMonth, encDay, encHour) - days;
-			if(deltaDays < 0)
+			if (deltaDays < 0)
 			{
 				deltaDays = -deltaDays;
 			}
-			if(deltaDays > 1.0)
+			if (deltaDays > 1.0)
 			{
 				deleteMe = true;
 			}
 		}
-		if(deleteMe != false)
+		if (deleteMe != false)
 		{
 			enc.needDelete = "Time delete";
 		}

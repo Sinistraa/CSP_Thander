@@ -1,59 +1,59 @@
-#define FRP_STORE			0
-#define FRT_STORE			0
+#define FRP_STORE 0
+#define FRT_STORE 0
 
-#define FRP_SHIPYARD		1
-#define FRT_SHIPYARD		0
+#define FRP_SHIPYARD 1
+#define FRT_SHIPYARD 0
 
-#define FRP_TAVERN			2
-#define FRT_TAVERN			0
+#define FRP_TAVERN 2
+#define FRT_TAVERN 0
 
-#define FRP_USURER			3
-#define FRT_USURER			0
+#define FRP_USURER 3
+#define FRT_USURER 0
 
-#define FRP_RESIDENCE		4
-#define FRT_RESIDENCE		0
+#define FRP_RESIDENCE 4
+#define FRT_RESIDENCE 0
 
-#define FRP_PRISON			5
-#define FRT_PRISON			0
+#define FRP_PRISON 5
+#define FRT_PRISON 0
 
-#define FRP_CHURCH			6
-#define FRT_CHURCH			0
+#define FRP_CHURCH 6
+#define FRT_CHURCH 0
 
-#define FRP_FORT			7
-#define FRT_FORT			0
+#define FRP_FORT 7
+#define FRT_FORT 0
 
-#define FRP_PORT_OFFICE		8
-#define FRT_PORT_OFFICE		0
+#define FRP_PORT_OFFICE 8
+#define FRT_PORT_OFFICE 0
 
-#define FRP_BROTHEL			9
-#define FRT_BROTHEL			0
+#define FRP_BROTHEL 9
+#define FRT_BROTHEL 0
 
-#define FRP_PORT			10
-#define FRT_PORT			0
+#define FRP_PORT 10
+#define FRT_PORT 0
 
-#define FRP_TOWN_EXIT		13
-#define FRT_TOWN_EXIT		0
+#define FRP_TOWN_EXIT 13
+#define FRT_TOWN_EXIT 0
 
-#define FRP_STORE_HOUSE		14
-#define FRT_STORE_HOUSE		0
+#define FRP_STORE_HOUSE 14
+#define FRT_STORE_HOUSE 0
 
-#define FRP_MINE_HOUSE		15
-#define FRT_MINE_HOUSE		0
+#define FRP_MINE_HOUSE 15
+#define FRT_MINE_HOUSE 0
 
-#define FRP_PLANT_HOUSE		16
-#define FRT_PLANT_HOUSE		0
+#define FRP_PLANT_HOUSE 16
+#define FRT_PLANT_HOUSE 0
 
-#define FRP_FORT_HOUSE		17
-#define FRT_FORT_HOUSE		0
+#define FRP_FORT_HOUSE 17
+#define FRT_FORT_HOUSE 0
 
-#define FRP_GRAVEYARD		18
-#define FRT_GRAVEYARD		0
+#define FRP_GRAVEYARD 18
+#define FRT_GRAVEYARD 0
 
-#define FRP_GWIK			19
-#define FRT_GWIK			0
+#define FRP_GWIK 19
+#define FRT_GWIK 0
 
-#define FRP_INQUISITION		20
-#define FRT_INQUISITION		0
+#define FRP_INQUISITION 20
+#define FRT_INQUISITION 0
 
 void initFastReloadTable()
 {
@@ -62,7 +62,7 @@ void initFastReloadTable()
 	objFastReloadTable.reloadEnable = true;
 	aref curTable;
 
-	makearef(curTable,objFastReloadTable.table.SentJons);
+	makearef(curTable, objFastReloadTable.table.SentJons);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -104,7 +104,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "SentJons_prison";
 
-	makearef(curTable,objFastReloadTable.table.Bridgetown);
+	makearef(curTable, objFastReloadTable.table.Bridgetown);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -154,7 +154,7 @@ void initFastReloadTable()
 	curTable.l12.tex = FRT_PLANT_HOUSE;
 	curTable.l12.location = "Plantation_Sp1";
 
-	makearef(curTable,objFastReloadTable.table.PortRoyal);
+	makearef(curTable, objFastReloadTable.table.PortRoyal);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -204,7 +204,7 @@ void initFastReloadTable()
 	curTable.l12.tex = FRT_GRAVEYARD;
 	curTable.l12.location = "PortRoyal_Graveyard";
 
-	makearef(curTable,objFastReloadTable.table.FortOrange);
+	makearef(curTable, objFastReloadTable.table.FortOrange);
 	// store
 
 	curTable.l1.pic = FRP_PORT;
@@ -243,7 +243,7 @@ void initFastReloadTable()
 	curTable.l9.tex = FRT_TOWN_EXIT;
 	curTable.l9.location = "FortOrange_ExitTown";
 
-	makearef(curTable,objFastReloadTable.table.Pirates);
+	makearef(curTable, objFastReloadTable.table.Pirates);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -265,7 +265,7 @@ void initFastReloadTable()
 	curTable.l7.tex = FRT_PORT_OFFICE;
 	curTable.l7.location = "Pirates_PortOffice";
 
-	makearef(curTable,objFastReloadTable.table.Villemstad);
+	makearef(curTable, objFastReloadTable.table.Villemstad);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -315,7 +315,7 @@ void initFastReloadTable()
 	curTable.l12.tex = FRT_GWIK;
 	curTable.l12.location = "GWIK";
 
-	makearef(curTable,objFastReloadTable.table.BasTer);
+	makearef(curTable, objFastReloadTable.table.BasTer);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -361,7 +361,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_GRAVEYARD;
 	curTable.l11.location = "BasTer_Graveyard";
 
-	makearef(curTable,objFastReloadTable.table.Santiago);
+	makearef(curTable, objFastReloadTable.table.Santiago);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -407,7 +407,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_INQUISITION;
 	curTable.l11.location = "Santiago_Incquisitio";
 
- 	makearef(curTable,objFastReloadTable.table.PuertoPrincipe);
+	makearef(curTable, objFastReloadTable.table.PuertoPrincipe);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -425,7 +425,7 @@ void initFastReloadTable()
 	curTable.l5.tex = FRT_TOWN_EXIT;
 	curTable.l5.location = "PuertoPrincipe_ExitTown";
 
-	makearef(curTable,objFastReloadTable.table.LaVega);
+	makearef(curTable, objFastReloadTable.table.LaVega);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -443,7 +443,7 @@ void initFastReloadTable()
 	curTable.l5.tex = FRT_TOWN_EXIT;
 	curTable.l5.location = "LaVega_ExitTown";
 
-	makearef(curTable,objFastReloadTable.table.FortFrance);
+	makearef(curTable, objFastReloadTable.table.FortFrance);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -489,7 +489,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_PRISON;
 	curTable.l11.location = "FortFrance_prison";
 
-	makearef(curTable,objFastReloadTable.table.LeFransua);
+	makearef(curTable, objFastReloadTable.table.LeFransua);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -507,7 +507,7 @@ void initFastReloadTable()
 	curTable.l4.tex = FRT_TOWN_EXIT;
 	curTable.l4.location = "LeFransua_ExitTown";
 
-	makearef(curTable,objFastReloadTable.table.Havana);
+	makearef(curTable, objFastReloadTable.table.Havana);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -553,7 +553,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_GRAVEYARD;
 	curTable.l11.location = "Havana_Graveyard";
 
-	makearef(curTable,objFastReloadTable.table.Charles);
+	makearef(curTable, objFastReloadTable.table.Charles);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -599,7 +599,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_PRISON;
 	curTable.l11.location = "Charles_prison";
 
-	makearef(curTable,objFastReloadTable.table.PortPax);
+	makearef(curTable, objFastReloadTable.table.PortPax);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -641,7 +641,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "PortPax_prison";
 
-	makearef(curTable,objFastReloadTable.table.SanJuan);
+	makearef(curTable, objFastReloadTable.table.SanJuan);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -683,7 +683,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "SanJuan_prison";
 
-	makearef(curTable,objFastReloadTable.table.SantoDomingo);
+	makearef(curTable, objFastReloadTable.table.SantoDomingo);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -729,7 +729,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_PRISON;
 	curTable.l11.location = "SantoDomingo_prison";
 
-	makearef(curTable,objFastReloadTable.table.PortSpein);
+	makearef(curTable, objFastReloadTable.table.PortSpein);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -771,7 +771,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "PortSpein_prison";
 
-	makearef(curTable,objFastReloadTable.table.Marigo);
+	makearef(curTable, objFastReloadTable.table.Marigo);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -821,7 +821,7 @@ void initFastReloadTable()
 	curTable.l12.tex = FRT_GWIK;
 	curTable.l12.location = "GVIK";
 
-	makearef(curTable,objFastReloadTable.table.Tortuga);
+	makearef(curTable, objFastReloadTable.table.Tortuga);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -867,7 +867,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_PRISON;
 	curTable.l11.location = "Tortuga_prison";
 
-	makearef(curTable,objFastReloadTable.table.Panama);
+	makearef(curTable, objFastReloadTable.table.Panama);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -913,7 +913,7 @@ void initFastReloadTable()
 	curTable.l11.tex = FRT_PRISON;
 	curTable.l11.location = "Panama_prison";
 
-	makearef(curTable,objFastReloadTable.table.PortoBello);
+	makearef(curTable, objFastReloadTable.table.PortoBello);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -955,7 +955,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "PortoBello_prison";
 
-	makearef(curTable,objFastReloadTable.table.Cartahena);
+	makearef(curTable, objFastReloadTable.table.Cartahena);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -997,7 +997,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "Cartahena_prison";
 
-	makearef(curTable,objFastReloadTable.table.Maracaibo);
+	makearef(curTable, objFastReloadTable.table.Maracaibo);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -1039,7 +1039,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "Maracaibo_prison";
 
-	makearef(curTable,objFastReloadTable.table.Caracas);
+	makearef(curTable, objFastReloadTable.table.Caracas);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -1081,7 +1081,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "Caracas_prison";
 
-	makearef(curTable,objFastReloadTable.table.Cumana);
+	makearef(curTable, objFastReloadTable.table.Cumana);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -1123,7 +1123,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "Cumana_prison";
 
-	makearef(curTable,objFastReloadTable.table.SantaCatalina);
+	makearef(curTable, objFastReloadTable.table.SantaCatalina);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -1165,7 +1165,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "SantaCatalina_prison";
 
-	makearef(curTable,objFastReloadTable.table.Beliz);
+	makearef(curTable, objFastReloadTable.table.Beliz);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -1207,7 +1207,7 @@ void initFastReloadTable()
 	curTable.l10.tex = FRT_PRISON;
 	curTable.l10.location = "Beliz_prison";
 
-	makearef(curTable,objFastReloadTable.table.LostShipsCity);
+	makearef(curTable, objFastReloadTable.table.LostShipsCity);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
@@ -1229,7 +1229,7 @@ void initFastReloadTable()
 	curTable.l6.tex = FRT_CHURCH;
 	curTable.l6.location = "GloriaChurch";
 
-	makearef(curTable,objFastReloadTable.table.Caiman);
+	makearef(curTable, objFastReloadTable.table.Caiman);
 	// store
 	curTable.l1.pic = FRP_STORE;
 	curTable.l1.tex = FRT_STORE;
