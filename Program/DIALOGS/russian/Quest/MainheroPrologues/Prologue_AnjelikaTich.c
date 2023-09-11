@@ -976,7 +976,7 @@ void ProcessDialogEvent()
 			sld.dialog.currentnode = "First Time";
 		break;
 		
-		//Квест продолжение сюжета: "Портниха знатной дамы"
+		//Виспер: "Портниха знатной дамы"
 		case "AT_PZD_Pilar_1_1":
 			dialog.text = "";
 			link.l1 = "Ребекка?";
