@@ -1025,6 +1025,30 @@ void ProcessDialogEvent()
 
 		case "AT_PZD_Pilar_1_8":
 			DialogExit();
+			
+			sld = CharacterFromID("AT_PZD_Pilar");
+			LAi_SetCitizenType(sld);
+			LAi_CharacterDisableDialog(sld);
+			sld.lifeday = 0;
+			
+			sld = CharacterFromID("AT_PZD_Herineldo");
+			LAi_SetActorType(sld);
+			LAi_ActorFollow(sld, CharacterFromID("AT_PZD_Pilar"), "", -1);
+			sld.lifeday = 0;
+			
+			sld = CharacterFromID("AT_PZD_R1");
+			LAi_SetActorType(sld);
+			LAi_ActorFollow(sld, CharacterFromID("AT_PZD_Pilar"), "", -1);
+			sld.lifeday = 0;
+			
+			SetQuestHeader("AT_PZD");
+			AddQuestRecord("AT_PZD", "1");
+			bDisableFastReload = true;
+			LocatorReloadEnterDisable("Marigo_town", "reload3_back", true);
+			LocatorReloadEnterDisable("Marigo_town", "reloadR2", true);
+			
+			PChar.quest.AT_PZD_ProvalMissii.win_condition.l1 = "MapEnter";
+			PChar.quest.AT_PZD_ProvalMissii.win_condition = "AT_PZD_ProvalMissii";
 		break;
 
 	}

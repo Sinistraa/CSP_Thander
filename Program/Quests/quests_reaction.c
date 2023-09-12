@@ -11981,8 +11981,11 @@ void QuestComplete(string sQuestName, string qname)
 			AddQuestRecord("KSM_Spasenie_na_rifah", "2");
 			CloseQuestHeader("KSM_Spasenie_na_rifah");
 		break;
-		
-//========================  Sinistra Пролог "Анжелика Тич"  =======================			
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+////  	СЮЖЕТНАЯ ЛИНЕЙКА "АНЖЕЛИКА ТИЧ"    НАЧАЛО  	 ////	 		   Sinistra			    ////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//========================  Квест "Мечты сбываются"  =======================			
 		case "Draka_s_Kotesom_Pobeda":
 			LAi_group_Delete("EnemyFight");
 			DoQuestCheckDelay("hide_weapon", 1.2);
@@ -12249,6 +12252,17 @@ void QuestComplete(string sQuestName, string qname)
 			sld.dialog.currentnode = "First Time";
 		break;
 		
+//========================  Квест: "Портниха знатной дамы"  =======================	
+
+		case "AT_PZD_ProvalMissii":
+			AddQuestRecord("AT_PZD", "2");
+			CloseQuestHeader("AT_PZD");
+		break;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+////   	 СЮЖЕТНАЯ ЛИНЕЙКА "АНЖЕЛИКА ТИЧ"     КОНЕЦ
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 //========================  "Нежить: Лиларкор"  =======================
 
 		case "UP_KrovPismo":
@@ -12494,7 +12508,7 @@ void QuestComplete(string sQuestName, string qname)
 			SetCharacterPerk(sld, "CannonProfessional");
 		break;
 		
-//========================  "Игра в прятки"  ========================
+//========================  Sinistra: "Игра в прятки"  ========================
 		
 		case "SCQ_Prytki_VremyPoshlo":
 			Log_info("Вам нужно найти девушку за 120 секунд");
@@ -12583,7 +12597,7 @@ void QuestComplete(string sQuestName, string qname)
 			AddCharacterExpToSkill(pchar, "FencingHeavy", 5);
 		break;
 		
-//========================  "Проверка знаний"  ======================
+//========================  Sinistra: "Латынь"  ======================
 
 		case "SCQ_Zachet_VremyVishlo":
 			DialogExit();
@@ -12598,7 +12612,7 @@ void QuestComplete(string sQuestName, string qname)
 			LAi_ActorDialog(sld, pchar, "", 0, 0);
 		break;
 		
-//==================  "Найти пропавшего торговца"  ==================
+//==================  Sinistra: "Найти пропавшего торговца"  ==================
 
 		case "SCQ_Hasband_Truba":
 			pchar.questTemp.womanHasband_Truba = true;
@@ -12610,7 +12624,7 @@ void QuestComplete(string sQuestName, string qname)
 			}
 		break;
 
-//============  "Вызволение из плена мужа горожанки"  ===============
+//============  Sinistra: "Вызволение из плена мужа горожанки"  ===============
 
 		case "SCQ_womanPirates_afterCabinFight":
 			sld = GetCharacter(NPC_GenerateCharacter("QuetionsPortPax_MuzhPassajir", "trader_4", "man", "man", 3, FRANCE, -1, false));
