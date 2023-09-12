@@ -981,6 +981,7 @@ void ProcessDialogEvent()
 			dialog.text = "";
 			link.l1 = "Ребекка?";
 			link.l1.go = "AT_PZD_Pilar_1_2";
+			DeleteAttribute(npchar, "talker");
 		break;
 
 		case "AT_PZD_Pilar_1_2":

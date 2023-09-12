@@ -778,10 +778,13 @@ void CalculateInfoDataF2()
 	// -->
 	totalInfo = descF2;
 	//TraderHunterOnMap();
-		sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Pilar", "PilarTernera", "woman", "YokoDias", 1, SPAIN, -1, false));
+	Log_info("Слава Свену Винке!");
+	
+	sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Pilar", "PilarTernera", "woman", "YokoDias", 1, SPAIN, -1, false));
 	sld.name = "Пилар";
 	sld.lastname = "Тернера";
-	LAi_SetLoginTime(sld, 9.0, 17.99);
+	LAi_SetImmortal(sld, true);
+	//LAi_SetLoginTime(sld, 9.0, 17.99);
 	LAi_SetCitizenType(sld);
 	sld.dialog.filename = "Quest\MainheroPrologues\Prologue_AnjelikaTich.c";
 	sld.dialog.currentnode = "AT_PZD_Pilar_1_1";
@@ -791,13 +794,15 @@ void CalculateInfoDataF2()
 	sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Herineldo", "sold_spa_2", "man", "man", 10, SPAIN, -1, true));
 	sld.name = "Херинельдо";
 	sld.lastname = "Гарберд";
-	LAi_SetLoginTime(sld, 9.0, 17.99);
+	LAi_SetImmortal(sld, true);
+	//LAi_SetLoginTime(sld, 9.0, 17.99);
 	ChangeCharacterAddressGroup(sld, "Marigo_town", "goto", "goto7");
 	LAi_SetActorType(sld);
 	LAi_ActorFollow(sld, CharacterFromID("AT_PZD_Pilar"), "", -1);
 
 	sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_R1", "sold_spa_2", "man", "man", 5, SPAIN, -1, true));
-	LAi_SetLoginTime(sld, 9.0, 17.99);
+	LAi_SetImmortal(sld, true);
+	//LAi_SetLoginTime(sld, 9.0, 17.99);
 	ChangeCharacterAddressGroup(sld, "Marigo_town", "goto", "goto7");
 	LAi_SetActorType(sld);
 	LAi_ActorFollow(sld, CharacterFromID("AT_PZD_Pilar"), "", -1);
