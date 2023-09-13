@@ -1050,6 +1050,21 @@ void ProcessDialogEvent()
 			
 			PChar.quest.AT_PZD_ProvalMissii.win_condition.l1 = "MapEnter";
 			PChar.quest.AT_PZD_ProvalMissii.win_condition = "AT_PZD_ProvalMissii";
+			
+			pchar.questTemp.AT_PZD_taverna = true;
+			pchar.questTemp.AT_PZD_PU = true;
+		break;
+		
+		case "AT_PZD_MatrosUKostra_1":
+			dialog.text = "...(не замечая нас)... А я ему и говорю, что он наивный дурак, раз верит в эти слухи, что якобы я обнимался с чёрным медведем... Да не было такого\nА тебе чего надо?";
+			link.l1 = "Отдыхаете, работники? Есть разговор.";
+			link.l1.go = "AT_PZD_MatrosUKostra_2";
+		break;
+		
+		case "AT_PZD_MatrosUKostra_2":
+			dialog.text = "...(не замечая нас)... А я ему и говорю, что он наивный дурак, раз верит в эти слухи, что якобы я обнимался с чёрным медведем... Да не было такого\nА тебе чего надо?";
+			link.l1 = "Отдыхаете, работники? Есть разговор.";
+			link.l1.go = "exit";
 		break;
 
 	}

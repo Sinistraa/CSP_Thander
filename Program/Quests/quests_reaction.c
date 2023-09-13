@@ -12257,6 +12257,10 @@ void QuestComplete(string sQuestName, string qname)
 		case "AT_PZD_ProvalMissii":
 			AddQuestRecord("AT_PZD", "2");
 			CloseQuestHeader("AT_PZD");
+			
+			//СЮДА ДОПИСАТЬ ВСЁ, ЧТО КАСАЕТСЯ ПРОВАЛА МИССИИ
+			//...
+			//...
 		break;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
