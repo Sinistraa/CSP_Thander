@@ -54,24 +54,39 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			
 			//Сюда ставить матросов у костра
 			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Matros1", "shipowner_22", "man", "man", 3, HOLLAND, -1, false));
+			sld.name = "Палтурс";
+			sld.lastname = "Кейт";
 			LAi_SetLoginTime(sld, 22.0, 3.99);
 			LAi_SetGroundSitType(sld);
 			sld.dialog.filename = "Quest\MainheroPrologues\Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "AT_PZD_MatrosUKostra_1";
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			sld.City = "Marigo";
 			ChangeCharacterAddressGroup(sld, "Marigo_town", "sit", "fire1_1");
 			
-			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Matros2", "shipowner_29", "man", "man", 3, HOLLAND, -1, false));
+			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Matros2", "pirate_19", "man", "man", 3, HOLLAND, -1, false));
+			sld.name = "Палтурс";
+			sld.lastname = "Кейт";
 			LAi_SetLoginTime(sld, 22.0, 3.99);
 			LAi_SetGroundSitType(sld);
 			sld.dialog.filename = "Quest\MainheroPrologues\Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "AT_PZD_MatrosUKostra_1";
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			sld.City = "Marigo";
 			ChangeCharacterAddressGroup(sld, "Marigo_town", "sit", "fire1_2");
 			
-			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Matros3", "shipowner_20", "man", "man", 3, HOLLAND, -1, false));
+			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Matros3", "pirate_20", "man", "man", 3, HOLLAND, -1, false));
+			sld.name = "Палтурс";
+			sld.lastname = "Кейт";
 			LAi_SetLoginTime(sld, 22.0, 3.99);
 			LAi_SetGroundSitType(sld);
 			sld.dialog.filename = "Quest\MainheroPrologues\Prologue_AnjelikaTich.c";
 			sld.dialog.currentnode = "AT_PZD_MatrosUKostra_1";
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			sld.City = "Marigo";
 			ChangeCharacterAddressGroup(sld, "Marigo_town", "sit", "fire1_3");
 			
 			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Matros4", "shipowner_23", "man", "man", 3, HOLLAND, -1, false));
@@ -79,6 +94,9 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			LAi_SetActorType(sld);
 			LAi_ActorSetLayMode(sld);
 			LAi_CharacterDisableDialog(sld);
+			LAi_SetImmortal(sld, true);
+			LAi_group_MoveCharacter(sld, "HOLLAND_CITIZENS");
+			sld.City = "Marigo";
 			ChangeCharacterAddressGroup(sld, "Marigo_town", "sit", "fire2_1");
  		break;
 

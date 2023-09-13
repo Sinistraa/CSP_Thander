@@ -1056,6 +1056,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AT_PZD_MatrosUKostra_1":
+			locCameraFromToPos(43.47, 3.58, -6.19, true, 32.50, 0.20, 0.00);
+			TeleportCharacterToPosAy(pchar, 39.58, 0.02, -4.80, -0.40);
 			dialog.text = "...(не замечая нас)... А я ему и говорю, что он наивный дурак, раз верит в эти слухи, что якобы я обнимался с чёрным медведем... Да не было такого\nА тебе чего надо?";
 			link.l1 = "Отдыхаете, работники? Есть разговор.";
 			link.l1.go = "AT_PZD_MatrosUKostra_2";
