@@ -3104,3 +3104,9 @@ itmdescr_Peres_Kluch
 {
 Ключ, который вы нашли в доме Переса. Интересно, что он открывает?"
 }
+
+itmname_AT_PZD_KarnavalKostum	{Карнавальный костюм}
+itmdescr_AT_PZD_KarnavalKostum
+{
+"Элегантный костюм, предназначенный для походов на балы."
+}

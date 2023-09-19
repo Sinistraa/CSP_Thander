@@ -9535,6 +9535,18 @@ int InitItems()
 	itm.price = 0;
 	itm.ItemType = "QUESTITEMS";
 	n++;
+	
+	makeref(itm,Items[n]);
+	itm.id = "AT_PZD_KarnavalKostum";
+	itm.name = "itmname_AT_PZD_KarnavalKostum";
+	itm.describe = "itmdescr_AT_PZD_KarnavalKostum";
+	itm.model = "keysimple";
+	itm.picIndex = 2;
+	itm.picTexture = "ITEMS_1";
+	itm.Weight = 300.0;
+	itm.price = 0;
+	itm.ItemType = "QUESTITEMS";
+	n++;
 
 	//InitGunExt(id,	sAttr,  sBullet,  sGunPowder, DmgMin_NC, DmgMax_NC, DmgMin_C, DmgMax_C, EnergyP_NC, EnergyP_C, Stun_NC, Stun_C, MultiDamage, MisFire, SelfDamage, Explosion,Accuracy,ChargeSpeed,isDefault);
 	InitGunExt(		 "pistol1", "t1",  	     "cartridge",               "",  20.0, 100.0,  20.0, 100.0,  0.0,  0.0, 1, 0, 0, 0, 0, 0, 30,  8, 0);

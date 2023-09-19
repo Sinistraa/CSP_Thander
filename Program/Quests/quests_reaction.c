@@ -12262,6 +12262,47 @@ void QuestComplete(string sQuestName, string qname)
 			//...
 			//...
 		break;
+		
+		case "AT_PZD_IdemNaKarnaval":
+			TeleportCharacterToPosAy(pchar, -5.17, 3.0, -4.0, 0.00);
+			PChar.quest.AT_PZD_Karnaval.win_condition.l1 = "locator";
+			PChar.quest.AT_PZD_Karnaval.win_condition.l1.location = "Marigo_town";
+			PChar.quest.AT_PZD_Karnaval.win_condition.l1.locator_group = "reload";
+			PChar.quest.AT_PZD_Karnaval.win_condition.l1.locator = "reload3_back";
+			PChar.quest.AT_PZD_Karnaval.win_condition = "AT_PZD_Karnaval";
+			RemoveCharacterEquip(pchar, BLADE_ITEM_TYPE);
+			pchar.model = "AngelicaBal";
+			SetNewModelToChar(pchar);
+			pchar.FaceId = 350;
+			
+			//locations[FindLocation("Marigo_hall")].models.always.l1 = "residence06";
+			locations[FindLocation("Marigo_hall")].models.always.l1 = "residence06_quest";
+			//locations[FindLocation("Marigo_hall")].models.always.locators = "residence06_locators";
+			locations[FindLocation("Marigo_hall")].models.always.locators = "residence06_quest_locators";
+			//locations[FindLocation("Marigo_hall")].models.day.charactersPatch = "residence06_patch";
+			locations[FindLocation("Marigo_hall")].models.day.charactersPatch = "residence06_quest_patch";
+			//locations[FindLocation("Marigo_hall")].models.night.charactersPatch = "residence06_patch";
+			locations[FindLocation("Marigo_hall")].models.night.charactersPatch = "residence06_quest_patch";
+			
+			//
+		break;
+		
+		case "AT_PZD_Karnaval":
+			DoQuestReloadToLocation("Marigo_hall", "reload", "reload1", "AT_PZD_Karnaval_2");
+		break;
+		
+		case "AT_PZD_Karnaval_2":
+			pchar.model = "AngelicaBal";
+			SetNewModelToChar(pchar);
+			pchar.FaceId = 350;
+			AddQuestRecord("AT_PZD", "5");
+			
+			//
+			sld = GetCharacter(NPC_GenerateCharacter("AT_PZD_Musicant1", "Musician1", "man", "man", 3, HOLLAND, -1, false));
+			LAi_SetSitType(sld);
+			sld.nonTable = true;
+			ChangeCharacterAddressGroup(sld, "Marigo_hall", "quest", "quest7");
+		break;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////   	 СЮЖЕТНАЯ ЛИНЕЙКА "АНЖЕЛИКА ТИЧ"     КОНЕЦ

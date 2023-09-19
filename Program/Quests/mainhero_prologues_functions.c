@@ -312,7 +312,7 @@ void AnjelikaTich_StartGame(string qName)
 	bDisableCharacterMenu = true;
 	SetCaptureTownByNation("LaVega", SPAIN);
 	pchar.questTemp.AnjelikaTichPrologue = "ATP";
-	pchar.questTemp.AnjelikaTichPrologue5 = "ATP5";
+	pchar.questTemp.AnjelikaTichPrologue5 = true;
 	pchar.questTemp.AnjelikaTichPrologue7_Jackman = true;
 	pchar.questTemp.AnjelikaTichPrologue8_Gudli = "ATP8";
 	pchar.questTemp.AnjelikaTichPrologue9_BlackBeard = "ATP9";
@@ -1058,6 +1058,27 @@ void ATpr_SvobodaIgry(string qName)
 	bDisableLandEncounters = false;
 	AddQuestRecord("AT_Mechty_Sbivautsya", "7");
 	CloseQuestHeader("AT_Mechty_Sbivautsya");
+	DeleteAttribute(pchar, "questTemp.AnjelikaTichPrologue5");
+	RemoveCharacterEquip(pchar, CIRASS_ITEM_TYPE);
+	TakeItemFromCharacter(pchar, "suit_2");
+	
+	sld = CharacterFromID("Gasten_Kotes")
+	sld.Dialog.Filename = "Enc_Officer_dialog.c";
+	sld.quest.meeting = true;
+	Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+	sld.OfficerWantToGo.DontGo = true;
+	ChangeCharacterReputation(sld, 20);
+	sld.loyality = MAX_LOYALITY;
+	LAi_SetCurHPMax(sld);
+	AddPassenger(pchar, sld, false);
+	SetCharacterRemovable(sld, true);
+	LAi_SetImmortal(sld, false);
+	sld.HalfImmortal = true;
+	sld.location = "None";
+	sld.Dialog.CurrentNode = "hired";
+			
+	AddSimpleRumour("Пираты захватили испанскую колонию Ла Вега, а заодно предприняли попытку атаковать ещё и Санто-Доминго. Правда, им это не удалось, их всех перебили у стен города.", PIRATE, 5, 1);
+	AddSimpleRumour("Ужасные новости, пираты устроили резню в нашей колонии Ла Вега, говорят, не пощадили никого. Слава богу, возмездие их уже настигло, все мерзавцы полегли под стенами Санто-Доминго при неудачной попытке взять город с суши.", SPAIN, 5, 1);
 	
 	//Восстанавливаем город из пепла
 	SetLocationCapturedState("LaVega_town", false);

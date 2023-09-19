@@ -10,6 +10,22 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("Я передумал...", "Хм, да ничего..."), "Не могу... Нет вопросов...",
                       "Да уж, действительно в третий раз... Извини.", "Не сейчас... В другой раз...", npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
+			// ==> Анжелика Тич: Портниха знатной дамы
+			if(CheckAttribute(pchar, "questTemp.AT_PZD_Bordel"))
+			{
+				DeleteAttribute(pchar, "questTemp.AT_PZD_Bordel")
+				link.l1 = "Я к вам с несколько необычным предложением. Не могли бы вы мне продать самое лучшее платье из вашего гардероба?";
+				link.l1.go = "AT_PZD_Bordel_1";
+				break;
+			}
+			if(CheckAttribute(pchar, "questTemp.AT_PZD_Bordel_2"))
+			{
+				DeleteAttribute(pchar, "questTemp.AT_PZD_Bordel_2")
+				link.l1 = "Я снова по поводу платья.";
+				link.l1.go = "AT_PZD_Bordel_6";
+				break;
+			}
+			// <== Анжелика Тич: Портниха знатной дамы
 			if (pchar.questTemp.Sharp == "seekSharp" && GetNpcQuestPastDayWOInit(npchar, "quest.SharpTime") > 7 && !LAi_IsDead(&characters[GetCharacterIndex("Sharp")]))
 			{
 				link.l1 = "Послушай, " + npchar.name + ", я ищу Шарпа. Ты не знаешь, где он?";
@@ -17,6 +33,66 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				SaveCurrentNpcQuestDateParam(npchar, "quest.SharpTime");
 			}
 		break;
+		
+		//============ Анжелика Тич: Портниха знатной дамы
+		case "AT_PZD_Bordel_1":
+    		dialog.text = "Действительно необычное. Боюсь, такая услуга обойдётся вам в целое состояние.";
+    		link.l1 = "Может быть его можно арендовать на вечер-другой?";
+    		link.l1.go = "AT_PZD_Bordel_2";
+ 		break;
+		case "AT_PZD_Bordel_2":
+    		dialog.text = "Пожалуй, это можно устроить. Скажем 15000 пиастров и гарантия того, что оно будет возвращено вовремя, в целости и сохранности.";
+			link.l1 = "Без единого пятнышка... И раз уж мы сошлись в цене, может быть у вас отыщется ещё и подходящая карнавальная маска, такая, чтоб закрывала лицо целиком?";
+    		link.l1.go = "AT_PZD_Bordel_3";
+ 		break;
+		case "AT_PZD_Bordel_3":
+    		dialog.text = "Что-нибудь подберём. Пятьдесят тысяч и она ваша.";
+			link.l1 = "Что?! Вы случайно не промахнулись с ценой?";
+    		link.l1.go = "AT_PZD_Bordel_4";
+ 		break;
+		case "AT_PZD_Bordel_4":
+    		dialog.text = "Уверенна, между нами просто произошло некоторое недопонимание. Вероятно, по ошибке вы приняли меня за глупую женщину, не способную понять намерений инкогнито проникнуть в местную резиденцию. Пятьдесят тысяч за моё молчание, в пятнадцать обойдётся вам платье на вечер и маску получите от меня в подарок. Так как?";
+			if (sti(pchar.Money) >= 65000)
+			{
+				link.l1 = "А вы умеете вести дела. Кажется, у меня нет выхода. Вот ваши деньги. Надеюсь, фасон меня не разочарует.";
+				link.l1.go = "AT_PZD_Bordel_5";
+			}
+			link.l2 = "Что же, я подумаю и возможно зайду позже.";
+    		link.l2.go = "AT_PZD_Bordel_4_1";
+ 		break;
+		case "AT_PZD_Bordel_4_1":
+    		DialogExit();
+			pchar.questTemp.AT_PZD_Bordel_2 = true;
+ 		break;
+		case "AT_PZD_Bordel_6":
+    		dialog.text = "Так как, наша сделка состоится?";
+			if (sti(pchar.Money) >= 65000)
+			{
+				link.l1 = "Вот ваши деньги. Надеюсь, фасон меня не разочарует.";
+				link.l1.go = "AT_PZD_Bordel_5";
+			}
+			link.l2 = "Я ещё обдумываю, стоит ли того ваше предложение.";
+    		link.l2.go = "AT_PZD_Bordel_4_1";
+ 		break;		
+		case "AT_PZD_Bordel_5":
+			SetCurrentTime(22, 1);
+			Log_info("Вы надели карнавальный костюм");
+			GiveItem2Character(PChar, "AT_PZD_KarnavalKostum");
+    		dialog.text = "Ещё немного подвязать вот здесь и я буду практически довольна результатом. Очень жаль Анжелика, что ты не носила в юности корсет, оно бы сидело значительно лучше. Талия всё ещё выдаёт простолюдинку.";
+			link.l1 = "Солдаты на это внимания не обратят, а дальше я справлюсь.";
+    		link.l1.go = "AT_PZD_Bordel_8";
+ 		break;
+		case "AT_PZD_Bordel_8":
+    		dialog.text = "Нет, всё же не дурно, не дурно. Пожалуй, я даже передумала, можешь не возвращать мне наряд, считай, ты его купила.";
+			link.l1 = "Такая сделка мне нравится намного больше. Отказываться не стану. Всё, мне надо спешить, а то опоздаю!";
+    		link.l1.go = "AT_PZD_Bordel_9";
+ 		break;
+		case "AT_PZD_Bordel_9":
+    		DialogExit();
+			
+			DoQuestReloadToLocation("Marigo_town", "goto", "goto19", "AT_PZD_IdemNaKarnaval");
+ 		break;
+		
 		// капитан Шарп, грабёж жемчужных промыслов
 		case "SharpPearl_1":
 			if (drand(1) || bBettaTestMode)

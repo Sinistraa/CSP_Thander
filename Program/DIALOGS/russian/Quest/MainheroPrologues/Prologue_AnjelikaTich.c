@@ -837,8 +837,10 @@ void ProcessDialogEvent()
 			sld.Dialog.Filename = "Enc_Officer_dialog.c";
 			AddDialogExitQuestFunction("LandEnc_OfficerHired");
 			Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(sld.id);
+			sld.OfficerWantToGo.DontGo = true;
 			ChangeCharacterReputation(sld, 20);
 			sld.loyality = MAX_LOYALITY;
+			LAi_SetCurHPMax(sld);
 			LAi_SetImmortal(sld, false);
 			sld.HalfImmortal = true;
 			
@@ -1064,9 +1066,77 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AT_PZD_MatrosUKostra_2":
-			dialog.text = "...(не замечая нас)... А я ему и говорю, что он наивный дурак, раз верит в эти слухи, что якобы я обнимался с чёрным медведем... Да не было такого\nА тебе чего надо?";
-			link.l1 = "Отдыхаете, работники? Есть разговор.";
-			link.l1.go = "exit";
+			dialog.text = "Вы это, барышня, верно подметили. Отдыхаем\nЕсли хотите предложить работу, приходите завтра... Или нет, лучше через 2 дня. На завтра у нас уже есть наниматель, или предлагайте большую цену.";
+			link.l1 = "Мне нужно прямо сейчас. 2000 монет за простой разговор, идёт?";
+			link.l1.go = "AT_PZD_MatrosUKostra_3";
+		break;
+		
+		case "AT_PZD_MatrosUKostra_3":
+			dialog.text = "По рукам. Выкладывайте, только деньги вперёд, а мы уж подскажем, что знаем.";
+			if (sti(pchar.Money) >= 2000)
+			{
+				link.l1 = "Держи.";
+				link.l1.go = "AT_PZD_MatrosUKostra_4";
+			}
+			link.l2 = "Я кошелёк в каюте оставила, скоро вернусь.";
+			link.l2.go = "exit";
+			NextDiag.TempNode = "AT_PZD_MatrosUKostra_3_1";
+		break;
+		
+		case "AT_PZD_MatrosUKostra_3_1":
+			dialog.text = "Ну что, барышня, принесла 2000 монет?";
+			if (sti(pchar.Money) >= 2000)
+			{
+				link.l1 = "Держи.";
+				link.l1.go = "AT_PZD_MatrosUKostra_4";
+			}
+			link.l2 = "Ещё нет, скоро вернусь.";
+			link.l2.go = "exit";
+			NextDiag.TempNode = "AT_PZD_MatrosUKostra_3_1";
+		break;
+		
+		case "AT_PZD_MatrosUKostra_4":
+			dialog.text = "Отлично, так что ты хотела узнать?";
+			link.l1 = "Меня интересует женщина аристократка, которая сошла с одного из испанских кораблей. Прогуливалась недавно по набережной в сопровождении солдат, на ней была широкополая шляпа, сложно не заметить.";
+			link.l1.go = "AT_PZD_MatrosUKostra_5";
+		break;
+		
+		case "AT_PZD_MatrosUKostra_5":
+			dialog.text = "Её светлость, поди, по мостовой изволила гулять, а мы от зари до заката в порту пашем. К губернатору тебе, морячка, нужно с такими вопросами, только он таких как ты не принимает.";
+			link.l1 = "Я капитан собственного судна, примет по долгу службы.";
+			link.l1.go = "AT_PZD_MatrosUKostra_6";
+		break;
+		
+		case "AT_PZD_MatrosUKostra_6":
+			dialog.text = "То-то и оно. У них там балы-маскарады каждый вечер, не до государственных дел. Гости к нему знатные съезжаются, а больше никого не пускают.";
+			link.l1 = "Прямо маскарады?";
+			link.l1.go = "AT_PZD_MatrosUKostra_7";
+		break;
+		case "AT_PZD_MatrosUKostra_7":
+			dialog.text = "Как есть. Вот вчера иду мимо резиденции, смотрю, пугало такое в саду носатое, я аж перекрестился, а это какой-то дон маску напялил и стоит статую разглядывает. Ох меня и смех разобрал тогда.";
+			link.l1 = "Что ж, хоть какая-то зацепка. Как бы ещё мне попасть на этот приём?";
+			link.l1.go = "AT_PZD_MatrosUKostra_8";
+		break;
+		case "AT_PZD_MatrosUKostra_8":
+			dialog.text = "Это ты, морячка, опять не тем людям вопросы задаёшь.";
+			link.l1 = "Знаю, и на том спасибо.";
+			link.l1.go = "AT_PZD_MatrosUKostra_9";
+		break;
+		case "AT_PZD_MatrosUKostra_9":
+			DialogExit();
+			
+			AddQuestRecord("AT_PZD", "4");
+			
+			pchar.questTemp.AT_PZD_Rostovshik = true;
+			pchar.questTemp.AT_PZD_Lavochniki = true;
+			pchar.questTemp.AT_PZD_Bordel = true;
+			
+			for (i=1; i<=4; i++)
+			{
+				sld = CharacterFromID("AT_PZD_Matros"+i);
+				sld.lifeday = 0;
+				LAi_CharacterDisableDialog(sld);
+			}
 		break;
 
 	}
