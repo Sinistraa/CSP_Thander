@@ -829,8 +829,16 @@ void ProcessDialogEvent()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		case "LoanUsurer":
 			dialog.text = "Давайте обсудим. Внимательно вас слушаю.";
-			link.l1 = "Есть ли у вас дело, требующее сторонней помощи?";
-			link.l1.go = "Loan_GiveWork";
+			if (GetSummonSkillFromName(pchar, SKILL_LEADERSHIP) < 26)//при низком авторитете даётся гарантированный квест на камень
+			{
+				link.l1 = "Есть ли у вас дело, требующее сторонней помощи?";
+				link.l1.go = "Quest_gemstone";
+			}
+			else
+			{
+				link.l1 = "Есть ли у вас дело, требующее сторонней помощи?";
+				link.l1.go = "Loan_GiveWork";
+			}
 			if (!CheckAttribute(NPChar,"StorageOpen"))
 			{
 				link.l11 = "Могу ли я арендовать у вас ячейку для хранения личных вещей?";
@@ -987,7 +995,7 @@ void ProcessDialogEvent()
                 }
                 switch (iNum)
                 {
-					case 0: //-->> дача квеста найти потерянный драгоценный камень
+					case 0: // найти потерянный драгоценный камень
 						if (pchar.questTemp.different == "free" && !CheckAttribute(npchar, "quest.usurersJewel") && GetNpcQuestPastDayWOInit(npchar, "usurersJewel") > 7 && !CheckAttribute(pchar, "questTemp.different.SeekUsurersJewel") && npchar.city != "Charles" && !CheckAttribute(npchar, "quest.slave"))
 						{
 							dialog.text = "Вы как нельзя вовремя! Хочу поручить вам одно дело.";
@@ -1056,7 +1064,6 @@ void ProcessDialogEvent()
                 			link.l1.go = "LoanUsurer_GiveWork_1";
             			}
                     break;
-			//<<-- дача квеста найти потерянный драгоценный камень
     			}
     		}
             else
@@ -1064,6 +1071,31 @@ void ProcessDialogEvent()
                 dialog.text = "Я вам уже всё сказал.";
             }
             link.l9 = "Извините, мне пора.";
+		    link.l9.go = "exit";
+		break;
+		
+		case "Quest_gemstone":
+            // проверка на проф пригодность -->
+            if (isBadReputation(pchar, 40))
+            {
+                dialog.text = RandSwear() + "Ты ведь " + GetFullName(pchar)+ ", не так ли? О тебе " +
+                              RandPhraseSimple("ходят ужасные слухи","говорят не лучшим образом") + ", я не хочу иметь с тобой дело.";
+				link.l1 = RandPhraseSimple("Эх... Стоит человеку оступиться, и все будут в него плевать.", RandSwear() + "Ну и не надо!");
+				link.l1.go = "exit";
+                break;
+            }
+            // проверка на проф пригодность <--
+			dialog.text = "Нет, к счастью, у меня всё хорошо.";
+			// найти потерянный драгоценный камень
+			if (pchar.questTemp.different == "free" && !CheckAttribute(npchar, "quest.usurersJewel") && GetNpcQuestPastDayWOInit(npchar, "usurersJewel") > 7 && !CheckAttribute(pchar, "questTemp.different.SeekUsurersJewel") && npchar.city != "Charles" && !CheckAttribute(npchar, "quest.slave"))
+			{
+				dialog.text = "Вы как нельзя вовремя! Хочу поручить вам одно дело.";
+				link.l1 = "Внимательно слушаю. Что за дело?";
+				link.l1.go = "usurersJewel_1";
+				npchar.quest.usurersJewel = "inSeek"; //личный флаг ростовщика на взятый квест
+				SaveCurrentNpcQuestDateParam(npchar, "usurersJewel");
+			}
+			link.l9 = "Извините, мне пора.";
 		    link.l9.go = "exit";
 		break;
 		//============== boal нахождение должника ===============
